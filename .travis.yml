@@ -8,11 +8,10 @@ env:
   - DOTNETCORE=1 repo_token=RAjHbC5h4Basi3mqsjtxqTAmxG0SeX7Ru COVERALLS_REPO_TOKEN=l3nZXQA47cVHWucS5LK20u28aer1QZT4zcgFo2LZAOn4v1CtRjrXOomdhvJG95bD
 
 mono:  
-  - none
+  - latest
 os:  
   - linux
   - osx
-osx_image: xcode7.3
 
 script:
   - dotnet restore && dotnet build **/project.json

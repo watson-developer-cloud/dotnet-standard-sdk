@@ -5,9 +5,7 @@ sudo: required
 mono: none
 dotnet: 1.0.0-preview2-003121
 env:
-  - DOTNETCORE=1
-  - repo_token=RAjHbC5h4Basi3mqsjtxqTAmxG0SeX7Ru
-  - COVERALLS_REPO_TOKEN=l3nZXQA47cVHWucS5LK20u28aer1QZT4zcgFo2LZAOn4v1CtRjrXOomdhvJG95bD
+  - DOTNETCORE=1 repo_token=RAjHbC5h4Basi3mqsjtxqTAmxG0SeX7Ru COVERALLS_REPO_TOKEN=l3nZXQA47cVHWucS5LK20u28aer1QZT4zcgFo2LZAOn4v1CtRjrXOomdhvJG95bD
 
 mono:  
   - none

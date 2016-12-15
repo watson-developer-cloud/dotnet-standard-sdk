@@ -14,5 +14,5 @@ os:
  
 script:
   - dotnet restore && dotnet build **/project.json
-  - chmod a+x bash coverage.sh
-  - chmod a+x bash coveralls.sh
+  - chmod a+x coverage.sh
+  - chmod a+x coveralls.sh

@@ -17,5 +17,5 @@ before_install:
  
 script:
   - dotnet restore && dotnet build **/project.json
-  - bash coverage.sh
-  - bash coveralls.sh
+  - chmod a+x coverage.sh
+  - chmod a+x coveralls.sh

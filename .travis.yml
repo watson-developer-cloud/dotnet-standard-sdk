@@ -6,14 +6,17 @@ mono: none
 dotnet: 1.0.0-preview2-003121
 env:
   - DOTNETCORE=1
+  - repo_token=RAjHbC5h4Basi3mqsjtxqTAmxG0SeX7Ru
+  - COVERALLS_REPO_TOKEN=l3nZXQA47cVHWucS5LK20u28aer1QZT4zcgFo2LZAOn4v1CtRjrXOomdhvJG95bD
+
 mono:  
-  - latest
+  - none
 os:  
   - linux
   - osx
 osx_image: xcode7.3
-install:
-  - nuget install OpenCover -version 4.6.519 -outputdirectory .\packages
-  - nuget install ReportGenerator -version 2.5.1 -outputdirectory .\packages
+
 script:
   - dotnet restore && dotnet build **/project.json
+  - bash coverage.sh
+  - bash coveralls.sh

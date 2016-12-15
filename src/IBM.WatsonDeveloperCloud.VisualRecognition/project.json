@@ -1,0 +1,32 @@
+﻿{
+  "version": "0.1.0-alpha",
+
+  "authors": [ "Atila Tosta" ],
+
+  "title": "IBM.WatsonDeveloperCloud.VisualRecognition",
+
+  "description": "Visual Recognition allows you to derive insights from an image based on its visual content. You can organize image libraries, understand an individual image, and create custom classifiers for specific results that are tailored to your needs.",
+
+  "dependencies": {
+    "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3",
+    "Newtonsoft.Json": "9.0.1",
+    "System.Runtime.Serialization.Json": "4.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": [ "dnxcore50", "net451" ],
+      "dependencies": {
+        "System.Runtime.Serialization.Xml": "4.1.1"
+      }
+    }
+  },
+  "scripts": {
+    "postcompile": [
+      //"dotnet pack --no-build --configuration %compile:Configuration%"
+      "dotnet pack --no-build --configuration release"
+    ]
+  }
+}

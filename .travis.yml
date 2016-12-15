@@ -1,0 +1,19 @@
+language: csharp
+solution: IBM.WatsonDeveloperCloud.sln
+dist: trusty
+sudo: required
+mono: none
+dotnet: 1.0.0-preview2-003121
+env:
+  - DOTNETCORE=1
+mono:  
+  - latest
+os:  
+  - linux
+  - osx
+osx_image: xcode7.3
+install:
+  - nuget install OpenCover -version 4.6.519 -outputdirectory .\packages
+  - nuget install ReportGenerator -version 2.5.1 -outputdirectory .\packages
+script:
+  - dotnet restore && dotnet build **/project.json

@@ -11,11 +11,8 @@ mono:
   - latest
 os:  
   - linux
-
-before_install:
-  - chmod +x gradlew
  
 script:
   - dotnet restore && dotnet build **/project.json
-  - chmod a+x coverage.sh
-  - chmod a+x coveralls.sh
+  - chmod a+x bash coverage.sh
+  - chmod a+x bash coveralls.sh

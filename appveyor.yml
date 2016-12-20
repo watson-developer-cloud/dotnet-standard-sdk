@@ -13,4 +13,4 @@ build_script:
 test:
   # assemblies to test
   assemblies:
-    - **\*.UnitTests.dll'
+    - **\*.UnitTests.dll

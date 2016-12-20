@@ -1,0 +1,16 @@
+version: 0.0.{build}-alpha
+branches:
+  only:
+  - development
+platform: Any CPU
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: T4HU+3zXxONb3hR4a+rJbE0MctjwMjlbHrYVBaU4BRXp9OAWygYlNUnDZZkG7vHk
+build_script:
+- ps: >-
+    dotnet restore
+
+    dotnet build **/project.json
+test:
+	assemblies:
+		- **\*.UnitTests.dll

@@ -9,8 +9,8 @@ environment:
 build_script:
 - ps: >-
     dotnet restore
-
     dotnet build **/project.json
 test:
-	assemblies:
-		- **\*.UnitTests.dll
+  # assemblies to test
+  assemblies:
+    - **\*.UnitTests.dll'

@@ -12,7 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.Test.Unit
+namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
 {
     [TestClass]
     public class LanguageTranslatorServiceUnitTest

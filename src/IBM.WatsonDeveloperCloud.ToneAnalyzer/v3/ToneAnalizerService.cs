@@ -28,12 +28,21 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         public ToneAnalizerService(string userName, string password)
             : this()
         {
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentNullException(nameof(userName));
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
             this.SetCredential(userName, password);
         }
 
         public ToneAnalizerService(IClient httpClient)
             : this()
         {
+            if (httpClient == null)
+                throw new ArgumentNullException(nameof(httpClient));
+
             this.Client = httpClient;
         }
 
@@ -56,27 +65,24 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                using (IClient client = new WatsonHttpClient(this.Endpoint, this.UserName, this.Password))
-                {
-                    JObject json =
-                        new JObject(
-                                new JProperty("text", text));
+                JObject json =
+                    new JObject(
+                            new JProperty("text", text));
 
-                    IRequest request =
-                        client.WithAuthentication(this.UserName, this.Password)
-                              .PostAsync(this.Endpoint + PATH_TONE)
-                              .WithArgument("version", VERSION_DATE_2016_05_19)
-                              .WithArgument("sentences", sentences);
+                IRequest request =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                          .PostAsync(this.Endpoint + PATH_TONE)
+                          .WithArgument("version", VERSION_DATE_2016_05_19)
+                          .WithArgument("sentences", sentences);
 
-                    if (filterTones != null && filterTones.Count > 0)
-                        request.WithArgument("tones", filterTones.Select(t => t.ToString().ToLower())
-                                                                 .Aggregate((a, b) => a + ", " + b));
+                if (filterTones != null && filterTones.Count > 0)
+                    request.WithArgument("tones", filterTones.Select(t => t.ToString().ToLower())
+                                                             .Aggregate((a, b) => a + ", " + b));
 
-                    result =
-                        request.WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<ToneAnalysis>()
-                               .Result;
-                }
+                result =
+                    request.WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
+                           .As<ToneAnalysis>()
+                           .Result;
             }
             catch (Exception)
             {

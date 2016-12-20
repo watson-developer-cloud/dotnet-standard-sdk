@@ -5,7 +5,7 @@
 
   "title": "IBM.WatsonDeveloperCloud.ToneAnalyzer",
 
-  "description": "",
+  "description": "The IBM Watson Tone Analyzer service uses linguistic analysis to detect emotional tones, social propensities, and writing styles in written communication. Then it offers suggestions to help the writer improve their intended language tones.",
 
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",

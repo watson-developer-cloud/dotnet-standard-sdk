@@ -1,17 +1,13 @@
-os: Visual Studio 2015
 version: 0.0.{build}-alpha
 branches:
   only:
   - development
+image: Visual Studio 2015
 platform: Any CPU
 environment:
-  COVERALLS_REPO_TOKEN:
-    secure: T4HU+3zXxONb3hR4a+rJbE0MctjwMjlbHrYVBaU4BRXp9OAWygYlNUnDZZkG7vHk
+  COVERALLS_REPO_TOKEN: 1cSKppqhSVXjbnI4nPZsn9imEIwEHtuTy
 build_script:
 - ps: >-
     dotnet restore
+
     dotnet build **/project.json
-test:
-  # assemblies to test
-  assemblies:
-    - '**\*.UnitTests.dll'

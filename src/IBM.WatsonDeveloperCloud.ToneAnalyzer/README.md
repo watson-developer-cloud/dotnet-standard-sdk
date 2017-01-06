@@ -1,7 +1,7 @@
 ### Tone Analyzer
 
 
-The IBM Watson™ Tone Analyzer Service uses linguistic analysis to detect three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and emotional range. Identified writing styles include confident, analytical, and tentative.
+The [IBM Watson™ Tone Analyzer Service](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer) uses linguistic analysis to detect three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and emotional range. Identified writing styles include confident, analytical, and tentative.
 
 ### Instalation
 #### Nuget
@@ -17,7 +17,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer -Pre
 }
 ```
 #### Usage
-Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
+Use [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer) to detect three types of tones from written text: emotions, social tendencies, and language style. Emotions identified include things like anger, cheerfulness and sadness. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified language styles include things like confident, analytical, and tentative. Input email and other written media into the [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer) service, and use the results to determine if your writing comes across with the tone, personality traits, and writing style that you want for your intended audience.
 
 ```C#
  // create a Language Translator Service 
@@ -27,7 +27,7 @@ Select a domain, then identify or select the language of text, and then translat
  // set the credentials
  service.SetCredential("<username>", "<password>");
  
- // Translate '"Hello! How are you?' from English to Portuguese using the Language Translator service
+ // Analyze Tone
  var results = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson");
 
 ```

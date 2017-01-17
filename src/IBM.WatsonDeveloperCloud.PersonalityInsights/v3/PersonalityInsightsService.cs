@@ -47,7 +47,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                
+
+               
             }
             catch (Exception)
             {

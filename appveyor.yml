@@ -11,3 +11,7 @@ build_script:
     dotnet restore
 
     dotnet build **/project.json
+test:
+  # assemblies to test
+  assemblies:
+    - '**\*.UnitTests.dll'

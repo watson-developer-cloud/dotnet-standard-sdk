@@ -3,6 +3,7 @@ using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using System;
+using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1
 {
@@ -59,9 +60,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                       .As<MessageResponse>()
                       .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;

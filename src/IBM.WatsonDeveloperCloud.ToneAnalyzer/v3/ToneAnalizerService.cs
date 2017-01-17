@@ -6,6 +6,7 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
 using Newtonsoft.Json.Linq;
+using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 {
@@ -84,9 +85,9 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                            .As<ToneAnalysis>()
                            .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;

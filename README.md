@@ -8,3 +8,4 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 ## Table of Contents
 * IBM Watson Services
   * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
+  * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)

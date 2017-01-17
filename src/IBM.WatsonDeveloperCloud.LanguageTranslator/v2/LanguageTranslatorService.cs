@@ -8,6 +8,7 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models;
 using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json.Linq;
+using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {
@@ -65,9 +66,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                .As<TranslationModels>()
                                .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -99,9 +100,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                 .As<CustomModels>()
                                 .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -122,9 +123,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                .As<DeleteModels>()
                                .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -145,9 +146,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                .As<ModelPayload>()
                                .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -200,9 +201,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                           .As<TranslateResponse>()
                           .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -220,9 +221,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                .As<IdentifiableLanguages>()
                                .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;
@@ -242,9 +243,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                                .As<IdentifiedLanguages>()
                                .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
             }
 
             return result;

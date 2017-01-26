@@ -25,7 +25,6 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK Release through NuGet <TODO installation instructions>
 ```
-
 PM> Install-Package <TODO package>
 ```
 
@@ -47,7 +46,7 @@ Find more open source projects on the [IBM Github Page][ibm-github].
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md]).
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 [wdc]: http://www.ibm.com/watson/developercloud/
 [bluemix_registration]: http://bluemix.net/registration

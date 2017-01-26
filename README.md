@@ -5,13 +5,13 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 
 ## Table of Contents
 * [Before you begin](#before-you-begin)
-* [Installing the Watson .NET Standard SDK](#installing-the-watson-.NET-Standard-SDK)
+* [Installing the Watson .NET Standard SDK](#installing-the-watson-NET-Standard-SDK)
 * IBM Watson Services
   * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
   * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
 * [Documentation](#documentation)
 * [Questions](#questions)
-* [Open Source @ IBM](#open-source---ibm)
+* [Open Source @ IBM](#open-source-ibm)
 * [License](#license)
 * [Contributing](#contributing)
 
@@ -47,7 +47,7 @@ Find more open source projects on the [IBM Github Page][ibm-github].
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+See [CONTRIBUTING.md][.github/CONTRIBUTING.md].
 
 [wdc]: http://www.ibm.com/watson/developercloud/
 [bluemix_registration]: http://bluemix.net/registration

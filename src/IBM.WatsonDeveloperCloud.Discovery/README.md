@@ -3,7 +3,7 @@
 The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data â€” including your own proprietary data, as well as public and third-party data.
 
 
-### Instalation
+### Installation
 #### Nuget
 ```
 
@@ -12,9 +12,11 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery -Pre
 ```
 #### Project.json
 ```JSON
+
 "dependencies": {
    "IBM.WatsonDeveloperCloud.Discovery": "0.1.0-alpha"
 }
+
 ```
 #### Usage
 The IBM Watson™ [Discovery][discovery] Service uses data analysis combined with cognitive intuition in order to take your unstructured data and enrich it so that you can query it to return the information that you need from it.

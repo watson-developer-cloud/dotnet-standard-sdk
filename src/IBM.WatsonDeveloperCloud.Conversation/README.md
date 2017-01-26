@@ -11,37 +11,41 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation -Pre
 ```
 #### Project.json
 ```JSON
+
 "dependencies": {
    "IBM.WatsonDeveloperCloud.Conversation": "0.1.0-alpha"
 }
+
 ```
-#### Usage
+### Usage
 You complete these steps to implement your application:
 
 * Configure a workspace. With the easy-to-use graphical environment, you set up the dialog flow and training data for your application.
 
 * Develop your application. You code your application to connect to the Conversation workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
 
+#### List workspaces
 ```cs
- // create a Tone Analyzer Service
- ConversationService service =
-     new ConversationService();
+```
 
- // set the credentials
- service.SetCredential("<username>", "<password>");
+##### Create workspace
+```cs
+```
 
- // list workspaces
+##### Delete workspace
+```cs
+```
 
- // create workspace
+##### Get workspace details
+```cs
+```
 
- // delete workspace
+##### Update workspace details
+```cs
+```
 
- // get workspace details
-
- // update workspace
-
- // message
-
+##### Message
+```cs
 ```
 
 [conversation]:http://www.ibm.com/watson/developercloud/doc/conversation/

@@ -1,4 +1,5 @@
 ### Language Translator
+
 [![NuGet version](https://img.shields.io/nuget/v/IBM.WatsonDeveloperCloud.LanguageTranslator.svg)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator/)
 
 The IBM Watson™ Language Translator service provides an Application Programming Interface (API) that lets you choose a domain-specific translation model, optionally customize it, select or automatically identify the language used in your input text, and then translate text from one supported language to another.
@@ -12,11 +13,13 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator -Pre
 ```
 #### Project.json
 ```JSON
+
 "dependencies": {
    "IBM.WatsonDeveloperCloud.LanguageTranslator": "0.1.0-alpha"
 }
+
 ```
-#### Usage
+### Usage
 Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
 
 ```cs

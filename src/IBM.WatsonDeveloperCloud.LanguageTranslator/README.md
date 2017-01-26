@@ -3,7 +3,7 @@
 
 The IBM Watson™ Language Translator service provides an Application Programming Interface (API) that lets you choose a domain-specific translation model, optionally customize it, select or automatically identify the language used in your input text, and then translate text from one supported language to another.
 
-### Instalation
+### Installation
 #### Nuget
 ```
 

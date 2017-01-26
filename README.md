@@ -4,16 +4,16 @@
 The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
 
 ## Table of Contents
-* [Before you begin](before-you-begin)
-* [Installing the Watson .NET Standard SDK](installing-the-watson-.NET-Standard-SDK)
+* [Before you begin](#before-you-begin)
+* [Installing the Watson .NET Standard SDK](#installing-the-watson-.NET-Standard-SDK)
 * IBM Watson Services
   * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
   * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
-* [Documentation](documentation)
-* [Questions](questions)
-* [Open Source @ IBM](open-source-@-ibm)
-* [License](license)
-* [Contributing](contributing)
+* [Documentation](#documentation)
+* [Questions](#questions)
+* [Open Source @ IBM](#open-source-@-ibm)
+* [License](#license)
+* [Contributing](#contributing)
 
 ## Before you begin
 Ensure you have the following prerequisites:

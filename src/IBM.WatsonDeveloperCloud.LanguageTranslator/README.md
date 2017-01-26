@@ -19,14 +19,14 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator -Pre
 #### Usage
 Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
 
-```C#
- // create a Language Translator Service 
+```cs
+ // create a Language Translator Service
  LanguageTranslationService service =
      new LanguageTranslationService();
- 
+
  // set the credentials
  service.SetCredential("<username>", "<password>");
- 
+
  // Translate '"Hello! How are you?' from English to Portuguese using the Language Translator service
  var results = service.Translate("en", "pt", "Hello! How are you?");
 

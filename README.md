@@ -25,7 +25,9 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK Release through NuGet <TODO installation instructions>
 ```
+
 PM> Install-Package <TODO package>
+
 ```
 
 Or manually [here][latest_release].

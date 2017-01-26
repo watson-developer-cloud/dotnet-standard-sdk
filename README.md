@@ -11,7 +11,7 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
   * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
 * [Documentation](#documentation)
 * [Questions](#questions)
-* [Open Source @ IBM](#open-source-@-ibm)
+* [Open Source @ IBM](#open-source---ibm)
 * [License](#license)
 * [Contributing](#contributing)
 
@@ -37,11 +37,11 @@ Or manually [here][latest_release].
 ## Questions
 
 If you are having difficulties using the APIs or have a question about the IBM Watson Services, please ask a question on
-[dW Answers](dw-answers)
-or [Stack Overflow](stack-overflow).
+[dW Answers][dw-answers]
+or [Stack Overflow][stack-overflow].
 
 ## Open Source @ IBM
-Find more open source projects on the [IBM Github Page](ibm-github).
+Find more open source projects on the [IBM Github Page][ibm-github].
 
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).

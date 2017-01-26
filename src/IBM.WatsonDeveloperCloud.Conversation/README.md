@@ -25,26 +25,31 @@ You complete these steps to implement your application:
 * Develop your application. You code your application to connect to the Conversation workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
 
 #### List workspaces
+List existing workspaces for the service instance.
 ```cs
 ```
 
 ##### Create workspace
+Create a new workspace.
 ```cs
 ```
 
 ##### Delete workspace
+Delete an existing workspace.
 ```cs
 ```
 
 ##### Get workspace details
+Get detailed information about a specific workspace.
 ```cs
 ```
 
 ##### Update workspace details
+Update an existing workspace.
 ```cs
 ```
-
-##### Message
+#### Message
+Get a response to a user's input.
 ```cs
 ```
 

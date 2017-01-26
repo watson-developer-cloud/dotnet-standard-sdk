@@ -1,6 +1,6 @@
 ### Conversation
 
-Watson [Conversation][conversation] allows you to quickly build, test and deploy a bot or virtual agent across mobile devices, messaging platforms like Slack or even on a physical robot. Conversation has a visual dialog builder to help you create natural conversations between your apps and users, without any coding experience required.
+With the IBM Watson™ [Conversation][conversation] service, you can create an application that understands natural-language input and uses machine learning to respond to customers in a way that simulates a conversation between humans.
 
 ### Instalation
 #### Nuget
@@ -22,7 +22,7 @@ You complete these steps to implement your application:
 
 * Develop your application. You code your application to connect to the Conversation workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
 
-```C#
+```cs
  // create a Tone Analyzer Service
  ConversationService service =
      new ConversationService();

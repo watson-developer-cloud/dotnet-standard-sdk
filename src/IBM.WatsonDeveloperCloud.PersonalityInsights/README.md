@@ -1,6 +1,6 @@
 ### Personality Insights
 
-The IBM Watson™ Personality Insights service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
+The IBM Watson™ [Personality Insights][personality-insights] service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
 
 The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
 
@@ -10,14 +10,14 @@ For information about the meaning of the models that the service uses to describ
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights -Pre
 
 ```
 #### Project.json
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer": "0.1.0-alpha"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.1.0-alpha"
 }
 
 ```

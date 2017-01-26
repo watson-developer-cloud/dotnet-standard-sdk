@@ -27,7 +27,7 @@ using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 {
-    public class ToneAnalizerService : WatsonService, IToneAnalyzerService
+    public class ToneAnalyzerService : WatsonService, IToneAnalyzerService
     {
         const string SERVICE_NAME = "tone_analyzer";
 
@@ -36,14 +36,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
         const string URL = "https://gateway.watsonplatform.net/tone-analyzer/api";
 
-        public ToneAnalizerService()
+        public ToneAnalyzerService()
             : base(SERVICE_NAME, URL)
         {
             if (!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public ToneAnalizerService(string userName, string password)
+        public ToneAnalyzerService(string userName, string password)
             : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -55,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             this.SetCredential(userName, password);
         }
 
-        public ToneAnalizerService(IClient httpClient)
+        public ToneAnalyzerService(IClient httpClient)
             : this()
         {
             if (httpClient == null)

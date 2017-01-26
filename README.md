@@ -9,6 +9,12 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 * IBM Watson Services
   * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
   * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
+  * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
+  * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery)
+  * [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)
+  * [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
+  * [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
+  * [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
 * [Documentation](#documentation)
 * [Questions](#questions)
 * [Open Source @ IBM](#open-source--ibm)

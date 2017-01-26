@@ -46,7 +46,7 @@ Find more open source projects on the [IBM Github Page][ibm-github].
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 
 [wdc]: http://www.ibm.com/watson/developercloud/
 [bluemix_registration]: http://bluemix.net/registration

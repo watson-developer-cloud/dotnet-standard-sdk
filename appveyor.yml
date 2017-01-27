@@ -5,9 +5,9 @@ clone_folder: c:\projects\wdc-dotnet-standard-sdk
 environment:
   COVERALLS_REPO_TOKEN: 1cSKppqhSVXjbnI4nPZsn9imEIwEHtuTy
 install:
-  - nuget Install-Package OpenCover
-  - nuget Install-Package ReportGenerator
-  - nuget Install-Package coveralls.net
+  - nuget install OpenCover
+  - nuget install ReportGenerator
+  - nuget install coveralls.net
 build_script:
 - ps: >-
     dotnet restore

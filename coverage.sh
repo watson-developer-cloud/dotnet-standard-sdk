@@ -34,7 +34,7 @@ mkdir $coverage
 dotnet test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests/
 
 echo "Calculating coverage with OpenCover"
-$OPENCOVER \
+mono $OPENCOVER \
   -target:"c:\Program Files\dotnet\dotnet.exe" \
   -targetargs:"test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests" \
   -mergeoutput \
@@ -46,7 +46,7 @@ $OPENCOVER \
   -register:user
 
 echo "Generating HTML report"
-$REPORTGENERATOR \
+mono $REPORTGENERATOR \
   -reports:$coverage/coverage.xml \
   -targetdir:$coverage \
   -verbosity:Error

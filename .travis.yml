@@ -16,6 +16,5 @@ before_script:
  - chmod +x coverage.sh
  - chmod +x coveralls.sh
 script:
-- dotnet restore && dotnet build **/project.json
 - bash coverage.sh
 - bash coveralls.sh

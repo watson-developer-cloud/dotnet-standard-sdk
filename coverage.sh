@@ -35,7 +35,7 @@ dotnet test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.Lan
 
 echo "Calculating coverage with OpenCover"
 mono $OPENCOVER \
-  -target:"c:\Program Files\dotnet\dotnet.exe" \
+  -target:dotnet \
   -targetargs:"test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests" \
   -mergeoutput \
   -hideskipped:File \

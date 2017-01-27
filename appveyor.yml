@@ -1,7 +1,4 @@
 version: 0.0.{build}-alpha
-#branches:
-#  only:
-#  - development
 image: Visual Studio 2015
 platform: Any CPU
 environment:
@@ -16,11 +13,7 @@ test:
   assemblies:
     - '**\*.UnitTests.dll'
 after_test:
-  - ps: >-
-    bash chmod +x coverage.sh
-
-    bash chmod +x coveralls.sh
-
-    bash coverage.sh
-
-    bash coveralls.sh
+  - bash chmod +x coverage.sh
+  - bash chmod +x coveralls.sh
+  - bash coverage.sh
+  - bash coveralls.sh

@@ -12,8 +12,3 @@ test:
   # assemblies to test
   assemblies:
     - '**\*.UnitTests.dll'
-after_test:
-  - bash chmod +x coverage.sh
-  - bash chmod +x coveralls.sh
-  - bash coverage.sh
-  - bash coveralls.sh

@@ -31,7 +31,7 @@ coverage=./coverage
 rm -rf $coverage
 mkdir $coverage
 
-mono dotnet test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests/
+dotnet test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests/
 
 echo "Calculating coverage with OpenCover"
 mono $OPENCOVER \

@@ -6,15 +6,6 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 ## Table of Contents
 * [Before you begin](#before-you-begin)
 * [Installing the Watson .NET Standard SDK](#installing-the-watson-net-standard-sdk)
-* IBM Watson Services
-  * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
-  * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
-  * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
-  * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery)
-  * [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)
-  * [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
-  * [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
-  * [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
 * [Documentation](#documentation)
 * [Questions](#questions)
 * [Open Source @ IBM](#open-source--ibm)
@@ -25,16 +16,20 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 Ensure you have the following prerequisites:
 
 * An IBM Bluemix account. If you don't have one, [sign up][bluemix_registration].
-* <TODO prerequisite - Visual Studio?>
-* <TODO prerequisite>
+* Install [Visual Studio][visual-studio-download] for Windows or [Visual Studio Code][visual-studio-code-download] for OSX or Linux.
+* Install [.NET Core][dotnet-core-download].
 
 ## Installing the Watson .NET Standard SDK
-You can get the latest SDK Release through NuGet <TODO installation instructions>
-```
+You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
-PM> Install-Package <TODO package>
-
-```
+* [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
+* [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
+* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
+* [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery)
+* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
+* [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
+* [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
+* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)
 
 Or manually [here][latest_release].
 
@@ -78,3 +73,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [natural_language_classifier]: http://www.ibm.com/watson/developercloud/doc/natural-language-classifier/index.html
 [alchemyData_news]: http://www.ibm.com/watson/developercloud/alchemy-data-news.html
 [tradeoff_analytics]: http://www.ibm.com/watson/developercloud/doc/tradeoff-analytics/
+
+[dotnet-core-download]: https://www.microsoft.com/net/download/core
+[visual-studio-download]: https://www.visualstudio.com/vs/community/
+[visual-studio-code-download]: https://code.visualstudio.com/

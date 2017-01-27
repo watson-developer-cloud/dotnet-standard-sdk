@@ -9,8 +9,11 @@ environment:
 build_script:
 - ps: >-
     dotnet restore
-
     dotnet build **/project.json
+    bash chmod +x coverage.sh
+    bash chmod +x coveralls.sh
+    bash coverage.sh
+    bash coveralls.sh
 test:
   # assemblies to test
   assemblies:

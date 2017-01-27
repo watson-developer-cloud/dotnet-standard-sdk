@@ -1,7 +1,7 @@
 version: 0.0.{build}-alpha
-branches:
-  only:
-  - development
+#branches:
+#  only:
+#  - development
 image: Visual Studio 2015
 platform: Any CPU
 environment:
@@ -9,12 +9,18 @@ environment:
 build_script:
 - ps: >-
     dotnet restore
+
     dotnet build **/project.json
-    bash chmod +x coverage.sh
-    bash chmod +x coveralls.sh
-    bash coverage.sh
-    bash coveralls.sh
 test:
   # assemblies to test
   assemblies:
     - '**\*.UnitTests.dll'
+after_test:
+  - ps: >-
+    bash chmod +x coverage.sh
+
+    bash chmod +x coveralls.sh
+
+    bash coverage.sh
+
+    bash coveralls.sh

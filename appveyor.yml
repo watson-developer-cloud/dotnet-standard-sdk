@@ -17,3 +17,7 @@ test:
   # assemblies to test
   assemblies:
     - '**\*.UnitTests.dll'
+after_test:
+  - c:/projects/wdc-dotnet-standard-sdk/packages/OpenCover.4.6.519/tools/OpenCover.Console.exe "-target:C:\Program Files\dotnet\dotnet.exe" -targetargs:"test -f netcoreapp1.0 $DOTNET_TEST_ARGS test/IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests" -mergeoutput -hideskipped:File -output:coverage\coverage.xml  -oldStyle -filter:"+[IBM.WatsonDeveloperCloud.LanguageTranslator*]* -[IBM.WatsonDeveloperCloud.LanguageTranslator.*Tests*]*" -searchdirs:$testdir/bin/$CONFIG/netcoreapp1.0 -register:user
+  - c:/projects/wdc-dotnet-standard-sdk/packages/ReportGenerator.2.4.5.0/tools/ReportGenerator.exe -reports:coverage/coverage.xml -targetdir:coverage -verbosity:Error
+  - c:/projects/wdc-dotnet-standard-sdk/packages/coveralls.net.0.7.0/tools/csmacnz.Coveralls.exe --opencover -i coverage/coverage.xml --useRelativePaths

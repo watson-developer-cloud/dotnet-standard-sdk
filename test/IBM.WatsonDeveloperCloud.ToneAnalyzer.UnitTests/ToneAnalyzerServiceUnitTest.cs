@@ -114,7 +114,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson");
 
@@ -196,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL });
 
@@ -278,7 +278,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -360,7 +360,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             service.AnalyzeTone(null, new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -438,7 +438,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -447,29 +447,29 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_HttpClient_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService(null);
+            ToneAnalyzerService service =
+                new ToneAnalyzerService(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_UserName_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService(null, "pass");
+            ToneAnalyzerService service =
+                new ToneAnalyzerService(null, "pass");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_PassWord_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService("username", null);
+            ToneAnalyzerService service =
+                new ToneAnalyzerService("username", null);
         }
 
         [TestMethod]
         public void Constructor_With_UserName_Password()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService("username", "password");
+            ToneAnalyzerService service =
+                new ToneAnalyzerService("username", "password");
         }
     }
 }

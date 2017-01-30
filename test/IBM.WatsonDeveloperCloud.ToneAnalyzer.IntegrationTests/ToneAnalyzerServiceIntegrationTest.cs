@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.IntegrationTests
         [TestMethod]
         public void AnalyzeTone_Success()
         {
-            ToneAnalizerService service = new ToneAnalizerService();
+            ToneAnalyzerService service = new ToneAnalyzerService();
 
             service.Endpoint = "https://watson-api-explorer.mybluemix.net/tone-analyzer/api";
             var results = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson");

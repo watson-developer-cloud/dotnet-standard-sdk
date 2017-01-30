@@ -21,8 +21,8 @@ Use [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer) to detect three 
 
 ```C#
  // create a Tone Analyzer Service 
- ToneAnalizerService service =
-     new ToneAnalizerService();
+ ToneAnalyzerService service =
+     new ToneAnalyzerService();
  
  // set the credentials
  service.SetCredential("<username>", "<password>");

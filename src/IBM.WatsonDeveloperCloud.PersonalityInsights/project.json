@@ -1,11 +1,9 @@
-﻿{
+{
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
 
   "title": "IBM.WatsonDeveloperCloud.PersonalityInsights",
 
-  "description": "",
+  "description": "IBM.WatsonDeveloperCloud.PersonalityInsights wraps the Watson Developer Cloud Personality Insights service (http://www.ibm.com/watson/developercloud/personality-insights.html)",
 
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",

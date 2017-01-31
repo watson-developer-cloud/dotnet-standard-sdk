@@ -31,6 +31,6 @@
     "compile": {
       "exclude": [ "Conversation/", "LanguageTranslator/", "SpeechToText/", "TextToSpeech/", "ToneAnalyzer/", "VisualRecognition/", "Discovery/", "PersonalityInsights/" ]
     },
-    "xmlDoc": true
+    "xmlDoc": false
   }
 }

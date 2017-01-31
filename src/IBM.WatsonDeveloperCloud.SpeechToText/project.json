@@ -1,11 +1,9 @@
-﻿{
+{
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
 
   "title": "IBM.WatsonDeveloperCloud.SpeechToText",
 
-  "description": "The IBM.WatsonDeveloperCloud.SpeechToText is an abstraction for Speech To Text of Watson Developer Cloud API (http://www.ibm.com/watson/developercloud/doc/speech-to-text/)",
+  "description": "IBM.WatsonDeveloperCloud.SpeechToText wraps the Watson Developer Cloud Speech to Text service (http://www.ibm.com/watson/developercloud/speech-to-text.html)",
 
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",

@@ -1,7 +1,11 @@
-﻿{
-  "version": "0.0.1-*",
+{
+  "version": "0.1.0-alpha",
 
   "testRunner": "mstest",
+
+  "buildOptions": {
+    "copyToOutput": "appsettings.json"
+  },
 
   "dependencies": {
     "dotnet-test-mstest": "1.1.2-preview",
@@ -12,7 +16,8 @@
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",
-    "ReportGenerator": "2.5.1"
+    "coveralls.net": "0.7.0",
+    "ReportGenerator": "2.4.5"
   },
 
   "frameworks": {

@@ -1,11 +1,9 @@
-﻿{
+{
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
 
   "title": "IBM.WatsonDeveloperCloud.VisualRecognition",
 
-  "description": "Visual Recognition allows you to derive insights from an image based on its visual content. You can organize image libraries, understand an individual image, and create custom classifiers for specific results that are tailored to your needs.",
+  "description": "IBM.WatsonDeveloperCloud.VisualRecognition wraps the Watson Developer Cloud Visual Recognition service (http://www.ibm.com/watson/developercloud/visual-recognition.html)",
 
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",

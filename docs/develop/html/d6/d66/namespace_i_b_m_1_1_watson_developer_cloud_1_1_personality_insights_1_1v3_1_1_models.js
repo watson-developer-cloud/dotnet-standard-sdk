@@ -1,0 +1,12 @@
+var namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models =
+[
+    [ "BehaviorNode", "d5/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_behavior_node.html", "d5/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_behavior_node" ],
+    [ "ConsumptionPreferencesCategoryNode", "d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node.html", "d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node" ],
+    [ "ConsumptionPreferencesNode", "d2/d64/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_node.html", "d2/d64/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_node" ],
+    [ "ContentItem", "dc/d27/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_item.html", null ],
+    [ "ContentListContainer", "de/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_list_container.html", "de/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_list_container" ],
+    [ "Profile", "d9/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile.html", "d9/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile" ],
+    [ "ProfileOptions", "dd/d0a/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options.html", "dd/d0a/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options" ],
+    [ "TraitTreeNode", "d4/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_trait_tree_node.html", "d4/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_trait_tree_node" ],
+    [ "Warning", "d8/d8b/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_warning.html", "d8/d8b/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_warning" ]
+];

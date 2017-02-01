@@ -38,11 +38,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 this.Endpoint = URL;
         }
 
-        /// <summary>
-        /// Creates an instance of Conversation.
-        /// </summary>
-        /// <param name="userName">The service username.</param>
-        /// <param name="password">The service password.</param>
         public ConversationService(string userName, string password)
             : this()
         {

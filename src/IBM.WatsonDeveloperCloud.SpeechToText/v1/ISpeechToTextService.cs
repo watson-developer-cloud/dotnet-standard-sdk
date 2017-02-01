@@ -66,7 +66,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.
         /// </summary>
-        /// <param name="session">A Session Id that identifies the session to be deleted</param>
+        /// <param name="sessionId">A Session Id that identifies the session to be deleted</param>
         void DeleteSession(string sessionId);
 
         /// <summary>
@@ -80,6 +80,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Sends audio and returns transcription results for a sessionless recognition request. By default, returns only the final results; to enable interim results, set the interimResults parameter to true. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
         /// </summary>
         /// <param name="audio">The audio to be transcribed in the format specified by the contentType parameter.</param>
+        /// <param name="options">The audio to be transcribed in the format specified by the contentType parameter.</param>
         /// <returns>Returns SpeechRecognitionEvent object that contains the results that are provided in a JSON SpeechRecognitionEvent object. The response includes one or more instances of the object depending on the value of the interimResults parameter.</returns>
         SpeechRecognitionEvent Recognize(FileStream audio, RecognizeOptions options);
 

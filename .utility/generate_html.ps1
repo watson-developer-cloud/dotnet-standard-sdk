@@ -23,12 +23,17 @@ function New-TableOfContents($path)
         <p>Documentation by branch/tag:</p>
         <ul>
 "
+    # For each child item that is a directory, create a link containing the relative path
     Get-ChildItem $root | where { $_.PSIsContainer -eq $true } |% {
+        # Strip the root out of the path name (including the trailing slash)
+        # in order to create a hyperlink that can be used from any location
         $relPath = $_.FullName.Remove(0, $root.Length + 1)
-        $htmlPath = $_.FullName +"/html/index.html"
+        $htmlPath = "docs/" + $_.Name +"/html/index.html"
+        # Write the link out - this is where you could get fancier with what you output
+        # For example, you could include the last modified date/time, etc.
         Write-Output "<li><a href=`"$htmlPath`">$relPath</a><br /></li>"
     }
-    Write-Output "        </ul>
+    Write-Output "    </ul>
     </div>
     </body>
     </html>"

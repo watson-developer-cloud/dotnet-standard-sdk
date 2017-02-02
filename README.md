@@ -35,7 +35,7 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 Or manually [here][latest_release].
 
 ## Documentation
-<TODO Instructions to access documentation>
+Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 
 ## Questions
 
@@ -78,3 +78,4 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [dotnet-core-download]: https://www.microsoft.com/net/download/core
 [visual-studio-download]: https://www.visualstudio.com/vs/community/
 [visual-studio-code-download]: https://code.visualstudio.com/
+[dotnet-standard-sdk-documentation]: https://atilatosta.github.io/dotnet-standard-sdk/

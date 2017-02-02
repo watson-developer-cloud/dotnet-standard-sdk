@@ -6,19 +6,19 @@ function New-TableOfContents($path)
     Write-Output "<!DOCTYPE html>
     <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset=`"utf-8`">
+        <meta http-equiv=`"X-UA-Compatible`" content=`"IE=edge`">
+        <meta name=`"viewport`" content=`"width=device-width, initial-scale=1`">
         <title>IBM Watson Developer Cloud</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel=`"stylesheet`" href=`"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css`" integrity`"sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7`" crossorigin=`"anonymous`">
     </head>
     <body>
-    <div class="container">
-        <div class="page-header">
+    <div class=`"container`">
+        <div class=`"page-header`">
             <h1>IBM Watson Developer Cloud .NET Standard SDK</h1>
         </div>
-        <p><a href="http://www.ibm.com/watson/developercloud/">Info</a>
-            | <a href="http://www.ibm.com/watson/developercloud/doc/index.html">Documentation</a>
+        <p><a href=`"http://www.ibm.com/watson/developercloud/`">Info</a>
+            | <a href=`"http://www.ibm.com/watson/developercloud/doc/index.html`">Documentation</a>
         </p>
         <p>Documentation by branch/tag:</p>
         <ul>
@@ -33,7 +33,7 @@ function New-TableOfContents($path)
         # For example, you could include the last modified date/time, etc.
         Write-Output "<li><a href=`"$htmlPath`">$relPath</a><br /></li>"
     }
-    Write-Output "    </ul>
+    Write-Output "        </ul>
     </div>
     </body>
     </html>"

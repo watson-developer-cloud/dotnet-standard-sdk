@@ -4,24 +4,24 @@ function New-TableOfContents($path)
     $root = (Get-Item $path).FullName
 
     Write-Output "<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset=`"utf-8`">
-        <meta http-equiv=`"X-UA-Compatible`" content=`"IE=edge`">
-        <meta name=`"viewport`" content=`"width=device-width, initial-scale=1`">
-        <title>IBM Watson Developer Cloud</title>
-        <link rel=`"stylesheet`" href=`"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css`" integrity=`"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u`" crossorigin=`"anonymous`">
-    </head>
-    <body>
-    <div class=`"container`">
-        <div class=`"page-header`">
-            <h1>IBM Watson Developer Cloud .NET Standard SDK</h1>
-        </div>
-        <p><a href=`"http://www.ibm.com/watson/developercloud/`">Info</a>
-            | <a href=`"http://www.ibm.com/watson/developercloud/doc/index.html`">Documentation</a>
-        </p>
-        <p>Documentation by branch/tag:</p>
-        <ul>
+<html>
+<head>
+    <meta charset=`"utf-8`">
+    <meta http-equiv=`"X-UA-Compatible`" content=`"IE=edge`">
+    <meta name=`"viewport`" content=`"width=device-width, initial-scale=1`">
+    <title>IBM Watson Developer Cloud</title>
+    <link rel=`"stylesheet`" href=`"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css`" integrity=`"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u`" crossorigin=`"anonymous`">
+</head>
+<body>
+<div class=`"container`">
+    <div class=`"page-header`">
+        <h1>IBM Watson Developer Cloud .NET Standard SDK</h1>
+    </div>
+    <p><a href=`"http://www.ibm.com/watson/developercloud/`">Info</a>
+        | <a href=`"http://www.ibm.com/watson/developercloud/doc/index.html`">Documentation</a>
+    </p>
+    <p>Documentation by branch/tag:</p>
+    <ul>
 "
     # For each child item that is a directory, create a link containing the relative path
     Get-ChildItem $root | where { $_.PSIsContainer -eq $true } |% {
@@ -34,7 +34,7 @@ function New-TableOfContents($path)
         Write-Output "<li><a href=`"$htmlPath`">$relPath</a><br /></li>"
     }
     Write-Output "        </ul>
-    </div>
-    </body>
-    </html>"
+</div>
+</body>
+</html>"
 }

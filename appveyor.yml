@@ -1,13 +1,14 @@
 version: 0.0.{build}
 branches:
-  only:
-  - development
-  - gh-8-continuousIntegration
+  except:
+  - gh-pages
 configuration: Release
 platform: Any CPU
 environment:
   COVERALLS_REPO_TOKEN:
     secure: QumHLwVevHVqpowzdjoBElUVa3eS5leJi5rsPdC/tnMuOkfvIRAa0yFDeuNlHNQy
+  GH_TOKEN:
+    secure: i+mbJGwxQAkDjd6r1UfRMija3lDLQ2vNzL2kyrsYP5ycriFQtfBJQujoO+2dr+2u
 install:
 - cmd: >-
     rm -rf packages
@@ -19,10 +20,62 @@ install:
     nuget install -Verbosity quiet -OutputDirectory packages -Version 2.4.5.0 ReportGenerator
 
     nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
+
+    nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.13 Doxygen
 before_build:
 - ps: dotnet restore
 build:
   project: IBM.WatsonDeveloperCloud.sln
   verbosity: minimal
+after_build:
+- ps: >-
+    .\packages\Doxygen.1.8.13\tools\doxygen.exe Doxyfile
+
+    git config --global user.email "wps@us.ibm.com"
+
+    git config --global user.name "Watson Github Bot"
+
+    git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/atilatosta/dotnet-standard-sdk.git gh-pages
+
+
+    if(!$env:APPVEYOR_REPO_TAG_NAME)
+
+    {
+        $branchName = $env:APPVEYOR_REPO_BRANCH
+    }
+
+    else
+
+    {
+        $branchName = $env:APPVEYOR_REPO_TAG_NAME
+    }
+
+
+    Write-Output "branchName  is " + $branchName
+
+
+    If(Test-Path -Path gh-pages\docs\$branchName)
+
+    {
+      rm gh-pages\docs\$branchName -r -force
+    }
+
+    mkdir -p gh-pages\docs\$branchName
+
+    mv .\docs\html gh-pages\docs\$branchName
+
+    . .\.utility\generate_html.ps1
+
+    New-TableOfContents ".\gh-pages\docs" | Out-File ".\gh-pages\index.html" -encoding utf8
+
+    cd gh-pages
+
+    git add -f .
+
+    git commit -m "Updated documentation for $branchName"
+
+    git push -f origin gh-pages
+
+    cd ../
 test_script:
 - ps: "if((Test-Path -Path coverage))\n{\n  rm coverage -r -force\n}\nNew-Item -path . -name coverage -itemtype directory\nForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) { \n  dotnet test $folder.FullName\n  $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    \n  $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'\n  $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*'\n  & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'\n}\n\nC:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error\nC:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths"

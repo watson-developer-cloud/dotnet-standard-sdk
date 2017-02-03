@@ -37,23 +37,44 @@ after_build:
 
     git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/atilatosta/dotnet-standard-sdk.git gh-pages
 
-    if(Test-Path -Path gh-pages\docs\$env:APPVEYOR_REPO_BRANCH)
+
+    if(!$env:APPVEYOR_REPO_TAG_NAME)
 
     {
-      rm gh-pages\docs\$env:APPVEYOR_REPO_BRANCH -r -force
+        $branchName = $env:APPVEYOR_REPO_BRANCH
     }
 
-    mkdir -p gh-pages\docs\$env:APPVEYOR_REPO_BRANCH
+    else
 
-    mv .\docs\html gh-pages\docs\$env:APPVEYOR_REPO_BRANCH
+    {
+        $branchName = $env:APPVEYOR_REPO_TAG_NAME
+    }
+
+
+    Write-Output "branchName  is " + $branchName
+
+
+    If(Test-Path -Path gh-pages\docs\$branchName)
+
+    {
+      rm gh-pages\docs\$branchName -r -force
+    }
+
+    mkdir -p gh-pages\docs\$branchName
+
+    mv .\docs\html gh-pages\docs\$branchName
+
+    . .\.utility\generate_html.ps1
+
+    New-TableOfContents ".\gh-pages\docs" | Out-File ".\gh-pages\index.html" -encoding utf8
 
     cd gh-pages
 
-    git add -A
+    git add -f .
 
-    git commit -m "Updated documentation for $env:APPVEYOR_REPO_BRANCH"
+    git commit -m "Updated documentation for $branchName"
 
-    git push origin gh-pages
+    git push -f origin gh-pages
 
     cd ../
 test_script:

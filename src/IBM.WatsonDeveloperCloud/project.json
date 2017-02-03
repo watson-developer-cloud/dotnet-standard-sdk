@@ -1,10 +1,7 @@
 {
   "version": "0.1.0-alpha",
-
   "title": "IBM.WatsonDeveloperCloud",
-
   "description": "The IBM.WatsonDeveloperCloud is a core project of Watson SDK in .Net. The other Watson SDK in .Net service packages depend on this package.",
-
   "dependencies": {
     "NETStandard.Library": "1.5.0-rc2-24027",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
@@ -33,6 +30,7 @@
   "buildOptions": {
     "compile": {
       "exclude": [ "Conversation/", "LanguageTranslator/", "SpeechToText/", "TextToSpeech/", "ToneAnalyzer/", "VisualRecognition/", "Discovery/", "PersonalityInsights/" ]
-    }
+    },
+    "xmlDoc": false
   }
 }

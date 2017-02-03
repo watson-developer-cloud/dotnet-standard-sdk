@@ -36,8 +36,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Uploads a TMX glossary file on top of a domain to customize a translation model.
         /// Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
         /// </summary>
-        /// <param name="baseModelId"></param>
-        /// <param name="name"></param>
+        /// <param name="baseModelId">The base model to use to create the custom model.</param>
+        /// <param name="name">The name of the custom model.</param>
+        /// <param name="file">The file data used to create the custom model.</param>
         /// <returns></returns>
         CustomModels CreateModel(string baseModelId, string name, FileStream file);
 

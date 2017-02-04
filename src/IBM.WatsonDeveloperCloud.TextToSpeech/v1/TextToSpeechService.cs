@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         const string PATH_WORDS = PATH_CUSTOMIZATION + "/words";
         const string PATH_WORD = PATH_WORDS + "/{1}";
 
-        const string URL = "https://gateway.watsonplatform.net/text-to-speech/api";
+        const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
 
         public TextToSpeechService()
             : base(SERVICE_NAME, URL)

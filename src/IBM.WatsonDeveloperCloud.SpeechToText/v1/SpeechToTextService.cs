@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         const string PATH_SESSION_RECOGNIZE = "/v1/sessions/{0}/recognize";
         const string PATH_OBSERVE_RESULT = "/v1/sessions/{0}/observe_result";
 
-        const string URL = "https://gateway.watsonplatform.net/language-translation/api";
+        const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
 
         public SpeechToTextService()
             : base(SERVICE_NAME, URL) { }

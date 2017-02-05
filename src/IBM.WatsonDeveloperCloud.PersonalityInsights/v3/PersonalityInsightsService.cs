@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
 using IBM.WatsonDeveloperCloud.Service;
@@ -41,14 +42,35 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             this.Client = httpClient;
         }
 
-        public Profile GetProfile()
+        public Profile GetProfile(ProfileOptions options)
         {
             Profile result = null;
 
             try
             {
+                Encoding enc = null;
 
-               
+                switch (options.ContentType)
+                {
+                    case HttpMediaType.TEXT_HTML:
+                    case HttpMediaType.TEXT_PLAIN:
+                        enc = Encoding.ASCII;
+                        break;
+
+                    case HttpMediaType.APPLICATION_JSON:
+                        enc = Encoding.UTF8;
+                        break;
+                }
+
+                int bodySize = enc.GetByteCount(options.Text) / 1024 / 1024;
+
+
+
+                result =
+                     this.Client.WithAuthentication(UserName, Password)
+                                .PostAsync($"{this.Endpoint}{PATH_GET_PROFILES}")
+                                .As<Profile>()
+                                .Result;
             }
             catch (Exception)
             {

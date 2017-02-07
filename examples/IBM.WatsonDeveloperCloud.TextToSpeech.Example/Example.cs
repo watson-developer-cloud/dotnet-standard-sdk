@@ -17,16 +17,16 @@
 
 using System;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
+namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
 {
-    public class ServiceExample
+    public class Example
     {
         static void Main(string[] args)
         {
             string _username = "<username>";
             string _password = "<password>";
 
-            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_username, _password);
+            TextToSpeechServiceExample _textToSpeechExample = new TextToSpeechServiceExample(_username, _password);
             Console.ReadKey();
         }
     }

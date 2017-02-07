@@ -42,9 +42,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         }
 
         #region Get Models
-        public void GetModels()
+        private void GetModels()
         {
-            Console.WriteLine("Calling GetModels...");
+            Console.WriteLine("Calling GetModels()...");
             var modelSet = _speechToText.GetModels();
 
             if (modelSet == null)
@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         #endregion
 
         #region Get Model
-        public void GetModel(string modelName)
+        private void GetModel(string modelName)
         {
             Console.WriteLine(string.Format("Calling GetModel({0})...", _modelToGet));
             var model = _speechToText.GetModel(_modelToGet);
@@ -105,7 +105,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         #endregion
 
         #region Recognize
-        public void Recognize()
+        private void Recognize()
         {
             using (FileStream fs = File.OpenRead(_path))
             {
@@ -131,7 +131,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         #endregion
 
         #region Create Session
-        public void CreateSession()
+        private void CreateSession()
         {
             Console.WriteLine(string.Format("Calling CreateSession({0})...", _modelToGet));
             var session = _speechToText.CreateSession(_modelToGet);
@@ -156,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         #endregion
 
         #region Get Session Status
-        public void GetSessionStatus()
+        private void GetSessionStatus()
         {
             Console.WriteLine(string.Format("Calling GetSessionStatus({0})...", _sessionID));
             var recognizeStatus = _speechToText.GetSessionStatus(_sessionID);
@@ -173,7 +173,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
         #endregion
 
         #region Delete Session
-        public void DeleteSession()
+        private void DeleteSession()
         {
             Console.WriteLine(string.Format("Calling DeleteSession({0})...", _sessionID));
             _speechToText.DeleteSession(_sessionID);

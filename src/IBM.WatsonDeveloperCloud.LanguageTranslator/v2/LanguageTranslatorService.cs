@@ -68,7 +68,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.Client = httpClient;
         }
 
-        public TranslationModels ListModels(bool isDefault, string source, string target)
+        public TranslationModels ListModels(bool isDefault = true, string source = null, string target = null)
         {
             TranslationModels result = null;
 

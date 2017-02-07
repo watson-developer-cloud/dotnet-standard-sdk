@@ -28,9 +28,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/db3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_recognize_status.html",
-"db/d23/_trait_tree_node_8cs.html",
-"df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html"
+"d5/d9a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_extensions.html",
+"da/dbf/_input_data_8cs.html",
+"df/dbd/_image_processing_error_8cs.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

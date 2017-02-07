@@ -18,8 +18,6 @@
 using System;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
-using System.IO;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
 {
@@ -34,9 +32,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         private string _customVoiceModelDescription = "Custom voice model created by the .NET Standard SDK.";
         private string _customVoiceModelLanguage = "en-US";
         private string _customVoiceModelUpdatedLanguage = "es-ES";
-
-
-
 
         public TextToSpeechServiceExample(string username, string password)
         {
@@ -57,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         }
 
         #region Get Voices
-        public void GetVoices()
+        private void GetVoices()
         {
             Console.WriteLine("Calling GetVoices()...");
 
@@ -81,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Get Voice
-        public void GetVoice()
+        private void GetVoice()
         {
             Console.WriteLine(string.Format("Calling GetVoice({0})...", _voice));
 
@@ -104,7 +99,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Get Pronunciation
-        public void GetPronunciation()
+        private void GetPronunciation()
         {
             Console.WriteLine(string.Format("Calling GetPronunciation({0})...", _pronunciation));
 
@@ -122,7 +117,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Synthesize
-        public void Synthesize()
+        private void Synthesize()
         {
             Console.WriteLine(string.Format("Calling Synthesize({0})...", _text));
 
@@ -140,7 +135,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Get Custom Voice Models
-        public void GetCustomVoiceModels()
+        private void GetCustomVoiceModels()
         {
             Console.WriteLine("Calling GetCustomVoiceModels()...");
 
@@ -167,7 +162,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Save Custom Voice Model
-        public void SaveCustomVoiceModel()
+        private void SaveCustomVoiceModel()
         {
             Console.WriteLine("Calling SaveCustomVoiceModel()...");
             CustomVoiceModel voiceModel = new CustomVoiceModel()
@@ -199,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Update Custom Voice Model
-        public void UpdateCustomVoiceModel()
+        private void UpdateCustomVoiceModel()
         {
             if (string.IsNullOrEmpty(_customVoiceModelID))
                 throw new ArgumentNullException("customVoiceModelID");
@@ -233,7 +228,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Get Custom Voice Model
-        public void GetCustomVoiceModel()
+        private void GetCustomVoiceModel()
         {
             if (string.IsNullOrEmpty(_customVoiceModelID))
                 throw new ArgumentNullException("customVoiceModelID");
@@ -258,7 +253,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Delete Custom Voice Model
-        public void DeleteCustomVoiceModel()
+        private void DeleteCustomVoiceModel()
         {
             if(string.IsNullOrEmpty(_customVoiceModelID))
                 throw new ArgumentNullException("customVoiceModelID");
@@ -270,7 +265,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Get Words
-        public void GetWords()
+        private void GetWords()
         {
             if (string.IsNullOrEmpty(_customVoiceModelID))
                 throw new ArgumentNullException("customVoiceModelID");
@@ -295,7 +290,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Save Words
-        public void SaveWords()
+        private void SaveWords()
         {
             Console.WriteLine("Calling SaveWords()...");
             
@@ -324,7 +319,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         #endregion
 
         #region Delete Word
-        public void DeleteWord()
+        private void DeleteWord()
         {
             Console.WriteLine(string.Format("Calling DeleteWords({0})...", "jpl"));
 

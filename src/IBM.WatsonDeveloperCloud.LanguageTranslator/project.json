@@ -1,22 +1,14 @@
 {
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
-
   "title": "IBM.WatsonDeveloperCloud.LanguageTranslator",
-
-  "description": "The IBM Watson Language Translator service translate text from one language to another and identifies the language in which text is written.",
-  
+  "description": "IBM.WatsonDeveloperCloud.LanguageTranslator wraps the Watson Developer Cloud Language Traslator service (http://www.ibm.com/watson/developercloud/language-translator.html)",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Newtonsoft.Json": "9.0.1",
-    "System.Runtime.Serialization.Json": "4.0.1",
-    "coveralls.io": "1.3.4",
-    "ReportGenerator": "2.5.1"
+    "System.Runtime.Serialization.Json": "4.0.1"
   },
-
   "frameworks": {
     "netstandard1.6": {
       "imports": [ "dnxcore50", "net451" ],
@@ -30,5 +22,8 @@
       //"dotnet pack --no-build --configuration %compile:Configuration%"
       "dotnet pack --no-build --configuration release"
     ]
+  },
+  "buildOptions": {
+    "xmlDoc": false
   }
 }

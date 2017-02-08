@@ -1,12 +1,7 @@
-﻿{
+{
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
-
   "title": "IBM.WatsonDeveloperCloud.TextToSpeech",
-
-  "description": "The IBM.WatsonDeveloperCloud.TextToSpeech is an abstraction for Text To Speech of Watson Developer Cloud API (http://www.ibm.com/watson/developercloud/doc/text-to-speech/)",
-
+  "description": "IBM.WatsonDeveloperCloud.TextToSpeech wraps the Watson Developer Cloud Text to Speech service (http://www.ibm.com/watson/developercloud/text-to-speech.html)",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
     "NETStandard.Library": "1.6.0",
@@ -14,7 +9,6 @@
     "Newtonsoft.Json": "9.0.1",
     "System.Runtime.Serialization.Json": "4.0.1"
   },
-
   "frameworks": {
     "netstandard1.6": {
       "imports": [ "dnxcore50", "net451" ],
@@ -28,5 +22,8 @@
       //"dotnet pack --no-build --configuration %compile:Configuration%"
       "dotnet pack --no-build --configuration release"
     ]
+  },
+  "buildOptions": {
+    "xmlDoc": false
   }
 }

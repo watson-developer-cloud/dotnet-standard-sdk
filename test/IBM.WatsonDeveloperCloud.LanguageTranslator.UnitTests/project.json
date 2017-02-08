@@ -1,5 +1,5 @@
-﻿{
-  "version": "0.0.1-*",
+{
+  "version": "0.1.0-alpha",
 
   "testRunner": "mstest",
 
@@ -16,8 +16,8 @@
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",
-    "coveralls.io": "1.3.4",
-    "ReportGenerator": "2.5.1"
+    "coveralls.net": "0.7.0",
+    "ReportGenerator": "2.4.5"
   },
 
   "frameworks": {

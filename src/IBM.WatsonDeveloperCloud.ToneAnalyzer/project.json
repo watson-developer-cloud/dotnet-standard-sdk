@@ -1,12 +1,7 @@
-﻿{
+{
   "version": "0.1.0-alpha",
-
-  "authors": [ "Atila Tosta" ],
-
   "title": "IBM.WatsonDeveloperCloud.ToneAnalyzer",
-
-  "description": "The IBM Watson Tone Analyzer service uses linguistic analysis to detect emotional tones, social propensities, and writing styles in written communication. Then it offers suggestions to help the writer improve their intended language tones.",
-
+  "description": "IBM.WatsonDeveloperCloud.ToneAnalyzer wraps the Watson Developer Cloud Tone Analyzer service (http://www.ibm.com/watson/developercloud/tone-analyzer.html)",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
     "NETStandard.Library": "1.6.0",
@@ -14,7 +9,6 @@
     "Newtonsoft.Json": "9.0.1",
     "System.Runtime.Serialization.Json": "4.0.1"
   },
-
   "frameworks": {
     "netstandard1.6": {
       "imports": [ "dnxcore50", "net451" ],
@@ -28,5 +22,8 @@
       //"dotnet pack --no-build --configuration %compile:Configuration%"
       "dotnet pack --no-build --configuration release"
     ]
+  },
+  "buildOptions": {
+    "xmlDoc": false
   }
 }

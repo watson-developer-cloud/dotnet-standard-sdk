@@ -1,4 +1,21 @@
-﻿using System.Collections.Generic;
+﻿/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+using System.Collections.Generic;
 using System.IO;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models;
 
@@ -19,8 +36,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Uploads a TMX glossary file on top of a domain to customize a translation model.
         /// Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
         /// </summary>
-        /// <param name="baseModelId"></param>
-        /// <param name="name"></param>
+        /// <param name="baseModelId">The base model to use to create the custom model.</param>
+        /// <param name="name">The name of the custom model.</param>
+        /// <param name="file">The file data used to create the custom model.</param>
         /// <returns></returns>
         CustomModels CreateModel(string baseModelId, string name, FileStream file);
 

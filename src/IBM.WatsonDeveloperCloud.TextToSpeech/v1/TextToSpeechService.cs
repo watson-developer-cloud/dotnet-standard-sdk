@@ -1,4 +1,21 @@
-﻿using IBM.WatsonDeveloperCloud.Http;
+﻿/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
@@ -23,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         const string PATH_WORDS = PATH_CUSTOMIZATION + "/words";
         const string PATH_WORD = PATH_WORDS + "/{1}";
 
-        const string URL = "https://gateway.watsonplatform.net/text-to-speech/api";
+        const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
 
         public TextToSpeechService()
             : base(SERVICE_NAME, URL)
@@ -67,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         public Voice GetVoice(string voiceName)
         {
             if (string.IsNullOrEmpty(voiceName))
-                throw new Exception("Parameter 'voiceName' must be provided");
+                throw new ArgumentNullException("Parameter 'voiceName' must be provided");
 
             return Client.WithAuthentication(this.UserName, this.Password)
                           .GetAsync(this.Endpoint + string.Format(PATH_VOICE, voiceName))
@@ -94,7 +111,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         private Pronunciation getPronunciation(string text, Voice voice, Phoneme phoneme)
         {
             if (string.IsNullOrEmpty(text))
-                throw new Exception("Parameter 'text' must be provided");
+                throw new ArgumentNullException("Parameter 'text' must be provided");
 
             var builder =
             Client.WithAuthentication(this.UserName, this.Password)
@@ -123,13 +140,13 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         private Stream synthesize(string text, Voice voice, AudioType audioType)
         {
             if (string.IsNullOrEmpty(text))
-                throw new Exception("Parameter 'text' must be provided");
+                throw new ArgumentNullException("Parameter 'text' must be provided");
 
             if (voice == null)
-                throw new Exception("Parameter 'voice' must be provided");
+                throw new ArgumentNullException("Parameter 'voice' must be provided");
 
             if (audioType == null)
-                throw new Exception("Parameter 'audioType' must be provided");
+                throw new ArgumentNullException("Parameter 'audioType' must be provided");
 
             var builder =
             Client.WithAuthentication(this.UserName, this.Password)
@@ -161,7 +178,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         public CustomVoiceModel GetCustomVoiceModel(string modelId)
         {
             if (string.IsNullOrEmpty(modelId))
-                throw new Exception("ModelId must not be empty");
+                throw new ArgumentNullException("ModelId must not be empty");
 
             return Client.WithAuthentication(this.UserName, this.Password)
                           .GetAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelId))
@@ -224,20 +241,36 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         public void DeleteCustomVoiceModel(CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
-                throw new Exception("Model id must not be empty");
+                throw new ArgumentNullException("Model id must not be empty");
+
+            DeleteCustomVoiceModel(model.Id);
+        }
+
+        public void DeleteCustomVoiceModel(string modelID)
+        {
+            if (string.IsNullOrEmpty(modelID))
+                throw new ArgumentNullException("Model id must not be empty");
 
             Client.WithAuthentication(this.UserName, this.Password)
-                          .DeleteAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, model.Id))
+                          .DeleteAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelID))
                           .AsMessage();
         }
 
         public List<CustomWordTranslation> GetWords(CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
-                throw new Exception("Model id must not be empty");
+                throw new ArgumentNullException("Model id must not be empty");
+
+            return GetWords(model.Id);
+        }
+
+        public List<CustomWordTranslation> GetWords(string modelID)
+        {
+            if (string.IsNullOrEmpty(modelID))
+                throw new ArgumentNullException("Model id must not be empty");
 
             return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_WORDS, model.Id))
+                          .GetAsync(this.Endpoint + string.Format(PATH_WORDS, modelID))
                           .As<CustomWordTranslations>()
                           .Result.Words;
         }
@@ -245,35 +278,78 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         public void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations)
         {
             if (string.IsNullOrEmpty(model.Id))
-                throw new Exception("Model id must not be empty");
+                throw new ArgumentNullException("Model id must not be empty");
 
             if (translations.Length ==0)
                 throw new Exception("Must have at least one word to save");
 
-            CustomWordTranslations translantions = new CustomWordTranslations()
+            SaveWords(model.Id, translations);
+        }
+
+        public void SaveWords(string modelID, params CustomWordTranslation[] translations)
+        {
+            if (string.IsNullOrEmpty(modelID))
+                throw new ArgumentNullException("Model id must not be empty");
+
+            if (translations.Length == 0)
+                throw new Exception("Must have at least one word to save");
+
+            CustomWordTranslations customWordTranslations = new CustomWordTranslations()
             {
                 Words = translations.ToList()
             };
 
             var x = Client.WithAuthentication(this.UserName, this.Password)
-                      .PostAsync(this.Endpoint + string.Format(PATH_WORDS, model.Id))
-                      .WithBody<CustomWordTranslations>(translantions)
+                      .PostAsync(this.Endpoint + string.Format(PATH_WORDS, modelID))
+                      .WithBody<CustomWordTranslations>(customWordTranslations)
                       .AsMessage().Result;
         }
 
         public void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation)
         {
             if (string.IsNullOrEmpty(model.Id))
-                throw new Exception("Model id must not be empty");
+                throw new ArgumentNullException("Model id must not be empty");
 
             if (string.IsNullOrEmpty(translation.Word))
-                throw new Exception("Word must not be empty");
+                throw new ArgumentNullException("Word must not be empty");
+
+            DeleteWord(model.Id, translation.Word);
+        }
+
+        public void DeleteWord(string modelID, CustomWordTranslation translation)
+        {
+            if (string.IsNullOrEmpty(modelID))
+                throw new ArgumentNullException("Model id must not be empty");
+
+            if (string.IsNullOrEmpty(translation.Word))
+                throw new ArgumentNullException("Word must not be empty");
+
+            DeleteWord(modelID, translation.Word);
+        }
+
+        public void DeleteWord(CustomVoiceModel model, string word)
+        {
+            if (string.IsNullOrEmpty(model.Id))
+                throw new ArgumentNullException("Model id must not be empty");
+
+            if (string.IsNullOrEmpty(word))
+                throw new ArgumentNullException("Word must not be empty");
+
+            DeleteWord(model.Id, word);
+        }
+
+        public void DeleteWord(string modelID, string word)
+        {
+            if (string.IsNullOrEmpty(modelID))
+                throw new ArgumentNullException("Model id must not be empty");
+
+            if (string.IsNullOrEmpty(word))
+                throw new ArgumentNullException("Word must not be empty");
 
             var r = Client.WithAuthentication(this.UserName, this.Password)
-              .DeleteAsync(this.Endpoint + string.Format(PATH_WORD, model.Id, translation.Word))
+              .DeleteAsync(this.Endpoint + string.Format(PATH_WORD, modelID, word))
               .AsMessage()
               .Result;
         }
-
     }
 }

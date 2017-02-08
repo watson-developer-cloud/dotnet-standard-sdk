@@ -29,6 +29,36 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.Example
         public PersonalityInsightsServiceExample(string username, string password)
         {
             _personalityInsight.SetCredential(username, password);
+
+            GetProfile();
         }
+
+        #region Get Profile
+        private void GetProfile()
+        {
+            Console.WriteLine("Calling GetProfile()...");
+
+            var result = _personalityInsight.GetProfile();
+
+            if (result != null)
+            {
+                if (result.Personality != null && result.Personality.Count > 0)
+                {
+                    foreach (TraitTreeNode node in result.Personality)
+                    {
+                        Console.WriteLine("Name: {0} | RawScore: {1}", node.Name, node.RawScore);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Could not find personality.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Results are null.");
+            }
+        }
+        #endregion
     }
 }

@@ -21,6 +21,9 @@
   },
   "buildOptions": {
     "emitEntryPoint": true,
-    "xmlDoc": false
+    "xmlDoc": false,
+    "copyToOutput": {
+      "include": [ "./glossary.tmx" ]
+    }
   }
 }

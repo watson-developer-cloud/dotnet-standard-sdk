@@ -16,11 +16,11 @@
 */
 
 using System;
-using System.Net.Http;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
 using IBM.WatsonDeveloperCloud.Service;
+using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 {
@@ -89,9 +89,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                                 .As<Profile>()
                                 .Result;
             }
-            catch (Exception)
+            catch (AggregateException ex)
             {
-                throw;
+                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
             }
 
             return result;

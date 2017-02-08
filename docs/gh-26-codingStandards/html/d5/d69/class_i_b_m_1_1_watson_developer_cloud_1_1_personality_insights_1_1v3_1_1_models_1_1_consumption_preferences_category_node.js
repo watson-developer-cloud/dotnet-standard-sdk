@@ -1,6 +1,0 @@
-var class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node =
-[
-    [ "ConsumptionPreferenceCategoryId", "d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node.html#af0370a217c9baa1fef46a279294e4815", null ],
-    [ "ConsumptionPreferences", "d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node.html#a26baad391d6a0220fc0eb524175aee51", null ],
-    [ "Name", "d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node.html#afa8aebb75409491699b90e6c4dc8a93b", null ]
-];

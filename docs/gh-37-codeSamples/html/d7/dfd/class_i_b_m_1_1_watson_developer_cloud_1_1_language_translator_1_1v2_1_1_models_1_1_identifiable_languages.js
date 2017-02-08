@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_languages =
-[
-    [ "Languages", "d7/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_languages.html#affb6ebd027fa09bb40aff516acfc9fea", null ]
-];

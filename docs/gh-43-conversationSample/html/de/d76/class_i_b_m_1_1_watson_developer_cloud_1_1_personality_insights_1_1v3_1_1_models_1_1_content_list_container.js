@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_list_container =
-[
-    [ "ContentItems", "de/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_list_container.html#a7ad0f1ad1d6e7c22db8885c4b9332407", null ]
-];

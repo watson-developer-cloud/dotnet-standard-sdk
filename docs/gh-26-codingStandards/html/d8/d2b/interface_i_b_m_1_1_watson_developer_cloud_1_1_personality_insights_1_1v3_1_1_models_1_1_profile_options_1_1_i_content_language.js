@@ -1,5 +1,0 @@
-var interface_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options_1_1_i_content_language =
-[
-    [ "AcceptCsv", "d8/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options_1_1_i_content_language.html#a3c7b671512cbbd7b0bbfd082f44389af", null ],
-    [ "AcceptJson", "d8/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options_1_1_i_content_language.html#a2bcbcadb290c6f8c13b436de30ec9f38", null ]
-];

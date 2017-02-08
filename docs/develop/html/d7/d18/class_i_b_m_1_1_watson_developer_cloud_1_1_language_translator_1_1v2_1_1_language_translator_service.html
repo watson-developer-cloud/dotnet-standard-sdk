@@ -108,9 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3e2cd56def339b9012397ba2206fea18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a73998febec6974aea0e98622981dce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a9a73998febec6974aea0e98622981dce">LanguageTranslatorService</a> (<a class="el" href="../../d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client.html">IClient</a> httpClient)</td></tr>
 <tr class="separator:a9a73998febec6974aea0e98622981dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4326b6fba1ad39ac08d9c57995b4bcc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_translation_models.html">TranslationModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a4326b6fba1ad39ac08d9c57995b4bcc7">ListModels</a> (bool isDefault, string source, string target)</td></tr>
-<tr class="memdesc:a4326b6fba1ad39ac08d9c57995b4bcc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists available models for the Language translator service with option to filter by source or by target language.  <a href="#a4326b6fba1ad39ac08d9c57995b4bcc7">More...</a><br /></td></tr>
-<tr class="separator:a4326b6fba1ad39ac08d9c57995b4bcc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1fc28cc1a0b31f62a0fab5198bb2d25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_translation_models.html">TranslationModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ac1fc28cc1a0b31f62a0fab5198bb2d25">ListModels</a> (bool isDefault=true, string source=null, string target=null)</td></tr>
+<tr class="memdesc:ac1fc28cc1a0b31f62a0fab5198bb2d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists available models for the Language translator service with option to filter by source or by target language.  <a href="#ac1fc28cc1a0b31f62a0fab5198bb2d25">More...</a><br /></td></tr>
+<tr class="separator:ac1fc28cc1a0b31f62a0fab5198bb2d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ac0da1786294436351db0549aee4277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models.html">CustomModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a6ac0da1786294436351db0549aee4277">CreateModel</a> (string baseModelId, string name, FileStream file)</td></tr>
 <tr class="memdesc:a6ac0da1786294436351db0549aee4277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.  <a href="#a6ac0da1786294436351db0549aee4277">More...</a><br /></td></tr>
 <tr class="separator:a6ac0da1786294436351db0549aee4277"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -463,8 +463,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a4326b6fba1ad39ac08d9c57995b4bcc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4326b6fba1ad39ac08d9c57995b4bcc7">&#9670;&nbsp;</a></span>ListModels()</h2>
+<a id="ac1fc28cc1a0b31f62a0fab5198bb2d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1fc28cc1a0b31f62a0fab5198bb2d25">&#9670;&nbsp;</a></span>ListModels()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,19 +476,19 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="../../d8/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_translation_models.html">TranslationModels</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService.ListModels </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isDefault</em>, </td>
+          <td class="paramname"><em>isDefault</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_source</em>, </td>
+          <td class="paramname"><em>_source</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_target</em>&#160;</td>
+          <td class="paramname"><em>_target</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

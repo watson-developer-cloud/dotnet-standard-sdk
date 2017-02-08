@@ -4,7 +4,10 @@
   "testRunner": "mstest",
 
   "buildOptions": {
-    "copyToOutput": "appsettings.json"
+    "copyToOutput": [
+      "Assests\\let_it_be.wav",
+      "appsettings.json"
+    ]
   },
 
   "dependencies": {

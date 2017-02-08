@@ -115,7 +115,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             service.Endpoint = "https://watson-api-explorer.mybluemix.net";
 
             FileStream audio =
-                File.OpenRead("let_it_be.wav");
+                File.OpenRead(@"Assests\let_it_be.wav");
             var results = service.Recognize(audio);
 
             Assert.IsNotNull(results);

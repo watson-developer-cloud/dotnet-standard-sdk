@@ -106,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
         {
             IDictionary<string, object> arguments = new Dictionary<string, object>();
 
-            arguments.Add("model", string.IsNullOrEmpty(this.Model) ? "en-US_BroadbandModel" : this.Model);
+            arguments.Add("model", string.IsNullOrEmpty(this.Model) ? "en-US_NarrowbandModel" : this.Model);
 
             if (this.Continuous)
                 arguments.Add("continuous", this.Continuous);

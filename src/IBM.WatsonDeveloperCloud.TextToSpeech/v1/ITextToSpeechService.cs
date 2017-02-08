@@ -32,9 +32,15 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         CustomVoiceModel GetCustomVoiceModel(string modelId);
         CustomVoiceModel SaveCustomVoiceModel(CustomVoiceModel model);
         void DeleteCustomVoiceModel(CustomVoiceModel model);
+        void DeleteCustomVoiceModel(string modelID);
         List<CustomWordTranslation> GetWords(CustomVoiceModel model);
+        List<CustomWordTranslation> GetWords(string modelID);
         void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations);
+        void SaveWords(string modelID, params CustomWordTranslation[] translations);
         void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation);
+        void DeleteWord(string modelID, CustomWordTranslation translation);
+        void DeleteWord(CustomVoiceModel model, string word);
+        void DeleteWord(string modelID, string word);
     }
 
 }

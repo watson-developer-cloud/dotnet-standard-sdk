@@ -88,7 +88,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.To
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.Example.xproj", "{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.Example", "IBM.WatsonDeveloperCloud.PersonalityInsights.Example\IBM.WatsonDeveloperCloud.PersonalityInsights.Example.xproj", "{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.Example", "examples\IBM.WatsonDeveloperCloud.PersonalityInsights.Example\IBM.WatsonDeveloperCloud.PersonalityInsights.Example.xproj", "{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

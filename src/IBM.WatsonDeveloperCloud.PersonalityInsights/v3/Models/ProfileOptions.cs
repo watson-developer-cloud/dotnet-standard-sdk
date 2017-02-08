@@ -78,13 +78,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models
             IAcceptLanguage AddRawScore();
             IAcceptLanguage AddConsumptionPreferences();
             IAcceptLanguage AddCsvHeaders();
-            IProfileOptionsBuilder WithBody(string text);
-            IProfileOptionsBuilder WithBody(ContentListContainer content);
+            ProfileOptions WithBody(string text);
+            ProfileOptions WithBody(ContentListContainer content);
         }
 
         public interface IProfileOptionsBuilder : IHeader, IContentType, IContentLanguage, IAccept, IAcceptLanguage
         {
-            IHeader PorfileOptions();
+            //ProfileOptions PorfileOptions();
         }
 
         class ProfileOptionsBuilder : IProfileOptionsBuilder
@@ -240,20 +240,15 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models
                 return this;
             }
             
-            public IProfileOptionsBuilder WithBody(string text)
+            public ProfileOptions WithBody(string text)
             {
                 this._text = text;
                 return this;
             }
 
-            public IProfileOptionsBuilder WithBody(ContentListContainer content)
+            public ProfileOptions WithBody(ContentListContainer content)
             {
                 this._contentItems = content;
-                return this;
-            }
-
-            public IHeader PorfileOptions()
-            {
                 return this;
             }
 

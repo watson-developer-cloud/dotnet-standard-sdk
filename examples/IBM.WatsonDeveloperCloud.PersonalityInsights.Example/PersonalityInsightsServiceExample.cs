@@ -38,7 +38,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.Example
         {
             Console.WriteLine("Calling GetProfile()...");
 
-            var result = _personalityInsight.GetProfile();
+            var result =
+                _personalityInsight.GetProfile(ProfileOptions.CreateOptions()
+                                                             .WithTextPlain()
+                                                             .AsEnglish()
+                                                             .AcceptJson()
+                                                             .AcceptEnglishLanguage()
+                                                             .WithBody("some text"));
 
             if (result != null)
             {

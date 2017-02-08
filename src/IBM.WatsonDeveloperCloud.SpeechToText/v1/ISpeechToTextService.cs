@@ -1,4 +1,21 @@
-﻿using System.IO;
+﻿/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+using System.IO;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Models;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
@@ -49,7 +66,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.
         /// </summary>
-        /// <param name="session">A Session Id that identifies the session to be deleted</param>
+        /// <param name="sessionId">A Session Id that identifies the session to be deleted</param>
         void DeleteSession(string sessionId);
 
         /// <summary>
@@ -63,6 +80,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Sends audio and returns transcription results for a sessionless recognition request. By default, returns only the final results; to enable interim results, set the interimResults parameter to true. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
         /// </summary>
         /// <param name="audio">The audio to be transcribed in the format specified by the contentType parameter.</param>
+        /// <param name="options">The audio to be transcribed in the format specified by the contentType parameter.</param>
         /// <returns>Returns SpeechRecognitionEvent object that contains the results that are provided in a JSON SpeechRecognitionEvent object. The response includes one or more instances of the object depending on the value of the interimResults parameter.</returns>
         SpeechRecognitionEvent Recognize(FileStream audio, RecognizeOptions options);
 

@@ -1,4 +1,21 @@
-﻿using IBM.WatsonDeveloperCloud.Http;
+﻿/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -97,7 +114,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson");
 
@@ -179,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL });
 
@@ -261,7 +278,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             var analyzeTone = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -343,7 +360,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             service.AnalyzeTone(null, new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -421,7 +438,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
-            ToneAnalizerService service = new ToneAnalizerService(client);
+            ToneAnalyzerService service = new ToneAnalyzerService(client);
 
             service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson", new List<Tone>() { Tone.EMOTION, Tone.LANGUAGE, Tone.SOCIAL }, false);
 
@@ -430,29 +447,29 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_HttpClient_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService(null);
+            ToneAnalyzerService service =
+                new ToneAnalyzerService(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_UserName_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService(null, "pass");
+            ToneAnalyzerService service =
+                new ToneAnalyzerService(null, "pass");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_PassWord_Null()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService("username", null);
+            ToneAnalyzerService service =
+                new ToneAnalyzerService("username", null);
         }
 
         [TestMethod]
         public void Constructor_With_UserName_Password()
         {
-            ToneAnalizerService service =
-                new ToneAnalizerService("username", "password");
+            ToneAnalyzerService service =
+                new ToneAnalyzerService("username", "password");
         }
     }
 }

@@ -107,6 +107,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 StreamContent content = new StreamContent(file);
+                content.Headers.Add("Content-Type", "text/xml");
 
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)

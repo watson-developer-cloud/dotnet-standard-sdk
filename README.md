@@ -26,8 +26,8 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 * [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
 * [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
 * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
-* [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery)
-* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
+<!-- * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery) -->
+<!-- * [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition) -->
 * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
 * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
 * [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)

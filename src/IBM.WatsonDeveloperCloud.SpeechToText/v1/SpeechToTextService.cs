@@ -45,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                            .GetAsync(RELATIVE_PATH + PATH_MODELS)
+                            .GetAsync($"{RELATIVE_PATH}{PATH_MODELS}")
                             .As<ModelSet>()
                             .Result;
             }
@@ -68,7 +68,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                        .GetAsync(RELATIVE_PATH + PATH_MODELS + "/" + modelName)
+                        .GetAsync($"{RELATIVE_PATH}{PATH_MODELS}/{modelName}")
                         .As<Model>()
                         .Result;
             }
@@ -88,7 +88,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync(RELATIVE_PATH + PATH_CREATE_SESSION)
+                               .PostAsync($"{RELATIVE_PATH}{PATH_CREATE_SESSION}")
                                .WithArgument("model", modelName)
                                .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
                                .As<Session>()
@@ -115,7 +115,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync(RELATIVE_PATH + string.Format(PATH_SESSION_RECOGNIZE, sessionId))
+                               .GetAsync($"{RELATIVE_PATH}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}")
                                .WithHeader("Cookie", sessionId)
                                .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
                                .As<RecognizeStatus>()

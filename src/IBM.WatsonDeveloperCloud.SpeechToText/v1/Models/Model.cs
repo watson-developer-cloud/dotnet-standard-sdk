@@ -16,6 +16,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
         [JsonProperty("url")]
         public string Url { get; set; }
 
+        [JsonProperty("supported_features")]
+        public SupportedFeatures SupportedFeatures { get; set; }
+
         [JsonProperty("sessions")]
         public string Sessions { get; set; }
 

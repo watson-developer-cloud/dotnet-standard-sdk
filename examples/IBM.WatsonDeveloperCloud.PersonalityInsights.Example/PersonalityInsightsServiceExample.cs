@@ -25,5 +25,10 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.Example
     public class PersonalityInsightsServiceExample
     {
         private PersonalityInsightsService _personalityInsight = new PersonalityInsightsService();
+
+        public PersonalityInsightsServiceExample(string username, string password)
+        {
+            _personalityInsight.SetCredential(username, password);
+        }
     }
 }

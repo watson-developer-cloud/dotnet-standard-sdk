@@ -74,12 +74,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Vi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalityInsights", "PersonalityInsights", "{D65AC99F-4E63-4362-8765-EB6F15838CA0}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights", "src\IBM.WatsonDeveloperCloud.PersonalityInsights\IBM.WatsonDeveloperCloud.PersonalityInsights.xproj", "{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests\IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests.xproj", "{9F8D0C47-3DDD-4423-B594-69A35898869F}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests\IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests.xproj", "{89E40543-56DA-4307-8625-074B9FD4EF5A}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.SpeechToText.Example", "examples\IBM.WatsonDeveloperCloud.SpeechToText.Example\IBM.WatsonDeveloperCloud.SpeechToText.Example.xproj", "{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.TextToSpeech.Example", "examples\IBM.WatsonDeveloperCloud.TextToSpeech.Example\IBM.WatsonDeveloperCloud.TextToSpeech.Example.xproj", "{57F32C34-089A-4FDA-8D86-32D8EACA25D4}"
@@ -87,6 +81,12 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.ToneAnalyzer.Example", "examples\IBM.WatsonDeveloperCloud.ToneAnalyzer.Example\IBM.WatsonDeveloperCloud.ToneAnalyzer.Example.xproj", "{CE5D6492-9DAA-4946-A151-647ABF02B991}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.Example.xproj", "{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests\IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests.xproj", "{89E40543-56DA-4307-8625-074B9FD4EF5A}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests\IBM.WatsonDeveloperCloud.PersonalityInsights.UnitTests.xproj", "{9F8D0C47-3DDD-4423-B594-69A35898869F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights", "src\IBM.WatsonDeveloperCloud.PersonalityInsights\IBM.WatsonDeveloperCloud.PersonalityInsights.xproj", "{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.Example", "examples\IBM.WatsonDeveloperCloud.PersonalityInsights.Example\IBM.WatsonDeveloperCloud.PersonalityInsights.Example.xproj", "{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}"
 EndProject
@@ -184,18 +184,6 @@ Global
 		{BE1B0EDD-6427-4B58-8916-25C7510BF227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE1B0EDD-6427-4B58-8916-25C7510BF227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE1B0EDD-6427-4B58-8916-25C7510BF227}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -212,6 +200,18 @@ Global
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A13BC39-4315-4501-AB8E-68F6E7F97EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -253,13 +253,13 @@ Global
 		{2FEF3E5C-2159-492D-A895-B5F8C1515BCA} = {A1BC3262-1837-40D9-A530-DCFE679927C2}
 		{BE1B0EDD-6427-4B58-8916-25C7510BF227} = {A1BC3262-1837-40D9-A530-DCFE679927C2}
 		{D65AC99F-4E63-4362-8765-EB6F15838CA0} = {28E61676-E9FF-4DA9-99CC-5E0D16F02380}
-		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
-		{9F8D0C47-3DDD-4423-B594-69A35898869F} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
-		{89E40543-56DA-4307-8625-074B9FD4EF5A} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 		{CE5D6492-9DAA-4946-A151-647ABF02B991} = {C7873F44-7188-49BE-84C5-532BE4E07147}
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
+		{89E40543-56DA-4307-8625-074B9FD4EF5A} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
+		{9F8D0C47-3DDD-4423-B594-69A35898869F} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
+		{B46F9958-1284-4EBD-A5B3-C4EE6ED14D8D} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{2A13BC39-4315-4501-AB8E-68F6E7F97EAB} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 	EndGlobalSection
 EndGlobal

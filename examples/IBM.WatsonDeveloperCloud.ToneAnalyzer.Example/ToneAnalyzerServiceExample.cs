@@ -16,7 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3;
-using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
+using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.Example

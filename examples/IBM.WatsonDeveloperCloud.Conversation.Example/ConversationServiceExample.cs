@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.Example
     {
         private ConversationService _conversation = new ConversationService();
         private string _workspaceID;
-        private string _inputString = "Can you turn on the lights?";
+        private string _inputString = "Turn on the winshield wipers";
 
         public ConversationServiceExample(string username, string password, string workspaceID)
         {
@@ -46,12 +46,39 @@ namespace IBM.WatsonDeveloperCloud.Conversation.Example
                 }
             };
 
-            Console.WriteLine("Calling Message()...");
+            Console.WriteLine(string.Format("Calling Message(\"{0}\")...", _inputString));
             var result = _conversation.Message(_workspaceID, messageRequest);
 
             if(result != null)
             {
-                Console.WriteLine(string.Format("Output: {0}: ", result.Output.Text));
+                if (result.Intents != null)
+                {
+                    foreach (Intent intent in result.Intents)
+                    {
+                        Console.WriteLine(string.Format("intent: {0} | confidence: {1}", intent.IntentDescription, intent.Confidence));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Intents is null.");
+                }
+
+                if (result.Output != null)
+                {
+                    if (result.Output.Text != null && result.Output.Text.Count > 0)
+                    {
+                        foreach (string output in result.Output.Text)
+                            Console.WriteLine(string.Format("Output: \"{0}\"", output));
+                    }
+                    else
+                    {
+                        Console.WriteLine("There is no output.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Output is null.");
+                }
             }
             else
             {

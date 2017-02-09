@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IBM.WatsonDeveloperCloud</id>
+    <version>0.1.0-alpha</version>
+    <title>Watson Developer Cloud .NET Standard SDK: Text to Speech</title>
+    <authors>Watson Developer Cloud</authors>
+    <owners>Watson Developer Cloud</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Use this SDK to build Watson-powered applications in .NET.</description>
+    <releaseNotes>The IBM® Text to Speech service provides an API that uses IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a variety of languages, accents, and voices. The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>watson cognitive ibm ai artifical-intelligence machine-learning ml tts text-to-speech speech</tags>
+  </metadata>
+</package>

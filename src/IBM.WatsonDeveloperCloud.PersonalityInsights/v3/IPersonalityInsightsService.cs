@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
+using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 {

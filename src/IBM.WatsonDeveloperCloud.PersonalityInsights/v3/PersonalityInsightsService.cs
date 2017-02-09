@@ -16,17 +16,16 @@
 */
 
 using System;
-using System.Net.Http;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
+using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using IBM.WatsonDeveloperCloud.Service;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 {
     public class PersonalityInsightsService : WatsonService, IPersonalityInsightsService
     {
-        const string SERVICE_NAME = "language_translator";
+        const string SERVICE_NAME = "personality_insights";
 
         const string URL = "https://gateway.watsonplatform.net/personality-insights/api";
         const string PATH_GET_PROFILES = "/v3/profile";
@@ -89,9 +88,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                                 .As<Profile>()
                                 .Result;
             }
-            catch (Exception)
+            catch (AggregateException ae)
             {
-                throw;
+                throw ae.Flatten();
             }
 
             return result;

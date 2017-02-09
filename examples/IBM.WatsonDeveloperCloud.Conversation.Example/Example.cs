@@ -23,9 +23,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.Example
     {
         static void Main(string[] args)
         {
-            string _username = "97a37439-9be0-4b01-8145-531c983dd34f";
-            string _password = "SOuS08uQ8Z6v";
-            string _workspaceID = "b42ee794-c019-4a0d-acd2-9e4d1d016767";
+            string _username = "<username>";
+            string _password = "<password>";
+            string _workspaceID = "<workspace-id>";
 
             ConversationServiceExample _conversationExample = new ConversationServiceExample(_username, _password, _workspaceID);
             Console.ReadKey();

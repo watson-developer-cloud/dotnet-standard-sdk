@@ -486,7 +486,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void Message_WorkspaceId_MessageRequest_Cath_Exception()
         {
 
@@ -622,7 +622,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                    .Returns(request);
 
             request.WithBody<MessageRequest>(Arg.Any<MessageRequest>(), Arg.Any<MediaTypeHeaderValue>())
-                   .Returns(x => { throw new Exception(); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             request.As<MessageResponse>()
                    .Returns(Task.FromResult(response));

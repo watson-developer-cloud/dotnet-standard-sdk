@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class SupportedFeatures
     {

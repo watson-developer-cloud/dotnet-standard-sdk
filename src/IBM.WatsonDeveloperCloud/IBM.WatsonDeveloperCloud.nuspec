@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IBM.WatsonDeveloperCloud</id>
+    <version>0.1.0-alpha</version>
+    <title>Watson Developer Cloud .NET Standard SDK</title>
+    <authors>Watson Developer Cloud</authors>
+    <owners>Watson Developer Cloud</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The .Net SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</description>
+    <releaseNotes>This is the first Alpha release of the Watson Developer Cloud .NET Standard SDK.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>watson cognitive ibm ai artifical-intelligence machine-learning ml</tags>
+  </metadata>
+</package>

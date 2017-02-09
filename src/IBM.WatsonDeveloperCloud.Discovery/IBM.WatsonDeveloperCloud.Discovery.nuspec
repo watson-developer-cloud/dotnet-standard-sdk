@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IBM.WatsonDeveloperCloud</id>
+    <version>0.1.0-alpha</version>
+    <title>Watson Developer Cloud .NET Standard SDK: Discovery</title>
+    <authors>Watson Developer Cloud</authors>
+    <owners>Watson Developer Cloud</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The IBM Watson™ Discovery service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data - including your own proprietary data, as well as public and third-party data.</description>
+    <releaseNotes>This is the first Alpha release of the Watson Developer Cloud .NET Standard SDK.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>watson cognitive ibm ai artifical-intelligence machine-learning ml discovery QA</tags>
+  </metadata>
+</package>

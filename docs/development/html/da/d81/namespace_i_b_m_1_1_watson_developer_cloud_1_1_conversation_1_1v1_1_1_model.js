@@ -1,6 +1,7 @@
 var namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model =
 [
     [ "Context", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context.html", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context" ],
+    [ "DialogStack", "df/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_stack.html", "df/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_stack" ],
     [ "EntityResponse", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response" ],
     [ "InputData", "d7/d92/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_input_data.html", "d7/d92/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_input_data" ],
     [ "Intent", "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent.html", "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent" ],

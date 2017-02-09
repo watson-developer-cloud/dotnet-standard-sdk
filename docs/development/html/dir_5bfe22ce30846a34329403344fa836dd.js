@@ -3,6 +3,9 @@ var dir_5bfe22ce30846a34329403344fa836dd =
     [ "Context.cs", "de/d08/_context_8cs.html", [
       [ "Context", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context.html", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context" ]
     ] ],
+    [ "DialogStack.cs", "df/d8e/_dialog_stack_8cs.html", [
+      [ "DialogStack", "df/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_stack.html", "df/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_stack" ]
+    ] ],
     [ "EntityResponse.cs", "da/d04/_entity_response_8cs.html", [
       [ "EntityResponse", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response" ]
     ] ],

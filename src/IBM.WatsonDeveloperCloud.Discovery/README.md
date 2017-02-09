@@ -1,6 +1,6 @@
 ### Discovery
 The IBM Watson™ [Discovery][discovery] service will be abstracted into the .NET Standard SDK in the future.
-<!-- The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data â€” including your own proprietary data, as well as public and third-party data. -->
+<!-- The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data - including your own proprietary data, as well as public and third-party data. -->
 
 <!-- ### Installation
 #### Nuget

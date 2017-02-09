@@ -17,29 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class Model
+    public class Session
     {
-        [JsonProperty("Name")]
-        public string Name { get; set; }
+        [JsonProperty("session_id")]
+        public string SessionId { get; set; }
 
-        [JsonProperty("language")]
-        public string Language { get; set; }
+        [JsonProperty("new_session_uri")]
+        public string NewSessionUri { get; set; }
 
-        [JsonProperty("rate")]
-        public int Rate { get; set; }
+        [JsonProperty("recognize")]
+        public string Recognize { get; set; }
 
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        [JsonProperty("observe_result")]
+        public string ObserveResult { get; set; }
 
-        [JsonProperty("supported_features")]
-        public SupportedFeatures SupportedFeatures { get; set; }
-
-        [JsonProperty("sessions")]
-        public string Sessions { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("recognizeWS")]
+        public string RecognizeWS { get; set; }
     }
 }

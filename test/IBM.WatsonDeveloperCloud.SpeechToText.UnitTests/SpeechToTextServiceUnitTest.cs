@@ -17,11 +17,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Models;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
@@ -40,11 +39,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
                   .Returns(client);
 
-            ModelSet response = new ModelSet()
+            SpeechModelSet response = new SpeechModelSet()
             {
-                Models = new List<Model>()
+                Models = new List<SpeechModel>()
                 {
-                    new Model()
+                    new SpeechModel()
                     {
                         Description = "TEST",
                         Language = "pt-br",
@@ -60,7 +59,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             client.GetAsync(Arg.Any<string>())
                   .Returns(request);
 
-            request.As<ModelSet>()
+            request.As<SpeechModelSet>()
                    .Returns(Task.FromResult(response));
 
             #endregion
@@ -84,11 +83,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
                   .Returns(client);
 
-            ModelSet response = new ModelSet()
+            SpeechModelSet response = new SpeechModelSet()
             {
-                Models = new List<Model>()
+                Models = new List<SpeechModel>()
                 {
-                    new Model()
+                    new SpeechModel()
                     {
                         Description = "TEST",
                         Language = "pt-br",
@@ -104,7 +103,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             client.GetAsync(Arg.Any<string>())
                   .Returns(request);
 
-            request.As<ModelSet>()
+            request.As<SpeechModelSet>()
                    .Returns(Task.FromResult(response));
 
             #endregion

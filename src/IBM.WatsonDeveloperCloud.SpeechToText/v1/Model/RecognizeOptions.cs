@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class RecognizeOptions
     {

@@ -18,21 +18,17 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Models
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class SpeechRecognitionResult
+    public class WordAlternativeResults
     {
-        [JsonProperty("final")]
-        public bool Final { get; set; }
+        [JsonProperty("start_time")]
+        public double StartTime { get; set; }
+
+        [JsonProperty("end_time")]
+        public double Endtime { get; set; }
 
         [JsonProperty("alternatives")]
-        public List<SpeechRecognitionAlternative> Alternatives { get; set; }
-
-        [JsonProperty("keywords_result")]
-        public KeywordResults KeywordResults { get; set; }
-
-        [JsonProperty("word_alternatives")]
-        public List<WordAlternativeResults> WordAlternativeResults { get; set; }
+        public List<WordAlternativeResult> Alternatives { get; set; }
     }
 }

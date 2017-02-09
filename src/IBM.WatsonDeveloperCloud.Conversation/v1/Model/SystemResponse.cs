@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// An array of dialog node IDs that are in focus in the conversation.
         /// </summary>
         [JsonProperty("dialog_stack")]
-        public List<string> DialogStack { get; set; }
+        public List<DialogStack> DialogStack { get; set; }
 
         /// <summary>
         /// The number of cycles of user input and response in this conversation.

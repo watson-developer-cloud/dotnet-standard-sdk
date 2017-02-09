@@ -15,9 +15,7 @@
 *
 */
 
-using System.IO;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
@@ -25,6 +23,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
     [TestClass]
     public class LanguageTranslatorServiceIntegrationTest
     {
+        [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
             LanguageTranslatorService service =

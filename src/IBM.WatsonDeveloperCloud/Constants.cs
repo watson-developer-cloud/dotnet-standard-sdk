@@ -15,20 +15,17 @@
 *
 */
 
-using System;
-
-namespace IBM.WatsonDeveloperCloud.Conversation.Example
+namespace IBM.WatsonDeveloperCloud
 {
-    public class Example
+    /// <summary>
+    /// This class holds constant values for the SDK.
+    /// </summary>
+    public class Constants
     {
-        static void Main(string[] args)
-        {
-            string _username = "<username>";
-            string _password = "<password>";
-            string _workspaceID = "<workspace-id>";
-
-            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username, _password, _workspaceID);
-            Console.ReadKey();
-        }
+        /// <summary>
+        /// The version number for this SDK build. Added to the header in 
+        /// each request as `User-Agent`.
+        /// </summary>
+        public const string SDK_VERSION = "0.0.1-alpha";
     }
 }

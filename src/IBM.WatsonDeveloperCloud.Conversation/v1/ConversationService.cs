@@ -79,7 +79,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             }
             catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
+                throw ae.Flatten();
             }
 
             return result;

@@ -46,8 +46,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
 
             var results = service.Message(WORKSPACE_ID, messageRequest);
 
-            //Assert.IsNotNull(results);
-            //Assert.IsTrue(results.Intents.Count >= 1);
+            Assert.IsNotNull(results);
+            Assert.IsTrue(results.Intents.Count >= 1);
         }
     }
 

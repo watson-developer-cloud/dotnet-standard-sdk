@@ -1,8 +1,0 @@
-var interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341 =
-[
-    [ "SetForcedGlossary", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html#ac261727c1f0e339f79fd079e09145d7a", null ],
-    [ "SetMonolingualCorpus", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html#a22b9b46d409cdca4501bc9c6d3c9fa37", null ],
-    [ "SetParallelCorpus", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html#adce657d968adcf38df4f63af2d04b1db", null ],
-    [ "WithBaseModelId", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html#a4de3dd9845214ff4013b28b6f8643201", null ],
-    [ "WithName", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html#a566e131493ad05e58e7e7aa57cf40c66", null ]
-];

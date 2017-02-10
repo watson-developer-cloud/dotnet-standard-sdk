@@ -9,5 +9,6 @@ var namespace_i_b_m_1_1_watson_developer_cloud =
     [ "TextToSpeech", "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech.html", "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech" ],
     [ "ToneAnalyzer", "d4/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer.html", "d4/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer" ],
     [ "Util", "d3/dd0/namespace_i_b_m_1_1_watson_developer_cloud_1_1_util.html", "d3/dd0/namespace_i_b_m_1_1_watson_developer_cloud_1_1_util" ],
-    [ "VisualRecognition", "d7/d3a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition.html", "d7/d3a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition" ]
+    [ "VisualRecognition", "d7/d3a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition.html", "d7/d3a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition" ],
+    [ "Constants", "d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants.html", "d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants" ]
 ];

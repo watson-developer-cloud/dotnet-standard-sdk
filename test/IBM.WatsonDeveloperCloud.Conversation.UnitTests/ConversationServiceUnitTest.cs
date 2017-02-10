@@ -63,7 +63,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }                        
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -117,7 +123,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -201,7 +213,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -255,7 +273,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -339,7 +363,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -393,7 +423,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -450,7 +486,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void Message_WorkspaceId_MessageRequest_Cath_Exception()
         {
 
@@ -473,7 +509,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -527,7 +569,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                     {
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
-                        DialogStack = new List<string>(new string[] { "dialog_id_1", "dialog_id_2", "dialog_id_3" })
+                        DialogStack = new List<DialogStack>()
+                        {
+                            new DialogStack()
+                            {
+                                DialogNode = "root"
+                            }
+                        }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -574,7 +622,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                    .Returns(request);
 
             request.WithBody<MessageRequest>(Arg.Any<MessageRequest>(), Arg.Any<MediaTypeHeaderValue>())
-                   .Returns(x => { throw new Exception(); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             request.As<MessageResponse>()
                    .Returns(Task.FromResult(response));

@@ -15,20 +15,21 @@
 *
 */
 
-using System;
+using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Conversation.Example
+
+namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
-    public class Example
+    /// <summary>
+    /// Information about the dialog.
+    /// </summary>
+    public class DialogStack
     {
-        static void Main(string[] args)
-        {
-            string _username = "<username>";
-            string _password = "<password>";
-            string _workspaceID = "<workspace-id>";
-
-            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username, _password, _workspaceID);
-            Console.ReadKey();
-        }
+        /// <summary>
+        /// The dialog node ID.
+        /// </summary>
+        [JsonProperty("dialog_node")]
+        public string DialogNode { get; set; }
+        
     }
 }

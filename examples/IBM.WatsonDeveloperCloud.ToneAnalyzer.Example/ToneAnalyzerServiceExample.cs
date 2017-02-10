@@ -63,7 +63,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.Example
                 }
 
 
-                Console.WriteLine("Sentence tone tone");
+                Console.WriteLine("Sentence tone");
                 if (result.SentencesTone != null && result.SentencesTone.Count > 0)
                 {
                     foreach (SentenceAnalysis sentenceTone in result.SentencesTone)

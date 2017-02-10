@@ -1,4 +1,4 @@
-version: 0.0.{build}
+version: 0.1.{build}
 branches:
   except:
   - gh-pages
@@ -6,9 +6,9 @@ configuration: Release
 platform: Any CPU
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: QumHLwVevHVqpowzdjoBElUVa3eS5leJi5rsPdC/tnMuOkfvIRAa0yFDeuNlHNQy
+    secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME
   GH_TOKEN:
-    secure: i+mbJGwxQAkDjd6r1UfRMija3lDLQ2vNzL2kyrsYP5ycriFQtfBJQujoO+2dr+2u
+    secure: ahCkoZZovsAAEZz8fc09QDIH1VMyE1e946JiMb3by8eyp1pacKDq/S7EI//S2lqB
 install:
 - cmd: >-
     rm -rf packages

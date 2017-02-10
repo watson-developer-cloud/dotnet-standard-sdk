@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0-alpha",
+
+  "testRunner": "mstest",
+
+  "buildOptions": {
+    "copyToOutput": [
+      "Assets\\let_it_be.wav",
+      "appsettings.json"
+    ]
+  },
+
+  "dependencies": {
+    "dotnet-test-mstest": "1.1.2-preview",
+    "MSTest.TestFramework": "1.0.6-preview",
+    "NSubstitute": "2.0.0-rc",
+    "Newtonsoft.Json": "9.0.1",
+    "IBM.WatsonDeveloperCloud.SpeechToText": "0.1.0-alpha",
+    "Microsoft.Extensions.Configuration": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "OpenCover": "4.6.519",
+    "coveralls.net": "0.7.0",
+    "ReportGenerator": "2.4.5"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+        //"System.Runtime.Serialization.Xml": "4.1.1"
+      },
+      "imports": [
+        "dotnet5.4",
+        "portable-net451+win8"
+      ]
+    }
+  }
+}

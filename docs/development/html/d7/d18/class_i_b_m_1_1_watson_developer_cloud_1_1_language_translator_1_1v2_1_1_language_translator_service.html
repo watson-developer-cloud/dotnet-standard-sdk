@@ -294,9 +294,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">baseModelId</td><td>The base model to use to create the custom model.</td></tr>
-    <tr><td class="paramname">name</td><td>The name of the custom model.</td></tr>
-    <tr><td class="paramname">file</td><td>The file data used to create the custom model.</td></tr>
+    <tr><td class="paramname">_options</td><td>An object containing arguments used to create the custom model.</td></tr>
   </table>
   </dd>
 </dl>
@@ -333,7 +331,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Deletes trained translation models. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">modelId</td><td>The model identifier.</td></tr>
+    <tr><td class="paramname">_modelId</td><td>The model identifier.</td></tr>
   </table>
   </dd>
 </dl>
@@ -490,7 +488,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Lists available models for the Language translator service with option to filter by source or by target language. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">isDefault</td><td>Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</td></tr>
+    <tr><td class="paramname">_isDefault</td><td>Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</td></tr>
     <tr><td class="paramname">_source</td><td>Define with target. Filters models by source language.</td></tr>
     <tr><td class="paramname">_target</td><td>Define with source. Filters models by target language.</td></tr>
   </table>

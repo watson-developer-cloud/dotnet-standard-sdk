@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="_source">Define with target. Filters models by source language.</param>
         /// <param name="_target">Define with source. Filters models by target language.</param>
         /// <returns></returns>
-        TranslationModels ListModels(bool isDefault, string _source, string _target);
+        TranslationModels ListModels(bool _isDefault, string _source, string _target);
 
         /// <summary>
         /// Uploads a TMX glossary file on top of a domain to customize a translation model.
@@ -40,14 +40,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="name">The name of the custom model.</param>
         /// <param name="file">The file data used to create the custom model.</param>
         /// <returns></returns>
-        CustomModels CreateModel(string baseModelId, string name, FileStream file);
+        CustomModels CreateModel(CreateModelOptions _options);
 
         /// <summary>
         /// Deletes trained translation models.
         /// </summary>
         /// <param name="modelId">The model identifier.</param>
         /// <returns></returns>
-        DeleteModels DeleteModel(string modelId);
+        DeleteModels DeleteModel(string _modelId);
 
         /// <summary>
         /// Returns information, including training status, about a specified translation model.

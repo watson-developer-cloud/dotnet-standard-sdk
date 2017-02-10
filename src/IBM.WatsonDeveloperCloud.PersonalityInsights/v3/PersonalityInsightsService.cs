@@ -18,7 +18,7 @@
 using System;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
+using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using IBM.WatsonDeveloperCloud.Service;
 using System.Runtime.ExceptionServices;
 

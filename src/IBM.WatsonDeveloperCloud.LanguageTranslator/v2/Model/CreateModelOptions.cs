@@ -17,7 +17,7 @@
 
 using System.IO;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models
+namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
     public class CreateModelOptions
     {

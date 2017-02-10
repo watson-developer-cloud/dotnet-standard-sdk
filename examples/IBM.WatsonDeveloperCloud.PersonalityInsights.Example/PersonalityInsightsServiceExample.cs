@@ -16,7 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3;
-using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models;
+using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using System;
 using System.IO;
 

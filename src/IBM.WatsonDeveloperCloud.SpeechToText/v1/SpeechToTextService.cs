@@ -18,11 +18,9 @@
 using System;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.ExceptionServices;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.Http.Filters;
 using IBM.WatsonDeveloperCloud.Service;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Models;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
@@ -54,44 +52,44 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             this.SetCredential(userName, password);
         }
 
-        public ModelSet GetModels()
+        public SpeechModelSet GetModels()
         {
-            ModelSet result = null;
+            SpeechModelSet result = null;
 
             try
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                             .GetAsync($"{RELATIVE_PATH}{PATH_MODELS}")
-                            .As<ModelSet>()
+                            .As<SpeechModelSet>()
                             .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public Model GetModel(string modelName)
+        public SpeechModel GetModel(string modelName)
         {
             if (string.IsNullOrEmpty(modelName))
                 throw new ArgumentNullException("modelName can not be null or empty");
 
-            Model result = null;
+            SpeechModel result = null;
 
             try
             {
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                         .GetAsync($"{RELATIVE_PATH}{PATH_MODELS}/{modelName}")
-                        .As<Model>()
+                        .As<SpeechModel>()
                         .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
 
             return result;
@@ -111,9 +109,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                .As<Session>()
                                .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
 
             return result;
@@ -138,9 +136,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                .As<RecognizeStatus>()
                                .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
 
             return result;
@@ -161,9 +159,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                .AsMessage()
                                .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
         }
 
@@ -210,9 +208,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                .As<SpeechRecognitionEvent>()
                                .Result;
             }
-            catch (AggregateException ex)
+            catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ex.Flatten().InnerException).Throw();
+                throw ae.Flatten();
             }
 
             return result;

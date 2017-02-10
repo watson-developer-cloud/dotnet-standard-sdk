@@ -21,7 +21,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
-using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
+using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using Newtonsoft.Json.Linq;
 using System.Runtime.ExceptionServices;
 
@@ -104,7 +104,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             }
             catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
+                throw ae.Flatten();
             }
 
             return result;

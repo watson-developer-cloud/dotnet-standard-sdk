@@ -17,6 +17,7 @@ var searchData=
   ['models',['Models',['../d8/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_translation_models.html#a4d0b600265fe36c4f4e7d00714e9a65b',1,'IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.TranslationModels.Models()'],['../db/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_model_set.html#ad2e5ccb209ad383e07761a2f3746f3a9',1,'IBM.WatsonDeveloperCloud.SpeechToText.v1.Models.ModelSet.Models()']]],
   ['modelset',['ModelSet',['../db/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_model_set.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Models']]],
   ['modelset_2ecs',['ModelSet.cs',['../dc/d90/_model_set_8cs.html',1,'']]],
+  ['monolingualcorpus',['MonolingualCorpus',['../d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options.html#a524deeb6a23b79a65e4a2a6dcbf6ac68',1,'IBM::WatsonDeveloperCloud::LanguageTranslator::v2::Models::CreateModelOptions']]],
   ['msg',['Msg',['../d1/d98/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message_response.html#ace2ee4f37f78f8520fee545d29e079a8',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model::LogMessageResponse']]],
   ['multipart_5fform_5fdata',['MULTIPART_FORM_DATA',['../dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a53937ee55bc976fc212976440313fc7a',1,'IBM::WatsonDeveloperCloud::Http::HttpMediaType']]]
 ];

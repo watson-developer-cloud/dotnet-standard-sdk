@@ -10,6 +10,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models.ContentItem", "dc/d27/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_item.html", null ],
     [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Models.ContentListContainer", "de/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_content_list_container.html", null ],
     [ "IBM.WatsonDeveloperCloud.Conversation.v1.Model.Context", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context.html", null ],
+    [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.CreateModelOptions", "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options.html", null ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.CustomModels", "d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models.html", null ],
     [ "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model.CustomVoiceLanguage", "dc/d2c/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_voice_language.html", null ],
     [ "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model.CustomVoiceModel", "d5/d3e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_voice_model.html", null ],
@@ -40,6 +41,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.Conversation.v1.IConversationService", "d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html", [
       [ "IBM.WatsonDeveloperCloud.Conversation.v1.ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html", null ]
     ] ],
+    [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.CreateModelOptions.ICreateModelOptions", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html", null ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.IdentifiableLanguage", "de/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_language.html", null ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.IdentifiableLanguages", "d7/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_languages.html", null ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models.IdentifiedLanguage", "d5/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identified_language.html", null ],
@@ -122,6 +124,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Models.SpeechRecognitionAlternative", "d2/dc3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_speech_recognition_alternative.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Models.SpeechRecognitionEvent", "d0/d1d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_speech_recognition_event.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Models.SpeechRecognitionResult", "d9/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_speech_recognition_result.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Http.Extensions.StreamExtension", "d5/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions_1_1_stream_extension.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Models.SupportedFeatures", "dd/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_supported_features.html", null ],
     [ "IBM.WatsonDeveloperCloud.Conversation.v1.Model.SystemResponse", "dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response.html", null ],
     [ "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models.ToneAnalysis", "d1/dbb/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_models_1_1_tone_analysis.html", null ],

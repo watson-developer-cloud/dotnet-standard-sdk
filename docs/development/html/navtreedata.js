@@ -28,9 +28,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/d9a/namespace_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_extensions.html",
-"da/dbf/_input_data_8cs.html",
-"df/da7/interface_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_profile_options_1_1_i_accept.html#a77360fa97509676554f70433d32a3b3b"
+"d5/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_models_1_1_consumption_preferences_category_node.html#af0370a217c9baa1fef46a279294e4815",
+"da/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_models_1_1_session.html#ad8ce4e03864d8e6a6bbd254fb85e026f",
+"df/d1d/_sentence_analysis_8cs.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,6 +1,7 @@
 var namespace_i_b_m_1_1_watson_developer_cloud_1_1_http =
 [
     [ "Exceptions", "df/d72/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions.html", "df/d72/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions" ],
+    [ "Extensions", "d1/d33/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions.html", "d1/d33/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions" ],
     [ "Filters", "d6/d1f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_filters.html", "d6/d1f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_filters" ],
     [ "HttpMediaType", "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html", "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type" ],
     [ "IClient", "d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client.html", "d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client" ],

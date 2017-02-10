@@ -8,6 +8,7 @@ var searchData=
   ['speechrecognitionevent_2ecs',['SpeechRecognitionEvent.cs',['../da/d1c/_speech_recognition_event_8cs.html',1,'']]],
   ['speechrecognitionresult_2ecs',['SpeechRecognitionResult.cs',['../d9/db8/_speech_recognition_result_8cs.html',1,'']]],
   ['speechtotextservice_2ecs',['SpeechToTextService.cs',['../db/d33/_speech_to_text_service_8cs.html',1,'']]],
+  ['streamextension_2ecs',['StreamExtension.cs',['../df/d85/_stream_extension_8cs.html',1,'']]],
   ['supportedfeatures_2ecs',['SupportedFeatures.cs',['../db/d88/_supported_features_8cs.html',1,'']]],
   ['systemresponse_2ecs',['SystemResponse.cs',['../d2/d27/_system_response_8cs.html',1,'']]]
 ];

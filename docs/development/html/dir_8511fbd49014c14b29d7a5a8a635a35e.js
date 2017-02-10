@@ -1,5 +1,9 @@
 var dir_8511fbd49014c14b29d7a5a8a635a35e =
 [
+    [ "CreateModelOptions.cs", "d6/d6d/_create_model_options_8cs.html", [
+      [ "CreateModelOptions", "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options.html", "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options" ],
+      [ "ICreateModelOptions", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341.html", "d6/d51/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_mad34c58a63e34c3b44e466eb8ce33341" ]
+    ] ],
     [ "CustomModels.cs", "d5/d73/_custom_models_8cs.html", [
       [ "CustomModels", "d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models.html", "d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models" ]
     ] ],

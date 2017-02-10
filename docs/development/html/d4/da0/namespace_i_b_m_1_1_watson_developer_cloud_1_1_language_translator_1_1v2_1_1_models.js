@@ -1,5 +1,6 @@
 var namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models =
 [
+    [ "CreateModelOptions", "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options.html", "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_create_model_options" ],
     [ "CustomModels", "d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models.html", "d6/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_custom_models" ],
     [ "DeleteModels", "d7/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_delete_models.html", "d7/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_delete_models" ],
     [ "IdentifiableLanguage", "de/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_language.html", "de/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_models_1_1_identifiable_language" ],

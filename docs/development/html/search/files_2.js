@@ -6,6 +6,7 @@ var searchData=
   ['contentlistcontainer_2ecs',['ContentListContainer.cs',['../d3/dd3/_content_list_container_8cs.html',1,'']]],
   ['context_2ecs',['Context.cs',['../de/d08/_context_8cs.html',1,'']]],
   ['conversationservice_2ecs',['ConversationService.cs',['../dc/d41/_conversation_service_8cs.html',1,'']]],
+  ['createmodeloptions_2ecs',['CreateModelOptions.cs',['../d6/d6d/_create_model_options_8cs.html',1,'']]],
   ['custommodels_2ecs',['CustomModels.cs',['../d5/d73/_custom_models_8cs.html',1,'']]],
   ['customvoicelanguage_2ecs',['CustomVoiceLanguage.cs',['../d4/d3b/_custom_voice_language_8cs.html',1,'']]],
   ['customvoicemodel_2ecs',['CustomVoiceModel.cs',['../d9/d12/_custom_voice_model_8cs.html',1,'']]],

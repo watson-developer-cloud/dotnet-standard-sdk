@@ -162,8 +162,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-
-            var customModel = service.CreateModel("base_id", "model_unit_test", Substitute.For<FileStream>("any_file", FileMode.Create));
+            
+            var customModel =
+                service.CreateModel(CreateModelOptions.CreateOptions()
+                                                      .WithName("base_id")
+                                                      .WithBaseModelId("model_unit_test")
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
 
             Assert.IsNotNull(customModel);
             client.Received().PostAsync(Arg.Any<string>());
@@ -188,7 +192,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
 
-            var customModel = service.CreateModel(null, "model_unit_test", Substitute.For<FileStream>("any_file_basemodel", FileMode.Create));
+            var customModel =
+                service.CreateModel(CreateModelOptions.CreateOptions()
+                                                      .WithName(null)
+                                                      .WithBaseModelId("model_unit_test")
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -209,7 +217,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
 
-            var customModel = service.CreateModel("base_id", "model name", Substitute.For<FileStream>("any_file_with_spaces", FileMode.Create));
+            var customModel =
+                service.CreateModel(CreateModelOptions.CreateOptions()
+                                                      .WithName("base_id")
+                                                      .WithBaseModelId("model name")
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -230,7 +242,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
 
-            var customModel = service.CreateModel("base_id", "model_name", null);
+            var customModel =
+                service.CreateModel(CreateModelOptions.CreateOptions()
+                                                      .WithName("base_id")
+                                                      .WithBaseModelId("model_unit_test")
+                                                      .SetForcedGlossary(null));
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]
@@ -251,7 +267,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
 
-            var customModel = service.CreateModel("base_id", "model_name", Substitute.For<FileStream>("any_file_catch", FileMode.Create));
+            var customModel =
+                service.CreateModel(CreateModelOptions.CreateOptions()
+                                                      .WithName("base_id")
+                                                      .WithBaseModelId("model_unit_test")
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
         }
 
         [TestMethod]

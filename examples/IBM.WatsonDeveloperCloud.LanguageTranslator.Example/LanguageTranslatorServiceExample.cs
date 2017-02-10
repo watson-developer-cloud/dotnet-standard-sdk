@@ -34,9 +34,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.Example
         public LanguageTranslatorServiceExample(string username, string password)
         {
             _languageTranslator.SetCredential(username, password);
-
+            
             ListModels();
-            //CreateModel();
+            CreateModel();
             GetModelDetails();
             Translate();
             GetIdentifiableLanguages();
@@ -79,7 +79,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.Example
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
                 Console.WriteLine(string.Format("Calling CreateModel({0}, {1}, {2})...", _baseModel, _customModelName, _glossaryPath));
-                var result = _languageTranslator.CreateModel(_baseModel, _customModelName, fs);
+                var result =
+                    _languageTranslator.CreateModel(CreateModelOptions.CreateOptions()
+                                                                      .WithBaseModelId(_baseModel)
+                                                                      .WithName(_customModelName)
+                                                                      .SetForcedGlossary(fs));
 
                 if (result != null)
                 {

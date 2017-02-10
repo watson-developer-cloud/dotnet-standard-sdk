@@ -78,4 +78,4 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [dotnet-core-download]: https://www.microsoft.com/net/download/core
 [visual-studio-download]: https://www.visualstudio.com/vs/community/
 [visual-studio-code-download]: https://code.visualstudio.com/
-[dotnet-standard-sdk-documentation]: https://atilatosta.github.io/dotnet-standard-sdk/
+[dotnet-standard-sdk-documentation]: https://watson-developer-cloud.github.io/dotnet-standard-sdk/

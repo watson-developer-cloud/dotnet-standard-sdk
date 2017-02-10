@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IBM.WatsonDeveloperCloud</id>
+    <version>0.1.0-alpha</version>
+    <title>Watson Developer Cloud .NET Standard SDK: Speech to Text</title>
+    <authors>Watson Developer Cloud</authors>
+    <owners>Watson Developer Cloud</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The IBM® Speech to Text service provides an API that enables you to add IBM's speech recognition capabilities to your applications. The service transcribes speech from various languages and audio formats to text with low latency. For most languages, the service supports two sampling rates, broadband and narrowband.</description>
+    <releaseNotes>This is the first Alpha release of the Watson Developer Cloud .NET Standard SDK.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>watson cognitive ibm ai artifical-intelligence machine-learning ml stt speech-to-text language natural-language speech</tags>
+  </metadata>
+</package>

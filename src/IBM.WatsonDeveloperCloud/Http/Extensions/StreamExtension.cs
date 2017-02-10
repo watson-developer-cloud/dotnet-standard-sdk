@@ -15,20 +15,25 @@
 *
 */
 
-using System;
+using System.IO;
 
-namespace IBM.WatsonDeveloperCloud.Conversation.Example
+namespace IBM.WatsonDeveloperCloud.Http.Extensions
 {
-    public class Example
+    public static class StreamExtension
     {
-        static void Main(string[] args)
+        public static byte[] ReadAllBytes(this Stream _stream)
         {
-            string _username = "<username>";
-            string _password = "<password>";
-            string _workspaceID = "<workspace-id>";
-
-            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username, _password, _workspaceID);
-            Console.ReadKey();
+            byte[] buffer = new byte[_stream.Length];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                while (true)
+                {
+                    int read = _stream.Read(buffer, 0, buffer.Length);
+                    if (read <= 0)
+                        return ms.ToArray();
+                    ms.Write(buffer, 0, read);
+                }
+            }
         }
     }
 }

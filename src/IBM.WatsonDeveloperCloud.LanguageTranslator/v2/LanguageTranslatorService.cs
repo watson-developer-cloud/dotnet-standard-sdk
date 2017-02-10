@@ -26,6 +26,7 @@ using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json.Linq;
 using System.Runtime.ExceptionServices;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {
@@ -91,30 +92,57 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             return result;
         }
 
-        public CustomModels CreateModel(string baseModelId, string name, FileStream file)
+        public CustomModels CreateModel(CreateModelOptions _options)
         {
             CustomModels result = null;
 
-            if (string.IsNullOrEmpty(baseModelId))
-                throw new ArgumentNullException($"Argument is not valid: {nameof(baseModelId)}");
+            if (string.IsNullOrEmpty(_options.BaseModelId))
+                throw new ArgumentNullException($"Argument is not valid: {nameof(_options.BaseModelId)}");
 
-            if (name.Contains(" "))
-                throw new ArgumentException($"Argument is not valid (No spaces): {nameof(name)}");
+            if (_options.Name.Contains(" "))
+                throw new ArgumentException($"Argument is not valid (No spaces): {nameof(_options.Name)}");
 
-            if (file == null)
-                throw new ArgumentNullException($"The {nameof(file)} Argument can not be null");
+            if (_options.ForcedGlossary == null && _options.ParallelCorpus == null && _options.MonolingualCorpus == null)
+                throw new ArgumentNullException($"Glossary or Corpus file is not valid");
+
+            double fileSize = _options.ForcedGlossary != null ? (_options.ForcedGlossary.Length ) / Math.Pow(1024, 2) : 0;
+            fileSize += _options.ParallelCorpus != null ? (_options.ParallelCorpus.Length) / Math.Pow(1024, 2) : 0;
+            fileSize += _options.MonolingualCorpus != null ? (_options.MonolingualCorpus.Length) / Math.Pow(1024, 2) : 0;
+
+            if (fileSize > 250)
+                throw new Exception("The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.");
 
             try
             {
-                StreamContent content = new StreamContent(file);
-                content.Headers.Add("Content-Type", "text/xml");
+                var formData = new MultipartFormDataContent();
+
+                if(_options.ForcedGlossary != null)
+                {
+                    var forcedGlossaryContent = new ByteArrayContent((_options.ForcedGlossary as Stream).ReadAllBytes());
+                    forcedGlossaryContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", _options.ForcedGlossary.Name);
+                }
+
+                if (_options.ParallelCorpus != null)
+                {
+                    var parallelCorpusContent = new ByteArrayContent((_options.ParallelCorpus as Stream).ReadAllBytes());
+                    parallelCorpusContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
+                    formData.Add(parallelCorpusContent, "forced_glossary", _options.ParallelCorpus.Name);
+                }
+
+                if (_options.MonolingualCorpus != null)
+                {
+                    var monolingualCorpusContent = new ByteArrayContent((_options.MonolingualCorpus as Stream).ReadAllBytes());
+                    monolingualCorpusContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
+                    formData.Add(monolingualCorpusContent, "forced_glossary", _options.MonolingualCorpus.Name);
+                }
 
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}{PATH_MODEL}")
-                                .WithArgument("base_model_id", baseModelId)
-                                .WithArgument("name", name)
-                                .WithBodyContent(content)
+                                .WithArgument("base_model_id", _options.BaseModelId)
+                                .WithArgument("name", _options.Name)
+                                .WithBodyContent(formData)
                                 .As<CustomModels>()
                                 .Result;
             }

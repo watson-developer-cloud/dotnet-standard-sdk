@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IBM.WatsonDeveloperCloud</id>
+    <version>0.1.0-alpha</version>
+    <title>Watson Developer Cloud .NET Standard SDK: Personality Insights</title>
+    <authors>Watson Developer Cloud</authors>
+    <owners>Watson Developer Cloud</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The IBM Watson™ Personality Insights service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.</description>
+    <releaseNotes>This is the first Alpha release of the Watson Developer Cloud .NET Standard SDK.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>watson cognitive ibm ai artifical-intelligence machine-learning ml</tags>
+  </metadata>
+</package>

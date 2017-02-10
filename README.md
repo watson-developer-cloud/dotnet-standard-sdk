@@ -1,6 +1,6 @@
 # Watson Developer Cloud .NET Standard SDK
 [![Build status](https://ci.appveyor.com/api/projects/status/bcbl2ripwdmh1918/branch/development?svg=true)](https://ci.appveyor.com/project/mediumTaj/dotnet-standard-sdk/branch/development)
-[![Coverage Status](https://coveralls.io/repos/github/watson-developer-cloud/dotnet-standard-sdk/badge.svg?branch=master)](https://coveralls.io/github/watson-developer-cloud/dotnet-standard-sdk?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/watson-developer-cloud/dotnet-standard-sdk/badge.svg?branch=development)](https://coveralls.io/github/watson-developer-cloud/dotnet-standard-sdk?branch=development)
 
 The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
 

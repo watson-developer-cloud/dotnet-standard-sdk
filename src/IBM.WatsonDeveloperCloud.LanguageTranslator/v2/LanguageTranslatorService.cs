@@ -86,7 +86,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             }
             catch (AggregateException ae)
             {
-                ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw(); ;
+                //ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw();
+
+                throw ae.Flatten().InnerException;
             }
 
             return result;

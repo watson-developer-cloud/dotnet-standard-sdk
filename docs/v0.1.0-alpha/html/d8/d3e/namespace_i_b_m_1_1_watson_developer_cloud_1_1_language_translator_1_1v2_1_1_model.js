@@ -1,0 +1,14 @@
+var namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model =
+[
+    [ "CreateModelOptions", "d0/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_model_options.html", "d0/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_model_options" ],
+    [ "CustomModels", "d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models.html", "d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models" ],
+    [ "DeleteModels", "d6/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_models.html", "d6/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_models" ],
+    [ "IdentifiableLanguage", "d9/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_language.html", "d9/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_language" ],
+    [ "IdentifiableLanguages", "db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html", "db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages" ],
+    [ "IdentifiedLanguage", "d0/d0d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_language.html", "d0/d0d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_language" ],
+    [ "IdentifiedLanguages", "d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_languages.html", "d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_languages" ],
+    [ "ModelPayload", "df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html", "df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload" ],
+    [ "TranslateResponse", "d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html", "d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response" ],
+    [ "TranslationModels", "db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models.html", "db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models" ],
+    [ "Translations", "d7/da7/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translations.html", "d7/da7/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translations" ]
+];

@@ -67,4 +67,4 @@ By making a contribution to this project, I certify that:
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 [allman-style]: http://en.wikipedia.org/wiki/Indent_style#Allman_style
-[dotnet-sdk-issues]: https://github.com/atilatosta/dotnet-standard-sdk/issues
+[dotnet-sdk-issues]: https://github.com/watson-developer-cloud/dotnet-standard-sdk/issues

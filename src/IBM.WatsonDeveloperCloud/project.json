@@ -24,7 +24,7 @@
   },
   "scripts": {
     "postcompile": [
-      "dotnet pack --no-build --configuration release"
+      "dotnet pack --no-build --configuration %compile:Configuration%"
     ]
   },
   "buildOptions": {

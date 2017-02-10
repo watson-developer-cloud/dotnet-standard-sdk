@@ -1,4 +1,4 @@
-version: 0.0.{build}
+version: 0.1.{build}
 branches:
   except:
   - gh-pages
@@ -6,9 +6,9 @@ configuration: Release
 platform: Any CPU
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: QumHLwVevHVqpowzdjoBElUVa3eS5leJi5rsPdC/tnMuOkfvIRAa0yFDeuNlHNQy
+    secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME
   GH_TOKEN:
-    secure: i+mbJGwxQAkDjd6r1UfRMija3lDLQ2vNzL2kyrsYP5ycriFQtfBJQujoO+2dr+2u
+    secure: ahCkoZZovsAAEZz8fc09QDIH1VMyE1e946JiMb3by8eyp1pacKDq/S7EI//S2lqB
 install:
 - cmd: >-
     rm -rf packages
@@ -74,4 +74,25 @@ after_build:
         Write-Output "branchName is $branchName. Not generating documentation."
     }
 test_script:
-- ps: "if((Test-Path -Path coverage))\n{\n  rm coverage -r -force\n}\nNew-Item -path . -name coverage -itemtype directory\nForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) { \n  dotnet test $folder.FullName\n  $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    \n  $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'\n  $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'\n  & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'\n}\n\nC:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error\n\nif($env:COVERALLS_REPO_TOKEN)\n{\n  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths\n}\nelse\n{\n  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"\n}"
+- ps: "if((Test-Path -Path coverage))\n{\n  rm coverage -r -force\n}\nNew-Item -path . -name coverage -itemtype directory\nForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) { \n  if(!$folder.Name.Contains(\"VisualRecognition\") -and !$folder.Name.Contains(\"Discovery\"))\n  {\n    dotnet test $folder.FullName\n    $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    \n    $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'\n    $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'\n    & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'\n  }\n}\n\nC:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error\n\nif($env:COVERALLS_REPO_TOKEN)\n{\n  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths\n}\nelse\n{\n  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"\n}"
+artifacts:
+- path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud
+- path: '\src\IBM.WatsonDeveloperCloud.Conversation\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.Conversation
+- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.LanguageTranslation
+- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.PersonalityInsights
+- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.SpeechToText
+- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.TextToSpeech
+- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.ToneAnalyzer
+deploy:
+- provider: NuGet
+  api_key:
+    secure: AaqUbQ5mJm8bYbpNH7GbAzYl45fZZHpqeNdtSd0wQNxjgYmLmvtMU5eByA/mkhxB
+  on:
+    branch: release

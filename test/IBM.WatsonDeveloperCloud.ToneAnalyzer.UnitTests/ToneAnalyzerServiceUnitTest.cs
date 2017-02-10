@@ -17,7 +17,7 @@
 
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3;
-using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
+using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
@@ -366,7 +366,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
 
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void AnalyzeTone_Cath_Exception()
         {
             IClient client = this.CreateClient();
@@ -433,7 +433,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.UnitTests
                    .Returns(request);
 
             request.WithBody<JObject>(Arg.Any<JObject>(), Arg.Any<MediaTypeHeaderValue>())
-                   .Returns(x => { throw new Exception(); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));

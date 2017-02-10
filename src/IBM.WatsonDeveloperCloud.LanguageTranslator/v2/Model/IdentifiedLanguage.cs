@@ -15,15 +15,22 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
+using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
+namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
-    public interface IPersonalityInsightsService
+    public class IdentifiedLanguage
     {
         /// <summary>
-        /// Generates a personality profile for the author of the input text. The service accepts a maximum of 20 MB of input content. It can analyze text in Arabic, English, Japanese, or Spanish and return its results in a variety of languages. You can provide plain text, HTML, or JSON input. The service returns output in JSON format by default, but you can request the output in CSV format.
+        /// The code for an identified language.
         /// </summary>
-        Profile GetProfile(ProfileOptions options);
+        [JsonProperty("language")]
+        public string Language { get; set; }
+
+        /// <summary>
+        /// The confidence score for the identified language. numberMax. Value:1
+        /// </summary>
+        [JsonProperty("confidence")]
+        public double Confidence { get; set; }
     }
 }

@@ -22,6 +22,8 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
+using System.Net.Http.Headers;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -192,8 +194,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 if (string.IsNullOrEmpty(contentType))
                     throw new Exception("The audio format cannot be recognized");
 
-                StreamContent content = new StreamContent(audio);
-                content.Headers.Add("Content-Type", contentType);
+                //StreamContent content = new StreamContent(audio);
+                //content.Headers.Add("Content-Type", contentType);
+
+                var formData = new MultipartFormDataContent();
+                var audioContent = new ByteArrayContent((audio as Stream).ReadAllBytes());
+                audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
+                formData.Add(audioContent, "upload", audio.Name);
 
                 string path = string.Empty;
 
@@ -204,7 +211,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PostAsync(RELATIVE_PATH + PATH_RECOGNIZE)
                                .WithArguments(options.GetArguments())
-                               .WithBodyContent(content)
+                               .WithBodyContent(formData)
                                .As<SpeechRecognitionEvent>()
                                .Result;
             }

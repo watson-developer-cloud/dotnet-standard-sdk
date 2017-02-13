@@ -12,7 +12,7 @@
     "MSTest.TestFramework": "1.0.6-preview",
     "NSubstitute": "2.0.0-rc",
     "Newtonsoft.Json": "9.0.1",
-    "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.1.0-alpha",
+    "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.1.1-alpha",
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",

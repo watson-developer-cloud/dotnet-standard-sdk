@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition -Pre
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition": "0.1.0-alpha"
+   "IBM.WatsonDeveloperCloud.VisualRecognition": "0.1.1-alpha"
 }
 
 ``` -->

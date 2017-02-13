@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery -Pre
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery": "0.1.0-alpha"
+   "IBM.WatsonDeveloperCloud.Discovery": "0.1.1-alpha"
 }
 
 ``` -->

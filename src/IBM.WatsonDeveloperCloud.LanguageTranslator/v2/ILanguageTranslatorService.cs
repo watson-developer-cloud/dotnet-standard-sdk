@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// Lists available models for the Language translator service with option to filter by source or by target language.
         /// </summary>
-        /// <param name="isDefault">Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</param>
+        /// <param name="_isDefault">Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</param>
         /// <param name="_source">Define with target. Filters models by source language.</param>
         /// <param name="_target">Define with source. Filters models by target language.</param>
         /// <returns></returns>
@@ -36,16 +36,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Uploads a TMX glossary file on top of a domain to customize a translation model.
         /// Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
         /// </summary>
-        /// <param name="baseModelId">The base model to use to create the custom model.</param>
-        /// <param name="name">The name of the custom model.</param>
-        /// <param name="file">The file data used to create the custom model.</param>
+        /// <param name="_options">An object containing arguments used to create the custom model.</param>
         /// <returns></returns>
         CustomModels CreateModel(CreateModelOptions _options);
 
         /// <summary>
         /// Deletes trained translation models.
         /// </summary>
-        /// <param name="modelId">The model identifier.</param>
+        /// <param name="_modelId">The model identifier.</param>
         /// <returns></returns>
         DeleteModels DeleteModel(string _modelId);
 

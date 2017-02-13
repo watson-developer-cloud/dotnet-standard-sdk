@@ -15,23 +15,25 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class SpeechRecognitionEvent
+    public class SpeakerLabelsResult
     {
-        [JsonProperty("results")]
-        public List<SpeechRecognitionResult> Results { get; set; }
+        [JsonProperty("from")]
+        public double From { get; set; }
 
-        [JsonProperty("speaker_labels")]
-        public List<SpeakerLabelsResult> SpeakerLabels { get; set; }
+        [JsonProperty("to")]
+        public double To { get; set; }
 
-        [JsonProperty("result_index")]
-        public string ResultIndex { get; set; }
+        [JsonProperty("speaker")]
+        public int Speaker { get; set; }
 
-        [JsonProperty("warnings")]
-        public List<string> Warnings { get; set; }
+        [JsonProperty("confidence")]
+        public double Confidence { get; set; }
+
+        [JsonProperty("final")]
+        public bool Final { get; set; }
     }
 }

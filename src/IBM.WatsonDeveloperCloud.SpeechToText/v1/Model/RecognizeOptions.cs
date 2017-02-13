@@ -33,6 +33,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         public bool WordConfidence { get; private set; }
         public bool ProfanityFilter { get; private set; }
         public bool SmartFormatting { get; private set; }
+        public bool Continuos { get; private set; }
 
         public RecognizeOptions()
         {
@@ -119,11 +120,17 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             return this;
         }
 
+        public RecognizeOptions WithContinuos()
+        {
+            this.Continuos = true;
+            return this;
+        }
+
         public IDictionary<string, object> GetArguments()
         {
             IDictionary<string, object> arguments = new Dictionary<string, object>();
 
-            arguments.Add("model", string.IsNullOrEmpty(this.Model) ? "en-US_NarrowbandModel" : this.Model);
+            arguments.Add("model", string.IsNullOrEmpty(this.Model) ? "en-US_BroadbandModel" : this.Model);
 
             if (this.Continuous)
                 arguments.Add("continuous", this.Continuous);
@@ -153,6 +160,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 
             if (this.SmartFormatting)
                 arguments.Add("smart_formatting", this.SmartFormatting);
+
+            if (this.Continuos)
+                arguments.Add("continuous", this.Continuos);
 
             return arguments;
         }

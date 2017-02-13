@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 {
@@ -115,8 +116,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             service.Endpoint = "https://watson-api-explorer.mybluemix.net";
 
             FileStream audio =
-                File.OpenRead(@"Assets\let_it_be.wav");
-            var results = service.Recognize(audio);
+                File.OpenRead(@"Assets\let_it_be.ogg");
+
+            var results =
+                service.Recognize(audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 {
@@ -108,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void Recognize_Sucess()
+        public void Recognize_BodyContent_Sucess()
         {
             SpeechToTextService service =
                 new SpeechToTextService();
@@ -116,14 +117,45 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             service.Endpoint = "https://watson-api-explorer.mybluemix.net";
 
             FileStream audio =
-                File.OpenRead(@"Assets\let_it_be.ogg");
+                File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(audio);
+                service.Recognize(RecognizeOptions.Builder
+                                                  .WithBody(audio)
+                                                  .Build());
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
             Assert.IsTrue(results.Results.Count > 0);
+            Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
+            Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
+        }
+
+        [TestMethod]
+        public void Recognize_FormData_Sucess()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService();
+
+            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+
+            FileStream audio =
+                File.OpenRead(@"Assets\test-audio.wav");
+
+            var results =
+                service.Recognize(RecognizeOptions.Builder
+                                                  .WithFormData(new Metadata()
+                                                  {
+                                                      PartContentType = audio.GetMediaTypeFromFile()
+                                                  })
+                                                  .Upload(audio)
+                                                  .Build());
+
+            Assert.IsNotNull(results);
+            Assert.IsNotNull(results.Results);
+            Assert.IsTrue(results.Results.Count > 0);
+            Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
+            Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
         }
     }
 }

@@ -5,7 +5,7 @@
 
   "buildOptions": {
     "copyToOutput": [
-      "Assets\\let_it_be.ogg",
+      "Assets\\test-audio.wav",
       "appsettings.json"
     ]
   },

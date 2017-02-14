@@ -24,6 +24,7 @@ using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System.Net.Http.Headers;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -167,53 +168,75 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
         }
 
-        public SpeechRecognitionEvent Recognize(FileStream audio)
+        public SpeechRecognitionEvent Recognize(RecognizeOptions options)
         {
-            return this.Recognize(audio, new RecognizeOptions());
-        }
-
-        public SpeechRecognitionEvent Recognize(FileStream audio, RecognizeOptions options)
-        {
-            if (audio == null)
-                throw new ArgumentNullException("The audio file is null or does not exist");
+            SpeechRecognitionEvent result = null;
 
             if (options == null)
                 throw new ArgumentNullException("The options is null or does not exist");
 
-            SpeechRecognitionEvent result = null;
-
             try
             {
-                double fileSize = audio.Length / Math.Pow(1024, 2);
-
-                if (fileSize > 100.0)
-                    throw new Exception("The audio file is greater than 100MB.");
-
-                string contentType = audio.GetMediaTypeFromFile();
-
-                if (string.IsNullOrEmpty(contentType))
-                    throw new Exception("The audio format cannot be recognized");
-
-                //StreamContent content = new StreamContent(audio);
-                //content.Headers.Add("Content-Type", contentType);
-
-                var formData = new MultipartFormDataContent();
-                var audioContent = new ByteArrayContent((audio as Stream).ReadAllBytes());
-                audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
-                formData.Add(audioContent, "upload", audio.Name);
-
                 string path = string.Empty;
 
                 if (options != null && !string.IsNullOrEmpty(options.SessionId))
                     path = string.Format(PATH_SESSION_RECOGNIZE, options.SessionId);
 
-                result =
+                IRequest request =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync(RELATIVE_PATH + PATH_RECOGNIZE)
-                               .WithArguments(options.GetArguments())
-                               .WithBodyContent(formData)
-                               .As<SpeechRecognitionEvent>()
-                               .Result;
+                               .PostAsync(RELATIVE_PATH + PATH_RECOGNIZE);
+
+                if(options.BodyContent != null)
+                {
+                    request.WithArgument("model", options.Model);
+
+                    if (!string.IsNullOrEmpty(options.CustomizationId))
+                        request.WithArgument("customization_id", options.CustomizationId);
+
+                    if (options.Continuous)
+                        request.WithArgument("continuous", options.Continuous);
+
+                    if (options.InactivityTimeout > 0)
+                        request.WithArgument("inactivity_timeout", options.InactivityTimeout);
+
+                    if (options.Keywords != null && options.Keywords.Length > 0)
+                        request.WithArgument("keywords", options.Keywords);
+
+                    if (options.KeywordsThreshold > 0)
+                        request.WithArgument("keywords_threshold", options.KeywordsThreshold);
+
+                    if (options.MaxAlternatives > 0)
+                        request.WithArgument("max_alternatives", options.MaxAlternatives);
+
+                    if (options.WordAlternativesThreshold > 0)
+                        request.WithArgument("word_alternatives_threshold", options.WordAlternativesThreshold);
+
+                    if (options.WordConfidence)
+                        request.WithArgument("word_confidence", options.WordConfidence);
+
+                    if (options.Timestamps)
+                        request.WithArgument("timestamps", options.Timestamps);
+
+                    if (options.ProfanityFilter)
+                        request.WithArgument("profanity_filter", options.ProfanityFilter);
+
+                    if (options.SmartFormatting)
+                        request.WithArgument("smart_formatting", options.SmartFormatting);
+
+                    if (options.SpeakerLabels)
+                        request.WithArgument("speaker_labels", options.SpeakerLabels);
+
+                    request.WithBodyContent(options.BodyContent);
+                }
+                else
+                {
+                    request.WithBodyContent(options.FormData);
+                }
+
+                result =
+                    request.As<SpeechRecognitionEvent>()
+                           .Result;
+
             }
             catch (AggregateException ae)
             {

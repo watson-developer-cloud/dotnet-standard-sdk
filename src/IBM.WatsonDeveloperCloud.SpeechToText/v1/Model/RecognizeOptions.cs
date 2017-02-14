@@ -15,156 +15,257 @@
 *
 */
 
-using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
+using Newtonsoft.Json;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class RecognizeOptions
     {
+        public string ContentType { get; private set; }
+        public string TransferEncoding { get; private set; }
+        public string Model { get; private set; }
+        public string CustomizationId { get; private set; }
+
         public bool Continuous { get; private set; }
         public int InactivityTimeout { get; private set; }
         public string[] Keywords { get; private set; }
         public double KeywordsThreshold { get; private set; }
         public int MaxAlternatives { get; private set; }
-        public string Model { get; private set; }
-        public string SessionId { get; private set; }
-        public bool Timestamps { get; private set; }
         public double WordAlternativesThreshold { get; private set; }
         public bool WordConfidence { get; private set; }
+        public bool Timestamps { get; private set; }
         public bool ProfanityFilter { get; private set; }
         public bool SmartFormatting { get; private set; }
-        public bool Continuos { get; private set; }
+        public bool SpeakerLabels { get; private set; }
 
-        public RecognizeOptions()
+        public StreamContent BodyContent { get; private set; }
+        public MultipartFormDataContent FormData { get; private set; }
+
+        public string SessionId { get; private set; }
+
+        private RecognizeOptions() { }
+
+        public interface IRecognizeOptions
         {
-            this.KeywordsThreshold = 0;
-            this.MaxAlternatives = 1;
-            this.ProfanityFilter = true;
+            IRecognizeOptions WithContentType(string _contentType);
+            IRecognizeOptions WithTransferEnconding();
+            IRecognizeOptions WithModel(string _model);
+            IRecognizeOptions WithCustomization(string _customizationId);
+            INonMultipart WithBody(FileStream _audio);
+            IUpload WithFormData(Metadata _metaData);
         }
 
-        public RecognizeOptions IsSmartFormatting(bool smartFormatting)
+        public interface IUpload
         {
-            this.SmartFormatting = smartFormatting;
-            return this;
+            IUpload Upload(FileStream _audio);
+            RecognizeOptions Build();
         }
 
-        public RecognizeOptions IsProfanityFilter(bool profanityFilter)
+        public interface INonMultipart
         {
-            this.ProfanityFilter = profanityFilter;
-            return this;
+            INonMultipart IsContinuous();
+            INonMultipart SetInactivityTimeout(int _inactivityTimeout);
+            INonMultipart WithKeywords(string[] _keywords);
+            INonMultipart WithKeywordsThreshold(double _keywordsThreshold);
+            INonMultipart MaxAlternatives(int _maxAlternatives);
+            INonMultipart WithWordAlternativeThreshold(double _wordAlternativesThreshould);
+            INonMultipart WithWordConfidence();
+            INonMultipart WithTimestamps();
+            INonMultipart WithoutProfanityFilter();
+            INonMultipart WithSmartFormatting();
+            INonMultipart WithSpeakerLabels();
+            RecognizeOptions Build();
         }
 
-        public RecognizeOptions IsContinuous(bool continuous)
+        public interface IRecognizeOptionsBuilder : IRecognizeOptions, IUpload, INonMultipart { }
+
+        class RecognizeOptionsBuilder : IRecognizeOptionsBuilder
         {
-            this.Continuous = continuous;
-            return this;
+            string _contentType;
+            string _transferEncoding;
+            string _model = "en-US_BroadbandModel";
+            string _customizationId;
+
+            bool _continuous;
+            int _inactivityTimeout = 30;
+            string[] _keywords;
+            double _keywordsThreshold;
+            int _maxAlternatives = 1;
+            double _wordAlternativesThreshold;
+            bool _wordConfidence;
+            bool _timestamps;
+            bool _profanityFilter = true;
+            bool _smartFormatting;
+            bool _speakerLabels;
+
+            StreamContent _bodyContent;
+            MultipartFormDataContent _formData;
+
+            public IRecognizeOptions WithContentType(string _contentType)
+            {
+                this._contentType = _contentType;
+                return this;
+            }
+
+            public IRecognizeOptions WithTransferEnconding()
+            {
+                this._transferEncoding = "chuncked";
+                return this;
+            }
+
+            public IRecognizeOptions WithModel(string _model)
+            {
+                this._model = _model;
+                return this;
+            }
+
+            public IRecognizeOptions WithCustomization(string _customizationId)
+            {
+                this._customizationId = _customizationId;
+                return this;
+            }
+
+            public INonMultipart WithBody(FileStream _audio)
+            {
+                _bodyContent = new StreamContent(_audio);
+
+                if(string.IsNullOrEmpty(this._contentType))
+                    this._contentType = _audio.GetMediaTypeFromFile();
+
+                _bodyContent.Headers.Add("Content-Type", this._contentType);
+                return this;
+            }
+
+            public IUpload WithFormData(Metadata _metaData)
+            {
+                var json = JsonConvert.SerializeObject(_metaData);
+
+                StringContent metadata = new StringContent(json);
+                metadata.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON);
+
+                _formData = new MultipartFormDataContent();
+                _formData.Add(metadata, "metadata");
+
+                return this;
+            }
+
+            public IUpload Upload(FileStream _audio)
+            {
+                var audioContent = new ByteArrayContent((_audio as Stream).ReadAllBytes());
+
+                if (string.IsNullOrEmpty(this._contentType))
+                    this._contentType = _audio.GetMediaTypeFromFile();
+
+                audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(this._contentType);
+
+                _formData.Add(audioContent, "upload", _audio.Name);
+
+                return this;
+            }
+
+            public RecognizeOptions Build()
+            {
+                return this;
+            }
+
+            public INonMultipart IsContinuous()
+            {
+                this._continuous = true;
+                return this;
+            }
+
+            public INonMultipart SetInactivityTimeout(int _inactivityTimeout)
+            {
+                this._inactivityTimeout = _inactivityTimeout;
+                return this;
+            }
+
+            public INonMultipart WithKeywords(string[] _keywords)
+            {
+                this._keywords = _keywords;
+                return this;
+            }
+
+            public INonMultipart WithKeywordsThreshold(double _keywordsThreshold)
+            {
+                this._keywordsThreshold = _keywordsThreshold;
+                return this;
+            }
+
+            public INonMultipart MaxAlternatives(int _maxAlternatives)
+            {
+                this._maxAlternatives = _maxAlternatives;
+                return this;
+            }
+
+            public INonMultipart WithWordAlternativeThreshold(double _wordAlternativesThreshould)
+            {
+                this._wordAlternativesThreshold = _wordAlternativesThreshould;
+                return this;
+            }
+
+            public INonMultipart WithWordConfidence()
+            {
+                this._wordConfidence = true;
+                return this;
+            }
+
+            public INonMultipart WithTimestamps()
+            {
+                this._timestamps = true;
+                return this;
+            }
+
+            public INonMultipart WithoutProfanityFilter()
+            {
+                this._profanityFilter = false;
+                return this;
+            }
+
+            public INonMultipart WithSmartFormatting()
+            {
+                this._smartFormatting = true;
+                return this;
+            }
+
+            public INonMultipart WithSpeakerLabels()
+            {
+                this._speakerLabels = true;
+                return this;
+            }
+
+            public static implicit operator RecognizeOptions(RecognizeOptionsBuilder builder)
+            {
+                return new RecognizeOptions()
+                {
+                    ContentType = builder._contentType,
+                    TransferEncoding = builder._transferEncoding,
+                    Model = builder._model,
+                    CustomizationId = builder._customizationId,
+                    Continuous = builder._continuous,
+                    InactivityTimeout = builder._inactivityTimeout,
+                    Keywords = builder._keywords,
+                    KeywordsThreshold = builder._keywordsThreshold,
+                    MaxAlternatives = builder._maxAlternatives,
+                    WordAlternativesThreshold = builder._wordAlternativesThreshold,
+                    WordConfidence = builder._wordConfidence,
+                    Timestamps = builder._timestamps,
+                    ProfanityFilter = builder._profanityFilter,
+                    SmartFormatting = builder._smartFormatting,
+                    SpeakerLabels = builder._speakerLabels,
+                    BodyContent = builder._bodyContent,
+                    FormData = builder._formData
+                };
+            }
         }
 
-        public RecognizeOptions WithInactivityTimeout(int inactivityTimeout)
-        {
-            this.InactivityTimeout = inactivityTimeout;
-            return this;
-        }
-
-        public RecognizeOptions WithKeywords(string[] keywords)
-        {
-            this.Keywords = (keywords == null) ? null : (string[])keywords.Clone();
-            return this;
-        }
-
-        public RecognizeOptions WithKeywordsThreshold(double keywordsThreshold)
-        {
-            this.KeywordsThreshold = keywordsThreshold;
-            return this;
-        }
-
-        public RecognizeOptions WithMaxAlternatives(int maxAlternatives)
-        {
-            this.MaxAlternatives = maxAlternatives;
-            return this;
-        }
-
-        public RecognizeOptions SetModel(string model)
-        {
-            this.Model = model;
-            return this;
-        }
-
-        public RecognizeOptions WithSession(Session session)
-        {
-            this.SessionId = session.SessionId;
-            return this;
-        }
-
-        public RecognizeOptions WithSession(string sessionId)
-        {
-            this.SessionId = sessionId;
-            return this;
-        }
-
-        public RecognizeOptions IsTimestamps(bool timestamps)
-        {
-            this.Timestamps = timestamps;
-            return this;
-        }
-
-        public RecognizeOptions WithWordAlternativesThreshold(double wordAlternativesThreshold)
-        {
-            this.WordAlternativesThreshold = wordAlternativesThreshold;
-            return this;
-        }
-
-        public RecognizeOptions WithWordConfidence(bool wordConfidence)
-        {
-            this.WordConfidence = wordConfidence;
-            return this;
-        }
-
-        public RecognizeOptions WithContinuos()
-        {
-            this.Continuos = true;
-            return this;
-        }
-
-        public IDictionary<string, object> GetArguments()
-        {
-            IDictionary<string, object> arguments = new Dictionary<string, object>();
-
-            arguments.Add("model", string.IsNullOrEmpty(this.Model) ? "en-US_BroadbandModel" : this.Model);
-
-            if (this.Continuous)
-                arguments.Add("continuous", this.Continuous);
-
-            if (this.InactivityTimeout > 0)
-                arguments.Add("inactivity_timeout", this.InactivityTimeout);
-
-            if (this.Keywords != null && this.Keywords.Length > 0)
-                arguments.Add("keywords", this.Keywords);
-
-            if (this.Keywords != null && this.Keywords.Length > 0 && (this.KeywordsThreshold >= 0 && this.KeywordsThreshold <= 1))
-                arguments.Add("keywords_threshold", this.KeywordsThreshold);
-
-            arguments.Add("max_alternatives", this.MaxAlternatives <= 0 ? 1 : this.MaxAlternatives);
-
-            if (this.WordAlternativesThreshold >= 0 && this.WordAlternativesThreshold <= 1)
-                arguments.Add("word_alternatives_threshold 	", this.WordAlternativesThreshold);
-
-            if (this.WordConfidence)
-                arguments.Add("word_confidence", this.WordConfidence);
-
-            if (this.Timestamps)
-                arguments.Add("timestamps", this.Timestamps);
-
-            if (this.ProfanityFilter)
-                arguments.Add("profanity_filter", this.ProfanityFilter);
-
-            if (this.SmartFormatting)
-                arguments.Add("smart_formatting", this.SmartFormatting);
-
-            if (this.Continuos)
-                arguments.Add("continuous", this.Continuos);
-
-            return arguments;
-        }
+        public static IRecognizeOptions Builder => new RecognizeOptionsBuilder();
     }
 }

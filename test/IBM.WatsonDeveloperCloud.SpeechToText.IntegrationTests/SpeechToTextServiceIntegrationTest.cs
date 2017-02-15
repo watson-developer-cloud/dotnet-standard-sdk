@@ -157,5 +157,102 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
             Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
         }
+
+        [TestMethod]
+        public void Recognize_WithSession_BodyContent_Sucess()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService();
+
+            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+
+            string modelName = "en-US_BroadbandModel";
+
+            var session =
+                service.CreateSession(modelName);
+
+            FileStream audio =
+                File.OpenRead(@"Assets\test-audio.wav");
+
+            var results =
+                service.Recognize(session.SessionId,
+                                  RecognizeOptions.Builder
+                                                  .WithBody(audio)
+                                                  .Build());
+
+            Assert.IsNotNull(results);
+            Assert.IsNotNull(results.Results);
+            Assert.IsTrue(results.Results.Count > 0);
+            Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
+            Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
+        }
+
+        [TestMethod]
+        public void Recognize_WithSession_FormData_Sucess()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService();
+
+            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+
+            string modelName = "en-US_BroadbandModel";
+
+            var session =
+                service.CreateSession(modelName);
+
+            FileStream audio =
+                File.OpenRead(@"Assets\test-audio.wav");
+
+            var results =
+                service.Recognize(session.SessionId,
+                                  RecognizeOptions.Builder
+                                                  .WithFormData(new Metadata()
+                                                  {
+                                                      PartContentType = audio.GetMediaTypeFromFile()
+                                                  })
+                                                  .Upload(audio)
+                                                  .Build());
+
+            Assert.IsNotNull(results);
+            Assert.IsNotNull(results.Results);
+            Assert.IsTrue(results.Results.Count > 0);
+            Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
+            Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
+        }
+
+        [TestMethod]
+        public void ObserveResult_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService();
+
+            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+
+            string modelName = "en-US_BroadbandModel";
+
+            var session =
+                service.CreateSession(modelName);
+
+            FileStream audio =
+                File.OpenRead(@"Assets\test-audio.wav");
+
+            var recognize =
+                service.Recognize(session.SessionId,
+                                  RecognizeOptions.Builder
+                                                  .WithBody(audio)
+                                                  .Build());
+
+            var results =
+                service.ObserveResult(ObserveResultOptions.Builder
+                                                          .WithSession(session.SessionId)
+                                                          .Build());
+
+            Assert.IsNotNull(results);
+            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results.First().Results);
+            Assert.IsTrue(results.First().Results.Count > 0);
+            Assert.IsTrue(results.First().Results.First().Alternatives.Count > 0);
+            Assert.IsNotNull(results.First().Results.First().Alternatives.First().Transcript);
+        }
     }
 }

@@ -25,6 +25,7 @@ using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.Http.Exceptions;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -42,6 +43,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         const string PATH_OBSERVE_RESULT = "/v1/sessions/{0}/observe_result";
 
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
+
+        const string MODEL_NAME_DEFUALT = "en-US_BroadbandModel";
 
         public SpeechToTextService()
             : base(SERVICE_NAME, URL) { }
@@ -69,7 +72,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
             }
 
             return result;
@@ -92,7 +95,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
             }
 
             return result;
@@ -104,6 +107,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
+                if (string.IsNullOrEmpty(modelName))
+                    modelName = MODEL_NAME_DEFUALT;
+
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PostAsync($"{RELATIVE_PATH}{PATH_CREATE_SESSION}")
@@ -114,7 +120,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
             }
 
             return result;
@@ -129,6 +135,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         {
             RecognizeStatus result = null;
 
+            if (string.IsNullOrEmpty(sessionId))
+                throw new ArgumentNullException("session id can not be null or empty");
+
             try
             {
                 result =
@@ -141,7 +150,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
             }
 
             return result;
@@ -154,6 +163,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
         public void DeleteSession(string sessionId)
         {
+            if (string.IsNullOrEmpty(sessionId))
+                throw new ArgumentNullException("session id can not be null or empty");
+
             try
             {
                 var response =
@@ -164,11 +176,16 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
             }
         }
 
         public SpeechRecognitionEvent Recognize(RecognizeOptions options)
+        {
+            return Recognize(string.Empty, options);
+        }
+
+        public SpeechRecognitionEvent Recognize(string sessionId, RecognizeOptions options)
         {
             SpeechRecognitionEvent result = null;
 
@@ -177,16 +194,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                string path = string.Empty;
+                string urlService = string.Empty;
+                IRequest request = null;
 
-                if (options != null && !string.IsNullOrEmpty(options.SessionId))
-                    path = string.Format(PATH_SESSION_RECOGNIZE, options.SessionId);
+                if (string.IsNullOrEmpty(sessionId))
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                               .PostAsync($"{RELATIVE_PATH}{PATH_RECOGNIZE}");
+                }
+                else
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                                   .PostAsync($"{RELATIVE_PATH}{string.Format(PATH_SESSION_RECOGNIZE, options.SessionId)}")
+                                   .WithHeader("Cookie", sessionId);
+                }
 
-                IRequest request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync(RELATIVE_PATH + PATH_RECOGNIZE);
-
-                if(options.BodyContent != null)
+                if (options.BodyContent != null)
                 {
                     request.WithArgument("model", options.Model);
 
@@ -240,7 +265,38 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
             catch (AggregateException ae)
             {
-                throw ae.Flatten();
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public List<SpeechRecognitionEvent> ObserveResult(ObserveResultOptions options)
+        {
+            List<SpeechRecognitionEvent> result = null;
+
+            if (string.IsNullOrEmpty(options.SessionId))
+                throw new ArgumentNullException("SessionId can not be null or empty");
+
+            try
+            {
+                var request =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .PostAsync($"{RELATIVE_PATH}{string.Format(PATH_OBSERVE_RESULT, options.SessionId)}");
+
+                if (options.SequenceId > 0)
+                    request.WithArgument("sequence_id", options.SequenceId);
+
+                if (options.InterimResults)
+                    request.WithArgument("interim_results", options.InterimResults);
+
+                result =
+                    request.AsList<SpeechRecognitionEvent>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
             }
 
             return result;

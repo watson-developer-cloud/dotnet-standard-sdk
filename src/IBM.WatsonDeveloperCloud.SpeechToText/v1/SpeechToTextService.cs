@@ -26,6 +26,7 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -41,6 +42,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         const string PATH_RECOGNIZE = "/v1/recognize";
         const string PATH_SESSION_RECOGNIZE = "/v1/sessions/{0}/recognize";
         const string PATH_OBSERVE_RESULT = "/v1/sessions/{0}/observe_result";
+        const string PATH_CREATE_CUSTOM_MODEL = "/v1/customizations";
 
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
 
@@ -293,6 +295,35 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 result =
                     request.AsList<SpeechRecognitionEvent>()
                            .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public CustomizationID CreateCustomModel(CustomModelOptions options)
+        {
+            CustomizationID result = null;
+
+            if (string.IsNullOrEmpty(options.Name))
+                throw new ArgumentNullException("The name of the new custom model can not be null or empty");
+
+            if (string.IsNullOrEmpty(options.BaseModelName))
+                throw new ArgumentNullException("The base model name of the language model can not be null or empty");
+
+            try
+            {
+                var json =
+                    JObject.FromObject(options);
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .PostAsync($"{RELATIVE_PATH}{PATH_DELETE_SESSION}")
+                               .WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
+                               .As<CustomizationID>()
+                               .Result;
             }
             catch (AggregateException ae)
             {

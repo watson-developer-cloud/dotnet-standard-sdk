@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         public List<SpeakerLabelsResult> SpeakerLabels { get; set; }
 
         [JsonProperty("result_index")]
-        public string ResultIndex { get; set; }
+        public int ResultIndex { get; set; }
 
         [JsonProperty("warnings")]
         public List<string> Warnings { get; set; }

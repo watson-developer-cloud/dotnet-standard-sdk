@@ -97,5 +97,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="options"></param>
         /// <returns>Returns one or more instances of a <see cref="SpeechRecognitionEvent" /> object depending on the input and the value of the interim_results paramete</returns>
         List<SpeechRecognitionEvent> ObserveResult(ObserveResultOptions options);
+
+        /// <summary>
+        /// Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        CustomizationID CreateCustomModel(CustomModelOptions options);
     }
 }

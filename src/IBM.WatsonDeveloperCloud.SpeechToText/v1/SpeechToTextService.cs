@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         const string PATH_RECOGNIZE = "/v1/recognize";
         const string PATH_SESSION_RECOGNIZE = "/v1/sessions/{0}/recognize";
         const string PATH_OBSERVE_RESULT = "/v1/sessions/{0}/observe_result";
-        const string PATH_CREATE_CUSTOM_MODEL = "/v1/customizations";
+        const string PATH_CUSTOM_MODEL = "/v1/customizations";
 
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
 
@@ -273,24 +273,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public List<SpeechRecognitionEvent> ObserveResult(ObserveResultOptions options)
+        public List<SpeechRecognitionEvent> ObserveResult(string sessionId, int? sequenceId = (int?)null, bool interimResults = false)
         {
             List<SpeechRecognitionEvent> result = null;
 
-            if (string.IsNullOrEmpty(options.SessionId))
+            if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException("SessionId can not be null or empty");
 
             try
             {
                 var request =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{RELATIVE_PATH}{string.Format(PATH_OBSERVE_RESULT, options.SessionId)}");
+                               .PostAsync($"{RELATIVE_PATH}{string.Format(PATH_OBSERVE_RESULT, sessionId)}");
 
-                if (options.SequenceId > 0)
-                    request.WithArgument("sequence_id", options.SequenceId);
+                if (sequenceId.HasValue)
+                    request.WithArgument("sequence_id", sequenceId);
 
-                if (options.InterimResults)
-                    request.WithArgument("interim_results", options.InterimResults);
+                if (interimResults)
+                    request.WithArgument("interim_results", interimResults);
 
                 result =
                     request.AsList<SpeechRecognitionEvent>()
@@ -304,26 +304,84 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public CustomizationID CreateCustomModel(CustomModelOptions options)
+        public CustomizationID CreateCustomModel(string model, string baseModelName, string description)
+        {
+            return CreateCustomModel(new CustomModel()
+            {
+                Name = model,
+                BaseModelName = baseModelName,
+                Description = description
+            });
+        }
+
+        public CustomizationID CreateCustomModel(CustomModel options)
         {
             CustomizationID result = null;
 
             if (string.IsNullOrEmpty(options.Name))
-                throw new ArgumentNullException("The name of the new custom model can not be null or empty");
+                throw new ArgumentNullException(nameof(options.Name));
 
             if (string.IsNullOrEmpty(options.BaseModelName))
-                throw new ArgumentNullException("The base model name of the language model can not be null or empty");
+                throw new ArgumentNullException(nameof(options.BaseModelName));
 
             try
             {
                 var json =
                     JObject.FromObject(options);
+
                 result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{RELATIVE_PATH}{PATH_DELETE_SESSION}")
+                               .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}")
                                .WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
                                .As<CustomizationID>()
                                .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public Customizations ListCustomModels(string language = "en-US")
+        {
+            Customizations result;
+
+            if(string.IsNullOrEmpty(language))
+                throw new ArgumentNullException($"{nameof(language)}");
+
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}")
+                               .WithArgument("language", language)
+                               .As<Customizations>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public Customization GetCustomModel(string customizationId)
+        {
+            Customization result;
+
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                result =
+                   this.Client.WithAuthentication(this.UserName, this.Password)
+                              .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}")
+                              .As<Customization>()
+                              .Result;
             }
             catch (AggregateException ae)
             {

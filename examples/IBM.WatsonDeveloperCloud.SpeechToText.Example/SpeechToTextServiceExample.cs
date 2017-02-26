@@ -110,7 +110,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
             using (FileStream fs = File.OpenRead(_path))
             {
                 Console.WriteLine("Calling Recognize...");
-                var speechEvent = _speechToText.Recognize(fs);
+                var speechEvent = _speechToText.Recognize(null);
 
                 Console.WriteLine("speechEvent received...");
                 if (speechEvent.Results != null || speechEvent.Results.Count > 0)

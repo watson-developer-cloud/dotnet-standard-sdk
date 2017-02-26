@@ -90,19 +90,42 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         SpeechRecognitionEvent Recognize(string sessionId, RecognizeOptions options);
 
         /// <summary>
-        /// Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <see cref="ISpeechToTextService.CreateSession(string)" /> method.
-        /// To see results for a specific recognition task, specify a sequence ID (with the sequence_id query parameter) that matches the sequence ID of the recognition request. A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout (response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout.
-        /// Omit the sequence ID to observe results for an ongoing recognition task. If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID.
+        /// Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <see cref="SpeechToTextService.CreateSession(string)"/>  method. 
+        /// To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout.
+        /// Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID. 
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns>Returns one or more instances of a <see cref="SpeechRecognitionEvent" /> object depending on the input and the value of the interim_results paramete</returns>
-        List<SpeechRecognitionEvent> ObserveResult(ObserveResultOptions options);
+        /// <param name="sessionId">The identifier of the session whose results you want to observe.</param>
+        /// <param name="sequenceId">The sequence ID of the recognition task whose results you want to observe. Omit the parameter to obtain results either for an ongoing recognition, if any, or for the next recognition task regardless of whether it specifies a sequence ID.</param>
+        /// <param name="interimResults">Indicates whether the service is to return interim results. If true, interim results are returned as a stream of JSON objects; each object represents a single <see cref="SpeechRecognitionEvent"/>. If false, the response is a single <see cref="SpeechRecognitionEvent"/> with final results only.</param>
+        /// <returns></returns>
+        List<SpeechRecognitionEvent> ObserveResult(string sessionId, int? sequenceId = (int?)null, bool interimResults = false);
 
         /// <summary>
         /// Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        CustomizationID CreateCustomModel(CustomModelOptions options);
+        CustomizationID CreateCustomModel(string model, string baseModelName, string description);
+
+        /// <summary>
+        /// Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        CustomizationID CreateCustomModel(CustomModel options);
+
+        /// <summary>
+        /// Lists information about all custom language models that are owned by the calling user. Use the language parameter to see all custom models for the specified language; omit the parameter to see the custom models for all languages. 
+        /// </summary>
+        /// <param name="language">The language for which custom models are to be returned: en-US, ja-JP </param>
+        /// <returns></returns>
+        Customizations ListCustomModels(string language = "en-US");
+
+        /// <summary>
+        /// Lists information about a specified custom language model. Only the owner of a custom model can use this method to query information about the model. 
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model for which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
+        /// <returns>The method returns a single instance of a <see cref="Customization"/> object that provides information about the specified model. </returns>
+        Customization GetCustomModel(string customizationId);
     }
 }

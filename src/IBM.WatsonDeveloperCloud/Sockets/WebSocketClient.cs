@@ -25,10 +25,10 @@ using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.Sockets
 {
-    public class WatsonWSClient : AWatsonWSClient
+    public class WebSocketClient : AWebSocketClient
     {
-        private WatsonWSClient() { }
-        public WatsonWSClient(string urlService)
+        private WebSocketClient() { }
+        public WebSocketClient(string urlService)
         {
             BaseClient =
                 new ClientWebSocket();

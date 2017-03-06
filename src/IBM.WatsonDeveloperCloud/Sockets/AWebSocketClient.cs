@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -27,9 +28,9 @@ using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.Sockets
 {
-    public abstract class AWatsonWSClient
+    public abstract class AWebSocketClient
     {
-        ArraySegment<byte> closingMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(
+        ArraySegment<byte> stopMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(
            "{\"action\": \"stop\"}"
        ));
 
@@ -45,24 +46,24 @@ namespace IBM.WatsonDeveloperCloud.Sockets
         public Action<Exception> OnError = (ex) => { };
         public Action OnClose = () => { };
 
-        public AWatsonWSClient AddArgument(string argumentName, string argumentValue)
+        public AWebSocketClient AddArgument(string argumentName, string argumentValue)
         {
             if (QueryString.ContainsKey(argumentName))
                 QueryString[argumentName] = argumentValue;
             else
                 QueryString.Add(argumentName, argumentValue);
-
+            
             UriBuilder.Query =
-                string.Join("&", QueryString.Keys.Where(key => !string.IsNullOrWhiteSpace(QueryString[key])).Select(key => string.Format("{0}={1}", key, QueryString[key])));
+                string.Join("&", QueryString.Keys.Where(key => !string.IsNullOrWhiteSpace(QueryString[key])).Select(key => string.Format("{0}={1}", WebUtility.UrlEncode(key), WebUtility.UrlEncode(QueryString[key]))));
 
             return this;
         }
-        public AWatsonWSClient WithAuthentication(string userName, string password)
+        public AWebSocketClient WithAuthentication(string userName, string password)
         {
             BaseClient.Options.SetRequestHeader("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(userName + ":" + password)));
             return this;
         }
-        public AWatsonWSClient WithHeader(string headerName, string headerValue)
+        public AWebSocketClient WithHeader(string headerName, string headerValue)
         {
             this.BaseClient.Options.SetRequestHeader(headerName, headerValue);
             return this;
@@ -79,7 +80,7 @@ namespace IBM.WatsonDeveloperCloud.Sockets
             {
                 await BaseClient.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Binary, true, CancellationToken.None);
             }
-            await BaseClient.SendAsync(closingMessage, WebSocketMessageType.Text, true, CancellationToken.None);
+            await BaseClient.SendAsync(stopMessage, WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
         protected async Task SendText(string message)

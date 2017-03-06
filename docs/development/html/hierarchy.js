@@ -4,6 +4,9 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.Util.Attributes.DescriptionAttribute", "d5/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_attributes_1_1_description_attribute.html", null ]
     ] ],
     [ "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model.AudioType", "de/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_audio_type.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Sockets.AWebSocketClient", "df/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_sockets_1_1_a_web_socket_client.html", [
+      [ "IBM.WatsonDeveloperCloud.Sockets.WebSocketClient", "de/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_sockets_1_1_web_socket_client.html", null ]
+    ] ],
     [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.BehaviorNode", "db/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_behavior_node.html", null ],
     [ "IBM.WatsonDeveloperCloud.Constants", "d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants.html", null ],
     [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ConsumptionPreferencesCategoryNode", "d1/dc3/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences_category_node.html", null ],
@@ -118,6 +121,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.RecognizeOptions", "d0/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_options.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.RecognizeStatus", "de/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_status.html", null ],
     [ "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model.SentenceAnalysis", "de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Sockets.ServiceState", "d6/db3/class_i_b_m_1_1_watson_developer_cloud_1_1_sockets_1_1_service_state.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.Session", "df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SessionStatus", "d7/dbf/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session_status.html", null ],
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechModel", "d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html", null ],

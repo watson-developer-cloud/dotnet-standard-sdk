@@ -5,6 +5,7 @@ var namespace_i_b_m_1_1_watson_developer_cloud =
     [ "LanguageTranslator", "dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator.html", "dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator" ],
     [ "PersonalityInsights", "d3/d6f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights.html", "d3/d6f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights" ],
     [ "Service", "da/d80/namespace_i_b_m_1_1_watson_developer_cloud_1_1_service.html", "da/d80/namespace_i_b_m_1_1_watson_developer_cloud_1_1_service" ],
+    [ "Sockets", "d7/dfb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_sockets.html", "d7/dfb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_sockets" ],
     [ "SpeechToText", "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html", "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text" ],
     [ "TextToSpeech", "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech.html", "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech" ],
     [ "ToneAnalyzer", "d4/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer.html", "d4/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer" ],

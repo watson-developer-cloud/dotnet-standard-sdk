@@ -16,7 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
-using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models;
+using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using System;
 using System.IO;
 

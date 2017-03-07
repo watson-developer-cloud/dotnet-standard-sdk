@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation -Pre
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation": "0.1.0-alpha"
+   "IBM.WatsonDeveloperCloud.Conversation": "0.1.1-alpha"
 }
 
 ```

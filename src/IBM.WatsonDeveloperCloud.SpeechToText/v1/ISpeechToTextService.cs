@@ -16,7 +16,7 @@
 */
 
 using System.IO;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Models;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -26,14 +26,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Retrieves a list of all models available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz.
         /// </summary>
         /// <returns>Returns a ModelSet object that contains the information about an available model that is provided in a JSON Model object.</returns>
-        ModelSet GetModels();
+        SpeechModelSet GetModels();
 
         /// <summary>
         /// Retrieves information about a single specified model that is available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz. 
         /// </summary>
         /// <param name="modelName">The identifier of the desired model</param>
         /// <returns>Returns a Model object that contains the information about the specified model that is provided in a JSON Model object</returns>
-        Model GetModel(string modelName);
+        SpeechModel GetModel(string modelName);
 
         /// <summary>
         /// Creates a session and locks recognition requests to that engine.You can use the session for multiple recognition requests so that each request is processed with the same engine.

@@ -1,9 +1,9 @@
 {
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "title": "IBM.WatsonDeveloperCloud.VisualRecognition",
   "description": "IBM.WatsonDeveloperCloud.VisualRecognition wraps the Watson Developer Cloud Visual Recognition service (http://www.ibm.com/watson/developercloud/visual-recognition.html)",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
+    "IBM.WatsonDeveloperCloud": "0.1.1-alpha",
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Newtonsoft.Json": "9.0.1",
@@ -19,8 +19,7 @@
   },
   "scripts": {
     "postcompile": [
-      //"dotnet pack --no-build --configuration %compile:Configuration%"
-      "dotnet pack --no-build --configuration release"
+      "dotnet pack --no-build --configuration %compile:Configuration%"
     ]
   },
   "buildOptions": {

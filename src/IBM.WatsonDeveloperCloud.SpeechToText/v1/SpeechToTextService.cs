@@ -425,5 +425,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 throw ae.InnerException as ServiceResponseException;
             }
         }
+
+        public void UpgradeCustomModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                this.Client.WithAuthentication(this.UserName, this.Password)
+                              .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/upgrade_model")
+                              .AsString();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
     }
 }

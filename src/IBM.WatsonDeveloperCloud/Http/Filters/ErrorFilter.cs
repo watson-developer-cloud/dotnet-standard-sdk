@@ -17,6 +17,7 @@
 
 using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Http.Filters
 {
@@ -31,7 +32,9 @@ namespace IBM.WatsonDeveloperCloud.Http.Filters
                 ServiceResponseException exception =
                     new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase}");
 
-                exception.Error = responseMessage.Content.ReadAsAsync<Error>().Result;
+                var jsonError = responseMessage.Content.ReadAsStringAsync().Result;
+
+                exception.Error = JsonConvert.DeserializeObject<Error>(jsonError);
 
                 throw exception;
             }

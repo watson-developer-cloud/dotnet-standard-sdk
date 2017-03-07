@@ -171,5 +171,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be reset. You must make the request with the service credentials of the model's owner.</param>
         void ResetCustomModel(string customizationId);
+
+        /// <summary>
+        /// Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model. 
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model that is to be upgraded. You must make the request with the service credentials of the model's owner.</param>
+        void UpgradeCustomModel(string customizationId);
     }
 }

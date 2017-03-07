@@ -1485,5 +1485,89 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             service.ResetCustomModel("custom_model_id");
         }
+
+        [TestMethod]
+        public void UpgradeCustomModel_Success()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.UpgradeCustomModel("custom_model_id");
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void UpgradeCustomModell_With_Null_CustomizationId()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.UpgradeCustomModel(null);
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void UpgradeCustomModel_Catch_Exception()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.UpgradeCustomModel("custom_model_id");
+        }
     }
 }

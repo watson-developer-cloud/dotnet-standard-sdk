@@ -16,7 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Models;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using System;
 using System.IO;
 
@@ -60,7 +60,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
             if (modelSet.Models != null && modelSet.Models.Count > 0)
             {
                 Console.WriteLine("Models:");
-                foreach (Model model in modelSet.Models)
+                foreach (SpeechModel model in modelSet.Models)
                     Console.WriteLine(String.Format("Name: {0} | Rate: {1} | Language: {2} | Sessions: {3} | Description: {4} | URL: {5}",
                         model.Name,
                         model.Rate,

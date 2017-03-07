@@ -16,7 +16,7 @@
 */
 
 using System.Collections.Generic;
-using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Models;
+using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 {

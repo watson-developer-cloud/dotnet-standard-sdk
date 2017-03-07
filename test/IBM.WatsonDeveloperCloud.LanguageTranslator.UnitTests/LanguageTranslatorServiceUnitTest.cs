@@ -24,7 +24,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
-using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Models;
+using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
@@ -121,7 +121,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             Assert.IsTrue(translationModels.Models.Count > 0);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void ListModels_Catch_Exception()
         {
             IClient client = this.CreateClient();
@@ -131,7 +131,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                   .Returns(request);
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                   .Returns(x => { throw new Exception("Exception Test"); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
@@ -249,7 +249,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                                                       .SetForcedGlossary(null));
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void CreateModel_Catch_Exception()
         {
             IClient client = this.CreateClient();
@@ -262,7 +262,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                    .Returns(request);
 
             request.WithBodyContent(Arg.Any<HttpContent>())
-                   .Returns(x => { throw new Exception("Exception Test"); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
@@ -314,14 +314,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             var deletedModel = service.DeleteModel(null);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void DeleteModel_Catch_Exception()
         {
             IClient client = this.CreateClient();
 
             IRequest request = Substitute.For<IRequest>();
             client.DeleteAsync(Arg.Any<string>())
-                  .Returns(x => { throw new Exception("Exception Test"); });
+                  .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
@@ -375,14 +375,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             service.GetModelDetails(null);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void GetModelDetails_Catch_Exception()
         {
             IClient client = this.CreateClient();
 
             IRequest request = Substitute.For<IRequest>();
             client.GetAsync(Arg.Any<string>())
-                  .Returns(x => { throw new Exception("Exception Test"); });
+                  .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
@@ -536,7 +536,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             Assert.IsTrue(translation.Translations.Count == 1);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void Translate_Catch_Exception()
         {
             IClient client = this.CreateClient();
@@ -546,7 +546,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                   .Returns(request);
 
             request.WithBody<JObject>(Arg.Any<JObject>(), Arg.Any<MediaTypeHeaderValue>())
-                   .Returns(x => { throw new Exception(); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
@@ -589,14 +589,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             Assert.IsTrue(identifiableLanguages.Languages.First().Name.Equals("name"));
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void GetIdentifiableLanguages_Catch_Exception()
         {
             IClient client = this.CreateClient();
 
             IRequest request = Substitute.For<IRequest>();
             client.GetAsync(Arg.Any<string>())
-                  .Returns(x => { throw new Exception(); });
+                  .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
@@ -645,7 +645,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             Assert.IsTrue(identifiedLanguages.Languages.First().Confidence == 1);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [TestMethod, ExpectedException(typeof(AggregateException))]
         public void Identify_Catch_Exception()
         {
             IClient client = this.CreateClient();
@@ -658,7 +658,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                    .Returns(request);
 
             request.WithBodyContent(Arg.Any<HttpContent>())
-                   .Returns(x => {  throw new Exception(); });
+                   .Returns(x => { throw new AggregateException(new Exception()); });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);

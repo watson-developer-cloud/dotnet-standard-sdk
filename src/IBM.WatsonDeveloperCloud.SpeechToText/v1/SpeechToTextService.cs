@@ -408,5 +408,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 throw ae.InnerException as ServiceResponseException;
             }
         }
+
+        public void ResetCustomModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                this.Client.WithAuthentication(this.UserName, this.Password)
+                              .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/reset")
+                              .AsString();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
     }
 }

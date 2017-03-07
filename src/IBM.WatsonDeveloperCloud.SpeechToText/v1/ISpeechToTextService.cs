@@ -165,5 +165,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </list>
         /// </param>
         void TrainCustomModel(string customizationId, string wordTypeToAdd = "all");
+
+        /// <summary>
+        /// Resets a custom language model by removing all corpora and words from the model. Resetting a custom model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved. Only the owner of a custom model can use this method to reset the model.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model that is to be reset. You must make the request with the service credentials of the model's owner.</param>
+        void ResetCustomModel(string customizationId);
     }
 }

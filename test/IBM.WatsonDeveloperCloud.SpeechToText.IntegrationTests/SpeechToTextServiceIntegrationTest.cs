@@ -361,5 +361,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 
             service.TrainCustomModel(customization.CustomizationId);
         }
+
+        [TestMethod]
+        public void ResetCustomModel()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            service.ResetCustomModel(customization.CustomizationId);
+        }
     }
 }

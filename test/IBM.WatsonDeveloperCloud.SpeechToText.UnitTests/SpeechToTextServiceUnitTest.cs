@@ -950,9 +950,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.CreateCustomModel(baseModelName:"base_model_name",
-                                          description:"a_description",
-                                          model:"name_of_model");
+                service.CreateCustomModel(baseModelName: "base_model_name",
+                                          description: "a_description",
+                                          model: "name_of_model");
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -1262,7 +1262,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.GetCustomModel("custom_model_id");
+                service.ListCustomModel("custom_model_id");
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.CustomizationId);
@@ -1288,7 +1288,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.GetCustomModel(null);
+                service.ListCustomModel(null);
         }
 
         [TestMethod, ExpectedException(typeof(ServiceResponseException))]
@@ -1315,7 +1315,91 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.GetCustomModel("custom_model_id");
+                service.ListCustomModel("custom_model_id");
+        }
+
+        [TestMethod]
+        public void TrainCustomModel_Success()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.TrainCustomModel("custom_model_id");
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void TrainCustomModell_With_Null_CustomizationId()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.TrainCustomModel(null);
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void TrainCustomModel_Catch_Exception()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.TrainCustomModel("custom_model_id");
         }
     }
 }

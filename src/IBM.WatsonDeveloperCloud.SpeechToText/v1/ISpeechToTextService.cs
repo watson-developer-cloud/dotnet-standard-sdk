@@ -126,6 +126,44 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model for which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
         /// <returns>The method returns a single instance of a <see cref="Customization"/> object that provides information about the specified model. </returns>
-        Customization GetCustomModel(string customizationId);
+        Customization ListCustomModel(string customizationId);
+
+        /// <summary>
+        /// Initiates the training of a custom language model with new corpora, custom words, or both. After adding corpora or words to the custom model, use this method to begin the actual training of the model on the new data. You can specify whether the custom model is to be trained with all words from its words resources or only with words that were added or modified by the user. Only the owner of a custom model can use this method to train the model.
+        /// This method is asynchronous and can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun.
+        /// You can monitor the status of the training by using the <see cref="ListCustomModel(string)">List a custom model</see> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes status and progress fields. A status of available means that the custom model is trained and ready to use. If training is in progress, the progress field indicates the progress of the training as a percentage complete. The service cannot accept subsequent training requests, or requests to add new corpora or words, until the existing request completes.
+        /// <list type="bullet">
+        ///     <listheader>
+        ///         <description>Training can fail to start for the following reasons:</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <description>No training data (corpora or words) have been added to the custom model.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>Pre-processing of corpora to generate a list of out-of-vocabulary (OOV) words is not complete.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>Pre-processing of words to validate or auto-generate sounds-like pronunciations is not complete.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>One or more words that were added to the custom model have invalid sounds-like pronunciations that you must fix.</description>
+        ///     </item>
+        /// </list>
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model that is to be trained. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="wordTypeToAdd">
+        /// <list type="bullet">
+        /// <listheader>
+        ///     <description>The type of words from the custom model's words resource on which to train the model:</description>
+        /// </listheader>
+        ///     <item>
+        ///         <description>all (the default) trains the model on all new words, regardless of whether they were extracted from corpora or were added or modified by the user.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>user trains the model only on new words that were added or modified by the user; the model is not trained on new words extracted from corpora.</description>
+        ///     </item>
+        /// </list>
+        /// </param>
+        void TrainCustomModel(string customizationId, string wordTypeToAdd = "all");
     }
 }

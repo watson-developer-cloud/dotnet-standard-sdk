@@ -368,7 +368,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public Customization GetCustomModel(string customizationId)
+        public Customization ListCustomModel(string customizationId)
         {
             Customization result;
 
@@ -389,6 +389,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             }
 
             return result;
+        }
+
+        public void TrainCustomModel(string customizationId, string wordTypeToAdd = "all")
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                this.Client.WithAuthentication(this.UserName, this.Password)
+                              .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/train")
+                              .WithArgument("word_type_to_add", wordTypeToAdd)
+                              .AsString();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             }
 
             speechToTextCredential =
-                    vcapServices["speech_to_text"][0]["credentials"];
+                    vcapServices["VCAP_SERVICES"]["speech_to_text"][0]["credentials"];
 
             _endpoint = speechToTextCredential["url"].Value<string>();
             _userName = speechToTextCredential["username"].Value<string>();
@@ -325,7 +325,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void GetCustomModel_Success()
+        public void ListCustomModel_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -339,10 +339,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 customizations.Customization.First();
 
             var result =
-                service.GetCustomModel(customization.CustomizationId);
+                service.ListCustomModel(customization.CustomizationId);
 
             Assert.IsNotNull(result);
             Assert.IsFalse(string.IsNullOrEmpty(result.CustomizationId));
+        }
+
+        [TestMethod]
+        public void TrainCustomModel()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            service.TrainCustomModel(customization.CustomizationId);
         }
     }
 }

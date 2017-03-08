@@ -41,15 +41,18 @@ namespace IBM.WatsonDeveloperCloud.Http.Exceptions
                 switch (property.Name)
                 {
                     case "error":
+                    case "error_message":
                     case "message":
                         err.Message = property.Value.ToString();
                         break;
+                    case "error_code":
                     case "code":
                         err.Code = (int)property.Value;
                         break;
                     case "help":
                         err.Help = property.Value.ToString();
                         break;
+                    case "description":
                     case "code_description":
                         err.CodeDescription = property.Value.ToString();
                         break;

@@ -346,7 +346,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void TrainCustomModel()
+        public void TrainCustomModel_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -363,7 +363,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void ResetCustomModel()
+        public void ResetCustomModel_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -380,7 +380,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void UpgradeCustomModel()
+        public void UpgradeCustomModel_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -394,6 +394,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 customizations.Customization.First();
 
             service.UpgradeCustomModel(customization.CustomizationId);
+        }
+
+        [TestMethod]
+        public void DeleteCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            service.DeleteCustomModel(customization.CustomizationId);
         }
     }
 }

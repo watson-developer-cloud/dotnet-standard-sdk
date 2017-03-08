@@ -177,5 +177,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be upgraded. You must make the request with the service credentials of the model's owner.</param>
         void UpgradeCustomModel(string customizationId);
+
+        /// <summary>
+        /// Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. Only the owner of a custom model can use this method to delete the model.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model that is to be deleted. You must make the request with the service credentials of the model's owner.</param>
+        void DeleteCustomModel(string customizationId);
     }
 }

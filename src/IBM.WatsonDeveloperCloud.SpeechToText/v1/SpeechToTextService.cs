@@ -442,5 +442,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 throw ae.InnerException as ServiceResponseException;
             }
         }
+
+        public void DeleteCustomModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                this.Client.WithAuthentication(this.UserName, this.Password)
+                              .DeleteAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}")
+                              .AsString();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
     }
 }

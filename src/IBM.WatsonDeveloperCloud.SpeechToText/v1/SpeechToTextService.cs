@@ -27,6 +27,7 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -453,6 +454,45 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 this.Client.WithAuthentication(this.UserName, this.Password)
                               .DeleteAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}")
                               .AsString();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
+
+        public void AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(corpusName))
+                throw new ArgumentNullException($"{nameof(corpusName)}");
+
+            if (corpusName.ToLower().Equals("user"))
+                throw new ArgumentException($"The {nameof(corpusName)} can not be the string 'user'");
+
+            if (corpusName.Any(Char.IsWhiteSpace))
+                throw new ArgumentException($"The {nameof(corpusName)} cannot contain spaces");
+
+            if(body == null)
+                throw new ArgumentNullException($"The {nameof(body)} is required");
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                var forcedGlossaryContent = new ByteArrayContent((body as Stream).ReadAllBytes());
+                forcedGlossaryContent.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.TEXT);
+                formData.Add(forcedGlossaryContent, "body", body.Name);
+
+                var result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                                  .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{corpusName}")
+                                  .WithArgument("allow_overwrite ", allowOverwrite)
+                                  .WithBodyContent(formData)
+                                  .AsString()
+                                  .Result;
             }
             catch (AggregateException ae)
             {

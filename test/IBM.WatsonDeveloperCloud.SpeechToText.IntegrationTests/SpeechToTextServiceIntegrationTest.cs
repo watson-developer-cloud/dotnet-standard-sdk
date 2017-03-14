@@ -412,5 +412,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 
             service.DeleteCustomModel(customization.CustomizationId);
         }
+
+        [TestMethod]
+        public void AddCorpus()
+        {
+            SpeechToTextService service =
+               new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var body =
+                File.OpenRead(@"Assets\test-stt-corpus.txt");
+
+            service.AddCorpus(customization.CustomizationId,
+                              "stt_integration",
+                              false,
+                              body);
+        }
     }
 }

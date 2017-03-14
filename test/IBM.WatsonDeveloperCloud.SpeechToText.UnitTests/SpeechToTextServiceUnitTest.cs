@@ -1649,5 +1649,179 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             service.DeleteCustomModel("custom_model_id");
         }
+
+        [TestMethod]
+        public void AddCorpus_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", "corpus_name", true, new FileStream("body", FileMode.Create));
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCorpus_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus(null, "corpus_name", true, new FileStream("body_customizationId_null", FileMode.Create));
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCorpus_With_Null_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", null, true, new FileStream("body_corpusName_null", FileMode.Create));
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void AddCorpus_With_UserString_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", "user", true, new FileStream("body_corpus_name_is_user", FileMode.Create));
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void AddCorpus_With_WhiteSpaces_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", "corpus name with white spaces", true, new FileStream("body_corpus_name_whiteSpaces", FileMode.Create));
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCorpus_With_Null_Body()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>());
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
+                   .Returns(request);
+
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", "corpus_name", true, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void AddCorpus_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCorpus("customization_id", "corpus_name", true, new FileStream("body_catch_exception", FileMode.Create));
+        }
     }
 }

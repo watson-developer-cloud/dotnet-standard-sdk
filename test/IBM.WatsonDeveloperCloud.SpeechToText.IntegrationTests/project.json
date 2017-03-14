@@ -6,7 +6,8 @@
   "buildOptions": {
     "copyToOutput": [
       "Assets\\test-audio.wav",
-      "appsettings.json"
+      "appsettings.json",
+      "Assets\\test-stt-corpus.txt"
     ]
   },
 

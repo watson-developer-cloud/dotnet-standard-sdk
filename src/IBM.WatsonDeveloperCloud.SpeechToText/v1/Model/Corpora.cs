@@ -15,23 +15,34 @@
 *
 */
 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class Customizations
+    public class Corpora
     {
         /// <summary>
-        /// Initializes a new instance of the Customizations class.
+        /// Initializes a new instance of the Corpora class.
         /// </summary>
-        public Customizations() { }
+        public Corpora() { }
 
         /// <summary>
-        /// Gets or sets information about each available custom model. The
-        /// array is empty if the user owns no custom models (if no language
-        /// is specified) or owns no custom models for the specified language.
+        /// Initializes a new instance of the Corpora class.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "customizations")]
-        public IList<Customization> Customization { get; set; }
+        /// <param name="corporaProperty">Information about corpora of the
+        /// custom model. The array is empty if the custom model has no
+        /// corpora.</param>
+        public Corpora(IList<Corpus> corporaProperty)
+        {
+            CorporaProperty = corporaProperty;
+        }
+
+        /// <summary>
+        /// Gets or sets information about corpora of the custom model. The
+        /// array is empty if the custom model has no corpora.
+        /// </summary>
+        [JsonProperty(PropertyName = "corpora")]
+        public IList<Corpus> CorporaProperty { get; set; }
     }
 }

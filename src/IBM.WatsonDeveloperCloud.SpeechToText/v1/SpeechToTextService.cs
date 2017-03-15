@@ -499,5 +499,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 throw ae.InnerException as ServiceResponseException;
             }
         }
+
+        public Corpora ListCorpora(string customizationId)
+        {
+            Corpora result = null;
+
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/corpora")
+                               .As<Corpora>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
     }
 }

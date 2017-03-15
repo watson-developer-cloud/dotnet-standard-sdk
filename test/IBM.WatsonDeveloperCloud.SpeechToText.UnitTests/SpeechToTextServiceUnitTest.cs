@@ -1823,5 +1823,144 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             service.AddCorpus("customization_id", "corpus_name", true, new FileStream("body_catch_exception", FileMode.Create));
         }
+
+        [TestMethod]
+        public void ListCorpora_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpora response =
+                new Corpora()
+                {
+                    CorporaProperty = new List<Corpus>()
+                    {
+                        new Corpus()
+                        {
+                            Error = "error",
+                            Name = "name",
+                            OutOfVocabularyWords = 1,
+                            Status = "status",
+                            TotalWords = 1
+                        }
+                    }
+                };
+
+            request.As<Corpora>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCorpora("customization_id");
+
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.CorporaProperty);
+            Assert.IsTrue(result.CorporaProperty.Count == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCorpora_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpora response =
+                new Corpora()
+                {
+                    CorporaProperty = new List<Corpus>()
+                    {
+                        new Corpus()
+                        {
+                            Error = "error",
+                            Name = "name",
+                            OutOfVocabularyWords = 1,
+                            Status = "status",
+                            TotalWords = 1
+                        }
+                    }
+                };
+
+            request.As<Corpora>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCorpora(null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCorpora_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpora response =
+                new Corpora()
+                {
+                    CorporaProperty = new List<Corpus>()
+                    {
+                        new Corpus()
+                        {
+                            Error = "error",
+                            Name = "name",
+                            OutOfVocabularyWords = 1,
+                            Status = "status",
+                            TotalWords = 1
+                        }
+                    }
+                };
+
+            request.As<Corpora>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCorpora(string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void ListCorpora_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCorpora("customization_id");
+        }
     }
 }

@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public partial class CustomModel
+    public class CustomModel
     {
         /// <summary>
         /// Initializes a new instance of the CustomModel class.

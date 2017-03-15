@@ -17,7 +17,7 @@
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public partial class Customization
+    public class Customization
     {
         /// <summary>
         /// Initializes a new instance of the Customization class.

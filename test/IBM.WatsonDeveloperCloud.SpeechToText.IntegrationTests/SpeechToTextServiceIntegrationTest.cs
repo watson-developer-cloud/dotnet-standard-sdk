@@ -414,7 +414,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void AddCorpus()
+        public void AddCorpus_Success()
         {
             SpeechToTextService service =
                new SpeechToTextService(_userName, _password);
@@ -434,6 +434,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                               "stt_integration",
                               false,
                               body);
+        }
+
+        [TestMethod]
+        public void ListCorpora_Success()
+        {
+            SpeechToTextService service =
+               new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var corpora =
+                service.ListCorpora(customization.CustomizationId);
+
+            Assert.IsNotNull(corpora);
+            Assert.IsNotNull(corpora.CorporaProperty);
+            Assert.IsTrue(corpora.CorporaProperty.Count() > 0);
         }
     }
 }

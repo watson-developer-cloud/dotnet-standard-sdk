@@ -197,5 +197,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="allowOverwrite">Indicates whether the specified corpus is to overwrite an existing corpus with the same name. If a corpus with the same name already exists, the request fails unless allow_overwrite is set to true; by default, the parameter is false. The parameter has no effect if a corpus with the same name does not already exist.</param>
         /// <param name="body">A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the --data-binary option to upload the file for the request.</param>
         void AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body);
+
+        /// <summary>
+        /// Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model for which corpora are to be listed. You must make the request with the service credentials of the model's owner.</param>
+        /// <returns></returns>
+        Corpora ListCorpora(string customizationId);
     }
 }

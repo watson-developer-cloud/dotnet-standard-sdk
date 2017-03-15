@@ -44,5 +44,13 @@ var searchData=
   ['wordpronunciation',['WordPronunciation',['../d0/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_word_pronunciation.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]],
   ['wordpronunciation_2ecs',['WordPronunciation.cs',['../de/dcb/_word_pronunciation_8cs.html',1,'']]],
   ['words',['Words',['../d5/d3e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_voice_model.html#a766c0885904427178c4f146def413d7d',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model::CustomVoiceModel']]],
+  ['workspacecollectionresponse',['WorkspaceCollectionResponse',['../d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['workspacecollectionresponse_2ecs',['WorkspaceCollectionResponse.cs',['../d1/d2a/_workspace_collection_response_8cs.html',1,'']]],
+  ['workspaceexportresponse',['WorkspaceExportResponse',['../d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['workspaceexportresponse_2ecs',['WorkspaceExportResponse.cs',['../d2/d9d/_workspace_export_response_8cs.html',1,'']]],
+  ['workspaceid',['WorkspaceId',['../d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response.html#a2667fda060b699695de776d71b35ae91',1,'IBM.WatsonDeveloperCloud.Conversation.v1.Model.WorkspaceExportResponse.WorkspaceId()'],['../d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response.html#a7e7101cdea01fd518e0ef8631a20b93f',1,'IBM.WatsonDeveloperCloud.Conversation.v1.Model.WorkspaceResponse.WorkspaceId()']]],
+  ['workspaceresponse',['WorkspaceResponse',['../d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['workspaceresponse_2ecs',['WorkspaceResponse.cs',['../d6/d01/_workspace_response_8cs.html',1,'']]],
+  ['workspaces',['Workspaces',['../d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response.html#a6d148570c182b4f1e0274e1a3200de35',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model::WorkspaceCollectionResponse']]],
   ['writejson',['WriteJson',['../db/d75/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error_converter.html#ae1f743432418a6f2e453463f69f5f063',1,'IBM::WatsonDeveloperCloud::Http::Exceptions::ErrorConverter']]]
 ];

@@ -204,5 +204,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="customizationId">The GUID of the custom language model for which corpora are to be listed. You must make the request with the service credentials of the model's owner.</param>
         /// <returns></returns>
         Corpora ListCorpora(string customizationId);
+
+        /// <summary>
+        /// Lists information about a specified corpus. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of the corpus. Only the owner of a custom model can use this method to list information about a corpus from the model.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model for which a corpus is be listed. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="corpusName">The name of the corpus about which information is to be listed.</param>
+        /// <returns>a single instance of a <see cref="Corpus">Corpus</see> object that provides information about the specified corpus. </returns>
+        Corpus GetCorpus(string customizationId, string corpusName);
     }
 }

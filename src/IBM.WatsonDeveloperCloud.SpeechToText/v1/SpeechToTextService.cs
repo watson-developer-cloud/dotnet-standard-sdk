@@ -522,5 +522,31 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             return result;
         }
+
+        public Corpus GetCorpus(string customizationId, string corpusName)
+        {
+            Corpus result = null;
+
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(corpusName))
+                throw new ArgumentNullException($"{nameof(corpusName)}");
+
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{corpusName}")
+                               .As<Corpus>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
     }
 }

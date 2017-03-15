@@ -1962,5 +1962,187 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             var result =
                 service.ListCorpora("customization_id");
         }
+
+        [TestMethod]
+        public void GetCorpus_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpus response =
+                new Corpus()
+                {
+                    Error = "error",
+                    Name = "name",
+                    OutOfVocabularyWords = 1,
+                    Status = "status",
+                    TotalWords = 1
+                };
+
+            request.As<Corpus>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus("customization_id", "corpus_name");
+
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Error);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCorpus_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpus response =
+                new Corpus()
+                {
+                    Error = "error",
+                    Name = "name",
+                    OutOfVocabularyWords = 1,
+                    Status = "status",
+                    TotalWords = 1
+                };
+
+            request.As<Corpus>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus(null, "corpus_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCorpusa_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpus response =
+                new Corpus()
+                {
+                    Error = "error",
+                    Name = "name",
+                    OutOfVocabularyWords = 1,
+                    Status = "status",
+                    TotalWords = 1
+                };
+
+            request.As<Corpus>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus(string.Empty, "corpus_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCorpus_With_Null_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpus response =
+                new Corpus()
+                {
+                    Error = "error",
+                    Name = "name",
+                    OutOfVocabularyWords = 1,
+                    Status = "status",
+                    TotalWords = 1
+                };
+
+            request.As<Corpus>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus("customization_id", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCorpusa_With_Empty_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Corpus response =
+                new Corpus()
+                {
+                    Error = "error",
+                    Name = "name",
+                    OutOfVocabularyWords = 1,
+                    Status = "status",
+                    TotalWords = 1
+                };
+
+            request.As<Corpus>()
+                   .Returns(Task.FromResult(response));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus("customization_id", string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void GetCorpus_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.GetCorpus("customization_id", "corpus_name");
+        }
     }
 }

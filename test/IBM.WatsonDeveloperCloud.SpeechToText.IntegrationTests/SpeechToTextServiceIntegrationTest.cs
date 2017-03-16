@@ -497,5 +497,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             Assert.IsNotNull(corpus.Name);
             Assert.AreEqual(corpora.CorporaProperty.First().Name, corpus.Name);
         }
+
+        [TestMethod]
+        public void DeleteCorpus_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var corpora =
+                service.ListCorpora(customization.CustomizationId);
+
+            service.DeleteCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
+        }
     }
 }

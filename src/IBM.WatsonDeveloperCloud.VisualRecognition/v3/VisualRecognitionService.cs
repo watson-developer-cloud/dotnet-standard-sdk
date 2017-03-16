@@ -25,7 +25,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
     public class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
-        const string PATH_MESSAGE = "/v1/workspaces/{0}/message";
+        const string PATH_CLASSIFY= "/v3/classify";
+        const string PATH_DETECT_FACES= "/v3/detect_faces";
+        const string PATH_CLASSIFIERS= "/v3/classifiers";
+        const string PATH_CLASSIFIER = "/v3/classifiers/{0}";
+        const string PATH_COLLECTIONS = "/v3/collections";
+        const string PATH_COLLECTION = "/v3/collections/{0}";
+        const string PATH_COLLECTION_IMAGES = "/v3/collections/{0}/images";
+        const string PATH_COLLECTION_IMAGE = "/v3/collections/{0}/images/{1}";
+        const string PATH_COLLECTION_IMAGE_METADATA = "/v3/collections/{0}/images/{1}/metadata";
+        const string PATH_FIND_SIMILAR = "/v3/collections/{0}/find_similar";
         const string VERSION_DATE_2016_05_20 = "2016-05-20";
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
@@ -58,6 +67,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             this.Client = httpClient;
         }
 
+        #region Classify
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {
             throw new NotImplementedException();
@@ -67,6 +77,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             throw new NotImplementedException();
         }
+        #endregion
 
         public Faces DetectFaces(string url)
         {

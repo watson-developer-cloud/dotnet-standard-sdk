@@ -46,16 +46,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 this.Endpoint = URL;
         }
 
-        public VisualRecognitionService(string userName, string password)
+        public VisualRecognitionService(string apikey)
             : this()
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
+            if (string.IsNullOrEmpty(apikey))
+                throw new ArgumentNullException(nameof(apikey));
 
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
+            this.SetCredential(apikey);
         }
 
         public VisualRecognitionService(IClient httpClient)
@@ -70,7 +67,35 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Classify
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {
-            throw new NotImplementedException();
+            ClassifyTopLevelMultiple result = null;
+
+            string _classifierIDs = classifierIDs != null ? string.Join(",", classifierIDs) : "default";
+
+            if (owners != null)
+                foreach (string owner in owners)
+                    if (owner.ToLower() != "ibm" && owner.ToLower() != "me")
+                        throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
+
+            string _owners = owners != null ? string.Join(",", owners) : "IBM,me";
+            
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFY}")
+                    .WithHeader("Accept-Language", "en")
+                    .WithArgument("url", url)
+                    .WithArgument("classifier_ids", _classifierIDs)
+                    .WithArgument("threshold", threshold.ToString())
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .As<ClassifyTopLevelMultiple>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public ClassifyPost Classify(byte[] imageData, string imageName, string imageMimeType, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")

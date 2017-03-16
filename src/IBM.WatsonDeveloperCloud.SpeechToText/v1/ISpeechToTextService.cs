@@ -220,5 +220,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="customizationId">The GUID of the custom language model from which a corpus is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="name">The name of the corpus that is to be deleted.</param>
         void DeleteCorpus(string customizationId, string name);
+
+        /// <summary>
+        /// Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
+        /// You add custom words by providing a comma-separated list of <see cref="Word">Word</see> objects, one per word. You must use the <see cref="Word">Word</see> object's word parameter to identify the word that is to be added. You can also provide one or both of the following optional parameters for each word: 
+        /// <list type="bullet">
+        ///     <item>
+        ///         <description>The displayAs parameter provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>The soundsLike parameter provides a comma-separated list of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word.</description>
+        ///     </item>
+        /// </list>
+        /// If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource.
+        /// The call succeeds if the input data is valid. The service then asynchronously pre-processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model.
+        /// You can monitor the status of the request by using the <see cref="ListCustomModel(string)">List a custom model</see> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <see cref="Customization">Customization</see> object that includes a status field. A status of ready means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model to which words are to be added. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="words">A comma-separated list of <see cref="Word">Word</see> objects, each of which provides information about a custom word to be added.</param>
+        //void AddCustomWord(string customizationId, params Word[] words);
     }
 }

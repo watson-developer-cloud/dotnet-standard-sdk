@@ -15,8 +15,6 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
-using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;

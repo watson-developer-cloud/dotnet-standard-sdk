@@ -20,6 +20,10 @@ using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -98,9 +102,63 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public ClassifyPost Classify(byte[] imageData, string imageName, string imageMimeType, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
+        public ClassifyPost Classify(byte[] imageData = null, string imageDataName = null, string imageDataMimeType = null, string[] urls = null, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {
-            throw new NotImplementedException();
+            ClassifyPost result = null;
+
+            if (imageData == null && (urls == null || urls.Length < 1))
+                throw new ArgumentNullException(string.Format("{0} and {1}", nameof(imageData), nameof(urls)));
+
+            if (imageData != null)
+            {
+                if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
+                    throw new ArgumentException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
+            }
+
+            if (owners != null)
+                foreach (string owner in owners)
+                    if (owner.ToLower() != "ibm" && owner.ToLower() != "me")
+                        throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
+            
+            try
+            {
+                ClassifyParameters parametersObject = new ClassifyParameters();
+                parametersObject.ClassifierIds = classifierIDs != null ? classifierIDs : new string[] { "default" };
+                parametersObject.URLs = urls != null ? urls : new string[0];
+                parametersObject.Owners = owners != null ? owners : new string[0];
+                parametersObject.Threshold = threshold;
+
+                string parameters = JsonConvert.SerializeObject(parametersObject);
+
+                var formData = new MultipartFormDataContent();
+
+                if (imageData != null)
+                {
+                    var imageContent = new ByteArrayContent(imageData);
+                    imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
+                    formData.Add(imageContent, imageDataName, imageDataName);
+                }
+
+                if(!string.IsNullOrEmpty(parameters))
+                {
+                    var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    formData.Add(parametersContent);
+                }
+
+                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFY}")
+                    .WithHeader("Accept-Language", "en")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<ClassifyPost>()
+                    .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
         #endregion
 

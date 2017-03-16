@@ -16,7 +16,7 @@
 */
 
 using System.Collections.Generic;
-using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
@@ -24,5 +24,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// </summary>
     public class Classifiers
     {
+        /// <summary>
+        /// Classifiers
+        /// </summary>
+        public List<ClassifyPerClassifier> classifiers { get; set; }
     }
 }

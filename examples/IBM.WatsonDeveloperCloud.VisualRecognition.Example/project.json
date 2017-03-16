@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "0.1.1-alpha",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.1.1-alpha",
@@ -21,6 +21,9 @@
   },
   "buildOptions": {
     "emitEntryPoint": true,
-    "xmlDoc": false
+    "xmlDoc": false,
+    "copyToOutput": {
+      "include": [ "./exampleData" ]
+    }
   }
 }

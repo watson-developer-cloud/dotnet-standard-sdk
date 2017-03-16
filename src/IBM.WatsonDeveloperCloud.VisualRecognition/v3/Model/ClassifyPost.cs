@@ -24,6 +24,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// </summary>
     public class ClassifyPost
     {
+        [JsonProperty("custom_classes")]
+        public int CustomClasses { get; set; }
         /// <summary>
         /// Gets or Sets Images
         /// </summary>

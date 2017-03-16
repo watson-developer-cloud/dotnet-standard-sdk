@@ -1,4 +1,4 @@
-/**
+﻿/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,24 +16,30 @@
 */
 
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
-    /// <summary>
-    /// Information about something that went wrong. Omitted if no error.
-    /// </summary>
-    public class ErrorInfoNoCode
+    public class ClassifyParameters
     {
         /// <summary>
-        /// Codified error string, like 'input_error'.
+        /// Array of image URLs to analyze.
         /// </summary>
-        /// <value>Codified error string, like 'input_error'.</value>
-        [JsonProperty("error_id")]
-        public string ErrorId { get; set; }
+        [JsonProperty("urls")]
+        public string[] URLs { get; set; }
         /// <summary>
-        /// Human-readable error string, like 'Ignoring image with no valid data.'.
+        /// An array of classifier identifiers to use for image analysis.
         /// </summary>
-        /// <value>Human-readable error string, like 'Ignoring image with no valid data.'.</value>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("classifier_ids")]
+        public string[] ClassifierIds { get; set; }
+        /// <summary>
+        /// An array of owners to use.
+        /// </summary>
+        [JsonProperty("owners")]
+        public string[] Owners { get; set; }
+        /// <summary>
+        /// Score threshold to return images.
+        /// </summary>
+        [JsonProperty("threshold")]
+        public float Threshold { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="threshold">A floating value that specifies the minimum score a class must have to be displayed in the response.</param>
         /// <param name="acceptLanguage">Specifies the language of the output class names. Can be 'en' (English), 'es' (Spanish), 'ar' (Arabic) or 'ja' (Japanese). Classes for which no translation is available are omitted.</param>
         /// <returns>ClassifyPost</returns>
-        ClassifyPost Classify(byte[] imageData, string imageName, string imageMimeType, string[] classifierIDs = default(string[]), string[] owners = default(string[]), float threshold = 0f, string acceptLanguage = "en");
+        ClassifyPost Classify(byte[] imageData, string imageName, string imageMimeType, string[] urls = null, string[] classifierIDs = default(string[]), string[] owners = default(string[]), float threshold = 0f, string acceptLanguage = "en");
         /// <summary>
         /// Detects faces in a single URL.
         /// </summary>

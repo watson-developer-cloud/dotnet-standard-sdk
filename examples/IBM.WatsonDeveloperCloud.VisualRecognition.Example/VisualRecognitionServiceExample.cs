@@ -14,10 +14,11 @@
 * limitations under the License.
 *
 */
-
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 {
@@ -26,14 +27,22 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
     {
         private VisualRecognitionService _visualRecognition = new VisualRecognitionService();
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
+        private string _localGiraffeFilePath = @"exampleData\giraffe_to_classify.jpg";
+        private string _localObamaFilePath = @"exampleData\obama.jpg";
+        private string _localTurtleFilePath = @"exampleData\turtle_to_classify.jpg";
+        private string _localGiraffePositiveExamplesFilePath = @"exampleData\giraffe_positive_examples.zip";
+        private string _localTurtlePositiveExamplesFilePath = @"exampleData\turtle_positive_examples.zip";
+        private string _localNegativeExamplesFilePath = @"exampleData\negative_examples.zip";
+
         public VisualRecognitionServiceExample(string apikey)
         {
             _visualRecognition.SetCredential(apikey);
 
-            Classify();
+            //ClassifyGet();
+            ClassifyPost();
         }
 
-        private void Classify()
+        private void ClassifyGet()
         {
             
             Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _imageUrl));
@@ -49,6 +58,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             else
             {
                 Console.WriteLine("Classify() result is null.");
+            }
+        }
+
+        private void ClassifyPost()
+        {
+            Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
+
+            using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
+            {
+                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileNameWithoutExtension(_localGiraffeFilePath), "image/jpeg");
+
+                foreach (Classifiers image in result.Images)
+                    foreach (ClassifyPerClassifier classifier in image.classifiers)
+                        foreach (ClassResult classResult in classifier.Classes)
+                            Console.WriteLine(string.Format("class: {0} | score: {1} | type heirachy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
             }
         }
     }

@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
+using IBM.WatsonDeveloperCloud.Http;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -30,9 +31,31 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
 
         public VisualRecognitionService()
-            : base(SERVICE_NAME)
+            : base(SERVICE_NAME, URL)
         {
+            if (!string.IsNullOrEmpty(this.Endpoint))
+                this.Endpoint = URL;
+        }
 
+        public VisualRecognitionService(string userName, string password)
+            : this()
+        {
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentNullException(nameof(userName));
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
+            this.SetCredential(userName, password);
+        }
+
+        public VisualRecognitionService(IClient httpClient)
+            : this()
+        {
+            if (httpClient == null)
+                throw new ArgumentNullException(nameof(httpClient));
+
+            this.Client = httpClient;
         }
 
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
@@ -60,11 +83,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, string> positiveExamples, string negativeExamplesPath = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
         {
             throw new NotImplementedException();
@@ -76,11 +94,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         }
 
         public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, string> positiveExamples, string negativeExamplesPath = null)
         {
             throw new NotImplementedException();
         }
@@ -115,11 +128,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, string imageMetadataFilepath)
-        {
-            throw new NotImplementedException();
-        }
-
         public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadataData, string imageMetadataFilename = "metadata.json")
         {
             throw new NotImplementedException();
@@ -145,17 +153,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public MetadataResponse UpdateMetadata(string collectionId, string imageId, string metadataFilePath)
-        {
-            throw new NotImplementedException();
-        }
-
         public MetadataResponse UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json")
-        {
-            throw new NotImplementedException();
-        }
-
-        public SimilarImagesConfig FindSimilar(string collectionId, string imageFilePath, int limit = 10)
         {
             throw new NotImplementedException();
         }

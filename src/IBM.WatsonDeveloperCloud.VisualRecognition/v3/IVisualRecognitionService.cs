@@ -65,14 +65,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="verbose">Specify true to return classifier details.</param>
         /// <returns>GetClassifiersTopLevelBrief</returns>
         GetClassifiersTopLevelBrief GetClassifiers(bool verbose = false);
-        /// <summary>
-        /// Trains a new classifier
-        /// </summary>
-        /// <param name="classifierName">The classifier's name.</param>
-        /// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
-        /// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
+        ///// <summary>
+        ///// Trains a new classifier
+        ///// </summary>
+        ///// <param name="classifierName">The classifier's name.</param>
+        ///// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
+        ///// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
+        ///// <returns>GetClassifiersTopLevelBrief</returns>
+        //GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
         /// <summary>
         /// Trains a new classifier
         /// </summary>
@@ -92,14 +92,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="classifierId">The unique identifier of the custom classifier.</param>
         /// <returns>GetClassifiersPerClassifierVerbose</returns>
         GetClassifiersPerClassifierVerbose GetClassifier(string classifierId);
-        /// <summary>
-        /// Updates classifier
-        /// </summary>
-        /// <param name="classifierId">The classifier's unique identifier.</param>
-        /// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
-        /// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        /// <returns>GetClassifiersPerClassifierVerbose</returns>
-        GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
+        ///// <summary>
+        ///// Updates classifier
+        ///// </summary>
+        ///// <param name="classifierId">The classifier's unique identifier.</param>
+        ///// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
+        ///// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
+        ///// <returns>GetClassifiersPerClassifierVerbose</returns>
+        //GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
         /// <summary>
         /// Updates classifier
         /// </summary>
@@ -136,15 +136,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="collectionId">The unique identifier of the requested collection.</param>
         /// <returns>GetCollectionImages</returns>
         GetCollectionImages GetCollectionImages(string collectionId);
-        /// <summary>
-        /// Adds images to a collection.
-        /// </summary>
-        /// <param name="collectionId">The unique identifier of the collection to add images to.</param>
-        /// <param name="imageData">A byte[] of image data.</param>
-        /// <param name="imageName">The image file's name.</param>
-        /// <param name="imageMetadataFilepath">Filepath to a jsonb file that adds metadata to the image. Maximum 2 KB of metadata for each image.</param>
-        /// <returns>CollectionsConfig</returns>
-        CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, string imageMetadataFilepath);
+        ///// <summary>
+        ///// Adds images to a collection.
+        ///// </summary>
+        ///// <param name="collectionId">The unique identifier of the collection to add images to.</param>
+        ///// <param name="imageData">A byte[] of image data.</param>
+        ///// <param name="imageName">The image file's name.</param>
+        ///// <param name="imageMetadataFilepath">Filepath to a jsonb file that adds metadata to the image. Maximum 2 KB of metadata for each image.</param>
+        ///// <returns>CollectionsConfig</returns>
+        //CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, string imageMetadataFilepath);
         /// <summary>
         /// Adds images to a collection.
         /// </summary>
@@ -181,14 +181,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imageId">The unique identifier for the image to get the metadata.</param>
         /// <returns>MetadataResponse</returns>
         MetadataResponse GetMetadata(string collectionId, string imageId);
-        /// <summary>
-        /// Adds metadata to an image.
-        /// </summary>
-        /// <param name="collectionId">The unique identifier for the collection who's image to update metadata to.</param>
-        /// <param name="imageId">The unique identifier for the image to update metadata.</param>
-        /// <param name="metadataFilePath">The filepath to the metadata json file.</param>
-        /// <returns>MetadataResponse</returns>
-        MetadataResponse UpdateMetadata(string collectionId, string imageId, string metadataFilePath);
+        ///// <summary>
+        ///// Adds metadata to an image.
+        ///// </summary>
+        ///// <param name="collectionId">The unique identifier for the collection who's image to update metadata to.</param>
+        ///// <param name="imageId">The unique identifier for the image to update metadata.</param>
+        ///// <param name="metadataFilePath">The filepath to the metadata json file.</param>
+        ///// <returns>MetadataResponse</returns>
+        //MetadataResponse UpdateMetadata(string collectionId, string imageId, string metadataFilePath);
         /// <summary>
         /// Adds metadata to an image.
         /// </summary>
@@ -198,14 +198,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="metadataFileName">The filename of the metadata file.</param>
         /// <returns>MetadataResponse</returns>
         MetadataResponse UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json");
-        /// <summary>
-        /// Finds similar images.
-        /// </summary>
-        /// <param name="collectionId">The unique identifier for the collection who's image to add metadata to.</param>
-        /// <param name="imageFilePath">The file path of the image used to search for similar images in a collection.</param>
-        /// <param name="limit">The number of similar results you want returned. Default limit is 10 results, you can specify a maximum limit of 100 results.</param>
-        /// <returns>SimilarImagesConfig</returns>
-        SimilarImagesConfig FindSimilar(string collectionId, string imageFilePath, int limit = 10);
+        ///// <summary>
+        ///// Finds similar images.
+        ///// </summary>
+        ///// <param name="collectionId">The unique identifier for the collection who's image to add metadata to.</param>
+        ///// <param name="imageFilePath">The file path of the image used to search for similar images in a collection.</param>
+        ///// <param name="limit">The number of similar results you want returned. Default limit is 10 results, you can specify a maximum limit of 100 results.</param>
+        ///// <returns>SimilarImagesConfig</returns>
+        //SimilarImagesConfig FindSimilar(string collectionId, string imageFilePath, int limit = 10);
         /// <summary>
         /// Finds similar images.
         /// </summary>

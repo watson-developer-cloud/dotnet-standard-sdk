@@ -2092,7 +2092,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetCorpusa_With_Empty_CorpusName()
+        public void GetCorpus_With_Empty_CorpusName()
         {
             IClient client = Substitute.For<IClient>();
 
@@ -2143,6 +2143,130 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             var result =
                 service.GetCorpus("customization_id", "corpus_name");
+        }
+
+        [TestMethod]
+        public void DeleteCorpus_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus("customization_id", "corpus_name");
+
+            client.Received().DeleteAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCorpus_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                    .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus(null, "corpus_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCorpus_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                    .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus(string.Empty, "corpus_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCorpus_With_Null_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                    .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus("customization_id", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCorpus_With_Empty_CorpusName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                    .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus("customization_id", string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void DeleteCorpus_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCorpus("customization_id", "corpus_name");
         }
     }
 }

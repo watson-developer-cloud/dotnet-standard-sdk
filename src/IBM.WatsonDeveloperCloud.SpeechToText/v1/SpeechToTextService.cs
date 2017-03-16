@@ -548,5 +548,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             return result;
         }
+
+        public void DeleteCorpus(string customizationId, string name)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException($"{nameof(name)}");
+
+            try
+            {
+                var result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .DeleteAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{name}")
+                               .AsString()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
     }
 }

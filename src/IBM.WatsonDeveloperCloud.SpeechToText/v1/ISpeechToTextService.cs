@@ -212,5 +212,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="corpusName">The name of the corpus about which information is to be listed.</param>
         /// <returns>a single instance of a <see cref="Corpus">Corpus</see> object that provides information about the specified corpus. </returns>
         Corpus GetCorpus(string customizationId, string corpusName);
+
+
+        /// <summary>
+        /// Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the Add custom words or Add a custom word method. Removing a corpus does not affect the custom model until you train the model with the <see cref="TrainCustomModel(string, string)">Train a custom model</see>  method. Only the owner of a custom model can use this method to delete a corpus from the model. 
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model from which a corpus is to be deleted. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="name">The name of the corpus that is to be deleted.</param>
+        void DeleteCorpus(string customizationId, string name);
     }
 }

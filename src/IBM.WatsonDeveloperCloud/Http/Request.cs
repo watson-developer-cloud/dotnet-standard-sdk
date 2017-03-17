@@ -109,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.Http
         public async Task<T> As<T>()
         {
             HttpResponseMessage message = await this.AsMessage().ConfigureAwait(false);
-            var result = message.Content.ReadAsAsync<string>().Result;
+            var result = message.Content.ReadAsStringAsync().Result;
             return await message.Content.ReadAsAsync<T>(this.Formatters).ConfigureAwait(false);
         }
 

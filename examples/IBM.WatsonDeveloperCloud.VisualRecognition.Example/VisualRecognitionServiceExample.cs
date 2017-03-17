@@ -63,11 +63,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void ClassifyPost()
         {
-            Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
-
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
-                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileNameWithoutExtension(_localGiraffeFilePath), "image/jpeg");
+                Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
+                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
 
                 foreach (Classifiers image in result.Images)
                     foreach (ClassifyPerClassifier classifier in image.classifiers)

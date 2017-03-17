@@ -54,11 +54,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// Detectes faces in image(s).
         /// </summary>
         /// <param name="imageData">The image file (.jpg, .png) or compressed (.zip) file of images. The total number of images is limited to 20, with a max .zip size of 5 MB.</param>
-        /// <param name="imageName">The image file name.</param>
-        /// <param name="imageMimeType">The image file mimetype.</param>
+        /// <param name="imageDataName">The image file name.</param>
+        /// <param name="imageDataMimeType">The image file mimetype.</param>
         /// <param name="urls">An array of image URLs to analyze.</param>
         /// <returns>Faces</returns>
-        Faces DetectFaces(byte[] imageData = default(byte[]), string imageName = default(string), string imageMimeType = default(string), string[] urls = default(string[]));
+        Faces DetectFaces(byte[] imageData = default(byte[]), string imageDataName = default(string), string imageDataMimeType = default(string), string[] urls = default(string[]));
         /// <summary>
         /// Retrieve a list of custom classifiers.
         /// </summary>

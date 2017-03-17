@@ -42,4 +42,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("threshold")]
         public float Threshold { get; set; }
     }
+
+    public class DetectFacesParameters
+    {
+        /// <summary>
+        /// Array of image URLs to analyze.
+        /// </summary>
+        [JsonProperty("urls")]
+        public string[] URLs { get; set; }
+    }
 }

@@ -27,8 +27,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
     {
         private VisualRecognitionService _visualRecognition = new VisualRecognitionService();
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
+        private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"exampleData\giraffe_to_classify.jpg";
-        private string _localObamaFilePath = @"exampleData\obama.jpg";
+        private string _localFaceFilePath = @"exampleData\obama.jpg";
         private string _localTurtleFilePath = @"exampleData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"exampleData\giraffe_positive_examples.zip";
         private string _localTurtlePositiveExamplesFilePath = @"exampleData\turtle_positive_examples.zip";
@@ -39,12 +40,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             _visualRecognition.SetCredential(apikey);
 
             //ClassifyGet();
-            ClassifyPost();
+            //ClassifyPost();
+            DetectFacesGet();
+            DetectFacesPost();
         }
 
         private void ClassifyGet()
         {
-            
             Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _imageUrl));
             var result = _visualRecognition.Classify(_imageUrl);
 
@@ -53,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                 foreach (ClassifyTopLevelSingle image in result.Images)
                     foreach (ClassifyPerClassifier classifier in image.Classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
-                            Console.WriteLine(string.Format("class: {0} | score: {1} | type heirachy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+                            Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
             }
             else
             {
@@ -67,11 +69,78 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             {
                 Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
                 var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
-
+                
                 foreach (Classifiers image in result.Images)
                     foreach (ClassifyPerClassifier classifier in image.classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
-                            Console.WriteLine(string.Format("class: {0} | score: {1} | type heirachy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+                            Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+            }
+        }
+
+        private void DetectFacesGet()
+        {
+            Console.WriteLine(string.Format("Calling DetectFaces(\"{0}\")...", _faceUrl));
+            var result = _visualRecognition.DetectFaces(_faceUrl);
+
+            if(result != null)
+            {
+                foreach (FacesTopLevelSingle image in result.Images)
+                    foreach (OneFaceResult face in image.Faces)
+                    {
+                        if (face.Identity != null)
+                            Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
+                        else
+                            Console.WriteLine("identity is null.");
+
+                        if (face.Age != null)
+                            Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
+                        else
+                            Console.WriteLine("age is null.");
+
+                        if (face.Gender != null)
+                            Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
+                        else
+                            Console.WriteLine("gender is null.");
+                    }
+            }
+            else
+            {
+                Console.WriteLine("DetectFaces() result is null.");
+            }
+        }
+
+        private void DetectFacesPost()
+        {
+            using (FileStream fs = File.OpenRead(_localFaceFilePath))
+            {
+                Console.WriteLine(string.Format("Calling DetectFaces(\"{0}\")...", _localFaceFilePath));
+                var result = _visualRecognition.DetectFaces((fs as Stream).ReadAllBytes(), Path.GetFileName(_localFaceFilePath), "image/jpeg");
+
+                if (result != null)
+                {
+                    foreach (FacesTopLevelSingle image in result.Images)
+                        foreach (OneFaceResult face in image.Faces)
+                        {
+                            if (face.Identity != null)
+                                Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
+                            else
+                                Console.WriteLine("identity is null.");
+
+                            if (face.Age != null)
+                                Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
+                            else
+                                Console.WriteLine("age is null.");
+
+                            if (face.Gender != null)
+                                Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
+                            else
+                                Console.WriteLine("gender is null.");
+                        }
+                }
+                else
+                {
+                    Console.WriteLine("DetectFaces() result is null.");
+                }
             }
         }
     }

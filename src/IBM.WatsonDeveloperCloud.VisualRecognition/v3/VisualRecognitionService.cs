@@ -68,7 +68,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             this.Client = httpClient;
         }
 
-        #region Classify
+        #region Classify GET
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {
             ClassifyTopLevelMultiple result = null;
@@ -163,16 +163,87 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         }
         #endregion
 
+        #region Detect Faces
         public Faces DetectFaces(string url)
         {
-            throw new NotImplementedException();
+            Faces result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{PATH_DETECT_FACES}")
+                    .WithArgument("url", url)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .As<Faces>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
-        public Faces DetectFaces(byte[] imageData = null, string imageName = null, string imageMimeType = null, string[] urls = null)
+        public Faces DetectFaces(byte[] imageData = null, string imageDataName = null, string imageDataMimeType = null, string[] urls = null)
         {
-            throw new NotImplementedException();
-        }
+            Faces result = null;
 
+            if (imageData == null && (urls == null || urls.Length < 1))
+                throw new ArgumentNullException(string.Format("{0} and {1}", nameof(imageData), nameof(urls)));
+
+            if (imageData != null)
+            {
+                if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
+                    throw new ArgumentException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
+            }
+            
+            try
+            {
+                string parameters = null;
+
+                if (urls != null && urls.Length > 0)
+                {
+                    DetectFacesParameters parametersObject = new DetectFacesParameters();
+                    parametersObject.URLs = urls != null ? urls : new string[0];
+
+                    parameters = JsonConvert.SerializeObject(parametersObject);
+                }
+
+
+                var formData = new MultipartFormDataContent();
+
+                if (imageData != null)
+                {
+                    var imageContent = new ByteArrayContent(imageData);
+                    imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
+                    formData.Add(imageContent, imageDataName, imageDataName);
+                }
+
+                if (!string.IsNullOrEmpty(parameters))
+                {
+                    var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    formData.Add(parametersContent);
+                }
+
+                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_DETECT_FACES}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<Faces>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Classifiers
         public GetClassifiersTopLevelBrief GetClassifiers(bool verbose = false)
         {
             throw new NotImplementedException();
@@ -197,7 +268,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Collections
         public GetCollections GetCollections()
         {
             throw new NotImplementedException();
@@ -222,7 +295,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Images
         public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadataData, string imageMetadataFilename = "metadata.json")
         {
             throw new NotImplementedException();
@@ -237,7 +312,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Metadata
         public void DeleteImageMetadata(string collectionId, string imageId)
         {
             throw new NotImplementedException();
@@ -252,10 +329,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Find Similar
         public SimilarImagesConfig FindSimilar(string collectionId, byte[] imageFileData, int limit = 10)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

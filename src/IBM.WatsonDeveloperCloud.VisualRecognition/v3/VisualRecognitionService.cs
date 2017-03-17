@@ -142,6 +142,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if(!string.IsNullOrEmpty(parameters))
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                     formData.Add(parametersContent);
                 }
 

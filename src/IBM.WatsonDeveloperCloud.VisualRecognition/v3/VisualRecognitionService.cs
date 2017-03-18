@@ -246,7 +246,23 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Classifiers
         public GetClassifiersTopLevelBrief GetClassifiers(bool verbose = false)
         {
-            throw new NotImplementedException();
+            GetClassifiersTopLevelBrief result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFIERS}")
+                    .WithArgument("verbose", verbose)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .As<GetClassifiersTopLevelBrief>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)

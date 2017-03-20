@@ -24,14 +24,15 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
     public class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
-        const string PATH_CLASSIFY= "/v3/classify";
-        const string PATH_DETECT_FACES= "/v3/detect_faces";
-        const string PATH_CLASSIFIERS= "/v3/classifiers";
+        const string PATH_CLASSIFY = "/v3/classify";
+        const string PATH_DETECT_FACES = "/v3/detect_faces";
+        const string PATH_CLASSIFIERS = "/v3/classifiers";
         const string PATH_CLASSIFIER = "/v3/classifiers/{0}";
         const string PATH_COLLECTIONS = "/v3/collections";
         const string PATH_COLLECTION = "/v3/collections/{0}";
@@ -81,7 +82,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                         throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
 
             string _owners = owners != null ? string.Join(",", owners) : "IBM,me";
-            
+
             try
             {
                 result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFY}")
@@ -119,7 +120,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 foreach (string owner in owners)
                     if (owner.ToLower() != "ibm" && owner.ToLower() != "me")
                         throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
-            
+
             try
             {
                 ClassifyParameters parametersObject = new ClassifyParameters();
@@ -139,7 +140,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(imageContent, imageDataName, imageDataName);
                 }
 
-                if(!string.IsNullOrEmpty(parameters))
+                if (!string.IsNullOrEmpty(parameters))
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
@@ -154,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .As<ClassifyPost>()
                     .Result;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -197,7 +198,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
                     throw new ArgumentException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
             }
-            
+
             try
             {
                 string parameters = null;
@@ -267,7 +268,52 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
         {
-            throw new NotImplementedException();
+            GetClassifiersTopLevelBrief result = null;
+
+            if (string.IsNullOrEmpty(classifierName))
+                throw new ArgumentNullException(nameof(classifierName));
+
+            if (positiveExamplesData == null)
+                throw new ArgumentNullException(nameof(positiveExamplesData));
+
+            if (positiveExamplesData.Count < 2 && negativeExamplesData == null)
+                throw new ArgumentNullException("Training a Visual Recognition classifier requires at least two positive example files or one positive example and negative example file.");
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                foreach (var kvp in positiveExamplesData)
+                {
+                    var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
+                    positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
+                    formData.Add(positiveExampleDataContent, kvp.Key);
+                }
+
+                if (negativeExamplesData != null)
+                {
+                    var negativeExamplesDataContent = new ByteArrayContent(negativeExamplesData);
+                    negativeExamplesDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
+                    formData.Add(negativeExamplesDataContent, "negative_examples");
+                }
+
+                var nameDataContent = new StringContent(classifierName, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                nameDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                formData.Add(nameDataContent, "name");
+                
+                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFIERS}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<GetClassifiersTopLevelBrief>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public void DeleteClassifier(string classifierId)

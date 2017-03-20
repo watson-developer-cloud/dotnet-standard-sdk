@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using Newtonsoft.Json;
+using System.Net.Http.Formatting;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -562,6 +564,57 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 var result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .DeleteAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{name}")
+                               .AsString()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
+
+        public void AddCustomWords(string customizationId, Words body)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (body == null)
+                throw new ArgumentNullException($"{nameof(body)}");
+
+            try
+            {
+                var result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words")
+                               //.WithHeader("Content-Type", HttpMediaType.APPLICATION_JSON)
+                               .WithBody<Words>(body)
+                               .AsString()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
+
+        public void AddCustomWord(string customizationId, string wordname, WordDefinition body)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(wordname))
+                throw new ArgumentNullException($"{nameof(wordname)}");
+
+            if (body == null)
+                throw new ArgumentNullException($"{nameof(body)}");
+
+            try
+            {
+                var result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .PutAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
+                               //.WithHeader("Content-Type", HttpMediaType.APPLICATION_JSON)
+                               .WithBody<WordDefinition>(body)
                                .AsString()
                                .Result;
             }

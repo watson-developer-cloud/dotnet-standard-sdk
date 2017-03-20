@@ -68,7 +68,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             this.Client = httpClient;
         }
 
-        #region Classify GET
+        #region Classify
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {
             ClassifyTopLevelMultiple result = null;

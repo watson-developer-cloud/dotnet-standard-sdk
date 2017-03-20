@@ -21,6 +21,7 @@ using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -61,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             }
 
             speechToTextCredential =
-                    vcapServices["VCAP_SERVICES"]["speech_to_text"][0]["credentials"];
+                    vcapServices["speech_to_text"][0]["credentials"];
 
             _endpoint = speechToTextCredential["url"].Value<string>();
             _userName = speechToTextCredential["username"].Value<string>();
@@ -516,6 +517,82 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 service.ListCorpora(customization.CustomizationId);
 
             service.DeleteCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
+        }
+
+        [TestMethod]
+        public void AddCustomWords_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            service.AddCustomWords(customization.CustomizationId,
+                                  new Words()
+                                  {
+                                      WordsProperty = new List<Word>()
+                                      {
+                                          new Word()
+                                          {
+                                             DisplayAs = "Watson",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "wat son"
+                                             },
+                                             WordProperty = "watson"
+                                          },
+                                          new Word()
+                                          {
+                                             DisplayAs = "C#",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "si sharp"
+                                             },
+                                             WordProperty = "csharp"
+                                          },
+                                           new Word()
+                                          {
+                                             DisplayAs = "SDK",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "S.D.K."
+                                             },
+                                             WordProperty = "sdk"
+                                          }
+                                      }
+                                  });
+        }
+
+        [TestMethod]
+        public void AddCustomWord_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            service.AddCustomWord(customization.CustomizationId,
+                                  "social",
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
         }
     }
 }

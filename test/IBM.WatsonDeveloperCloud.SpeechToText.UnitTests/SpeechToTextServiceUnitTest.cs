@@ -2268,5 +2268,473 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             service.DeleteCorpus("customization_id", "corpus_name");
         }
+
+        [TestMethod]
+        public void AddCustomWords_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<Words>(Arg.Any<Words>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWords("customization_id",
+                                  new Words()
+                                  {
+                                      WordsProperty = new List<Word>()
+                                      {
+                                          new Word()
+                                          {
+                                             DisplayAs = "Watson",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "wat son"
+                                             },
+                                             WordProperty = "watson"
+                                          },
+                                          new Word()
+                                          {
+                                             DisplayAs = "C#",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "si sharp"
+                                             },
+                                             WordProperty = "csharp"
+                                          },
+                                           new Word()
+                                          {
+                                             DisplayAs = "SDK",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "S.D.K."
+                                             },
+                                             WordProperty = "sdk"
+                                          }
+                                      }
+                                  });
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWords_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<Words>(Arg.Any<Words>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWords(null,
+                                  new Words()
+                                  {
+                                      WordsProperty = new List<Word>()
+                                      {
+                                          new Word()
+                                          {
+                                             DisplayAs = "Watson",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "wat son"
+                                             },
+                                             WordProperty = "watson"
+                                          },
+                                          new Word()
+                                          {
+                                             DisplayAs = "C#",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "si sharp"
+                                             },
+                                             WordProperty = "csharp"
+                                          },
+                                           new Word()
+                                          {
+                                             DisplayAs = "SDK",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "S.D.K."
+                                             },
+                                             WordProperty = "sdk"
+                                          }
+                                      }
+                                  });
+
+            client.Received().PostAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWords_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<Words>(Arg.Any<Words>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWords(string.Empty,
+                                  new Words()
+                                  {
+                                      WordsProperty = new List<Word>()
+                                      {
+                                          new Word()
+                                          {
+                                             DisplayAs = "Watson",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "wat son"
+                                             },
+                                             WordProperty = "watson"
+                                          },
+                                          new Word()
+                                          {
+                                             DisplayAs = "C#",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "si sharp"
+                                             },
+                                             WordProperty = "csharp"
+                                          },
+                                           new Word()
+                                          {
+                                             DisplayAs = "SDK",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "S.D.K."
+                                             },
+                                             WordProperty = "sdk"
+                                          }
+                                      }
+                                  });
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWords_With_Null_Words()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<Words>(Arg.Any<Words>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWords("customization_id", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void AddCustomWords_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWords("customization_id",
+                                  new Words()
+                                  {
+                                      WordsProperty = new List<Word>()
+                                      {
+                                          new Word()
+                                          {
+                                             DisplayAs = "Watson",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "wat son"
+                                             },
+                                             WordProperty = "watson"
+                                          },
+                                          new Word()
+                                          {
+                                             DisplayAs = "C#",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "si sharp"
+                                             },
+                                             WordProperty = "csharp"
+                                          },
+                                           new Word()
+                                          {
+                                             DisplayAs = "SDK",
+                                             SoundsLike = new List<string>()
+                                             {
+                                                 "S.D.K."
+                                             },
+                                             WordProperty = "sdk"
+                                          }
+                                      }
+                                  });
+        }
+
+        [TestMethod]
+        public void AddCustomWord_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<WordDefinition>(Arg.Any<WordDefinition>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord("customization_id",
+                                  "word_name",
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+
+            client.Received().PutAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWord_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<WordDefinition>(Arg.Any<WordDefinition>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord(null,
+                                  "word_name",
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWord_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<WordDefinition>(Arg.Any<WordDefinition>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord(string.Empty,
+                                  "word_name",
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWord_With_Null_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<WordDefinition>(Arg.Any<WordDefinition>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord("customization_id",
+                                  null,
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWord_With_Empty_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<WordDefinition>(Arg.Any<WordDefinition>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord("customization_id",
+                                  string.Empty,
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddCustomWord_With_Null_WordDefinition()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithBody<Words>(Arg.Any<Words>())
+                   .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord("customization_id",
+                                 "word_name",
+                                 null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void AddCustomWord_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.AddCustomWord("customization_id",
+                                  "word_name",
+                                  new WordDefinition()
+                                  {
+                                      DisplayAs = "Social",
+                                      SoundsLike = new List<string>()
+                                             {
+                                                 "so cial"
+                                             }
+                                  });
+        }
     }
 }

@@ -41,8 +41,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
             //ClassifyGet();
             //ClassifyPost();
-            DetectFacesGet();
-            DetectFacesPost();
+            //DetectFacesGet();
+            //DetectFacesPost();
+            GetClassifiersBrief();
+            GetClassifiersVerbose();
         }
 
         private void ClassifyGet()
@@ -50,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _imageUrl));
             var result = _visualRecognition.Classify(_imageUrl);
 
-            if(result != null)
+            if (result != null)
             {
                 foreach (ClassifyTopLevelSingle image in result.Images)
                     foreach (ClassifyPerClassifier classifier in image.Classifiers)
@@ -69,7 +71,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             {
                 Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
                 var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
-                
+
                 foreach (Classifiers image in result.Images)
                     foreach (ClassifyPerClassifier classifier in image.classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
@@ -82,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             Console.WriteLine(string.Format("Calling DetectFaces(\"{0}\")...", _faceUrl));
             var result = _visualRecognition.DetectFaces(_faceUrl);
 
-            if(result != null)
+            if (result != null)
             {
                 foreach (FacesTopLevelSingle image in result.Images)
                     foreach (OneFaceResult face in image.Faces)
@@ -141,6 +143,40 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                 {
                     Console.WriteLine("DetectFaces() result is null.");
                 }
+            }
+        }
+
+        private void GetClassifiersBrief()
+        {
+            Console.WriteLine("Calling GetClassifiersBrief()...");
+
+            var result = _visualRecognition.GetClassifiersBrief();
+
+            if (result != null)
+            {
+                foreach (GetClassifiersPerClassifierBrief classifier in result.Classifiers)
+                    Console.WriteLine(string.Format("name: {0} | id: {1} | status: {2}", classifier.Name, classifier.ClassifierId, classifier.Status));
+            }
+            else
+            {
+                Console.WriteLine("GetClassifiers() result is null.");
+            }
+        }
+
+        private void GetClassifiersVerbose()
+        {
+            Console.WriteLine("Calling GetClassifiersVerbose()...");
+
+            var result = _visualRecognition.GetClassifiersVerbose();
+
+            if (result != null)
+            {
+                foreach (GetClassifiersPerClassifierVerbose classifier in result.Classifiers)
+                    Console.WriteLine(string.Format("name: {0} | id: {1} | status: {2}", classifier.Name, classifier.ClassifierId, classifier.Status));
+            }
+            else
+            {
+                Console.WriteLine("GetClassifiers() result is null.");
             }
         }
     }

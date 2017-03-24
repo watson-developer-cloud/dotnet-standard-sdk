@@ -24,7 +24,6 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -245,17 +244,38 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #endregion
 
         #region Classifiers
-        public GetClassifiersTopLevelBrief GetClassifiers(bool verbose = false)
+        public GetClassifiersTopLevelBrief GetClassifiersBrief()
         {
             GetClassifiersTopLevelBrief result = null;
 
             try
             {
                 result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFIERS}")
-                    .WithArgument("verbose", verbose)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("verbose", false)
                     .As<GetClassifiersTopLevelBrief>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public GetClassifiersTopLevelVerbose GetClassifiersVerbose()
+        {
+            GetClassifiersTopLevelVerbose result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFIERS}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("verbose", true)
+                    .As<GetClassifiersTopLevelVerbose>()
                     .Result;
             }
             catch (AggregateException ae)

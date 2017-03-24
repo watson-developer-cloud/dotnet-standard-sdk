@@ -60,11 +60,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <returns>Faces</returns>
         Faces DetectFaces(byte[] imageData = default(byte[]), string imageDataName = default(string), string imageDataMimeType = default(string), string[] urls = default(string[]));
         /// <summary>
-        /// Retrieve a list of custom classifiers.
+        /// Retrieve a brief list of custom classifiers.
         /// </summary>
-        /// <param name="verbose">Specify true to return classifier details.</param>
         /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersTopLevelBrief GetClassifiers(bool verbose = false);
+        GetClassifiersTopLevelBrief GetClassifiersBrief();
+        /// <summary>
+        /// Retrieve a verbose list of custom classifiers.
+        /// </summary>
+        /// <returns>GetClassifiersTopLevelVerbose</returns>
+        GetClassifiersTopLevelVerbose GetClassifiersVerbose();
         ///// <summary>
         ///// Trains a new classifier
         ///// </summary>

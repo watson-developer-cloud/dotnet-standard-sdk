@@ -15,7 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
@@ -34,5 +33,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or Sets Status
+        /// </summary>
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 }

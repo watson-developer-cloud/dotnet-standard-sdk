@@ -307,14 +307,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
                     positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(positiveExampleDataContent, kvp.Key);
+                    formData.Add(positiveExampleDataContent, kvp.Key, string.Format("{0}.zip", kvp.Key));
                 }
 
                 if (negativeExamplesData != null)
                 {
                     var negativeExamplesDataContent = new ByteArrayContent(negativeExamplesData);
                     negativeExamplesDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(negativeExamplesDataContent, "negative_examples");
+                    formData.Add(negativeExamplesDataContent, "negative_examples", "negative_examples.zip");
                 }
 
                 var nameDataContent = new StringContent(classifierName, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);

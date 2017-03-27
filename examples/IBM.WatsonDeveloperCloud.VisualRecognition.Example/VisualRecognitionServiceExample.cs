@@ -19,6 +19,7 @@ using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 {
@@ -32,8 +33,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private string _localFaceFilePath = @"exampleData\obama.jpg";
         private string _localTurtleFilePath = @"exampleData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"exampleData\giraffe_positive_examples.zip";
+        private string _giraffeClassname = "giraffe_positive_examples";
         private string _localTurtlePositiveExamplesFilePath = @"exampleData\turtle_positive_examples.zip";
+        private string _turtleClassname = "turtle_positive_examples";
         private string _localNegativeExamplesFilePath = @"exampleData\negative_examples.zip";
+        private string _createdClassifierName = "dotnet-standard-test-classifier";
 
         public VisualRecognitionServiceExample(string apikey)
         {
@@ -43,8 +47,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //ClassifyPost();
             //DetectFacesGet();
             //DetectFacesPost();
-            GetClassifiersBrief();
-            GetClassifiersVerbose();
+            //GetClassifiersBrief();
+            //GetClassifiersVerbose();
+            CreateClassifier();
         }
 
         private void ClassifyGet()
@@ -177,6 +182,36 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             else
             {
                 Console.WriteLine("GetClassifiers() result is null.");
+            }
+        }
+
+        private void CreateClassifier()
+        {
+            using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
+            {
+                Console.WriteLine(string.Format("Calling CreateClassifier(\"{0}\")", _createdClassifierName));
+
+                Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
+                positiveExamples.Add(_giraffeClassname, positiveExamplesStream.ReadAllBytes());
+
+                var result = _visualRecognition.CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream.ReadAllBytes());
+
+                if(result != null)
+                {
+                    if(result.Classifiers != null && result.Classifiers.Count > 0)
+                    {
+                        foreach (GetClassifiersPerClassifierBrief classifier in result.Classifiers)
+                            Console.WriteLine(string.Format("name: {0} | id: {1} | status: {2}", classifier.Name, classifier.ClassifierId, classifier.Status));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Classifiers are null.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Result is null.");
+                }
             }
         }
     }

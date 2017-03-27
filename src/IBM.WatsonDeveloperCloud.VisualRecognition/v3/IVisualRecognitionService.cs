@@ -89,7 +89,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// Deletes a custom classifier.
         /// </summary>
         /// <param name="classifierId">The unique identifier of the custom classifier.</param>
-        void DeleteClassifier(string classifierId);
+        object DeleteClassifier(string classifierId);
         /// <summary>
         /// Retrive information about a custom classifier.
         /// </summary>
@@ -127,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// Delete's a colleciton.
         /// </summary>
         /// <param name="collectionId">The unique identifier of the collection to be deleted.</param>
-        void DeleteCollection(string collectionId);
+        object DeleteCollection(string collectionId);
         /// <summary>
         /// Retrieve collection details.
         /// </summary>
@@ -164,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="collectionId">The unique identifier for the collection to delete an image from.</param>
         /// <param name="imageId">The unique identifier for the image to delete from the collection.</param>
-        void DeleteImage(string collectionId, string imageId);
+        object DeleteImage(string collectionId, string imageId);
         /// <summary>
         /// Lists an image's details.
         /// </summary>
@@ -177,7 +177,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="collectionId">The unique identifier for the collection to delete an image's metadata from.</param>
         /// <param name="imageId">The unique identifier for the image to delete the metadata from the collection.</param>
-        void DeleteImageMetadata(string collectionId, string imageId);
+        object DeleteImageMetadata(string collectionId, string imageId);
         /// <summary>
         /// Lists image's metadata.
         /// </summary>

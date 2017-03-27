@@ -48,8 +48,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //DetectFacesGet();
             //DetectFacesPost();
             //GetClassifiersBrief();
-            //GetClassifiersVerbose();
-            CreateClassifier();
+            GetClassifiersVerbose();
+            //CreateClassifier();
         }
 
         private void ClassifyGet()
@@ -198,15 +198,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
                 if(result != null)
                 {
-                    if(result.Classifiers != null && result.Classifiers.Count > 0)
-                    {
-                        foreach (GetClassifiersPerClassifierBrief classifier in result.Classifiers)
-                            Console.WriteLine(string.Format("name: {0} | id: {1} | status: {2}", classifier.Name, classifier.ClassifierId, classifier.Status));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Classifiers are null.");
-                    }
+                    Console.WriteLine(string.Format("name: {0} | classifierID: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
+                    foreach (ModelClass _class in result.Classes)
+                        Console.WriteLine(string.Format("\tclass: {0}", _class._Class));
                 }
                 else
                 {

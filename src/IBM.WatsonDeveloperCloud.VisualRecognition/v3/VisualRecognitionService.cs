@@ -286,9 +286,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
+        public GetClassifiersPerClassifierVerbose CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
         {
-            GetClassifiersTopLevelBrief result = null;
+            GetClassifiersPerClassifierVerbose result = null;
 
             if (string.IsNullOrEmpty(classifierName))
                 throw new ArgumentNullException(nameof(classifierName));
@@ -325,7 +325,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
                     .WithBodyContent(formData)
-                    .As<GetClassifiersTopLevelBrief>()
+                    .As<GetClassifiersPerClassifierVerbose>()
                     .Result;
             }
             catch (AggregateException ae)

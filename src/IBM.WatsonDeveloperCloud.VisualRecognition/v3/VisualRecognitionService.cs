@@ -336,9 +336,31 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public void DeleteClassifier(string classifierId)
+        public object DeleteClassifier(string classifierId)
         {
-            throw new NotImplementedException();
+
+            object result = null;
+
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            try
+            {
+                result =
+                    this.Client.DeleteAsync($"{this.Endpoint}{PATH_CLASSIFIERS}/{classifierId}")
+                               .WithArgument("api_key", ApiKey)
+                               .WithArgument("version", VERSION_DATE_2016_05_20)
+                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
+                               .As<object>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
@@ -363,7 +385,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public void DeleteCollection(string collectionId)
+        public object DeleteCollection(string collectionId)
         {
             throw new NotImplementedException();
         }
@@ -385,7 +407,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public void DeleteImage(string collectionId, string imageId)
+        public object DeleteImage(string collectionId, string imageId)
         {
             throw new NotImplementedException();
         }
@@ -397,7 +419,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #endregion
 
         #region Metadata
-        public void DeleteImageMetadata(string collectionId, string imageId)
+        public object DeleteImageMetadata(string collectionId, string imageId)
         {
             throw new NotImplementedException();
         }

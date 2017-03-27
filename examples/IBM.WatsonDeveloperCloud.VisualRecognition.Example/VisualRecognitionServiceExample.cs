@@ -48,8 +48,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //DetectFacesGet();
             //DetectFacesPost();
             //GetClassifiersBrief();
-            GetClassifiersVerbose();
+            //GetClassifiersVerbose();
             //CreateClassifier();
+            DeleteClassifier();
         }
 
         private void ClassifyGet()
@@ -207,6 +208,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                     Console.WriteLine("Result is null.");
                 }
             }
+        }
+
+        private void DeleteClassifier()
+        {
+            _visualRecognition.DeleteClassifier("");
+
+            Console.WriteLine("Deleted");
         }
     }
 }

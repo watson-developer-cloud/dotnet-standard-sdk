@@ -84,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="positiveExamplesData">A dictionary of class names and zip data of the class's positive examples. Must contain a minimum of 10 images.</param>
         /// <param name="negativeExamplesData">A byte[] of a zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
         /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null);
+        GetClassifiersPerClassifierVerbose CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null);
         /// <summary>
         /// Deletes a custom classifier.
         /// </summary>

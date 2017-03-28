@@ -320,7 +320,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var nameDataContent = new StringContent(classifierName, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                 nameDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                 formData.Add(nameDataContent, "name");
-                
+
                 result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFIERS}")
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
@@ -338,7 +338,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public object DeleteClassifier(string classifierId)
         {
-
             object result = null;
 
             if (string.IsNullOrEmpty(classifierId))
@@ -392,7 +391,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             if (positiveExamplesData == null && negativeExamplesData == null)
                 throw new ArgumentNullException("Positive example data and/or negative example data are required to update a classifier.");
-            
+
             try
             {
                 var formData = new MultipartFormDataContent();
@@ -464,7 +463,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
                 if (!string.IsNullOrEmpty(name))
                 {
-                    
+
                     var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     nameContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                     formData.Add(nameContent, "name");
@@ -477,7 +476,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .As<CreateCollection>()
                     .Result;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -487,7 +486,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public object DeleteCollection(string collectionId)
         {
-            throw new NotImplementedException();
+            object result = null;
+
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            try
+            {
+                result =
+                    this.Client.DeleteAsync($"{this.Endpoint}{PATH_COLLECTIONS}/{collectionId}")
+                               .WithArgument("api_key", ApiKey)
+                               .WithArgument("version", VERSION_DATE_2016_05_20)
+                               .As<object>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public CreateCollection GetCollection(string collectionId)
@@ -539,7 +558,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public object DeleteImage(string collectionId, string imageId)
         {
-            throw new NotImplementedException();
+            object result = null;
+
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
+            try
+            {
+                result =
+                    this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)})")
+                               .WithArgument("api_key", ApiKey)
+                               .WithArgument("version", VERSION_DATE_2016_05_20)
+                               .As<object>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public GetCollectionsBrief GetImage(string collectionId, string imageId)
@@ -566,7 +608,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Metadata
         public object DeleteImageMetadata(string collectionId, string imageId)
         {
-            throw new NotImplementedException();
+            object result = null;
+
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
+            try
+            {
+                result =
+                    this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)})")
+                               .WithArgument("api_key", ApiKey)
+                               .WithArgument("version", VERSION_DATE_2016_05_20)
+                               .As<object>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public Dictionary<string, string> GetMetadata(string collectionId, string imageId)

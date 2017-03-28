@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -551,9 +552,74 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #endregion
 
         #region Images
-        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadataData, string imageMetadataFilename = "metadata.json")
+        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadata = null)
         {
-            throw new NotImplementedException();
+            CollectionsConfig result = null;
+
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (imageData == null || string.IsNullOrEmpty(imageName))
+                throw new ArgumentNullException("Image and image name required.");
+
+            string imageMimeType = "";
+            if(!string.IsNullOrEmpty(imageName))
+            {
+                string ext = Path.GetExtension(imageName).ToLower();
+
+                if (ext == ".jpg" || ext == ".jpeg")
+                    imageMimeType = "image/jpeg";
+                else if (ext == ".png")
+                    imageMimeType = "image/png";
+                else
+                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
+            }
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (imageData != null)
+                {
+                    var imageDataContent = new ByteArrayContent(imageData);
+                    imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
+                    formData.Add(imageDataContent, "image_file", imageName);
+                }
+
+                if (imageMetadata != null)
+                {
+                    var imageMetadataContent = new ByteArrayContent(imageMetadata);
+                    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    formData.Add(imageMetadataContent, "metadata", "metadata.json");
+                }
+
+                //if(!string.IsNullOrEmpty(imageMetadata))
+                //{
+                //    var imageMetadataContent = new ByteArrayContent(Encoding.UTF8.GetBytes(imageMetadata));
+                //    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                //    formData.Add(imageMetadataContent, "metadata");
+                //}
+
+                //if(!string.IsNullOrEmpty(imageMetadata))
+                //{
+                //    var imageMetadataContent = new StringContent(imageMetadata);
+                //    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                //    formData.Add(imageMetadataContent, "metadata");
+                //}
+
+                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGES, collectionId)}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<CollectionsConfig>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public object DeleteImage(string collectionId, string imageId)

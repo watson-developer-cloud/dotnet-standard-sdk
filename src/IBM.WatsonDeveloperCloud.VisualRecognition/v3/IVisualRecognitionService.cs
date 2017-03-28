@@ -155,10 +155,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="collectionId">The unique identifier of the collection to add images to.</param>
         /// <param name="imageData">A byte[] of image data.</param>
         /// <param name="imageName">The image file's name.</param>
-        /// <param name="imageMetadataData">A byte[] of image metadata data.</param>
-        /// <param name="imageMetadataFilename">The filename of the image metadata.</param>
+        /// <param name="imageMetadata">A byte[] of image metadata.</param>
         /// <returns></returns>
-        CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadataData, string imageMetadataFilename = "metadata.json");
+        CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadata);
         /// <summary>
         /// Deletes an image from a collection.
         /// </summary>

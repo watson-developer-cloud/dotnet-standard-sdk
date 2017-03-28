@@ -51,7 +51,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //GetClassifiersVerbose();
             //CreateClassifier();
             //DeleteClassifier();
-            GetClassifier();
+            //GetClassifier();
+            //UpdateClassifier();
         }
 
         private void ClassifyGet()
@@ -213,12 +214,24 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteClassifier()
         {
-            var result = _visualRecognition.DeleteClassifier("<classifierId-to-delete>");
+            string classifierToDelete = "";
+            if (string.IsNullOrEmpty(classifierToDelete))
+                throw new ArgumentNullException(nameof(classifierToDelete));
+
+            Console.WriteLine(string.Format("Calling DeleteClassifier(\"{0}\")...", classifierToDelete));
+
+            var result = _visualRecognition.DeleteClassifier(classifierToDelete);
         }
 
         private void GetClassifier()
         {
-            var result = _visualRecognition.GetClassifier("<classifierId-to-get>");
+            string classifierToGet = "";
+            if (string.IsNullOrEmpty(classifierToGet))
+                throw new ArgumentNullException(nameof(classifierToGet));
+
+            Console.WriteLine(string.Format("Calling GetClassifier(\"{0}\")...", classifierToGet));
+
+            var result = _visualRecognition.GetClassifier(classifierToGet);
 
             if (result != null)
             {
@@ -237,6 +250,35 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             else
             {
                 Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void UpdateClassifier()
+        {
+            string classifierToUpdate = "";
+
+            if (string.IsNullOrEmpty(classifierToUpdate))
+                throw new ArgumentNullException(nameof(classifierToUpdate));
+
+            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+            {
+                Console.WriteLine(string.Format("Calling UpdateClassifier(\"{0}\", \"{1}\")...", classifierToUpdate, _localTurtlePositiveExamplesFilePath));
+
+                Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
+                positiveExamples.Add(_turtleClassname, positiveExamplesStream.ReadAllBytes());
+
+                var result = _visualRecognition.UpdateClassifier(classifierToUpdate, positiveExamples);
+
+                if (result != null)
+                {
+                    Console.WriteLine(string.Format("name: {0} | classifierID: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
+                    foreach (ModelClass _class in result.Classes)
+                        Console.WriteLine(string.Format("\tclass: {0}", _class._Class));
+                }
+                else
+                {
+                    Console.WriteLine("Result is null.");
+                }
             }
         }
     }

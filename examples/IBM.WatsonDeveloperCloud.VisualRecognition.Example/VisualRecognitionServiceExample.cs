@@ -337,7 +337,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollection()
         {
-            throw new NotImplementedException();
+            string collectionToDelete = "";
+            if (string.IsNullOrEmpty(collectionToDelete))
+                throw new ArgumentNullException(nameof(collectionToDelete));
+
+            Console.WriteLine(string.Format("Calling DeleteCollection(\"{0}\")...", collectionToDelete));
+
+            var result = _visualRecognition.DeleteCollection(collectionToDelete);
         }
 
         private void GetCollection()
@@ -396,7 +402,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollectionImage()
         {
-            throw new NotImplementedException();
+            string collectionId = "";
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            string imageId = "";
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
+            Console.WriteLine(string.Format("Calling DeleteImage(\"{0}\", \"{1}\")...", collectionId, imageId));
+
+            var result = _visualRecognition.DeleteImage(collectionId, imageId);
         }
 
         private void GetCollectionImage()
@@ -426,7 +442,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollectionImageMetadata()
         {
-            throw new NotImplementedException();
+            string collectionId = "";
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            string imageId = "";
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
+            Console.WriteLine(string.Format("Calling DeleteImageMetadata(\"{0}\", \"{1}\")...", collectionId, imageId));
+
+            var result = _visualRecognition.DeleteImageMetadata(collectionId, imageId);
         }
 
         private void GetCollectionImageMetadata()

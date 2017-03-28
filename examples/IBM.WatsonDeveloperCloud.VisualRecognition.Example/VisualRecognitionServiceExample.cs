@@ -38,6 +38,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private string _turtleClassname = "turtle_positive_examples";
         private string _localNegativeExamplesFilePath = @"exampleData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-classifier";
+        private string _collectionNameToCreate = "dotnet-standard-test-collection";
 
         public VisualRecognitionServiceExample(string apikey)
         {
@@ -53,6 +54,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //DeleteClassifier();
             //GetClassifier();
             //UpdateClassifier();
+            //GetCollections();
+            CreateCollection();
+            //DeleteCollection();
+            //GetCollection();
+            GetCollectionImages();
+            //AddCollectionImages();
+            //DeleteCollectionImage();
+            GetCollectionImage();
+            //DeleteCollectionImageMetadata();
+            GetCollectionImageMetadata();
+            //AddCollectionImageMetadata();
+            //FindSimilar();
         }
 
         private void ClassifyGet()
@@ -199,7 +212,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
                 var result = _visualRecognition.CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream.ReadAllBytes());
 
-                if(result != null)
+                if (result != null)
                 {
                     Console.WriteLine(string.Format("name: {0} | classifierID: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
                     foreach (ModelClass _class in result.Classes)
@@ -280,6 +293,176 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                     Console.WriteLine("Result is null.");
                 }
             }
+        }
+
+        private void GetCollections()
+        {
+            Console.WriteLine("Calling GetCollections()...");
+
+            var result = _visualRecognition.GetCollections();
+
+            if (result != null)
+            {
+                if (result.Collections != null && result.Collections.Count > 0)
+                {
+                    foreach (CreateCollection collection in result.Collections)
+                        Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", collection.Name, collection.CollectionId, collection.Status));
+                }
+                else
+                {
+                    Console.WriteLine("There are no collections.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void CreateCollection()
+        {
+            Console.WriteLine("Calling CreateCollection()...");
+
+            var result = _visualRecognition.CreateCollection(_collectionNameToCreate);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void DeleteCollection()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetCollection()
+        {
+            string collectionToGet = "swift-sdk-unit-test-faces_dd0040";
+            if (string.IsNullOrEmpty(collectionToGet))
+                throw new ArgumentNullException(nameof(collectionToGet));
+
+            Console.WriteLine(string.Format("Calling GetCollection(\"{0}\")...", collectionToGet));
+
+            var result = _visualRecognition.GetCollection(collectionToGet);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
+
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void GetCollectionImages()
+        {
+            string collectionToGetImages = "swift-sdk-unit-test-faces_dd0040";
+            if (string.IsNullOrEmpty(collectionToGetImages))
+                throw new ArgumentNullException(nameof(collectionToGetImages));
+
+            Console.WriteLine(string.Format("Calling GetCollectionImages(\"{0}\")...", collectionToGetImages));
+
+            var result = _visualRecognition.GetCollectionImages(collectionToGetImages);
+
+            if (result != null)
+            {
+                if (result.Images != null && result.Images.Count > 0)
+                {
+                    foreach (GetCollectionsBrief image in result.Images)
+                        Console.WriteLine(string.Format("imageId: {0} | imageFile: {1} | created: {2} | metadata{3}", image.ImageId, image.ImageFile, image.Created, image.Metadata));
+                }
+                else
+                {
+                    Console.WriteLine("There are no images.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void AddCollectionImages()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteCollectionImage()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetCollectionImage()
+        {
+            string collectionToGetImage = "swift-sdk-unit-test-faces_dd0040";
+            string collectionImageToGet = "4fbc3c";
+
+            if (string.IsNullOrEmpty(collectionToGetImage))
+                throw new ArgumentNullException(nameof(collectionToGetImage));
+
+            if (string.IsNullOrEmpty(collectionImageToGet))
+                throw new ArgumentNullException(nameof(collectionImageToGet));
+
+            Console.WriteLine(string.Format("Calling GetCollectionImages(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToGet));
+
+            var result = _visualRecognition.GetImage(collectionToGetImage, collectionImageToGet);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("imageId: {0} | imageFile: {1} | created: {2} | metadata{3}", result.ImageId, result.ImageFile, result.Created, result.Metadata));
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void DeleteCollectionImageMetadata()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetCollectionImageMetadata()
+        {
+            string collectionToGetImage = "swift-sdk-unit-test-faces_dd0040";
+            string collectionImageToGetMetadata = "4fbc3c";
+
+            if (string.IsNullOrEmpty(collectionToGetImage))
+                throw new ArgumentNullException(nameof(collectionToGetImage));
+
+            if (string.IsNullOrEmpty(collectionImageToGetMetadata))
+                throw new ArgumentNullException(nameof(collectionImageToGetMetadata));
+
+            Console.WriteLine(string.Format("Calling GetMetadata(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToGetMetadata));
+
+            var result = _visualRecognition.GetMetadata(collectionToGetImage, collectionImageToGetMetadata);
+
+            if (result != null)
+            {
+                foreach (KeyValuePair<string, string> item in result)
+                    Console.WriteLine(string.Format("Metadata: {0}, {1}", item.Key, item.Value));
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
+        }
+
+        private void AddCollectionImageMetadata()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FindSimilar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

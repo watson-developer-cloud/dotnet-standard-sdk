@@ -433,12 +433,56 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Collections
         public GetCollections GetCollections()
         {
-            throw new NotImplementedException();
+            GetCollections result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{PATH_COLLECTIONS}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<GetCollections>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public CreateCollection CreateCollection(string name)
         {
-            throw new NotImplementedException();
+            CreateCollection result = null;
+
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    
+                    var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    nameContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    formData.Add(nameContent, "name");
+                }
+
+                result = this.Client.PostAsync($"{this.Endpoint}{PATH_COLLECTIONS}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithBodyContent(formData)
+                    .As<CreateCollection>()
+                    .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public object DeleteCollection(string collectionId)
@@ -448,12 +492,42 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public CreateCollection GetCollection(string collectionId)
         {
-            throw new NotImplementedException();
+            CreateCollection result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION, collectionId)}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<CreateCollection>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public GetCollectionImages GetCollectionImages(string collectionId)
         {
-            throw new NotImplementedException();
+            GetCollectionImages result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGES, collectionId)}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<GetCollectionImages>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
         #endregion
 
@@ -470,7 +544,22 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public GetCollectionsBrief GetImage(string collectionId, string imageId)
         {
-            throw new NotImplementedException();
+            GetCollectionsBrief result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<GetCollectionsBrief>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
         #endregion
 
@@ -480,12 +569,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             throw new NotImplementedException();
         }
 
-        public MetadataResponse GetMetadata(string collectionId, string imageId)
+        public Dictionary<string, string> GetMetadata(string collectionId, string imageId)
         {
-            throw new NotImplementedException();
+            Dictionary<string, string> result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<Dictionary<string, string>>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
-        public MetadataResponse UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json")
+        public Dictionary<string, string> UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json")
         {
             throw new NotImplementedException();
         }

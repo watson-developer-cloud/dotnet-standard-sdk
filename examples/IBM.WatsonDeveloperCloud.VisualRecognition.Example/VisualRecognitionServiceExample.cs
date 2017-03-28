@@ -20,6 +20,7 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 {
@@ -30,6 +31,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"exampleData\giraffe_to_classify.jpg";
+        private string _localImageMetadataPath = @"exampleData\imageMetadata.json";
         private string _localFaceFilePath = @"exampleData\obama.jpg";
         private string _localTurtleFilePath = @"exampleData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"exampleData\giraffe_positive_examples.zip";
@@ -55,15 +57,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //GetClassifier();
             //UpdateClassifier();
             //GetCollections();
-            CreateCollection();
+            //CreateCollection();
             //DeleteCollection();
             //GetCollection();
-            GetCollectionImages();
-            //AddCollectionImages();
+            //GetCollectionImages();
+            AddCollectionImages();
             //DeleteCollectionImage();
-            GetCollectionImage();
+            //GetCollectionImage();
             //DeleteCollectionImageMetadata();
-            GetCollectionImageMetadata();
+            //GetCollectionImageMetadata();
             //AddCollectionImageMetadata();
             //FindSimilar();
         }
@@ -369,7 +371,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void GetCollectionImages()
         {
-            string collectionToGetImages = "swift-sdk-unit-test-faces_dd0040";
+            string collectionToGetImages = "dotnet-standard-test-collection_6cb25d";
             if (string.IsNullOrEmpty(collectionToGetImages))
                 throw new ArgumentNullException(nameof(collectionToGetImages));
 
@@ -397,7 +399,39 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void AddCollectionImages()
         {
-            throw new NotImplementedException();
+            string collectionId = "dotnet-standard-test-collection_6cb25d";
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            using (FileStream imageStream = File.OpenRead(_localGiraffeFilePath), metadataStream = File.OpenRead(_localImageMetadataPath))
+            {
+                Console.WriteLine(string.Format("Calling AddImage(\"{0}\", \"{1}\")...", collectionId, _localGiraffeFilePath));
+
+                var result = _visualRecognition.AddImage(collectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
+
+                if (result != null)
+                {
+                    Console.WriteLine("Number of images processed: {0}", result.ImagesProcessed);
+                    foreach (CollectionImagesConfig image in result.Images)
+                    {
+                        Console.WriteLine("file: {0} | id: {1}", image.ImageFile, image.ImageId);
+
+                        if(image.Metadata != null && image.Metadata.Count > 0)
+                        {
+                            foreach (KeyValuePair<string, string> kvp in image.Metadata)
+                                Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no metadata.");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Result is null.");
+                }
+            }
         }
 
         private void DeleteCollectionImage()

@@ -34,6 +34,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         /// <value>The number of images processed in this call.</value>
         [JsonProperty("images_processed")]
-        public decimal? ImagesProcessed { get; set; }
+        public int ImagesProcessed { get; set; }
     }
 }

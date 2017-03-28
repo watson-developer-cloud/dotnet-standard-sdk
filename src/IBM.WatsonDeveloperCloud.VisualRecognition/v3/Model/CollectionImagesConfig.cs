@@ -47,6 +47,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         /// <value>Metadata JSON object (key value pairs)</value>
         [JsonProperty("metadata")]
-        public string Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }

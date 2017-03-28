@@ -50,7 +50,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //GetClassifiersBrief();
             //GetClassifiersVerbose();
             //CreateClassifier();
-            DeleteClassifier();
+            //DeleteClassifier();
+            GetClassifier();
         }
 
         private void ClassifyGet()
@@ -212,9 +213,31 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteClassifier()
         {
-            _visualRecognition.DeleteClassifier("");
+            var result = _visualRecognition.DeleteClassifier("<classifierId-to-delete>");
+        }
 
-            Console.WriteLine("Deleted");
+        private void GetClassifier()
+        {
+            var result = _visualRecognition.GetClassifier("<classifierId-to-get>");
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("name: {0} | id: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
+
+                if (result.Classes != null && result.Classes.Count > 0)
+                {
+                    foreach (ModelClass _class in result.Classes)
+                        Console.WriteLine(string.Format("\tclass: {0}", _class._Class));
+                }
+                else
+                {
+                    Console.WriteLine("There are no classes.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Result is null.");
+            }
         }
     }
 }

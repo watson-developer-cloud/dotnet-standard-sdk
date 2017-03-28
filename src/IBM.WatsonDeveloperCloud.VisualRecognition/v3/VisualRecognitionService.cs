@@ -365,7 +365,22 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
         {
-            throw new NotImplementedException();
+            GetClassifiersPerClassifierVerbose result = null;
+
+            try
+            {
+                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .As<GetClassifiersPerClassifierVerbose>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         public GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)

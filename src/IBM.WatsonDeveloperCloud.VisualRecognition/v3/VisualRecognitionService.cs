@@ -307,7 +307,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
                     positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(positiveExampleDataContent, kvp.Key, string.Format("{0}.zip", kvp.Key));
+                    formData.Add(positiveExampleDataContent, string.Format("{0}_positive_examples", kvp.Key), string.Format("{0}_positive_examples.zip", kvp.Key));
                 }
 
                 if (negativeExamplesData != null)
@@ -383,9 +383,50 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
+        public GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, byte[]> positiveExamplesData = null, byte[] negativeExamplesData = null)
         {
-            throw new NotImplementedException();
+            GetClassifiersPerClassifierVerbose result = null;
+
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            if (positiveExamplesData == null && negativeExamplesData == null)
+                throw new ArgumentNullException("Positive example data and/or negative example data are required to update a classifier.");
+            
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (positiveExamplesData != null)
+                {
+                    foreach (var kvp in positiveExamplesData)
+                    {
+                        var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
+                        positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
+                        formData.Add(positiveExampleDataContent, string.Format("{0}_positive_examples", kvp.Key), string.Format("{0}_positive_examples.zip", kvp.Key));
+                    }
+                }
+
+                if (negativeExamplesData != null)
+                {
+                    var negativeExamplesDataContent = new ByteArrayContent(negativeExamplesData);
+                    negativeExamplesDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
+                    formData.Add(negativeExamplesDataContent, "negative_examples", "negative_examples.zip");
+                }
+
+                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<GetClassifiersPerClassifierVerbose>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
         #endregion
 

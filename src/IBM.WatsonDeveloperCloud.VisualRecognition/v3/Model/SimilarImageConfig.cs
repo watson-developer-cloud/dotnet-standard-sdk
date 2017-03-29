@@ -47,12 +47,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         /// <value>Metadata JSON object (key value pairs)</value>
         [JsonProperty("metadata")]
-        public string Metadata { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
         /// <summary>
         /// Confidence in the match
         /// </summary>
         /// <value>Confidence in the match</value>
         [JsonProperty("score")]
-        public decimal? Score { get; set; }
+        public float Score { get; set; }
     }
 }

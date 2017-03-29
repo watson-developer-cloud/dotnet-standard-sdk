@@ -154,10 +154,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="collectionId">The unique identifier of the collection to add images to.</param>
         /// <param name="imageData">A byte[] of image data.</param>
-        /// <param name="imageName">The image file's name.</param>
+        /// <param name="imageFileName">The image file's name including the extension.</param>
         /// <param name="imageMetadata">A byte[] of image metadata.</param>
         /// <returns></returns>
-        CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadata);
+        CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageFileName, byte[] imageMetadata);
         /// <summary>
         /// Deletes an image from a collection.
         /// </summary>
@@ -213,8 +213,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="collectionId">The unique identifier for the collection who's image to add metadata to.</param>
         /// <param name="imageFileData">A byte[] of image data used to search for similar images in a collection.</param>
+        /// <param name="imageFileName">The image file's name including the extension.</param>
         /// <param name="limit">The number of similar results you want returned. Default limit is 10 results, you can specify a maximum limit of 100 results.</param>
         /// <returns></returns>
-        SimilarImagesConfig FindSimilar(string collectionId, byte[] imageFileData, int limit = 10);
+        SimilarImagesConfig FindSimilar(string collectionId, byte[] imageFileData, string imageFileName, int limit = 10);
     }
 }

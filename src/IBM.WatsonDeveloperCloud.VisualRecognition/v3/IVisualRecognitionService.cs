@@ -197,10 +197,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="collectionId">The unique identifier for the collection who's image to update metadata.</param>
         /// <param name="imageId">The unique identifier for the image to update metadata.</param>
-        /// <param name="metadataFileData">A byte[] of metadata data.</param>
-        /// <param name="metadataFileName">The filename of the metadata file.</param>
+        /// <param name="imageMetadata">A byte[] of metadata file.</param>
         /// <returns>MetadataResponse</returns>
-        Dictionary<string, string> UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json");
+        Dictionary<string, string> AddImageMetadata(string collectionId, string imageId, byte[] imageMetadata);
         ///// <summary>
         ///// Finds similar images.
         ///// </summary>

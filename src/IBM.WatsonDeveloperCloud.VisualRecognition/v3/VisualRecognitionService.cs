@@ -605,7 +605,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result = this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)})")
+                result = this.Client.DeleteAsync($"{this.Endpoint}/v3/collections/{collectionId}/images/{imageId}")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .As<object>()
@@ -653,7 +653,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result = this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)})")
+                result = this.Client.DeleteAsync($"{this.Endpoint}/v3/collections/{collectionId}/images/{imageId}/metadata")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .As<object>()

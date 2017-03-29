@@ -21,6 +21,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 {
@@ -35,44 +37,52 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private string _localFaceFilePath = @"exampleData\obama.jpg";
         private string _localTurtleFilePath = @"exampleData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"exampleData\giraffe_positive_examples.zip";
-        private string _giraffeClassname = "giraffe_positive_examples";
+        private string _giraffeClassname = "giraffe";
         private string _localTurtlePositiveExamplesFilePath = @"exampleData\turtle_positive_examples.zip";
-        private string _turtleClassname = "turtle_positive_examples";
+        private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"exampleData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-classifier";
+        private string _createdClassifierId = "";
         private string _collectionNameToCreate = "dotnet-standard-test-collection";
+        private string _createdCollectionId = "swift-sdk-unit-test-faces_d878e5";
+        private string _addedImageId = "b50958";
+        AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         public VisualRecognitionServiceExample(string apikey)
         {
             _visualRecognition.SetCredential(apikey);
 
-            //ClassifyGet();
-            //ClassifyPost();
-            //DetectFacesGet();
-            //DetectFacesPost();
-            //GetClassifiersBrief();
-            //GetClassifiersVerbose();
-            //CreateClassifier();
-            //DeleteClassifier();
-            //GetClassifier();
-            //UpdateClassifier();
-            //GetCollections();
-            //CreateCollection();
-            //DeleteCollection();
-            //GetCollection();
-            //GetCollectionImages();
-            //AddCollectionImages();
-            //DeleteCollectionImage();
-            //GetCollectionImage();
-            //DeleteCollectionImageMetadata();
-            //GetCollectionImageMetadata();
-            //AddCollectionImageMetadata();
+            ClassifyGet();
+            ClassifyPost();
+            DetectFacesGet();
+            DetectFacesPost();
+            GetClassifiersBrief();
+            GetClassifiersVerbose();
+
+            CreateClassifier();
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+            UpdateClassifier();
+            GetCollections();
+            CreateCollection();
+            GetCollection();
+            GetCollectionImages();
+            AddCollectionImages();
+            GetCollectionImage();
+            GetCollectionImageMetadata();
+            AddCollectionImageMetadata();
+            DeleteCollectionImageMetadata();
             FindSimilar();
+            DeleteCollectionImage();
+            DeleteCollection();
+            DeleteClassifier();
+
+            Console.WriteLine("Operation complete");
         }
 
         private void ClassifyGet()
         {
-            Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _imageUrl));
+            Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _imageUrl));
             var result = _visualRecognition.Classify(_imageUrl);
 
             if (result != null)
@@ -92,7 +102,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
-                Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _localGiraffeFilePath));
+                Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _localGiraffeFilePath));
                 var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
 
                 foreach (Classifiers image in result.Images)
@@ -104,7 +114,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DetectFacesGet()
         {
-            Console.WriteLine(string.Format("Calling DetectFaces(\"{0}\")...", _faceUrl));
+            Console.WriteLine(string.Format("\nCalling DetectFaces(\"{0}\")...", _faceUrl));
             var result = _visualRecognition.DetectFaces(_faceUrl);
 
             if (result != null)
@@ -138,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
-                Console.WriteLine(string.Format("Calling DetectFaces(\"{0}\")...", _localFaceFilePath));
+                Console.WriteLine(string.Format("\nCalling DetectFaces(\"{0}\")...", _localFaceFilePath));
                 var result = _visualRecognition.DetectFaces((fs as Stream).ReadAllBytes(), Path.GetFileName(_localFaceFilePath), "image/jpeg");
 
                 if (result != null)
@@ -171,7 +181,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void GetClassifiersBrief()
         {
-            Console.WriteLine("Calling GetClassifiersBrief()...");
+            Console.WriteLine("\nCalling GetClassifiersBrief()...");
 
             var result = _visualRecognition.GetClassifiersBrief();
 
@@ -207,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         {
             using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
             {
-                Console.WriteLine(string.Format("Calling CreateClassifier(\"{0}\")", _createdClassifierName));
+                Console.WriteLine(string.Format("\nCalling CreateClassifier(\"{0}\")", _createdClassifierName));
 
                 Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
                 positiveExamples.Add(_giraffeClassname, positiveExamplesStream.ReadAllBytes());
@@ -219,6 +229,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                     Console.WriteLine(string.Format("name: {0} | classifierID: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
                     foreach (ModelClass _class in result.Classes)
                         Console.WriteLine(string.Format("\tclass: {0}", _class._Class));
+
+                    _createdClassifierId = result.ClassifierId;
                 }
                 else
                 {
@@ -229,24 +241,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteClassifier()
         {
-            string classifierToDelete = "";
-            if (string.IsNullOrEmpty(classifierToDelete))
-                throw new ArgumentNullException(nameof(classifierToDelete));
+            if (string.IsNullOrEmpty(_createdClassifierId))
+                throw new ArgumentNullException(nameof(_createdClassifierId));
 
-            Console.WriteLine(string.Format("Calling DeleteClassifier(\"{0}\")...", classifierToDelete));
+            Console.WriteLine(string.Format("\nCalling DeleteClassifier(\"{0}\")...", _createdClassifierId));
 
-            var result = _visualRecognition.DeleteClassifier(classifierToDelete);
+            var result = _visualRecognition.DeleteClassifier(_createdClassifierId);
+
+            if (result != null)
+                Console.WriteLine(string.Format("Classifier {0} deleted.", _createdClassifierId));
         }
 
         private void GetClassifier()
         {
-            string classifierToGet = "";
-            if (string.IsNullOrEmpty(classifierToGet))
-                throw new ArgumentNullException(nameof(classifierToGet));
+            if (string.IsNullOrEmpty(_createdClassifierId))
+                throw new ArgumentNullException(nameof(_createdClassifierId));
 
-            Console.WriteLine(string.Format("Calling GetClassifier(\"{0}\")...", classifierToGet));
+            Console.WriteLine(string.Format("\nCalling GetClassifier(\"{0}\")...", _createdClassifierId));
 
-            var result = _visualRecognition.GetClassifier(classifierToGet);
+            var result = _visualRecognition.GetClassifier(_createdClassifierId);
 
             if (result != null)
             {
@@ -270,19 +283,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void UpdateClassifier()
         {
-            string classifierToUpdate = "";
-
-            if (string.IsNullOrEmpty(classifierToUpdate))
-                throw new ArgumentNullException(nameof(classifierToUpdate));
+            if (string.IsNullOrEmpty(_createdClassifierId))
+                throw new ArgumentNullException(nameof(_createdClassifierId));
 
             using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
             {
-                Console.WriteLine(string.Format("Calling UpdateClassifier(\"{0}\", \"{1}\")...", classifierToUpdate, _localTurtlePositiveExamplesFilePath));
+                Console.WriteLine(string.Format("\nCalling UpdateClassifier(\"{0}\", \"{1}\")...", _createdClassifierId, _localTurtlePositiveExamplesFilePath));
 
                 Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
                 positiveExamples.Add(_turtleClassname, positiveExamplesStream.ReadAllBytes());
 
-                var result = _visualRecognition.UpdateClassifier(classifierToUpdate, positiveExamples);
+                var result = _visualRecognition.UpdateClassifier(_createdClassifierId, positiveExamples);
 
                 if (result != null)
                 {
@@ -323,13 +334,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void CreateCollection()
         {
-            Console.WriteLine("Calling CreateCollection()...");
+            Console.WriteLine(string.Format("Calling CreateCollection(\"{0}\")...", _collectionNameToCreate));
 
             var result = _visualRecognition.CreateCollection(_collectionNameToCreate);
 
             if (result != null)
             {
                 Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
+
+                _createdCollectionId = result.CollectionId;
             }
             else
             {
@@ -339,29 +352,29 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollection()
         {
-            string collectionToDelete = "";
-            if (string.IsNullOrEmpty(collectionToDelete))
-                throw new ArgumentNullException(nameof(collectionToDelete));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            Console.WriteLine(string.Format("Calling DeleteCollection(\"{0}\")...", collectionToDelete));
+            Console.WriteLine(string.Format("\nCalling DeleteCollection(\"{0}\")...", _createdCollectionId));
 
-            var result = _visualRecognition.DeleteCollection(collectionToDelete);
+            var result = _visualRecognition.DeleteCollection(_createdCollectionId);
+
+            if (result != null)
+                Console.WriteLine(string.Format("Collection {0} deleted.", _createdCollectionId));
         }
 
         private void GetCollection()
         {
-            string collectionToGet = "swift-sdk-unit-test-faces_dd0040";
-            if (string.IsNullOrEmpty(collectionToGet))
-                throw new ArgumentNullException(nameof(collectionToGet));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            Console.WriteLine(string.Format("Calling GetCollection(\"{0}\")...", collectionToGet));
+            Console.WriteLine(string.Format("\nCalling GetCollection(\"{0}\")...", _createdCollectionId));
 
-            var result = _visualRecognition.GetCollection(collectionToGet);
+            var result = _visualRecognition.GetCollection(_createdCollectionId);
 
             if (result != null)
             {
                 Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
-
             }
             else
             {
@@ -371,13 +384,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void GetCollectionImages()
         {
-            string collectionToGetImages = "dotnet-standard-test-collection_6cb25d";
-            if (string.IsNullOrEmpty(collectionToGetImages))
-                throw new ArgumentNullException(nameof(collectionToGetImages));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            Console.WriteLine(string.Format("Calling GetCollectionImages(\"{0}\")...", collectionToGetImages));
+            Console.WriteLine(string.Format("\nCalling GetCollectionImages(\"{0}\")...", _createdCollectionId));
 
-            var result = _visualRecognition.GetCollectionImages(collectionToGetImages);
+            var result = _visualRecognition.GetCollectionImages(_createdCollectionId);
 
             if (result != null)
             {
@@ -399,15 +411,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void AddCollectionImages()
         {
-            string collectionId = "dotnet-standard-test-collection_6cb25d";
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
             using (FileStream imageStream = File.OpenRead(_localGiraffeFilePath), metadataStream = File.OpenRead(_localImageMetadataPath))
             {
-                Console.WriteLine(string.Format("Calling AddImage(\"{0}\", \"{1}\")...", collectionId, _localGiraffeFilePath));
+                Console.WriteLine(string.Format("\nCalling AddImage(\"{0}\", \"{1}\")...", _createdCollectionId, _localGiraffeFilePath));
 
-                var result = _visualRecognition.AddImage(collectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
+                var result = _visualRecognition.AddImage(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
 
                 if (result != null)
                 {
@@ -425,6 +436,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                         {
                             Console.WriteLine("There is no metadata for this image.");
                         }
+
+                        _addedImageId = image.ImageId;
                     }
                 }
                 else
@@ -436,33 +449,31 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollectionImage()
         {
-            string collectionId = "";
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            string imageId = "";
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
+            if (string.IsNullOrEmpty(_addedImageId))
+                throw new ArgumentNullException(nameof(_addedImageId));
 
-            Console.WriteLine(string.Format("Calling DeleteImage(\"{0}\", \"{1}\")...", collectionId, imageId));
+            Console.WriteLine(string.Format("\nCalling DeleteImage(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
 
-            var result = _visualRecognition.DeleteImage(collectionId, imageId);
+            var result = _visualRecognition.DeleteImage(_createdCollectionId, _addedImageId);
+
+            if(result != null)
+                Console.WriteLine(string.Format("Image {0} deleted from collection {1}.", _addedImageId, _createdCollectionId));
         }
 
         private void GetCollectionImage()
         {
-            string collectionToGetImage = "swift-sdk-unit-test-faces_dd0040";
-            string collectionImageToGet = "4fbc3c";
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            if (string.IsNullOrEmpty(collectionToGetImage))
-                throw new ArgumentNullException(nameof(collectionToGetImage));
+            if (string.IsNullOrEmpty(_addedImageId))
+                throw new ArgumentNullException(nameof(_addedImageId));
 
-            if (string.IsNullOrEmpty(collectionImageToGet))
-                throw new ArgumentNullException(nameof(collectionImageToGet));
+            Console.WriteLine(string.Format("\nCalling GetCollectionImages(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
 
-            Console.WriteLine(string.Format("Calling GetCollectionImages(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToGet));
-
-            var result = _visualRecognition.GetImage(collectionToGetImage, collectionImageToGet);
+            var result = _visualRecognition.GetImage(_createdCollectionId, _addedImageId);
 
             if (result != null)
             {
@@ -476,33 +487,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void DeleteCollectionImageMetadata()
         {
-            string collectionId = "";
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            string imageId = "";
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
+            if (string.IsNullOrEmpty(_addedImageId))
+                throw new ArgumentNullException(nameof(_addedImageId));
 
-            Console.WriteLine(string.Format("Calling DeleteImageMetadata(\"{0}\", \"{1}\")...", collectionId, imageId));
+            Console.WriteLine(string.Format("\nCalling DeleteImageMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
 
-            var result = _visualRecognition.DeleteImageMetadata(collectionId, imageId);
+            var result = _visualRecognition.DeleteImageMetadata(_createdCollectionId, _addedImageId);
         }
 
         private void GetCollectionImageMetadata()
         {
-            string collectionToGetImage = "swift-sdk-unit-test-faces_dd0040";
-            string collectionImageToGetMetadata = "4fbc3c";
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            if (string.IsNullOrEmpty(collectionToGetImage))
-                throw new ArgumentNullException(nameof(collectionToGetImage));
+            if (string.IsNullOrEmpty(_addedImageId))
+                throw new ArgumentNullException(nameof(_addedImageId));
 
-            if (string.IsNullOrEmpty(collectionImageToGetMetadata))
-                throw new ArgumentNullException(nameof(collectionImageToGetMetadata));
+            Console.WriteLine(string.Format("\nCalling GetMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
 
-            Console.WriteLine(string.Format("Calling GetMetadata(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToGetMetadata));
-
-            var result = _visualRecognition.GetMetadata(collectionToGetImage, collectionImageToGetMetadata);
+            var result = _visualRecognition.GetMetadata(_createdCollectionId, _addedImageId);
 
             if (result != null)
             {
@@ -517,20 +523,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void AddCollectionImageMetadata()
         {
-            string collectionToGetImage = "dotnet-standard-test-collection_6cb25d";
-            string collectionImageToAddMetadata = "6aee1c";
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
-            if (string.IsNullOrEmpty(collectionToGetImage))
-                throw new ArgumentNullException(nameof(collectionToGetImage));
-
-            if (string.IsNullOrEmpty(collectionImageToAddMetadata))
-                throw new ArgumentNullException(nameof(collectionImageToAddMetadata));
+            if (string.IsNullOrEmpty(_addedImageId))
+                throw new ArgumentNullException(nameof(_addedImageId));
 
             using (FileStream metadataStream = File.OpenRead(_localImageMetadataPath))
             {
-                Console.WriteLine(string.Format("Calling AddMetadata(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToAddMetadata));
+                Console.WriteLine(string.Format("\nCalling AddMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
 
-                var result = _visualRecognition.AddImageMetadata(collectionToGetImage, collectionImageToAddMetadata, metadataStream.ReadAllBytes());
+                var result = _visualRecognition.AddImageMetadata(_createdCollectionId, _addedImageId, metadataStream.ReadAllBytes());
 
                 if (result != null && result.Count > 0)
                 {
@@ -547,15 +550,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void FindSimilar()
         {
-            string collectionId = "dotnet-standard-test-collection_6cb25d";
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                throw new ArgumentNullException(nameof(_createdCollectionId));
 
             using (FileStream imageStream = File.OpenRead(_localTurtleFilePath))
             {
-                Console.WriteLine(string.Format("Calling FindSimilar(\"{0}\", \"{1}\")...", collectionId, _localTurtleFilePath));
+                Console.WriteLine(string.Format("\nCalling FindSimilar(\"{0}\", \"{1}\")...", _createdCollectionId, _localTurtleFilePath));
 
-                var result = _visualRecognition.FindSimilar(collectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath));
+                var result = _visualRecognition.FindSimilar(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath));
 
                 if (result != null)
                 {
@@ -580,6 +582,47 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                     Console.WriteLine("Result is null.");
                 }
             }
+        }
+
+        private void DeleteAllClassifiers()
+        {
+            Console.WriteLine("Getting classifiers");
+            var classifiers = _visualRecognition.GetClassifiersBrief();
+
+            List<string> classifierIds = new List<string>();
+
+            foreach (GetClassifiersPerClassifierBrief classifier in classifiers.Classifiers)
+                classifierIds.Add(classifier.ClassifierId);
+
+            Console.WriteLine(string.Format("Deleting {0} classifiers", classifierIds.Count));
+
+            foreach (string classifierId in classifierIds)
+            {
+                Console.WriteLine(string.Format("Deleting classifier {0}", classifierId));
+                _visualRecognition.DeleteClassifier(classifierId);
+                Console.WriteLine(string.Format("\tClassifier {0} deleted", classifierId));
+            }
+
+            Console.WriteLine("Operation complete");
+        }
+
+        private bool IsClassifierReady(string classifierId)
+        {
+            var result = _visualRecognition.GetClassifier(classifierId);
+            Console.WriteLine(string.Format("Classifier {0} status is {1}.", classifierId, result.Status));
+
+            if (result.Status.ToLower() == "ready")
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    IsClassifierReady(classifierId);
+                });
+            }
+
+            return result.Status.ToLower() == "ready";
         }
     }
 }

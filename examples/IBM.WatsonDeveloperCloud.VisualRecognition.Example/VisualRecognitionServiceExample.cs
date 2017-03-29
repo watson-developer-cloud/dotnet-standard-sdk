@@ -66,8 +66,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //GetCollectionImage();
             //DeleteCollectionImageMetadata();
             //GetCollectionImageMetadata();
-            AddCollectionImageMetadata();
-            //FindSimilar();
+            //AddCollectionImageMetadata();
+            FindSimilar();
         }
 
         private void ClassifyGet()
@@ -423,7 +423,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                         }
                         else
                         {
-                            Console.WriteLine("There is no metadata.");
+                            Console.WriteLine("There is no metadata for this image.");
                         }
                     }
                 }
@@ -547,7 +547,39 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void FindSimilar()
         {
-            throw new NotImplementedException();
+            string collectionId = "dotnet-standard-test-collection_6cb25d";
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            using (FileStream imageStream = File.OpenRead(_localTurtleFilePath))
+            {
+                Console.WriteLine(string.Format("Calling FindSimilar(\"{0}\", \"{1}\")...", collectionId, _localTurtleFilePath));
+
+                var result = _visualRecognition.FindSimilar(collectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath));
+
+                if (result != null)
+                {
+                    Console.WriteLine("Number of images processed: {0}", result.ImagesProcessed);
+                    foreach (SimilarImageConfig image in result.SimilarImages)
+                    {
+                        Console.WriteLine("file: {0} | id: {1} | score: {2}", image.ImageFile, image.ImageId, image.Score);
+
+                        if (image.Metadata != null && image.Metadata.Count > 0)
+                        {
+                            foreach (KeyValuePair<string, string> kvp in image.Metadata)
+                                Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no metadata for this image.");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Result is null.");
+                }
+            }
         }
     }
 }

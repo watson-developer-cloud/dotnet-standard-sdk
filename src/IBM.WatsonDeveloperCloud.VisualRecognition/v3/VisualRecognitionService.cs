@@ -548,28 +548,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #endregion
 
         #region Images
-        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageName, byte[] imageMetadata = null)
+        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageFileName, byte[] imageMetadata = null)
         {
             CollectionsConfig result = null;
 
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if (imageData == null || string.IsNullOrEmpty(imageName))
+            if (imageData == null || string.IsNullOrEmpty(imageFileName))
                 throw new ArgumentNullException("Image and image name required.");
 
-            string imageMimeType = "";
-            if(!string.IsNullOrEmpty(imageName))
-            {
-                string ext = Path.GetExtension(imageName).ToLower();
-
-                if (ext == ".jpg" || ext == ".jpeg")
-                    imageMimeType = "image/jpeg";
-                else if (ext == ".png")
-                    imageMimeType = "image/png";
-                else
-                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
-            }
+            string imageMimeType = GetImageMimeTypeFromFilename(imageFileName);
 
             try
             {
@@ -579,7 +568,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var imageDataContent = new ByteArrayContent(imageData);
                     imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
-                    formData.Add(imageDataContent, "image_file", imageName);
+                    formData.Add(imageDataContent, "image_file", imageFileName);
                 }
 
                 if (imageMetadata != null)
@@ -739,9 +728,62 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #endregion
 
         #region Find Similar
-        public SimilarImagesConfig FindSimilar(string collectionId, byte[] imageFileData, int limit = 10)
+        public SimilarImagesConfig FindSimilar(string collectionId, byte[] imageData, string imageFileName, int limit = 10)
         {
-            throw new NotImplementedException();
+            SimilarImagesConfig result = null;
+
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (imageData == null || string.IsNullOrEmpty(imageFileName))
+                throw new ArgumentNullException("Image and image name required.");
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+                string imageMimeType = GetImageMimeTypeFromFilename(imageFileName);
+
+                if (imageData != null)
+                {
+                    var imageDataContent = new ByteArrayContent(imageData);
+                    imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
+                    formData.Add(imageDataContent, "image_file", imageFileName);
+                }
+
+                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_FIND_SIMILAR, collectionId)}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithArgument("limit", limit.ToString())
+                    .WithBodyContent(formData)
+                    .As<SimilarImagesConfig>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Utils
+        private string GetImageMimeTypeFromFilename(string filename)
+        {
+            string imageMimeType = "";
+            if (!string.IsNullOrEmpty(filename))
+            {
+                string ext = Path.GetExtension(filename).ToLower();
+
+                if (ext == ".jpg" || ext == ".jpeg")
+                    imageMimeType = "image/jpeg";
+                else if (ext == ".png")
+                    imageMimeType = "image/png";
+                else
+                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
+            }
+
+            return imageMimeType;
         }
         #endregion
     }

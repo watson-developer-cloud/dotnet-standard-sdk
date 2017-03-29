@@ -61,12 +61,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             //DeleteCollection();
             //GetCollection();
             //GetCollectionImages();
-            AddCollectionImages();
+            //AddCollectionImages();
             //DeleteCollectionImage();
             //GetCollectionImage();
             //DeleteCollectionImageMetadata();
             //GetCollectionImageMetadata();
-            //AddCollectionImageMetadata();
+            AddCollectionImageMetadata();
             //FindSimilar();
         }
 
@@ -517,7 +517,32 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void AddCollectionImageMetadata()
         {
-            throw new NotImplementedException();
+            string collectionToGetImage = "dotnet-standard-test-collection_6cb25d";
+            string collectionImageToAddMetadata = "6aee1c";
+
+            if (string.IsNullOrEmpty(collectionToGetImage))
+                throw new ArgumentNullException(nameof(collectionToGetImage));
+
+            if (string.IsNullOrEmpty(collectionImageToAddMetadata))
+                throw new ArgumentNullException(nameof(collectionImageToAddMetadata));
+
+            using (FileStream metadataStream = File.OpenRead(_localImageMetadataPath))
+            {
+                Console.WriteLine(string.Format("Calling AddMetadata(\"{0}\", \"{1}\")...", collectionToGetImage, collectionImageToAddMetadata));
+
+                var result = _visualRecognition.AddImageMetadata(collectionToGetImage, collectionImageToAddMetadata, metadataStream.ReadAllBytes());
+
+                if (result != null && result.Count > 0)
+                {
+                    foreach (KeyValuePair<string, string> kvp in result)
+                        Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
+                }
+                else
+                {
+                    Console.WriteLine("Result is null.");
+                }
+            }
+
         }
 
         private void FindSimilar()

@@ -346,8 +346,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result =
-                    this.Client.DeleteAsync($"{this.Endpoint}{PATH_CLASSIFIERS}/{classifierId}")
+                result = this.Client.DeleteAsync($"{this.Endpoint}{PATH_CLASSIFIERS}/{classifierId}")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .WithHeader("accept", HttpMediaType.TEXT_HTML)
@@ -356,7 +355,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
             catch (AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
@@ -494,8 +492,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result =
-                    this.Client.DeleteAsync($"{this.Endpoint}{PATH_COLLECTIONS}/{collectionId}")
+                result = this.Client.DeleteAsync($"{this.Endpoint}{PATH_COLLECTIONS}/{collectionId}")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .As<object>()
@@ -503,7 +500,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
             catch (AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
@@ -593,20 +589,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(imageMetadataContent, "metadata", "metadata.json");
                 }
 
-                //if(!string.IsNullOrEmpty(imageMetadata))
-                //{
-                //    var imageMetadataContent = new ByteArrayContent(Encoding.UTF8.GetBytes(imageMetadata));
-                //    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                //    formData.Add(imageMetadataContent, "metadata");
-                //}
-
-                //if(!string.IsNullOrEmpty(imageMetadata))
-                //{
-                //    var imageMetadataContent = new StringContent(imageMetadata);
-                //    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                //    formData.Add(imageMetadataContent, "metadata");
-                //}
-
                 result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGES, collectionId)}")
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
@@ -634,8 +616,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result =
-                    this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)})")
+                result = this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)})")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .As<object>()
@@ -643,7 +624,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
             catch (AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
@@ -684,8 +664,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                result =
-                    this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)})")
+                result = this.Client.DeleteAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)})")
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .As<object>()
@@ -693,7 +672,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
             catch (AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
@@ -720,9 +698,43 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public Dictionary<string, string> UpdateMetadata(string collectionId, string imageId, byte[] metadataFileData, string metadataFileName = "metadata.json")
+        public Dictionary<string, string> AddImageMetadata(string collectionId, string imageId, byte[] imageMetadata)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
+            if (imageMetadata == null)
+                throw new ArgumentNullException(nameof(imageMetadata));
+
+            Dictionary<string, string> result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (imageMetadata != null)
+                {
+                    var imageMetadataContent = new ByteArrayContent(imageMetadata);
+                    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    formData.Add(imageMetadataContent, "metadata", "metadata.json");
+                }
+
+                result = this.Client.PutAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
+                    .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithArgument("api_key", ApiKey)
+                    .WithBodyContent(formData)
+                    .As<Dictionary<string, string>>()
+                    .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
         #endregion
 

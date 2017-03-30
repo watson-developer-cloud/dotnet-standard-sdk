@@ -20,7 +20,6 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -51,11 +51,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 this.Endpoint = URL;
         }
 
-        public VisualRecognitionService(string apikey)
+        public VisualRecognitionService(string apikey, string endpoint)
             : this()
         {
             if (string.IsNullOrEmpty(apikey))
                 throw new ArgumentNullException(nameof(apikey));
+
+            if (!string.IsNullOrEmpty(endpoint))
+                this.Endpoint = endpoint;
 
             this.SetCredential(apikey);
         }

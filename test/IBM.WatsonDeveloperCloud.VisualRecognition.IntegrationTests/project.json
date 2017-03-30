@@ -4,7 +4,9 @@
   "testRunner": "mstest",
 
   "buildOptions": {
-    "copyToOutput": "appsettings.json"
+    "copyToOutput": {
+      "include": [ "./exampleData", "appsettings.json" ]
+    }
   },
 
   "dependencies": {

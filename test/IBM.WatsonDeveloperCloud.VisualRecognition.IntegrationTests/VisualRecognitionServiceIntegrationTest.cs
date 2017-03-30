@@ -43,10 +43,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"exampleData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-classifier";
-        private string _createdClassifierId = "";
+        private static string _createdClassifierId = "";
         private string _collectionNameToCreate = "dotnet-standard-test-collection";
-        private string _createdCollectionId = "";
-        private string _addedImageId = "";
+        private static string _createdCollectionId = "";
+        private static string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
@@ -62,12 +62,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
             JObject.Parse(fileContent);
 
             apikey = vcapServices["visual_recognition"][0]["credentials"]["apikey"].ToString();
-
-            DeleteDotnetCollections();
         }
 
         [TestMethod]
-        public void ClassifyGet_Success()
+        public void t00_ClassifyGet_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -80,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyPost_Success()
+        public void t01_ClassifyPost_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -96,7 +94,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesGet_Success()
+        public void t02_DetectFacesGet_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -109,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesPost_Success()
+        public void t03_DetectFacesPost_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -125,7 +123,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetClassifiersBrief_Success()
+        public void t04_GetClassifiersBrief_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -135,7 +133,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetClassifiersVerbose_Success()
+        public void t05_GetClassifiersVerbose_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -145,7 +143,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void CreateClassifier_Success()
+        public void t06_CreateClassifier_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -165,7 +163,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void UpdateClassifier_Success()
+        public void t07_WaitForClassifier()
+        {
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void t08_UpdateClassifier_Success()
         {
             if (string.IsNullOrEmpty(_createdClassifierId))
                 Assert.Fail("Created classsifier ID is null or empty.");
@@ -181,12 +188,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
                 var result = service.UpdateClassifier(_createdClassifierId, positiveExamples);
 
                 Assert.IsNotNull(result);
-                Assert.IsTrue(ContainsClass(result, _turtleClassname));
             }
         }
 
         [TestMethod]
-        public void GetCollections_Success()
+        public void t09_GetCollections_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -197,8 +203,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void CreateCollection_Success()
+        public void t10_CreateCollection_Success()
         {
+            DeleteDotnetCollections();
+
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
 
@@ -211,7 +219,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetCollection_Success()
+        public void t11_GetCollection_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -226,7 +234,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetCollectionImages_Success()
+        public void t12_GetCollectionImages_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -240,7 +248,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void AddCollectionImages_Success()
+        public void t13_AddCollectionImages_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -258,7 +266,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetCollectionImage_Success()
+        public void t14_GetCollectionImage_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -276,7 +284,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void GetCollectionImageMetadata_Success()
+        public void t15_GetCollectionImageMetadata_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -293,7 +301,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void AddCollectionImageMetadata_Success()
+        public void t16_AddCollectionImageMetadata_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -314,7 +322,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DeleteCollectionImageMetadata_Success()
+        public void t17_DeleteCollectionImageMetadata_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -325,7 +333,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void FindSimilar_Success()
+        public void t18_FindSimilar_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
@@ -340,7 +348,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DeleteCollectionImage_Success()
+        public void t19_DeleteCollectionImage_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -357,7 +365,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DeleteCollection_Success()
+        public void t20_DeleteCollection_Success()
         {
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("Created collection ID is null or empty.");
@@ -371,7 +379,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
         }
 
         [TestMethod]
-        public void DeleteClassifier_Success()
+        public void t21_DeleteClassifier_Success()
         {
             if (string.IsNullOrEmpty(_createdClassifierId))
                 Assert.Fail("Created classsifier ID is null or empty.");

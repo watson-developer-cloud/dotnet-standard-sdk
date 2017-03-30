@@ -44,8 +44,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private string _createdClassifierName = "dotnet-standard-test-classifier";
         private string _createdClassifierId = "";
         private string _collectionNameToCreate = "dotnet-standard-test-collection";
-        private string _createdCollectionId = "swift-sdk-unit-test-faces_d878e5";
-        private string _addedImageId = "b50958";
+        private string _createdCollectionId = "";
+        private string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         public VisualRecognitionServiceExample(string apikey)
@@ -64,6 +64,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             autoEvent.WaitOne();
             UpdateClassifier();
             GetCollections();
+
+            DeleteDotnetCollections();
+
             CreateCollection();
             GetCollection();
             GetCollectionImages();
@@ -77,12 +80,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             DeleteCollection();
             DeleteClassifier();
 
-            Console.WriteLine("Operation complete");
+            Console.WriteLine("\n\nOperation complete");
         }
 
         private void ClassifyGet()
         {
-            Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _imageUrl));
+            Console.WriteLine(string.Format("Calling Classify(\"{0}\")...", _imageUrl));
             var result = _visualRecognition.Classify(_imageUrl);
 
             if (result != null)
@@ -119,24 +122,32 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
             if (result != null)
             {
-                foreach (FacesTopLevelSingle image in result.Images)
-                    foreach (OneFaceResult face in image.Faces)
+                if (result.Images != null && result.Images.Count > 0)
+                {
+                    foreach (FacesTopLevelSingle image in result.Images)
                     {
-                        if (face.Identity != null)
-                            Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
-                        else
-                            Console.WriteLine("identity is null.");
+                        if (image.Faces != null && image.Faces.Count < 0)
+                        {
+                            foreach (OneFaceResult face in image.Faces)
+                            {
+                                if (face.Identity != null)
+                                    Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
+                                else
+                                    Console.WriteLine("identity is null.");
 
-                        if (face.Age != null)
-                            Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
-                        else
-                            Console.WriteLine("age is null.");
+                                if (face.Age != null)
+                                    Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
+                                else
+                                    Console.WriteLine("age is null.");
 
-                        if (face.Gender != null)
-                            Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
-                        else
-                            Console.WriteLine("gender is null.");
+                                if (face.Gender != null)
+                                    Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
+                                else
+                                    Console.WriteLine("gender is null.");
+                            }
+                        }
                     }
+                }
             }
             else
             {
@@ -153,24 +164,32 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
                 if (result != null)
                 {
-                    foreach (FacesTopLevelSingle image in result.Images)
-                        foreach (OneFaceResult face in image.Faces)
+                    if (result.Images != null && result.Images.Count > 0)
+                    {
+                        foreach (FacesTopLevelSingle image in result.Images)
                         {
-                            if (face.Identity != null)
-                                Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
-                            else
-                                Console.WriteLine("identity is null.");
+                            if (image.Faces != null && image.Faces.Count < 0)
+                            {
+                                foreach (OneFaceResult face in image.Faces)
+                                {
+                                    if (face.Identity != null)
+                                        Console.WriteLine(string.Format("name: {0} | score: {1} | type hierarchy: {2}", face.Identity.Name, face.Identity.Score, face.Identity.TypeHierarchy));
+                                    else
+                                        Console.WriteLine("identity is null.");
 
-                            if (face.Age != null)
-                                Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
-                            else
-                                Console.WriteLine("age is null.");
+                                    if (face.Age != null)
+                                        Console.WriteLine(string.Format("Age: {0} - {1} | score: {2}", face.Age.Min, face.Age.Max, face.Age.Score));
+                                    else
+                                        Console.WriteLine("age is null.");
 
-                            if (face.Gender != null)
-                                Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
-                            else
-                                Console.WriteLine("gender is null.");
+                                    if (face.Gender != null)
+                                        Console.WriteLine(string.Format("gender: {0} | score: {1}", face.Gender.Gender, face.Gender.Score));
+                                    else
+                                        Console.WriteLine("gender is null.");
+                                }
+                            }
                         }
+                    }
                 }
                 else
                 {
@@ -198,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void GetClassifiersVerbose()
         {
-            Console.WriteLine("Calling GetClassifiersVerbose()...");
+            Console.WriteLine("\nCalling GetClassifiersVerbose()...");
 
             var result = _visualRecognition.GetClassifiersVerbose();
 
@@ -228,7 +247,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                 {
                     Console.WriteLine(string.Format("name: {0} | classifierID: {1} | status: {2}", result.Name, result.ClassifierId, result.Status));
                     foreach (ModelClass _class in result.Classes)
-                        Console.WriteLine(string.Format("\tclass: {0}", _class._Class));
+                        Console.WriteLine(string.Format("class: {0}", _class._Class));
 
                     _createdClassifierId = result.ClassifierId;
                 }
@@ -310,7 +329,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void GetCollections()
         {
-            Console.WriteLine("Calling GetCollections()...");
+            Console.WriteLine("\nCalling GetCollections()...");
 
             var result = _visualRecognition.GetCollections();
 
@@ -334,7 +353,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
         private void CreateCollection()
         {
-            Console.WriteLine(string.Format("Calling CreateCollection(\"{0}\")...", _collectionNameToCreate));
+            Console.WriteLine(string.Format("\nCalling CreateCollection(\"{0}\")...", _collectionNameToCreate));
 
             var result = _visualRecognition.CreateCollection(_collectionNameToCreate);
 
@@ -427,7 +446,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                     {
                         Console.WriteLine("file: {0} | id: {1}", image.ImageFile, image.ImageId);
 
-                        if(image.Metadata != null && image.Metadata.Count > 0)
+                        if (image.Metadata != null && image.Metadata.Count > 0)
                         {
                             foreach (KeyValuePair<string, string> kvp in image.Metadata)
                                 Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
@@ -459,7 +478,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
 
             var result = _visualRecognition.DeleteImage(_createdCollectionId, _addedImageId);
 
-            if(result != null)
+            if (result != null)
                 Console.WriteLine(string.Format("Image {0} deleted from collection {1}.", _addedImageId, _createdCollectionId));
         }
 
@@ -513,7 +532,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             if (result != null)
             {
                 foreach (KeyValuePair<string, string> item in result)
-                    Console.WriteLine(string.Format("Metadata: {0}, {1}", item.Key, item.Value));
+                    Console.WriteLine(string.Format("\tMetadata: {0}, {1}", item.Key, item.Value));
             }
             else
             {
@@ -609,7 +628,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
         private bool IsClassifierReady(string classifierId)
         {
             var result = _visualRecognition.GetClassifier(classifierId);
-            Console.WriteLine(string.Format("Classifier {0} status is {1}.", classifierId, result.Status));
+            Console.WriteLine(string.Format("\tClassifier {0} status is {1}.", classifierId, result.Status));
 
             if (result.Status.ToLower() == "ready")
                 autoEvent.Set();
@@ -623,6 +642,38 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
             }
 
             return result.Status.ToLower() == "ready";
+        }
+
+        private void DeleteDotnetCollections()
+        {
+            Console.WriteLine("\nGetting all collections");
+            List<string> collectionIdsToDelete = new List<string>();
+
+            var collections = _visualRecognition.GetCollections();
+
+            foreach (CreateCollection collection in collections.Collections)
+            {
+                string name = collection.Name;
+                string id = collection.CollectionId;
+                Console.WriteLine(string.Format("name: {0} | id: {1}", name, id));
+
+                if (name == _collectionNameToCreate)
+                    collectionIdsToDelete.Add(id);
+            }
+
+            if (collectionIdsToDelete.Count > 0)
+            {
+                foreach (string collectionIdToDelete in collectionIdsToDelete)
+                {
+                    Console.WriteLine(string.Format("Deleting collection {0}.", collectionIdToDelete));
+                    _visualRecognition.DeleteCollection(collectionIdToDelete);
+                    Console.WriteLine(string.Format("\tCollection {0} deleted.", collectionIdToDelete));
+                }
+            }
+            else
+            {
+                Console.WriteLine("There are no matching collections to delete.");
+            }
         }
     }
 }

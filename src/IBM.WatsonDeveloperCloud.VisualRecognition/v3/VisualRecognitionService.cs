@@ -174,6 +174,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Detect Faces
         public Faces DetectFaces(string url)
         {
+            if (string.IsNullOrEmpty(url))
+                throw new ArgumentNullException(nameof(url));
+
             Faces result = null;
 
             try
@@ -203,7 +206,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (imageData != null)
             {
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
+                    throw new ArgumentNullException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
             }
 
             try
@@ -370,6 +373,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
         {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
             GetClassifiersPerClassifierVerbose result = null;
 
             try
@@ -777,6 +783,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Utils
         private string GetImageMimeTypeFromFilename(string filename)
         {
+            if (string.IsNullOrEmpty(filename))
+                throw new ArgumentNullException(nameof(filename));
+
             string imageMimeType = "";
             if (!string.IsNullOrEmpty(filename))
             {

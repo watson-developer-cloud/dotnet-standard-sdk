@@ -37,8 +37,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                  .Returns(client);
+            client.WithAuthentication(null, null)
+                .Returns(client);
 
             return client;
         }
@@ -61,7 +61,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         public void Constructor_Endpoint_Null()
         {
             VisualRecognitionService service =
-                new VisualRecognitionService(Arg.Any<string>(), null);
+                new VisualRecognitionService("", null);
         }
 
         [TestMethod]
@@ -86,13 +86,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void Classify_Success()
+        public void Classify_Get_Success()
         {
             IClient client = this.CreateClient();
-
             IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
-                .Returns(request);
 
             ClassifyTopLevelMultiple response = new ClassifyTopLevelMultiple()
             {
@@ -109,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                                     new ClassResult()
                                     {
                                         _Class = "turtle",
-                                        Score = 1.00f
+                                        Score = 0.98f
                                     }
                                 }
                             }
@@ -118,20 +115,113 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 }
             };
 
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<float>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
 
             request.As<ClassifyTopLevelMultiple>()
                 .Returns(Task.FromResult(response));
 
-            VisualRecognitionService service = 
+            VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var result = service.Classify("url-to-classify");
+            var classifications = service.Classify("url-to-classify");
 
-            Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
-            Assert.IsTrue(result.Images.Count > 0);
+            Assert.IsNotNull(classifications);
+            Assert.IsTrue(classifications.Images.Count > 0);
+            Assert.IsTrue(classifications.Images[0].Classifiers[0].Classes[0]._Class == "turtle");
+            Assert.IsTrue(classifications.Images[0].Classifiers[0].Classes[0].Score == 0.98f);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Classify_Get_No_Url()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify();
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Classify_Post_NoImage_NoUrl()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify(Arg.Any<byte[]>(), null, null, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Classify_Post_NoImage_OrName()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify(Arg.Any<byte[]>(), null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Classify_Post_IncorrectOwners()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify(Arg.Any<byte[]>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string[]>(), Arg.Any<string[]>());
+        }
+
+        [TestMethod]
+        public void Classify_Post_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            ClassifyPost response = new ClassifyPost()
+            {
+                Images = new List<Classifiers>()
+                {
+                    _Classifiers = new List<ClassifyPerClassifier>()
+                    {
+                        new ClassifyPerClassifier()
+                        {
+                            Classes = new List<ClassResult>()
+                            {
+                                new ClassResult()
+                                {
+                                    _Class = "turtle",
+                                    Score = 0.98f
+                                }
+                            }
+                        }
+                    }
+                }
+            };
         }
     }
 }

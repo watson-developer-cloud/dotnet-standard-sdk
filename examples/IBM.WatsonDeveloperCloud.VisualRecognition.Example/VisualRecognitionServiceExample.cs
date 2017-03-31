@@ -108,7 +108,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
                 var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
 
                 foreach (Classifiers image in result.Images)
-                    foreach (ClassifyPerClassifier classifier in image.classifiers)
+                    foreach (ClassifyPerClassifier classifier in image._Classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
                             Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
             }

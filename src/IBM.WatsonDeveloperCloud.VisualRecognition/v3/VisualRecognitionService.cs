@@ -77,6 +77,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             ClassifyTopLevelMultiple result = null;
 
+            if (string.IsNullOrEmpty(url))
+                throw new ArgumentNullException(nameof(url));
+
             string _classifierIDs = classifierIDs != null ? string.Join(",", classifierIDs) : "default";
 
             if (owners != null)
@@ -92,6 +95,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithHeader("Accept-Language", "en")
                     .WithArgument("url", url)
                     .WithArgument("classifier_ids", _classifierIDs)
+                    .WithArgument("owners", _owners)
                     .WithArgument("threshold", threshold.ToString())
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)

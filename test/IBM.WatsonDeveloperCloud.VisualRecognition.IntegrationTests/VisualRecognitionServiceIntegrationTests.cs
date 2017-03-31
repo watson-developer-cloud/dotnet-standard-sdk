@@ -156,6 +156,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
                 var result = service.CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream.ReadAllBytes());
 
                 _createdClassifierId = result.ClassifierId;
+                Console.WriteLine(string.Format("Created classifier {0}", _createdClassifierId));
 
                 Assert.IsNotNull(result);
                 Assert.IsTrue(!string.IsNullOrEmpty(_createdClassifierId));
@@ -213,6 +214,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
             var result = service.CreateCollection(_collectionNameToCreate);
 
             _createdCollectionId = result.CollectionId;
+            Console.WriteLine(string.Format("Created collection {0}", _createdCollectionId));
 
             Assert.IsNotNull(result);
             Assert.IsTrue(!string.IsNullOrEmpty(_createdCollectionId));
@@ -258,6 +260,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
                 var result = service.AddImage(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
 
                 _addedImageId = result.Images[0].ImageId;
+                Console.WriteLine(string.Format("Added image {0}", _addedImageId));
 
                 Assert.IsNotNull(result);
                 Assert.IsTrue(result.ImagesProcessed > 0);
@@ -399,7 +402,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests
 
             var result = service.GetClassifier(classifierId);
 
-            if (result.Status.ToLower() == "ready")
+            string status = result.Status.ToLower();
+            Console.WriteLine(string.Format("Classifier status is {0}", status));
+
+            if (status == "ready")
                 autoEvent.Set();
             else
             {

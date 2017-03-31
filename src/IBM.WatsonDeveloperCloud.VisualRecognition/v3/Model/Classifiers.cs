@@ -14,8 +14,8 @@
 * limitations under the License.
 *
 */
-
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
@@ -27,6 +27,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Classifiers
         /// </summary>
-        public List<ClassifyPerClassifier> classifiers { get; set; }
+        [JsonProperty("classifiers")]
+        public List<ClassifyPerClassifier> _Classifiers { get; set; }
     }
 }

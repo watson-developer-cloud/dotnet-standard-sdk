@@ -538,7 +538,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
+        #endregion
 
+        #region Images
         public GetCollectionImages GetCollectionImages(string collectionId)
         {
             GetCollectionImages result = null;
@@ -558,9 +560,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-        #endregion
 
-        #region Images
         public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageFileName, byte[] imageMetadata = null)
         {
             CollectionsConfig result = null;
@@ -577,12 +577,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             {
                 var formData = new MultipartFormDataContent();
 
-                if (imageData != null)
-                {
-                    var imageDataContent = new ByteArrayContent(imageData);
-                    imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
-                    formData.Add(imageDataContent, "image_file", imageFileName);
-                }
+                var imageDataContent = new ByteArrayContent(imageData);
+                imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
+                formData.Add(imageDataContent, "image_file", imageFileName);
+
 
                 if (imageMetadata != null)
                 {
@@ -636,6 +634,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             GetCollectionsBrief result = null;
 
+            if(string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
             try
             {
                 result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)}")
@@ -684,6 +688,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             Dictionary<string, string> result = null;
 
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(imageId))
+                throw new ArgumentNullException(nameof(imageId));
+
             try
             {
                 result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
@@ -717,12 +727,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             {
                 var formData = new MultipartFormDataContent();
 
-                if (imageMetadata != null)
-                {
-                    var imageMetadataContent = new ByteArrayContent(imageMetadata);
-                    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(imageMetadataContent, "metadata", "metadata.json");
-                }
+                var imageMetadataContent = new ByteArrayContent(imageMetadata);
+                imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                formData.Add(imageMetadataContent, "metadata", "metadata.json");
 
                 result = this.Client.PutAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
                     .WithArgument("version", VERSION_DATE_2016_05_20)
@@ -756,12 +763,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var formData = new MultipartFormDataContent();
                 string imageMimeType = GetImageMimeTypeFromFilename(imageFileName);
 
-                if (imageData != null)
-                {
-                    var imageDataContent = new ByteArrayContent(imageData);
-                    imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
-                    formData.Add(imageDataContent, "image_file", imageFileName);
-                }
+                var imageDataContent = new ByteArrayContent(imageData);
+                imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
+                formData.Add(imageDataContent, "image_file", imageFileName);
 
                 result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_FIND_SIMILAR, collectionId)}")
                     .WithArgument("version", VERSION_DATE_2016_05_20)

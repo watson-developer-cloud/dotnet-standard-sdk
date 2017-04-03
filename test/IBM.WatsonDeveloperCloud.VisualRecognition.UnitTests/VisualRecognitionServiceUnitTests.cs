@@ -519,7 +519,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
 
         #region Classifiers
         [TestMethod]
-        public void GetClassifiersBrief_Get_Success()
+        public void GetClassifiersBrief_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -564,7 +564,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void GetClassifiersVerbose_Get_Success()
+        public void GetClassifiersVerbose_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -612,7 +612,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateClassifier_Post_No_Name()
+        public void CreateClassifier_No_Name()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -629,7 +629,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateClassifier_Post_No_Positive_Examples()
+        public void CreateClassifier_No_Positive_Examples()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -643,7 +643,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateClassifier_Post_Single_Positive_Example()
+        public void CreateClassifier_Single_Positive_Example()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -658,7 +658,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void CreateClassifier_Post_Positive_And_Negative_Examples_Success()
+        public void CreateClassifier_Positive_And_Negative_Examples_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -702,7 +702,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void CreateClassifier_Post_Two_Positive_Examples_Success()
+        public void CreateClassifier_Two_Positive_Examples_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -784,8 +784,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-
-        public void GetClassifier_Get_No_ClassifierId()
+        public void GetClassifier_No_ClassifierId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -797,7 +796,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void GetClassifier_Get_Success()
+        public void GetClassifier_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -834,8 +833,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-
-        public void UpdateClassifier_Post_No_ClassifierId()
+        public void UpdateClassifier_No_ClassifierId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -852,8 +850,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-
-        public void UpdateClassifier_Post_No_Data()
+        public void UpdateClassifier_No_Data()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -865,7 +862,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void UpdateClassifier_Post_Positive_Examples_Success()
+        public void UpdateClassifier_Positive_Examples_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -907,7 +904,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void UpdateClassifier_Post_Negative_Examples_Success()
+        public void UpdateClassifier_Negative_Examples_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -948,7 +945,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         }
 
         [TestMethod]
-        public void UpdateClassifier_Post_Positive_And_Negative_Examples_Success()
+        public void UpdateClassifier_Positive_And_Negative_Examples_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -993,15 +990,451 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         #endregion
 
         #region Collections
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCollections_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void CreateCollection_No_Name()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void CreateCollection_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCollection_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void DeleteCollection_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCollection_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void GetCollection_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+            Assert.Fail("Not implemented");
+        }
         #endregion
 
         #region Images
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCollectionImages_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void GetCollectionImages_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImage_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImage_No_ImageData_No_Filename_No_Metadata()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void AddImage_No_MetaData_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void AddImage_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImage_No_CollectionId_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImage_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImage_No_CollectionId()
+        {
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        private void DeleteImage_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImage_No_CollectionId_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImage_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImage_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        private void GetImage_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
         #endregion
 
         #region Metadata
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImageMetadata_No_CollectionId_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImageMetadata_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void DeleteImageMetadata_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        private void DeleteImageMetadata_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImageMetadata_No_CollectionId_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImageMetadata_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        private void GetImageMetadata_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        private void GetImageMetadata_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImageMetadata_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImageMetadata_No_ImageId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImageMetadata_No_ImageData_No_Metadata()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void AddImageMetadata_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
         #endregion
 
         #region Find Similar
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+
+        public void FindSimilar_No_CollectionId()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+
+        public void FindSimilar_No_ImageData()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+
+        public void FindSimlar_No_ImageFilename()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
+
+        [TestMethod]
+        public void FindSimilar_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            Assert.Fail("Not implemented");
+        }
         #endregion
     }
 }

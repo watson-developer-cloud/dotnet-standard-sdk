@@ -523,6 +523,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             CreateCollection result = null;
 
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
             try
             {
                 result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION, collectionId)}")
@@ -543,6 +546,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Images
         public GetCollectionImages GetCollectionImages(string collectionId)
         {
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
             GetCollectionImages result = null;
 
             try

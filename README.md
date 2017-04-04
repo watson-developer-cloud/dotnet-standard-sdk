@@ -55,7 +55,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [wdc]: http://www.ibm.com/watson/developercloud/
 [bluemix_registration]: http://bluemix.net/registration
 [ibm-github]: http://ibm.github.io/
-<TODO latest release url>
+
 [latest_release]: https://github.com/watson-developer-cloud/dotnet-standard-sdk/releases/latest
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson

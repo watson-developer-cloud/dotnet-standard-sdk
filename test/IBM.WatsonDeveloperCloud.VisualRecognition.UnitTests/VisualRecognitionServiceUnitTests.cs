@@ -764,7 +764,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             client.DeleteAsync(Arg.Any<string>())
                   .Returns(request);
 
-            object response = new object(){};
+            object response = new object() { };
 
             request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
@@ -990,16 +990,51 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         #endregion
 
         #region Collections
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
         public void GetCollections_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            GetCollections response = new GetCollections()
+            {
+                Collections = new List<CreateCollection>()
+                {
+                    new CreateCollection()
+                    {
+                        CollectionId = "collectionId",
+                        Name = "collectionName",
+                        Created = "createdDate",
+                        Images = 1,
+                        Status = "collectionStatus",
+                        Capacity = "collectionCapacity"
+                    }
+                }
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<GetCollections>()
+               .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetCollections();
+
+            Assert.IsNotNull(result);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(result.Collections[0].CollectionId == "collectionId");
+            Assert.IsTrue(result.Collections[0].Name == "collectionName");
+            Assert.IsTrue(result.Collections[0].Created == "createdDate");
+            Assert.IsTrue(result.Collections[0].Images == 1);
+            Assert.IsTrue(result.Collections[0].Status == "collectionStatus");
+            Assert.IsTrue(result.Collections[0].Capacity == "collectionCapacity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1011,7 +1046,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.CreateCollection(null);
         }
 
         [TestMethod]
@@ -1019,11 +1054,42 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            CreateCollection response = new CreateCollection()
+            {
+                CollectionId = "collectionId",
+                Name = "collectionName",
+                Created = "collectionCreated",
+                Images = 1,
+                Status = "collectionStatus",
+                Capacity = "collectionCapacity"
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<CreateCollection>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.CreateCollection("collectionName");
+
+            Assert.IsNotNull(collection);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.Name == "collectionName");
+            Assert.IsTrue(collection.CollectionId == "collectionId");
+            Assert.IsTrue(collection.Status == "collectionStatus");
+            Assert.IsTrue(collection.Created == "collectionCreated");
+            Assert.IsTrue(collection.Images == 1);
+            Assert.IsTrue(collection.Capacity == "collectionCapacity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1035,7 +1101,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteCollection(null);
         }
 
         [TestMethod]
@@ -1043,11 +1109,26 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            object response = new object();
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<object>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.DeleteCollection("collectionName");
+
+            Assert.IsNotNull(collection);
+            client.Received().DeleteAsync(Arg.Any<string>());
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1059,7 +1140,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetCollection(null);
         }
 
         [TestMethod]
@@ -1067,10 +1148,40 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            CreateCollection response = new CreateCollection()
+            {
+                CollectionId = "collectionId",
+                Name = "collectionName",
+                Created = "createdDate",
+                Images = 1,
+                Status = "collectionStatus",
+                Capacity = "collectionCapacity"
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<CreateCollection>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
-            Assert.Fail("Not implemented");
+
+            var collection = service.GetCollection("collectionName");
+
+            Assert.IsNotNull(collection);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.CollectionId == "collectionId");
+            Assert.IsTrue(collection.Name == "collectionName");
+            Assert.IsTrue(collection.Created == "createdDate");
+            Assert.IsTrue(collection.Images == 1);
+            Assert.IsTrue(collection.Status == "collectionStatus");
+            Assert.IsTrue(collection.Capacity == "collectionCapacity");
         }
         #endregion
 
@@ -1084,7 +1195,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetCollectionImages(null);
         }
 
         [TestMethod]
@@ -1092,11 +1203,40 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            GetCollectionImages response = new GetCollectionImages()
+            {
+                Images = new List<GetCollectionsBrief>()
+                {
+                    new GetCollectionsBrief()
+                    {
+                        ImageId = "imageId",
+                        Created = "created",
+                        ImageFile = "imageFile"
+                    }
+                }
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<GetCollectionImages>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.GetCollectionImages("collectionName");
+
+            Assert.IsNotNull(collection);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.Images[0].ImageId == "imageId");
+            Assert.IsTrue(collection.Images[0].Created == "created");
+            Assert.IsTrue(collection.Images[0].ImageFile == "imageFile");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1108,7 +1248,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.AddImage(null, new byte[4], "imageFileName", new byte[4]);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1120,7 +1260,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.AddImage("collectionId", null, null, null);
         }
 
         [TestMethod]
@@ -1128,11 +1268,43 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            CollectionsConfig response = new CollectionsConfig()
+            {
+                Images = new List<CollectionImagesConfig>()
+                {
+                    new CollectionImagesConfig()
+                    {
+                        ImageId = "imageId",
+                        Created = "created",
+                        ImageFile = "imageFile"
+                    }
+                },
+                ImagesProcessed = 1
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<CollectionsConfig>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.AddImage("collectionName", new byte[4], "imageFilename.jpg");
+
+            Assert.IsNotNull(collection);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.Images[0].ImageId == "imageId");
+            Assert.IsTrue(collection.Images[0].Created == "created");
+            Assert.IsTrue(collection.Images[0].ImageFile == "imageFile");
         }
 
         [TestMethod]
@@ -1140,15 +1312,47 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            CollectionsConfig response = new CollectionsConfig()
+            {
+                Images = new List<CollectionImagesConfig>()
+                {
+                    new CollectionImagesConfig()
+                    {
+                        ImageId = "imageId",
+                        Created = "created",
+                        ImageFile = "imageFile"
+                    }
+                },
+                ImagesProcessed = 1
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<CollectionsConfig>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.AddImage("collectionName", new byte[4], "imageFilename.jpg", new byte[4]);
+
+            Assert.IsNotNull(collection);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.Images[0].ImageId == "imageId");
+            Assert.IsTrue(collection.Images[0].Created == "created");
+            Assert.IsTrue(collection.Images[0].ImageFile == "imageFile");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImage_No_CollectionId_No_ImageId()
+        public void DeleteImage_No_CollectionId_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1156,11 +1360,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteImage(null, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImage_No_ImageId()
+        public void DeleteImage_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1168,29 +1372,50 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteImage("collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImage_No_CollectionId()
+        public void DeleteImage_No_CollectionId()
         {
-            Assert.Fail("Not implemented");
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var result = service.DeleteImage(null, "imageId");
         }
 
         [TestMethod]
-        private void DeleteImage_Success()
+        public void DeleteImage_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            object response = new object();
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<object>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.DeleteImage("collectionId", "ImageId");
+
+            Assert.IsNotNull(collection);
+            client.Received().DeleteAsync(Arg.Any<string>());
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImage_No_CollectionId_No_ImageId()
+        public void GetImage_No_CollectionId_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1198,11 +1423,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetImage(null, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImage_No_ImageId()
+        public void GetImage_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1210,11 +1435,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetImage("collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImage_No_CollectionId()
+        public void GetImage_No_CollectionId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1222,25 +1447,49 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetImage(null, "imageId");
         }
 
         [TestMethod]
-        private void GetImage_Success()
+        public void GetImage_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            GetCollectionsBrief response = new GetCollectionsBrief()
+            {
+                ImageId = "imageId",
+                Created = "created",
+                ImageFile = "imageFile",
+                Metadata = new object() { }
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<GetCollectionsBrief>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var image = service.GetImage("collectionId", "imageId");
+
+            Assert.IsNotNull(image);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(image.ImageId == "imageId");
+            Assert.IsTrue(image.Created == "created");
+            Assert.IsTrue(image.ImageFile == "imageFile");
         }
         #endregion
 
         #region Metadata
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImageMetadata_No_CollectionId_No_ImageId()
+        public void DeleteImageMetadata_No_CollectionId_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1248,11 +1497,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteImageMetadata(null, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImageMetadata_No_ImageId()
+        public void DeleteImageMetadata_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1260,11 +1509,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteImageMetadata("collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void DeleteImageMetadata_No_CollectionId()
+        public void DeleteImageMetadata_No_CollectionId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1272,23 +1521,38 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.DeleteImageMetadata(null, "imageId");
         }
 
         [TestMethod]
-        private void DeleteImageMetadata_Success()
+        public void DeleteImageMetadata_Success()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            object response = new object();
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<object>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var collection = service.DeleteImageMetadata("collectionId", "ImageId");
+
+            Assert.IsNotNull(collection);
+            client.Received().DeleteAsync(Arg.Any<string>());
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImageMetadata_No_CollectionId_No_ImageId()
+        public void GetImageMetadata_No_CollectionId_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1296,11 +1560,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetMetadata(null, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImageMetadata_No_ImageId()
+        public void GetImageMetadata_No_ImageId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1308,11 +1572,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.GetMetadata("collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        private void GetImageMetadata_No_CollectionId()
+        public void GetImageMetadata_No_CollectionId()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1320,19 +1584,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
-        }
-
-        [TestMethod]
-        private void GetImageMetadata_Success()
-        {
-            IClient client = this.CreateClient();
-            IRequest request = Substitute.For<IRequest>();
-
-            VisualRecognitionService service =
-                new VisualRecognitionService(client);
-
-            Assert.Fail("Not implemented");
+            var result = service.GetMetadata(null, "imageId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1344,7 +1596,37 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.AddImageMetadata(null, "imageId", new byte[4]);
+        }
+
+
+        [TestMethod]
+        public void GetImageMetadata_Success()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Dictionary<string, string> response = new Dictionary<string, string>();
+            response.Add("metadata", "test");
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+
+            request.As<Dictionary<string, string>>()
+                .Returns(Task.FromResult(response));
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var metadata = service.GetMetadata("collectionId", "imageId");
+
+            Assert.IsNotNull(metadata);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(metadata["metadata"] == "test");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1356,11 +1638,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.AddImageMetadata("collectionId", null, new byte[4]);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void AddImageMetadata_No_ImageData_No_Metadata()
+        public void AddImageMetadata_No_ImageId_No_Metadata()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1368,7 +1650,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.AddImageMetadata("collectionId", null, null);
         }
 
         [TestMethod]
@@ -1376,11 +1658,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            Dictionary<string, string> response = new Dictionary<string, string>();
+            response.Add("metadata", "test");
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<Dictionary<string, string>>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var metadata = service.AddImageMetadata("collecionId", "imageId", new byte[4]);
+
+            Assert.IsNotNull(metadata);
+            client.Received().PutAsync(Arg.Any<string>());
+            Assert.IsTrue(metadata["metadata"] == "test");
         }
         #endregion
 
@@ -1395,7 +1696,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.FindSimilar(null, new byte[4], "imageFilename.jpg");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1408,7 +1709,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.FindSimilar("collectionId", null, "imageFilename.jpg");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1421,7 +1722,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var result = service.FindSimilar("collectionId", new byte[4], null);
         }
 
         [TestMethod]
@@ -1429,11 +1730,45 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            SimilarImagesConfig response = new SimilarImagesConfig()
+            {
+                SimilarImages = new List<SimilarImageConfig>()
+                {
+                    new SimilarImageConfig()
+                    {
+                        ImageId = "imageId",
+                        Created = "created",
+                        ImageFile = "imageFile",
+                        Score = 0.98f
+                    }
+                },
+                ImagesProcessed = 1
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<SimilarImagesConfig>()
+                .Returns(Task.FromResult(response));
 
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            Assert.Fail("Not implemented");
+            var similarImages = service.FindSimilar("collectionName", new byte[4], "imageFilename.jpg");
+
+            Assert.IsNotNull(similarImages);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(similarImages.SimilarImages[0].ImageId == "imageId");
+            Assert.IsTrue(similarImages.SimilarImages[0].Created == "created");
+            Assert.IsTrue(similarImages.SimilarImages[0].ImageFile == "imageFile");
+            Assert.IsTrue(similarImages.SimilarImages[0].Score == 0.98f);
         }
         #endregion
     }

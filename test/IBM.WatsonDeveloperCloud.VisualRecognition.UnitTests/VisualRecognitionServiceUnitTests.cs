@@ -38,7 +38,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
         {
             IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(null, null)
+            client.WithAuthentication("user", "password")
                 .Returns(client);
 
             return client;

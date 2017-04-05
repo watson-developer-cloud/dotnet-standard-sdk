@@ -301,9 +301,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                                     Name = "Sneaky Snake",
                                     Score = 0.98f,
                                     TypeHierarchy = "Regular Snakes/Sneaky Snake"
+                                },
+                                FaceLocation = new OneFaceResultFaceLocation()
+                                {
+                                    Top = 0,
+                                    Left = 0,
+                                    Width = 100,
+                                    Height = 100
                                 }
                             }
                         }
+                    }
+                },
+                ImagesProcessed = 1,
+                Warnings = new List<WarningInfo>()
+                {
+                    new WarningInfo()
+                    {
+                        WarningId = "warningId",
+                        Description = "warningDescription"
                     }
                 }
             };
@@ -338,6 +354,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             Assert.IsTrue(classifications.Images[0].Faces[0].Age.Min == 20);
             Assert.IsTrue(classifications.Images[0].Faces[0].Age.Max == 30);
             Assert.IsTrue(classifications.Images[0].Faces[0].Age.Score == 0.98f);
+            Assert.IsTrue(classifications.Images[0].Faces[0].FaceLocation.Left == 0);
+            Assert.IsTrue(classifications.Images[0].Faces[0].FaceLocation.Top == 0);
+            Assert.IsTrue(classifications.Images[0].Faces[0].FaceLocation.Width == 100);
+            Assert.IsTrue(classifications.Images[0].Faces[0].FaceLocation.Height == 100);
+            Assert.IsTrue(classifications.ImagesProcessed == 1);
+            Assert.IsTrue(classifications.Warnings[0].WarningId == "warningId");
+            Assert.IsTrue(classifications.Warnings[0].Description == "warningDescription");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -578,7 +601,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                         Name = "turtle-classifier",
                         ClassifierId = "turtle-classifier-id",
                         Status = "ready",
-                        Explanation = "My Explination"
+                        Explanation = "My Explination",
+                        Owner = "me,IBM",
+                        Created = "created",
+                        Classes = new List<ModelClass>()
+                        {
+                            new ModelClass()
+                            {
+                                _Class = "class"
+                            }
+                        }
                     }
                 }
             };
@@ -609,6 +641,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             Assert.IsTrue(classifiers.Classifiers[0].ClassifierId == "turtle-classifier-id");
             Assert.IsTrue(classifiers.Classifiers[0].Status == "ready");
             Assert.IsTrue(classifiers.Classifiers[0].Explanation == "My Explination");
+            Assert.IsTrue(classifiers.Classifiers[0].Owner == "me,IBM");
+            Assert.IsTrue(classifiers.Classifiers[0].Created == "created");
+            Assert.IsTrue(classifiers.Classifiers[0].Classes[0]._Class == "class");
+        
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]

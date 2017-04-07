@@ -594,5 +594,64 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                                              }
                                   });
         }
+
+        [TestMethod]
+        public void ListCustomWords_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var words =
+                service.ListCustomWords(customization.CustomizationId, null, null);
+        }
+
+        [TestMethod]
+        public void ListCustomWord_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var words =
+                service.ListCustomWords(customization.CustomizationId, WordType.All, null);
+
+            var word =
+                service.ListCustomWord(customization.CustomizationId, words.Words.First().Word);
+        }
+
+        [TestMethod]
+        public void DeleteCustomWord_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customizations =
+                service.ListCustomModels();
+
+            var customization =
+                customizations.Customization.First();
+
+            var words =
+                service.ListCustomWords(customization.CustomizationId, WordType.All, null);
+
+            service.DeleteCustomWord(customization.CustomizationId, words.Words.First().Word);
+        }
     }
 }

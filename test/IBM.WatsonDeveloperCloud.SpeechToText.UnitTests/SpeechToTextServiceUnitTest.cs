@@ -563,7 +563,71 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechRecognitionEvent response = new SpeechRecognitionEvent()
             {
                 ResultIndex = 1,
-
+                Results = new List<SpeechRecognitionResult>()
+                {
+                    new SpeechRecognitionResult()
+                    {
+                        Alternatives = new List<SpeechRecognitionAlternative>()
+                        {
+                            new SpeechRecognitionAlternative()
+                            {
+                                Confidence = 0.5,
+                                Timestamps = new List<string>()
+                                {
+                                    "time_stamps"
+                                },
+                                Transcript = "transcript",
+                                WordConfidence = new List<string>()
+                                {
+                                    "word_confidence"
+                                }
+                            }
+                        },
+                        Final = true,
+                        KeywordResults = new KeywordResults()
+                        {
+                            Keyword = new List<KeywordResult>()
+                            {
+                                new KeywordResult()
+                                {
+                                    Confidence = 0.9,
+                                    Endtime = 0.5,
+                                    NormalizedText = "normalized_text",
+                                    StartTime = 0
+                                }
+                            }
+                        },
+                        WordAlternativeResults = new List<WordAlternativeResults>()
+                        {
+                            new WordAlternativeResults()
+                            {
+                                Alternatives = new List<WordAlternativeResult>()
+                                {
+                                    new WordAlternativeResult()
+                                    {
+                                        Confidence = 0.5,
+                                        Word = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                SpeakerLabels = new List<SpeakerLabelsResult>()
+                {
+                    new SpeakerLabelsResult()
+                    {
+                        Confidence = 1,
+                        Final = true,
+                        From = 1,
+                        Speaker = 1,
+                        To = 9
+                    }
+                },
+                Warnings = new List<string>()
+                {
+                    "warnings"
+                }
             };
 
             IRequest request = Substitute.For<IRequest>();

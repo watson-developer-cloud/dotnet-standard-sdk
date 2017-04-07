@@ -22,42 +22,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class Corpus
     {
         /// <summary>
-        /// Initializes a new instance of the Corpus class.
-        /// </summary>
-        public Corpus() { }
-
-        /// <summary>
-        /// Initializes a new instance of the Corpus class.
-        /// </summary>
-        /// <param name="name">The name of the corpus.</param>
-        /// <param name="totalWords">The total number of words in the corpus.
-        /// The value is `0` while the corpus is being processed.</param>
-        /// <param name="outOfVocabularyWords">The number of OOV words in the
-        /// corpus. The value is `0` while the corpus is being
-        /// processed.</param>
-        /// <param name="status">The status of the corpus: `analyzed`
-        /// indicates that the service has successfully analyzed the corpus;
-        /// the custom model can be trained with data from the corpus.
-        /// `being_processed` indicates that the service is still analyzing
-        /// the corpus; the service cannot accept requests to add new corpora
-        /// or words, or to train the custom model. `undetermined` indicates
-        /// that the service encountered an error while processing the
-        /// corpus. Possible values include: 'analyzed', 'being_processed',
-        /// 'undetermined'</param>
-        /// <param name="error">If the status of the corpus is `undetermined`,
-        /// the following message: `Analysis of corpus 'name' failed. Please
-        /// try adding the corpus again by setting the 'allow_overwrite' flag
-        /// to 'true'`.</param>
-        public Corpus(string name, int totalWords, int outOfVocabularyWords, string status, string error = default(string))
-        {
-            Name = name;
-            TotalWords = totalWords;
-            OutOfVocabularyWords = outOfVocabularyWords;
-            Status = status;
-            Error = error;
-        }
-
-        /// <summary>
         /// Gets or sets the name of the corpus.
         /// </summary>
         [JsonProperty(PropertyName = "name")]

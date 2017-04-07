@@ -23,22 +23,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class Corpora
     {
         /// <summary>
-        /// Initializes a new instance of the Corpora class.
-        /// </summary>
-        public Corpora() { }
-
-        /// <summary>
-        /// Initializes a new instance of the Corpora class.
-        /// </summary>
-        /// <param name="corporaProperty">Information about corpora of the
-        /// custom model. The array is empty if the custom model has no
-        /// corpora.</param>
-        public Corpora(IList<Corpus> corporaProperty)
-        {
-            CorporaProperty = corporaProperty;
-        }
-
-        /// <summary>
         /// Gets or sets information about corpora of the custom model. The
         /// array is empty if the custom model has no corpora.
         /// </summary>

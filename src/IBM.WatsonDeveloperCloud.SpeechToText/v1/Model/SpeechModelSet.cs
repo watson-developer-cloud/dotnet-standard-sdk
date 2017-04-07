@@ -22,6 +22,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class SpeechModelSet
     {
+        /// <summary>
+        /// Gets or sets information about each available model.
+        /// </summary>
         [JsonProperty("models")]
         public List<SpeechModel> Models { get; set; }
     }

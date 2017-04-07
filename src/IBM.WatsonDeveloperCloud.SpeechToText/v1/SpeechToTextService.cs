@@ -15,21 +15,18 @@
 *
 */
 
-using System;
-using System.IO;
-using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Exceptions;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
-using IBM.WatsonDeveloperCloud.Http.Extensions;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
-using System.Net.Http.Formatting;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {

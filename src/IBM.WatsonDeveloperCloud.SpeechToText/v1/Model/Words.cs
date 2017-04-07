@@ -23,21 +23,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public partial class Words
     {
         /// <summary>
-        /// Initializes a new instance of the Words class.
-        /// </summary>
-        public Words() { }
-
-        /// <summary>
-        /// Initializes a new instance of the Words class.
-        /// </summary>
-        /// <param name="wordsProperty">Information about each custom word
-        /// that is to be added to the custom model.</param>
-        public Words(IList<Word> wordsProperty)
-        {
-            WordsProperty = wordsProperty;
-        }
-
-        /// <summary>
         /// Gets or sets information about each custom word that is to be
         /// added to the custom model.
         /// </summary>

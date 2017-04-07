@@ -15,6 +15,7 @@
 *
 */
 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
@@ -22,16 +23,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class Customizations
     {
         /// <summary>
-        /// Initializes a new instance of the Customizations class.
-        /// </summary>
-        public Customizations() { }
-
-        /// <summary>
         /// Gets or sets information about each available custom model. The
         /// array is empty if the user owns no custom models (if no language
         /// is specified) or owns no custom models for the specified language.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "customizations")]
+        [JsonProperty(PropertyName = "customizations")]
         public IList<Customization> Customization { get; set; }
     }
 }

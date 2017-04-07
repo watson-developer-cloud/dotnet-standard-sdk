@@ -22,35 +22,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class CustomModel
     {
         /// <summary>
-        /// Initializes a new instance of the CustomModel class.
-        /// </summary>
-        public CustomModel() { }
-
-        /// <summary>
-        /// Initializes a new instance of the CustomModel class.
-        /// </summary>
-        /// <param name="name">The name of the new custom model. Use a name
-        /// that is unique among all custom models that are owned by the
-        /// calling user. Use a localized name that matches the language of
-        /// the custom model.</param>
-        /// <param name="baseModelName">The name of the language model that is
-        /// to be customized by the new model. You must use the name of one
-        /// of the US English or Japanese models that is returned by the `GET
-        /// /v1/models` method. The new custom model can be used only with
-        /// the base language model that it customizes. Possible values
-        /// include: 'en-US_BroadbandModel', 'en-US_NarrowbandModel',
-        /// 'ja-JP_BroadbandModel', 'ja-JP_NarrowbandModel'</param>
-        /// <param name="description">A description of the new custom model.
-        /// Use a localized description that matches the language of the
-        /// custom model.</param>
-        public CustomModel(string name, string baseModelName, string description = default(string))
-        {
-            Name = name;
-            BaseModelName = baseModelName;
-            Description = description;
-        }
-
-        /// <summary>
         /// Gets or sets the name of the new custom model. Use a name that is
         /// unique among all custom models that are owned by the calling
         /// user. Use a localized name that matches the language of the

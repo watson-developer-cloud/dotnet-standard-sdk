@@ -351,7 +351,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         {
             Customizations result;
 
-            if(string.IsNullOrEmpty(language))
+            if (string.IsNullOrEmpty(language))
                 throw new ArgumentNullException($"{nameof(language)}");
 
             try
@@ -477,7 +477,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (corpusName.Any(Char.IsWhiteSpace))
                 throw new ArgumentException($"The {nameof(corpusName)} cannot contain spaces");
 
-            if(body == null)
+            if (body == null)
                 throw new ArgumentNullException($"The {nameof(body)} is required");
 
             try
@@ -586,7 +586,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 var result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PostAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words")
-                               //.WithHeader("Content-Type", HttpMediaType.APPLICATION_JSON)
                                .WithBody<Words>(body)
                                .AsString()
                                .Result;
@@ -613,10 +612,104 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 var result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PutAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
-                               //.WithHeader("Content-Type", HttpMediaType.APPLICATION_JSON)
                                .WithBody<WordDefinition>(body)
                                .AsString()
                                .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+        }
+
+        public WordsList ListCustomWords(string customizationId, WordType? wordType, Sort? sort)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            WordsList result = null;
+
+            try
+            {
+
+                var request =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words");
+
+                if (wordType.HasValue)
+                {
+                    request.WithArgument("word_type", wordType.Value.ToString().ToLower());
+                }
+
+                if (sort.HasValue)
+                {
+                    switch (sort.Value)
+                    {
+                        case Sort.AscendingAlphabetical:
+                            request.WithArgument("sort", "+alphabetical");
+                            break;
+                        case Sort.DescendingAlphabetical:
+                            request.WithArgument("sort", "-alphabetical");
+                            break;
+                        case Sort.AscendingCount:
+                            request.WithArgument("sort", "+count");
+                            break;
+                        case Sort.DescendingCount:
+                            request.WithArgument("sort", "-count");
+                            break;
+                    }
+                }
+
+                result =
+                    request.As<WordsList>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public WordData ListCustomWord(string customizationId, string wordname)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(wordname))
+                throw new ArgumentNullException($"{nameof(wordname)}");
+
+            WordData result = null;
+
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
+                               .As<WordData>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public void DeleteCustomWord(string customizationId, string wordname)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"{nameof(customizationId)}");
+
+            if (string.IsNullOrEmpty(wordname))
+                throw new ArgumentNullException($"{nameof(wordname)}");
+
+            try
+            {
+                this.Client.WithAuthentication(this.UserName, this.Password)
+                           .DeleteAsync($"{RELATIVE_PATH}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}");
             }
             catch (AggregateException ae)
             {

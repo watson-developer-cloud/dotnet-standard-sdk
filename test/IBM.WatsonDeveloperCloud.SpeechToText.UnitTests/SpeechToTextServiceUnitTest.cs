@@ -36,6 +36,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
     public class SpeechToTextServiceUnitTest
     {
         [TestMethod]
+        public void Constructor_Without_Arguments()
+        {
+            SpeechToTextService service = new SpeechToTextService();
+        }
+
+        [TestMethod]
+        public void Constructor_With_Credentials()
+        {
+            SpeechToTextService service = new SpeechToTextService("user_name", "password");
+        }
+
+        [TestMethod]
         public void GetModels_Sucess()
         {
             #region Mock IClient
@@ -2735,6 +2747,579 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                  "so cial"
                                              }
                                   });
+        }
+
+        [TestMethod]
+        public void ListCustomWords_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, null);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void ListCustomWords_With_WordType()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", WordType.All, null);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void ListCustomWords_With_Sort_AscendingAlphabetical()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, Sort.AscendingAlphabetical);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void ListCustomWords_With_Sort_AscendingCount()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, Sort.AscendingCount);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void ListCustomWords_With_Sort_DescendingAlphabetical()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, Sort.DescendingAlphabetical);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod]
+        public void ListCustomWords_With_Sort_DescendingCount()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<WordsList>()
+                   .Returns(Task.FromResult(new WordsList()
+                   {
+                       Words = new List<WordData>()
+                       {
+                           new WordData()
+                           {
+                               Count = 1,
+                               DisplayAs = "display_as",
+                               Error = new List<WordError>()
+                               {
+                                   new WordError()
+                                   {
+                                       Element = "element"
+                                   }
+                               },
+                               SoundsLike = new List<string>()
+                               {
+                                   "sounds",
+                                   "like"
+                               },
+                               Source = new List<string>()
+                               {
+                                   "source"
+                               },
+                               Word = "word"
+                           }
+                       }
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, Sort.DescendingCount);
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Words);
+            Assert.IsTrue(result.Words.Count > 0);
+            client.Received().GetAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWords_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords(null, null, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWords_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords(string.Empty, null, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void ListCustomWords_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWords("customization_id", null, null);
+        }
+
+        [TestMethod]
+        public void ListCustomWord_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+            
+            request.As<WordData>()
+                   .Returns(Task.FromResult(new WordData()
+                   {
+                       Count = 1,
+                       DisplayAs = "display_as",
+                       Error = new List<WordError>()
+                       {
+                           new WordError()
+                           {
+                               Element = "elemente"
+                           }
+                       },
+                       SoundsLike = new List<string>()
+                       {
+                           "sounds",
+                           "like"
+                       },
+                       Source = new List<string>()
+                       {
+                           "source"
+                       },
+                       Word = "word"
+                   }));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.ListCustomWord("customization_id", "word_name");
+
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.DisplayAs, "display_as");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWord_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.ListCustomWord(null, "word_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWord_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.ListCustomWord(string.Empty, "word_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWord_With_Null_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.ListCustomWord("customization_id", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomWord_With_Empty_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.ListCustomWord("customization_id", string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void ListCustomWord_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.ListCustomWord("customization_id", "word_name");
+        }
+
+        [TestMethod]
+        public void DeleteCustomWord_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.AsString()
+                   .Returns(Task.FromResult("{}"));
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord("customization_id", "word_name");
+
+            client.Received().DeleteAsync(Arg.Any<string>());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCustomWord_With_Null_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord(null, "word_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCustomWord_With_Empty_CustomizationId()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord(string.Empty, "word_name");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCustomWord_With_Null_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord("customization_id", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCustomWord_With_Empty_WordName()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord("customization_id", string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void DeleteCustomWord_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            service.DeleteCustomWord("customization_id", "corpus_name");
         }
     }
 }

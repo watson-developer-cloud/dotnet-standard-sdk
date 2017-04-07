@@ -252,5 +252,60 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="wordname"></param>
         /// <param name="body"></param>
         void AddCustomWord(string customizationId, string wordname, WordDefinition body);
+
+        /// <summary>
+        /// Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or only OOV words that were extracted from corpora. You can also indicate the order in which the service is to return words; by default, words are listed in ascending alphabetical order. Only the owner of a custom model can use this method to query the words from the model.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model from which words are to be queried. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="wordType">
+        /// The type of words to be listed from the custom language model's words resource:
+        /// <list type="bullet">
+        ///     <item>
+        ///         <description>all shows all words. This is the default if you omit the parameter.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>user shows only custom words that were added or modified by the user. </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>corpora shows only OOV that were extracted from corpora.</description>
+        ///     </item>
+        /// </list>
+        /// </param>
+        /// <param name="sort">
+        /// The order in which the words are to be listed. The parameter accepts one of two arguments, alphabetical or count, to indicate how the words are to be sorted. You can prepend an optional + or - to an argument to indicate whether the results are to be sorted in ascending or descending order.
+        /// <list type="bullet">
+        ///     <item>
+        ///         <description>alphabetical and +alphabetical list the words in ascending alphabetical order. This is the default ordering if you omit the parameter.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>-alphabetical lists the words in descending alphabetical order.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>count and -count list the words in descending order by the values of their count fields.</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>+count lists the words in ascending order by the values of their count fields.</description>
+        ///     </item>
+        /// </list>
+        /// For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are not ordered. With cURL, URL encode the + symbol as %2B.
+        /// </param>
+        /// <returns></returns>
+        WordsList ListCustomWords(string customizationId, WordType? wordType, Sort? sort);
+
+        /// <summary>
+        /// Lists information about a custom word from a custom language model. Only the owner of a custom model can use this method to query a word from the model. 
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model from which a word is to be queried. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="wordname">The custom word that is to be queried from the custom model.</param>
+        /// <returns>Returns a single instance of a <see cref="WordData">WordData</see> object that provides information about the specified word. </returns>
+        WordData ListCustomWord(string customizationId, string wordname);
+
+        /// <summary>
+        /// Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary.
+        /// Removing a custom word does not affect the custom model until you train the model with the <see cref="TrainCustomModel(string, string)">Train a custom model</see>  method. Only the owner of a custom model can use this method to delete a word from the model. 
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom language model from which a word is to be deleted. You must make the request with the service credentials of the model's owner.</param>
+        /// <param name="wordname">The custom word that is to be deleted from the custom model.</param>
+        void DeleteCustomWord(string customizationId, string wordname);
     }
 }

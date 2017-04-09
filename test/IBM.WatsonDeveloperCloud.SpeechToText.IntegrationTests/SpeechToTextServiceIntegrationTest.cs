@@ -174,9 +174,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(RecognizeOptions.Builder
-                                                  .WithBody(audio)
-                                                  .Build());
+                service.Recognize(audio.GetMediaTypeFromFile(), audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -197,13 +195,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(RecognizeOptions.Builder
-                                                  .WithFormData(new Metadata()
-                                                  {
-                                                      PartContentType = audio.GetMediaTypeFromFile()
-                                                  })
-                                                  .Upload(audio)
-                                                  .Build());
+                service.Recognize(audio.GetMediaTypeFromFile(),
+                                  new Metadata()
+                                  {
+                                      PartContentType = audio.GetMediaTypeFromFile()
+                                  },
+                                  audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -229,10 +226,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(session.SessionId,
-                                  RecognizeOptions.Builder
-                                                  .WithBody(audio)
-                                                  .Build());
+                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -258,14 +252,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(session.SessionId,
-                                  RecognizeOptions.Builder
-                                                  .WithFormData(new Metadata()
-                                                  {
-                                                      PartContentType = audio.GetMediaTypeFromFile()
-                                                  })
-                                                  .Upload(audio)
-                                                  .Build());
+                service.RecognizeWithSession(session.SessionId,
+                                             audio.GetMediaTypeFromFile(),
+                                             new Metadata()
+                                             {
+                                                 PartContentType = audio.GetMediaTypeFromFile()
+                                             },
+                                             audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -291,10 +284,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var recognize =
-                service.Recognize(session.SessionId,
-                                  RecognizeOptions.Builder
-                                                  .WithBody(audio)
-                                                  .Build());
+                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
 
             var results =
                 service.ObserveResult(session.SessionId);

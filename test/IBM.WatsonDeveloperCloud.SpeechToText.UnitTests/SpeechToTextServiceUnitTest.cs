@@ -29,12 +29,34 @@ using System.Net;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.IO;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 {
     [TestClass]
     public class SpeechToTextServiceUnitTest
     {
+        [TestMethod]
+        public void GetMediaTypeFromFile_Sucess()
+        {
+            FileStream audio = null;
+
+            audio = new FileStream("GetMediaTypeFromFile_Sucess.wav", FileMode.Create);
+            Assert.AreEqual(audio.GetMediaTypeFromFile(), HttpMediaType.AUDIO_WAV);
+
+            audio = new FileStream("GetMediaTypeFromFile_Sucess.ogg", FileMode.Create);
+            Assert.AreEqual(audio.GetMediaTypeFromFile(), HttpMediaType.AUDIO_OGG);
+
+            audio = new FileStream("GetMediaTypeFromFile_Sucess.oga", FileMode.Create);
+            Assert.AreEqual(audio.GetMediaTypeFromFile(), HttpMediaType.AUDIO_OGG);
+
+            audio = new FileStream("GetMediaTypeFromFile_Sucess.flac", FileMode.Create);
+            Assert.AreEqual(audio.GetMediaTypeFromFile(), HttpMediaType.AUDIO_FLAC);
+
+            audio = new FileStream("GetMediaTypeFromFile_Sucess.raw", FileMode.Create);
+            Assert.AreEqual(audio.GetMediaTypeFromFile(), HttpMediaType.AUDIO_RAW);
+        }
+
         [TestMethod]
         public void Constructor_Without_Arguments()
         {
@@ -642,21 +664,233 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.Recognize(RecognizeOptions.Builder
-                                                  .WithContentType(HttpMediaType.AUDIO_WAV)
-                                                  .WithTransferEnconding()
-                                                  .WithModel("model")
-                                                  .WithCustomization("customization_id")
-                                                  .WithBody(new FileStream("audio_teste", FileMode.Create))
-                                                  .IsContinuous()
-                                                  .WithTimestamps()
-                                                  .WithKeywords(new string[1])
-                                                  .WithKeywordsThreshold(0.1)
-                                                  .WithWordAlternativeThreshold(0.1)
-                                                  .WithWordConfidence()
-                                                  .WithSmartFormatting()
-                                                  .WithSpeakerLabels()
-                                                  .Build());
+                service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
+                                  transferEncoding: "transferEncoding",
+                                  model: "model",
+                                  customizationId: "customizationId",
+                                  audio: new FileStream("audio_teste", FileMode.Create),
+                                  continuous: true,
+                                  timestamps: true,
+                                  keywords: new string[1],
+                                  keywordsThreshold: 0.1,
+                                  wordAlternativesThreshold: 0.1,
+                                  inactivityTimeout: 1,
+                                  maxAlternatives: 2,
+                                  profanityFilter: true,
+                                  wordConfidence: true,
+                                  smartFormatting: true,
+                                  speakerLabels: true);
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod]
+        public void Recognize_WithBody_WithSession_Success()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+                Results = new List<SpeechRecognitionResult>()
+                {
+                    new SpeechRecognitionResult()
+                    {
+                        Alternatives = new List<SpeechRecognitionAlternative>()
+                        {
+                            new SpeechRecognitionAlternative()
+                            {
+                                Confidence = 0.5,
+                                Timestamps = new List<string>()
+                                {
+                                    "time_stamps"
+                                },
+                                Transcript = "transcript",
+                                WordConfidence = new List<string>()
+                                {
+                                    "word_confidence"
+                                }
+                            }
+                        },
+                        Final = true,
+                        KeywordResults = new KeywordResults()
+                        {
+                            Keyword = new List<KeywordResult>()
+                            {
+                                new KeywordResult()
+                                {
+                                    Confidence = 0.9,
+                                    Endtime = 0.5,
+                                    NormalizedText = "normalized_text",
+                                    StartTime = 0
+                                }
+                            }
+                        },
+                        WordAlternativeResults = new List<WordAlternativeResults>()
+                        {
+                            new WordAlternativeResults()
+                            {
+                                Alternatives = new List<WordAlternativeResult>()
+                                {
+                                    new WordAlternativeResult()
+                                    {
+                                        Confidence = 0.5,
+                                        Word = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                SpeakerLabels = new List<SpeakerLabelsResult>()
+                {
+                    new SpeakerLabelsResult()
+                    {
+                        Confidence = 1,
+                        Final = true,
+                        From = 1,
+                        Speaker = 1,
+                        To = 9
+                    }
+                },
+                Warnings = new List<string>()
+                {
+                    "warnings"
+                }
+            };
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.As<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(response));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.RecognizeWithSession(sessionId: "sessionId",
+                                             contentType: HttpMediaType.AUDIO_WAV,
+                                             transferEncoding: "transferEncoding",
+                                             model: "model",
+                                             customizationId: "customizationId",
+                                             audio: new FileStream("Recognize_WithBody_WithSession_Success", FileMode.Create),
+                                             continuous: true,
+                                             timestamps: true,
+                                             keywords: new string[1],
+                                             keywordsThreshold: 0.1,
+                                             wordAlternativesThreshold: 0.1,
+                                             wordConfidence: true,
+                                             smartFormatting: true,
+                                             speakerLabels: true);
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_WithBody_WithSession_With_SessionId_Empty()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.RecognizeWithSession(sessionId: string.Empty,
+                                             contentType: HttpMediaType.AUDIO_WAV,
+                                             transferEncoding: "transferEncoding",
+                                             model: "model",
+                                             customizationId: "customizationId",
+                                             audio: new FileStream("Recognize_WithBody_WithSession_With_SessionId_Empty", FileMode.Create),
+                                             continuous: true,
+                                             timestamps: true,
+                                             keywords: new string[1],
+                                             keywordsThreshold: 0.1,
+                                             wordAlternativesThreshold: 0.1,
+                                             wordConfidence: true,
+                                             smartFormatting: true,
+                                             speakerLabels: true);
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_WithBody_WithSession_With_SessionId_Null()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.RecognizeWithSession(sessionId: null,
+                                             contentType: HttpMediaType.AUDIO_WAV,
+                                             transferEncoding: "transferEncoding",
+                                             model: "model",
+                                             customizationId: "customizationId",
+                                             audio: new FileStream("Recognize_WithBody_WithSession_With_SessionId_Null", FileMode.Create),
+                                             continuous: true,
+                                             timestamps: true,
+                                             keywords: new string[1],
+                                             keywordsThreshold: 0.1,
+                                             wordAlternativesThreshold: 0.1,
+                                             wordConfidence: true,
+                                             smartFormatting: true,
+                                             speakerLabels: true);
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_WithBody_WithSession_With_Audio_Null()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.RecognizeWithSession(sessionId: "sessionId",
+                                             contentType: HttpMediaType.AUDIO_WAV,
+                                             transferEncoding: "transferEncoding",
+                                             model: "model",
+                                             customizationId: "customizationId",
+                                             audio: null,
+                                             continuous: true,
+                                             timestamps: true,
+                                             keywords: new string[1],
+                                             keywordsThreshold: 0.1,
+                                             wordAlternativesThreshold: 0.1,
+                                             wordConfidence: true,
+                                             smartFormatting: true,
+                                             speakerLabels: true);
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -691,30 +925,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.Recognize(RecognizeOptions.Builder
-                                                  .WithContentType(HttpMediaType.AUDIO_WAV)
-                                                  .WithTransferEnconding()
-                                                  .WithModel("model")
-                                                  .WithCustomization("customization_id")
-                                                  .WithFormData(new Metadata()
-                                                  {
-                                                      Continuous = true,
-                                                      DataPartsCount = 1,
-                                                      InactivityTimeout = 0.1,
-                                                      Keywords = new string[1],
-                                                      KeywordsThreshold = 0.1,
-                                                      MaxAlternatives = 1,
-                                                      PartContentType = "content_type",
-                                                      ProfanityFilter = false,
-                                                      SequenceId = 1,
-                                                      SmartFormatting = true,
-                                                      SpeakerLabels = false,
-                                                      Timestamps = false,
-                                                      WordAlternativesThreshold = 0.1,
-                                                      WordConfidence = false
-                                                  })
-                                                  .Upload(new FileStream("audio_teste_form_data", FileMode.Create))
-                                                  .Build());
+               service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
+                                 metaData: new Metadata()
+                                 {
+                                     Continuous = true,
+                                     DataPartsCount = 1,
+                                     InactivityTimeout = 0.1,
+                                     Keywords = new string[1],
+                                     KeywordsThreshold = 0.1,
+                                     MaxAlternatives = 1,
+                                     PartContentType = "content_type",
+                                     ProfanityFilter = false,
+                                     SequenceId = 1,
+                                     SmartFormatting = true,
+                                     SpeakerLabels = false,
+                                     Timestamps = false,
+                                     WordAlternativesThreshold = 0.1,
+                                     WordConfidence = false
+                                 },
+                                 audio: new FileStream("audio_teste_form_data", FileMode.Create),
+                                 transferEncoding: "transferEncoding",
+                                 model: "model",
+                                 customizationId: "customizationId");
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -752,31 +984,29 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.Recognize("session_id",
-                                  RecognizeOptions.Builder
-                                                  .WithContentType(HttpMediaType.AUDIO_WAV)
-                                                  .WithTransferEnconding()
-                                                  .WithModel("model")
-                                                  .WithCustomization("customization_id")
-                                                  .WithFormData(new Metadata()
-                                                  {
-                                                      Continuous = true,
-                                                      DataPartsCount = 1,
-                                                      InactivityTimeout = 0.1,
-                                                      Keywords = new string[1],
-                                                      KeywordsThreshold = 0.1,
-                                                      MaxAlternatives = 1,
-                                                      PartContentType = "content_type",
-                                                      ProfanityFilter = false,
-                                                      SequenceId = 1,
-                                                      SmartFormatting = true,
-                                                      SpeakerLabels = false,
-                                                      Timestamps = false,
-                                                      WordAlternativesThreshold = 0.1,
-                                                      WordConfidence = false
-                                                  })
-                                                  .Upload(new FileStream("audio_teste_form_data_session", FileMode.Create))
-                                                  .Build());
+               service.RecognizeWithSession(sessionId: "sessionId",
+                                            contentType: HttpMediaType.AUDIO_WAV,
+                                            metaData: new Metadata()
+                                            {
+                                                Continuous = true,
+                                                DataPartsCount = 1,
+                                                InactivityTimeout = 0.1,
+                                                Keywords = new string[1],
+                                                KeywordsThreshold = 0.1,
+                                                MaxAlternatives = 1,
+                                                PartContentType = "content_type",
+                                                ProfanityFilter = false,
+                                                SequenceId = 1,
+                                                SmartFormatting = true,
+                                                SpeakerLabels = false,
+                                                Timestamps = false,
+                                                WordAlternativesThreshold = 0.1,
+                                                WordConfidence = false
+                                            },
+                                            audio: new FileStream("Recognize_FormData_WithSession_Success", FileMode.Create),
+                                            transferEncoding: "transferEncoding",
+                                            model: "model",
+                                            customizationId: "customizationId");
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -784,7 +1014,155 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Recognize_Null_Options()
+        public void Recognize_FormData_WithSession_With_SessionId_Empty()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+               service.RecognizeWithSession(sessionId: string.Empty,
+                                            contentType: HttpMediaType.AUDIO_WAV,
+                                            metaData: new Metadata()
+                                            {
+                                                Continuous = true,
+                                                DataPartsCount = 1,
+                                                InactivityTimeout = 0.1,
+                                                Keywords = new string[1],
+                                                KeywordsThreshold = 0.1,
+                                                MaxAlternatives = 1,
+                                                PartContentType = "content_type",
+                                                ProfanityFilter = false,
+                                                SequenceId = 1,
+                                                SmartFormatting = true,
+                                                SpeakerLabels = false,
+                                                Timestamps = false,
+                                                WordAlternativesThreshold = 0.1,
+                                                WordConfidence = false
+                                            },
+                                            audio: new FileStream("Recognize_FormData_WithSession_With_SessionId_Empty", FileMode.Create),
+                                            transferEncoding: "transferEncoding",
+                                            model: "model",
+                                            customizationId: "customizationId");
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_WithSession_With_SessionId_Null()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+               service.RecognizeWithSession(sessionId: null,
+                                            contentType: HttpMediaType.AUDIO_WAV,
+                                            metaData: new Metadata()
+                                            {
+                                                Continuous = true,
+                                                DataPartsCount = 1,
+                                                InactivityTimeout = 0.1,
+                                                Keywords = new string[1],
+                                                KeywordsThreshold = 0.1,
+                                                MaxAlternatives = 1,
+                                                PartContentType = "content_type",
+                                                ProfanityFilter = false,
+                                                SequenceId = 1,
+                                                SmartFormatting = true,
+                                                SpeakerLabels = false,
+                                                Timestamps = false,
+                                                WordAlternativesThreshold = 0.1,
+                                                WordConfidence = false
+                                            },
+                                            audio: new FileStream("Recognize_FormData_WithSession_With_SessionId_Null", FileMode.Create),
+                                            transferEncoding: "transferEncoding",
+                                            model: "model",
+                                            customizationId: "customizationId");
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_WithSession_With_Audio_Null()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+               service.RecognizeWithSession(sessionId: "sessionId",
+                                            contentType: HttpMediaType.AUDIO_WAV,
+                                            metaData: new Metadata()
+                                            {
+                                                Continuous = true,
+                                                DataPartsCount = 1,
+                                                InactivityTimeout = 0.1,
+                                                Keywords = new string[1],
+                                                KeywordsThreshold = 0.1,
+                                                MaxAlternatives = 1,
+                                                PartContentType = "content_type",
+                                                ProfanityFilter = false,
+                                                SequenceId = 1,
+                                                SmartFormatting = true,
+                                                SpeakerLabels = false,
+                                                Timestamps = false,
+                                                WordAlternativesThreshold = 0.1,
+                                                WordConfidence = false
+                                            },
+                                            audio: null,
+                                            transferEncoding: "transferEncoding",
+                                            model: "model",
+                                            customizationId: "customizationId");
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_WithSession_With_MetaData_Null()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+               service.RecognizeWithSession(sessionId: "sessionId",
+                                            contentType: HttpMediaType.AUDIO_WAV,
+                                            metaData: null,
+                                            audio: new FileStream("Recognize_FormData_WithSession_With_MetaData_Null", FileMode.Create),
+                                            transferEncoding: "transferEncoding",
+                                            model: "model",
+                                            customizationId: "customizationId");
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.ResultIndex == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_With_Null_ContentType()
         {
             #region Mock IClient
 
@@ -811,7 +1189,139 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-                service.Recognize(null);
+                service.Recognize(contentType: null,
+                                  audio: new FileStream("Recognize_With_Null_ContentType", FileMode.Create));
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_WithBody_With_Null_Audio()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+
+            };
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.As<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(response));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.Recognize(contentType: "contentType",
+                                  audio: null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_With_Null_ContentType()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+
+            };
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.As<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(response));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.Recognize(contentType: null,
+                                  audio: new FileStream("Recognize_FormData_With_Null_ContentType", FileMode.Create),
+                                  metaData: new Metadata());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_With_Null_Audio()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+
+            };
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.As<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(response));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.Recognize(contentType: "contentType",
+                                  audio: null,
+                                  metaData: new Metadata());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Recognize_FormData_With_Null_MetaData()
+        {
+            #region Mock IClient
+
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+
+            };
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            request.As<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(response));
+
+            #endregion
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var result =
+                service.Recognize(contentType: "contentType",
+                                  audio: new FileStream("Recognize_FormData_With_Null_MetaData", FileMode.Create),
+                                  metaData: null);
         }
 
         [TestMethod, ExpectedException(typeof(ServiceResponseException))]
@@ -838,20 +1348,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechToTextService service = new SpeechToTextService(client);
 
             var result =
-               service.Recognize(RecognizeOptions.Builder
-                                                 .WithContentType(HttpMediaType.AUDIO_WAV)
-                                                 .WithTransferEnconding()
-                                                 .WithModel("model")
-                                                 .WithCustomization("customization_id")
-                                                 .WithBody(new FileStream("audio_teste_exception", FileMode.Create))
-                                                 .IsContinuous()
-                                                 .WithKeywords(new string[1])
-                                                 .WithKeywordsThreshold(0.1)
-                                                 .WithWordAlternativeThreshold(0.1)
-                                                 .WithWordConfidence()
-                                                 .WithSmartFormatting()
-                                                 .WithSpeakerLabels()
-                                                 .Build());
+                service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
+                                  transferEncoding: "transferEncoding",
+                                  model: "model",
+                                  customizationId: "customizationId",
+                                  audio: new FileStream("Recognize_Catch_Exception", FileMode.Create),
+                                  continuous: true,
+                                  timestamps: true,
+                                  keywords: new string[1],
+                                  keywordsThreshold: 0.1,
+                                  wordAlternativesThreshold: 0.1,
+                                  wordConfidence: true,
+                                  smartFormatting: true,
+                                  speakerLabels: true);
         }
 
         [TestMethod]

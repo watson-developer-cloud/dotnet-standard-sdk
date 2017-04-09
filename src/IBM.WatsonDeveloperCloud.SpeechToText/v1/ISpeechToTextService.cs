@@ -18,6 +18,7 @@
 using System.IO;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
@@ -71,23 +72,124 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         void DeleteSession(string sessionId);
 
         /// <summary>
-        /// Sends audio and returns transcription results for a sessionless recognition request. By default, returns only the final results; to enable interim results, set the interimResults parameter to true. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
+        /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
+        /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request.
+        /// For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. 
         /// </summary>
-        /// <param name="options">The audio to be transcribed in the format specified by the contentType parameter.</param>
-        /// <returns>Returns SpeechRecognitionEvent object that contains the results that are provided in a JSON SpeechRecognitionEvent object. The response includes one or more instances of the object depending on the value of the interimResults parameter.</returns>
-        SpeechRecognitionEvent Recognize(RecognizeOptions options);
+        /// <param name="contentType"></param>
+        /// <param name="transferEncoding"></param>
+        /// <param name="audio"></param>
+        /// <param name="model"></param>
+        /// <param name="customizationId"></param>
+        /// <param name="continuous"></param>
+        /// <param name="inactivityTimeout"></param>
+        /// <param name="keywords"></param>
+        /// <param name="keywordsThreshold"></param>
+        /// <param name="maxAlternatives"></param>
+        /// <param name="wordAlternativesThreshold"></param>
+        /// <param name="wordConfidence"></param>
+        /// <param name="timestamps"></param>
+        /// <param name="profanityFilter"></param>
+        /// <param name="smartFormatting"></param>
+        /// <param name="speakerLabels"></param>
+        /// <returns></returns>
+        SpeechRecognitionEvent Recognize(string contentType,
+                                         FileStream audio,
+                                         string transferEncoding,
+                                         string model,
+                                         string customizationId,
+                                         bool? continuous,
+                                         int? inactivityTimeout,
+                                         string[] keywords,
+                                         double? keywordsThreshold,
+                                         int? maxAlternatives,
+                                         double? wordAlternativesThreshold,
+                                         bool? wordConfidence,
+                                         bool? timestamps,
+                                         bool profanityFilter,
+                                         bool? smartFormatting,
+                                         bool? speakerLabels);
 
         /// <summary>
-        /// Sends audio and returns transcription results for a session-based recognition request. By default, returns only the final transcription results for the request. To see interim results, set the parameter interim_results to true in a call to the <see cref="ObserveResult(ObserveResultOptions)"/>  result method. 
-        /// The service imposes a data size limit of 100 MB per session. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. The request must pass the cookie that was returned by the <see cref="CreateSession(string)" /> method.
-        /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a session-based recognition request.
-        /// For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the session (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the session (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.
-        /// To enable polling by the observe_result method for large audio requests, specify an integer with the sequence_id query parameter.
+        /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
+        /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request.
+        /// For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. 
         /// </summary>
-        /// <param name="sessionId">The identifier of the session to be used.</param>
-        /// <param name="options">The audio to be transcribed in the format specified by the contentType parameter.</param>
-        /// <returns>Returns SpeechRecognitionEvent object that contains the results that are provided in a JSON SpeechRecognitionEvent object. The response includes one or more instances of the object depending on the value of the interimResults parameter.</returns>
-        SpeechRecognitionEvent Recognize(string sessionId, RecognizeOptions options);
+        /// <param name="contentType"></param>
+        /// <param name="transferEncoding"></param>
+        /// <param name="model"></param>
+        /// <param name="customizationId"></param>
+        /// <param name="metaData"></param>
+        /// <param name="audio"></param>
+        /// <returns></returns>
+        SpeechRecognitionEvent Recognize(string contentType,
+                                         Metadata metaData,
+                                         FileStream audio,
+                                         string transferEncoding,
+                                         string model,
+                                         string customizationId);
+
+        /// <summary>
+        /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
+        /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request.
+        /// For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="contentType"></param>
+        /// <param name="transferEncoding"></param>
+        /// <param name="audio"></param>
+        /// <param name="model"></param>
+        /// <param name="customizationId"></param>
+        /// <param name="continuous"></param>
+        /// <param name="inactivityTimeout"></param>
+        /// <param name="keywords"></param>
+        /// <param name="keywordsThreshold"></param>
+        /// <param name="maxAlternatives"></param>
+        /// <param name="wordAlternativesThreshold"></param>
+        /// <param name="wordConfidence"></param>
+        /// <param name="timestamps"></param>
+        /// <param name="profanityFilter"></param>
+        /// <param name="smartFormatting"></param>
+        /// <param name="speakerLabels"></param>
+        /// <returns></returns>
+        SpeechRecognitionEvent RecognizeWithSession(string sessionId,
+                                                    string contentType,
+                                                    FileStream audio,
+                                                    string transferEncoding,
+                                                    string model,
+                                                    string customizationId,
+                                                    bool? continuous,
+                                                    int? inactivityTimeout,
+                                                    string[] keywords,
+                                                    double? keywordsThreshold,
+                                                    int? maxAlternatives,
+                                                    double? wordAlternativesThreshold,
+                                                    bool? wordConfidence,
+                                                    bool? timestamps,
+                                                    bool profanityFilter,
+                                                    bool? smartFormatting,
+                                                    bool? speakerLabels);
+
+        /// <summary>
+        /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
+        /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request.
+        /// For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. 
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="contentType"></param>
+        /// <param name="transferEncoding"></param>
+        /// <param name="model"></param>
+        /// <param name="customizationId"></param>
+        /// <param name="metaData"></param>
+        /// <param name="audio"></param>
+        /// <returns></returns>
+        SpeechRecognitionEvent RecognizeWithSession(string sessionId,
+                                                    string contentType,
+                                                    Metadata metaData,
+                                                    FileStream audio,
+                                                    string transferEncoding,
+                                                    string model,
+                                                    string customizationId);
 
         /// <summary>
         /// Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <see cref="SpeechToTextService.CreateSession(string)"/>  method. 

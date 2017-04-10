@@ -27,7 +27,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Retrieves a list of all voices available for use with the service. The information includes the voice's name, language, and gender, among other things.
         /// </summary>
         /// <returns>Returns a list of available voices.</returns>
-        List<Voice> GetVoices();
+        VoiceSet GetVoices();
         /// <summary>
         /// Lists information about the specified voice. Specify a customization_id to obtain information for that custom voice model of the specified voice. 
         /// </summary>

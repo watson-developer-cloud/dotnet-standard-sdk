@@ -73,12 +73,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             this.Client = httpClient;
         }
 
-        public List<Voice> GetVoices()
+        public VoiceSet GetVoices()
         {
             return Client.WithAuthentication(this.UserName, this.Password)
                           .GetAsync(this.Endpoint + PATH_VOICES)
-                          .As<Voices>()
-                          .Result.VoiceList;
+                          .As<VoiceSet>()
+                          .Result;
         }
 
         public Voice GetVoice(string voiceName)

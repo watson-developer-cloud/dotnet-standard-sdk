@@ -41,6 +41,8 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         IRequest WithCustom(Action<HttpRequestMessage> request);
 
+        IRequest WithFormatter(MediaTypeHeaderValue contentType);
+
         TaskAwaiter<IResponse> GetAwaiter();
     }
 }

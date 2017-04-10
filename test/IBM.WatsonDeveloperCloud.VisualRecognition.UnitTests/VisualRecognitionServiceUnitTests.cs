@@ -23,6 +23,7 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
@@ -569,6 +570,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
 
             request.As<GetClassifiersTopLevelBrief>()
                 .Returns(Task.FromResult(response));
@@ -624,6 +627,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
+
 
             request.As<GetClassifiersTopLevelVerbose>()
                 .Returns(Task.FromResult(response));
@@ -715,6 +721,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithBodyContent(Arg.Any<HttpContent>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()
                 .Returns(Task.FromResult(response));
@@ -758,6 +766,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
             request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
                 .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()
@@ -806,6 +816,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
 
             request.As<object>()
                 .Returns(Task.FromResult(response));
@@ -850,6 +862,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
                 .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()
@@ -919,6 +933,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithBodyContent(Arg.Any<HttpContent>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()
                 .Returns(Task.FromResult(response));
@@ -961,6 +977,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
                 .Returns(request);
             request.WithBodyContent(Arg.Any<HttpContent>())
                 .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
+                .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()
                 .Returns(Task.FromResult(response));
@@ -1001,6 +1019,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.UnitTests
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
             request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+            request.WithFormatter(Arg.Any<MediaTypeHeaderValue>())
                 .Returns(request);
 
             request.As<GetClassifiersPerClassifierVerbose>()

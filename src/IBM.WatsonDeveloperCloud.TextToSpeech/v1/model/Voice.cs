@@ -67,10 +67,4 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
             return JsonConvert.SerializeObject(this);
         }
     }
-
-    internal class Voices
-    {
-        [JsonProperty("voices")]
-        internal List<Voice> VoiceList { get; set; }
-    }
 }

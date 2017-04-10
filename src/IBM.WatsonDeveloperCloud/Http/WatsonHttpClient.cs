@@ -42,7 +42,6 @@ namespace IBM.WatsonDeveloperCloud.Http
                 this.BaseClient.BaseAddress = new Uri(baseUri);
 
             this.Formatters = new MediaTypeFormatterCollection();
-            this.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
         }
 
         public WatsonHttpClient(string baseUri, string userName, string password)
@@ -55,7 +54,6 @@ namespace IBM.WatsonDeveloperCloud.Http
                 this.BaseClient.BaseAddress = new Uri(baseUri);
 
             this.Formatters = new MediaTypeFormatterCollection();
-            this.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
 
             this.WithAuthentication(userName, password);
         }
@@ -67,7 +65,6 @@ namespace IBM.WatsonDeveloperCloud.Http
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
             this.Formatters = new MediaTypeFormatterCollection();
-            this.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
 
             this.WithAuthentication(userName, password);
         }

@@ -265,6 +265,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("api_key", ApiKey)
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("verbose", false)
+                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersTopLevelBrief>()
                     .Result;
             }
@@ -286,6 +287,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("api_key", ApiKey)
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("verbose", true)
+                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersTopLevelVerbose>()
                     .Result;
             }
@@ -336,6 +338,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
                     .WithBodyContent(formData)
+                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersPerClassifierVerbose>()
                     .Result;
             }
@@ -360,6 +363,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                                .WithArgument("api_key", ApiKey)
                                .WithArgument("version", VERSION_DATE_2016_05_20)
                                .WithHeader("accept", HttpMediaType.TEXT_HTML)
+                               .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                                .As<object>()
                                .Result;
             }
@@ -383,6 +387,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
                     .WithArgument("api_key", ApiKey)
                     .WithArgument("version", VERSION_DATE_2016_05_20)
+                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersPerClassifierVerbose>()
                     .Result;
             }
@@ -429,6 +434,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("api_key", ApiKey)
                     .WithBodyContent(formData)
+                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersPerClassifierVerbose>()
                     .Result;
             }

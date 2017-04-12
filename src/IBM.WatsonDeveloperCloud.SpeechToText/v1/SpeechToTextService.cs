@@ -163,19 +163,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public void DeleteSession(Session session)
+        public object DeleteSession(Session session)
         {
-            this.DeleteSession(session.SessionId);
+            return this.DeleteSession(session.SessionId);
         }
 
-        public void DeleteSession(string sessionId)
+        public object DeleteSession(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException("session id can not be null or empty");
 
+            object result = null;
+
             try
             {
-                var response =
+                result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .DeleteAsync(string.Format("{0}{1}/{2}", this.Endpoint, PATH_DELETE_SESSION, sessionId))
                                .AsMessage()
@@ -185,6 +187,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
         public SpeechRecognitionEvent Recognize(string contentType, FileStream audio, string transferEncoding = "", string model = "", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
@@ -500,14 +504,16 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public void TrainCustomModel(string customizationId, string wordTypeToAdd = "all")
+        public object TrainCustomModel(string customizationId, string wordTypeToAdd = "all")
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
 
+            object result = null;
+
             try
             {
-                this.Client.WithAuthentication(this.UserName, this.Password)
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
                               .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/train")
                               .WithArgument("word_type_to_add", wordTypeToAdd)
                               .AsString();
@@ -516,16 +522,20 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
-        public void ResetCustomModel(string customizationId)
+        public object ResetCustomModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
 
+            object result = null;
+
             try
             {
-                this.Client.WithAuthentication(this.UserName, this.Password)
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
                               .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/reset")
                               .AsString();
             }
@@ -533,16 +543,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
-        public void UpgradeCustomModel(string customizationId)
+        public object UpgradeCustomModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
 
+            object result = null;
             try
             {
-                this.Client.WithAuthentication(this.UserName, this.Password)
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
                               .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/upgrade_model")
                               .AsString();
             }
@@ -550,16 +563,20 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
-        public void DeleteCustomModel(string customizationId)
+        public object DeleteCustomModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
 
+            object result = null;
+
             try
             {
-                this.Client.WithAuthentication(this.UserName, this.Password)
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
                               .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}")
                               .AsString();
             }
@@ -567,9 +584,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
-        public void AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body)
+        public object AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
@@ -586,6 +605,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (body == null)
                 throw new ArgumentNullException($"The {nameof(body)} is required");
 
+            object result = null;
+
             try
             {
                 var formData = new MultipartFormDataContent();
@@ -594,7 +615,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 forcedGlossaryContent.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.TEXT);
                 formData.Add(forcedGlossaryContent, "body", body.Name);
 
-                var result =
+                result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                   .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{corpusName}")
                                   .WithArgument("allow_overwrite ", allowOverwrite)
@@ -606,6 +627,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
         public Corpora ListCorpora(string customizationId)
@@ -657,7 +680,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public void DeleteCorpus(string customizationId, string name)
+        public object DeleteCorpus(string customizationId, string name)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
@@ -665,9 +688,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException($"{nameof(name)}");
 
+            object result = null;
+
             try
             {
-                var result =
+                result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{name}")
                                .AsString()
@@ -677,9 +702,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result; 
         }
 
-        public void AddCustomWords(string customizationId, Words body)
+        public object AddCustomWords(string customizationId, Words body)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
@@ -687,9 +714,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (body == null)
                 throw new ArgumentNullException($"{nameof(body)}");
 
+            object result = null;
+
             try
             {
-                var result =
+                result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words")
                                .WithBody<Words>(body)
@@ -700,9 +729,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
-        public void AddCustomWord(string customizationId, string wordname, WordDefinition body)
+        public object AddCustomWord(string customizationId, string wordname, WordDefinition body)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
@@ -713,9 +744,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (body == null)
                 throw new ArgumentNullException($"{nameof(body)}");
 
+            object result = null;
+
             try
             {
-                var result =
+                result =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PutAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
                                .WithBody<WordDefinition>(body)
@@ -726,6 +759,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
 
         public WordsList ListCustomWords(string customizationId, WordType? wordType, Sort? sort)
@@ -804,7 +839,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public void DeleteCustomWord(string customizationId, string wordname)
+        public object DeleteCustomWord(string customizationId, string wordname)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException($"{nameof(customizationId)}");
@@ -812,15 +847,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (string.IsNullOrEmpty(wordname))
                 throw new ArgumentNullException($"{nameof(wordname)}");
 
+            object result = null;
             try
             {
-                this.Client.WithAuthentication(this.UserName, this.Password)
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
                            .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}");
             }
             catch (AggregateException ae)
             {
                 throw ae.InnerException as ServiceResponseException;
             }
+
+            return result;
         }
     }
 }

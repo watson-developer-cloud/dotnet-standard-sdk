@@ -136,7 +136,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var session =
                 service.CreateSession(model.Name);
 
-            service.DeleteSession(session);
+            object result = service.DeleteSession(session);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -336,7 +338,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.TrainCustomModel(customization.CustomizationId);
+            var result = service.TrainCustomModel(customization.CustomizationId);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -353,7 +357,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.ResetCustomModel(customization.CustomizationId);
+            var result = service.ResetCustomModel(customization.CustomizationId);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -370,7 +376,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.UpgradeCustomModel(customization.CustomizationId);
+            var result = service.UpgradeCustomModel(customization.CustomizationId);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -387,7 +395,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.DeleteCustomModel(customization.CustomizationId);
+            object result = service.DeleteCustomModel(customization.CustomizationId);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -407,10 +417,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var body =
                 File.OpenRead(@"Assets\test-stt-corpus.txt");
 
-            service.AddCorpus(customization.CustomizationId,
+            object result = service.AddCorpus(customization.CustomizationId,
                               "stt_integration",
                               false,
                               body);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -477,7 +489,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var corpora =
                 service.ListCorpora(customization.CustomizationId);
 
-            service.DeleteCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
+            var result = service.DeleteCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -494,7 +508,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.AddCustomWords(customization.CustomizationId,
+            object result = service.AddCustomWords(customization.CustomizationId,
                                   new Words()
                                   {
                                       WordsProperty = new List<Word>()
@@ -528,6 +542,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                                           }
                                       }
                                   });
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -544,7 +560,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customization =
                 customizations.Customization.First();
 
-            service.AddCustomWord(customization.CustomizationId,
+            object result = service.AddCustomWord(customization.CustomizationId,
                                   "social",
                                   new WordDefinition()
                                   {
@@ -554,6 +570,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                                                  "so cial"
                                              }
                                   });
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -572,6 +590,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 
             var words =
                 service.ListCustomWords(customization.CustomizationId, null, null);
+
+            Assert.IsNull(words);
         }
 
         [TestMethod]
@@ -593,6 +613,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 
             var word =
                 service.ListCustomWord(customization.CustomizationId, words.Words.First().Word);
+
+            Assert.IsNotNull(word);
         }
 
         [TestMethod]
@@ -612,7 +634,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var words =
                 service.ListCustomWords(customization.CustomizationId, WordType.All, null);
 
-            service.DeleteCustomWord(customization.CustomizationId, words.Words.First().Word);
+            object result = service.DeleteCustomWord(customization.CustomizationId, words.Words.First().Word);
+
+            Assert.IsNotNull(result);
         }
     }
 }

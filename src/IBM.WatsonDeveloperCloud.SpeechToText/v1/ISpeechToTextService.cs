@@ -63,13 +63,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.
         /// </summary>
         /// <param name="session">A <see cref="Session" /> object that identifies the session to be deleted</param>
-        void DeleteSession(Session session);
+        object DeleteSession(Session session);
 
         /// <summary>
         /// Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.
         /// </summary>
         /// <param name="sessionId">A Session Id that identifies the session to be deleted</param>
-        void DeleteSession(string sessionId);
+        object DeleteSession(string sessionId);
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -266,25 +266,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///     </item>
         /// </list>
         /// </param>
-        void TrainCustomModel(string customizationId, string wordTypeToAdd = "all");
+        object TrainCustomModel(string customizationId, string wordTypeToAdd = "all");
 
         /// <summary>
         /// Resets a custom language model by removing all corpora and words from the model. Resetting a custom model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved. Only the owner of a custom model can use this method to reset the model.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be reset. You must make the request with the service credentials of the model's owner.</param>
-        void ResetCustomModel(string customizationId);
+        object ResetCustomModel(string customizationId);
 
         /// <summary>
         /// Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model. 
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be upgraded. You must make the request with the service credentials of the model's owner.</param>
-        void UpgradeCustomModel(string customizationId);
+        object UpgradeCustomModel(string customizationId);
 
         /// <summary>
         /// Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. Only the owner of a custom model can use this method to delete the model.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be deleted. You must make the request with the service credentials of the model's owner.</param>
-        void DeleteCustomModel(string customizationId);
+        object DeleteCustomModel(string customizationId);
 
         /// <summary>
         /// Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
@@ -298,7 +298,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="corpusName">The name of the corpus that is to be added. The name cannot contain spaces and cannot be the string user, which is reserved by the service to denote custom words added or modified by the user. Use a localized name that matches the language of the custom model.</param>
         /// <param name="allowOverwrite">Indicates whether the specified corpus is to overwrite an existing corpus with the same name. If a corpus with the same name already exists, the request fails unless allow_overwrite is set to true; by default, the parameter is false. The parameter has no effect if a corpus with the same name does not already exist.</param>
         /// <param name="body">A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the --data-binary option to upload the file for the request.</param>
-        void AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body);
+        object AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body);
 
         /// <summary>
         /// Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora.
@@ -321,7 +321,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model from which a corpus is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="name">The name of the corpus that is to be deleted.</param>
-        void DeleteCorpus(string customizationId, string name);
+        object DeleteCorpus(string customizationId, string name);
 
         /// <summary>
         /// Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
@@ -341,7 +341,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model to which words are to be added. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="words">A comma-separated list of <see cref="Words">Words</see> objects, each of which provides information about a custom word to be added.</param>
-        void AddCustomWords(string customizationId, Words body);
+        object AddCustomWords(string customizationId, Words body);
 
         /// <summary>
         /// Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
@@ -353,7 +353,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="customizationId"></param>
         /// <param name="wordname"></param>
         /// <param name="body"></param>
-        void AddCustomWord(string customizationId, string wordname, WordDefinition body);
+        object AddCustomWord(string customizationId, string wordname, WordDefinition body);
 
         /// <summary>
         /// Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or only OOV words that were extracted from corpora. You can also indicate the order in which the service is to return words; by default, words are listed in ascending alphabetical order. Only the owner of a custom model can use this method to query the words from the model.
@@ -408,6 +408,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model from which a word is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="wordname">The custom word that is to be deleted from the custom model.</param>
-        void DeleteCustomWord(string customizationId, string wordname);
+        object DeleteCustomWord(string customizationId, string wordname);
     }
 }

@@ -236,8 +236,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             FileStream audio =
                 File.OpenRead(@"Assets\test-audio.wav");
 
+            Metadata metadata = new Metadata()
+            {
+                PartContentType = audio.GetMediaTypeFromFile()
+            };
+
             var recognize =
-                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
+                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "", modelName);
 
             var results =
                 service.ObserveResult(session.SessionId);

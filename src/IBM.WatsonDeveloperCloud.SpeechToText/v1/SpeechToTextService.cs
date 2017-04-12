@@ -307,8 +307,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 {
                     request =
                         this.Client.WithAuthentication(this.UserName, this.Password)
-                                   .PostAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}")
-                                   .WithHeader("Cookie", sessionId);
+                                   .PostAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}");
+                                   //.WithHeader("Cookie", sessionId);
                 }
 
                 if (metaData == null)
@@ -351,7 +351,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     if (speakerLabels.HasValue)
                         request.WithArgument("speaker_labels", speakerLabels.Value);
 
-                    StreamContent bodyContent = new StreamContent(audio);
+                    //StreamContent bodyContent = new StreamContent(audio);
+                    ByteArrayContent bodyContent = new ByteArrayContent(audio.ReadAllBytes());
+
                     bodyContent.Headers.Add("Content-Type", contentType);
 
                     request.WithBodyContent(bodyContent);
@@ -364,11 +366,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     metadata.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON);
 
                     var audioContent = new ByteArrayContent((audio as Stream).ReadAllBytes());
+                    //var audioContent = new StreamContent((audio as Stream));
                     audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
 
                     MultipartFormDataContent formData = new MultipartFormDataContent();
+                    request.WithArgument("model", model);
                     formData.Add(metadata, "metadata");
-                    formData.Add(audioContent, "upload", audio.Name);
+                    formData.Add(audioContent, "upload", Path.GetFileName(audio.Name));
 
                     request.WithBodyContent(formData);
                 }

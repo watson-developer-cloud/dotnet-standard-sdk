@@ -38,44 +38,26 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
+
             var environmentVariable =
-                Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            Environment.GetEnvironmentVariable("VCAP_SERVICES");
 
-            var isFile =
-                Path.IsPathRooted(environmentVariable);
+            var fileContent =
+            File.ReadAllText(environmentVariable);
 
-            JObject vcapServices;
-            JToken speechToTextCredential;
+            var vcapServices =
+            JObject.Parse(fileContent);
 
-            if (isFile)
-            {
-                var fileContent =
-                    File.ReadAllText(environmentVariable);
-
-                vcapServices =
-                    JObject.Parse(fileContent);
-            }
-            else
-            {
-                vcapServices =
-                    JObject.Parse(environmentVariable);
-            }
-
-            speechToTextCredential =
-                    vcapServices["speech_to_text"][0]["credentials"];
-
-            _endpoint = speechToTextCredential["url"].Value<string>();
-            _userName = speechToTextCredential["username"].Value<string>();
-            _password = speechToTextCredential["password"].Value<string>();
+            _endpoint = vcapServices["speech_to_text"][0]["credentials"]["url"].Value<string>();
+            _userName = vcapServices["speech_to_text"][0]["credentials"]["username"].Value<string>();
+            _password = vcapServices["speech_to_text"][0]["credentials"]["password"].Value<string>();
         }
 
         [TestMethod]
         public void GetModels_Success()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             var results = service.GetModels();
 
@@ -90,9 +72,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void GetModel_Success()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
@@ -126,9 +106,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void GetSessionStatus_Success()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
@@ -148,9 +126,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void DeleteSession_Success()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
@@ -166,9 +142,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void Recognize_BodyContent_Sucess()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             FileStream audio =
                 File.OpenRead(@"Assets\test-audio.wav");
@@ -187,9 +161,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void Recognize_FormData_Sucess()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             FileStream audio =
                 File.OpenRead(@"Assets\test-audio.wav");
@@ -213,9 +185,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void Recognize_WithSession_BodyContent_Sucess()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             string modelName = "en-US_BroadbandModel";
 
@@ -239,9 +209,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         public void Recognize_WithSession_FormData_Sucess()
         {
             SpeechToTextService service =
-                new SpeechToTextService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net";
+                new SpeechToTextService(_userName, _password);
 
             string modelName = "en-US_BroadbandModel";
 

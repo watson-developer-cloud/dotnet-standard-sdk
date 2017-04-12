@@ -34,6 +34,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         private string _userName;
         private string _password;
         private string _endpoint;
+        private static string _customizationID;
 
         [TestInitialize]
         public void Setup()
@@ -277,6 +278,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 
             var customizationId =
                 service.CreateCustomModel("model_test", modelName, "Test of Create Custom Model method");
+
+            _customizationID = customizationId.CustomizationId;
 
             Assert.IsNotNull(customizationId);
             Assert.IsNotNull(customizationId.CustomizationId);

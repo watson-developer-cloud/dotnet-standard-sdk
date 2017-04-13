@@ -133,7 +133,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(audio.GetMediaTypeFromFile(), audio);
+                service.Recognize(audio.GetMediaTypeFromFile(), audio, "", "en-US_BroadbandModel");
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);

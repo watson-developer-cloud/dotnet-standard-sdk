@@ -350,7 +350,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
             var results = service.Message(_workspace, messageRequest);
 
             Assert.IsNotNull(results);
-            Assert.IsTrue(results.Intents.Count >= 1);
         }
 
         [TestMethod]

@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['paginationresponse',['PaginationResponse',['../d3/d9a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['personalityinsightsservice',['PersonalityInsightsService',['../db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3']]],
-  ['phoneme',['Phoneme',['../d3/d7d/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_phoneme.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]],
-  ['profile',['Profile',['../df/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
-  ['profileoptions',['ProfileOptions',['../d8/d7a/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile_options.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
-  ['pronunciation',['Pronunciation',['../d1/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]]
+  ['mediatypeutils',['MediaTypeUtils',['../dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_util_1_1_media_type_utils.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Util']]],
+  ['messagerequest',['MessageRequest',['../d2/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_request.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['messageresponse',['MessageResponse',['../d1/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['modelclass',['ModelClass',['../d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['modelpayload',['ModelPayload',['../df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html',1,'IBM::WatsonDeveloperCloud::LanguageTranslator::v2::Model']]]
 ];

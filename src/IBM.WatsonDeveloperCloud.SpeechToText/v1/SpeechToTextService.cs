@@ -191,7 +191,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        public SpeechRecognitionEvent Recognize(string contentType, FileStream audio, string transferEncoding = "", string model = "", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
+        public SpeechRecognitionEvent Recognize(string contentType, FileStream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
         {
             if (audio == null)
                 throw new ArgumentNullException($"{nameof(audio)}");
@@ -217,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                model: model);
         }
 
-        public SpeechRecognitionEvent Recognize(string contentType, Metadata metaData, FileStream audio, string transferEncoding = "", string model = "", string customizationId = "")
+        public SpeechRecognitionEvent Recognize(string contentType, Metadata metaData, FileStream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
         {
             if (metaData == null)
                 throw new ArgumentNullException($"{nameof(metaData)}");
@@ -235,7 +235,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                model: model);
         }
 
-        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, FileStream audio, string transferEncoding = "", string model = "", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
+        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, FileStream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
         {
             if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException($"{nameof(sessionId)}");
@@ -264,7 +264,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                model: model);
         }
 
-        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, Metadata metaData, FileStream audio, string transferEncoding = "", string model = "", string customizationId = "")
+        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, Metadata metaData, FileStream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
         {
             if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException($"{nameof(sessionId)}");
@@ -307,13 +307,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 {
                     request =
                         this.Client.WithAuthentication(this.UserName, this.Password)
-                                   .PostAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}");
-                                   //.WithHeader("Cookie", sessionId);
+                                   .PostAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}")
+                                   .WithHeader("Cookie", sessionId);
                 }
 
                 if (metaData == null)
                 {
-                    request.WithArgument("model", model);
+                    // if a session exists, the model should not be sent
+                    if (string.IsNullOrEmpty(sessionId))
+                        request.WithArgument("model", model);
 
                     if (!string.IsNullOrEmpty(customizationId))
                         request.WithArgument("customization_id", customizationId);
@@ -351,9 +353,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     if (speakerLabels.HasValue)
                         request.WithArgument("speaker_labels", speakerLabels.Value);
 
-                    //StreamContent bodyContent = new StreamContent(audio);
-                    ByteArrayContent bodyContent = new ByteArrayContent(audio.ReadAllBytes());
-
+                    StreamContent bodyContent = new StreamContent(audio);
                     bodyContent.Headers.Add("Content-Type", contentType);
 
                     request.WithBodyContent(bodyContent);
@@ -366,11 +366,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     metadata.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON);
 
                     var audioContent = new ByteArrayContent((audio as Stream).ReadAllBytes());
-                    //var audioContent = new StreamContent((audio as Stream));
                     audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
 
                     MultipartFormDataContent formData = new MultipartFormDataContent();
-                    request.WithArgument("model", model);
+
+                    // if a session exists, the model should not be sent
+                    if (string.IsNullOrEmpty(sessionId))
+                        request.WithArgument("model", model);
+
                     formData.Add(metadata, "metadata");
                     formData.Add(audioContent, "upload", Path.GetFileName(audio.Name));
 
@@ -401,7 +404,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 var request =
                     this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{string.Format(PATH_OBSERVE_RESULT, sessionId)}");
+                               .GetAsync($"{this.Endpoint}{string.Format(PATH_OBSERVE_RESULT, sessionId)}");
 
                 if (sequenceId.HasValue)
                     request.WithArgument("sequence_id", sequenceId);

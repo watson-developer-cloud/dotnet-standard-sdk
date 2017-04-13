@@ -133,7 +133,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 File.OpenRead(@"Assets\test-audio.wav");
 
             var results =
-                service.Recognize(audio.GetMediaTypeFromFile(), audio, "", "en-US_BroadbandModel");
+                service.Recognize(audio.GetMediaTypeFromFile(), audio, "");
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -245,7 +245,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "", modelName);
 
             var results =
-                service.ObserveResult(session.SessionId);
+                service.ObserveResult(session.SessionId, interimResults: true);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Count > 0);

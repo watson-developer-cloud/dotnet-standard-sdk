@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,15 +15,19 @@
 *
 */
 
-using System;
-
+using System.Collections.Generic;
+using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
-    public class ImageProcessed
+    /// <summary>
+    /// List of classifiers retrieved in the GET v2/classifiers call.
+    /// </summary>
+    public class GetClassifiersTopLevelBrief
     {
-        public String SourceUrl { get; set; }
-        public String ResolvedUrl { get; set; }
-        public String Image { get; set; }
-        public ImageProcessingError Error { get; set; }
+        /// <summary>
+        /// Gets or Sets Classifiers
+        /// </summary>
+        [JsonProperty("classifiers")]
+        public List<GetClassifiersPerClassifierBrief> Classifiers { get; set; }
     }
 }

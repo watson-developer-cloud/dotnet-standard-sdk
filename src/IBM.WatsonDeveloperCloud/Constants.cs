@@ -26,6 +26,6 @@ namespace IBM.WatsonDeveloperCloud
         /// The version number for this SDK build. Added to the header in 
         /// each request as `User-Agent`.
         /// </summary>
-        public const string SDK_VERSION = "0.0.1-alpha";
+        public const string SDK_VERSION = "watson-apis-dotnet-standard-sdk/0.2.0-alpha";
     }
 }

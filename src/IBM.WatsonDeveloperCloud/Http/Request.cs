@@ -91,6 +91,12 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
+        public IRequest WithFormatter(MediaTypeHeaderValue contentType)
+        {
+            this.Formatters.JsonFormatter.SupportedMediaTypes.Add(contentType);
+            return this;
+        }
+
         public TaskAwaiter<IResponse> GetAwaiter()
         {
             Func<Task<IResponse>> waiter = async () =>
@@ -109,6 +115,7 @@ namespace IBM.WatsonDeveloperCloud.Http
         public async Task<T> As<T>()
         {
             HttpResponseMessage message = await this.AsMessage().ConfigureAwait(false);
+            var result = message.Content.ReadAsStringAsync().Result;
             return await message.Content.ReadAsAsync<T>(this.Formatters).ConfigureAwait(false);
         }
 

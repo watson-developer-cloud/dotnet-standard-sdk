@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
         private string _password;
         private string _endpoint;
         private string _workspace;
-        private string _tempWorkspace;
+        static private string _tempWorkspace;
 
         [TestInitialize]
         public void Setup()

@@ -71,10 +71,13 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public IClient WithAuthentication(string userName, string password)
         {
-            string auth = string.Format("{0}:{1}", userName, password);
-            string auth64 = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
+            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
+            {
+                string auth = string.Format("{0}:{1}", userName, password);
+                string auth64 = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
 
-            this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth64);
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth64);
+            }
 
             return this;
         }

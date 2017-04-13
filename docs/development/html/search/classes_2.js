@@ -1,5 +1,14 @@
 var searchData=
 [
+  ['classifiers',['Classifiers',['../d6/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classifyparameters',['ClassifyParameters',['../d5/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classify_parameters.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classifyperclassifier',['ClassifyPerClassifier',['../da/df3/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classify_per_classifier.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classifypost',['ClassifyPost',['../da/de2/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classify_post.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classifytoplevelmultiple',['ClassifyTopLevelMultiple',['../d5/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classify_top_level_multiple.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classifytoplevelsingle',['ClassifyTopLevelSingle',['../db/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classify_top_level_single.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['classresult',['ClassResult',['../d8/d8c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_class_result.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['collectionimagesconfig',['CollectionImagesConfig',['../d5/de6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_collection_images_config.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['collectionsconfig',['CollectionsConfig',['../dd/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_collections_config.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
   ['constants',['Constants',['../d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants.html',1,'IBM::WatsonDeveloperCloud']]],
   ['consumptionpreferencescategorynode',['ConsumptionPreferencesCategoryNode',['../d1/dc3/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences_category_node.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
   ['consumptionpreferencesnode',['ConsumptionPreferencesNode',['../d5/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences_node.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
@@ -7,6 +16,7 @@ var searchData=
   ['contentlistcontainer',['ContentListContainer',['../d5/df4/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_list_container.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
   ['context',['Context',['../d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
   ['conversationservice',['ConversationService',['../d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1']]],
+  ['createcollection',['CreateCollection',['../d4/d9a/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_create_collection.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
   ['createdialognode',['CreateDialogNode',['../d5/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_dialog_node.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
   ['createentity',['CreateEntity',['../de/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_entity.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
   ['createexample',['CreateExample',['../d5/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_example.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],

@@ -3,7 +3,6 @@ var searchData=
   ['deletemodels_2ecs',['DeleteModels.cs',['../d9/dad/_delete_models_8cs.html',1,'']]],
   ['descriptionattribute_2ecs',['DescriptionAttribute.cs',['../d3/d66/_description_attribute_8cs.html',1,'']]],
   ['descriptionextension_2ecs',['DescriptionExtension.cs',['../dd/d69/_description_extension_8cs.html',1,'']]],
-  ['detectedfaces_2ecs',['DetectedFaces.cs',['../d0/db2/_detected_faces_8cs.html',1,'']]],
   ['dialognodegoto_2ecs',['DialogNodeGoTo.cs',['../dd/de1/_dialog_node_go_to_8cs.html',1,'']]],
   ['dialognodeoutput_2ecs',['DialogNodeOutput.cs',['../d9/d21/_dialog_node_output_8cs.html',1,'']]],
   ['dialognoderesponse_2ecs',['DialogNodeResponse.cs',['../d3/d93/_dialog_node_response_8cs.html',1,'']]],

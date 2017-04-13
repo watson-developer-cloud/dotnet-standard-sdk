@@ -1,5 +1,14 @@
 var searchData=
 [
+  ['classifiers_2ecs',['Classifiers.cs',['../d5/d1b/_classifiers_8cs.html',1,'']]],
+  ['classifyparameters_2ecs',['ClassifyParameters.cs',['../de/dfb/_classify_parameters_8cs.html',1,'']]],
+  ['classifyperclassifier_2ecs',['ClassifyPerClassifier.cs',['../df/de2/_classify_per_classifier_8cs.html',1,'']]],
+  ['classifypost_2ecs',['ClassifyPost.cs',['../df/d4d/_classify_post_8cs.html',1,'']]],
+  ['classifytoplevelmultiple_2ecs',['ClassifyTopLevelMultiple.cs',['../d6/dfc/_classify_top_level_multiple_8cs.html',1,'']]],
+  ['classifytoplevelsingle_2ecs',['ClassifyTopLevelSingle.cs',['../d7/daf/_classify_top_level_single_8cs.html',1,'']]],
+  ['classresult_2ecs',['ClassResult.cs',['../de/dc1/_class_result_8cs.html',1,'']]],
+  ['collectionimagesconfig_2ecs',['CollectionImagesConfig.cs',['../d5/d09/_collection_images_config_8cs.html',1,'']]],
+  ['collectionsconfig_2ecs',['CollectionsConfig.cs',['../dc/d2e/_collections_config_8cs.html',1,'']]],
   ['constants_2ecs',['Constants.cs',['../d1/d39/_constants_8cs.html',1,'']]],
   ['consumptionpreferencescategorynode_2ecs',['ConsumptionPreferencesCategoryNode.cs',['../d0/d67/_consumption_preferences_category_node_8cs.html',1,'']]],
   ['consumptionpreferencesnode_2ecs',['ConsumptionPreferencesNode.cs',['../da/d87/_consumption_preferences_node_8cs.html',1,'']]],
@@ -7,6 +16,7 @@ var searchData=
   ['contentlistcontainer_2ecs',['ContentListContainer.cs',['../d3/dd3/_content_list_container_8cs.html',1,'']]],
   ['context_2ecs',['Context.cs',['../de/d08/_context_8cs.html',1,'']]],
   ['conversationservice_2ecs',['ConversationService.cs',['../dc/d41/_conversation_service_8cs.html',1,'']]],
+  ['createcollection_2ecs',['CreateCollection.cs',['../d9/d81/_create_collection_8cs.html',1,'']]],
   ['createdialognode_2ecs',['CreateDialogNode.cs',['../d0/d46/_create_dialog_node_8cs.html',1,'']]],
   ['createentity_2ecs',['CreateEntity.cs',['../db/d6e/_create_entity_8cs.html',1,'']]],
   ['createexample_2ecs',['CreateExample.cs',['../d1/dd9/_create_example_8cs.html',1,'']]],

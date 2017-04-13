@@ -339,10 +339,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                }
+                Input = new { Text = "Turn on the lights" }
             };
 
             #endregion messageRequest

@@ -26,11 +26,11 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 * [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
 * [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
 * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
-<!-- * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery) -->
-<!-- * [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition) -->
+* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
 * [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
 * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
 * [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)
+<!-- * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery) -->
 
 Or manually [here][latest_release].
 
@@ -55,7 +55,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [wdc]: http://www.ibm.com/watson/developercloud/
 [bluemix_registration]: http://bluemix.net/registration
 [ibm-github]: http://ibm.github.io/
-<TODO latest release url>
+
 [latest_release]: https://github.com/watson-developer-cloud/dotnet-standard-sdk/releases/latest
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson

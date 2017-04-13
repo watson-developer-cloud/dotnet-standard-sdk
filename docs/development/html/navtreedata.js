@@ -30,9 +30,9 @@ var NAVTREEINDEX =
 "annotated.html",
 "d3/dfd/_i_visual_recognition_service_8cs.html",
 "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html",
-"d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#adc7821e880278c3642257cc6642f8b60",
-"dc/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_get_collection_images.html",
-"dir_437b08f3d4ef754967a46f36c7c2cd9c.html"
+"d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a4834d718bb278397530b9ae6c8aa07d7",
+"dc/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice.html#aeb4d5981693225389692daf57b246a40",
+"dir_1eba6a34b2dbea30edf6496092d41012.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

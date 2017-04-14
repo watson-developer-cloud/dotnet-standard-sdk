@@ -242,7 +242,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             };
 
             var recognize =
-                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "", modelName);
+                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "chunked", modelName);
 
             var results =
                 service.ObserveResult(session.SessionId, interimResults: true);

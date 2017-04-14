@@ -311,6 +311,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                    .WithHeader("Cookie", sessionId);
                 }
 
+                if (!string.IsNullOrEmpty(transferEncoding))
+                    request.WithHeader("Transfer-Encoding", transferEncoding);
+
                 if (metaData == null)
                 {
                     // if a session exists, the model should not be sent

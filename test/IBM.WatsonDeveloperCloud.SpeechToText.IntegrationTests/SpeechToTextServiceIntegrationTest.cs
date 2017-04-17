@@ -24,6 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
 {
@@ -35,6 +37,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         private string _password;
         private string _endpoint;
         private static string _createdCustomizationID;
+        AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
         public void Setup()
@@ -85,7 +88,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t03_CreateSession_Success()
+        public void t02_CreateSession_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -104,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t04_GetSessionStatus_Success()
+        public void t03_GetSessionStatus_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -124,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t05_Recognize_BodyContent_Sucess()
+        public void t04_Recognize_BodyContent_Sucess()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -143,7 +146,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t06_Recognize_FormData_Sucess()
+        public void t05_Recognize_FormData_Sucess()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -167,7 +170,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t07_Recognize_WithSession_BodyContent_Sucess()
+        public void t06_Recognize_WithSession_BodyContent_Sucess()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -191,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t08_Recognize_WithSession_FormData_Sucess()
+        public void t07_Recognize_WithSession_FormData_Sucess()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -220,8 +223,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
         }
 
-        [TestMethod]
-        public void t09_ObserveResult_Success()
+        //[TestMethod]
+        public void t08_ObserveResult_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -254,9 +257,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             Assert.IsTrue(results.First().Results.First().Alternatives.Count > 0);
             Assert.IsNotNull(results.First().Results.First().Alternatives.First().Transcript);
         }
-
+        
         [TestMethod]
-        public void t10_CreateCustomModel_Success()
+        public void t09_CreateCustomModel_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -275,181 +278,60 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t11_ListCustomModels_Success()
-        {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            Assert.IsNotNull(customizations);
-            Assert.IsNotNull(customizations.Customization);
-            Assert.IsTrue(customizations.Customization.Count() > 0);
-        }
-
-        [TestMethod]
-        public void t12_ListCustomModel_Success()
-        {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var result =
-                service.ListCustomModel(_createdCustomizationID);
-
-            Assert.IsNotNull(result);
-            Assert.IsFalse(string.IsNullOrEmpty(result.CustomizationId));
-        }
-
-        [TestMethod]
-        public void t13_TrainCustomModel_Success()
-        {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var result = service.TrainCustomModel(customization.CustomizationId);
-
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void t14_UpgradeCustomModel_Success()
-        {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var result = service.UpgradeCustomModel(customization.CustomizationId);
-
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void t15_ResetCustomModel_Success()
-        {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var result = service.ResetCustomModel(customization.CustomizationId);
-
-            Assert.IsNotNull(result);
-        }
-
-
-        [TestMethod]
-        public void t16_AddCorpus_Success()
+        public void t10_AddCorpus_Success()
         {
             SpeechToTextService service =
                new SpeechToTextService(_userName, _password);
 
             service.Endpoint = _endpoint;
 
-            var customizations =
-                service.ListCustomModels();
-
             var customization =
-                customizations.Customization.First();
+                _createdCustomizationID;
 
             var body =
                 File.OpenRead(@"Assets\test-stt-corpus.txt");
 
-            object result = service.AddCorpus(customization.CustomizationId,
+            object result = service.AddCorpus(customization,
                               "stt_integration",
                               false,
                               body);
 
             Assert.IsNotNull(result);
         }
-
+        
         [TestMethod]
-        public void t17_ListCorpora_Success()
+        public void t11_TrainCustomModel_Success()
         {
             SpeechToTextService service =
-               new SpeechToTextService(_userName, _password);
+                new SpeechToTextService(_userName, _password);
 
             service.Endpoint = _endpoint;
 
-            var customizations =
-                service.ListCustomModels();
-
             var customization =
-                customizations.Customization.First();
+                _createdCustomizationID;
 
-            var corpora =
-                service.ListCorpora(customization.CustomizationId);
+            var result = service.TrainCustomModel(customization);
 
-            Assert.IsNotNull(corpora);
-            Assert.IsNotNull(corpora.CorporaProperty);
-            Assert.IsTrue(corpora.CorporaProperty.Count() > 0);
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void t18_GetCorpus_Success()
+        public void t12_WaitForTraining()
+        {
+            IsTrainingComplete();
+            autoEvent.WaitOne();
+            Assert.IsTrue(true);
+        }
+        
+        [TestMethod]
+        public void t13_AddCustomWords_Success()
         {
             SpeechToTextService service =
               new SpeechToTextService(_userName, _password);
 
             service.Endpoint = _endpoint;
 
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var corpora =
-                service.ListCorpora(customization.CustomizationId);
-
-            var corpus =
-                service.GetCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
-
-            Assert.IsNotNull(corpus);
-            Assert.IsNotNull(corpus.Name);
-            Assert.AreEqual(corpora.CorporaProperty.First().Name, corpus.Name);
-        }
-
-        [TestMethod]
-        public void t19_AddCustomWords_Success()
-        {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            object result = service.AddCustomWords(customization.CustomizationId,
+            object result = service.AddCustomWords(_createdCustomizationID,
                                   new Words()
                                   {
                                       WordsProperty = new List<Word>()
@@ -488,20 +370,41 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t20_AddCustomWord_Success()
+        public void t14_TrainCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var result = service.TrainCustomModel(customization);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void t15_WaitForTraining()
+        {
+            IsTrainingComplete();
+            autoEvent.WaitOne();
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void t16_AddCustomWord_Success()
         {
             SpeechToTextService service =
               new SpeechToTextService(_userName, _password);
 
             service.Endpoint = _endpoint;
 
-            var customizations =
-                service.ListCustomModels();
-
             var customization =
-                customizations.Customization.First();
+                _createdCustomizationID;
 
-            object result = service.AddCustomWord(customization.CustomizationId,
+            object result = service.AddCustomWord(customization,
                                   "social",
                                   new WordDefinition()
                                   {
@@ -516,94 +419,31 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
         }
 
         [TestMethod]
-        public void t21_ListCustomWords_Success()
+        public void t17_TrainCustomModel_Success()
         {
             SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+                new SpeechToTextService(_userName, _password);
 
             service.Endpoint = _endpoint;
 
-            var customizations =
-                service.ListCustomModels();
-
             var customization =
-                customizations.Customization.First();
+                _createdCustomizationID;
 
-            var words =
-                service.ListCustomWords(customization.CustomizationId, null, null);
-
-            Assert.IsNull(words);
-        }
-
-        [TestMethod]
-        public void t22_ListCustomWord_Success()
-        {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var words =
-                service.ListCustomWords(customization.CustomizationId, WordType.All, null);
-
-            var word =
-                service.ListCustomWord(customization.CustomizationId, words.Words.First().Word);
-
-            Assert.IsNotNull(word);
-        }
-        
-        [TestMethod]
-        public void t23_DeleteCustomWord_Success()
-        {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var words =
-                service.ListCustomWords(customization.CustomizationId, WordType.All, null);
-
-            object result = service.DeleteCustomWord(customization.CustomizationId, words.Words.First().Word);
+            var result = service.TrainCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void t24_DeleteCorpus_Success()
+        public void t18_WaitForTraining()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
-            var customizations =
-                service.ListCustomModels();
-
-            var customization =
-                customizations.Customization.First();
-
-            var corpora =
-                service.ListCorpora(customization.CustomizationId);
-
-            var result = service.DeleteCorpus(customization.CustomizationId, corpora.CorporaProperty.First().Name);
-
-            Assert.IsNotNull(result);
+            IsTrainingComplete();
+            autoEvent.WaitOne();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void t25_DeleteCustomModel_Success()
+        public void t19_ListCustomModels_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -613,16 +453,210 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             var customizations =
                 service.ListCustomModels();
 
-            var customization =
-                customizations.Customization.First();
+            Assert.IsNotNull(customizations);
+            Assert.IsNotNull(customizations.Customization);
+            Assert.IsTrue(customizations.Customization.Count() > 0);
+        }
+        
+        [TestMethod]
+        public void t20_ListCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
 
-            object result = service.DeleteCustomModel(customization.CustomizationId);
+            service.Endpoint = _endpoint;
+
+            var result =
+                service.ListCustomModel(_createdCustomizationID);
+
+            Assert.IsNotNull(result);
+            Assert.IsFalse(string.IsNullOrEmpty(result.CustomizationId));
+        }
+        
+        [TestMethod]
+        public void t21_ListCorpora_Success()
+        {
+            SpeechToTextService service =
+               new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var corpora =
+                service.ListCorpora(customization);
+
+            Assert.IsNotNull(corpora);
+            Assert.IsNotNull(corpora.CorporaProperty);
+            Assert.IsTrue(corpora.CorporaProperty.Count() > 0);
+        }
+
+        [TestMethod]
+        public void t22_GetCorpus_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var corpora =
+                service.ListCorpora(customization);
+
+            var corpus =
+                service.GetCorpus(customization, corpora.CorporaProperty.First().Name);
+
+            Assert.IsNotNull(corpus);
+            Assert.IsNotNull(corpus.Name);
+            Assert.AreEqual(corpora.CorporaProperty.First().Name, corpus.Name);
+        }
+
+        [TestMethod]
+        public void t23_ListCustomWords_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var words =
+                service.ListCustomWords(_createdCustomizationID, null, null);
+
+            Assert.IsNotNull(words);
+        }
+
+        [TestMethod]
+        public void t24_ListCustomWord_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var words =
+                service.ListCustomWords(customization, WordType.All, null);
+
+            var word =
+                service.ListCustomWord(customization, words.Words.First().Word);
+
+            Assert.IsNotNull(word);
+        }
+        [TestMethod]
+        public void t25_DeleteCustomWord_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var words =
+                service.ListCustomWords(customization, WordType.All, null);
+
+            object result = service.DeleteCustomWord(customization, words.Words.First().Word);
 
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void t26_DeleteSession_Success()
+        public void t26_TrainCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var result = service.TrainCustomModel(_createdCustomizationID);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void t27_WaitForTraining()
+        {
+            IsTrainingComplete();
+            autoEvent.WaitOne();
+            Assert.IsTrue(true);
+        }
+
+
+        [TestMethod]
+        public void t28_DeleteCorpus_Success()
+        {
+            SpeechToTextService service =
+              new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var corpora =
+                service.ListCorpora(customization);
+
+            var result = service.DeleteCorpus(customization, corpora.CorporaProperty.First().Name);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void t29_ResetCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var result = service.ResetCustomModel(customization);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void t30_UpgradeCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            var result = service.UpgradeCustomModel(customization);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void t31_DeleteCustomModel_Success()
+        {
+            SpeechToTextService service =
+                new SpeechToTextService(_userName, _password);
+
+            service.Endpoint = _endpoint;
+
+            var customization =
+                _createdCustomizationID;
+
+            object result = service.DeleteCustomModel(customization);
+
+            Assert.IsNotNull(result);
+        }
+
+        //[TestMethod]
+        public void t32_DeleteSession_Success()
         {
             SpeechToTextService service =
                 new SpeechToTextService(_userName, _password);
@@ -637,6 +671,30 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             object result = service.DeleteSession(session);
 
             Assert.IsNotNull(result);
+        }
+
+        private bool IsTrainingComplete()
+        {
+            SpeechToTextService service = new SpeechToTextService(_userName, _password);
+            service.Endpoint = _endpoint;
+
+            var result = service.ListCustomModel(_createdCustomizationID);
+
+            string status = result.Status.ToLower();
+            Console.WriteLine(string.Format("Classifier status is {0}", status));
+
+            if (status == "ready" || status == "available")
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    IsTrainingComplete();
+                });
+            }
+
+            return result.Status.ToLower() == "ready";
         }
     }
 }

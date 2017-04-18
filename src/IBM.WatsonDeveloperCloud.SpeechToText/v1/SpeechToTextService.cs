@@ -415,9 +415,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 if (interimResults)
                     request.WithArgument("interim_results", interimResults);
 
-                result =
-                    request.AsList<SpeechRecognitionEvent>()
+                var strResult =
+                    request.AsString()
                            .Result;
+                var serializer = new JsonSerializer();
+
+                using (var jsonReader = new JsonTextReader(new StringReader(strResult)))
+                {
+                    jsonReader.SupportMultipleContent = true;
+                    result = new List<SpeechRecognitionEvent>();
+
+                    while (jsonReader.Read())
+                    {
+                        var speechRecognitionEvent = serializer.Deserialize<SpeechRecognitionEvent>(jsonReader);
+                        result.Add(speechRecognitionEvent);
+                    }
+                }
             }
             catch (AggregateException ae)
             {

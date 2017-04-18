@@ -223,7 +223,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
             Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void t08_ObserveResult_Success()
         {
             SpeechToTextService service =
@@ -244,18 +244,29 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests
                 PartContentType = audio.GetMediaTypeFromFile()
             };
 
-            var recognize =
+            var taskObserveResult = Task.Factory.StartNew<List<SpeechRecognitionEvent>>(() =>
+            {
+                return service.ObserveResult(session.SessionId, interimResults: true);
+            });
+
+            taskObserveResult.ContinueWith((antecedent) =>
+            {
+                var results = antecedent.Result;
+
+                Assert.IsNotNull(results);
+                Assert.IsTrue(results.Count > 0);
+                Assert.IsNotNull(results.First().Results);
+                Assert.IsTrue(results.First().Results.Count > 0);
+                Assert.IsTrue(results.First().Results.First().Alternatives.Count > 0);
+                Assert.IsNotNull(results.First().Results.First().Alternatives.First().Transcript);
+            });
+
+            var taskRecognizeWithSession = Task.Factory.StartNew(() =>
+            {
                 service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "chunked", modelName);
+            });
 
-            var results =
-                service.ObserveResult(session.SessionId, interimResults: true);
-
-            Assert.IsNotNull(results);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsNotNull(results.First().Results);
-            Assert.IsTrue(results.First().Results.Count > 0);
-            Assert.IsTrue(results.First().Results.First().Alternatives.Count > 0);
-            Assert.IsNotNull(results.First().Results.First().Alternatives.First().Transcript);
+            taskObserveResult.Wait();
         }
         
         [TestMethod]

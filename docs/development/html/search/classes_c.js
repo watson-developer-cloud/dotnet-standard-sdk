@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['mediatypeutils',['MediaTypeUtils',['../dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_util_1_1_media_type_utils.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Util']]],
-  ['messagerequest',['MessageRequest',['../d2/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_request.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['messageresponse',['MessageResponse',['../d1/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['modelclass',['ModelClass',['../d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
-  ['modelpayload',['ModelPayload',['../df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html',1,'IBM::WatsonDeveloperCloud::LanguageTranslator::v2::Model']]]
+  ['onefaceresult',['OneFaceResult',['../d6/d72/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_one_face_result.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['onefaceresultage',['OneFaceResultAge',['../da/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_one_face_result_age.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['onefaceresultfacelocation',['OneFaceResultFaceLocation',['../d5/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_one_face_result_face_location.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['onefaceresultgender',['OneFaceResultGender',['../d2/db7/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_one_face_result_gender.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['onefaceresultidentity',['OneFaceResultIdentity',['../db/d79/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_one_face_result_identity.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['outputdata',['OutputData',['../d3/d02/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_output_data.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
 ];

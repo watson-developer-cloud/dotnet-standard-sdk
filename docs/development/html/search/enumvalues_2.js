@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['japanese',['JAPANESE',['../d7/dbd/namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model.html#ae8aa4ec2f2a489cfbde3b9853dd2b555a5ae445aa3b5ec4f591501216bfa3dafe',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]]
+  ['descendingalphabetical',['DescendingAlphabetical',['../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a6d76e8acfd115b6fa2ea8c87eb0fc45eaff1bbc697bf9f17f396aafa0b6d93fd2',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
+  ['descendingcount',['DescendingCount',['../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a6d76e8acfd115b6fa2ea8c87eb0fc45eac63e9739498e8f4dedd25887a46d8c33',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]]
 ];

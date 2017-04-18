@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,21 +16,17 @@
 */
 
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class JobStatusNew
+    public class Corpora
     {
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        /// <summary>
+        /// Gets or sets information about corpora of the custom model. The
+        /// array is empty if the custom model has no corpora.
+        /// </summary>
+        [JsonProperty(PropertyName = "corpora")]
+        public IList<Corpus> CorporaProperty { get; set; }
     }
 }

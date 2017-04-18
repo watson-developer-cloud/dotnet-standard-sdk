@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,13 +19,19 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class RecognizeStatus
+    public partial class WordError
     {
         /// <summary>
-        /// Gets or sets description of the state and possible actions for the
-        /// current session.
+        /// Gets or sets a key-value pair that describes an error associated
+        /// with the word's definition in the format `"element": "message"`,
+        /// where `element` is the aspect of the definition that caused the
+        /// problem and `message` describes the problem. The following
+        /// example describes a problem with one of the word's sounds-like
+        /// definitions: `"sounds_like_string": "Numbers are not allowed in
+        /// sounds-like. You can try for example 'suggested_string'."` You
+        /// must correct the error before you can train the model.
         /// </summary>
-        [JsonProperty("session")]
-        public SessionStatus Session { get; set; }
+        [JsonProperty("element")]
+        public string Element { get; set; }
     }
 }

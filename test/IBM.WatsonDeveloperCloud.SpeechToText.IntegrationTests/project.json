@@ -5,8 +5,9 @@
 
   "buildOptions": {
     "copyToOutput": [
-      "Assets\\let_it_be.wav",
-      "appsettings.json"
+      "Assets\\test-audio.wav",
+      "appsettings.json",
+      "Assets\\test-stt-corpus.txt"
     ]
   },
 
@@ -30,7 +31,6 @@
           "type": "platform",
           "version": "1.0.0"
         }
-        //"System.Runtime.Serialization.Xml": "4.1.1"
       },
       "imports": [
         "dotnet5.4",

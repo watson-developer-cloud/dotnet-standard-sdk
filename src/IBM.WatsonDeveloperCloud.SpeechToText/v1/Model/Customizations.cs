@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +16,18 @@
 */
 
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class RecognizeStatus
+    public class Customizations
     {
         /// <summary>
-        /// Gets or sets description of the state and possible actions for the
-        /// current session.
+        /// Gets or sets information about each available custom model. The
+        /// array is empty if the user owns no custom models (if no language
+        /// is specified) or owns no custom models for the specified language.
         /// </summary>
-        [JsonProperty("session")]
-        public SessionStatus Session { get; set; }
+        [JsonProperty(PropertyName = "customizations")]
+        public IList<Customization> Customization { get; set; }
     }
 }

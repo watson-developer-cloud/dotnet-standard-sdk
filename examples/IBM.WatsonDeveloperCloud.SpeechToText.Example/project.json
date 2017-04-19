@@ -23,7 +23,12 @@
     "emitEntryPoint": true,
     "xmlDoc": false,
     "copyToOutput": {
-      "include": [ "./test-audio.wav" ]
+      [
+        "Assets\\test-audio.wav",
+        "appsettings.json",
+        "Assets\\test-stt-corpus.txt",
+        "./test-audio.wav"
+      ]
     }
   }
 }

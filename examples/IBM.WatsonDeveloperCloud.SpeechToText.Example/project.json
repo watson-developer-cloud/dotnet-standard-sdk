@@ -22,13 +22,11 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "xmlDoc": false,
-    "copyToOutput": {
-      [
-        "Assets\\test-audio.wav",
-        "appsettings.json",
-        "Assets\\test-stt-corpus.txt",
-        "./test-audio.wav"
-      ]
-    }
+    "copyToOutput": [
+      "Assets\\test-audio.wav",
+      "appsettings.json",
+      "Assets\\test-stt-corpus.txt",
+      "./test-audio.wav"
+    ]
   }
 }

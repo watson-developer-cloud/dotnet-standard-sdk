@@ -84,5 +84,10 @@ namespace IBM.WatsonDeveloperCloud.Service
             this.UserName = userName;
             this.Password = password;
         }
+
+        public void SetCredential(string apikey)
+        {
+            this.ApiKey = apikey;
+        }
     }
 }

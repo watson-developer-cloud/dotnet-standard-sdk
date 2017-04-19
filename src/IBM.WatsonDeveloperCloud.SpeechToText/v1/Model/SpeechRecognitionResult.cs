@@ -23,15 +23,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class SpeechRecognitionResult
     {
+        /// <summary>
+        /// Gets or sets if `true`, the result for this utterance is not updated further.
+        /// </summary>
         [JsonProperty("final")]
         public bool Final { get; set; }
 
+        /// <summary>
+        /// Gets or sets array of alternative transcripts.
+        /// </summary>
         [JsonProperty("alternatives")]
         public List<SpeechRecognitionAlternative> Alternatives { get; set; }
 
+        /// <summary>
+        /// Gets or sets dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.
+        /// </summary>
         [JsonProperty("keywords_result")]
         public KeywordResults KeywordResults { get; set; }
 
+        /// <summary>
+        /// Gets or sets array of word alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is specified.
+        /// </summary>
         [JsonProperty("word_alternatives")]
         public List<WordAlternativeResults> WordAlternativeResults { get; set; }
     }

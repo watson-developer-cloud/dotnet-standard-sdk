@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
         private string _password;
         private string _endpoint;
         private string _workspace;
-        private string _tempWorkspace;
+        static private string _tempWorkspace;
 
         [TestInitialize]
         public void Setup()
@@ -339,10 +339,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                }
+                Input = new { Text = "Turn on the lights" }
             };
 
             #endregion messageRequest
@@ -353,7 +350,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
             var results = service.Message(_workspace, messageRequest);
 
             Assert.IsNotNull(results);
-            Assert.IsTrue(results.Intents.Count >= 1);
         }
 
         [TestMethod]

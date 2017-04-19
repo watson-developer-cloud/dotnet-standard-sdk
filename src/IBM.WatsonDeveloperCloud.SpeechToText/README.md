@@ -60,12 +60,12 @@ Retrieves information about a single specified model that is available for use w
 var results = _speechToText.GetModel("<model-name>");
 ```
 
-<!-- #### Recognize audio via websockets
+#### Recognize audio via websockets
 Sends audio and returns transcription results for recognition requests over a WebSocket connection. Requests and responses are enabled over a single TCP connection that abstracts much of the complexity of the request to offer efficient implementation, low latency, high throughput, and an asynchronous response. By default, only final results are returned for any request; to enable interim results, set the interim_results parameter to true.
 
 The service imposes a data size limit of 100 MB per connection. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
 ```cs
-``` -->
+```
 
 #### Recognize audio via file
 Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results.

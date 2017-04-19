@@ -17,6 +17,7 @@
 
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
+using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 using System;
 using System.IO;
 
@@ -110,7 +111,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
             using (FileStream fs = File.OpenRead(_path))
             {
                 Console.WriteLine("Calling Recognize...");
-                var speechEvent = _speechToText.Recognize(fs);
+                var speechEvent = _speechToText.Recognize(fs.GetMediaTypeFromFile(),
+                                                          fs);
 
                 Console.WriteLine("speechEvent received...");
                 if (speechEvent.Results != null || speechEvent.Results.Count > 0)

@@ -51,12 +51,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -64,14 +61,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
-                },
+                },          
                 Entities = new List<EntityResponse>()
                 {
                     new EntityResponse()
@@ -111,12 +108,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageResponse response = new MessageResponse()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -124,12 +118,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -201,12 +195,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -214,12 +205,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -261,12 +252,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageResponse response = new MessageResponse()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -274,12 +262,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -351,12 +339,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -364,12 +349,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -411,12 +396,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageResponse response = new MessageResponse()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -424,12 +406,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -497,12 +479,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -510,12 +489,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()
@@ -557,12 +536,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
 
             MessageResponse response = new MessageResponse()
             {
-                Input = new InputData()
-                {
-                    Text = "Turn on the lights"
-                },
+                Input = new { Text = "Turn on the lights" },
                 AlternateIntents = true,
-                Context = new Context()
+                Context = new
                 {
                     ConversationId = "1b7b67c0-90ed-45dc-8508-9488bc483d5b",
                     System = new SystemResponse()
@@ -570,12 +546,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.UnitTests
                         DialogRequestCounter = 2,
                         DialogTurnCounter = 2,
                         DialogStack = new List<DialogStack>()
-                        {
-                            new DialogStack()
-                            {
-                                DialogNode = "root"
-                            }
-                        }
+                                    {
+                                        new DialogStack()
+                                        {
+                                            DialogNode = "root"
+                                        }
+                                    }
                     }
                 },
                 Entities = new List<EntityResponse>()

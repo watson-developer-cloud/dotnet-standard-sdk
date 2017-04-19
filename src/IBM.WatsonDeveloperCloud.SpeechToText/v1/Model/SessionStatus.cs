@@ -21,18 +21,36 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class SessionStatus
     {
+        /// <summary>
+        /// Gets or sets state of the session. The state must be `initialized`
+        /// to perform a new recognition request on the session.
+        /// </summary>
         [JsonProperty("state")]
         public string State { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for information about the model that is used with
+        /// the session.
+        /// </summary>
         [JsonProperty("model")]
         public string Model { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for REST recognition requests.
+        /// </summary>
         [JsonProperty("recognize")]
         public string Recognize { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for REST results observers.
+        /// </summary>
         [JsonProperty("observe_result")]
         public string ObserveResult { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for WebSocket recognition requests. Needed only
+        /// for working with the WebSocket interface.
+        /// </summary>
         [JsonProperty("recognizeWS")]
         public string RecognizeWS { get; set; }
     }

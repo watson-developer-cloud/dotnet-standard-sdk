@@ -80,5 +80,115 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         MessageResponse Message(string workspaceId, MessageRequest request);
 
         #endregion
+
+        #region Intents
+
+        /// <summary>
+        /// List the intents for a workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <returns></returns>
+        IntentCollectionResponse ListIntents(string workspaceId);
+
+        /// <summary>
+        /// List the intents for a workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="export">Whether to include all element content in the returned data. If export=false, the returned data includes only information about the element itself. If export=true, all content, including subelements, is included. The default value is false. </param>
+        /// <returns></returns>
+        IntentCollectionResponse ListIntents(string workspaceId, bool export = false);
+
+        /// <summary>
+        /// Create a new intent.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="request">A CreateIntent object defining the content of the new intent. </param>
+        /// <returns></returns>
+        IntentResponse CreateIntent(string workspaceId, CreateIntent request);
+
+        /// <summary>
+        /// Delete an intent from a workspace. 
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order). </param>
+        /// <returns></returns>
+        object DeleteIntent(string workspaceId, string intent);
+
+        /// <summary>
+        /// Get information about an intent, optionally including all intent content. 
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <returns></returns>
+        IntentExportResponse GetIntent(string workspaceId, string intent);
+
+        /// <summary>
+        /// Get information about an intent, optionally including all intent content. 
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <param name="export">Whether to include all element content in the returned data. If export=false, the returned data includes only information about the element itself. If export=true, all content, including subelements, is included. The default value is false. </param>
+        /// <returns></returns>
+        IntentExportResponse GetIntent(string workspaceId, string intent, bool export = false);
+
+        /// <summary>
+        /// Update an existing intent with new or modified data. You must provide JSON data defining the content of the updated intent. Any elements included in the new JSON will completely replace the equivalent existing elements, including all subelements. (Previously existing subelements are not retained unless they are included in the new JSON.) For example, if you update the user input examples for an intent, the previously existing examples are discarded and replaced with the new examples specified in the JSON input.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The name of the intent to update.</param>
+        /// <param name="request">An UpdateIntent object defining the updated content of the intent.</param>
+        /// <returns></returns>
+        IntentResponse UpdateIntent(string workspaceId, string intent, UpdateIntent request);
+
+        #endregion
+
+        #region Examples
+
+        /// <summary>
+        /// List the user input examples for an intent. 
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <returns></returns>
+        ExampleCollectionResponse ListExamples(string workspaceId, string intent);
+
+        /// <summary>
+        /// Add a new user input example to an intent.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <param name="request">A CreateExample object defining the content of the new user input example..</param>
+        /// <returns></returns>
+        ExampleResponse CreateExample(string workspaceId, string intent, CreateExample request);
+
+        /// <summary>
+        /// Delete a user input example from an intent.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <param name="text">The text of the user input example, with spaces and special characters in URL encoding.</param>
+        /// <returns></returns>
+        object DeleteExample(string workspaceId, string intent, string text);
+
+        /// <summary>
+        /// Get information about a user input example.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <param name="text">The text of the user input example, with spaces and special characters in URL encoding.</param>
+        /// <returns></returns>
+        ExampleResponse GetExample(string workspaceId, string intent, string text);
+
+        /// <summary>
+        /// Update the text of a user input example.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace</param>
+        /// <param name="intent">The intent name (for example, pizza_order).</param>
+        /// <param name="text">The text of the user input example, with spaces and special characters in URL encoding.</param>
+        /// <param name="request">An UpdateExample object defining the new text for the user input example.</param>
+        /// <returns></returns>
+        ExampleResponse UpdateExample(string workspaceId, string intent, string text, UpdateExample request);       
+
+        #endregion
     }
 }

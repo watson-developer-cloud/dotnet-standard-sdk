@@ -3,10 +3,6 @@
 
   "testRunner": "mstest",
 
-  "buildOptions": {
-    "copyToOutput": "appsettings.json"
-  },
-
   "dependencies": {
     "dotnet-test-mstest": "1.1.2-preview",
     "MSTest.TestFramework": "1.0.6-preview",
@@ -27,7 +23,6 @@
           "type": "platform",
           "version": "1.0.0"
         }
-        //"System.Runtime.Serialization.Xml": "4.1.1"
       },
       "imports": [
         "dotnet5.4",

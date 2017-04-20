@@ -58,10 +58,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
 
             var results = _textToSpeech.GetVoices();
 
-            if (results != null && results.Count > 0)
+            if (results != null && results.VoiceList.Count > 0)
             {
                 Console.WriteLine("Voices found...");
-                foreach (Voice voice in results)
+                foreach (Voice voice in results.VoiceList)
                     Console.WriteLine(string.Format("name: {0} | language: {1} | gender: {2} | description {3}",
                         voice.Name,
                         voice.Language,
@@ -120,8 +120,15 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         private void Synthesize()
         {
             Console.WriteLine(string.Format("Calling Synthesize({0})...", _text));
+            
+            var voice = new Voice()
+            {
+                Name = "en-US_AllisonVoice",
+                Gender = "female",
+                Language = "en-US"
+            };
 
-            var results = _textToSpeech.Synthesize(_text, Voice.EN_ALLISON, AudioType.WAV);
+            var results = _textToSpeech.Synthesize(_text, voice, AudioType.WAV);
 
             if (results != null)
             {

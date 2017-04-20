@@ -22,49 +22,51 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
 {
     public class Voice
     {
-        private const string MALE = "male";
-        private const string FEMALE = "female";
-
-        public static readonly Voice DE_DIETER = new Voice("de-DE_DieterVoice", MALE, "de-DE");
-        public static readonly Voice DE_BIRGIT = new Voice("de-DE_BirgitVoice", FEMALE, "de-DE");
-        public static readonly Voice EN_ALLISON = new Voice("en-US_AllisonVoice", FEMALE, "en-US");
-        public static readonly Voice EN_LISA = new Voice("en-US_LisaVoice", FEMALE, "en-US");
-        public static readonly Voice EN_MICHAEL = new Voice("en-US_MichaelVoice", MALE, "en-US");
-        public static readonly Voice ES_ENRIQUE = new Voice("es-ES_EnriqueVoice", MALE, "es-ES");
-        public static readonly Voice ES_LAURA = new Voice("es-ES_LauraVoice", FEMALE, "es-US");
-        public static readonly Voice ES_SOFIA = new Voice("es-US_SofiaVoice", FEMALE, "es-US");
-        public static readonly Voice FR_RENEE = new Voice("fr-FR_ReneeVoice", FEMALE, "fr-FR");
-        public static readonly Voice GB_KATE = new Voice("en-GB_KateVoice", FEMALE, "en-GB");
-        public static readonly Voice IT_FRANCESCA = new Voice("it-IT_FrancescaVoice", FEMALE, "it-IT");
-        public static readonly Voice JA_EMI = new Voice("ja-JP_EmiVoice", FEMALE, "ja-JP");
-        public static readonly Voice PT_ISABELA = new Voice("pt-BR_IsabelaVoice", FEMALE, "pt-BR");
-
-
-        [JsonProperty("customizable")]
-        public bool Customizable { get; set; }
-        [JsonProperty("description")]
-        public string Description { get; set; }
-        [JsonProperty("gender")]
-        public string Gender { get; set; }
-        [JsonProperty("language")]
-        public string Language { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("url")]
+        /// <summary>
+        /// Gets or sets URI of the voice.
+        /// </summary>
+        [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
 
-        public Voice() { }
+        /// <summary>
+        /// Gets or sets gender of the voice: 'male' or 'female'.
+        /// </summary>
+        [JsonProperty(PropertyName = "gender")]
+        public string Gender { get; set; }
 
-        public Voice(string name, string gender, string language)
-        {
-            this.Name = name;
-            this.Gender = gender;
-            this.Language = language;
-        }
+        /// <summary>
+        /// Gets or sets name of the voice. Use this as the voice identifier
+        /// in all requests.
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
+        /// <summary>
+        /// Gets or sets language and region of the voice (for example,
+        /// 'en-US').
+        /// </summary>
+        [JsonProperty(PropertyName = "language")]
+        public string Language { get; set; }
+
+        /// <summary>
+        /// Gets or sets textual description of the voice.
+        /// </summary>
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets if `true`, the voice can be customized; if `false`,
+        /// the voice cannot be customized. (Same as `custom_pronunciation`;
+        /// maintained for backward compatibility.)
+        /// </summary>
+        [JsonProperty(PropertyName = "customizable")]
+        public bool Customizable { get; set; }
+
+        /// <summary>
+        /// Gets or sets describes the additional service features supported
+        /// with the voice.
+        /// </summary>
+        [JsonProperty(PropertyName = "supported_features")]
+        public SupportedFeatures SupportedFeatures { get; set; }
     }
 }

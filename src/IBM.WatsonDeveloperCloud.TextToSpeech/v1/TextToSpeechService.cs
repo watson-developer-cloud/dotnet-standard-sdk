@@ -16,6 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
@@ -75,10 +76,22 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
         public VoiceSet GetVoices()
         {
-            return Client.WithAuthentication(this.UserName, this.Password)
+            VoiceSet result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
                           .GetAsync(this.Endpoint + PATH_VOICES)
                           .As<VoiceSet>()
                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
         public Voice GetVoice(string voiceName)

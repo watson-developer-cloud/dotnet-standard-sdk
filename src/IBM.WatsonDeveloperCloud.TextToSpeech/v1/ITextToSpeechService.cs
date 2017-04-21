@@ -28,12 +28,15 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <returns>Returns a list of available voices.</returns>
         VoiceSet GetVoices();
+
         /// <summary>
-        /// Lists information about the specified voice. Specify a customization_id to obtain information for that custom voice model of the specified voice. 
+        /// Lists information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice. To see information about all available voices, use the <see cref="GetVoices">Get voices</see> method.
         /// </summary>
         /// <param name="voiceName">The voice about which information is to be returned</param>
+        /// <param name="customizationId">The GUID of a custom voice model about which information is to be returned. You must make the request with the service credentials of the model's owner. Omit the parameter to see information about the voice with no customization.</param>
         /// <returns>Returns details the specified voice.</returns>
-        Voice GetVoice(string voiceName);
+        VoiceCustomization GetVoice(string voiceName, string customizationId = "");
+
         /// <summary>
         /// Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.
         /// </summary>

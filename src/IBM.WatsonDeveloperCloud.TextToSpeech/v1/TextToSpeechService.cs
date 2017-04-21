@@ -33,7 +33,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         const string SERVICE_NAME = "text_to_speech";
 
         const string PATH_VOICES = "/v1/voices";
-        const string PATH_VOICE = PATH_VOICES + "/{0}";
         const string PATH_SYNTHESIZE = "/v1/synthesize";
         const string PATH_PRONUNCIATION = "/v1/pronunciation";
         const string PATH_CUSTOMIZATIONS = "/v1/customizations";
@@ -82,7 +81,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             {
                 result =
                     Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_VOICES)
+                          .GetAsync($"{this.Endpoint}{PATH_VOICES}")
                           .As<VoiceSet>()
                           .Result;
             }
@@ -94,16 +93,32 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return result;
         }
 
-        public Voice GetVoice(string voiceName)
+        public VoiceCustomization GetVoice(string voiceName, string customizationId = "")
         {
             if (string.IsNullOrEmpty(voiceName))
-                throw new ArgumentNullException("Parameter 'voiceName' must be provided");
+                throw new ArgumentNullException($"The parameter {nameof(voiceName)} must be provided");
 
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_VOICE, voiceName))
-                          .As<Voice>()
-                          .Result;
+            VoiceCustomization result;
 
+            try
+            {
+                var request =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .GetAsync($"{this.Endpoint}{PATH_VOICES}/{voiceName}");
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+
+                result =
+                    request.As<VoiceCustomization>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
         public Pronunciation GetPronunciation(string text)

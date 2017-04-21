@@ -71,7 +71,21 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
         [TestMethod]
         public void GetVoice_Success()
         {
+            TextToSpeechService service =
+                new TextToSpeechService(_userName, _password);
 
+            service.Endpoint = _endpoint;
+
+            var resultGetVoices =
+                service.GetVoices();
+
+            var voice = resultGetVoices.VoiceList.First();
+
+            var result =
+                service.GetVoice(voice.Name);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Name, voice.Name);
         }
     }
 }

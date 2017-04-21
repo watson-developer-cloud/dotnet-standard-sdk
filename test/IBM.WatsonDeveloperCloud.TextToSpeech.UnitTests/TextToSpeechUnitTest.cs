@@ -104,5 +104,169 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.UnitTests
             var voiceSet =
                 service.GetVoices();
         }
+
+        [TestMethod]
+        public void GetVoice_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            VoiceCustomization response =
+                 new VoiceCustomization()
+                 {
+                     Customizable = true,
+                     Description = "description",
+                     Gender = "gender",
+                     Language = "language",
+                     Name = "name",
+                     SupportedFeatures = new SupportedFeatures()
+                     {
+                         CustomPronunciation = false,
+                         VoiceTransformation = false
+                     },
+                     Url = "url",
+                     Customization = new Customization()
+                     {
+                         Created = "created",
+                         CustomizationId = "customization_id",
+                         Description = "description",
+                         Language = "language",
+                         LastModified = "last_modified",
+                         Name = "name",
+                         Owner = "owner"
+                     }
+                 };
+
+            request.As<VoiceCustomization>()
+                   .Returns(Task.FromResult(response));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var voiceCustomization =
+                service.GetVoice(voiceName: "voice_name", customizationId: "customization_id");
+
+            Assert.IsNotNull(voiceCustomization);
+            Assert.IsNotNull(voiceCustomization.Customization);
+        }
+
+        [TestMethod]
+        public void GetVoice_Without_CustomizationId_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            VoiceCustomization response =
+                 new VoiceCustomization()
+                 {
+                     Customizable = true,
+                     Description = "description",
+                     Gender = "gender",
+                     Language = "language",
+                     Name = "name",
+                     SupportedFeatures = new SupportedFeatures()
+                     {
+                         CustomPronunciation = false,
+                         VoiceTransformation = false
+                     },
+                     Url = "url",
+                     Customization = new Customization()
+                     {
+                         Created = "created",
+                         CustomizationId = "customization_id",
+                         Description = "description",
+                         Language = "language",
+                         LastModified = "last_modified",
+                         Name = "name",
+                         Owner = "owner"
+                     }
+                 };
+
+            request.As<VoiceCustomization>()
+                   .Returns(Task.FromResult(response));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var voiceCustomization =
+                service.GetVoice(voiceName: "voice_name");
+
+            Assert.IsNotNull(voiceCustomization);
+            Assert.IsNotNull(voiceCustomization.Customization);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetVoice_VoiceName_Null()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var voiceCustomization =
+                 service.GetVoice(voiceName: null, customizationId: "customization_id");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetVoice_VoiceName_Empty()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var voiceCustomization =
+                 service.GetVoice(voiceName: string.Empty, customizationId: "customization_id");
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void GetVoice_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                  });
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var voiceCustomization =
+                 service.GetVoice(voiceName: "voice_name", customizationId: "customization_id");
+        }
     }
 }

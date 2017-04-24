@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator -Pre
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.LanguageTranslator": "0.1.1-alpha"
+   "IBM.WatsonDeveloperCloud.LanguageTranslator": "0.2.0"
 }
 
 ```

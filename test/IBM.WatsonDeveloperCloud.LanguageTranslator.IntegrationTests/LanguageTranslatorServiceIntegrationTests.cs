@@ -17,19 +17,42 @@
 
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
 {
     [TestClass]
     public class LanguageTranslatorServiceIntegrationTests
     {
+        private string _userName;
+        private string _password;
+        private string _endpoint;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            var environmentVariable =
+            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+
+            var fileContent =
+            File.ReadAllText(environmentVariable);
+
+            var vcapServices =
+            JObject.Parse(fileContent);
+
+            _endpoint = vcapServices["language_translator"][0]["credentials"]["url"].Value<string>();
+            _userName = vcapServices["language_translator"][0]["credentials"]["username"].Value<string>();
+            _password = vcapServices["language_translator"][0]["credentials"]["password"].Value<string>();
+        }
+
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net/language-translation/api";
+                new LanguageTranslatorService(_userName, _password);
+            
             var results = service.GetIdentifiableLanguages();
 
             Assert.IsNotNull(results);
@@ -40,9 +63,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
         public void Identify_Sucess()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService();
+                new LanguageTranslatorService(_userName, _password);
 
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net/language-translation/api";
             var results = service.Identify("Hello! How are you?");
 
             Assert.IsNotNull(results);
@@ -53,9 +75,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
         public void Translate_Sucess()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net/language-translation/api";
+                new LanguageTranslatorService(_userName, _password);
+            
             var results = service.Translate("en", "pt", "Hello! How are you?");
 
             Assert.IsNotNull(results);
@@ -66,9 +87,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
         public void LisListModels_Sucess()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net/language-translation/api";
+                new LanguageTranslatorService(_userName, _password);
+            
             var results = service.ListModels(true, "en", string.Empty);
 
             Assert.IsNotNull(results);
@@ -79,9 +99,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests
         public void GetModelDetails()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService();
-
-            service.Endpoint = "https://watson-api-explorer.mybluemix.net/language-translation/api";
+                new LanguageTranslatorService(_userName, _password);
+            
             var results = service.GetModelDetails("en-pt");
 
             Assert.IsNotNull(results);

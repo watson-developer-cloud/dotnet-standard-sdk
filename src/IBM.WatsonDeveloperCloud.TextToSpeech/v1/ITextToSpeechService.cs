@@ -38,6 +38,26 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         VoiceCustomization GetVoice(string voiceName, string customizationId = "");
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="accept"></param>
+        /// <param name="voice"></param>
+        /// <param name="customizationId"></param>
+        /// <returns></returns>
+        byte[] Synthesize(string text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "");
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="accept"></param>
+        /// <param name="voice"></param>
+        /// <param name="customizationId"></param>
+        /// <returns></returns>
+        byte[] Synthesize(Text text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "");
+
+        /// <summary>
         /// Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.
         /// </summary>
         /// <param name="text">The word for which the pronunciation is requested.</param>
@@ -51,14 +71,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// <param name="phoneme">The phoneme set in which the pronunciation is to be returned</param>
         /// <returns>Returns the pronunication of the specified text.</returns>
         Pronunciation GetPronunciation(string text, Voice voice, Phoneme phoneme);
-        /// <summary>
-        /// Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. 
-        /// </summary>
-        /// <param name="text">The text to be synthesized. Provide plain text or text that is annotated with SSML. Text size is limited by the maximum length of the HTTP request line and headers (about 6 KB) or by system limits, whichever is less</param>
-        /// <param name="voice">The voice that is to be used for the synthesis</param>
-        /// <param name="audioType">The voice that is to be used for the synthesis</param>
-        /// <returns>Returns a stream of the specified text.</returns>
-        Stream Synthesize(string text, Voice voice, AudioType audioType);
         /// <summary>
         /// Lists metadata such as the name and description for all custom voice models that are owned by the requesting user. Specify a language to list the voice models for that language only. To see the words in addition to the metadata for a specific voice model, use the List a voice model method. Only the owner of a custom voice model can use this method to list information about a model.
         /// </summary>

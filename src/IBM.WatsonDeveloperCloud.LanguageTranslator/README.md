@@ -8,7 +8,7 @@
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator
 
 ```
 #### Project.json

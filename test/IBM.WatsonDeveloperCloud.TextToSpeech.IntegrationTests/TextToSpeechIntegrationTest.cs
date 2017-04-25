@@ -1,5 +1,6 @@
 ﻿
 
+using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
 /**
 * Copyright 2017 IBM Corp. All Rights Reserved.
@@ -34,6 +35,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
         private string _password;
         private string _endpoint;
 
+        private TextToSpeechService _service;
+
         [TestInitialize]
         public void Setup()
         {
@@ -50,18 +53,16 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
             _endpoint = vcapServices["text_to_speech"][0]["credentials"]["url"].Value<string>();
             _userName = vcapServices["text_to_speech"][0]["credentials"]["username"].Value<string>();
             _password = vcapServices["text_to_speech"][0]["credentials"]["password"].Value<string>();
+
+            _service =
+                new TextToSpeechService(_userName, _password);
         }
 
         [TestMethod]
         public void GetVoices_Success()
         {
-            TextToSpeechService service =
-                new TextToSpeechService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
             var result =
-                service.GetVoices();
+                _service.GetVoices();
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.VoiceList);
@@ -71,21 +72,28 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
         [TestMethod]
         public void GetVoice_Success()
         {
-            TextToSpeechService service =
-                new TextToSpeechService(_userName, _password);
-
-            service.Endpoint = _endpoint;
-
             var resultGetVoices =
-                service.GetVoices();
+                _service.GetVoices();
 
             var voice = resultGetVoices.VoiceList.First();
 
             var result =
-                service.GetVoice(voice.Name);
+                _service.GetVoice(voice.Name);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.Name, voice.Name);
+        }
+
+        [TestMethod]
+        public void Synthesize_WithText_Sucess()
+        {
+            var audio =
+                _service.Synthesize("This is a dotnet SDK", accept: HttpMediaType.AUDIO_WAV);
+
+            Assert.IsNotNull(audio);
+            Assert.IsTrue(audio.Length > 0);
+
+            File.WriteAllBytes("audio_teste.wav", audio);
         }
     }
 }

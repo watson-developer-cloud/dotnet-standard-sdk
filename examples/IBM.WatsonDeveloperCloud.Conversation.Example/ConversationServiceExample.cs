@@ -40,10 +40,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.Example
         {
             MessageRequest messageRequest = new MessageRequest()
             {
-                Input = new InputData()
-                {
-                    Text = _inputString
-                }
+                Input = new { Text = _inputString }
             };
 
             Console.WriteLine(string.Format("Calling Message(\"{0}\")...", _inputString));

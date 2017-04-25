@@ -22,12 +22,41 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class SpeechRecognitionEvent
     {
+        /// <summary>
+        /// Gets or sets an array that can include interim and final results.
+        /// Final results are guaranteed not to change; interim results might
+        /// be replaced by further interim results and final results. The
+        /// service periodically sends updates to the results list; the
+        /// `result_index` is set to the lowest index in the array that has
+        /// changed; it is incremented for new results.
+        /// </summary>
         [JsonProperty("results")]
         public List<SpeechRecognitionResult> Results { get; set; }
-        
-        [JsonProperty("result_index")]
-        public string ResultIndex { get; set; }
 
+        /// <summary>
+        /// Gets or sets an array that identifies which words were spoken by
+        /// which speakers in a multi-person exchange. Returned in the
+        /// response only if `speaker_labels` is `true`.
+        /// </summary>
+        [JsonProperty("speaker_labels")]
+        public List<SpeakerLabelsResult> SpeakerLabels { get; set; }
+
+        /// <summary>
+        /// Gets or sets an index that indicates a change point in the
+        /// `results` array.
+        /// </summary>
+        [JsonProperty("result_index")]
+        public int ResultIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets an array of warning messages about invalid query
+        /// parameters or JSON fields included with the request. Each warning
+        /// includes a descriptive message and a list of invalid argument
+        /// strings, for example, `"Unknown arguments:"` or `"Unknown url
+        /// query arguments:"` followed by a list of the form
+        /// "invalid_arg_1, invalid_arg_2." The request succeeds despite
+        /// the warnings.
+        /// </summary>
         [JsonProperty("warnings")]
         public List<string> Warnings { get; set; }
     }

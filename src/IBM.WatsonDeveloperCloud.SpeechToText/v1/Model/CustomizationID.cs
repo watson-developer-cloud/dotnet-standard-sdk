@@ -15,15 +15,16 @@
 *
 */
 
-using System;
+using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class ImageProcessed
+    public class CustomizationID
     {
-        public String SourceUrl { get; set; }
-        public String ResolvedUrl { get; set; }
-        public String Image { get; set; }
-        public ImageProcessingError Error { get; set; }
+        /// <summary>
+        /// The GUID of the new custom language model.
+        /// </summary>
+        [JsonProperty("customization_id")]
+        public string CustomizationId { get; set; }
     }
 }

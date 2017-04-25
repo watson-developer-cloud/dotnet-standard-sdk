@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
 
         /// <summary>
         ///Whether to return more than one intent. Default is false. 
@@ -44,7 +44,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// include the context object from the response. 
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
 
         /// <summary>
         /// The portion of the user's input that you can use to provide a different response or action to an intent. 

@@ -16,6 +16,8 @@
 */
 
 using System;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
 {
@@ -23,10 +25,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.Example
     {
         static void Main(string[] args)
         {
-            string _username = "<username>";
-            string _password = "<password>";
+            //  Get credentials from environmental variables. Alternatively, instantiate the service with username and password directly.
+            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            var fileContent = File.ReadAllText(environmentVariable);
+            var vcapServices = JObject.Parse(fileContent);
+            var _username = vcapServices["speech_to_text"][0]["credentials"]["username"];
+            var _password = vcapServices["speech_to_text"][0]["credentials"]["password"];
 
-            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_username, _password);
+            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

@@ -38,6 +38,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imageData">A byte[] of image data.</param>
         /// <param name="imageName">The name for the image.</param>
         /// <param name="imageMimeType">The image's mimetype.</param>
+        /// <param name="urls">An array of URLs to classify.</param>
         /// <param name="classifierIDs">An array of classifier IDs to classify the images against.</param>
         /// <param name="owners">An array with the value(s) "IBM" and/or "me" to specify which classifiers to run.</param>
         /// <param name="threshold">A floating value that specifies the minimum score a class must have to be displayed in the response.</param>

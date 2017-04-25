@@ -205,7 +205,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="model">The model name.</param>
+        /// <param name="baseModelName">The name of the base model to use.</param>
+        /// <param name="description">Description of the custom model.</param>
         /// <returns></returns>
         CustomizationID CreateCustomModel(string model, string baseModelName, string description);
 
@@ -340,7 +342,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// You can use the List custom words or List a custom word method to review the words that you add. Words with an invalid sounds_like field include an error field that describes the problem. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model to which words are to be added. You must make the request with the service credentials of the model's owner.</param>
-        /// <param name="words">A comma-separated list of <see cref="Words">Words</see> objects, each of which provides information about a custom word to be added.</param>
+        /// <param name="body">A comma-separated list of <see cref="Words">Words</see> objects, each of which provides information about a custom word to be added.</param>
         object AddCustomWords(string customizationId, Words body);
 
         /// <summary>

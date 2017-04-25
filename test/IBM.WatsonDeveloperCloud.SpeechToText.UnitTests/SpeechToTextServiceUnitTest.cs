@@ -1373,15 +1373,69 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
                   .Returns(client);
 
+            SpeechRecognitionEvent response = new SpeechRecognitionEvent()
+            {
+                ResultIndex = 1,
+                Results = new List<SpeechRecognitionResult>()
+               {
+                   new SpeechRecognitionResult()
+                   {
+                       Alternatives = new List<SpeechRecognitionAlternative>()
+                       {
+                           new SpeechRecognitionAlternative()
+                           {
+                               Confidence = 0.9,
+                               Timestamps = new List<string>(),
+                               Transcript = "transcript",
+                               WordConfidence = new List<string>()
+                           }
+                       },
+                       Final = true,
+                       KeywordResults = new KeywordResults()
+                       {
+                           Keyword = new List<KeywordResult>()
+                           {
+                               new KeywordResult()
+                               {
+                                   Confidence = 0.9,
+                                   Endtime = 0.1,
+                                   NormalizedText = "normalized_text",
+                                   StartTime = 0
+                               }
+                           }
+                       },
+                       WordAlternativeResults = new List<WordAlternativeResults>()
+                       {
+                           new WordAlternativeResults()
+                           {
+                               Alternatives = new List<WordAlternativeResult>()
+                               {
+                                   new WordAlternativeResult()
+                                   {
+                                       Confidence = 0.9,
+                                       Word = 0.1
+                                   }
+                               },
+                               Endtime = 1,
+                               StartTime = 0.1
+                           }
+                       }
+                   }
+               }
+            };
+
             IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
+            client.PostAsync(Arg.Any<string>())
                   .Returns(request);
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<object>())
                    .Returns(request);
 
-            request.AsString()
-                   .Returns(Task.FromResult("{\"results\":[{\"alternatives\":[{\"transcript\":\"several torn \"}],\"final\":false}],\"result_index\":0}"));
+            request.AsList<SpeechRecognitionEvent>()
+                   .Returns(Task.FromResult(new List<SpeechRecognitionEvent>()
+                   {
+                       response
+                   }));
 
             #endregion
 
@@ -1390,7 +1444,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             var recognitionEvent = service.ObserveResult("session_id", 1, true);
 
             Assert.IsNotNull(recognitionEvent);
-            client.Received().GetAsync(Arg.Any<string>());
+            client.Received().PostAsync(Arg.Any<string>());
             Assert.IsTrue(recognitionEvent.Count > 0);
         }
 
@@ -1436,7 +1490,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             SpeechRecognitionEvent response = new SpeechRecognitionEvent();
 
             IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
+            client.PostAsync(Arg.Any<string>())
                   .Returns(x =>
                   {
                       throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),

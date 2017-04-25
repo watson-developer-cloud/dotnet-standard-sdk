@@ -7,6 +7,7 @@ var interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request =
     [ "WithBody< T >", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#a78ba3498c234c57bc5cd046b8e8628d2", null ],
     [ "WithBodyContent", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#a6e889b68ee31b4627c699605a5f2c876", null ],
     [ "WithCustom", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#ae49da77c53c8eed3d7092521d14d944c", null ],
+    [ "WithFormatter", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#a9d32bcfbf77c08c2c4343480ccf41cca", null ],
     [ "WithHeader", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#aaf826f5a918e0400f05454caaf07f483", null ],
     [ "Message", "db/dee/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_request.html#a59398b86b3fbeeb55b506fe6957279ee", null ]
 ];

@@ -1,13 +1,21 @@
 var searchData=
 [
-  ['texttospeechservice_2ecs',['TextToSpeechService.cs',['../db/de7/_text_to_speech_service_8cs.html',1,'']]],
-  ['tone_2ecs',['Tone.cs',['../d6/d23/_tone_8cs.html',1,'']]],
-  ['toneanalysis_2ecs',['ToneAnalysis.cs',['../d6/d0a/_tone_analysis_8cs.html',1,'']]],
-  ['toneanalyzerservice_2ecs',['ToneAnalyzerService.cs',['../d3/d14/_tone_analyzer_service_8cs.html',1,'']]],
-  ['tonecategory_2ecs',['ToneCategory.cs',['../df/d4c/_tone_category_8cs.html',1,'']]],
-  ['tonescore_2ecs',['ToneScore.cs',['../dd/d86/_tone_score_8cs.html',1,'']]],
-  ['traittreenode_2ecs',['TraitTreeNode.cs',['../db/d23/_trait_tree_node_8cs.html',1,'']]],
-  ['translateresponse_2ecs',['TranslateResponse.cs',['../d4/dae/_translate_response_8cs.html',1,'']]],
-  ['translationmodels_2ecs',['TranslationModels.cs',['../d3/ddb/_translation_models_8cs.html',1,'']]],
-  ['translations_2ecs',['Translations.cs',['../d9/db4/_translations_8cs.html',1,'']]]
+  ['sentenceanalysis_2ecs',['SentenceAnalysis.cs',['../df/d1d/_sentence_analysis_8cs.html',1,'']]],
+  ['serviceresponseexception_2ecs',['ServiceResponseException.cs',['../d1/d0c/_service_response_exception_8cs.html',1,'']]],
+  ['servicestate_2ecs',['ServiceState.cs',['../da/d79/_service_state_8cs.html',1,'']]],
+  ['session_2ecs',['Session.cs',['../dc/dba/_session_8cs.html',1,'']]],
+  ['sessionstatus_2ecs',['SessionStatus.cs',['../d8/d13/_session_status_8cs.html',1,'']]],
+  ['similarimageconfig_2ecs',['SimilarImageConfig.cs',['../d6/da7/_similar_image_config_8cs.html',1,'']]],
+  ['similarimagesconfig_2ecs',['SimilarImagesConfig.cs',['../dd/dff/_similar_images_config_8cs.html',1,'']]],
+  ['sort_2ecs',['Sort.cs',['../d6/d42/_sort_8cs.html',1,'']]],
+  ['speakerlabelsresult_2ecs',['SpeakerLabelsResult.cs',['../d1/d37/_speaker_labels_result_8cs.html',1,'']]],
+  ['speechmodel_2ecs',['SpeechModel.cs',['../d4/d7d/_speech_model_8cs.html',1,'']]],
+  ['speechmodelset_2ecs',['SpeechModelSet.cs',['../d1/ddc/_speech_model_set_8cs.html',1,'']]],
+  ['speechrecognitionalternative_2ecs',['SpeechRecognitionAlternative.cs',['../db/d22/_speech_recognition_alternative_8cs.html',1,'']]],
+  ['speechrecognitionevent_2ecs',['SpeechRecognitionEvent.cs',['../da/d1c/_speech_recognition_event_8cs.html',1,'']]],
+  ['speechrecognitionresult_2ecs',['SpeechRecognitionResult.cs',['../d9/db8/_speech_recognition_result_8cs.html',1,'']]],
+  ['speechtotextservice_2ecs',['SpeechToTextService.cs',['../db/d33/_speech_to_text_service_8cs.html',1,'']]],
+  ['streamextension_2ecs',['StreamExtension.cs',['../df/d85/_stream_extension_8cs.html',1,'']]],
+  ['supportedfeatures_2ecs',['SupportedFeatures.cs',['../db/d88/_supported_features_8cs.html',1,'']]],
+  ['systemresponse_2ecs',['SystemResponse.cs',['../d2/d27/_system_response_8cs.html',1,'']]]
 ];

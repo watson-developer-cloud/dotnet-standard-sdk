@@ -6,14 +6,14 @@ With the IBM Watson™ [Conversation][conversation] service, you can create an a
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.Conversation -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.Conversation
 
 ```
 #### Project.json
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation": "0.1.1-alpha"
+   "IBM.WatsonDeveloperCloud.Conversation": "0.2.0"
 }
 
 ```

@@ -121,7 +121,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
             Assert.IsTrue(translationModels.Models.Count > 0);
         }
 
-        [TestMethod, ExpectedException(typeof(AggregateException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void ListModels_Catch_Exception()
         {
             IClient client = this.CreateClient();
@@ -194,9 +194,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
 
             var customModel =
                 service.CreateModel(CreateModelOptions.CreateOptions()
-                                                      .WithName(null)
-                                                      .WithBaseModelId("model_unit_test")
-                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
+                                                      .WithName("model_unit_test")
+                                                      .WithBaseModelId(null)
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file_create_model", FileMode.Create)));
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -219,9 +219,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
 
             var customModel =
                 service.CreateModel(CreateModelOptions.CreateOptions()
-                                                      .WithName("base_id")
-                                                      .WithBaseModelId("model name")
-                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
+                                                      .WithName("model name")
+                                                      .WithBaseModelId("base_id")
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file_model_name_with_spaces", FileMode.Create)));
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -271,7 +271,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.UnitTests
                 service.CreateModel(CreateModelOptions.CreateOptions()
                                                       .WithName("base_id")
                                                       .WithBaseModelId("model_unit_test")
-                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file", FileMode.Create)));
+                                                      .SetForcedGlossary(Substitute.For<FileStream>("any_file_catch_exception", FileMode.Create)));
         }
 
         [TestMethod]

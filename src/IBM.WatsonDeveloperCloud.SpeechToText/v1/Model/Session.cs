@@ -21,18 +21,34 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class Session
     {
+        /// <summary>
+        /// Gets or sets identifier for the new session.
+        /// </summary>
         [JsonProperty("session_id")]
         public string SessionId { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for the new session.
+        /// </summary>
         [JsonProperty("new_session_uri")]
         public string NewSessionUri { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for REST recognition requests.
+        /// </summary>
         [JsonProperty("recognize")]
         public string Recognize { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for REST results observers.
+        /// </summary>
         [JsonProperty("observe_result")]
         public string ObserveResult { get; set; }
 
+        /// <summary>
+        /// Gets or sets URI for WebSocket recognition requests. Needed only
+        /// for working with the WebSocket interface.
+        /// </summary>
         [JsonProperty("recognizeWS")]
         public string RecognizeWS { get; set; }
     }

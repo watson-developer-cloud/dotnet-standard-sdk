@@ -1,23 +1,10 @@
 var searchData=
 [
-  ['iclient_2ecs',['IClient.cs',['../d5/d5e/_i_client_8cs.html',1,'']]],
-  ['iconversationservice_2ecs',['IConversationService.cs',['../d4/d6a/_i_conversation_service_8cs.html',1,'']]],
-  ['identifiablelanguage_2ecs',['IdentifiableLanguage.cs',['../d1/d6b/_identifiable_language_8cs.html',1,'']]],
-  ['identifiablelanguages_2ecs',['IdentifiableLanguages.cs',['../dc/d5b/_identifiable_languages_8cs.html',1,'']]],
-  ['identifiedlanguage_2ecs',['IdentifiedLanguage.cs',['../da/d93/_identified_language_8cs.html',1,'']]],
-  ['identifiedlanguages_2ecs',['IdentifiedLanguages.cs',['../dd/dea/_identified_languages_8cs.html',1,'']]],
-  ['ihttpfilter_2ecs',['IHttpFilter.cs',['../d1/dd5/_i_http_filter_8cs.html',1,'']]],
-  ['ilanguagetranslatorservice_2ecs',['ILanguageTranslatorService.cs',['../d7/dff/_i_language_translator_service_8cs.html',1,'']]],
-  ['imageprocessed_2ecs',['ImageProcessed.cs',['../d5/dab/_image_processed_8cs.html',1,'']]],
-  ['imageprocessingerror_2ecs',['ImageProcessingError.cs',['../df/dbd/_image_processing_error_8cs.html',1,'']]],
-  ['inputdata_2ecs',['InputData.cs',['../da/dbf/_input_data_8cs.html',1,'']]],
-  ['intent_2ecs',['Intent.cs',['../dd/deb/_intent_8cs.html',1,'']]],
-  ['ipersonalityinsightsservice_2ecs',['IPersonalityInsightsService.cs',['../dc/d56/_i_personality_insights_service_8cs.html',1,'']]],
-  ['irequest_2ecs',['IRequest.cs',['../df/d70/_i_request_8cs.html',1,'']]],
-  ['iresponse_2ecs',['IResponse.cs',['../dc/d2d/_i_response_8cs.html',1,'']]],
-  ['ispeechtotextservice_2ecs',['ISpeechToTextService.cs',['../d5/d2a/_i_speech_to_text_service_8cs.html',1,'']]],
-  ['itexttospeechservice_2ecs',['ITextToSpeechService.cs',['../d3/d91/_i_text_to_speech_service_8cs.html',1,'']]],
-  ['itoneanalyzerservice_2ecs',['IToneAnalyzerService.cs',['../d4/d01/_i_tone_analyzer_service_8cs.html',1,'']]],
-  ['ivisualrecognitionservice_2ecs',['IVisualRecognitionService.cs',['../d3/dfd/_i_visual_recognition_service_8cs.html',1,'']]],
-  ['iwatsonservice_2ecs',['IWatsonService.cs',['../d4/d17/_i_watson_service_8cs.html',1,'']]]
+  ['getclassifiersperclassifierbrief_2ecs',['GetClassifiersPerClassifierBrief.cs',['../d0/da9/_get_classifiers_per_classifier_brief_8cs.html',1,'']]],
+  ['getclassifiersperclassifierverbose_2ecs',['GetClassifiersPerClassifierVerbose.cs',['../df/dce/_get_classifiers_per_classifier_verbose_8cs.html',1,'']]],
+  ['getclassifierstoplevelbrief_2ecs',['GetClassifiersTopLevelBrief.cs',['../d1/dc8/_get_classifiers_top_level_brief_8cs.html',1,'']]],
+  ['getclassifierstoplevelverbose_2ecs',['GetClassifiersTopLevelVerbose.cs',['../d9/d6b/_get_classifiers_top_level_verbose_8cs.html',1,'']]],
+  ['getcollectionimages_2ecs',['GetCollectionImages.cs',['../da/d18/_get_collection_images_8cs.html',1,'']]],
+  ['getcollections_2ecs',['GetCollections.cs',['../d3/d6f/_get_collections_8cs.html',1,'']]],
+  ['getcollectionsbrief_2ecs',['GetCollectionsBrief.cs',['../dd/d6a/_get_collections_brief_8cs.html',1,'']]]
 ];

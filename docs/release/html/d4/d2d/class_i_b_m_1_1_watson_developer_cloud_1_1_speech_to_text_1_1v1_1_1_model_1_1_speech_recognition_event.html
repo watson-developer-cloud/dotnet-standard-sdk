@@ -92,15 +92,22 @@ $(document).ready(function(){initNavTree('d4/d2d/class_i_b_m_1_1_watson_develope
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a8da38aa8038ac64c23c475f8e96d96a4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html">SpeechRecognitionResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html#a8da38aa8038ac64c23c475f8e96d96a4">Results</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8da38aa8038ac64c23c475f8e96d96a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets an array that can include interim and final results. Final results are guaranteed not to change; interim results might be replaced by further interim results and final results. The service periodically sends updates to the results list; the <code>result_index</code> is set to the lowest index in the array that has changed; it is incremented for new results.  <a href="#a8da38aa8038ac64c23c475f8e96d96a4">More...</a><br /></td></tr>
 <tr class="separator:a8da38aa8038ac64c23c475f8e96d96a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab937614193e4d6f9b0369f9837bb8e13"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html#ab937614193e4d6f9b0369f9837bb8e13">ResultIndex</a><code> [get, set]</code></td></tr>
-<tr class="separator:ab937614193e4d6f9b0369f9837bb8e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4ac0e8d967e7c6f6e8f904f2ba510a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../de/dff/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speaker_labels_result.html">SpeakerLabelsResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html#a3b4ac0e8d967e7c6f6e8f904f2ba510a">SpeakerLabels</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3b4ac0e8d967e7c6f6e8f904f2ba510a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets an array that identifies which words were spoken by which speakers in a multi-person exchange. Returned in the response only if <code>speaker_labels</code> is <code>true</code>.  <a href="#a3b4ac0e8d967e7c6f6e8f904f2ba510a">More...</a><br /></td></tr>
+<tr class="separator:a3b4ac0e8d967e7c6f6e8f904f2ba510a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18367897210dde25ae6978a657776411"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html#a18367897210dde25ae6978a657776411">ResultIndex</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a18367897210dde25ae6978a657776411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets an index that indicates a change point in the <code>results</code> array.  <a href="#a18367897210dde25ae6978a657776411">More...</a><br /></td></tr>
+<tr class="separator:a18367897210dde25ae6978a657776411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adadf7d0f9d558a982a613911ec2fe732"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html#adadf7d0f9d558a982a613911ec2fe732">Warnings</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:adadf7d0f9d558a982a613911ec2fe732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets an array of warning messages about invalid query parameters or JSON fields included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, <code>"Unknown arguments:"</code> or <code>"Unknown url
+query arguments:"</code> followed by a list of the form "invalid_arg_1, invalid_arg_2." The request succeeds despite the warnings.  <a href="#adadf7d0f9d558a982a613911ec2fe732">More...</a><br /></td></tr>
 <tr class="separator:adadf7d0f9d558a982a613911ec2fe732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="ab937614193e4d6f9b0369f9837bb8e13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab937614193e4d6f9b0369f9837bb8e13">&#9670;&nbsp;</a></span>ResultIndex</h2>
+<a id="a18367897210dde25ae6978a657776411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18367897210dde25ae6978a657776411">&#9670;&nbsp;</a></span>ResultIndex</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -109,7 +116,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionEvent.ResultIndex</td>
+          <td class="memname">int IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionEvent.ResultIndex</td>
         </tr>
       </table>
   </td>
@@ -118,6 +125,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets or sets an index that indicates a change point in the <code>results</code> array. </p>
 
 </div>
 </div>
@@ -141,6 +150,32 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets or sets an array that can include interim and final results. Final results are guaranteed not to change; interim results might be replaced by further interim results and final results. The service periodically sends updates to the results list; the <code>result_index</code> is set to the lowest index in the array that has changed; it is incremented for new results. </p>
+
+</div>
+</div>
+<a id="a3b4ac0e8d967e7c6f6e8f904f2ba510a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4ac0e8d967e7c6f6e8f904f2ba510a">&#9670;&nbsp;</a></span>SpeakerLabels</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="../../de/dff/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speaker_labels_result.html">SpeakerLabelsResult</a>&gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionEvent.SpeakerLabels</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets an array that identifies which words were spoken by which speakers in a multi-person exchange. Returned in the response only if <code>speaker_labels</code> is <code>true</code>. </p>
+
 </div>
 </div>
 <a id="adadf7d0f9d558a982a613911ec2fe732"></a>
@@ -162,6 +197,9 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets or sets an array of warning messages about invalid query parameters or JSON fields included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, <code>"Unknown arguments:"</code> or <code>"Unknown url
+query arguments:"</code> followed by a list of the form "invalid_arg_1, invalid_arg_2." The request succeeds despite the warnings. </p>
 
 </div>
 </div>

@@ -1,4 +1,25 @@
 var interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service =
 [
-    [ "DetectFaces", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a4de9b1f4d9a7a29cd7d2b873d06e31c0", null ]
+    [ "AddImage", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a9bfef12b558aa59b4631dca0aff5931a", null ],
+    [ "AddImageMetadata", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a0dfa37928ac9cad76087bef4cc120312", null ],
+    [ "Classify", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a54c46a4481f44a1dbfcdd877b80f2bce", null ],
+    [ "Classify", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#ae0cfc26295aa23ecef9d414f0198666f", null ],
+    [ "CreateClassifier", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a113be0106fab971af4ceb6356e1348dc", null ],
+    [ "CreateCollection", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aa80459eaeb952b2a45fd66e853e46c36", null ],
+    [ "DeleteClassifier", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a37ff7199db1891f469e853a09dc62cf1", null ],
+    [ "DeleteCollection", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aeb6e8c86bcd07af642460e519de609ba", null ],
+    [ "DeleteImage", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a40a0cb0cabe2ae8c5a49a0622a4b6f6a", null ],
+    [ "DeleteImageMetadata", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a045e46a67fd45094129e0764f27d8e70", null ],
+    [ "DetectFaces", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a1fd2f85e2975691a14e7d2e63b538d5b", null ],
+    [ "DetectFaces", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a43198be9a684edb327aeff2ee133a28d", null ],
+    [ "FindSimilar", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a99c334b0f1dbc865cdbee982a77b9daa", null ],
+    [ "GetClassifier", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a684122fac5af66160cf6134c3c037989", null ],
+    [ "GetClassifiersBrief", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a80040a623a82d32a7ae5f1c4dc78362b", null ],
+    [ "GetClassifiersVerbose", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#af226dae287935c1a50849e360f69e510", null ],
+    [ "GetCollection", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a761a38389c05e015d65ce0c4cb05cb27", null ],
+    [ "GetCollectionImages", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a217fecd038b24a593fdbb0ff1a707751", null ],
+    [ "GetCollections", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aa0c3145a8a9bef67541e64422d9f4bcd", null ],
+    [ "GetImage", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a0b29947d9e1470a493d1978491b189d8", null ],
+    [ "GetMetadata", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#af25788a8e9665c5a6c2446b97e96bf55", null ],
+    [ "UpdateClassifier", "de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a4d75e1d2a7c996eb8ab68f672140a2f0", null ]
 ];

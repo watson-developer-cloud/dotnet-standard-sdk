@@ -6,7 +6,7 @@ The IBM Watson™ [Discovery][discovery] service will be abstracted into the .NE
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.Discovery -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.Discovery
 
 ```
 #### Project.json

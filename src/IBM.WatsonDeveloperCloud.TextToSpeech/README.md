@@ -20,7 +20,7 @@ The Text to Speech API consists of the following groups of related calls:
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer
 
 ```
 #### Project.json

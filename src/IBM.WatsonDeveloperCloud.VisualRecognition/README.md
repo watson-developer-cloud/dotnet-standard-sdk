@@ -5,7 +5,7 @@ The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep lea
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition
 
 ```
 #### Project.json

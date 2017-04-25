@@ -6,7 +6,7 @@ The IBM® [Speech to Text][speech-to-text] service provides an API that enables 
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText
 
 ```
 #### Project.json

@@ -1,9 +1,9 @@
 {
-  "version": "0.1.0-alpha",
+  "version": "0.2.0",
   "title": "IBM.WatsonDeveloperCloud.LanguageTranslator",
   "description": "IBM.WatsonDeveloperCloud.LanguageTranslator wraps the Watson Developer Cloud Language Traslator service (http://www.ibm.com/watson/developercloud/language-translator.html)",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
+    "IBM.WatsonDeveloperCloud": "0.2.0",
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Newtonsoft.Json": "9.0.1",

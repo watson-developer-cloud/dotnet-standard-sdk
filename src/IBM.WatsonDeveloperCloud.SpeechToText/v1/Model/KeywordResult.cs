@@ -21,15 +21,29 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class KeywordResult
     {
+        /// <summary>
+        /// Gets or sets specified keyword normalized to the spoken phrase
+        /// that matched in the audio input.
+        /// </summary>
         [JsonProperty("normalized_text")]
         public string NormalizedText { get; set; }
 
+        /// <summary>
+        /// Gets or sets start time in seconds of the keyword match.
+        /// </summary>
         [JsonProperty("start_time")]
         public double StartTime { get; set; }
 
+        /// <summary>
+        /// Gets or sets end time in seconds of the keyword match.
+        /// </summary>
         [JsonProperty("end_time")]
         public double Endtime { get; set; }
 
+        /// <summary>
+        /// Gets or sets confidence score of the keyword match in the range of
+        /// 0 to 1.
+        /// </summary>
         [JsonProperty("confidence")]
         public double Confidence { get; set; }
     }

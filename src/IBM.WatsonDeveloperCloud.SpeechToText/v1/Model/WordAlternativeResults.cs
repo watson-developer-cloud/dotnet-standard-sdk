@@ -22,12 +22,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class WordAlternativeResults
     {
+        /// <summary>
+        /// Gets or sets start time in seconds of the word from the input audio that corresponds to the word alternatives.
+        /// </summary>
         [JsonProperty("start_time")]
         public double StartTime { get; set; }
 
+        /// <summary>
+        /// Gets or sets end time in seconds of the word from the input audio that corresponds to the word alternatives.
+        /// </summary>
         [JsonProperty("end_time")]
         public double Endtime { get; set; }
 
+        /// <summary>
+        /// Gets or sets array of word alternative hypotheses for a word from the input audio.
+        /// </summary>
         [JsonProperty("alternatives")]
         public List<WordAlternativeResult> Alternatives { get; set; }
     }

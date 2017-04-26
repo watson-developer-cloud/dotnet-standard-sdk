@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The user input from the request.
         /// </summary>
         [JsonProperty("input")]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
 
         /// <summary>
         /// Whether to return more than one intent. Included in the response only.
@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// A context object that includes state information for the conversation.
         /// </summary>
         [JsonProperty("context")]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
 
         /// <summary>
         /// An entities object that includes terms from the request that are identified as entities. Returns an empty array 
@@ -62,6 +62,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// An output object that includes the response to the user, the nodes that were hit, and messages from the log.
         /// </summary>
         [JsonProperty("output")]
-        public OutputData Output { get; set; }
+        public dynamic Output { get; set; }
     }
 }

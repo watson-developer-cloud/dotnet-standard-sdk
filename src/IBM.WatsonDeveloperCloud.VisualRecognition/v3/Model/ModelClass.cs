@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,22 +15,19 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
-
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
+namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
-    public class JobStatusNew
+    /// <summary>
+    /// A category within a classifier.
+    /// </summary>
+    public class ModelClass
     {
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        /// <summary>
+        /// Gets or Sets _Class
+        /// </summary>
+        [JsonProperty("class")]
+        public string _Class { get; set; }
     }
 }

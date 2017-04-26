@@ -21,9 +21,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class WordAlternativeResult
     {
+        /// <summary>
+        /// Gets or sets confidence score of the word alternative hypothesis.
+        /// </summary>
         [JsonProperty("confidence")]
         public double Confidence { get; set; }
 
+        /// <summary>
+        /// Gets or sets word alternative hypothesis for a word from the input audio.
+        /// </summary>
         [JsonProperty("word")]
         public double Word { get; set; }
     }

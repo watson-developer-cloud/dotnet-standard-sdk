@@ -6,14 +6,14 @@ The IBM Watson™ [Discovery][discovery] service will be abstracted into the .NE
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.Discovery -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.Discovery
 
 ```
 #### Project.json
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery": "0.1.0-alpha"
+   "IBM.WatsonDeveloperCloud.Discovery": "0.2.0"
 }
 
 ``` -->

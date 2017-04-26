@@ -1,8 +1,8 @@
 ﻿{
-  "version": "0.1.0-alpha",
+  "version": "0.2.0",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.1.0-alpha",
-    "IBM.WatsonDeveloperCloud.TextToSpeech": "0.1.0-alpha",
+    "IBM.WatsonDeveloperCloud": "0.2.0",
+    "IBM.WatsonDeveloperCloud.TextToSpeech": "0.2.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.NETCore.App": {
       "type": "platform",

@@ -21,6 +21,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     public class RecognizeStatus
     {
+        /// <summary>
+        /// Gets or sets description of the state and possible actions for the
+        /// current session.
+        /// </summary>
         [JsonProperty("session")]
         public SessionStatus Session { get; set; }
     }

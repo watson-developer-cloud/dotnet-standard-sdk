@@ -25,17 +25,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.Example
     {
         static void Main(string[] args)
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
-
-            var fileContent =
-            File.ReadAllText(environmentVariable);
-
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            var apikey =
-            vcapServices["visual_recognition"][0]["credentials"]["apikey"];
+            //  Get credentials from environmental variables. Alternatively, instantiate the service with apikey directly.
+            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            var fileContent = File.ReadAllText(environmentVariable);
+            var vcapServices = JObject.Parse(fileContent);
+            var apikey = vcapServices["visual_recognition"][0]["credentials"]["apikey"];
 
             VisualRecognitionServiceExample _visualRecognitionExample = new VisualRecognitionServiceExample(apikey.ToString());
             Console.ReadKey();

@@ -154,69 +154,77 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             IRequest request = null;
 
-            if (body == null)
+            try
             {
-                request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
-                               .WithHeader("Accept", accept)
-                               .WithArgument("accept", accept)
-                               .WithArgument("voice", voice)
-                               .WithArgument("text", text);
+                if (body == null)
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                                   .GetAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
+                                   .WithHeader("Accept", accept)
+                                   .WithArgument("accept", accept)
+                                   .WithArgument("voice", voice)
+                                   .WithArgument("text", text);
+                }
+                else
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                                   .PostAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
+                                   .WithHeader("Accept", accept)
+                                   .WithArgument("accept", accept)
+                                   .WithArgument("voice", voice)
+                                   .WithBody<Text>(body);
+                }
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+
+                result =
+                    request.AsByteArray()
+                           .Result;
             }
-            else
+            catch (AggregateException ae)
             {
-                request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
-                               .WithHeader("Accept", accept)
-                               .WithArgument("accept", accept)
-                               .WithArgument("voice", voice)
-                               .WithBody<Text>(body);
+                throw ae.InnerException as ServiceResponseException;
             }
-
-            if (!string.IsNullOrEmpty(customizationId))
-                request.WithArgument("customization_id", customizationId);
-
-            result =
-                request.AsByteArray()
-                       .Result;
 
             return result;
         }
 
-        public Pronunciation GetPronunciation(string text)
-        {
-            return GetPronunciation(text, null, null);
-        }
-
-        public Pronunciation GetPronunciation(string text, Voice voice)
-        {
-            return GetPronunciation(text, voice, null);
-        }
-
-        public Pronunciation GetPronunciation(string text, Voice voice = null, Phoneme phoneme = null)
-        {
-            return getPronunciation(text, voice, phoneme);
-        }
-
-        private Pronunciation getPronunciation(string text, Voice voice, Phoneme phoneme)
+        public Pronunciation GetPronunciation(string text, string voice = "en-US_MichaelVoice", string format = "ipa", string customizationId = "")
         {
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("Parameter 'text' must be provided");
+                throw new ArgumentNullException($"The parameter {nameof(text)} must be provided");
 
-            var builder =
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_PRONUNCIATION)
-                          .WithArgument("text", text);
+            Pronunciation result = null;
 
-            if (voice != null)
-                builder.WithArgument("voice", voice.Name);
+            try
+            {
+                var request =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{this.Endpoint}{PATH_PRONUNCIATION}")
+                               .WithArgument("text", text);
 
-            if (phoneme != null)
-                builder.WithArgument("format", phoneme.Value);
+                if (!string.IsNullOrEmpty(voice))
+                    request.WithArgument("voice", voice);
 
-            return builder.As<Pronunciation>().Result;
+                if (!string.IsNullOrEmpty(format))
+                    request.WithArgument("format", format);
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customizationId", customizationId);
+
+                result =
+                    request.As<Pronunciation>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
         public List<CustomVoiceModel> GetCustomVoiceModels()

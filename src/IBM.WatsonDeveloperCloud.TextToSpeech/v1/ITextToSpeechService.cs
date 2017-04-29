@@ -38,22 +38,100 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         VoiceCustomization GetVoice(string voiceName, string customizationId = "");
 
         /// <summary>
-        /// 
+        /// Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. You can use two request methods to synthesize audio:
+        /// <list type="bullet">
+        ///     <item>The HTTP GET request method passes shorter text via a query parameter. The text size is limited by the maximum length of the HTTP request line and headers (about 6 KB) or by system limits, whichever is less.</item>
+        ///     <item>The HTTP POST request method passes longer text in the body of the request. Text size is limited to 5 KB.</item>
+        /// </list>
+        /// With either request method, you can provide plain text or text that is annotated with SSML.
         /// </summary>
-        /// <param name="text"></param>
-        /// <param name="accept"></param>
-        /// <param name="voice"></param>
-        /// <param name="customizationId"></param>
+        /// <param name="text">For an HTTP GET request, the text to be synthesized. Provide plain text or text that is annotated with SSML. Text size is limited by the maximum length of the HTTP request line and headers (about 6 KB) or by system limits, whichever is less. Not supported for POST requests.</param>
+        /// <param name="accept">
+        /// The requested MIME type of the audio:
+        /// <list type="bullet">
+        ///     <item>audio/ogg (the service uses the Vorbis codec)</item>
+        ///     <item>audio/ogg;codecs=opus (the default)</item>
+        ///     <item>audio/ogg;codecs=vorbis</item>
+        ///     <item>audio/wav</item>
+        ///     <item>audio/flac</item>
+        ///     <item>audio/webm (the service uses the Opus codec)</item>
+        ///     <item>audio/webm;codecs=opus</item>
+        ///     <item>audio/webm;codecs=vorbis</item>
+        ///     <item>audio/l16;rate=rate</item>
+        ///     <item>audio/mulaw;rate=rate</item>
+        ///     <item>audio/basic</item>
+        /// </list>
+        /// You can use this header or the accept query parameter to specify the MIME type. For additional information about the supported audio formats and sampling rates, see Specifying an audio format. The information includes links to a number of Internet sites that provide technical and usage details about the different formats.
+        /// </param>
+        /// <param name="voice">
+        /// The voice that is to be used for the synthesis:
+        /// <list type="bullet">
+        ///     <item>de-DE_BirgitVoice</item>
+        ///     <item>de-DE_DieterVoice</item>
+        ///     <item>en-GB_KateVoice</item>
+        ///     <item>en-US_AllisonVoice</item>
+        ///     <item>en-US_LisaVoice</item>
+        ///     <item>en-US_MichaelVoice (the default)</item>
+        ///     <item>es-ES_EnriqueVoice</item>
+        ///     <item>es-ES_LauraVoice</item>
+        ///     <item>es-LA_SofiaVoice</item>
+        ///     <item>es-US_SofiaVoice</item>
+        ///     <item>fr-FR_ReneeVoice</item>
+        ///     <item>it-IT_FrancescaVoice</item>
+        ///     <item>ja-JP_EmiVoice</item>
+        ///     <item>pt-BR_IsabelaVoice</item>
+        /// </list>
+        /// </param>
+        /// <param name="customizationId">The GUID of a custom voice model that is to be used for the synthesis. If you specify a custom voice model, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with the service credentials of the model's owner. Omit the parameter to use the specified voice with no customization.</param>
         /// <returns></returns>
         byte[] Synthesize(string text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "");
 
         /// <summary>
-        /// 
+        /// Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. You can use two request methods to synthesize audio:
+        /// <list type="bullet">
+        ///     <item>The HTTP GET request method passes shorter text via a query parameter. The text size is limited by the maximum length of the HTTP request line and headers (about 6 KB) or by system limits, whichever is less.</item>
+        ///     <item>The HTTP POST request method passes longer text in the body of the request. Text size is limited to 5 KB.</item>
+        /// </list>
+        /// With either request method, you can provide plain text or text that is annotated with SSML.
         /// </summary>
-        /// <param name="text"></param>
-        /// <param name="accept"></param>
-        /// <param name="voice"></param>
-        /// <param name="customizationId"></param>
+        /// <param name="text">For an HTTP POST request, a <see cref="Text">Text</see> object that provides the text to be synthesized. Provide plain text or text that is annotated with SSML. Text size is limited to 5 KB. Not supported for GET requests.</param>
+        /// <param name="accept">
+        /// The requested MIME type of the audio:
+        /// <list type="bullet">
+        ///     <item>audio/ogg (the service uses the Vorbis codec)</item>
+        ///     <item>audio/ogg;codecs=opus (the default)</item>
+        ///     <item>audio/ogg;codecs=vorbis</item>
+        ///     <item>audio/wav</item>
+        ///     <item>audio/flac</item>
+        ///     <item>audio/webm (the service uses the Opus codec)</item>
+        ///     <item>audio/webm;codecs=opus</item>
+        ///     <item>audio/webm;codecs=vorbis</item>
+        ///     <item>audio/l16;rate=rate</item>
+        ///     <item>audio/mulaw;rate=rate</item>
+        ///     <item>audio/basic</item>
+        /// </list>
+        /// You can use this header or the accept query parameter to specify the MIME type. For additional information about the supported audio formats and sampling rates, see Specifying an audio format. The information includes links to a number of Internet sites that provide technical and usage details about the different formats.
+        /// </param>
+        /// <param name="voice">
+        /// The voice that is to be used for the synthesis:
+        /// <list type="bullet">
+        ///     <item>de-DE_BirgitVoice</item>
+        ///     <item>de-DE_DieterVoice</item>
+        ///     <item>en-GB_KateVoice</item>
+        ///     <item>en-US_AllisonVoice</item>
+        ///     <item>en-US_LisaVoice</item>
+        ///     <item>en-US_MichaelVoice (the default)</item>
+        ///     <item>es-ES_EnriqueVoice</item>
+        ///     <item>es-ES_LauraVoice</item>
+        ///     <item>es-LA_SofiaVoice</item>
+        ///     <item>es-US_SofiaVoice</item>
+        ///     <item>fr-FR_ReneeVoice</item>
+        ///     <item>it-IT_FrancescaVoice</item>
+        ///     <item>ja-JP_EmiVoice</item>
+        ///     <item>pt-BR_IsabelaVoice</item>
+        /// </list>
+        /// </param>
+        /// <param name="customizationId">The GUID of a custom voice model that is to be used for the synthesis. If you specify a custom voice model, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with the service credentials of the model's owner. Omit the parameter to use the specified voice with no customization.</param>
         /// <returns></returns>
         byte[] Synthesize(Text text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "");
 
@@ -61,16 +139,37 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.
         /// </summary>
         /// <param name="text">The word for which the pronunciation is requested.</param>
-        /// <returns>Returns the pronunication of the specified text.</returns>
-        Pronunciation GetPronunciation(string text);
-        /// <summary>
-        /// Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.
-        /// </summary>
-        /// <param name="text">The word for which the pronunciation is requested.</param>
-        /// <param name="voice">The voice in which the pronunciation for the specified word is to be returned</param>
-        /// <param name="phoneme">The phoneme set in which the pronunciation is to be returned</param>
-        /// <returns>Returns the pronunication of the specified text.</returns>
-        Pronunciation GetPronunciation(string text, Voice voice, Phoneme phoneme);
+        /// <param name="voice">
+        /// The voice that is to be used for the synthesis:
+        /// <list type="bullet">
+        ///     <item>de-DE_BirgitVoice</item>
+        ///     <item>de-DE_DieterVoice</item>
+        ///     <item>en-GB_KateVoice</item>
+        ///     <item>en-US_AllisonVoice</item>
+        ///     <item>en-US_LisaVoice</item>
+        ///     <item>en-US_MichaelVoice (the default)</item>
+        ///     <item>es-ES_EnriqueVoice</item>
+        ///     <item>es-ES_LauraVoice</item>
+        ///     <item>es-LA_SofiaVoice</item>
+        ///     <item>es-US_SofiaVoice</item>
+        ///     <item>fr-FR_ReneeVoice</item>
+        ///     <item>it-IT_FrancescaVoice</item>
+        ///     <item>ja-JP_EmiVoice</item>
+        ///     <item>pt-BR_IsabelaVoice</item>
+        /// </list>
+        /// The translation is returned in the language of the specified voice; all voices for the same language (for example, en-US) return the same translation. Do not specify both a voice and a customization_id.
+        /// </param>
+        /// <param name="format">
+        /// The phoneme set in which the pronunciation is to be returned:
+        /// <list type="bullet">
+        ///     <item>ipa (the default)</item>
+        ///     <item>ibm</item>
+        /// </list>
+        /// </param>
+        /// <param name="customizationId"></param>
+        /// <returns>The pronunciation of the specified text in the requested voice and format and, if specified, for the requested custom voice model.</returns>
+        Pronunciation GetPronunciation(string text, string voice = "en-US_MichaelVoice", string format = "ipa", string customizationId = "");
+
         /// <summary>
         /// Lists metadata such as the name and description for all custom voice models that are owned by the requesting user. Specify a language to list the voice models for that language only. To see the words in addition to the metadata for a specific voice model, use the List a voice model method. Only the owner of a custom voice model can use this method to list information about a model.
         /// </summary>

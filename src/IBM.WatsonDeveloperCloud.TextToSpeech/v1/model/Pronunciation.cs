@@ -21,6 +21,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
 {
     public class Pronunciation
     {
+        /// <summary>
+        /// The pronunciation of the specified text in the requested voice and format and, if specified, for the requested custom voice model.
+        /// </summary>
         [JsonProperty("pronunciation")]
         public string Value { get; set; }
     }

@@ -396,5 +396,86 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.UnitTests
             var audio =
                service.Synthesize(body: new Text() { TextProperty = string.Empty }, customizationId: "customization_id");
         }
+
+        [TestMethod]
+        public void GetPronunciation_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            var pronunciationResponse = new Pronunciation()
+            {
+                Value = "value"
+            };
+
+            request.As<Pronunciation>()
+                   .Returns(Task.FromResult(pronunciationResponse));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var pronunciation =
+               service.GetPronunciation(text: "This is a pronunciation", customizationId: "customization_id");
+
+            Assert.IsNotNull(pronunciation);
+            Assert.IsNotNull(pronunciation.Value);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetPronunciation_With_Null_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var pronunciation =
+               service.GetPronunciation(null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetPronunciation_With_Empty_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var pronunciation =
+               service.GetPronunciation(string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void GetPronunciation_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(x =>
+                      {
+                          throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                   string.Empty));
+                      });
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var pronunciation =
+               service.GetPronunciation(text: "This is a pronunciation", customizationId: "customization_id");
+        }
     }
 }

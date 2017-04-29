@@ -114,5 +114,18 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
 
             File.WriteAllBytes("audio_body_teste.wav", audio);
         }
+
+        [TestMethod]
+        public void GetPronunciation_Success()
+        {
+            _service =
+               new TextToSpeechService(_userName, _password);
+
+            var pronunciation =
+                _service.GetPronunciation("This is a pronunciation");
+
+            Assert.IsNotNull(pronunciation);
+            Assert.IsNotNull(pronunciation.Value);
+        }
     }
 }

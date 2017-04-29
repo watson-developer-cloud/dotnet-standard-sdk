@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
 {
-    public partial class Text
+    public class Text
     {
         /// <summary>
         /// Gets or sets text to synthesize

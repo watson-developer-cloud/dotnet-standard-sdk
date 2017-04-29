@@ -123,6 +123,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
         public byte[] Synthesize(string text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "")
         {
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException($"The parameter {nameof(text)} must be provided");
+
             return Synthesize(text: text,
                               body: null,
                               accept: accept,
@@ -132,6 +135,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
         public byte[] Synthesize(Text body, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "")
         {
+            if (body == null)
+                throw new ArgumentNullException($"The parameter {nameof(body)} must be provided");
+
+            if (string.IsNullOrEmpty(body.TextProperty))
+                throw new ArgumentNullException($"The parameter {nameof(body.TextProperty)} must be provided");
+
             return Synthesize(text: null,
                               body: body,
                               accept: accept,
@@ -160,10 +169,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request =
                     this.Client.WithAuthentication(this.UserName, this.Password)
                                .PostAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
-                               .WithHeader("Content-Type", "application/json")
                                .WithHeader("Accept", accept)
+                               .WithArgument("accept", accept)
                                .WithArgument("voice", voice)
-                               .WithBody<Text>(body, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON));
+                               .WithBody<Text>(body);
             }
 
             if (!string.IsNullOrEmpty(customizationId))
@@ -175,37 +184,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             return result;
         }
-
-        //public Stream Synthesize(string text, Voice voice)
-        //{
-        //    return synthesize(text, voice, AudioType.OGG);
-        //}
-
-        //public Stream Synthesize(string text, Voice voice, AudioType audioType)
-        //{
-        //    return synthesize(text, voice, audioType);
-        //}
-
-        //private Stream synthesize(string text, Voice voice, AudioType audioType)
-        //{
-        //    if (string.IsNullOrEmpty(text))
-        //        throw new ArgumentNullException("Parameter 'text' must be provided");
-
-        //    if (voice == null)
-        //        throw new ArgumentNullException("Parameter 'voice' must be provided");
-
-        //    if (audioType == null)
-        //        throw new ArgumentNullException("Parameter 'audioType' must be provided");
-
-        //    var builder =
-        //    Client.WithAuthentication(this.UserName, this.Password)
-        //                  .GetAsync(this.Endpoint + PATH_SYNTHESIZE)
-        //                  .WithArgument("text", text)
-        //                  .WithArgument("voice", voice.Name)
-        //                  .WithArgument("accept", audioType.Value);
-
-        //    return new MemoryStream(builder.AsByteArray().Result);
-        //}
 
         public Pronunciation GetPronunciation(string text)
         {

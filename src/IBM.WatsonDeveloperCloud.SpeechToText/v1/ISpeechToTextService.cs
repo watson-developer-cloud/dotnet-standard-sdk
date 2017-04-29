@@ -42,27 +42,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// The session expires after 30 seconds of inactivity.Use getRecognizeStatus to prevent the session from expiring.
         /// </summary>
         /// <param name="modelName">The identifier of the model to be used by the new session</param>
-        /// <returns>Returns a <see cref="Session" /> object that contains the information about the new session that is provided in a JSON <see cref="Session" /> object.</returns>
+        /// <returns>Returns a Session object that contains the information about the new session that is provided in a JSON Session object.</returns>
         Session CreateSession(string modelName);
 
         /// <summary>
         /// Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request.
         /// </summary>
-        /// <param name="session">A <see cref="Session" /> object that identifies the session whose status is to be checked.</param>
-        /// <returns>Returns <see cref="RecognizeStatus" /> object that contains the information about the session that is provided in a JSON <see cref="SessionStatus" /> object.</returns>
+        /// <param name="session">A Session object that identifies the session whose status is to be checked.</param>
+        /// <returns>Returns RecognizeStatus object that contains the information about the session that is provided in a JSON SessionStatusobject.</returns>
         RecognizeStatus GetSessionStatus(Session session);
 
         /// <summary>
         /// Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request.
         /// </summary>
         /// <param name="sessionId">The identifier for the session.</param>
-        /// <returns>Returns <see cref="RecognizeStatus" /> object that contains the information about the session that is provided in a JSON <see cref="SessionStatus" /> object.</returns>
+        /// <returns>Returns RecognizeStatus object that contains the information about the session that is provided in a JSON SessionStatus object.</returns>
         RecognizeStatus GetSessionStatus(string sessionId);
 
         /// <summary>
         /// Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.
         /// </summary>
-        /// <param name="session">A <see cref="Session" /> object that identifies the session to be deleted</param>
+        /// <param name="session">A Session object that identifies the session to be deleted</param>
         object DeleteSession(Session session);
 
         /// <summary>
@@ -192,20 +192,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                                     string customizationId);
 
         /// <summary>
-        /// Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <see cref="SpeechToTextService.CreateSession(string)"/>  method. 
+        /// Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the SpeechToTextService.CreateSession(string)  method. 
         /// To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout.
         /// Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID. 
         /// </summary>
         /// <param name="sessionId">The identifier of the session whose results you want to observe.</param>
         /// <param name="sequenceId">The sequence ID of the recognition task whose results you want to observe. Omit the parameter to obtain results either for an ongoing recognition, if any, or for the next recognition task regardless of whether it specifies a sequence ID.</param>
-        /// <param name="interimResults">Indicates whether the service is to return interim results. If true, interim results are returned as a stream of JSON objects; each object represents a single <see cref="SpeechRecognitionEvent"/>. If false, the response is a single <see cref="SpeechRecognitionEvent"/> with final results only.</param>
+        /// <param name="interimResults">Indicates whether the service is to return interim results. If true, interim results are returned as a stream of JSON objects; each object represents a single SpeechRecognitionEvent. If false, the response is a single SpeechRecognitionEvent with final results only.</param>
         /// <returns></returns>
         List<SpeechRecognitionEvent> ObserveResult(string sessionId, int? sequenceId = (int?)null, bool interimResults = false);
 
         /// <summary>
         /// Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="model">The model name.</param>
+        /// <param name="baseModelName">The name of the base model to use.</param>
+        /// <param name="description">Description of the custom model.</param>
         /// <returns></returns>
         CustomizationID CreateCustomModel(string model, string baseModelName, string description);
 
@@ -227,44 +229,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Lists information about a specified custom language model. Only the owner of a custom model can use this method to query information about the model. 
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model for which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
-        /// <returns>The method returns a single instance of a <see cref="Customization"/> object that provides information about the specified model. </returns>
+        /// <returns>The method returns a single instance of a Customization object that provides information about the specified model. </returns>
         Customization ListCustomModel(string customizationId);
 
         /// <summary>
         /// Initiates the training of a custom language model with new corpora, custom words, or both. After adding corpora or words to the custom model, use this method to begin the actual training of the model on the new data. You can specify whether the custom model is to be trained with all words from its words resources or only with words that were added or modified by the user. Only the owner of a custom model can use this method to train the model.
         /// This method is asynchronous and can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun.
-        /// You can monitor the status of the training by using the <see cref="ListCustomModel(string)">List a custom model</see> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes status and progress fields. A status of available means that the custom model is trained and ready to use. If training is in progress, the progress field indicates the progress of the training as a percentage complete. The service cannot accept subsequent training requests, or requests to add new corpora or words, until the existing request completes.
-        /// <list type="bullet">
-        ///     <listheader>
-        ///         <description>Training can fail to start for the following reasons:</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <description>No training data (corpora or words) have been added to the custom model.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>Pre-processing of corpora to generate a list of out-of-vocabulary (OOV) words is not complete.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>Pre-processing of words to validate or auto-generate sounds-like pronunciations is not complete.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>One or more words that were added to the custom model have invalid sounds-like pronunciations that you must fix.</description>
-        ///     </item>
-        /// </list>
-        /// </summary>
-        /// <param name="customizationId">The GUID of the custom language model that is to be trained. You must make the request with the service credentials of the model's owner.</param>
-        /// <param name="wordTypeToAdd">
-        /// <list type="bullet">
-        /// <listheader>
-        ///     <description>The type of words from the custom model's words resource on which to train the model:</description>
-        /// </listheader>
-        ///     <item>
-        ///         <description>all (the default) trains the model on all new words, regardless of whether they were extracted from corpora or were added or modified by the user.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>user trains the model only on new words that were added or modified by the user; the model is not trained on new words extracted from corpora.</description>
-        ///     </item>
-        /// </list>
+        /// You can monitor the status of the training by using the List a custom model method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes status and progress fields. A status of available means that the custom model is trained and ready to use. If training is in progress, the progress field indicates the progress of the training as a percentage complete. The service cannot accept subsequent training requests, or requests to add new corpora or words, until the existing request completes.
         /// </param>
         object TrainCustomModel(string customizationId, string wordTypeToAdd = "all");
 
@@ -275,7 +246,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         object ResetCustomModel(string customizationId);
 
         /// <summary>
-        /// Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model. 
+        /// Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the Train a custom model method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model. 
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model that is to be upgraded. You must make the request with the service credentials of the model's owner.</param>
         object UpgradeCustomModel(string customizationId);
@@ -287,7 +258,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         object DeleteCustomModel(string customizationId);
 
         /// <summary>
-        /// Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
+        /// Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the Train a custom model method.
         /// Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see Preparing a corpus file.
         /// The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously pre-processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the List a corpus method to check the status of the analysis. 
         /// The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the List custom words method to examine the words resource. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced.
@@ -312,43 +283,35 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model for which a corpus is be listed. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="corpusName">The name of the corpus about which information is to be listed.</param>
-        /// <returns>a single instance of a <see cref="Corpus">Corpus</see> object that provides information about the specified corpus. </returns>
+        /// <returns>a single instance of a Corpus object that provides information about the specified corpus. </returns>
         Corpus GetCorpus(string customizationId, string corpusName);
 
 
         /// <summary>
-        /// Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the Add custom words or Add a custom word method. Removing a corpus does not affect the custom model until you train the model with the <see cref="TrainCustomModel(string, string)">Train a custom model</see>  method. Only the owner of a custom model can use this method to delete a corpus from the model. 
+        /// Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the Add custom words or Add a custom word method. Removing a corpus does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a corpus from the model. 
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model from which a corpus is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="name">The name of the corpus that is to be deleted.</param>
         object DeleteCorpus(string customizationId, string name);
 
         /// <summary>
-        /// Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
-        /// You add custom words by providing a comma-separated list of <see cref="Words">Words</see> objects, one per word. You must use the <see cref="Word">Word</see> object's word parameter to identify the word that is to be added. You can also provide one or both of the following optional parameters for each word: 
-        /// <list type="bullet">
-        ///     <item>
-        ///         <description>The displayAs parameter provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>The soundsLike parameter provides a comma-separated list of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word.</description>
-        ///     </item>
-        /// </list>
+        /// Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the Train a custom model method.
+        /// You add custom words by providing a comma-separated list of Words objects, one per word. You must use the Word object's word parameter to identify the word that is to be added. You can also provide one or both of the following optional parameters for each word: 
         /// If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource.
         /// The call succeeds if the input data is valid. The service then asynchronously pre-processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model.
-        /// You can monitor the status of the request by using the <see cref="ListCustomModel(string)">List a custom model</see> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <see cref="Customization">Customization</see> object that includes a status field. A status of ready means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes.
+        /// You can monitor the status of the request by using the "ListCustomModel(string)"List a custom model</see> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes a status field. A status of ready means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes.
         /// You can use the List custom words or List a custom word method to review the words that you add. Words with an invalid sounds_like field include an error field that describes the problem. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model to which words are to be added. You must make the request with the service credentials of the model's owner.</param>
-        /// <param name="words">A comma-separated list of <see cref="Words">Words</see> objects, each of which provides information about a custom word to be added.</param>
+        /// <param name="body">A comma-separated list of Words objects, each of which provides information about a custom word to be added.</param>
         object AddCustomWords(string customizationId, Words body);
 
         /// <summary>
-        /// Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the <see cref="TrainCustomModel(string, string)">Train a custom model</see> method.
-        /// Use the word_name path parameter to specify the custom word that is to be added or modified. Use the <see cref="WordDefinition">WordDefinition object</see> to provide one or both of the following optional parameters for the word:
+        /// Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the Train a custom model method.
+        /// Use the word_name path parameter to specify the custom word that is to be added or modified. Use the "WordDefinition" WordDefinition object</see> to provide one or both of the following optional parameters for the word:
         /// The display_as parameter provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word IBM(trademark) is to be displayed as IBM™. For more information, see Using the display_as field.
-        /// The sounds_like parameter provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see <see cref="https://www.ibm.com/watson/developercloud/doc/speech-to-text/custom.shtml#soundsLike">Using the sounds_like field</see>.
-        /// If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the <see cref="ListCustomModel(string)">List a custom word</see> method to review the word that you add.
+        /// The sounds_like parameter provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see Using the sounds_like field.
+        /// If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the List a custom word method to review the word that you add.
         /// </summary>
         /// <param name="customizationId"></param>
         /// <param name="wordname"></param>
@@ -361,36 +324,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="customizationId">The GUID of the custom language model from which words are to be queried. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="wordType">
         /// The type of words to be listed from the custom language model's words resource:
-        /// <list type="bullet">
-        ///     <item>
-        ///         <description>all shows all words. This is the default if you omit the parameter.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>user shows only custom words that were added or modified by the user. </description>
-        ///     </item>
-        ///     <item>
-        ///         <description>corpora shows only OOV that were extracted from corpora.</description>
-        ///     </item>
-        /// </list>
-        /// </param>
-        /// <param name="sort">
-        /// The order in which the words are to be listed. The parameter accepts one of two arguments, alphabetical or count, to indicate how the words are to be sorted. You can prepend an optional + or - to an argument to indicate whether the results are to be sorted in ascending or descending order.
-        /// <list type="bullet">
-        ///     <item>
-        ///         <description>alphabetical and +alphabetical list the words in ascending alphabetical order. This is the default ordering if you omit the parameter.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>-alphabetical lists the words in descending alphabetical order.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>count and -count list the words in descending order by the values of their count fields.</description>
-        ///     </item>
-        ///     <item>
-        ///         <description>+count lists the words in ascending order by the values of their count fields.</description>
-        ///     </item>
-        /// </list>
         /// For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are not ordered. With cURL, URL encode the + symbol as %2B.
         /// </param>
+        /// <param name="sort">How to sort the results.</param>
         /// <returns></returns>
         WordsList ListCustomWords(string customizationId, WordType? wordType, Sort? sort);
 
@@ -399,12 +335,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model from which a word is to be queried. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="wordname">The custom word that is to be queried from the custom model.</param>
-        /// <returns>Returns a single instance of a <see cref="WordData">WordData</see> object that provides information about the specified word. </returns>
+        /// <returns>Returns a single instance of a WordData object that provides information about the specified word. </returns>
         WordData ListCustomWord(string customizationId, string wordname);
 
         /// <summary>
         /// Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary.
-        /// Removing a custom word does not affect the custom model until you train the model with the <see cref="TrainCustomModel(string, string)">Train a custom model</see>  method. Only the owner of a custom model can use this method to delete a word from the model. 
+        /// Removing a custom word does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a word from the model. 
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model from which a word is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="wordname">The custom word that is to be deleted from the custom model.</param>

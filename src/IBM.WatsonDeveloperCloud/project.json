@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1-alpha",
+  "version": "0.2.0",
   "title": "IBM.WatsonDeveloperCloud",
   "description": "The IBM.WatsonDeveloperCloud is a core project of Watson SDK in .Net. The other Watson SDK in .Net service packages depend on this package.",
   "dependencies": {

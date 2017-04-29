@@ -10,14 +10,14 @@ For information about the meaning of the models that the service uses to describ
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights -Pre
+PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights
 
 ```
 #### Project.json
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.1.1-alpha"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.2.0"
 }
 
 ```

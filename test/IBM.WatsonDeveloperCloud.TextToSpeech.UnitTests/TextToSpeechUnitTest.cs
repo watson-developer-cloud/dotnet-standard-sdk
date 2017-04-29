@@ -268,5 +268,133 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.UnitTests
             var voiceCustomization =
                  service.GetVoice(voiceName: "voice_name", customizationId: "customization_id");
         }
+
+        [TestMethod]
+        public void Synthesize_WithText_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            byte[] response =
+                new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
+
+            request.As<byte[]>()
+                   .Returns(Task.FromResult(response));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(text: "voice_name", customizationId: "customization_id");
+
+            Assert.IsNotNull(audio);
+            Assert.IsTrue(response.Length > 0);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Synthesize_With_Null_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(text: null, customizationId: "customization_id");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Synthesize_With_Empty_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(text: string.Empty, customizationId: "customization_id");
+        }
+
+        [TestMethod]
+        public void Synthesize_WithBody_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            byte[] response =
+                new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
+
+            request.As<byte[]>()
+                   .Returns(Task.FromResult(response));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(body: new Text() { TextProperty = "text" }, customizationId: "customization_id");
+
+            Assert.IsNotNull(audio);
+            Assert.IsTrue(response.Length > 0);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Synthesize_With_Null_Body()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(body: null, customizationId: "customization_id");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Synthesize_With_Null_Body_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+                service.Synthesize(body: new Text() { TextProperty = null }, customizationId: "customization_id");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Synthesize_With_Empty_Body_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var audio =
+               service.Synthesize(body: new Text() { TextProperty = string.Empty }, customizationId: "customization_id");
+        }
     }
 }

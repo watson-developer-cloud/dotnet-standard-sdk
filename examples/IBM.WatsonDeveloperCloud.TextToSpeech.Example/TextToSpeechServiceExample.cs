@@ -18,6 +18,7 @@
 using System;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
+using IBM.WatsonDeveloperCloud.Http;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
 {
@@ -120,15 +121,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         private void Synthesize()
         {
             Console.WriteLine(string.Format("Calling Synthesize({0})...", _text));
-            
-            var voice = new Voice()
-            {
-                Name = "en-US_AllisonVoice",
-                Gender = "female",
-                Language = "en-US"
-            };
 
-            var results = _textToSpeech.Synthesize(_text, voice, AudioType.WAV);
+            var results = _textToSpeech.Synthesize("This is a dotnet SDK", accept: HttpMediaType.AUDIO_WAV);
 
             if (results != null)
             {

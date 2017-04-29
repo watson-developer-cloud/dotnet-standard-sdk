@@ -2,6 +2,7 @@
 
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
+using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 /**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
@@ -94,6 +95,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
             Assert.IsTrue(audio.Length > 0);
 
             File.WriteAllBytes("audio_teste.wav", audio);
+        }
+
+        [TestMethod]
+        public void Synthesize_WithBody_Sucess()
+        {
+            _service =
+                new TextToSpeechService(_userName, _password);
+
+            var audio =
+                _service.Synthesize(new Text()
+                {
+                    TextProperty = "This is a dotnet SDK, with body text!"
+                }, accept: HttpMediaType.AUDIO_WAV);
+
+            Assert.IsNotNull(audio);
+            Assert.IsTrue(audio.Length > 0);
+
+            File.WriteAllBytes("audio_body_teste.wav", audio);
         }
     }
 }

@@ -127,5 +127,18 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
             Assert.IsNotNull(pronunciation);
             Assert.IsNotNull(pronunciation.Value);
         }
+
+        [TestMethod]
+        public void ListCustomModels_Success()
+        {
+            new TextToSpeechService(_userName, _password);
+
+            var customModels =
+                _service.ListCustomModels();
+
+            Assert.IsNotNull(customModels);
+            Assert.IsNotNull(customModels.CustomizationsList);
+            Assert.IsTrue(customModels.CustomizationsList.Count > 0);
+        }
     }
 }

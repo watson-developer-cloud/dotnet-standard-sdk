@@ -175,24 +175,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <param name="language">Lists metadata such as the name and description for all custom voice models that are owned by the requesting user. Specify a language to list the voice models for that language only. To see the words in addition to the metadata for a specific voice model, use the List a voice model method. Only the owner of a custom voice model can use this method to list information about a model.</param>
         /// <returns>Returns a list of custom voice models.</returns>
-        List<CustomVoiceModel> GetCustomVoiceModels(string language);
+        Customizations ListCustomModels(string language = "");
+
         /// <summary>
         /// Lists all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words in the model and their translations as defined in the model. To see just the metadata for a voice model, use the List voice models method. Only the owner of a custom voice model can use this method to query information about the model.
         /// </summary>
         /// <param name="modelId">The GUID of the custom voice model about which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
         /// <returns>Returns details of the specified custom voice model.</returns>
-        CustomVoiceModel GetCustomVoiceModel(string modelId);
+        Remove_CustomVoiceModel GetCustomVoiceModel(string modelId);
         /// <summary>
         /// Save a custom voice model that is owned by the requesting user.
         /// </summary>
         /// <param name="model">The custom model identifier. If this is blank, a new custom voice model is created.</param>
         /// <returns>Returns the details of the spcified custom voice model.</returns>
-        CustomVoiceModel SaveCustomVoiceModel(CustomVoiceModel model);
+        Remove_CustomVoiceModel SaveCustomVoiceModel(Remove_CustomVoiceModel model);
         /// <summary>
         /// Deletes the specified custom voice model. Only the owner of a custom voice model can use this method to delete the model.
         /// </summary>
         /// <param name="model">The custom voice model object including the model identifier.</param>
-        void DeleteCustomVoiceModel(CustomVoiceModel model);
+        void DeleteCustomVoiceModel(Remove_CustomVoiceModel model);
         /// <summary>
         /// Deletes the specified custom voice model. Only the owner of a custom voice model can use this method to delete the model.
         /// </summary>
@@ -203,7 +204,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <param name="model">The custom voice model object whose words are to be returned including the custom voice model identifier. You must make the request with the service credentials of the model's owner.</param>
         /// <returns>Returns a list of custom words.</returns>
-        List<CustomWordTranslation> GetWords(CustomVoiceModel model);
+        List<CustomWordTranslation> GetWords(Remove_CustomVoiceModel model);
         /// <summary>
         /// Lists all of the words and their translations for the specified custom voice model. The output shows the translations as they are defined in the model. Only the owner of a custom voice model can use this method to query information about the model's words.
         /// </summary>
@@ -215,7 +216,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <param name="model"></param>
         /// <param name="translations"></param>
-        void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations);
+        void SaveWords(Remove_CustomVoiceModel model, params CustomWordTranslation[] translations);
         /// <summary>
         /// Adds one or more words and their translations to the specified custom voice model. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. Only the owner of a custom voice model can use this method to add words to the model.
         /// </summary>
@@ -227,7 +228,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <param name="model">The GUID of the custom voice model from which the word is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="translation">The CustomWordTranslation object that is to be deleted from the custom voice model.</param>
-        void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation);
+        void DeleteWord(Remove_CustomVoiceModel model, CustomWordTranslation translation);
         /// <summary>
         /// Deletes a single word from the specified custom voice model. Only the owner of a custom voice model can use this method to delete a word from the model.
         /// </summary>
@@ -239,7 +240,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// </summary>
         /// <param name="model">The ustom voice model object from which the word is to be deleted. You must make the request with the service credentials of the model's owner.</param>
         /// <param name="word">The word that is to be deleted from the custom voice model.</param>
-        void DeleteWord(CustomVoiceModel model, string word);
+        void DeleteWord(Remove_CustomVoiceModel model, string word);
         /// <summary>
         /// Deletes a single word from the specified custom voice model. Only the owner of a custom voice model can use this method to delete a word from the model.
         /// </summary>

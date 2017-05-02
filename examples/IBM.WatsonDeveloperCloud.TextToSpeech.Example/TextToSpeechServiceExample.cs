@@ -140,17 +140,17 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         {
             Console.WriteLine("Calling GetCustomVoiceModels()...");
 
-            var results = _textToSpeech.GetCustomVoiceModels();
+            var results = _textToSpeech.ListCustomModels();
 
-            if (results != null && results.Count > 0)
+            if (results != null && results.CustomizationsList.Count > 0)
             {
                 Console.WriteLine("Voice models found...");
 
-                foreach (CustomVoiceModel voiceModel in results)
+                foreach (var voiceModel in results.CustomizationsList)
                 {
                     Console.WriteLine(string.Format("Name: {0} | Id: {1} | Language: {2} | Description: {3}", 
                         voiceModel.Name, 
-                        voiceModel.Id, 
+                        voiceModel.CustomizationId, 
                         voiceModel.Language, 
                         voiceModel.Description));
                 }
@@ -166,7 +166,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         private void SaveCustomVoiceModel()
         {
             Console.WriteLine("Calling SaveCustomVoiceModel()...");
-            CustomVoiceModel voiceModel = new CustomVoiceModel()
+            Remove_CustomVoiceModel voiceModel = new Remove_CustomVoiceModel()
             {
                 Name = _customVoiceModelName,
                 Description = _customVoiceModelDescription,
@@ -201,7 +201,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
                 throw new ArgumentNullException("customVoiceModelID");
 
             Console.WriteLine(string.Format("Calling UpdateCustomVoiceModel({0})...", _customVoiceModelID));
-            CustomVoiceModel voiceModel = new CustomVoiceModel()
+            Remove_CustomVoiceModel voiceModel = new Remove_CustomVoiceModel()
             {
                 Name = _customVoiceModelName,
                 Description = _customVoiceModelDescription,

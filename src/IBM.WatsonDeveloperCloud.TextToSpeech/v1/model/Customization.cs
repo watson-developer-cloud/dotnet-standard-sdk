@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
 {
-    public partial class Customization
+    public class Customization
     {
         /// <summary>
         /// Gets or sets GUID of the custom voice model.

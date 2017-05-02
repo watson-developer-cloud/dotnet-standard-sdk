@@ -226,36 +226,44 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             return result;
         }
-
-        public List<CustomVoiceModel> GetCustomVoiceModels()
+        
+        public Customizations ListCustomModels(string language = "")
         {
-            return this.GetCustomVoiceModels(null);
+            Customizations result = null;
+
+            try
+            {
+                var ret =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}");
+
+                if (!string.IsNullOrEmpty(language))
+                    ret.WithArgument("language", language);
+
+                result =
+                    ret.As<Customizations>()
+                       .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public List<CustomVoiceModel> GetCustomVoiceModels(string language)
-        {
-            var ret = Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_CUSTOMIZATIONS);
-
-            if (!string.IsNullOrEmpty(language))
-                ret.WithArgument("language", language);
-
-            return ret.As<CustomVoiceModels>()
-                          .Result.CustomVoiceList;
-        }
-
-        public CustomVoiceModel GetCustomVoiceModel(string modelId)
+        public Remove_CustomVoiceModel GetCustomVoiceModel(string modelId)
         {
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException("ModelId must not be empty");
 
             return Client.WithAuthentication(this.UserName, this.Password)
                           .GetAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelId))
-                          .As<CustomVoiceModel>()
+                          .As<Remove_CustomVoiceModel>()
                           .Result;
         }
 
-        public CustomVoiceModel SaveCustomVoiceModel(CustomVoiceModel model)
+        public Remove_CustomVoiceModel SaveCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
                 return saveNewCustomVoiceModel(model);
@@ -263,7 +271,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 return updateCustomVoiceModel(model);
         }
 
-        public CustomVoiceModel updateCustomVoiceModel(CustomVoiceModel model)
+        public Remove_CustomVoiceModel updateCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             string path = string.Format(PATH_CUSTOMIZATION, model.Id);
 
@@ -284,7 +292,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return model;
         }
 
-        private CustomVoiceModel saveNewCustomVoiceModel(CustomVoiceModel model)
+        private Remove_CustomVoiceModel saveNewCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             string path = PATH_CUSTOMIZATIONS;
 
@@ -299,7 +307,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 Client.WithAuthentication(this.UserName, this.Password)
                     .PostAsync(this.Endpoint + path)
                     .WithBody<CustomVoiceModelCreate>(createModel)
-                    .As<CustomVoiceModel>()
+                    .As<Remove_CustomVoiceModel>()
                     .Result;
 
             model.Id = retorno.Id;
@@ -307,7 +315,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return model;
         }
 
-        public void DeleteCustomVoiceModel(CustomVoiceModel model)
+        public void DeleteCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -325,7 +333,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                           .AsMessage();
         }
 
-        public List<CustomWordTranslation> GetWords(CustomVoiceModel model)
+        public List<CustomWordTranslation> GetWords(Remove_CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -344,7 +352,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                           .Result.Words;
         }
 
-        public void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations)
+        public void SaveWords(Remove_CustomVoiceModel model, params CustomWordTranslation[] translations)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -374,7 +382,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                       .AsMessage().Result;
         }
 
-        public void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation)
+        public void DeleteWord(Remove_CustomVoiceModel model, CustomWordTranslation translation)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -396,7 +404,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             DeleteWord(modelID, translation.Word);
         }
 
-        public void DeleteWord(CustomVoiceModel model, string word)
+        public void DeleteWord(Remove_CustomVoiceModel model, string word)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");

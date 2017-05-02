@@ -8,8 +8,7 @@
   },
 
   "dependencies": {
-    "dotnet-test-mstest": "1.1.2-preview",
-    "MSTest.TestFramework": "1.0.6-preview",
+    "MSTest.TestFramework": "1.1.17",
     "NSubstitute": "2.0.3",
     "Newtonsoft.Json": "9.0.1",
     "IBM.WatsonDeveloperCloud.TextToSpeech": "0.2.0",
@@ -17,7 +16,8 @@
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",
     "coveralls.net": "0.7.0",
-    "ReportGenerator": "2.4.5"
+    "ReportGenerator": "2.4.5",
+    "MSTest.TestAdapter": "1.1.17"
   },
 
   "frameworks": {

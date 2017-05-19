@@ -95,20 +95,20 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <returns></returns>
         SpeechRecognitionEvent Recognize(string contentType,
                                          FileStream audio,
-                                         string transferEncoding,
-                                         string model,
-                                         string customizationId,
-                                         bool? continuous,
-                                         int? inactivityTimeout,
-                                         string[] keywords,
-                                         double? keywordsThreshold,
-                                         int? maxAlternatives,
-                                         double? wordAlternativesThreshold,
-                                         bool? wordConfidence,
-                                         bool? timestamps,
-                                         bool profanityFilter,
-                                         bool? smartFormatting,
-                                         bool? speakerLabels);
+                                         string transferEncoding = "",
+                                         string model = "en-US_BroadbandModel",
+                                         string customizationId = "",
+                                         bool? continuous = null,
+                                         int? inactivityTimeout = null,
+                                         string[] keywords = null,
+                                         double? keywordsThreshold = null,
+                                         int? maxAlternatives = null,
+                                         double? wordAlternativesThreshold = null,
+                                         bool? wordConfidence = null,
+                                         bool? timestamps = null,
+                                         bool profanityFilter = false,
+                                         bool? smartFormatting = null,
+                                         bool? speakerLabels = null);
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -125,9 +125,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         SpeechRecognitionEvent Recognize(string contentType,
                                          Metadata metaData,
                                          FileStream audio,
-                                         string transferEncoding,
-                                         string model,
-                                         string customizationId);
+                                          string transferEncoding = "",
+                                          string model = "en-US_BroadbandModel",
+                                          string customizationId = "");
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -155,20 +155,20 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         SpeechRecognitionEvent RecognizeWithSession(string sessionId,
                                                     string contentType,
                                                     FileStream audio,
-                                                    string transferEncoding,
-                                                    string model,
-                                                    string customizationId,
-                                                    bool? continuous,
-                                                    int? inactivityTimeout,
-                                                    string[] keywords,
-                                                    double? keywordsThreshold,
-                                                    int? maxAlternatives,
-                                                    double? wordAlternativesThreshold,
-                                                    bool? wordConfidence,
-                                                    bool? timestamps,
-                                                    bool profanityFilter,
-                                                    bool? smartFormatting,
-                                                    bool? speakerLabels);
+                                                    string transferEncoding = "",
+                                                    string model = "en-US_BroadbandModel",
+                                                    string customizationId = "",
+                                                    bool? continuous = null,
+                                                    int? inactivityTimeout = null,
+                                                    string[] keywords = null,
+                                                    double? keywordsThreshold = null,
+                                                    int? maxAlternatives = null,
+                                                    double? wordAlternativesThreshold = null,
+                                                    bool? wordConfidence = null,
+                                                    bool? timestamps = null,
+                                                    bool profanityFilter = false,
+                                                    bool? smartFormatting = null,
+                                                    bool? speakerLabels = null);
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.

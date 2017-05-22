@@ -628,7 +628,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                     new WordAlternativeResult()
                                     {
                                         Confidence = 0.5,
-                                        Word = 1
+                                        Word = "Word"
                                     }
                                 }
                             }
@@ -742,7 +742,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                     new WordAlternativeResult()
                                     {
                                         Confidence = 0.5,
-                                        Word = 1
+                                        Word = "Word"
                                     }
                                 }
                             }

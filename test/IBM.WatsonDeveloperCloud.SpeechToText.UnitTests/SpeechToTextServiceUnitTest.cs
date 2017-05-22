@@ -594,9 +594,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                             new SpeechRecognitionAlternative()
                             {
                                 Confidence = 0.5,
-                                Timestamps = new List<string>()
+                                Timestamps = new[]
                                 {
-                                    "time_stamps"
+                                    new[] { "Word", "0.1","0.2"}
                                 },
                                 Transcript = "transcript",
                                 WordConfidence = new List<string>()
@@ -708,9 +708,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                             new SpeechRecognitionAlternative()
                             {
                                 Confidence = 0.5,
-                                Timestamps = new List<string>()
+                                Timestamps = new[]
                                 {
-                                    "time_stamps"
+                                    new[] { "Word", "0.1","0.2"}
                                 },
                                 Transcript = "transcript",
                                 WordConfidence = new List<string>()

@@ -31,6 +31,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// Gets or sets word alternative hypothesis for a word from the input audio.
         /// </summary>
         [JsonProperty("word")]
-        public double Word { get; set; }
+        public string Word { get; set; }
     }
 }

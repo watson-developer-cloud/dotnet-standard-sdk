@@ -30,6 +30,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         public bool Final { get; set; }
 
         /// <summary>
+        /// The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at 0 initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered.
+        /// </summary>
+        [JsonProperty("speaker")]
+        public int Speaker { get; set; }
+
+        /// <summary>
         /// Gets or sets array of alternative transcripts.
         /// </summary>
         [JsonProperty("alternatives")]
@@ -46,5 +52,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         [JsonProperty("word_alternatives")]
         public List<WordAlternativeResults> WordAlternativeResults { get; set; }
+
     }
 }

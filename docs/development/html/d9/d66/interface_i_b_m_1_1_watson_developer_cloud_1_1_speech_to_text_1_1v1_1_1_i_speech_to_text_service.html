@@ -121,18 +121,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a13e78dd17753ec6f19054cecb3d074"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1a13e78dd17753ec6f19054cecb3d074">DeleteSession</a> (string sessionId)</td></tr>
 <tr class="memdesc:a1a13e78dd17753ec6f19054cecb3d074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.  <a href="#a1a13e78dd17753ec6f19054cecb3d074">More...</a><br /></td></tr>
 <tr class="separator:a1a13e78dd17753ec6f19054cecb3d074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e32c09b8f1a4b65f40296e56c34b0af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3e32c09b8f1a4b65f40296e56c34b0af">Recognize</a> (string contentType, FileStream audio, string transferEncoding, string model, string customizationId, bool? continuous, int? inactivityTimeout, string[] keywords, double? keywordsThreshold, int? maxAlternatives, double? wordAlternativesThreshold, bool? wordConfidence, bool? timestamps, bool profanityFilter, bool? smartFormatting, bool? speakerLabels)</td></tr>
-<tr class="memdesc:a3e32c09b8f1a4b65f40296e56c34b0af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a3e32c09b8f1a4b65f40296e56c34b0af">More...</a><br /></td></tr>
-<tr class="separator:a3e32c09b8f1a4b65f40296e56c34b0af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1978347feae67f13cd80ebd3a60dd63c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1978347feae67f13cd80ebd3a60dd63c">Recognize</a> (string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, FileStream audio, string transferEncoding, string model, string customizationId)</td></tr>
-<tr class="memdesc:a1978347feae67f13cd80ebd3a60dd63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a1978347feae67f13cd80ebd3a60dd63c">More...</a><br /></td></tr>
-<tr class="separator:a1978347feae67f13cd80ebd3a60dd63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cba5380691eec4aecc352f4987b4c0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a9cba5380691eec4aecc352f4987b4c0a">RecognizeWithSession</a> (string sessionId, string contentType, FileStream audio, string transferEncoding, string model, string customizationId, bool? continuous, int? inactivityTimeout, string[] keywords, double? keywordsThreshold, int? maxAlternatives, double? wordAlternativesThreshold, bool? wordConfidence, bool? timestamps, bool profanityFilter, bool? smartFormatting, bool? speakerLabels)</td></tr>
-<tr class="memdesc:a9cba5380691eec4aecc352f4987b4c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a9cba5380691eec4aecc352f4987b4c0a">More...</a><br /></td></tr>
-<tr class="separator:a9cba5380691eec4aecc352f4987b4c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81cc675eca3b2fa3c0e4b3362a53cbdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a81cc675eca3b2fa3c0e4b3362a53cbdb">RecognizeWithSession</a> (string sessionId, string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, FileStream audio, string transferEncoding, string model, string customizationId)</td></tr>
-<tr class="memdesc:a81cc675eca3b2fa3c0e4b3362a53cbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a81cc675eca3b2fa3c0e4b3362a53cbdb">More...</a><br /></td></tr>
-<tr class="separator:a81cc675eca3b2fa3c0e4b3362a53cbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0070c3263634bed42a3cbf8cbf133e88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a0070c3263634bed42a3cbf8cbf133e88">Recognize</a> (string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="memdesc:a0070c3263634bed42a3cbf8cbf133e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a0070c3263634bed42a3cbf8cbf133e88">More...</a><br /></td></tr>
+<tr class="separator:a0070c3263634bed42a3cbf8cbf133e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad4c97dbefc5f8ec2354fe21b0136adbf">Recognize</a> (string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;)</td></tr>
+<tr class="memdesc:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#ad4c97dbefc5f8ec2354fe21b0136adbf">More...</a><br /></td></tr>
+<tr class="separator:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182c02f952c33151cd4d1fbdb9735bcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a182c02f952c33151cd4d1fbdb9735bcd">RecognizeWithSession</a> (string sessionId, string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="memdesc:a182c02f952c33151cd4d1fbdb9735bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a182c02f952c33151cd4d1fbdb9735bcd">More...</a><br /></td></tr>
+<tr class="separator:a182c02f952c33151cd4d1fbdb9735bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf66f72cefde5bbca618abaf52e1763e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#acf66f72cefde5bbca618abaf52e1763e">RecognizeWithSession</a> (string sessionId, string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding, string model, string customizationId)</td></tr>
+<tr class="memdesc:acf66f72cefde5bbca618abaf52e1763e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#acf66f72cefde5bbca618abaf52e1763e">More...</a><br /></td></tr>
+<tr class="separator:acf66f72cefde5bbca618abaf52e1763e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7998e3af0a13c642c9cb5aba08851b4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aa7998e3af0a13c642c9cb5aba08851b4">ObserveResult</a> (string sessionId, int? sequenceId=(int?) null, bool interimResults=false)</td></tr>
 <tr class="memdesc:aa7998e3af0a13c642c9cb5aba08851b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a909364aeef9804f76e7f120d4aade95a" title="Creates a session and locks recognition requests to that engine.You can use the session for multiple ...">SpeechToTextService.CreateSession(string)</a> method. To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout. Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID.  <a href="#aa7998e3af0a13c642c9cb5aba08851b4">More...</a><br /></td></tr>
 <tr class="separator:aa7998e3af0a13c642c9cb5aba08851b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,9 +160,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d18213bb9e711384c8b44d2e6849ed0"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a9d18213bb9e711384c8b44d2e6849ed0">DeleteCustomModel</a> (string customizationId)</td></tr>
 <tr class="memdesc:a9d18213bb9e711384c8b44d2e6849ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. Only the owner of a custom model can use this method to delete the model.  <a href="#a9d18213bb9e711384c8b44d2e6849ed0">More...</a><br /></td></tr>
 <tr class="separator:a9d18213bb9e711384c8b44d2e6849ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae762aa4af20eee0a637bed088a71eff2"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae762aa4af20eee0a637bed088a71eff2">AddCorpus</a> (string customizationId, string corpusName, bool allowOverwrite, FileStream body)</td></tr>
-<tr class="memdesc:ae762aa4af20eee0a637bed088a71eff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the Train a custom model method. Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see Preparing a corpus file. The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously pre-processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the List a corpus method to check the status of the analysis. The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the List custom words method to examine the words resource. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced. To add a corpus file that has the same name as an existing corpus, set the allow_overwrite parameter to true; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way by the user. The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand new custom words to a model; this includes words that the service extracts from corpora and words that you add directly.  <a href="#ae762aa4af20eee0a637bed088a71eff2">More...</a><br /></td></tr>
-<tr class="separator:ae762aa4af20eee0a637bed088a71eff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0c010df4b4154b0bbc99a89a75e449"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#adb0c010df4b4154b0bbc99a89a75e449">AddCorpus</a> (string customizationId, string corpusName, bool allowOverwrite, Stream body)</td></tr>
+<tr class="memdesc:adb0c010df4b4154b0bbc99a89a75e449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the Train a custom model method. Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see Preparing a corpus file. The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously pre-processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the List a corpus method to check the status of the analysis. The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the List custom words method to examine the words resource. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced. To add a corpus file that has the same name as an existing corpus, set the allow_overwrite parameter to true; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way by the user. The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand new custom words to a model; this includes words that the service extracts from corpora and words that you add directly.  <a href="#adb0c010df4b4154b0bbc99a89a75e449">More...</a><br /></td></tr>
+<tr class="separator:adb0c010df4b4154b0bbc99a89a75e449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d9b5c7370b5ee382f221338345368dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html">Corpora</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1d9b5c7370b5ee382f221338345368dd">ListCorpora</a> (string customizationId)</td></tr>
 <tr class="memdesc:a1d9b5c7370b5ee382f221338345368dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora.  <a href="#a1d9b5c7370b5ee382f221338345368dd">More...</a><br /></td></tr>
 <tr class="separator:a1d9b5c7370b5ee382f221338345368dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,8 +189,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4a010a4900087d23314d5ab3f32f8e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae762aa4af20eee0a637bed088a71eff2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae762aa4af20eee0a637bed088a71eff2">&#9670;&nbsp;</a></span>AddCorpus()</h2>
+<a id="adb0c010df4b4154b0bbc99a89a75e449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb0c010df4b4154b0bbc99a89a75e449">&#9670;&nbsp;</a></span>AddCorpus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,7 +216,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileStream&#160;</td>
+          <td class="paramtype">Stream&#160;</td>
           <td class="paramname"><em>body</em>&#160;</td>
         </tr>
         <tr>
@@ -238,7 +238,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a82cfb78c9bc74458cb8c70dcb78f2fff">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#adc67aef3b4c2c8165597a0a97e0e66d3">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
@@ -964,8 +964,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e32c09b8f1a4b65f40296e56c34b0af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e32c09b8f1a4b65f40296e56c34b0af">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[1/2]</span></h2>
+<a id="a0070c3263634bed42a3cbf8cbf133e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0070c3263634bed42a3cbf8cbf133e88">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -979,92 +979,92 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileStream&#160;</td>
+          <td class="paramtype">Stream&#160;</td>
           <td class="paramname"><em>audio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>transferEncoding</em>, </td>
+          <td class="paramname"><em>transferEncoding</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
+          <td class="paramname"><em>model</em> = <code>&quot;en-US_BroadbandModel&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em>, </td>
+          <td class="paramname"><em>customizationId</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>continuous</em>, </td>
+          <td class="paramname"><em>continuous</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>inactivityTimeout</em>, </td>
+          <td class="paramname"><em>inactivityTimeout</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string []&#160;</td>
-          <td class="paramname"><em>keywords</em>, </td>
+          <td class="paramname"><em>keywords</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double?&#160;</td>
-          <td class="paramname"><em>keywordsThreshold</em>, </td>
+          <td class="paramname"><em>keywordsThreshold</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>maxAlternatives</em>, </td>
+          <td class="paramname"><em>maxAlternatives</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double?&#160;</td>
-          <td class="paramname"><em>wordAlternativesThreshold</em>, </td>
+          <td class="paramname"><em>wordAlternativesThreshold</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>wordConfidence</em>, </td>
+          <td class="paramname"><em>wordConfidence</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>timestamps</em>, </td>
+          <td class="paramname"><em>timestamps</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>profanityFilter</em>, </td>
+          <td class="paramname"><em>profanityFilter</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>smartFormatting</em>, </td>
+          <td class="paramname"><em>smartFormatting</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>speakerLabels</em>&#160;</td>
+          <td class="paramname"><em>speakerLabels</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1098,12 +1098,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a62f2bd13efbe6a073aee749643237ddf">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6d70b335475d7a749c7371f4b46bd8d5">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a1978347feae67f13cd80ebd3a60dd63c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1978347feae67f13cd80ebd3a60dd63c">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[2/2]</span></h2>
+<a id="ad4c97dbefc5f8ec2354fe21b0136adbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c97dbefc5f8ec2354fe21b0136adbf">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1123,26 +1123,26 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileStream&#160;</td>
+          <td class="paramtype">Stream&#160;</td>
           <td class="paramname"><em>audio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>transferEncoding</em>, </td>
+          <td class="paramname"><em>transferEncoding</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
+          <td class="paramname"><em>model</em> = <code>&quot;en-US_BroadbandModel&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em>&#160;</td>
+          <td class="paramname"><em>customizationId</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1166,12 +1166,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a50b727f467b983df1b7f1f39db0ffbde">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#afc33b647d24af3044481ed062b30dfa1">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a9cba5380691eec4aecc352f4987b4c0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cba5380691eec4aecc352f4987b4c0a">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[1/2]</span></h2>
+<a id="a182c02f952c33151cd4d1fbdb9735bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a182c02f952c33151cd4d1fbdb9735bcd">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1191,92 +1191,92 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileStream&#160;</td>
+          <td class="paramtype">Stream&#160;</td>
           <td class="paramname"><em>audio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>transferEncoding</em>, </td>
+          <td class="paramname"><em>transferEncoding</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
+          <td class="paramname"><em>model</em> = <code>&quot;en-US_BroadbandModel&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em>, </td>
+          <td class="paramname"><em>customizationId</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>continuous</em>, </td>
+          <td class="paramname"><em>continuous</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>inactivityTimeout</em>, </td>
+          <td class="paramname"><em>inactivityTimeout</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string []&#160;</td>
-          <td class="paramname"><em>keywords</em>, </td>
+          <td class="paramname"><em>keywords</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double?&#160;</td>
-          <td class="paramname"><em>keywordsThreshold</em>, </td>
+          <td class="paramname"><em>keywordsThreshold</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>maxAlternatives</em>, </td>
+          <td class="paramname"><em>maxAlternatives</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double?&#160;</td>
-          <td class="paramname"><em>wordAlternativesThreshold</em>, </td>
+          <td class="paramname"><em>wordAlternativesThreshold</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>wordConfidence</em>, </td>
+          <td class="paramname"><em>wordConfidence</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>timestamps</em>, </td>
+          <td class="paramname"><em>timestamps</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>profanityFilter</em>, </td>
+          <td class="paramname"><em>profanityFilter</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>smartFormatting</em>, </td>
+          <td class="paramname"><em>smartFormatting</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>speakerLabels</em>&#160;</td>
+          <td class="paramname"><em>speakerLabels</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1311,12 +1311,12 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a69bec9123420b474c19edbfe3ceaedce">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ab6f36de6579f3ff7bd5a024f9ffff105">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a81cc675eca3b2fa3c0e4b3362a53cbdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81cc675eca3b2fa3c0e4b3362a53cbdb">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[2/2]</span></h2>
+<a id="acf66f72cefde5bbca618abaf52e1763e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf66f72cefde5bbca618abaf52e1763e">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1342,7 +1342,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FileStream&#160;</td>
+          <td class="paramtype">Stream&#160;</td>
           <td class="paramname"><em>audio</em>, </td>
         </tr>
         <tr>
@@ -1386,7 +1386,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a8cc825b44bc11a2044b985d6d3b82e1f">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ae8efecf1f9a0d829e8226d00bf290a11">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>

@@ -94,21 +94,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="speakerLabels"></param>
         /// <returns></returns>
         SpeechRecognitionEvent Recognize(string contentType,
-                                         FileStream audio,
-                                         string transferEncoding,
-                                         string model,
-                                         string customizationId,
-                                         bool? continuous,
-                                         int? inactivityTimeout,
-                                         string[] keywords,
-                                         double? keywordsThreshold,
-                                         int? maxAlternatives,
-                                         double? wordAlternativesThreshold,
-                                         bool? wordConfidence,
-                                         bool? timestamps,
-                                         bool profanityFilter,
-                                         bool? smartFormatting,
-                                         bool? speakerLabels);
+                                         Stream audio,
+                                         string transferEncoding = "",
+                                         string model = "en-US_BroadbandModel",
+                                         string customizationId = "",
+                                         bool? continuous = null,
+                                         int? inactivityTimeout = null,
+                                         string[] keywords = null,
+                                         double? keywordsThreshold = null,
+                                         int? maxAlternatives = null,
+                                         double? wordAlternativesThreshold = null,
+                                         bool? wordConfidence = null,
+                                         bool? timestamps = null,
+                                         bool profanityFilter = false,
+                                         bool? smartFormatting = null,
+                                         bool? speakerLabels = null);
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -124,10 +124,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <returns></returns>
         SpeechRecognitionEvent Recognize(string contentType,
                                          Metadata metaData,
-                                         FileStream audio,
-                                         string transferEncoding,
-                                         string model,
-                                         string customizationId);
+                                         Stream audio,
+                                         string transferEncoding = "",
+                                         string model = "en-US_BroadbandModel",
+                                         string customizationId = "");
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -154,21 +154,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <returns></returns>
         SpeechRecognitionEvent RecognizeWithSession(string sessionId,
                                                     string contentType,
-                                                    FileStream audio,
-                                                    string transferEncoding,
-                                                    string model,
-                                                    string customizationId,
-                                                    bool? continuous,
-                                                    int? inactivityTimeout,
-                                                    string[] keywords,
-                                                    double? keywordsThreshold,
-                                                    int? maxAlternatives,
-                                                    double? wordAlternativesThreshold,
-                                                    bool? wordConfidence,
-                                                    bool? timestamps,
-                                                    bool profanityFilter,
-                                                    bool? smartFormatting,
-                                                    bool? speakerLabels);
+                                                    Stream audio,
+                                                    string transferEncoding = "",
+                                                    string model = "en-US_BroadbandModel",
+                                                    string customizationId = "",
+                                                    bool? continuous = null,
+                                                    int? inactivityTimeout = null,
+                                                    string[] keywords = null,
+                                                    double? keywordsThreshold = null,
+                                                    int? maxAlternatives = null,
+                                                    double? wordAlternativesThreshold = null,
+                                                    bool? wordConfidence = null,
+                                                    bool? timestamps = null,
+                                                    bool profanityFilter = false,
+                                                    bool? smartFormatting = null,
+                                                    bool? speakerLabels = null);
 
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
@@ -186,7 +186,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         SpeechRecognitionEvent RecognizeWithSession(string sessionId,
                                                     string contentType,
                                                     Metadata metaData,
-                                                    FileStream audio,
+                                                    Stream audio,
                                                     string transferEncoding,
                                                     string model,
                                                     string customizationId);
@@ -269,7 +269,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="corpusName">The name of the corpus that is to be added. The name cannot contain spaces and cannot be the string user, which is reserved by the service to denote custom words added or modified by the user. Use a localized name that matches the language of the custom model.</param>
         /// <param name="allowOverwrite">Indicates whether the specified corpus is to overwrite an existing corpus with the same name. If a corpus with the same name already exists, the request fails unless allow_overwrite is set to true; by default, the parameter is false. The parameter has no effect if a corpus with the same name does not already exist.</param>
         /// <param name="body">A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the --data-binary option to upload the file for the request.</param>
-        object AddCorpus(string customizationId, string corpusName, bool allowOverwrite, FileStream body);
+        object AddCorpus(string customizationId, string corpusName, bool allowOverwrite, Stream body);
 
         /// <summary>
         /// Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora.

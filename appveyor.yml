@@ -86,27 +86,27 @@ after_build:
     }
 
 
-    Move-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.VisualRecognition.IntegrationTests\exampleData C:\projects\dotnet-standard-sdk
+    Move-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests\exampleData C:\projects\dotnet-standard-sdk
 
-    Move-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.SpeechToText.IntegrationTests\Assets C:\projects\dotnet-standard-sdk
+    Move-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\Assets C:\projects\dotnet-standard-sdk
 test_script:
 - ps: "if((Test-Path -Path coverage))\n{\n  rm coverage -r -force\n}\nNew-Item -path . -name coverage -itemtype directory\nForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) { \n  if(!$folder.Name.Contains(\"Discovery\") -and !$folder.Name.Contains(\"TextToSpeech\") -and !$folder.Name.Contains(\"PersonalityInsights\"))\n  {\n    if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)\n    {\n      Write-Output \"No pull request number. Executing tests\"\n      dotnet test $folder.FullName\n      if($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode )  }\n      echo \"Test passed: $?\"\n      echo \"LastExitCode: $LastExitCode\"\n      $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    \n      $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'\n      $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'\n      & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'\n    }\n    else\n    {\n        Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping tests.\"\n    }\n  }\n}\n\nC:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error\n\nif($env:COVERALLS_REPO_TOKEN)\n{\n  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths\n}\nelse\n{\n  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"\n}"
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud
-- path: '\src\IBM.WatsonDeveloperCloud.Conversation\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.Conversation
-- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.LanguageTranslator
-- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.PersonalityInsights
-- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.SpeechToText
-- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.TextToSpeech
-- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.ToneAnalyzer
-- path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition\bin\$(configuration)\*.nupkg'
+- path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.VisualRecognition
 deploy:
 - provider: NuGet

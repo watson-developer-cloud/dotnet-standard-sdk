@@ -1,4 +1,4 @@
-version: 0.1.{build}
+version: 0.3.{build}
 branches:
   except:
   - gh-pages
@@ -54,10 +54,12 @@ after_build:
     Write-Output "branchName  is " + $branchName
 
 
+    .\packages\Doxygen.1.8.13\tools\doxygen.exe Doxyfile
+
+
     If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "release")
 
     {
-        .\packages\Doxygen.1.8.13\tools\doxygen.exe Doxyfile
         git config --global user.email "wps@us.ibm.com"
         git config --global user.name "Watson Github Bot"
         git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages

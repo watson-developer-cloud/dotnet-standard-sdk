@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.IntegrationTests
             _endpoint = conversationCredential["url"].Value<string>();
             _userName = conversationCredential["username"].Value<string>();
             _password = conversationCredential["password"].Value<string>();
-            _workspace = conversationCredential["workspace"].Value<string>();
+            _workspace = conversationCredential["workspaceId"].Value<string>();
 
         }
 

@@ -23,7 +23,7 @@
     "emitEntryPoint": true,
     "xmlDoc": false,
     "copyToOutput": {
-      "include": [ "./exampleData" ]
+      "include": [ "./TestData" ]
     }
   }
 }

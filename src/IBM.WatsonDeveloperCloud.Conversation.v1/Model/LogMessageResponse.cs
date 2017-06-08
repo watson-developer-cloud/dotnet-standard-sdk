@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,25 +15,56 @@
 *
 */
 
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// Messages logged with the request.
+    /// Log message details.
     /// </summary>
     public class LogMessageResponse
     {
         /// <summary>
-        /// An array of dialog node IDs that are in focus in the conversation.
+        /// The severity of the message.
         /// </summary>
-        [JsonProperty("level")]
-        public string Level { get; set; }
+        /// <value>The severity of the message.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LevelEnum
+        {
+            
+            /// <summary>
+            /// Enum INFO for info
+            /// </summary>
+            [EnumMember(Value = "info")]
+            INFO,
+            
+            /// <summary>
+            /// Enum ERROR for error
+            /// </summary>
+            [EnumMember(Value = "error")]
+            ERROR,
+            
+            /// <summary>
+            /// Enum WARN for warn
+            /// </summary>
+            [EnumMember(Value = "warn")]
+            WARN
+        }
 
         /// <summary>
-        /// The message
+        /// The severity of the message.
         /// </summary>
-        [JsonProperty("msg")]
+        /// <value>The severity of the message.</value>
+        [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
+        public LevelEnum? Level { get; set; }
+        /// <summary>
+        /// The text of the message.
+        /// </summary>
+        /// <value>The text of the message.</value>
+        [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
         public string Msg { get; set; }
     }
+
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,31 +16,51 @@
 */
 
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// Terms from the request that are identified as entities.
+    /// EntityResponse.
     /// </summary>
     public class EntityResponse
     {
         /// <summary>
-        /// The recognized entity from a term in the input.
+        /// The name of the entity.
         /// </summary>
-        [JsonProperty("entity")]
+        /// <value>The name of the entity.</value>
+        [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public string Entity { get; set; }
-
         /// <summary>
-        /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
+        /// The timestamp for creation of the entity.
         /// </summary>
-        [JsonProperty("location")]
-        public List<int> Location { get; set; }
-
+        /// <value>The timestamp for creation of the entity.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
-        /// The term in the input text that was recognized
+        /// The timestamp for the last update to the entity.
         /// </summary>
-        [JsonProperty("value")]
-        public string Value { get; set; }
+        /// <value>The timestamp for the last update to the entity.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
+        /// <summary>
+        /// The description of the entity.
+        /// </summary>
+        /// <value>The description of the entity.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
+        /// <summary>
+        /// Any metadata related to the entity.
+        /// </summary>
+        /// <value>Any metadata related to the entity.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public object Metadata { get; set; }
+        /// <summary>
+        /// Whether fuzzy matching is used for the entity.
+        /// </summary>
+        /// <value>Whether fuzzy matching is used for the entity.</value>
+        [JsonProperty("fuzzy_match", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? FuzzyMatch { get; set; }
     }
+
 }

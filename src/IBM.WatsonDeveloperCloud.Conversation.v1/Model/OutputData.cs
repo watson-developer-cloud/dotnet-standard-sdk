@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,32 +15,34 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// OutputData object
+    /// An output object that includes the response to the user, the nodes that were hit, and messages from the log.
     /// </summary>
     public class OutputData
     {
         /// <summary>
         /// Up to 50 messages logged with the request.
         /// </summary>
-        [JsonProperty("log_messages")]
+        /// <value>Up to 50 messages logged with the request.</value>
+        [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
         public List<LogMessageResponse> LogMessages { get; set; }
-
         /// <summary>
         /// Responses to the user.
         /// </summary>
-        [JsonProperty("text")]
+        /// <value>Responses to the user.</value>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Text { get; set; }
-
         /// <summary>
         /// The nodes that were executed to create the response.
         /// </summary>
-        [JsonProperty("nodes_visited")]
+        /// <value>The nodes that were executed to create the response.</value>
+        [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> NodesVisited { get; set; }
     }
+
 }

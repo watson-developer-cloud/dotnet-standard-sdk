@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,30 +16,33 @@
 */
 
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// ExampleResponse object
+    /// ExampleResponse.
     /// </summary>
     public class ExampleResponse
     {
         /// <summary>
         /// The timestamp for creation of the example.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the example.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the example.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the example.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
         /// <summary>
         /// The text of the example.
         /// </summary>
-        [JsonProperty("text")]
+        /// <value>The text of the example.</value>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }
+
 }

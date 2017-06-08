@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,21 +15,27 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// WorkspaceCollectionResponse object
+    /// WorkspaceCollectionResponse.
     /// </summary>
     public class WorkspaceCollectionResponse
     {
         /// <summary>
-        /// Information about the Workspace.
+        /// An array of workspaces.
         /// </summary>
-        [JsonProperty("workspaces")]
+        /// <value>An array of workspaces.</value>
+        [JsonProperty("workspaces", NullValueHandling = NullValueHandling.Ignore)]
         public List<WorkspaceResponse> Workspaces { get; set; }
-
+        /// <summary>
+        /// Gets or Sets Pagination
+        /// </summary>
+        [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
+        public PaginationResponse Pagination { get; set; }
     }
+
 }

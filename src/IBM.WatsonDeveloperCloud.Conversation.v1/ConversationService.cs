@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,32 +15,36 @@
 *
 */
 
-using System.Net.Http.Headers;
+using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
+using Newtonsoft.Json;
 using System;
-using System.Runtime.ExceptionServices;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1
 {
     public class ConversationService : WatsonService, IConversationService
     {
-        const string PATH_CONVERSATION = "/v1/workspaces";
-        const string VERSION_DATE_2016_09_20 = "2016-09-20";
-        const string VERSION_DATE_2017_02_03 = "2017-02-03";
         const string SERVICE_NAME = "conversation";
         const string URL = "https://gateway.watsonplatform.net/conversation/api";
-
-        public ConversationService()
-            : base(SERVICE_NAME, URL)
+        private string _versionDate;
+        public string VersionDate
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            get { return _versionDate; }
+            set { _versionDate = value; }
+        }
+
+        /** The Constant CONVERSATION_VERSION_DATE_2017_05_26. */
+        public static string CONVERSATION_VERSION_DATE_2017_05_26 = "2017-05-26";
+
+        public ConversationService() : base(SERVICE_NAME, URL)
+        {
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public ConversationService(string userName, string password)
-            : this()
+        public ConversationService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -49,10 +53,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            VersionDate = versionDate;
         }
 
-        public ConversationService(IClient httpClient)
-            : this()
+        public ConversationService(IClient httpClient) : this()
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -60,390 +67,323 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             this.Client = httpClient;
         }
 
-        #region Workspaces
-
-        public WorkspaceCollectionResponse ListWorkspaces()
+        public ExampleResponse CreateCounterexample(string workspaceId, CreateExample body)
         {
-            WorkspaceCollectionResponse result = null;
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<WorkspaceCollectionResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-               throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public WorkspaceResponse CreateWorkspace(CreateWorkspace request)
-        {
-            WorkspaceResponse result = null;
-
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<CreateWorkspace>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<WorkspaceResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public object DeleteWorkspace(string workspaceId)
-        {
-            object result = null;
-
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
 
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .As<object>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
 
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public WorkspaceExportResponse GetWorkspace(string workspaceId)
-        {
-            return this.GetWorkspace(workspaceId, false);
-        }
-
-        public WorkspaceExportResponse GetWorkspace(string workspaceId, bool export = false)
-        {
-            WorkspaceExportResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithArgument("export", export)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<WorkspaceExportResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public WorkspaceResponse UpdateWorkspace(string workspaceId, UpdateWorkspace request)
-        {
-            WorkspaceResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<UpdateWorkspace>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<WorkspaceResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        #endregion
-
-        #region Message
-
-        public MessageResponse Message(string workspaceId, MessageRequest request)
-        {
-            MessageResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/message")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .WithBody<MessageRequest>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<MessageResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        #endregion
-
-        #region Intents
-
-        public IntentCollectionResponse ListIntents(string workspaceId)
-        {
-            return this.ListIntents(workspaceId, false);
-        }
-
-        public IntentCollectionResponse ListIntents(string workspaceId, bool export = false)
-        {
-            IntentCollectionResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithArgument("export", export)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<IntentCollectionResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public IntentResponse CreateIntent(string workspaceId, CreateIntent request)
-        {
-            IntentResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<CreateIntent>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<IntentResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public object DeleteIntent(string workspaceId, string intent)
-        {
-            object result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}")                               
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .As<object>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public IntentExportResponse GetIntent(string workspaceId, string intent)
-        {
-            return this.GetIntent(workspaceId, intent, false);
-        }
-
-        public IntentExportResponse GetIntent(string workspaceId, string intent, bool export = false)
-        {
-            IntentExportResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithArgument("export", export)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<IntentExportResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public IntentResponse UpdateIntent(string workspaceId, string intent, UpdateIntent request)
-        {
-            IntentResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<UpdateIntent>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<IntentResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        #endregion
-
-        #region Examples
-
-        public ExampleCollectionResponse ListExamples(string workspaceId, string intent)
-        {
-            ExampleCollectionResponse result = null;
-
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}/examples")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<ExampleCollectionResponse>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public ExampleResponse CreateExample(string workspaceId, string intent, CreateExample request)
-        {
             ExampleResponse result = null;
 
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateExample>(body)
+                                .As<ExampleResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteCounterexample(string workspaceId, string text)
+        {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}/examples")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<CreateExample>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<ExampleResponse>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
+                throw ae.Flatten();
+            }
 
+            return result;
+        }
+
+        public ExampleResponse GetCounterexample(string workspaceId, string text)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .As<ExampleResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public CounterexampleCollectionResponse ListCounterexamples(string workspaceId, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            CounterexampleCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<CounterexampleCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ExampleResponse UpdateCounterexample(string workspaceId, string text, UpdateExample body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateExample>(body)
+                                .As<ExampleResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public EntityResponse CreateEntity(string workspaceId, CreateEntity body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            EntityResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateEntity>(body)
+                                .As<EntityResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteEntity(string workspaceId, string entity)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public EntityExportResponse GetEntity(string workspaceId, string entity, bool? export = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            EntityExportResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .As<EntityExportResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            EntityCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<EntityCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public EntityResponse UpdateEntity(string workspaceId, string entity, UpdateEntity body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            EntityResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateEntity>(body)
+                                .As<EntityResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public ExampleResponse CreateExample(string workspaceId, string intent, CreateExample body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(intent))
+                throw new ArgumentNullException(nameof(intent));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateExample>(body)
+                                .As<ExampleResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
                 throw ae.Flatten();
             }
 
@@ -452,28 +392,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
         public object DeleteExample(string workspaceId, string intent, string text)
         {
-            object result = null;
-
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
+                throw new ArgumentNullException(nameof(workspaceId));
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
+                throw new ArgumentNullException(nameof(intent));
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("parameter: text");
+                throw new ArgumentNullException(nameof(text));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}/examples/{text}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .As<object>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
@@ -482,67 +422,753 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
         public ExampleResponse GetExample(string workspaceId, string intent, string text)
         {
-            ExampleResponse result = null;
-
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
+                throw new ArgumentNullException(nameof(workspaceId));
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
+                throw new ArgumentNullException(nameof(intent));
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("parameter: text");
+                throw new ArgumentNullException(nameof(text));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleResponse result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}/examples/{text}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<ExampleResponse>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .As<ExampleResponse>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
             return result;
         }
 
-        public ExampleResponse UpdateExample(string workspaceId, string intent, string text, UpdateExample request)
+        public ExampleCollectionResponse ListExamples(string workspaceId, string intent, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
-            ExampleResponse result = null;
-
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException("parameter: workspaceId");
+                throw new ArgumentNullException(nameof(workspaceId));
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException("parameter: intent");
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("parameter: text");
-            if (request == null)
-                throw new ArgumentNullException("parameter: request");
+                throw new ArgumentNullException(nameof(intent));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleCollectionResponse result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CONVERSATION}/{workspaceId}/intents/{intent}/examples/{text}")
-                               .WithArgument("version", VERSION_DATE_2017_02_03)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithBody<UpdateExample>(request, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<ExampleResponse>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<ExampleCollectionResponse>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-
                 throw ae.Flatten();
             }
 
             return result;
         }
 
-        #endregion
+        public ExampleResponse UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(intent))
+                throw new ArgumentNullException(nameof(intent));
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ExampleResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateExample>(body)
+                                .As<ExampleResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public IntentResponse CreateIntent(string workspaceId, CreateIntent body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            IntentResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateIntent>(body)
+                                .As<IntentResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteIntent(string workspaceId, string intent)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(intent))
+                throw new ArgumentNullException(nameof(intent));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public IntentExportResponse GetIntent(string workspaceId, string intent, bool? export = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(intent))
+                throw new ArgumentNullException(nameof(intent));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            IntentExportResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .As<IntentExportResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            IntentCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<IntentCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public IntentResponse UpdateIntent(string workspaceId, string intent, UpdateIntent body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(intent))
+                throw new ArgumentNullException(nameof(intent));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            IntentResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateIntent>(body)
+                                .As<IntentResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, int? pageLimit = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            LogCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("sort", sort)
+                                .WithArgument("filter", filter)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("cursor", cursor)
+                                .As<LogCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public MessageResponse Message(string workspaceId, MessageRequest body = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            MessageResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<MessageRequest>(body)
+                                .As<MessageResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public SynonymResponse CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            SynonymResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateSynonym>(body)
+                                .As<SynonymResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+            if (string.IsNullOrEmpty(synonym))
+                throw new ArgumentNullException(nameof(synonym));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public SynonymResponse GetSynonym(string workspaceId, string entity, string value, string synonym)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+            if (string.IsNullOrEmpty(synonym))
+                throw new ArgumentNullException(nameof(synonym));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            SynonymResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
+                                .WithArgument("version", VersionDate)
+                                .As<SynonymResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            SynonymCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<SynonymCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public SynonymResponse UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+            if (string.IsNullOrEmpty(synonym))
+                throw new ArgumentNullException(nameof(synonym));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            SynonymResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateSynonym>(body)
+                                .As<SynonymResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public ValueResponse CreateValue(string workspaceId, string entity, CreateValue body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ValueResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateValue>(body)
+                                .As<ValueResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteValue(string workspaceId, string entity, string value)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ValueExportResponse GetValue(string workspaceId, string entity, string value, bool? export = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ValueExportResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .As<ValueExportResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ValueCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<ValueCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ValueResponse UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+            if (string.IsNullOrEmpty(entity))
+                throw new ArgumentNullException(nameof(entity));
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException(nameof(value));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            ValueResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateValue>(body)
+                                .As<ValueResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public WorkspaceResponse CreateWorkspace(CreateWorkspace body = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            WorkspaceResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateWorkspace>(body)
+                                .As<WorkspaceResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteWorkspace(string workspaceId)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public WorkspaceExportResponse GetWorkspace(string workspaceId, bool? export = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            WorkspaceExportResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("export", export)
+                                .As<WorkspaceExportResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public WorkspaceCollectionResponse ListWorkspaces(int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            WorkspaceCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("sort", sort)
+                                .WithArgument("cursor", cursor)
+                                .As<WorkspaceCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public WorkspaceResponse UpdateWorkspace(string workspaceId, UpdateWorkspace body = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+                throw new ArgumentNullException(nameof(workspaceId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+
+            WorkspaceResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateWorkspace>(body)
+                                .As<WorkspaceResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,32 +15,34 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// CreateIntent object
+    /// CreateIntent.
     /// </summary>
     public class CreateIntent
     {
         /// <summary>
         /// The name of the intent.
         /// </summary>
-        [JsonProperty("intent")]
+        /// <value>The name of the intent.</value>
+        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string Intent { get; set; }
-
         /// <summary>
         /// The description of the intent.
         /// </summary>
-        [JsonProperty("description")]
+        /// <value>The description of the intent.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
-
         /// <summary>
-        /// An array of examples.
+        /// An array of user input examples.
         /// </summary>
-        [JsonProperty("examples")]
-        public List<CreateExample> Examples { get; set; }       
+        /// <value>An array of user input examples.</value>
+        [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateExample> Examples { get; set; }
     }
+
 }

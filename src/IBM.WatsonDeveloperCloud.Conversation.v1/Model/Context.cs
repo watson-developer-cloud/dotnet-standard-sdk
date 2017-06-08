@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,20 +20,21 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// Context object
+    /// Context information for the message. Include the context from the previous response to maintain state for the conversation.
     /// </summary>
     public class Context
     {
         /// <summary>
         /// The unique identifier of the conversation.
         /// </summary>
-        [JsonProperty("conversation_id")]
+        /// <value>The unique identifier of the conversation.</value>
+        [JsonProperty("conversation_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConversationId { get; set; }
-
         /// <summary>
-        /// Information about the dialog.
+        /// Gets or Sets System
         /// </summary>
-        [JsonProperty("system")]
+        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
         public SystemResponse System { get; set; }
     }
+
 }

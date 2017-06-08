@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,62 +15,64 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// UpdateWorkspace object
+    /// UpdateWorkspace.
     /// </summary>
     public class UpdateWorkspace
     {
         /// <summary>
         /// The name of the workspace.
         /// </summary>
-        [JsonProperty("name")]
+        /// <value>The name of the workspace.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-
         /// <summary>
         /// The description of the workspace.
         /// </summary>
-        [JsonProperty("description")]
+        /// <value>The description of the workspace.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
-
         /// <summary>
         /// The language of the workspace.
         /// </summary>
-        [JsonProperty("language")]
+        /// <value>The language of the workspace.</value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
-
         /// <summary>
-        /// Any metadata that is required by the workspace.
+        /// An array of objects defining the intents for the workspace.
         /// </summary>
-        [JsonProperty("metadata")]
-        public object Metadata { get; set; }
-
-        /// <summary>
-        /// The counter examples of the workspace.
-        /// </summary>
-        [JsonProperty("counterexamples")]
-        public List<CreateExample> CounterExamples { get; set; }
-
-        /// <summary>
-        /// The dialog nodes of the workspace.
-        /// </summary>
-        [JsonProperty("dialog_nodes")]
-        public List<CreateDialogNode> DialogNodes { get; set; }
-
-        /// <summary>
-        /// The entities of the workspace.
-        /// </summary>
-        [JsonProperty("entities")]
-        public List<CreateEntity> Entities { get; set; }
-
-        /// <summary>
-        /// The intents of the workspace.
-        /// </summary>
-        [JsonProperty("intents")]
+        /// <value>An array of objects defining the intents for the workspace.</value>
+        [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateIntent> Intents { get; set; }
+        /// <summary>
+        /// An array of objects defining the entities for the workspace.
+        /// </summary>
+        /// <value>An array of objects defining the entities for the workspace.</value>
+        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateEntity> Entities { get; set; }
+        /// <summary>
+        /// An array of objects defining the nodes in the workspace dialog.
+        /// </summary>
+        /// <value>An array of objects defining the nodes in the workspace dialog.</value>
+        [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateDialogNode> DialogNodes { get; set; }
+        /// <summary>
+        /// An array of objects defining input examples that have been marked as irrelevant input.
+        /// </summary>
+        /// <value>An array of objects defining input examples that have been marked as irrelevant input.</value>
+        [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateExample> Counterexamples { get; set; }
+        /// <summary>
+        /// Any metadata related to the workspace.
+        /// </summary>
+        /// <value>Any metadata related to the workspace.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public object Metadata { get; set; }
     }
+
 }

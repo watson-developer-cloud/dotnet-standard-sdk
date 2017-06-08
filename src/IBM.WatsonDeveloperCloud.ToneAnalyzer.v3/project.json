@@ -1,7 +1,7 @@
 {
   "version": "0.2.0",
   "title": "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3",
-  "description": "IBM.WatsonDeveloperCloud.ToneAnalyzer wraps the Watson Developer Cloud Tone Analyzer service (http://www.ibm.com/watson/developercloud/tone-analyzer.html)",
+  "description": "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3 wraps the Watson Developer Cloud Tone Analyzer service (http://www.ibm.com/watson/developercloud/tone-analyzer.html)",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.2.0",
     "NETStandard.Library": "1.6.0",

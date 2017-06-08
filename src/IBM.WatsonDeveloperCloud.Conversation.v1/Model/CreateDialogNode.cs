@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,67 +15,13 @@
 *
 */
 
-using Newtonsoft.Json;
-
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// CreateDialogNode object
+    /// An object describing a dialog node.
     /// </summary>
     public class CreateDialogNode
     {
-        /// <summary>
-        /// The dialog node ID.
-        /// </summary>
-        [JsonProperty("dialog_node")]
-        public string DialogNode { get; set; }
-
-        /// <summary>
-        /// The description of the dialog node.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// The condition that will trigger the dialog node.
-        /// </summary>
-        [JsonProperty("conditions")]
-        public string Conditions { get; set; }
-
-        /// <summary>
-        /// The parent dialog node.
-        /// </summary>
-        [JsonProperty("parent")]
-        public string Parent { get; set; }
-
-        /// <summary>
-        /// The previous dialog node.
-        /// </summary>
-        [JsonProperty("previous_sibling")]
-        public string PreviousSibling { get; set; }
-
-        /// <summary>
-        /// The output dialog node.
-        /// </summary>
-        [JsonProperty("output")]
-        public DialogNodeOutput Output { get; set; }
-
-        /// <summary>
-        /// The context for the dialog node.
-        /// </summary>
-        [JsonProperty("context")]
-        public object Context { get; set; }
-
-        /// <summary>
-        /// The metadata for the dialog node.
-        /// </summary>
-        [JsonProperty("metadata")]
-        public object Metadata { get; set; }
-
-        /// <summary>
-        /// The go to for the dialog node.
-        /// </summary>
-        [JsonProperty("go_to")]
-        public DialogNodeGoTo GoTo { get; set; }
     }
+
 }

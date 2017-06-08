@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,86 +15,130 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// WorkspaceExportResponse object
+    /// WorkspaceExportResponse.
     /// </summary>
     public class WorkspaceExportResponse
     {
         /// <summary>
+        /// The current status of the workspace.
+        /// </summary>
+        /// <value>The current status of the workspace.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum NON_EXISTENT for Non Existent
+            /// </summary>
+            [EnumMember(Value = "Non Existent")]
+            NON_EXISTENT,
+            
+            /// <summary>
+            /// Enum TRAINING for Training
+            /// </summary>
+            [EnumMember(Value = "Training")]
+            TRAINING,
+            
+            /// <summary>
+            /// Enum FAILED for Failed
+            /// </summary>
+            [EnumMember(Value = "Failed")]
+            FAILED,
+            
+            /// <summary>
+            /// Enum AVAILABLE for Available
+            /// </summary>
+            [EnumMember(Value = "Available")]
+            AVAILABLE,
+            
+            /// <summary>
+            /// Enum UNAVAILABLE for Unavailable
+            /// </summary>
+            [EnumMember(Value = "Unavailable")]
+            UNAVAILABLE
+        }
+
+        /// <summary>
+        /// The current status of the workspace.
+        /// </summary>
+        /// <value>The current status of the workspace.</value>
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// The name of the workspace.
         /// </summary>
-        [JsonProperty("name")]
+        /// <value>The name of the workspace.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-
         /// <summary>
         /// The description of the workspace.
         /// </summary>
-        [JsonProperty("description")]
+        /// <value>The description of the workspace.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
-
         /// <summary>
         /// The language of the workspace.
         /// </summary>
-        [JsonProperty("language")]
+        /// <value>The language of the workspace.</value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
-
         /// <summary>
         /// Any metadata that is required by the workspace.
         /// </summary>
-        [JsonProperty("metadata")]
+        /// <value>Any metadata that is required by the workspace.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
-
         /// <summary>
         /// The timestamp for creation of the workspace.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the workspace.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the workspace.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the workspace.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
         /// <summary>
         /// The workspace ID.
         /// </summary>
-        [JsonProperty("workspace_id")]
+        /// <value>The workspace ID.</value>
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public string WorkspaceId { get; set; }
-
         /// <summary>
-        /// The current status of the workspace (Non Existent, Training, Failed, Available, or Unavailable).
+        /// An array of intents.
         /// </summary>
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
-        /// <summary>
-        /// An array of Intent collection.
-        /// </summary>
-        [JsonProperty("intents")]
+        /// <value>An array of intents.</value>
+        [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<IntentExportResponse> Intents { get; set; }
-
         /// <summary>
-        /// An array of Entity collections
+        /// An array of entities.
         /// </summary>
-        [JsonProperty("entities")]
+        /// <value>An array of entities.</value>
+        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<EntityExportResponse> Entities { get; set; }
-
         /// <summary>
-        /// An array of CounterExample collection.
+        /// An array of counterexamples.
         /// </summary>
-        [JsonProperty("counterexamples")]
-        public List<ExampleResponse> CounterExamples { get; set; }
-
+        /// <value>An array of counterexamples.</value>
+        [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ExampleResponse> Counterexamples { get; set; }
         /// <summary>
-        /// An array of dialog nodes.
+        /// An array of objects describing the dialog nodes in the workspace.
         /// </summary>
-        [JsonProperty("dialog_nodes")]
+        /// <value>An array of objects describing the dialog nodes in the workspace.</value>
+        [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeResponse> DialogNodes { get; set; }
     }
+
 }

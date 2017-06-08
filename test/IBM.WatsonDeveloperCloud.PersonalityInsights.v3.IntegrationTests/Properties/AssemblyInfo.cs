@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IBM")]
-[assembly: AssemblyProduct("IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests")]
+[assembly: AssemblyProduct("IBM.WatsonDeveloperCloud.PersonalityInsights.IntegrationTests")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

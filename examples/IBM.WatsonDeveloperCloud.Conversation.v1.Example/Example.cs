@@ -16,18 +16,23 @@
 */
 
 using System;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 {
     public class Example
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            string _username = "<username>";
-            string _password = "<password>";
-            string _workspaceID = "<workspace-id>";
+            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            var fileContent = File.ReadAllText(environmentVariable);
+            var vcapServices = JObject.Parse(fileContent);
+            var _username = vcapServices["conversation"][0]["credentials"]["username"];
+            var _password = vcapServices["conversation"][0]["credentials"]["password"];
+            var _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"];
 
-            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username, _password, _workspaceID);
+            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
             Console.ReadKey();
         }
     }

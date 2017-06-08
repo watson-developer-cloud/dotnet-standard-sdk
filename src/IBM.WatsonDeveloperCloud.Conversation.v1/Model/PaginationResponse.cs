@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,36 +17,37 @@
 
 using Newtonsoft.Json;
 
-
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// PaginationResponse object
+    /// The pagination data for the returned objects.
     /// </summary>
     public class PaginationResponse
     {
         /// <summary>
         /// The URL that will return the same page of results.
         /// </summary>
-        [JsonProperty("refresh_url")]
+        /// <value>The URL that will return the same page of results.</value>
+        [JsonProperty("refresh_url", NullValueHandling = NullValueHandling.Ignore)]
         public string RefreshUrl { get; set; }
-
         /// <summary>
         /// The URL that will return the next page of results.
         /// </summary>
-        [JsonProperty("next_url")]
+        /// <value>The URL that will return the next page of results.</value>
+        [JsonProperty("next_url", NullValueHandling = NullValueHandling.Ignore)]
         public string NextUrl { get; set; }
-
         /// <summary>
         /// Reserved for future use.
         /// </summary>
-        [JsonProperty("total")]
-        public int Total { get; set; }
-
+        /// <value>Reserved for future use.</value>
+        [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
+        public int? Total { get; set; }
         /// <summary>
         /// Reserved for future use.
         /// </summary>
-        [JsonProperty("matched")]
-        public int Matched { get; set; }
+        /// <value>Reserved for future use.</value>
+        [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
+        public int? Matched { get; set; }
     }
+
 }

@@ -5,7 +5,7 @@
 
   "buildOptions": {
     "copyToOutput": {
-      "include": [ "./exampleData", "appsettings.json" ]
+      "include": [ "./TestData", "appsettings.json" ]
     }
   },
 

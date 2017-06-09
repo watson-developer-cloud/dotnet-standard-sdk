@@ -23,9 +23,9 @@
     "emitEntryPoint": true,
     "xmlDoc": false,
     "copyToOutput": [
-      "TestData\\test-audio.wav",
+      "SpeechToTextTestData\\test-audio.wav",
       "appsettings.json",
-      "TestData\\test-stt-corpus.txt",
+      "SpeechToTextTestData\\test-stt-corpus.txt",
       "./test-audio.wav"
     ]
   }

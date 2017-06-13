@@ -1,12 +1,12 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "IBM.WatsonDeveloperCloud", "dir_51dcc57f8ae09ce326c7113b79cb0f64.html", "dir_51dcc57f8ae09ce326c7113b79cb0f64" ],
-    [ "IBM.WatsonDeveloperCloud.Conversation", "dir_8a628d5f824739059afb86b336e9c88a.html", "dir_8a628d5f824739059afb86b336e9c88a" ],
-    [ "IBM.WatsonDeveloperCloud.Discovery", "dir_4231f0973d7fc34283f617b300068657.html", "dir_4231f0973d7fc34283f617b300068657" ],
-    [ "IBM.WatsonDeveloperCloud.LanguageTranslator", "dir_70432792f93c1cf1fe592555fd9212d0.html", "dir_70432792f93c1cf1fe592555fd9212d0" ],
-    [ "IBM.WatsonDeveloperCloud.PersonalityInsights", "dir_947e4ef3f0c88d391836026157d6f732.html", "dir_947e4ef3f0c88d391836026157d6f732" ],
-    [ "IBM.WatsonDeveloperCloud.SpeechToText", "dir_e96a762f47816046ec38ae2cde12cc0f.html", "dir_e96a762f47816046ec38ae2cde12cc0f" ],
-    [ "IBM.WatsonDeveloperCloud.TextToSpeech", "dir_3ca8e3eb651aac98826cc98e6ab1586c.html", "dir_3ca8e3eb651aac98826cc98e6ab1586c" ],
-    [ "IBM.WatsonDeveloperCloud.ToneAnalyzer", "dir_7d3816635ab4e5ae40d97ece667bcd42.html", "dir_7d3816635ab4e5ae40d97ece667bcd42" ],
-    [ "IBM.WatsonDeveloperCloud.VisualRecognition", "dir_832ed0a1cd6fde6849cafa3d2e6e08dd.html", "dir_832ed0a1cd6fde6849cafa3d2e6e08dd" ]
+    [ "IBM.WatsonDeveloperCloud.Conversation.v1", "dir_49e9d926fddbc9342d44177d81b844d3.html", "dir_49e9d926fddbc9342d44177d81b844d3" ],
+    [ "IBM.WatsonDeveloperCloud.Discovery.v1", "dir_537575690342d21410774426388ac650.html", "dir_537575690342d21410774426388ac650" ],
+    [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2", "dir_5c32ac1527e59c5762afa92f0484de37.html", "dir_5c32ac1527e59c5762afa92f0484de37" ],
+    [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3", "dir_85263321d528be4a4a9714431ecf07a7.html", "dir_85263321d528be4a4a9714431ecf07a7" ],
+    [ "IBM.WatsonDeveloperCloud.SpeechToText.v1", "dir_b9a4cc29420039f27678bd9fce592033.html", "dir_b9a4cc29420039f27678bd9fce592033" ],
+    [ "IBM.WatsonDeveloperCloud.TextToSpeech.v1", "dir_acbdcb7d4d767a5fea05d493e1eaa2c4.html", "dir_acbdcb7d4d767a5fea05d493e1eaa2c4" ],
+    [ "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3", "dir_98efc094df4fe96de57c3c65c06be5cf.html", "dir_98efc094df4fe96de57c3c65c06be5cf" ],
+    [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3", "dir_e75c08ee6406f0064581c846193ed5fe.html", "dir_e75c08ee6406f0064581c846193ed5fe" ]
 ];

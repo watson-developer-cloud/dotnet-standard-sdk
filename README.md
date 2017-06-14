@@ -23,13 +23,13 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
-* [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText)
-* [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech)
-* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation)
-* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition)
-* [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator)
-* [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer)
-* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights)
+* [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText.v1)
+* [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech.v1)
+* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1)
+* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition.v3)
+* [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2)
+* [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3)
+* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights.v3)
 <!-- * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery) -->
 
 Or manually [here][latest_release].

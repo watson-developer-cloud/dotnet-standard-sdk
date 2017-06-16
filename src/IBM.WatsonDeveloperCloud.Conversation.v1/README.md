@@ -6,7 +6,7 @@ With the IBM Watson™ [Conversation][conversation] service, you can create an a
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.Conversation
+PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 
 ```
 #### Project.json

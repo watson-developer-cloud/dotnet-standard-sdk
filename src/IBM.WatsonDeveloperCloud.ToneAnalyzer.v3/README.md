@@ -6,7 +6,7 @@ The IBM Watson™ [Tone Analyzer Service][tone-analyzer] uses linguistic analysi
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer
+PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
 ```
 #### Project.json

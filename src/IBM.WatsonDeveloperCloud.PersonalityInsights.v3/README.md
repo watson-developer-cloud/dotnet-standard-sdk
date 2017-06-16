@@ -10,7 +10,7 @@ For information about the meaning of the models that the service uses to describ
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights
+PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
 ```
 #### Project.json

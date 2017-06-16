@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation": "0.2.0"
+   "IBM.WatsonDeveloperCloud.Conversation.v1": "0.2.0"
 }
 
 ```
@@ -74,4 +74,4 @@ MessageRequest messageRequest = new MessageRequest()
 var result = _conversation.Message("<workspace-id>", messageRequest);
 ```
 
-[conversation]:http://www.ibm.com/watson/developercloud/doc/conversation/
+[conversation]:https://www.ibm.com/watson/developercloud/doc/conversation/index.html

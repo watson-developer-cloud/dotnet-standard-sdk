@@ -17,7 +17,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights": "0.2.0"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "0.2.0"
 }
 
 ```
@@ -46,6 +46,6 @@ Extract personality characteristics based on how a person writes.
                                                              .WithBody("some text"));
 ```
 
-[personality-insights]: http://www.ibm.com/watson/developercloud/personality-insights/api/v2/
-[personality-models]: http://www.ibm.com/watson/developercloud/doc/personality-insights/models.shtml
-[consumption-preferences]:http://www.ibm.com/watson/developercloud/doc/personality-insights/preferences.shtml
+[personality-insights]: https://www.ibm.com/watson/developercloud/personality-insights.html
+[personality-models]: https://www.ibm.com/watson/developercloud/doc/personality-insights/models.html
+[consumption-preferences]:https://www.ibm.com/watson/developercloud/doc/personality-insights/preferences.html

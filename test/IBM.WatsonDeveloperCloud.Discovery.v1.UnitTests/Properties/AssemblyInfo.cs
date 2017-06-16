@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IBM")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests")]
 [assembly: AssemblyTrademark("")]
 
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0c759963-9e1d-4cb3-9ee0-8ebac9d1970f")]
+[assembly: Guid("4302b718-98da-4922-84d6-6839495f4b71")]

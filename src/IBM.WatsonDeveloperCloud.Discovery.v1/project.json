@@ -1,7 +1,7 @@
 {
   "version": "0.2.0",
   "title": "IBM.WatsonDeveloperCloud.Discovery.v1",
-  "description": "IBM.WatsonDeveloperCloud.Discovery wraps the Watson Developer Cloud Discovery service (http://www.ibm.com/watson/developercloud/discovery.html)",
+  "description": "IBM.WatsonDeveloperCloud.Discovery.v1 wraps the Watson Developer Cloud Discovery service (http://www.ibm.com/watson/developercloud/discovery.html)",
   "dependencies": {
     "IBM.WatsonDeveloperCloud": "0.2.0",
     "NETStandard.Library": "1.6.0",

@@ -79,4 +79,4 @@ Returns information, including training status, about a specified translation mo
 var result = _languageTranslator.GetModelDetails("<model-id>");
 ```
 
-[language_translator]: http://www.ibm.com/watson/developercloud/doc/language-translator/
+[language_translator]: https://www.ibm.com/watson/developercloud/doc/language-translator/index.html

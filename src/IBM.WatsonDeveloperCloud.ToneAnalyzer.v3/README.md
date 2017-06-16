@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer": "0.2.0"
+   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "0.2.0"
 }
 
 ```
@@ -39,4 +39,4 @@ Analyzes the tone of a piece of text. The message is analyzed for several tones 
 
 ```
 
-[tone-analyzer]: http://www.ibm.com/watson/developercloud/doc/tone-analyzer/
+[tone-analyzer]: https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html

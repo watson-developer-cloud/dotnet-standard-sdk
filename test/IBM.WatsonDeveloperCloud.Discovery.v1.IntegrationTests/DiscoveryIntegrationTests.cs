@@ -232,29 +232,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsTrue(result.Description == _updatedEnvironmentDescription);
         }
         #endregion
-        
-        #region Preview Environment
-        //[TestMethod]
-        public void PreviewEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));
-            Assert.Fail("Not implemented.");
-
-            //using (FileStream fs = File.OpenRead(_filepathToIngest))
-            //{
-            //    var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "html_input", _createdConfigurationId, (fs as Stream).ReadAllBytes());
-
-            //    if (result != null)
-            //    {
-            //        Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("result is null.");
-            //    }
-            //}
-        }
-        #endregion
 
         #region Configurations
         [TestMethod]
@@ -478,6 +455,30 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
 
             Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Preview Environment
+        [TestMethod]
+        public void PreviewEnvironment()
+        {
+            Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));
+
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
+
+                if (result != null)
+                {
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+
+                Assert.IsNotNull(result);
+            }
         }
         #endregion
 

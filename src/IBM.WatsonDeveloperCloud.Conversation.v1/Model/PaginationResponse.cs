@@ -41,13 +41,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>Reserved for future use.</value>
         [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Total { get; set; }
+        public long? Total { get; set; }
         /// <summary>
         /// Reserved for future use.
         /// </summary>
         /// <value>Reserved for future use.</value>
         [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Matched { get; set; }
+        public long? Matched { get; set; }
     }
 
 }

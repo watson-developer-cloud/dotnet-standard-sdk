@@ -35,7 +35,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>Reserved for future use.</value>
         [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Matched { get; set; }
+        public long? Matched { get; set; }
     }
 
 }

@@ -152,7 +152,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public CounterexampleCollectionResponse ListCounterexamples(string workspaceId, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public CounterexampleCollectionResponse ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -167,8 +167,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<CounterexampleCollectionResponse>()
@@ -298,7 +298,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -314,8 +314,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities")
                                 .WithArgument("version", VersionDate)
                                 .WithArgument("export", export)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<EntityCollectionResponse>()
@@ -450,7 +450,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public ExampleCollectionResponse ListExamples(string workspaceId, string intent, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public ExampleCollectionResponse ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -467,8 +467,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<ExampleCollectionResponse>()
@@ -600,7 +600,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -616,8 +616,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents")
                                 .WithArgument("version", VersionDate)
                                 .WithArgument("export", export)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<IntentCollectionResponse>()
@@ -661,7 +661,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             return result;
         }
-        public LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, int? pageLimit = null, string cursor = null)
+        public LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -678,7 +678,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                                 .WithArgument("version", VersionDate)
                                 .WithArgument("sort", sort)
                                 .WithArgument("filter", filter)
-                                .WithArgument("pageLimit", pageLimit)
+                                .WithArgument("page_limit", pageLimit)
                                 .WithArgument("cursor", cursor)
                                 .As<LogCollectionResponse>()
                                 .Result;
@@ -813,7 +813,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -832,8 +832,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<SynonymCollectionResponse>()
@@ -973,7 +973,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -991,8 +991,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                                 .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values")
                                 .WithArgument("version", VersionDate)
                                 .WithArgument("export", export)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<ValueCollectionResponse>()
@@ -1116,7 +1116,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public WorkspaceCollectionResponse ListWorkspaces(int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public WorkspaceCollectionResponse ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -1129,8 +1129,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/workspaces")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("pageLimit", pageLimit)
-                                .WithArgument("includeCount", includeCount)
+                                .WithArgument("page_limit", pageLimit)
+                                .WithArgument("include_count", includeCount)
                                 .WithArgument("sort", sort)
                                 .WithArgument("cursor", cursor)
                                 .As<WorkspaceCollectionResponse>()

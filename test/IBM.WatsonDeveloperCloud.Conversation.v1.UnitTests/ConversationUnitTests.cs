@@ -2011,7 +2011,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<int?>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long?>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);
@@ -2270,7 +2270,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2325,7 +2325,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2381,7 +2381,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<int?>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long?>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
@@ -2433,7 +2433,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2501,7 +2501,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2577,7 +2577,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2649,7 +2649,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -2709,7 +2709,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                 new RuntimeEntity()
                                 {
                                     Entity = "entity",
-                                    Location = new List<int?>()
+                                    Location = new List<long?>()
                                     {
                                         0
                                     },
@@ -3159,7 +3159,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<int?>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long?>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);
@@ -3724,7 +3724,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<int?>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long?>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);
@@ -4289,7 +4289,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<int?>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long?>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool?>())
                 .Returns(request);

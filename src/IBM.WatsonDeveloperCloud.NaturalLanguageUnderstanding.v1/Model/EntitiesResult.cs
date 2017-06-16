@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         /// <value>How many times the entity was mentioned in the text.</value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Count { get; set; }
+        public long? Count { get; set; }
         /// <summary>
         /// The name of the entity.
         /// </summary>

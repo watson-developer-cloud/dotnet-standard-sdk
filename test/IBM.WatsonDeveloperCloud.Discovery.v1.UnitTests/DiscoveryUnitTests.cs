@@ -1009,6 +1009,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Configurations.Count > 0);
             Assert.IsTrue(result.Configurations[0].Name == "name");
             Assert.IsTrue(result.Configurations[0].Description == "description");
+            Assert.IsNull(result.Configurations[0].ConfigurationId);
+            Assert.IsNotNull(result.Configurations[0].Created);
+            Assert.IsNotNull(result.Configurations[0].Updated);
         }
         #endregion
 
@@ -1198,7 +1201,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DeleteConfigurationResponse response = new DeleteConfigurationResponse()
             {
                 ConfigurationId = "ConfigurationId",
-                Status = DeleteConfigurationResponse.StatusEnum.DELETED
+                Status = DeleteConfigurationResponse.StatusEnum.DELETED,
+                Notices = new List<Notice>()
+                {
+                    new Notice()
+                    {
+                        Severity = Notice.SeverityEnum.ERROR
+                    }
+                }
             };
             #endregion
 
@@ -1216,6 +1226,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.Received().DeleteAsync(Arg.Any<string>());
             Assert.IsTrue(result.ConfigurationId == "ConfigurationId");
             Assert.IsTrue(result.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(result.Notices);
+            Assert.IsTrue(result.Notices.Count > 0);
+            Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
         }
         #endregion
 
@@ -1882,6 +1895,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             };
             #endregion
 
+            UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
+            {
+                Name = "name",
+                Description = "description",
+                ConfigurationId = "configurationId"
+            };
+
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
             request.WithBody<UpdateCollectionRequest>(Arg.Any<UpdateCollectionRequest>())
@@ -1892,7 +1912,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.UpdateCollection("environmentId", "collectionId", new UpdateCollectionRequest());
+            var result = service.UpdateCollection("environmentId", "collectionId", updateCollectionRequest);
 
             Assert.IsNotNull(result);
             client.Received().PutAsync(Arg.Any<string>());
@@ -1900,6 +1920,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Description == "description");
             Assert.IsTrue(result.ConfigurationId == "configurationId");
             Assert.IsTrue(result.Language == "language");
+            Assert.IsNull(result.CollectionId);
+            Assert.IsNotNull(result.Created);
+            Assert.IsNotNull(result.Updated);
+            Assert.IsNull(result.DocumentCounts.Available);
+            Assert.IsNull(result.DocumentCounts.Processing);
+            Assert.IsNull(result.DocumentCounts.Failed);
         }
         #endregion
 
@@ -2300,6 +2326,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.DocumentId);
+            Assert.IsNull(result.ConfigurationId);
+            Assert.IsNotNull(result.Created);
+            Assert.IsNotNull(result.Updated);
+            Assert.IsNull(result.StatusDescription);
         }
         #endregion
 

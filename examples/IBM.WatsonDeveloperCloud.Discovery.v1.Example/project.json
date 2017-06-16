@@ -1,5 +1,5 @@
 ﻿{
-  "version": "0.2.0",
+  "version": "1.0.0",
   "buildOptions": {
     "emitEntryPoint": true,
     "copyToOutput": {
@@ -8,8 +8,8 @@
   },
 
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.2.0",
-    "IBM.WatsonDeveloperCloud.Discovery.v1": "0.2.0",
+    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "IBM.WatsonDeveloperCloud.Discovery.v1": "1.0.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.NETCore.App": {
       "type": "platform",

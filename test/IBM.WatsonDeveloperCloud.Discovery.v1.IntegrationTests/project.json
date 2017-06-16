@@ -1,10 +1,12 @@
-{
-  "version": "0.0.1-alpha",
+﻿{
+  "version": "0.2.0",
 
   "testRunner": "mstest",
 
   "buildOptions": {
-    "copyToOutput": "appsettings.json"
+    "copyToOutput": {
+      "include": [ "./DiscoveryTestData", "appsettings.json" ]
+    }
   },
 
   "dependencies": {

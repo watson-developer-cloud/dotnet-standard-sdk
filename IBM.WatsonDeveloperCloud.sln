@@ -46,17 +46,11 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Sp
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1", "src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.xproj", "{7DA635B2-0020-46D6-AEAE-5DFBA24123FD}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1", "src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.xproj", "{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example.xproj", "{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.SpeechToText.v1.Example", "examples\IBM.WatsonDeveloperCloud.SpeechToText.v1.Example\IBM.WatsonDeveloperCloud.SpeechToText.v1.Example.xproj", "{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example", "examples\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example.xproj", "{57F32C34-089A-4FDA-8D86-32D8EACA25D4}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests.xproj", "{09D19A7E-E905-44DF-8FC0-BC1837A0207B}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests.xproj", "{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests.xproj", "{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB}"
 EndProject
@@ -104,6 +98,14 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.To
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests", "test\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests.xproj", "{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1", "src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.xproj", "{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests.xproj", "{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests.xproj", "{4302B718-98DA-4922-84D6-6839495F4B71}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.Example", "examples\IBM.WatsonDeveloperCloud.Discovery.v1.Example\IBM.WatsonDeveloperCloud.Discovery.v1.Example.xproj", "{F15ADA39-381E-4E5F-8E18-E08B51635016}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,10 +144,6 @@ Global
 		{7DA635B2-0020-46D6-AEAE-5DFBA24123FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA635B2-0020-46D6-AEAE-5DFBA24123FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DA635B2-0020-46D6-AEAE-5DFBA24123FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -158,14 +156,6 @@ Global
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09D19A7E-E905-44DF-8FC0-BC1837A0207B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09D19A7E-E905-44DF-8FC0-BC1837A0207B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09D19A7E-E905-44DF-8FC0-BC1837A0207B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09D19A7E-E905-44DF-8FC0-BC1837A0207B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -254,6 +244,22 @@ Global
 		{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4302B718-98DA-4922-84D6-6839495F4B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4302B718-98DA-4922-84D6-6839495F4B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4302B718-98DA-4922-84D6-6839495F4B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4302B718-98DA-4922-84D6-6839495F4B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,12 +283,9 @@ Global
 		{423DC6CA-8FF9-48D3-9B9D-B2D3B9DCFFD4} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
 		{B8A228E3-E05B-451B-8504-7BB9ED05E1B3} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{7DA635B2-0020-46D6-AEAE-5DFBA24123FD} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
-		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
 		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
-		{09D19A7E-E905-44DF-8FC0-BC1837A0207B} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
-		{0C759963-9E1D-4CB3-9EE0-8EBAC9D1970F} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
 		{D1D1AB0E-BA2F-448B-9054-76FE18539B55} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
 		{672F1559-1034-46A3-8C71-22E27EFC0886} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
@@ -306,5 +309,9 @@ Global
 		{9F8D0C47-3DDD-4423-B594-69A35898869F} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{E445F5BD-DE8E-418C-809C-C595494BFED1} = {C7873F44-7188-49BE-84C5-532BE4E07147}
 		{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA} = {C7873F44-7188-49BE-84C5-532BE4E07147}
+		{F83DF89E-E06D-4F2D-B6BF-B92DA12DBAEC} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
+		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
+		{4302B718-98DA-4922-84D6-6839495F4B71} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
+		{F15ADA39-381E-4E5F-8E18-E08B51635016} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,10 @@
 ﻿{
   "version": "0.2.0",
   "buildOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "copyToOutput": {
+      "include": [ "./DiscoveryTestData" ]
+    }
   },
 
   "dependencies": {

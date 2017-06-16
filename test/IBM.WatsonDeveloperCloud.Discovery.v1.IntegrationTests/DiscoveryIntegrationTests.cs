@@ -16,15 +16,19 @@
 */
 
 using System;
-using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
-using System.Threading.Tasks;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using System.Threading;
 using Newtonsoft.Json;
-using System.IO;
+using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 
-namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
-    public class DiscoveryServiceExample
+    [TestClass]
+    public class DiscoveryIntegrationTests
     {
         public string _username;
         public string _password;
@@ -55,54 +59,27 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
-        #region Constructor
-        public DiscoveryServiceExample(string username, string password)
+        [TestInitialize]
+        public void Setup()
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
-            //_discovery.Endpoint = "http://localhost:1234";
+            var environmentVariable =
+            Environment.GetEnvironmentVariable("VCAP_SERVICES");
 
-            GetEnvironments();
-            CreateEnvironment();
-            Task.Factory.StartNew(() =>
-            {
-                Console.WriteLine("\nChecking environment status in 30 seconds.");
-                System.Threading.Thread.Sleep(30000);
-                IsEnvironmentReady(_createdEnvironmentId);
-            });
-            autoEvent.WaitOne();
-            GetEnvironment();
-            UpdateEnvironment();
+            var fileContent =
+                File.ReadAllText(environmentVariable);
 
-            GetConfigurations();
-            CreateConfiguration();
-            GetConfiguration();
-            UpdateConfiguration();
+            var vcapServices =
+            JObject.Parse(fileContent);
 
-            //PreviewEnvironment();
+            _endpoint = vcapServices["discovery"][0]["credentials"]["url"].Value<string>();
+            _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
+            _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            GetCollections();
-            CreateCollection();
-            GetCollection();
-            GetCollectionFields();
-            UpdateCollection();
-
-            AddDocument();
-            GetDocument();
-            UpdateDocument();
-
-            Query();
-            GetNotices();
-
-            DeleteDocument();
-            DeleteCollection();
-            DeleteConfiguration();
-            DeleteEnvironment();
-
-            Console.WriteLine("\n~ Discovery examples complete.");
+            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
         }
-        #endregion
 
         #region Environments
+        [TestMethod]
         public void GetEnvironments()
         {
             Console.WriteLine(string.Format("\nCalling GetEnvironments()..."));
@@ -116,8 +93,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Environments.Count > 0);
         }
 
+        [TestMethod]
         public void CreateEnvironment()
         {
             CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
@@ -130,7 +111,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling CreateEnvironment()..."));
             var result = _discovery.CreateEnvironment(createEnvironmentRequest);
 
-            if(result != null)
+            if (result != null)
             {
                 if (result != null)
                 {
@@ -147,8 +128,51 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.EnvironmentId);
+            Assert.IsTrue(result.Name == _createdEnvironmentName);
+            Assert.IsTrue(result.Description == _createdEnvironmentDescription);
         }
 
+        #region Is Environment Ready
+        [TestMethod]
+        public void WaitForEnvironment()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                System.Threading.Thread.Sleep(30000);
+            });
+
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
+
+            Assert.IsTrue(true);
+        }
+
+        private void IsEnvironmentReady(string environmentId)
+        {
+            var result = _discovery.GetEnvironment(environmentId);
+            Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
+
+            if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(30000);
+                    Console.WriteLine("Checking environment status in 30 seconds...");
+                    IsEnvironmentReady(environmentId);
+                });
+            }
+        }
+        #endregion
+
+        [TestMethod]
         public void GetEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling GetEnvironment()..."));
@@ -169,8 +193,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.EnvironmentId == _createdEnvironmentId);
         }
 
+        [TestMethod]
         public void UpdateEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling UpdateEnvironment()..."));
@@ -198,79 +226,39 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
-        }
 
-        public void DeleteEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteEnvironment()..."));
-            var result = _discovery.DeleteEnvironment(_createdEnvironmentId);
-
-            if(result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                _createdEnvironmentId = null;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Name == _updatedEnvironmentName);
+            Assert.IsTrue(result.Description == _updatedEnvironmentDescription);
         }
         #endregion
-
-        #region Is Environment Ready
-        private bool IsEnvironmentReady(string environmentId)
-        {
-            var result = _discovery.GetEnvironment(environmentId);
-            Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
-
-            if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
-            {
-                autoEvent.Set();
-            }
-            else
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(30000);
-                    IsEnvironmentReady(environmentId);
-                });
-            }
-
-            return result.Status == ModelEnvironment.StatusEnum.ACTIVE;
-        }
-        #endregion
-
+        
         #region Preview Environment
-        private void PreviewEnvironment()
+        //[TestMethod]
+        public void PreviewEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));
+            Assert.Fail("Not implemented.");
 
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
-            {
-                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
+            //using (FileStream fs = File.OpenRead(_filepathToIngest))
+            //{
+            //    var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "html_input", _createdConfigurationId, (fs as Stream).ReadAllBytes());
 
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-            }
+            //    if (result != null)
+            //    {
+            //        Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("result is null.");
+            //    }
+            //}
         }
         #endregion
 
         #region Configurations
-        private void GetConfigurations()
+        [TestMethod]
+        public void GetConfigurations()
         {
             Console.WriteLine(string.Format("\nCalling GetConfigurations()..."));
 
@@ -284,9 +272,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Configurations);
+            Assert.IsTrue(result.Configurations.Count > 0);
         }
 
-        private void CreateConfiguration()
+        [TestMethod]
+        public void CreateConfiguration()
         {
             Console.WriteLine(string.Format("\nCalling CreateConfiguration()..."));
 
@@ -294,7 +287,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Name = _createdConfigurationName,
                 Description = _createdConfigurationDescription,
-                
+
             };
 
             var result = _discovery.CreateConfiguration(_createdEnvironmentId, configuration);
@@ -308,9 +301,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Name == _createdConfigurationName);
+            Assert.IsTrue(result.Description == _createdConfigurationDescription);
         }
 
-        private void GetConfiguration()
+        [TestMethod]
+        public void GetConfiguration()
         {
             Console.WriteLine(string.Format("\nCalling GetConfiguration()..."));
 
@@ -324,9 +322,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(result.Description == _createdConfigurationDescription);
+            Assert.IsTrue(result.Name == _createdConfigurationName);
         }
 
-        private void UpdateConfiguration()
+        [TestMethod]
+        public void UpdateConfiguration()
         {
             Console.WriteLine(string.Format("\nCalling UpdateConfiguration()..."));
 
@@ -345,27 +349,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
-        }
 
-        private void DeleteConfiguration()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteConfiguration()..."));
-
-            var result = _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(result.Description == _createdConfigurationDescription);
+            Assert.IsTrue(result.Name == _updatedConfigurationName);
         }
         #endregion
 
         #region Collections
-        private void GetCollections()
+        [TestMethod]
+        public void GetCollections()
         {
             Console.WriteLine(string.Format("\nCalling GetCollections()..."));
 
@@ -379,9 +373,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
         }
 
-        private void CreateCollection()
+        [TestMethod]
+        public void CreateCollection()
         {
             Console.WriteLine(string.Format("\nCalling CreateCollection()..."));
 
@@ -404,11 +401,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Name == _createdCollectionName);
+            Assert.IsTrue(result.Description == _createdCollectionDescription);
         }
 
-        private void GetCollection()
+        [TestMethod]
+        public void GetCollection()
         {
             Console.WriteLine(string.Format("\nCalling GetCollection()..."));
+
+            if (string.IsNullOrEmpty(_createdEnvironmentId))
+                Assert.Fail("_createdEnvironmentId is null");
+
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                Assert.Fail("_createdCollectionId is null");
 
             var result = _discovery.GetCollection(_createdEnvironmentId, _createdCollectionId);
 
@@ -420,9 +428,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.CollectionId == _createdCollectionId);
+            Assert.IsTrue(result.Name == _createdCollectionName);
+            Assert.IsTrue(result.Description == _createdCollectionDescription);
         }
 
-        private void UpdateCollection()
+        [TestMethod]
+        public void UpdateCollection()
         {
             Console.WriteLine(string.Format("\nCalling UpdateCollection()..."));
 
@@ -441,9 +455,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Name == _updatedCollectionName);
+            Assert.IsTrue(result.CollectionId == _createdCollectionId);
         }
 
-        private void GetCollectionFields()
+        [TestMethod]
+        public void GetCollectionFields()
         {
             Console.WriteLine(string.Format("\nCalling GetCollectionFields()..."));
 
@@ -457,34 +476,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
-        }
 
-        private void DeleteCollection()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteCollection()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                throw new ArgumentNullException("_createdEnvironmentId is null");
-
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException("_createdCollectionId is null");
-
-            var result = _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdCollectionId = null;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            Assert.IsNotNull(result);
         }
         #endregion
 
         #region Documents
-        private void AddDocument()
+        [TestMethod]
+        public void AddDocument()
         {
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -500,10 +499,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 {
                     Console.WriteLine("result is null.");
                 }
+
+                Assert.IsNotNull(result);
             }
         }
 
-        private void GetDocument()
+        [TestMethod]
+        public void GetDocument()
         {
             Console.WriteLine(string.Format("\nCalling GetDocument()..."));
 
@@ -517,11 +519,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.DocumentId == _createdDocumentId);
         }
 
-        private void UpdateDocument()
+        [TestMethod]
+        public void UpdateDocument()
         {
             Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
+
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
                 var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, _createdConfigurationId, fs as Stream, _metadata);
@@ -534,21 +541,69 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 {
                     Console.WriteLine("result is null.");
                 }
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result.DocumentId == _createdDocumentId);
             }
         }
+        #endregion
 
-        private void DeleteDocument()
+        #region Query
+        [TestMethod]
+        public void Query()
+        {
+            Console.WriteLine(string.Format("\nCalling Query()..."));
+
+            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Notices
+        [TestMethod]
+        public void GetNotices()
+        {
+            Console.WriteLine(string.Format("\nCalling GetNoticies()..."));
+
+            var result = _discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Tear Down
+        [TestMethod]
+        public void DeleteDocument()
         {
             Console.WriteLine(string.Format("\nCalling DeleteDocument()..."));
 
             if (string.IsNullOrEmpty(_createdEnvironmentId))
-                throw new ArgumentNullException("_createdEnvironmentId is null");
+                Assert.Fail("_createdEnvironmentId is null");
 
             if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException("_createdCollectionId is null");
+                Assert.Fail("_createdCollectionId is null");
 
             if (string.IsNullOrEmpty(_createdDocumentId))
-                throw new ArgumentNullException("_createdDocumentId is null");
+                Assert.Fail("_createdDocumentId is null");
 
             var result = _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
 
@@ -561,38 +616,125 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine("result is null.");
             }
-        }
-        #endregion
 
-        #region Query
-        private void Query()
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Status == DeleteDocumentResponse.StatusEnum.DELETED);
+        }
+
+        [TestMethod]
+        public void DeleteCollection()
         {
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            Console.WriteLine(string.Format("\nCalling DeleteCollection()..."));
+
+            if (string.IsNullOrEmpty(_createdEnvironmentId))
+                Assert.Fail("_createdEnvironmentId is null");
+
+            if (string.IsNullOrEmpty(_createdCollectionId))
+                Assert.Fail("_createdCollectionId is null");
+
+            var result = _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdCollectionId = null;
             }
             else
             {
                 Console.WriteLine("result is null.");
             }
-        }
-        #endregion
 
-        #region Notices
-        private void GetNotices()
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Status == DeleteCollectionResponse.StatusEnum.DELETED);
+        }
+
+        [TestMethod]
+        public void DeleteConfiguration()
         {
-            var result = _discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            Console.WriteLine(string.Format("\nCalling DeleteConfiguration()..."));
+
+            if (string.IsNullOrEmpty(_createdEnvironmentId))
+                Assert.Fail("_createdEnvironmentId is null");
+
+            if (string.IsNullOrEmpty(_createdConfigurationId))
+                Assert.Fail("_createdConfigurationId is null");
+
+            var result = _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
 
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdConfigurationId = null;
             }
             else
             {
                 Console.WriteLine("result is null.");
             }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
+        }
+
+        [TestMethod]
+        public void DeleteEnvironment()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteEnvironment()..."));
+
+            if (string.IsNullOrEmpty(_createdEnvironmentId))
+                Assert.Fail("_createdEnvironmentId is null");
+
+            var result = _discovery.DeleteEnvironment(_createdEnvironmentId);
+
+            if (result != null)
+            {
+                if (result != null)
+                {
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                    _createdEnvironmentId = null;
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Status == DeleteEnvironmentResponse.StatusEnum.DELETED);
+        }
+
+        [ClassCleanup]
+        public static void TearDown()
+        {
+            var environmentVariable =
+            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+
+            var fileContent =
+                File.ReadAllText(environmentVariable);
+
+            var vcapServices =
+            JObject.Parse(fileContent);
+
+            string _endpoint = vcapServices["discovery"][0]["credentials"]["url"].Value<string>();
+            string _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
+            string _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
+
+            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
+
+            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId) && !string.IsNullOrEmpty(_createdDocumentId))
+                _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+
+            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId))
+                _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+
+            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdConfigurationId))
+                _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+
+            if (!string.IsNullOrEmpty(_createdEnvironmentId))
+                _discovery.DeleteEnvironment(_createdEnvironmentId);
         }
         #endregion
     }

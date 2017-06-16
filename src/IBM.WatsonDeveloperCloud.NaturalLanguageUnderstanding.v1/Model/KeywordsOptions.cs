@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         /// <value>Maximum number of keywords to return.</value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Limit { get; set; }
+        public long? Limit { get; set; }
         /// <summary>
         /// Set this to true to return sentiment information for detected keywords.
         /// </summary>

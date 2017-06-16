@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             GetConfiguration();
             UpdateConfiguration();
 
-            //PreviewEnvironment();
+            PreviewEnvironment();
 
             GetCollections();
             CreateCollection();

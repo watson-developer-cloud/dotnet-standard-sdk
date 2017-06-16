@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>Zero-based character offsets that indicate where the entity value begins and ends in the input text.</value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
-        public List<int?> Location { get; set; }
+        public List<long?> Location { get; set; }
         /// <summary>
         /// The term in the input text that was recognized.
         /// </summary>

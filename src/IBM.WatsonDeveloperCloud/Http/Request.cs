@@ -69,7 +69,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public IRequest WithHeader(string key, string value)
         {
-            this.Message.Headers.Add(key, value);
+            this.Message.Headers.TryAddWithoutValidation(key, value);
             return this;
         }
 

@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         /// <value>Maximum number of entities to return.</value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Limit { get; set; }
+        public long? Limit { get; set; }
         /// <summary>
         /// Enter a custom model ID to override the standard entity detection model.
         /// </summary>

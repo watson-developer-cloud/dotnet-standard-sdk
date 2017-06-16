@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         /// </summary>
         /// <value>The number of words that were found in the input.</value>
         [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
-        public int? WordCount { get; set; }
+        public long? WordCount { get; set; }
         /// <summary>
         /// When guidance is appropriate, a string that provides a message that indicates the number of words found and where that value falls in the range of required or suggested number of words.
         /// </summary>

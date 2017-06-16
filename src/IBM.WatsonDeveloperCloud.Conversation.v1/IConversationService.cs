@@ -54,7 +54,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="CounterexampleCollectionResponse" />CounterexampleCollectionResponse</returns>
-        CounterexampleCollectionResponse ListCounterexamples(string workspaceId, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        CounterexampleCollectionResponse ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update counterexample. Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
@@ -99,7 +99,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="EntityCollectionResponse" />EntityCollectionResponse</returns>
-        EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity. Update an existing entity with new or modified data.
@@ -146,7 +146,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="ExampleCollectionResponse" />ExampleCollectionResponse</returns>
-        ExampleCollectionResponse ListExamples(string workspaceId, string intent, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        ExampleCollectionResponse ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update user input example. Update the text of a user input example.
@@ -192,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="IntentCollectionResponse" />IntentCollectionResponse</returns>
-        IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update intent. Update an existing intent with new or modified data. You must provide data defining the content of the updated intent.
@@ -211,7 +211,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="pageLimit">The number of records to return in each page of results. The default page limit is 100. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="LogCollectionResponse" />LogCollectionResponse</returns>
-        LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, int? pageLimit = null, string cursor = null);
+        LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
         /// <summary>
         /// Get a response to a user's input. 
         /// </summary>
@@ -260,7 +260,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="SynonymCollectionResponse" />SynonymCollectionResponse</returns>
-        SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity value synonym. Update the information about a synonym for an entity value.
@@ -311,7 +311,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="ValueCollectionResponse" />ValueCollectionResponse</returns>
-        ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity value. Update the content of a value for an entity.
@@ -352,7 +352,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="WorkspaceCollectionResponse" />WorkspaceCollectionResponse</returns>
-        WorkspaceCollectionResponse ListWorkspaces(int? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        WorkspaceCollectionResponse ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update workspace. Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace.

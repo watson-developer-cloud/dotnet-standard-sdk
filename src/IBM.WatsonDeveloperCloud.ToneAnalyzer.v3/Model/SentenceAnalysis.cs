@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// </summary>
         /// <value>The unique identifier of a sentence of the input content. The first sentence has ID 0, and the ID of each subsequent sentence is incremented by one.</value>
         [JsonProperty("sentence_id", NullValueHandling = NullValueHandling.Ignore)]
-        public int? SentenceId { get; set; }
+        public long? SentenceId { get; set; }
         /// <summary>
         /// The text of the input sentence.
         /// </summary>
@@ -42,13 +42,13 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// </summary>
         /// <value>The offset of the first character of the sentence in the overall input content.</value>
         [JsonProperty("input_from", NullValueHandling = NullValueHandling.Ignore)]
-        public int? InputFrom { get; set; }
+        public long? InputFrom { get; set; }
         /// <summary>
         /// The offset of the last character of the sentence in the overall input content.
         /// </summary>
         /// <value>The offset of the last character of the sentence in the overall input content.</value>
         [JsonProperty("input_to", NullValueHandling = NullValueHandling.Ignore)]
-        public int? InputTo { get; set; }
+        public long? InputTo { get; set; }
         /// <summary>
         /// An array of `ToneCategory` objects that provides the results for the tone analysis of the sentence. The service returns results only for the tones specified with the `tones` parameter of the request.
         /// </summary>

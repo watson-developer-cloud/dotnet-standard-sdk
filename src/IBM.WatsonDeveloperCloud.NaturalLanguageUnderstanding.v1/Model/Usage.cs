@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         /// <value>Number of features used in the API call.</value>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Features { get; set; }
+        public long? Features { get; set; }
     }
 
 }

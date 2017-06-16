@@ -36,14 +36,21 @@ _personalityInsights.SetCredential("<username>", "<password>");
 
 #### Profile
 Extract personality characteristics based on how a person writes.
-```Cs
- // profile
- var results = _personalityInsights.GetProfile(ProfileOptions.CreateOptions()
-                                                             .WithTextPlain()
-                                                             .AsEnglish()
-                                                             .AcceptJson()
-                                                             .AcceptEnglishLanguage()
-                                                             .WithBody("some text"));
+```cs
+ContentListContainer contentListContainer = new ContentListContainer()
+{
+    ContentItems = new List<ContentItem>()
+    {
+        new ContentItem()
+        {
+            Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
+            Language = ContentItem.LanguageEnum.EN,
+            Content = <content-to-analyze>
+        }
+    }
+};
+
+ var result = _personalityInsights.Profile("text/plain", "application/json", contentListContainer, rawScores: true, consumptionPreferences:true, csvHeaders:true);
 ```
 
 [personality-insights]: https://www.ibm.com/watson/developercloud/personality-insights.html

@@ -17,7 +17,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "0.2.0"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.0.0"
 }
 
 ```

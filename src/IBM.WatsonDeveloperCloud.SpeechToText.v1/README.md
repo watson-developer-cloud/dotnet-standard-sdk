@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "0.2.0"
+   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.0.0"
 }
 
 ```

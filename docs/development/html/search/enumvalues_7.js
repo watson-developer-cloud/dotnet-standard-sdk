@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['user',['User',['../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a43054f2bc01a3873cd69780c79f5c0b4a8f9bfe9d1345237cb3b2b205864da075',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]]
+  ['html_5finput',['HTML_INPUT',['../d2/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot.html#a834ef570c991da960b23ef12e386b87ea220c374053f0e55c9d27509abf126b9f',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::DocumentSnapshot']]],
+  ['html_5foutput',['HTML_OUTPUT',['../d2/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot.html#a834ef570c991da960b23ef12e386b87ea945f16bd76b860e373d73dafffb0c297',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::DocumentSnapshot']]]
 ];

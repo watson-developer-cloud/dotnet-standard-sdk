@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">1.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -88,15 +88,22 @@ $(document).ready(function(){initNavTree('dd/ded/class_i_b_m_1_1_watson_develope
 <div class="title">IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.Warning Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="../../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html" title="Warning. ">Warning</a>.  
+ <a href="../../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:acfaef1709c28786027c13fcdecd5ccdc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html#acfaef1709c28786027c13fcdecd5ccdc">WarningId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acfaef1709c28786027c13fcdecd5ccdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identifier of the warning message, one of <code>WORD_COUNT_MESSAGE</code>, <code>JSON_AS_TEXT</code>, <code>CONTENT_TRUNCATED</code>, or <code>PARTIAL_TEXT_USED</code>.  <a href="#acfaef1709c28786027c13fcdecd5ccdc">More...</a><br /></td></tr>
 <tr class="separator:acfaef1709c28786027c13fcdecd5ccdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e2ca8d68a893b04ff7fca4be705da78"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html#a9e2ca8d68a893b04ff7fca4be705da78">Message</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9e2ca8d68a893b04ff7fca4be705da78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message associated with the <code>warning_id</code>. For <code>WORD_COUNT_MESSAGE</code>, "There were {number} words in the input. We need a minimum of 600, preferably 1,200 or more, to compute statistically significant estimates."; for <code>JSON_AS_TEXT</code>, "Request input was processed as text/plain as indicated, however detected a JSON input. Did you mean application/json?"; for <code>CONTENT_TRUNCATED</code>, "For maximum accuracy while also optimizing processing time, only the first 250KB of input text (excluding markup) was analyzed. Accuracy levels off at approximately 3,000 words so this did not affect the accuracy of the profile."; and for <code>PARTIAL_TEXT_USED</code>, "The text provided to compute the profile was trimmed for performance reasons. This action does not affect the accuracy of the output, as not all of the input text was required." The <code>PARTIAL_TEXT_USED</code> warning applies only when Arabic input text exceeds a threshold at which additional words do not contribute to the accuracy of the profile.  <a href="#a9e2ca8d68a893b04ff7fca4be705da78">More...</a><br /></td></tr>
 <tr class="separator:a9e2ca8d68a893b04ff7fca4be705da78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Property Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="../../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html" title="Warning. ">Warning</a>. </p>
+</div><h2 class="groupheader">Property Documentation</h2>
 <a id="a9e2ca8d68a893b04ff7fca4be705da78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e2ca8d68a893b04ff7fca4be705da78">&#9670;&nbsp;</a></span>Message</h2>
 
@@ -116,6 +123,9 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The message associated with the <code>warning_id</code>. For <code>WORD_COUNT_MESSAGE</code>, "There were {number} words in the input. We need a minimum of 600, preferably 1,200 or more, to compute statistically significant estimates."; for <code>JSON_AS_TEXT</code>, "Request input was processed as text/plain as indicated, however detected a JSON input. Did you mean application/json?"; for <code>CONTENT_TRUNCATED</code>, "For maximum accuracy while also optimizing processing time, only the first 250KB of input text (excluding markup) was analyzed. Accuracy levels off at approximately 3,000 words so this did not affect the accuracy of the profile."; and for <code>PARTIAL_TEXT_USED</code>, "The text provided to compute the profile was trimmed for performance reasons. This action does not affect the accuracy of the output, as not all of the input text was required." The <code>PARTIAL_TEXT_USED</code> warning applies only when Arabic input text exceeds a threshold at which additional words do not contribute to the accuracy of the profile. </p>
+<p>The message associated with the <code>warning_id</code>. For <code>WORD_COUNT_MESSAGE</code>, "There were {number} words in the input. We need a minimum of 600, preferably 1,200 or more, to compute statistically significant estimates."; for <code>JSON_AS_TEXT</code>, "Request input was processed as text/plain as indicated, however detected a JSON input. Did you mean application/json?"; for <code>CONTENT_TRUNCATED</code>, "For maximum accuracy while also optimizing processing time, only the first 250KB of input text (excluding markup) was analyzed. Accuracy levels off at approximately 3,000 words so this did not affect the accuracy of the profile."; and for <code>PARTIAL_TEXT_USED</code>, "The text provided to compute the profile was trimmed for performance reasons. This action does not affect the accuracy of the output, as not all of the input text was required." The <code>PARTIAL_TEXT_USED</code> warning applies only when Arabic input text exceeds a threshold at which additional words do not contribute to the accuracy of the profile.</p>
 
 </div>
 </div>
@@ -138,6 +148,9 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The identifier of the warning message, one of <code>WORD_COUNT_MESSAGE</code>, <code>JSON_AS_TEXT</code>, <code>CONTENT_TRUNCATED</code>, or <code>PARTIAL_TEXT_USED</code>. </p>
+<p>The identifier of the warning message, one of <code>WORD_COUNT_MESSAGE</code>, <code>JSON_AS_TEXT</code>, <code>CONTENT_TRUNCATED</code>, or <code>PARTIAL_TEXT_USED</code>.</p>
 
 </div>
 </div>

@@ -1,20 +1,15 @@
 var searchData=
 [
-  ['warning',['Warning',['../dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
-  ['warninginfo',['WarningInfo',['../d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
-  ['watsonhttpclient',['WatsonHttpClient',['../df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html',1,'IBM::WatsonDeveloperCloud::Http']]],
-  ['watsonservice',['WatsonService',['../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html',1,'IBM::WatsonDeveloperCloud::Service']]],
-  ['websocketclient',['WebSocketClient',['../de/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_sockets_1_1_web_socket_client.html',1,'IBM::WatsonDeveloperCloud::Sockets']]],
-  ['word',['Word',['../dc/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['wordalternativeresult',['WordAlternativeResult',['../d3/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_result.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['wordalternativeresults',['WordAlternativeResults',['../d4/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['worddata',['WordData',['../dd/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_data.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['worddefinition',['WordDefinition',['../d5/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_definition.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['worderror',['WordError',['../db/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_error.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['wordpronunciation',['WordPronunciation',['../d0/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_word_pronunciation.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]],
-  ['words',['Words',['../da/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['wordslist',['WordsList',['../d6/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words_list.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['workspacecollectionresponse',['WorkspaceCollectionResponse',['../d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['workspaceexportresponse',['WorkspaceExportResponse',['../d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['workspaceresponse',['WorkspaceResponse',['../d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
+  ['updatecollectionrequest',['UpdateCollectionRequest',['../d0/dcb/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_update_collection_request.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['updateentity',['UpdateEntity',['../d0/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_entity.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['updateenvironmentrequest',['UpdateEnvironmentRequest',['../d4/d64/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_update_environment_request.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['updateexample',['UpdateExample',['../d7/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_example.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['updateintent',['UpdateIntent',['../d5/d4d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_intent.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['updatesynonym',['UpdateSynonym',['../d1/d51/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_synonym.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['updatevalue',['UpdateValue',['../d5/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_value.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['updateworkspace',['UpdateWorkspace',['../d1/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_workspace.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['usage',['Usage',['../de/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_usage.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
+  ['utterance',['Utterance',['../de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]],
+  ['utteranceanalyses',['UtteranceAnalyses',['../df/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analyses.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]],
+  ['utteranceanalysis',['UtteranceAnalysis',['../da/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analysis.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]]
 ];

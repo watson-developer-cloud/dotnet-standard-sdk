@@ -1,5 +1,13 @@
 var searchData=
 [
+  ['emotionoptions_2ecs',['EmotionOptions.cs',['../db/de1/_emotion_options_8cs.html',1,'']]],
+  ['emotionresult_2ecs',['EmotionResult.cs',['../df/d38/_emotion_result_8cs.html',1,'']]],
+  ['emotionscores_2ecs',['EmotionScores.cs',['../d2/d9e/_emotion_scores_8cs.html',1,'']]],
+  ['enrichment_2ecs',['Enrichment.cs',['../d5/d6a/_enrichment_8cs.html',1,'']]],
+  ['enrichmentoptions_2ecs',['EnrichmentOptions.cs',['../d7/dbe/_enrichment_options_8cs.html',1,'']]],
+  ['entitiesoptions_2ecs',['EntitiesOptions.cs',['../d2/d0e/_entities_options_8cs.html',1,'']]],
+  ['entitiesresult_2ecs',['EntitiesResult.cs',['../d5/dfb/_entities_result_8cs.html',1,'']]],
+  ['entitycollectionresponse_2ecs',['EntityCollectionResponse.cs',['../da/d64/_entity_collection_response_8cs.html',1,'']]],
   ['entityexportresponse_2ecs',['EntityExportResponse.cs',['../d8/d93/_entity_export_response_8cs.html',1,'']]],
   ['entityresponse_2ecs',['EntityResponse.cs',['../da/d04/_entity_response_8cs.html',1,'']]],
   ['error_2ecs',['Error.cs',['../da/d8b/_error_8cs.html',1,'']]],

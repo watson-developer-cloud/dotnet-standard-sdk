@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tone',['Tone',['../da/d5b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model.html#a40a78318968b449f25d1266aa96e1025',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]]
+  ['operationenum',['OperationEnum',['../df/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_normalization_operation.html#a478e8c286c6ef789ae4df5b43544dea7',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::NormalizationOperation']]]
 ];

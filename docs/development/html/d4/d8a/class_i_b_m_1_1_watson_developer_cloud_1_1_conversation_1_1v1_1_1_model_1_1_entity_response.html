@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">1.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -89,24 +89,83 @@ $(document).ready(function(){initNavTree('d4/d8a/class_i_b_m_1_1_watson_develope
 </div><!--header-->
 <div class="contents">
 
-<p>Terms from the request that are identified as entities.  
+<p><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html" title="EntityResponse. ">EntityResponse</a>.  
  <a href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a47ccee2adffedd7a6394e79b63a2d80d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a47ccee2adffedd7a6394e79b63a2d80d">Entity</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a47ccee2adffedd7a6394e79b63a2d80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The recognized entity from a term in the input.  <a href="#a47ccee2adffedd7a6394e79b63a2d80d">More...</a><br /></td></tr>
+<tr class="memdesc:a47ccee2adffedd7a6394e79b63a2d80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the entity.  <a href="#a47ccee2adffedd7a6394e79b63a2d80d">More...</a><br /></td></tr>
 <tr class="separator:a47ccee2adffedd7a6394e79b63a2d80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4b8c290f9db1f13caa5e47f62ca32f7"><td class="memItemLeft" align="right" valign="top">List&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#ad4b8c290f9db1f13caa5e47f62ca32f7">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad4b8c290f9db1f13caa5e47f62ca32f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero-based character offsets that indicate where the entity value begins and ends in the input text.  <a href="#ad4b8c290f9db1f13caa5e47f62ca32f7">More...</a><br /></td></tr>
-<tr class="separator:ad4b8c290f9db1f13caa5e47f62ca32f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10976c8932c40f3db359a7b619dba2e6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a10976c8932c40f3db359a7b619dba2e6">Value</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a10976c8932c40f3db359a7b619dba2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The term in the input text that was recognized  <a href="#a10976c8932c40f3db359a7b619dba2e6">More...</a><br /></td></tr>
-<tr class="separator:a10976c8932c40f3db359a7b619dba2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad93f1d86392fa5646e99f6e681c15f4b"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#ad93f1d86392fa5646e99f6e681c15f4b">Created</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad93f1d86392fa5646e99f6e681c15f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The timestamp for creation of the entity.  <a href="#ad93f1d86392fa5646e99f6e681c15f4b">More...</a><br /></td></tr>
+<tr class="separator:ad93f1d86392fa5646e99f6e681c15f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f80e45d60e0704f931e7a4c69869b98"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a7f80e45d60e0704f931e7a4c69869b98">Updated</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7f80e45d60e0704f931e7a4c69869b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">The timestamp for the last update to the entity.  <a href="#a7f80e45d60e0704f931e7a4c69869b98">More...</a><br /></td></tr>
+<tr class="separator:a7f80e45d60e0704f931e7a4c69869b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1523fa5bef7410fb31dae2655f5dc0d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#aa1523fa5bef7410fb31dae2655f5dc0d">Description</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa1523fa5bef7410fb31dae2655f5dc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The description of the entity.  <a href="#aa1523fa5bef7410fb31dae2655f5dc0d">More...</a><br /></td></tr>
+<tr class="separator:aa1523fa5bef7410fb31dae2655f5dc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2161617f67e8b83a02b37ef1dd5a877"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#ae2161617f67e8b83a02b37ef1dd5a877">Metadata</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae2161617f67e8b83a02b37ef1dd5a877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any metadata related to the entity.  <a href="#ae2161617f67e8b83a02b37ef1dd5a877">More...</a><br /></td></tr>
+<tr class="separator:ae2161617f67e8b83a02b37ef1dd5a877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4baf0de468d7b7523dc653522a480edb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a4baf0de468d7b7523dc653522a480edb">FuzzyMatch</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4baf0de468d7b7523dc653522a480edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether fuzzy matching is used for the entity.  <a href="#a4baf0de468d7b7523dc653522a480edb">More...</a><br /></td></tr>
+<tr class="separator:a4baf0de468d7b7523dc653522a480edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Terms from the request that are identified as entities. </p>
+<div class="textblock"><p><a class="el" href="../../d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html" title="EntityResponse. ">EntityResponse</a>. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
+<a id="ad93f1d86392fa5646e99f6e681c15f4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad93f1d86392fa5646e99f6e681c15f4b">&#9670;&nbsp;</a></span>Created</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Created</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The timestamp for creation of the entity. </p>
+<p>The timestamp for creation of the entity.</p>
+
+</div>
+</div>
+<a id="aa1523fa5bef7410fb31dae2655f5dc0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1523fa5bef7410fb31dae2655f5dc0d">&#9670;&nbsp;</a></span>Description</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Description</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The description of the entity. </p>
+<p>The description of the entity.</p>
+
+</div>
+</div>
 <a id="a47ccee2adffedd7a6394e79b63a2d80d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47ccee2adffedd7a6394e79b63a2d80d">&#9670;&nbsp;</a></span>Entity</h2>
 
@@ -127,12 +186,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The recognized entity from a term in the input. </p>
+<p>The name of the entity. </p>
+<p>The name of the entity.</p>
 
 </div>
 </div>
-<a id="ad4b8c290f9db1f13caa5e47f62ca32f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4b8c290f9db1f13caa5e47f62ca32f7">&#9670;&nbsp;</a></span>Location</h2>
+<a id="a4baf0de468d7b7523dc653522a480edb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4baf0de468d7b7523dc653522a480edb">&#9670;&nbsp;</a></span>FuzzyMatch</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,7 +201,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;int&gt; IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Location</td>
+          <td class="memname">bool IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.FuzzyMatch</td>
         </tr>
       </table>
   </td>
@@ -151,12 +211,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Zero-based character offsets that indicate where the entity value begins and ends in the input text. </p>
+<p>Whether fuzzy matching is used for the entity. </p>
+<p>Whether fuzzy matching is used for the entity.</p>
 
 </div>
 </div>
-<a id="a10976c8932c40f3db359a7b619dba2e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10976c8932c40f3db359a7b619dba2e6">&#9670;&nbsp;</a></span>Value</h2>
+<a id="ae2161617f67e8b83a02b37ef1dd5a877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2161617f67e8b83a02b37ef1dd5a877">&#9670;&nbsp;</a></span>Metadata</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +226,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Value</td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Metadata</td>
         </tr>
       </table>
   </td>
@@ -175,7 +236,33 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The term in the input text that was recognized </p>
+<p>Any metadata related to the entity. </p>
+<p>Any metadata related to the entity.</p>
+
+</div>
+</div>
+<a id="a7f80e45d60e0704f931e7a4c69869b98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f80e45d60e0704f931e7a4c69869b98">&#9670;&nbsp;</a></span>Updated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime IBM.WatsonDeveloperCloud.Conversation.v1.Model.EntityResponse.Updated</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The timestamp for the last update to the entity. </p>
+<p>The timestamp for the last update to the entity.</p>
 
 </div>
 </div>

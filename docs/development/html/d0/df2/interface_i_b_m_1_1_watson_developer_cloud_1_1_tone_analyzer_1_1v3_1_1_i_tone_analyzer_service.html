@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">1.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -100,63 +100,37 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerSe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a23ff23302b7f9f498cd75d69e966f667"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a23ff23302b7f9f498cd75d69e966f667">AnalyzeTone</a> (string text)</td></tr>
-<tr class="memdesc:a23ff23302b7f9f498cd75d69e966f667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness.  <a href="#a23ff23302b7f9f498cd75d69e966f667">More...</a><br /></td></tr>
-<tr class="separator:a23ff23302b7f9f498cd75d69e966f667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53decf44c58b2dcc14f73ed55b4fdffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a53decf44c58b2dcc14f73ed55b4fdffb">AnalyzeTone</a> (string text, List&lt; <a class="el" href="../../da/d5b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model.html#a40a78318968b449f25d1266aa96e1025">Tone</a> &gt; filterTones)</td></tr>
-<tr class="memdesc:a53decf44c58b2dcc14f73ed55b4fdffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness.  <a href="#a53decf44c58b2dcc14f73ed55b4fdffb">More...</a><br /></td></tr>
-<tr class="separator:a53decf44c58b2dcc14f73ed55b4fdffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae67810e258bd2dd2caff8a34154ee566"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#ae67810e258bd2dd2caff8a34154ee566">AnalyzeTone</a> (string text, List&lt; <a class="el" href="../../da/d5b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model.html#a40a78318968b449f25d1266aa96e1025">Tone</a> &gt; filterTones, bool sentences=true)</td></tr>
-<tr class="memdesc:ae67810e258bd2dd2caff8a34154ee566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness.  <a href="#ae67810e258bd2dd2caff8a34154ee566">More...</a><br /></td></tr>
-<tr class="separator:ae67810e258bd2dd2caff8a34154ee566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8790d4b1f16cdeaf88b73856cceaf21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#aa8790d4b1f16cdeaf88b73856cceaf21">Tone</a> (<a class="el" href="../../dd/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_input.html">ToneInput</a> body, string tones=null, bool? sentences=null)</td></tr>
+<tr class="memdesc:aa8790d4b1f16cdeaf88b73856cceaf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyze general purpose tone. Uses the general purpose endpoint to analyze the tone of your input content. The service can analyze the input for several tones: emotion, language, and social. It derives various characteristics for each tone that it analyzes. The method always analyzes the tone of the full document; by default, it also analyzes the tone of each individual sentence of the input. You can submit a maximum of 128 KB of content in JSON, plain text, or HTML format. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set). When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example: <code>Content-Type: text/plain;charset=utf-8</code>. For <code>text/html</code>, the service removes HTML tags and analyzes only the textual content. Use the <code>POST</code> request method to analyze larger amounts of content in any of the available formats. Use the <code>GET</code> request method to analyze smaller quantities of plain text content.  <a href="#aa8790d4b1f16cdeaf88b73856cceaf21">More...</a><br /></td></tr>
+<tr class="separator:aa8790d4b1f16cdeaf88b73856cceaf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85285989b1118f0ff15f30bd827d58c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analyses.html">UtteranceAnalyses</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a85285989b1118f0ff15f30bd827d58c8">ToneChat</a> (<a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html">ToneChatInput</a> utterances)</td></tr>
+<tr class="memdesc:a85285989b1118f0ff15f30bd827d58c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyze customer engagement tone. Uses the customer engagement endpoint to analyze the tone of customer service and customer support conversations. For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic. You can submit a maximum of 128 KB of JSON input. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8. <b>Note</b>: The <code>tone_chat</code> method is currently beta functionality.  <a href="#a85285989b1118f0ff15f30bd827d58c8">More...</a><br /></td></tr>
+<tr class="separator:a85285989b1118f0ff15f30bd827d58c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a23ff23302b7f9f498cd75d69e966f667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23ff23302b7f9f498cd75d69e966f667">&#9670;&nbsp;</a></span>AnalyzeTone() <span class="overload">[1/3]</span></h2>
+<a id="aa8790d4b1f16cdeaf88b73856cceaf21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8790d4b1f16cdeaf88b73856cceaf21">&#9670;&nbsp;</a></span>Tone()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a> IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerService.AnalyzeTone </td>
+          <td class="memname"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a> IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerService.Tone </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>Text that contains the content to be analyzed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a0b1ea74b28772c916a66e16ba1e388b1">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
-
-</div>
-</div>
-<a id="a53decf44c58b2dcc14f73ed55b4fdffb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53decf44c58b2dcc14f73ed55b4fdffb">&#9670;&nbsp;</a></span>AnalyzeTone() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a> IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerService.AnalyzeTone </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
+          <td class="paramtype"><a class="el" href="../../dd/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_input.html">ToneInput</a>&#160;</td>
+          <td class="paramname"><em>body</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">List&lt; <a class="el" href="../../da/d5b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model.html#a40a78318968b449f25d1266aa96e1025">Tone</a> &gt;&#160;</td>
-          <td class="paramname"><em>filterTones</em>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tones</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>sentences</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -166,64 +140,47 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness. </p>
+<p>Analyze general purpose tone. Uses the general purpose endpoint to analyze the tone of your input content. The service can analyze the input for several tones: emotion, language, and social. It derives various characteristics for each tone that it analyzes. The method always analyzes the tone of the full document; by default, it also analyzes the tone of each individual sentence of the input. You can submit a maximum of 128 KB of content in JSON, plain text, or HTML format. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set). When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example: <code>Content-Type: text/plain;charset=utf-8</code>. For <code>text/html</code>, the service removes HTML tags and analyzes only the textual content. Use the <code>POST</code> request method to analyze larger amounts of content in any of the available formats. Use the <code>GET</code> request method to analyze smaller quantities of plain text content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">text</td><td>Text that contains the content to be analyzed.</td></tr>
-    <tr><td class="paramname">filterTones</td><td>Filter the results by a specific tone. Valid values for tones are emotion, language, and social.</td></tr>
+    <tr><td class="paramname">body</td><td>JSON, plain text, or HTML input that contains the content to be analyzed. For JSON input, provide an object of type <code>ToneInput</code>. Submit a maximum of 128 KB of content. Sentences with fewer than three words cannot be analyzed.</td></tr>
+    <tr><td class="paramname">tones</td><td>A comma-separated list of tones for which the service is to return its analysis of the input; the indicated tones apply both to the full document and to individual sentences of the document. You can specify one or more of the following values: <code>emotion</code>, <code>language</code>, and <code>social</code>. Omit the parameter to request results for all three tones. (optional)</td></tr>
+    <tr><td class="paramname">sentences</td><td>Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If <code>true</code> (the default), the service returns results for each sentence. The service returns results only for the first 100 sentences of the input. (optional, default to true)</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ToneAnalysisToneAnalysis</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a19c5d676e5b0a268e2a72d4b88cfd4cb">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
+<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a223563cd800428aae38bf4e2046c224f">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
 
 </div>
 </div>
-<a id="ae67810e258bd2dd2caff8a34154ee566"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae67810e258bd2dd2caff8a34154ee566">&#9670;&nbsp;</a></span>AnalyzeTone() <span class="overload">[3/3]</span></h2>
+<a id="a85285989b1118f0ff15f30bd827d58c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85285989b1118f0ff15f30bd827d58c8">&#9670;&nbsp;</a></span>ToneChat()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a> IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerService.AnalyzeTone </td>
+          <td class="memname"><a class="el" href="../../df/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analyses.html">UtteranceAnalyses</a> IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerService.ToneChat </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html">ToneChatInput</a>&#160;</td>
+          <td class="paramname"><em>utterances</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">List&lt; <a class="el" href="../../da/d5b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model.html#a40a78318968b449f25d1266aa96e1025">Tone</a> &gt;&#160;</td>
-          <td class="paramname"><em>filterTones</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>sentences</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness. </p>
+<p>Analyze customer engagement tone. Uses the customer engagement endpoint to analyze the tone of customer service and customer support conversations. For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic. You can submit a maximum of 128 KB of JSON input. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8. <b>Note</b>: The <code>tone_chat</code> method is currently beta functionality. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">text</td><td>Text that contains the content to be analyzed.</td></tr>
-    <tr><td class="paramname">filterTones</td><td>Filter the results by a specific tone. Valid values for tones are emotion, language, and social.</td></tr>
-    <tr><td class="paramname">sentences</td><td>Filter your response to remove the sentence level analysis. Valid values for sentences are true and false. This parameter defaults to true when it's not set, which means that a sentence level analysis is automatically provided. Change sentences=false to filter out the sentence level analysis.</td></tr>
+    <tr><td class="paramname">utterances</td><td>A JSON object that contains the content to be analyzed.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>UtteranceAnalysesUtteranceAnalyses</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a53772c294179541879b6a8abd4a21265">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
+<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#abbeddb0c313378ec6a27ce1570cf55f1">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
 
 </div>
 </div>

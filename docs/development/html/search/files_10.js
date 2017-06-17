@@ -1,18 +1,15 @@
 var searchData=
 [
-  ['textrecogoneword_2ecs',['TextRecogOneWord.cs',['../db/d95/_text_recog_one_word_8cs.html',1,'']]],
-  ['textrecogonewordlocation_2ecs',['TextRecogOneWordLocation.cs',['../da/d6a/_text_recog_one_word_location_8cs.html',1,'']]],
-  ['textrecogtoplevelmultiple_2ecs',['TextRecogTopLevelMultiple.cs',['../d1/d10/_text_recog_top_level_multiple_8cs.html',1,'']]],
-  ['textrecogtoplevelsingle_2ecs',['TextRecogTopLevelSingle.cs',['../de/d6b/_text_recog_top_level_single_8cs.html',1,'']]],
-  ['texttospeechservice_2ecs',['TextToSpeechService.cs',['../db/de7/_text_to_speech_service_8cs.html',1,'']]],
-  ['tone_2ecs',['Tone.cs',['../d6/d23/_tone_8cs.html',1,'']]],
-  ['toneanalysis_2ecs',['ToneAnalysis.cs',['../d6/d0a/_tone_analysis_8cs.html',1,'']]],
-  ['toneanalyzerservice_2ecs',['ToneAnalyzerService.cs',['../d3/d14/_tone_analyzer_service_8cs.html',1,'']]],
-  ['tonecategory_2ecs',['ToneCategory.cs',['../df/d4c/_tone_category_8cs.html',1,'']]],
-  ['tonescore_2ecs',['ToneScore.cs',['../dd/d86/_tone_score_8cs.html',1,'']]],
-  ['toplevelmultiple_2ecs',['TopLevelMultiple.cs',['../d6/d75/_top_level_multiple_8cs.html',1,'']]],
-  ['traittreenode_2ecs',['TraitTreeNode.cs',['../db/d23/_trait_tree_node_8cs.html',1,'']]],
-  ['translateresponse_2ecs',['TranslateResponse.cs',['../d4/dae/_translate_response_8cs.html',1,'']]],
-  ['translationmodels_2ecs',['TranslationModels.cs',['../d3/ddb/_translation_models_8cs.html',1,'']]],
-  ['translations_2ecs',['Translations.cs',['../d9/db4/_translations_8cs.html',1,'']]]
+  ['recognizestatus_2ecs',['RecognizeStatus.cs',['../da/d58/_recognize_status_8cs.html',1,'']]],
+  ['relationargument_2ecs',['RelationArgument.cs',['../d7/dc8/_relation_argument_8cs.html',1,'']]],
+  ['relationentity_2ecs',['RelationEntity.cs',['../d6/d55/_relation_entity_8cs.html',1,'']]],
+  ['relationsoptions_2ecs',['RelationsOptions.cs',['../d1/dd5/_relations_options_8cs.html',1,'']]],
+  ['relationsresult_2ecs',['RelationsResult.cs',['../dc/dad/_relations_result_8cs.html',1,'']]],
+  ['request_2ecs',['Request.cs',['../d1/d08/_request_8cs.html',1,'']]],
+  ['runtimecontext_2ecs',['RuntimeContext.cs',['../d6/d56/_runtime_context_8cs.html',1,'']]],
+  ['runtimeentity_2ecs',['RuntimeEntity.cs',['../d5/d71/_runtime_entity_8cs.html',1,'']]],
+  ['runtimeintent_2ecs',['RuntimeIntent.cs',['../df/dd6/_runtime_intent_8cs.html',1,'']]],
+  ['runtimelogmessage_2ecs',['RuntimeLogMessage.cs',['../db/da1/_runtime_log_message_8cs.html',1,'']]],
+  ['runtimeoutput_2ecs',['RuntimeOutput.cs',['../de/d6b/_runtime_output_8cs.html',1,'']]],
+  ['runtimesystemcontext_2ecs',['RuntimeSystemContext.cs',['../da/d8c/_runtime_system_context_8cs.html',1,'']]]
 ];

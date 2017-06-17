@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,56 +15,52 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// The user's input, with optional intents, entities, and other properties from the response.
+    /// A request formatted for the Conversation service.
     /// </summary>
     public class MessageRequest
     {
         /// <summary>
         /// An input object that includes the input text.
         /// </summary>
+        /// <value>An input object that includes the input text.</value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
-
+        public InputData Input { get; set; }
         /// <summary>
-        ///Whether to return more than one intent. Default is false. 
-        ///Set to true to return all matching intents.For example, return all intents when the confidence is not high 
-        ///to allow users to choose their intent.
+        /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
+        /// <value>Whether to return more than one intent. Set to `true` to return all matching intents.</value>
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
-        public bool AlternateIntents { get; set; }
-
+        public bool? AlternateIntents { get; set; }
         /// <summary>
-        /// State information for the conversation. When you send multiple requests for the same conversation, 
-        /// include the context object from the response. 
+        /// State information for the conversation. Continue a conversation by including the context object from the previous response.
         /// </summary>
+        /// <value>State information for the conversation. Continue a conversation by including the context object from the previous response.</value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
-
+        public Context Context { get; set; }
         /// <summary>
-        /// The portion of the user's input that you can use to provide a different response or action to an intent. 
-        /// Include entities from the request when they do not need to change so that Watson does not try to identify them. 
+        /// Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
         /// </summary>
+        /// <value>Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.</value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<EntityResponse> Entities { get; set; }
-
+        public List<RuntimeEntity> Entities { get; set; }
         /// <summary>
-        /// An array of name-confidence pairs for the user input. 
-        /// Include the intents from the request when they do not need to change so that Watson does not try to identify them. 
+        /// An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.
         /// </summary>
+        /// <value>An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.</value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Intent> Intents { get; set; }
-
+        public List<RuntimeIntent> Intents { get; set; }
         /// <summary>
-        /// System output. Include the output from the request when you have 
-        /// several requests within the same Dialog turn to pass back in the intermediate information.
+        /// System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
         /// </summary>
+        /// <value>System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.</value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public OutputData Output { get; set; }
     }
+
 }

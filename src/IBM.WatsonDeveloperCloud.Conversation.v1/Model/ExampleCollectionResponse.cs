@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,26 +15,27 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// ExampleCollectionResponse object
+    /// ExampleCollectionResponse.
     /// </summary>
     public class ExampleCollectionResponse
     {
         /// <summary>
-        /// The example of the ExampleCollectionResponse.
+        /// An array of ExampleResponse objects describing the examples defined for the intent.
         /// </summary>
-        [JsonProperty("examples")]
+        /// <value>An array of ExampleResponse objects describing the examples defined for the intent.</value>
+        [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<ExampleResponse> Examples { get; set; }
-
         /// <summary>
-        /// The pagination of the ExampleCollectionResponse.
+        /// Gets or Sets Pagination
         /// </summary>
-        [JsonProperty("pagination")]
+        [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public PaginationResponse Pagination { get; set; }
     }
+
 }

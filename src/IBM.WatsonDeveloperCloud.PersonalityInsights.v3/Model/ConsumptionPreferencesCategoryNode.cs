@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,15 +20,29 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
 {
+    /// <summary>
+    /// ConsumptionPreferencesCategoryNode.
+    /// </summary>
     public class ConsumptionPreferencesCategoryNode
     {
-        [JsonProperty("consumption_preference_category_id")]
+        /// <summary>
+        /// The unique identifier of the consumption preferences category to which the results pertain. IDs have the form `consumption_preferences_{category}`.
+        /// </summary>
+        /// <value>The unique identifier of the consumption preferences category to which the results pertain. IDs have the form `consumption_preferences_{category}`.</value>
+        [JsonProperty("consumption_preference_category_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConsumptionPreferenceCategoryId { get; set; }
-
-        [JsonProperty("name")]
+        /// <summary>
+        /// The user-visible name of the consumption preferences category.
+        /// </summary>
+        /// <value>The user-visible name of the consumption preferences category.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-
-        [JsonProperty("consumption_preferences")]
+        /// <summary>
+        /// Detailed results inferred from the input text for the individual preferences of the category.
+        /// </summary>
+        /// <value>Detailed results inferred from the input text for the individual preferences of the category.</value>
+        [JsonProperty("consumption_preferences", NullValueHandling = NullValueHandling.Ignore)]
         public List<ConsumptionPreferencesNode> ConsumptionPreferences { get; set; }
     }
+
 }

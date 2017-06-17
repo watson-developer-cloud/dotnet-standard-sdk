@@ -1,7 +1,5 @@
 ### Language Translator
 
-[![NuGet version](https://img.shields.io/nuget/v/IBM.WatsonDeveloperCloud.LanguageTranslator.svg)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator/)
-
 [Language Translator][language_translator] translates text from one language to another. The service offers multiple domain-specific models that you can customize based on your unique terminology and language. Use Language Translator to take news from across the globe and present it in your language, communicate with your customers in their own language, and more.
 
 ### Installation
@@ -15,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.LanguageTranslator.v2": "0.2.0"
+   "IBM.WatsonDeveloperCloud.LanguageTranslator.v2": "1.0.0"
 }
 
 ```
@@ -79,4 +77,4 @@ Returns information, including training status, about a specified translation mo
 var result = _languageTranslator.GetModelDetails("<model-id>");
 ```
 
-[language_translator]: http://www.ibm.com/watson/developercloud/doc/language-translator/
+[language_translator]: https://www.ibm.com/watson/developercloud/doc/language-translator/index.html

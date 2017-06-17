@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,31 +15,31 @@
 *
 */
 
-using System;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using IBM.WatsonDeveloperCloud.Service;
-using System.Runtime.ExceptionServices;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 {
     public class PersonalityInsightsService : WatsonService, IPersonalityInsightsService
     {
         const string SERVICE_NAME = "personality_insights";
-
         const string URL = "https://gateway.watsonplatform.net/personality-insights/api";
-        const string PATH_GET_PROFILES = "/v3/profile";
-
-        public PersonalityInsightsService()
-            : base(SERVICE_NAME, URL)
+        private string _versionDate;
+        public string VersionDate
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            get { return _versionDate; }
+            set { _versionDate = value; }
+        }
+
+        public PersonalityInsightsService() : base(SERVICE_NAME, URL)
+        {
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public PersonalityInsightsService(string userName, string password)
-            : this()
+        public PersonalityInsightsService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -48,10 +48,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
         }
 
-        public PersonalityInsightsService(IClient httpClient)
-            : this()
+        public PersonalityInsightsService(IClient httpClient) : this()
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -59,37 +62,37 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             this.Client = httpClient;
         }
 
-        public Profile GetProfile(ProfileOptions options)
+        public Profile Profile(string contentType, string accept, ContentListContainer body, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            if (string.IsNullOrEmpty(accept))
+                throw new ArgumentNullException(nameof(accept));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
             Profile result = null;
 
             try
             {
-                Encoding enc = null;
-
-                switch (options.ContentType)
-                {
-                    case HttpMediaType.TEXT_HTML:
-                    case HttpMediaType.TEXT_PLAIN:
-                        enc = Encoding.ASCII;
-                        break;
-
-                    case HttpMediaType.APPLICATION_JSON:
-                        enc = Encoding.UTF8;
-                        break;
-                }
-
-                int bodySize = enc.GetByteCount(options.Text) / 1024 / 1024;
-
-
-
-                result =
-                     this.Client.WithAuthentication(UserName, Password)
-                                .PostAsync($"{this.Endpoint}{PATH_GET_PROFILES}")
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v3/profile")
+                                .WithArgument("version", VersionDate)
+                                .WithHeader("Content-Type", contentType)
+                                .WithHeader("Content-Language", contentLanguage)
+                                .WithHeader("Accept", accept)
+                                .WithHeader("Accept-Language", acceptLanguage)
+                                .WithArgument("raw_scores", rawScores)
+                                .WithArgument("csv_headers", csvHeaders)
+                                .WithArgument("consumption_preferences", consumptionPreferences)
+                                .WithBody<ContentListContainer>(body)
                                 .As<Profile>()
                                 .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }

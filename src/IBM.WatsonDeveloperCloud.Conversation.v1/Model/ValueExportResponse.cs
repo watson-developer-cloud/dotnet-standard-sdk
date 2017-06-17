@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,44 +15,47 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// CreateValue object
+    /// ValueExportResponse.
     /// </summary>
     public class ValueExportResponse
     {
         /// <summary>
         /// The text of the entity value.
         /// </summary>
-        [JsonProperty("value")]
+        /// <value>The text of the entity value.</value>
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string Value { get; set; }
-
         /// <summary>
         /// Any metadata related to the entity value.
         /// </summary>
-        [JsonProperty("metadata")]
+        /// <value>Any metadata related to the entity value.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
-
         /// <summary>
         /// The timestamp for creation of the entity value.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the entity value.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the entity value.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the entity value.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
         /// <summary>
-        /// Any array of synonyms for the entity value.
+        /// An array of synonyms.
         /// </summary>
-        [JsonProperty("synonyms")]
+        /// <value>An array of synonyms.</value>
+        [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
     }
+
 }

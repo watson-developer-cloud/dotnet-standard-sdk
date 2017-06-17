@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,14 +20,16 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// An input object that includes the input text. 
+    /// An object defining the user input.
     /// </summary>
     public class InputData
     {
         /// <summary>
-        /// The user's input.
+        /// The text of the user input.
         /// </summary>
-        [JsonProperty("text")]
+        /// <value>The text of the user input.</value>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }
+
 }

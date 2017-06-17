@@ -27,7 +27,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.TextToSpeech.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "0.2.0"
+   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "1.0.0"
 }
 
 ```
@@ -208,8 +208,8 @@ Deletes a single word from the specified custom voice model. Only the owner of a
 _textToSpeech.DeleteWord(_customVoiceModelID, "jpl");
 ```
 
-[text-to-speech]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/
-[using-ssml]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/SSML.shtml
-[using-sprs]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/SPRs.shtml
-[understanding-customization]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-intro.shtml
-[using-customization]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-using.shtml
+[text-to-speech]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/index.html
+[using-ssml]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/SSML.html
+[using-sprs]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/SPRs.html
+[understanding-customization]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-intro.html
+[using-customization]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-using.html

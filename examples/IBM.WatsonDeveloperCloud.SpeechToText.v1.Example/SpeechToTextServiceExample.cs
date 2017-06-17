@@ -178,7 +178,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         #region Recognize Form Data
         private void RecognizeFormData()
         {
-            using (FileStream fs = File.OpenRead(@"Assets\test-audio.wav"))
+            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
             {
                 Console.WriteLine("\nCalling RecognizeFormData()...");
                 var speechEvent = _speechToText.Recognize(fs.GetMediaTypeFromFile(),
@@ -263,7 +263,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         #region Recognize Session Body
         private void RecognizeSessionBody()
         {
-            using (FileStream fs = File.OpenRead(@"Assets\test-audio.wav"))
+            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
             {
                 Console.WriteLine("\nCalling RecognizeSessionBody()...");
                 var speechEvent = _speechToText.RecognizeWithSession(_sessionID, fs.GetMediaTypeFromFile(), fs);
@@ -295,7 +295,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         #region Recognize Session Form Data
         private void RecognizeSessionFormData()
         {
-            using (FileStream fs = File.OpenRead(@"Assets\test-audio.wav"))
+            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
             {
                 Console.WriteLine("\nCalling RecognizeSessionFormData()...");
                 var speechEvent = _speechToText.RecognizeWithSession(_sessionID,
@@ -413,7 +413,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         #region Add Custom Corpus
         private void AddCustomCorpus()
         {
-            using (FileStream fs = File.OpenRead(@"Assets\test-stt-corpus.txt"))
+            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-stt-corpus.txt"))
             {
                 Console.WriteLine("\nCalling AddCustomModel()...");
                 object result = _speechToText.AddCorpus(_createdCustomizationID,

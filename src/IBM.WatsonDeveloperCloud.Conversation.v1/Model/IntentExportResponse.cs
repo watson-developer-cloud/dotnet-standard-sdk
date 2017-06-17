@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,44 +15,47 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// IntentExportResponse object
+    /// IntentExportResponse.
     /// </summary>
     public class IntentExportResponse
     {
         /// <summary>
         /// The name of the intent.
         /// </summary>
-        [JsonProperty("intent")]
+        /// <value>The name of the intent.</value>
+        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string Intent { get; set; }
-
-        /// <summary>
-        /// The description of the intent.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
         /// <summary>
         /// The timestamp for creation of the intent.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the intent.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the intent.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the intent.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
         /// <summary>
-        /// An array of Examples collection.
+        /// The description of the intent.
         /// </summary>
-        [JsonProperty("examples")]
+        /// <value>The description of the intent.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
+        /// <summary>
+        /// An array of user input examples.
+        /// </summary>
+        /// <value>An array of user input examples.</value>
+        [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<ExampleResponse> Examples { get; set; }
     }
+
 }

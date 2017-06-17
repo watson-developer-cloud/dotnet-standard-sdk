@@ -1,13 +1,13 @@
 {
-  "version": "0.2.0",
+  "version": "1.0.0",
 
   "testRunner": "mstest",
 
   "buildOptions": {
     "copyToOutput": [
-      "Assets\\test-audio.wav",
+      "TestData\\test-audio.wav",
       "appsettings.json",
-      "Assets\\test-stt-corpus.txt"
+      "TestData\\test-stt-corpus.txt"
     ]
   },
 
@@ -16,7 +16,7 @@
     "MSTest.TestFramework": "1.0.6-preview",
     "NSubstitute": "2.0.2",
     "Newtonsoft.Json": "9.0.1",
-    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "0.2.0",
+    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.0.0",
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",

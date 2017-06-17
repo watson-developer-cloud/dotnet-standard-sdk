@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IBM")]
-[assembly: AssemblyProduct("IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Example")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2a13bc39-4315-4501-ab8e-68f6e7f97eab")]
+[assembly: Guid("40adcbf1-2fc1-4acc-8da0-2db0174b7e03")]

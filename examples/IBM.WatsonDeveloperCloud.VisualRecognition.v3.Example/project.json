@@ -1,8 +1,8 @@
 {
-  "version": "0.2.0",
+  "version": "1.0.0",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.2.0",
-    "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "0.2.0",
+    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.0.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.NETCore.App": {
       "type": "platform",
@@ -23,7 +23,7 @@
     "emitEntryPoint": true,
     "xmlDoc": false,
     "copyToOutput": {
-      "include": [ "./exampleData" ]
+      "include": [ "./VisualRecognitionTestData" ]
     }
   }
 }

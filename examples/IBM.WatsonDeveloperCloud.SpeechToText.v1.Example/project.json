@@ -1,8 +1,8 @@
 ﻿{
-  "version": "0.2.0",
+  "version": "1.0.0",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "0.2.0",
-    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "0.2.0",
+    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.0.0",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.NETCore.App": {
       "type": "platform",
@@ -23,9 +23,9 @@
     "emitEntryPoint": true,
     "xmlDoc": false,
     "copyToOutput": [
-      "Assets\\test-audio.wav",
+      "SpeechToTextTestData\\test-audio.wav",
       "appsettings.json",
-      "Assets\\test-stt-corpus.txt",
+      "SpeechToTextTestData\\test-stt-corpus.txt",
       "./test-audio.wav"
     ]
   }

@@ -7,7 +7,7 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>fe6e9777-a5fc-4842-98ec-159cb3471d08</ProjectGuid>
+    <ProjectGuid>16272a2f-f4bc-4903-a232-1604ae109f99</ProjectGuid>
     <RootNamespace>IBM.WatsonDeveloperCloud.Conversation.v1.Example</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>

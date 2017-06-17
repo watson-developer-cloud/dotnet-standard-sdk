@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,11 +20,23 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
 {
+    /// <summary>
+    /// ToneAnalysis.
+    /// </summary>
     public class ToneAnalysis
     {
-        [JsonProperty("document_tone")]
-        public DocumentTone DocumentTone { get; set; }
-        [JsonProperty("sentences_tone")]
+        /// <summary>
+        /// An object of type `DocumentAnalysis` that provides the results for the full document of the input content.
+        /// </summary>
+        /// <value>An object of type `DocumentAnalysis` that provides the results for the full document of the input content.</value>
+        [JsonProperty("document_tone", NullValueHandling = NullValueHandling.Ignore)]
+        public DocumentAnalysis DocumentTone { get; set; }
+        /// <summary>
+        /// An array of `SentenceAnalysis` objects that provides the results for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.
+        /// </summary>
+        /// <value>An array of `SentenceAnalysis` objects that provides the results for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.</value>
+        [JsonProperty("sentences_tone", NullValueHandling = NullValueHandling.Ignore)]
         public List<SentenceAnalysis> SentencesTone { get; set; }
     }
+
 }

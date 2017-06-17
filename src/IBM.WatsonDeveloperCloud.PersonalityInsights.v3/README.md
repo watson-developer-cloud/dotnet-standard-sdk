@@ -17,7 +17,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "0.2.0"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.0.0"
 }
 
 ```
@@ -36,16 +36,23 @@ _personalityInsights.SetCredential("<username>", "<password>");
 
 #### Profile
 Extract personality characteristics based on how a person writes.
-```Cs
- // profile
- var results = _personalityInsights.GetProfile(ProfileOptions.CreateOptions()
-                                                             .WithTextPlain()
-                                                             .AsEnglish()
-                                                             .AcceptJson()
-                                                             .AcceptEnglishLanguage()
-                                                             .WithBody("some text"));
+```cs
+ContentListContainer contentListContainer = new ContentListContainer()
+{
+    ContentItems = new List<ContentItem>()
+    {
+        new ContentItem()
+        {
+            Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
+            Language = ContentItem.LanguageEnum.EN,
+            Content = <content-to-analyze>
+        }
+    }
+};
+
+ var result = _personalityInsights.Profile("text/plain", "application/json", contentListContainer, rawScores: true, consumptionPreferences:true, csvHeaders:true);
 ```
 
-[personality-insights]: http://www.ibm.com/watson/developercloud/personality-insights/api/v2/
-[personality-models]: http://www.ibm.com/watson/developercloud/doc/personality-insights/models.shtml
-[consumption-preferences]:http://www.ibm.com/watson/developercloud/doc/personality-insights/preferences.shtml
+[personality-insights]: https://www.ibm.com/watson/developercloud/personality-insights.html
+[personality-models]: https://www.ibm.com/watson/developercloud/doc/personality-insights/models.html
+[consumption-preferences]:https://www.ibm.com/watson/developercloud/doc/personality-insights/preferences.html

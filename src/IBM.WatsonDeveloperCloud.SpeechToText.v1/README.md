@@ -13,7 +13,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "0.2.0"
+   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.0.0"
 }
 
 ```
@@ -304,4 +304,4 @@ Removing a custom word does not affect the custom model until you train the mode
 object result = _speechToText.DeleteCustomWord("<customization-id>", "<word-name>");
 ```
 
-[speech-to-text]: http://www.ibm.com/watson/developercloud/doc/speech-to-text/
+[speech-to-text]: https://www.ibm.com/watson/developercloud/doc/speech-to-text/index.html

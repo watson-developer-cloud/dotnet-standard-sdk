@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,55 +16,57 @@
 */
 
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// WorkspaceResponse object
+    /// WorkspaceResponse.
     /// </summary>
     public class WorkspaceResponse
     {
         /// <summary>
         /// The name of the workspace.
         /// </summary>
-        [JsonProperty("name")]
+        /// <value>The name of the workspace.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// The description of the workspace.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
         /// <summary>
         /// The language of the workspace.
         /// </summary>
-        [JsonProperty("language")]
+        /// <value>The language of the workspace.</value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
-
-        /// <summary>
-        /// Any metadata that is required by the workspace.
-        /// </summary>
-        [JsonProperty("metadata")]
-        public object Metadata { get; set; }
-
         /// <summary>
         /// The timestamp for creation of the workspace.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the workspace.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the workspace.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the workspace.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
         /// <summary>
         /// The workspace ID.
         /// </summary>
-        [JsonProperty("workspace_id")]
+        /// <value>The workspace ID.</value>
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public string WorkspaceId { get; set; }
-
+        /// <summary>
+        /// The description of the workspace.
+        /// </summary>
+        /// <value>The description of the workspace.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
+        /// <summary>
+        /// Any metadata that is required by the workspace.
+        /// </summary>
+        /// <value>Any metadata that is required by the workspace.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public object Metadata { get; set; }
     }
+
 }

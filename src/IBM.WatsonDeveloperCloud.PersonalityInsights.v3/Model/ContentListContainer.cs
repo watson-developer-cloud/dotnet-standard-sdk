@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,15 +15,22 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
 {
+    /// <summary>
+    /// ContentListContainer.
+    /// </summary>
     public class ContentListContainer
     {
-        public List<ContentItem> ContentItems { get; set; } = new List<ContentItem>();
+        /// <summary>
+        /// An array of `ContentItem` objects that provides the text that is to be analyzed.
+        /// </summary>
+        /// <value>An array of `ContentItem` objects that provides the text that is to be analyzed.</value>
+        [JsonProperty("contentItems", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ContentItem> ContentItems { get; set; }
     }
+
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,36 +15,33 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
-using Newtonsoft.Json.Linq;
-using System.Runtime.ExceptionServices;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 {
     public class ToneAnalyzerService : WatsonService, IToneAnalyzerService
     {
         const string SERVICE_NAME = "tone_analyzer";
-
-        const string PATH_TONE = "/v3/tone";
-        const string VERSION_DATE_2016_05_19 = "2016-05-19";
-
         const string URL = "https://gateway.watsonplatform.net/tone-analyzer/api";
-
-        public ToneAnalyzerService()
-            : base(SERVICE_NAME, URL)
+        private string _versionDate;
+        public string VersionDate
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            get { return _versionDate; }
+            set { _versionDate = value; }
+        }
+
+        public ToneAnalyzerService() : base(SERVICE_NAME, URL)
+        {
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public ToneAnalyzerService(string userName, string password)
-            : this()
+        public ToneAnalyzerService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -53,10 +50,13 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
         }
 
-        public ToneAnalyzerService(IClient httpClient)
-            : this()
+        public ToneAnalyzerService(IClient httpClient) : this()
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -64,45 +64,55 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             this.Client = httpClient;
         }
 
-        public ToneAnalysis AnalyzeTone(string text)
+        public ToneAnalysis Tone(ToneInput body, string tones = null, bool? sentences = null)
         {
-            return this.AnalyzeTone(text, null, true);
-        }
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
 
-        public ToneAnalysis AnalyzeTone(string text, List<Tone> filterTones)
-        {
-            return this.AnalyzeTone(text, filterTones, true);
-        }
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
 
-        public ToneAnalysis AnalyzeTone(string text, List<Tone> filterTones, bool sentences = true)
-        {
             ToneAnalysis result = null;
-
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("parameter: text");
 
             try
             {
-                JObject json =
-                    new JObject(
-                            new JProperty("text", text));
-
-                IRequest request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                          .PostAsync(this.Endpoint + PATH_TONE)
-                          .WithArgument("version", VERSION_DATE_2016_05_19)
-                          .WithArgument("sentences", sentences);
-
-                if (filterTones != null && filterTones.Count > 0)
-                    request.WithArgument("tones", filterTones.Select(t => t.ToString().ToLower())
-                                                             .Aggregate((a, b) => a + ", " + b));
-
-                result =
-                    request.WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                           .As<ToneAnalysis>()
-                           .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v3/tone")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("tones", tones)
+                                .WithArgument("sentences", sentences)
+                                .WithBody<ToneInput>(body)
+                                .As<ToneAnalysis>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public UtteranceAnalyses ToneChat(ToneChatInput utterances)
+        {
+            if (utterances == null)
+                throw new ArgumentNullException(nameof(utterances));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            UtteranceAnalyses result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v3/tone_chat")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<ToneChatInput>(utterances)
+                                .As<UtteranceAnalyses>()
+                                .Result;
+            }
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }

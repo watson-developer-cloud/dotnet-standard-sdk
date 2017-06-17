@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,62 +15,59 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// EntityExportResponse object
+    /// EntityExportResponse.
     /// </summary>
     public class EntityExportResponse
     {
         /// <summary>
         /// The name of the entity.
         /// </summary>
-        [JsonProperty("entity")]
+        /// <value>The name of the entity.</value>
+        [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public string Entity { get; set; }
-
-        /// <summary>
-        /// The description of the entity.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Reserved for future use.
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// The source of the entity. For system entities, system.entities is returned.
-        /// </summary>
-        [JsonProperty("source")]
-        public string Source { get; set; }
-
-        /// <summary>
-        /// Reserved for future use.
-        /// </summary>
-        [JsonProperty("open_list")]
-        public bool OpenList { get; set; }
-
         /// <summary>
         /// The timestamp for creation of the entity.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
-
+        /// <value>The timestamp for creation of the entity.</value>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Created { get; set; }
         /// <summary>
         /// The timestamp for the last update to the entity.
         /// </summary>
-        [JsonProperty("updated")]
-        public string Updated { get; set; }
-
+        /// <value>The timestamp for the last update to the entity.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
+        /// <summary>
+        /// The description of the entity.
+        /// </summary>
+        /// <value>The description of the entity.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
+        /// <summary>
+        /// Any metadata related to the entity.
+        /// </summary>
+        /// <value>Any metadata related to the entity.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public object Metadata { get; set; }
+        /// <summary>
+        /// Whether fuzzy matching is used for the entity.
+        /// </summary>
+        /// <value>Whether fuzzy matching is used for the entity.</value>
+        [JsonProperty("fuzzy_match", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? FuzzyMatch { get; set; }
         /// <summary>
         /// An array of entity values.
         /// </summary>
-        [JsonProperty("values")]
+        /// <value>An array of entity values.</value>
+        [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValueExportResponse> Values { get; set; }
     }
+
 }

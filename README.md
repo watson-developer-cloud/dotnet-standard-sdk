@@ -23,14 +23,15 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
+* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1)
+* [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
+* [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2)
+* [Natural Language Understanding](/src/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1)
+* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights.v3)
 * [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText.v1)
 * [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech.v1)
-* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1)
-* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition.v3)
-* [Language Translator](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2)
 * [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3)
-* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights.v3)
-<!-- * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery) -->
+* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition.v3)
 
 Or manually [here][latest_release].
 
@@ -60,20 +61,20 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 
-[conversation]:http://www.ibm.com/watson/developercloud/doc/conversation/
-[discovery]: http://www.ibm.com/watson/developercloud/discovery/api/v1/
-[speech_to_text]: http://www.ibm.com/watson/developercloud/doc/speech-to-text/
-[text_to_speech]: http://www.ibm.com/watson/developercloud/doc/text-to-speech/
-[visual_recognition]: http://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
-[language_translator]: http://www.ibm.com/watson/developercloud/doc/language-translator/
-[personality_insights]: http://www.ibm.com/watson/developercloud/personality-insights/api/v2/
-[tone_analyzer]: http://www.ibm.com/watson/developercloud/doc/tone-analyzer/
+[conversation]:https://www.ibm.com/watson/developercloud/conversation/api/v1/
+[discovery]: https://www.ibm.com/watson/developercloud/discovery/api/v1/
+[language_translator]: https://www.ibm.com/watson/developercloud/language-translator/api/v2/
+[natural_language_understanding]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/
+[personality_insights]: https://www.ibm.com/watson/developercloud/personality-insights/api/v2/
+[speech_to_text]: https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/
+[text_to_speech]: https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/
+[tone_analyzer]: https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/
+[visual_recognition]: https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
 
-[document_conversion]: http://www.ibm.com/watson/developercloud/document-conversion/api/v1/
-[retrieve_and_rank]: http://www.ibm.com/watson/developercloud/retrieve-and-rank/api/v1/
-[natural_language_classifier]: http://www.ibm.com/watson/developercloud/doc/natural-language-classifier/index.html
-[alchemyData_news]: http://www.ibm.com/watson/developercloud/alchemy-data-news.html
-[tradeoff_analytics]: http://www.ibm.com/watson/developercloud/doc/tradeoff-analytics/
+[document_conversion]: https://www.ibm.com/watson/developercloud/document-conversion/api/v1/
+[retrieve_and_rank]: https://www.ibm.com/watson/developercloud/retrieve-and-rank/api/v1/
+[natural_language_classifier]: https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/
+[tradeoff_analytics]: https://www.ibm.com/watson/developercloud/tradeoff-analytics/api/v1/
 
 [dotnet-core-download]: https://www.microsoft.com/net/download/core
 [visual-studio-download]: https://www.visualstudio.com/vs/community/

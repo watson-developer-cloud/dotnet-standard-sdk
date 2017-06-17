@@ -133,7 +133,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 new SpeechToTextService(_userName, _password);
 
             FileStream audio =
-                File.OpenRead(@"Assets\test-audio.wav");
+                File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
                 service.Recognize(audio.GetMediaTypeFromFile(), audio, "");
@@ -152,7 +152,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 new SpeechToTextService(_userName, _password);
 
             FileStream audio =
-                File.OpenRead(@"Assets\test-audio.wav");
+                File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
                 service.Recognize(audio.GetMediaTypeFromFile(),
@@ -181,7 +181,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 service.CreateSession(modelName);
 
             FileStream audio =
-                File.OpenRead(@"Assets\test-audio.wav");
+                File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
                 service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
@@ -205,7 +205,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 service.CreateSession(modelName);
 
             FileStream audio =
-                File.OpenRead(@"Assets\test-audio.wav");
+                File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
                 service.RecognizeWithSession(session.SessionId,
@@ -237,7 +237,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 service.CreateSession(modelName);
 
             FileStream audio =
-                File.OpenRead(@"Assets\test-audio.wav");
+                File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             Metadata metadata = new Metadata()
             {
@@ -300,7 +300,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 _createdCustomizationID;
 
             var body =
-                File.OpenRead(@"Assets\test-stt-corpus.txt");
+                File.OpenRead(@"SpeechToTextTestData\test-stt-corpus.txt");
 
             object result = service.AddCorpus(customization,
                               "stt_integration",

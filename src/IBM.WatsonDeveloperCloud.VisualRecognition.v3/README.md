@@ -12,7 +12,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "0.2.0"
+   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.0.0"
 }
 
 ```
@@ -179,7 +179,7 @@ Upload an image to find similar images in your custom collection.
 var result = _visualRecognition.FindSimilar("<collection-id>", "<image-data>", "<image-filename>");
 ```
 
-[visual-recognition]: http://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
-[structure-of-the-training-data]: http://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.shtml#structure
-[guidelines-for-good-training]: http://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.shtml#goodtraining
-[updating-custom-classifiers]: http://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.shtml#retrain
+[visual-recognition]: https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
+[structure-of-the-training-data]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#structure
+[guidelines-for-good-training]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#guidelines-for-good-training
+[updating-custom-classifiers]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#updating-custom-classifiers

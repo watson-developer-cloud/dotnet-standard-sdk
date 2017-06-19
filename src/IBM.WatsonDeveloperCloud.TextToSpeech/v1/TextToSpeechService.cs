@@ -22,9 +22,7 @@ using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 {
@@ -252,23 +250,54 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return result;
         }
 
-        public Remove_CustomVoiceModel GetCustomVoiceModel(string modelId)
+        public CustomizationWords ListCustomModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException("ModelId must not be empty");
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"The parameter {nameof(customizationId)} must be provided");
 
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelId))
-                          .As<Remove_CustomVoiceModel>()
+            CustomizationWords result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .GetAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}/{customizationId}")
+                          .As<CustomizationWords>()
                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public Remove_CustomVoiceModel SaveCustomVoiceModel(Remove_CustomVoiceModel model)
+        public CustomizationID CreateCustomModel(CustomVoice customVoice)
         {
-            if (string.IsNullOrEmpty(model.Id))
-                return saveNewCustomVoiceModel(model);
-            else
-                return updateCustomVoiceModel(model);
+            if (customVoice == null)
+                throw new ArgumentNullException($"The parameter {nameof(customVoice)} must be provided");
+
+            if (string.IsNullOrEmpty(customVoice.Name))
+                throw new ArgumentNullException($"The parameter {nameof(customVoice.Name)} must be provided");
+
+            CustomizationID result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .PostAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}")
+                          .WithBody<CustomVoice>(customVoice)
+                          .As<CustomizationID>()
+                          .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
         public Remove_CustomVoiceModel updateCustomVoiceModel(Remove_CustomVoiceModel model)

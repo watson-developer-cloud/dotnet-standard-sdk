@@ -1,9 +1,4 @@
-﻿
-
-using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
-using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
-/**
+﻿/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,13 +14,14 @@ using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 * limitations under the License.
 *
 */
+using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.TextToSpeech.v1;
+using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
 {
@@ -36,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
         private string _password;
         private string _endpoint;
 
-        private TextToSpeechService _service;
+        private ITextToSpeechService _service;
 
         [TestInitialize]
         public void Setup()
@@ -131,7 +127,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
         [TestMethod]
         public void ListCustomModels_Success()
         {
-            new TextToSpeechService(_userName, _password);
+            _service =
+              new TextToSpeechService(_userName, _password);
 
             var customModels =
                 _service.ListCustomModels();
@@ -139,6 +136,43 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.IntegrationTests
             Assert.IsNotNull(customModels);
             Assert.IsNotNull(customModels.CustomizationsList);
             Assert.IsTrue(customModels.CustomizationsList.Count > 0);
+        }
+
+        [TestMethod]
+        public void ListCustomModel_Success()
+        {
+            _service =
+               new TextToSpeechService(_userName, _password);
+
+            var customModels =
+                _service.ListCustomModels();
+
+            var firstModel =
+                customModels.CustomizationsList.First();
+
+            var customModel =
+                _service.ListCustomModel(firstModel.CustomizationId);
+
+            Assert.IsNotNull(customModel);
+            Assert.IsTrue(customModel.CustomizationId == firstModel.CustomizationId);
+        }
+
+        [TestMethod]
+        public void CreateCustomModel_Success()
+        {
+            _service =
+               new TextToSpeechService(_userName, _password);
+
+            var result =
+                _service.CreateCustomModel(new CustomVoice()
+                {
+                    Name = "dotnet-standard-custom-voice-model",
+                    Description = "Custom voice model created by the .NET Standard SDK.",
+                    Language = "en-US"
+                });
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.CustomizationIdProperty);
         }
     }
 }

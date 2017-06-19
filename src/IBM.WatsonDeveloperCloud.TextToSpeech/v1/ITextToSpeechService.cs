@@ -21,7 +21,7 @@ using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 {
-    interface ITextToSpeechService
+    public interface ITextToSpeechService
     {
         /// <summary>
         /// Retrieves a list of all voices available for use with the service. The information includes the voice's name, language, and gender, among other things.
@@ -180,15 +180,17 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// <summary>
         /// Lists all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words in the model and their translations as defined in the model. To see just the metadata for a voice model, use the List voice models method. Only the owner of a custom voice model can use this method to query information about the model.
         /// </summary>
-        /// <param name="modelId">The GUID of the custom voice model about which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
-        /// <returns>Returns details of the specified custom voice model.</returns>
-        Remove_CustomVoiceModel GetCustomVoiceModel(string modelId);
+        /// <param name="customizationId">The GUID of the custom voice model about which information is to be returned. You must make the request with the service credentials of the model's owner.</param>
+        /// <returns></returns>
+        CustomizationWords ListCustomModel(string customizationId);
+
         /// <summary>
         /// Save a custom voice model that is owned by the requesting user.
         /// </summary>
         /// <param name="model">The custom model identifier. If this is blank, a new custom voice model is created.</param>
         /// <returns>Returns the details of the spcified custom voice model.</returns>
-        Remove_CustomVoiceModel SaveCustomVoiceModel(Remove_CustomVoiceModel model);
+        CustomizationID CreateCustomModel(CustomVoice customVoice);
+
         /// <summary>
         /// Deletes the specified custom voice model. Only the owner of a custom voice model can use this method to delete the model.
         /// </summary>

@@ -166,26 +166,22 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
         private void SaveCustomVoiceModel()
         {
             Console.WriteLine("Calling SaveCustomVoiceModel()...");
-            Remove_CustomVoiceModel voiceModel = new Remove_CustomVoiceModel()
+            CustomVoice voiceModel = new CustomVoice()
             {
                 Name = _customVoiceModelName,
                 Description = _customVoiceModelDescription,
                 Language = _customVoiceModelLanguage
             };
 
-            var results = _textToSpeech.SaveCustomVoiceModel(voiceModel);
+            var results = _textToSpeech.CreateCustomModel(voiceModel);
 
             if (results != null)
             {
                 Console.WriteLine("Custom voice model created...");
 
-                _customVoiceModelID = results.Id;
+                _customVoiceModelID = results.CustomizationIdProperty;
 
-                Console.WriteLine(string.Format("Name: {0} | Id: {1} | Language: {2} | Description: {3}",
-                        results.Name,
-                        results.Id,
-                        results.Language,
-                        results.Description));
+                Console.WriteLine($"Id: {results.CustomizationIdProperty}");
             }
             else
             {
@@ -209,22 +205,22 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
                 Id = _customVoiceModelID
             };
 
-            var results = _textToSpeech.SaveCustomVoiceModel(voiceModel);
+            //var results = _textToSpeech.SaveCustomVoiceModel(voiceModel);
 
-            if (results != null)
-            {
-                Console.WriteLine("Custom voice model updated...");
+            //if (results != null)
+            //{
+            //    Console.WriteLine("Custom voice model updated...");
 
-                Console.WriteLine(string.Format("Name: {0} | Id: {1} | Language: {2} | Description: {3}",
-                        results.Name,
-                        results.Id,
-                        results.Language,
-                        results.Description));
-            }
-            else
-            {
-                Console.WriteLine("Failed to update custom voice model.");
-            }
+            //    Console.WriteLine(string.Format("Name: {0} | Id: {1} | Language: {2} | Description: {3}",
+            //            results.Name,
+            //            results.Id,
+            //            results.Language,
+            //            results.Description));
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Failed to update custom voice model.");
+            //}
         }
         #endregion
 
@@ -236,13 +232,13 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.Example
 
             Console.WriteLine(string.Format("Calling GetCustomVoiceModel({0})...", _customVoiceModelID));
 
-            var results = _textToSpeech.GetCustomVoiceModel(_customVoiceModelID);
+            var results = _textToSpeech.ListCustomModel(_customVoiceModelID);
 
             if (results != null)
             {
                 Console.WriteLine(string.Format("Name: {0} | Id: {1} | Language: {2} | Description: {3}",
                         results.Name,
-                        results.Id,
+                        results.CustomizationId,
                         results.Language,
                         results.Description));
             }

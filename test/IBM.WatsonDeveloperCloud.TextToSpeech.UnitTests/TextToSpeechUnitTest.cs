@@ -477,5 +477,171 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.UnitTests
             var pronunciation =
                service.GetPronunciation(text: "This is a pronunciation", customizationId: "customization_id");
         }
+
+        [TestMethod]
+        public void ListCustomModels_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+
+            var customizations = new Customizations()
+            {
+                CustomizationsList = new List<Customization>()
+                {
+                    new Customization()
+                    {
+                        Created = "created",
+                        CustomizationId = "customization_id",
+                        Description = "description",
+                        Language = "language",
+                        LastModified = "last_modified",
+                        Name = "name",
+                        Owner = "owner"
+                    }
+                }
+            };
+
+            request.As<Customizations>()
+                   .Returns(Task.FromResult(customizations));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var result =
+               service.ListCustomModels(language: "language");
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.CustomizationsList);
+            Assert.IsTrue(result.CustomizationsList.Count == 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void ListCustomModels_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(x =>
+                   {
+                       throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                   });
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var result =
+               service.ListCustomModels(language: "language");
+        }
+
+        [TestMethod]
+        public void ListCustomModel_Success()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(request);
+
+            var customizationWords = new CustomizationWords()
+            {
+                Created = "created",
+                CustomizationId = "customization_id",
+                Description = "description",
+                Language = "language",
+                LastModified = "last_modified",
+                Name = "name",
+                Owner = "owner",
+                Words = new List<Word>()
+                {
+                    new Word()
+                    {
+                        PartOfSpeech = "part_of_speech",
+                        Translation = "translation",
+                        WordProperty = "word_property"
+                    }
+                }
+            };
+
+            request.As<CustomizationWords>()
+                   .Returns(Task.FromResult(customizationWords));
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var customization =
+               service.ListCustomModel(customizationId: "customization_id");
+
+            Assert.IsNotNull(customization);
+            Assert.IsNotNull(customization.CustomizationId);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomModel_With_Null_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var customization =
+               service.ListCustomModel(customizationId: null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCustomModel_With_Empty_Text()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var customization =
+               service.ListCustomModel(customizationId: string.Empty);
+        }
+
+        [TestMethod, ExpectedException(typeof(ServiceResponseException))]
+        public void ListCustomModel_Catch_Exception()
+        {
+            IClient client = Substitute.For<IClient>();
+
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                  .Returns(client);
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                      .Returns(x =>
+                      {
+                          throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                   string.Empty));
+                      });
+
+            TextToSpeechService service =
+                new TextToSpeechService(client);
+
+            var customization =
+               service.ListCustomModel(customizationId: "customization_id");
+        }
     }
 }

@@ -1,0 +1,32 @@
+﻿{
+  "version": "1.0.0",
+  "dependencies": {
+    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.0.0",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    },
+    "Newtonsoft.Json": "9.0.1",
+    "System.Runtime.Serialization.Json": "4.0.1"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "System.Runtime.Serialization.Xml": "4.1.1"
+      },
+      "imports": [ "dnxcore50", "portable-net451+win8" ]
+    }
+  },
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "xmlDoc": false,
+    "copyToOutput": [
+      "SpeechToTextTestData\\test-audio.wav",
+      "appsettings.json",
+      "SpeechToTextTestData\\test-stt-corpus.txt",
+      "./test-audio.wav"
+    ]
+  }
+}

@@ -1,5 +1,11 @@
 Change Log
 ==========
+## Version 1.0.0
+_2017-06_19_
+* Breaking Change: Refactor SDK to integrate generated services including adding service version to the package namespace.
+* New: Generate services for `Personality Insights`, `Tone Analyzer`, `Conversation`, `Natural Language Understanding` and `Discovery` via Swagger Codegen.
+* Integration and unit test for all generated services.
+
 ## Version 0.2.0
 _2017-04-25_
 

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "title": "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1",
+  "description": "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1 wraps the Watson Developer Cloud Natural Language Understanding service (http://www.ibm.com/watson/developercloud/natural-language-understanding.html)",
+  "dependencies": {
+    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3",
+    "Newtonsoft.Json": "9.0.1",
+    "System.Runtime.Serialization.Json": "4.0.1"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": [ "dnxcore50", "net451" ],
+      "dependencies": {
+        "System.Runtime.Serialization.Xml": "4.1.1"
+      }
+    }
+  },
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
+  },
+  "buildOptions": {
+    "xmlDoc": false
+  }
+}

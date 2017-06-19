@@ -7,7 +7,8 @@
 *.userosscache
 *.sln.docstates
 config
-
+packages/
+coverage/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -236,4 +237,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 /src/IBM.WatsonDeveloperCloud.LanguageTranslator.Test/appsettings.json
-/test/IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests/appsettings.json
+/test/IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests/appsettings.json

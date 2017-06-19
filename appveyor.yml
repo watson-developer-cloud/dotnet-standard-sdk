@@ -57,7 +57,7 @@ after_build:
     .\packages\Doxygen.1.8.13\tools\doxygen.exe Doxyfile
 
 
-    If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "release")
+    If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "master")
 
     {
         git config --global user.email "wps@us.ibm.com"
@@ -119,5 +119,5 @@ deploy:
   api_key:
     secure: AaqUbQ5mJm8bYbpNH7GbAzYl45fZZHpqeNdtSd0wQNxjgYmLmvtMU5eByA/mkhxB
   on:
-    branch: release
+    branch: master
     APPVEYOR_REPO_TAG: true

@@ -1,0 +1,26 @@
+var interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service =
+[
+    [ "AddDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a9be8ebe35cf2ea170c4a25578a948746", null ],
+    [ "CreateCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a529ab1f5548a22213778ec835d35d575", null ],
+    [ "CreateConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a6349cb6e1765a560d8d9a8b112f07189", null ],
+    [ "CreateEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a9af0b978039e0ae982b76d70f59c2e1d", null ],
+    [ "DeleteCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1a937fb0949741a573dd759e9726493f", null ],
+    [ "DeleteConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a0598967a6d66afd0b6e1c6557059af83", null ],
+    [ "DeleteDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#add097fd2d9f2e54dc6c67f92591d2502", null ],
+    [ "DeleteEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#af2f7acbe8145061ae6a795774802b98b", null ],
+    [ "GetCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1fcbfc4747d3406c638c95a82234710b", null ],
+    [ "GetConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a954cfdebee34096f10ae89d10764c41a", null ],
+    [ "GetDocumentStatus", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aba9884f3b6dc2ce3e2e111652af8ab34", null ],
+    [ "GetEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a88ea90c2e7b1b8cd38f27476ef163249", null ],
+    [ "ListCollectionFields", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a55295bab09f3425beb592cbbec11fcc3", null ],
+    [ "ListCollections", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a3515515e2e4b8e81693736f6e4be3e30", null ],
+    [ "ListConfigurations", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ae457b4deeff50111b81a7b04949d28e3", null ],
+    [ "ListEnvironments", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a11b3a909c96657c32d71374f28bf68ec", null ],
+    [ "Query", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abf783b2c87655635b5d377e0a46ddf6c", null ],
+    [ "QueryNotices", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a30bae1c4e4d7af1258fff344e3698c8a", null ],
+    [ "TestConfigurationInEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a98f7db619d451f2e3ff6c9d6cadd66df", null ],
+    [ "UpdateCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#af76c798fc280280bbfdfe74581f93d53", null ],
+    [ "UpdateConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad35a7a4bb49334998535c0e4e7328ea9", null ],
+    [ "UpdateDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a2ee7629c43a4555552ab0be0055f61b0", null ],
+    [ "UpdateEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa68cfdd694d08b71d8510fb3253322d8", null ]
+];

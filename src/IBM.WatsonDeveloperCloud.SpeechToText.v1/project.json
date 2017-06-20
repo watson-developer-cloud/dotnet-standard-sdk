@@ -30,7 +30,6 @@
     "summary": "IBM.WatsonDeveloperCloud.SpeechToText wraps the Watson Developer Cloud Speech to Text service (http://www.ibm.com/watson/developercloud/speech-to-text.html)",
     "tags": [ "watson", "cognitive", "speech", "vision", "machine-learning", "ml", "ai", "artificial-intelligence", ".NET", ".NET-Standard" ],
     "iconUrl": "https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png",
-    "projectUrl": "https://github.com/watson-developer-cloud/dotnet-standard-sdk",
-    "authors": [ "Watson Developer Cloud" ]
+    "projectUrl": "https://github.com/watson-developer-cloud/dotnet-standard-sdk"
   }
 }

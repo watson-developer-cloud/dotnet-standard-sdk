@@ -1,10 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"d2/d26/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_moa61c137ae08bf7061f8d0bc4b92c93d8.html#a3018c22fbae26622cf0d69f15cc85b6f":[1,0,0,0,3,0,0,0,0,3],
-"d2/d26/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_moa61c137ae08bf7061f8d0bc4b92c93d8.html#ae04525b41fd4377bf31d5ef45f050f77":[1,0,0,0,3,0,0,0,0,2],
-"d2/d27/_system_response_8cs.html":[2,0,0,1,0,36],
-"d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[1,0,0,0,0],
-"d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[0,0,0,0,0],
 "d2/d65/namespace_i_b_m_1_1_watson_developer_cloud.html":[1,0,0,0],
 "d2/d65/namespace_i_b_m_1_1_watson_developer_cloud.html":[0,0,0,0],
 "d2/d6b/_field_8cs.html":[2,0,0,2,0,17],
@@ -101,10 +96,6 @@ var NAVTREEINDEX1 =
 "d3/d7d/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_phoneme.html#a84878ea100288245641c019d0fe5bdd7":[1,0,0,0,9,0,0,5,2],
 "d3/d7d/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_phoneme.html#a9b982e01775bfc87040c6c720346223f":[1,0,0,0,9,0,0,5,0],
 "d3/d7d/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_phoneme.html#ad31a661a90f34e12e8bc5085dc9efde0":[1,0,0,0,9,0,0,5,3],
-"d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple.html":[1,0,0,0,12,0,0,33],
-"d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple.html#a3203a48608ee638120c8ceb59940070f":[1,0,0,0,12,0,0,33,0],
-"d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple.html#aa2fc3e27d498e303d4f30b59602b1ab1":[1,0,0,0,12,0,0,33,2],
-"d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple.html#ab0542c7c572fda6b983b8f7eb9157216":[1,0,0,0,12,0,0,33,1],
 "d3/d91/_i_text_to_speech_service_8cs.html":[2,0,0,7,3],
 "d3/d93/_dialog_node_response_8cs.html":[2,0,0,1,0,9],
 "d3/d98/_error_info_with_code_8cs.html":[2,0,0,9,0,11],
@@ -249,5 +240,14 @@ var NAVTREEINDEX1 =
 "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html":[1,0,0,0,0,0,0,12],
 "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a47ccee2adffedd7a6394e79b63a2d80d":[1,0,0,0,0,0,0,12,2],
 "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a4baf0de468d7b7523dc653522a480edb":[1,0,0,0,0,0,0,12,3],
-"d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a7f80e45d60e0704f931e7a4c69869b98":[1,0,0,0,0,0,0,12,5]
+"d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#a7f80e45d60e0704f931e7a4c69869b98":[1,0,0,0,0,0,0,12,5],
+"d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#aa1523fa5bef7410fb31dae2655f5dc0d":[1,0,0,0,0,0,0,12,1],
+"d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#ad93f1d86392fa5646e99f6e681c15f4b":[1,0,0,0,0,0,0,12,0],
+"d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html#ae2161617f67e8b83a02b37ef1dd5a877":[1,0,0,0,0,0,0,12,4],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html":[1,0,0,0,2,0,0],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html#a2da5f20947c1e5f4483a7466006dcaeb":[1,0,0,0,2,0,0,2],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html#a5fb04a798ecc493e6ca67c31a081cddd":[1,0,0,0,2,0,0,0],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html#a8ef8ab07476df2608854388d1d22efb7":[1,0,0,0,2,0,0,4],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html#adc12125dd4aa8e411e9e3255466ad666":[1,0,0,0,2,0,0,3],
+"d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html#af5ebd5b20b2049c7b88f75ae561d1bdd":[1,0,0,0,2,0,0,1]
 };

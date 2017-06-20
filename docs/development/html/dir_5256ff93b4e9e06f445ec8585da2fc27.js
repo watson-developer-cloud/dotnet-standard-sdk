@@ -91,21 +91,6 @@ var dir_5256ff93b4e9e06f445ec8585da2fc27 =
     [ "SimilarImagesConfig.cs", "dd/dff/_similar_images_config_8cs.html", [
       [ "SimilarImagesConfig", "d6/d0e/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_similar_images_config.html", "d6/d0e/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_similar_images_config" ]
     ] ],
-    [ "TextRecogOneWord.cs", "db/d95/_text_recog_one_word_8cs.html", [
-      [ "TextRecogOneWord", "d8/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_one_word.html", "d8/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_one_word" ]
-    ] ],
-    [ "TextRecogOneWordLocation.cs", "da/d6a/_text_recog_one_word_location_8cs.html", [
-      [ "TextRecogOneWordLocation", "db/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_one_word_location.html", "db/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_one_word_location" ]
-    ] ],
-    [ "TextRecogTopLevelMultiple.cs", "d1/d10/_text_recog_top_level_multiple_8cs.html", [
-      [ "TextRecogTopLevelMultiple", "d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple.html", "d3/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_multiple" ]
-    ] ],
-    [ "TextRecogTopLevelSingle.cs", "de/d6b/_text_recog_top_level_single_8cs.html", [
-      [ "TextRecogTopLevelSingle", "d5/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_single.html", "d5/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_text_recog_top_level_single" ]
-    ] ],
-    [ "TopLevelMultiple.cs", "d6/d75/_top_level_multiple_8cs.html", [
-      [ "TopLevelMultiple", "d1/dfc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_top_level_multiple.html", "d1/dfc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_top_level_multiple" ]
-    ] ],
     [ "WarningInfo.cs", "db/d1c/_warning_info_8cs.html", [
       [ "WarningInfo", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info" ]
     ] ]

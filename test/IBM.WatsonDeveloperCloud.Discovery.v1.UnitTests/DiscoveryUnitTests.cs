@@ -639,6 +639,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
             Assert.IsNull(result.ConfigurationId);
             Assert.IsNull(result.Status);
             Assert.IsNull(result.EnrichedFieldUnits);
@@ -699,6 +704,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -753,6 +763,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -808,6 +823,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -1244,6 +1264,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -2166,6 +2191,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -2341,6 +2371,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
             Assert.IsNull(result.DocumentId);
             Assert.IsNull(result.ConfigurationId);
             Assert.IsNotNull(result.Created);
@@ -2441,6 +2476,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -2484,6 +2524,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
+            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].Created);
+            Assert.IsNull(result.Notices[0].DocumentId);
+            Assert.IsNull(result.Notices[0].Step);
+            Assert.IsNull(result.Notices[0].Description);
         }
         #endregion
         #endregion

@@ -1012,6 +1012,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNull(result.Configurations[0].ConfigurationId);
             Assert.IsNotNull(result.Configurations[0].Created);
             Assert.IsNotNull(result.Configurations[0].Updated);
+            Assert.IsNotNull(result.Configurations[0].Enrichments);
+            Assert.IsTrue(result.Configurations[0].Enrichments.Count > 0);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Description == "description");
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].SourceField == "sourceField");
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Overwrite == false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].EnrichmentName == "enrichmentName");
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].IgnoreDownstreamErrors == false);
+            Assert.IsNotNull(result.Configurations[0].Enrichments[0].Options);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Language == EnrichmentOptions.LanguageEnum.EN);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Extract == "extract");
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Sentiment == false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Quotations == false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.ShowSourceText== false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.HierarchicalTypedRelations == false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Model == "model");
         }
         #endregion
 

@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud": "1.0.0"
+   "IBM.WatsonDeveloperCloud": "1.1.0"
 }
 
 ```

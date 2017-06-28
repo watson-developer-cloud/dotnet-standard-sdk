@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.0.0"
+   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.1.0"
 }
 
 ```

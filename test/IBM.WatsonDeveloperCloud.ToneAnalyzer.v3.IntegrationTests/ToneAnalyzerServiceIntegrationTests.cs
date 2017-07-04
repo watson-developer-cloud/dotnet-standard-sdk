@@ -89,7 +89,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.UtterancesTone.Count > 0);
-            Assert.IsTrue(result.UtterancesTone[0].Tones.Count > 0);
         }
     }
 }

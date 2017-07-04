@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "IBM.WatsonDeveloperCloud.Conversation.v1",
   "description": "IBM.WatsonDeveloperCloud.Conversation.v1 wraps the Watson Developer Cloud Conversation service (http://www.ibm.com/watson/developercloud/conversation.html)",
+  "authors": [ "Watson Developer Cloud" ],
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "1.0.0",
+    "IBM.WatsonDeveloperCloud": "1.1.0",
     "NETStandard.Library": "1.6.0",
-    "Microsoft.AspNet.WebApi.Client": "5.2.3",
-    "Newtonsoft.Json": "9.0.1",
-    "System.Runtime.Serialization.Json": "4.0.1"
+    "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
-    "netstandard1.6": {
-      "imports": [ "dnxcore50", "net451" ],
-      "dependencies": {
-        "System.Runtime.Serialization.Xml": "4.1.1"
-      }
-    }
+    "netstandard1.3": { }
   },
   "scripts": {
     "postcompile": [
@@ -24,5 +18,11 @@
   },
   "buildOptions": {
     "xmlDoc": false
+  },
+  "packOptions": {
+    "summary": "IBM.WatsonDeveloperCloud.Conversation.v1 wraps the Watson Developer Cloud Conversation service (http://www.ibm.com/watson/developercloud/conversation.html)",
+    "tags": [ "watson", "cognitive", "speech", "vision", "machine-learning", "ml", "ai", "artificial-intelligence", ".NET", ".NET-Standard" ],
+    "iconUrl": "https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png",
+    "projectUrl": "https://github.com/watson-developer-cloud/dotnet-standard-sdk"
   }
 }

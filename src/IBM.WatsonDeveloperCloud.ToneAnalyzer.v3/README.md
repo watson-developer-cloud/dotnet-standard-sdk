@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3/)
+
 ### Tone Analyzer
 
 The IBM Watson™ [Tone Analyzer Service][tone-analyzer] uses linguistic analysis to detect three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and emotional range. Identified writing styles include confident, analytical, and tentative.
@@ -13,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.0.0"
+   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.1.0"
 }
 
 ```

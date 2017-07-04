@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0",
+  "version": "1.1.0",
   "buildOptions": {
     "emitEntryPoint": true,
     "copyToOutput": {
@@ -8,23 +8,16 @@
   },
 
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "1.0.0",
-    "IBM.WatsonDeveloperCloud.Discovery.v1": "1.0.0",
-    "Microsoft.AspNet.WebApi.Client": "5.2.3",
+    "IBM.WatsonDeveloperCloud": "1.1.0",
+    "IBM.WatsonDeveloperCloud.Discovery.v1": "1.1.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"
     },
-    "Newtonsoft.Json": "9.0.1",
-    "System.Runtime.Serialization.Json": "4.0.1"
+    "Newtonsoft.Json": "9.0.1"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
-      "dependencies": {
-        "System.Runtime.Serialization.Xml": "4.1.1"
-      },
-      "imports": [ "dnxcore50", "portable-net451+win8" ]
-    }
+    "netcoreapp1.0": { }
   }
 }

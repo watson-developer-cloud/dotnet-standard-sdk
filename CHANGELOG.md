@@ -1,5 +1,9 @@
 Change Log
 ==========
+## Version 1.1.0
+_2017-06-30_
+* Fix: Include support for Xamarin Android, Xamarin iOS and .NET Core App (4.6>).
+
 ## Version 1.0.0
 _2017-06_19_
 * Breaking Change: Refactor SDK to integrate generated services including adding service version to the package namespace.

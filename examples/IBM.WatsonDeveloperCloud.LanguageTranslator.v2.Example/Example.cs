@@ -14,8 +14,9 @@
 * limitations under the License.
 *
 */
-
 using System;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 {
@@ -23,10 +24,13 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
     {
         static void Main(string[] args)
         {
-            string _username = "<username>";
-            string _password = "<password>";
+            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            var fileContent = File.ReadAllText(environmentVariable);
+            var vcapServices = JObject.Parse(fileContent);
+            var _username = vcapServices["language_translator"][0]["credentials"]["username"];
+            var _password = vcapServices["language_translator"][0]["credentials"]["password"];
 
-            LanguageTranslatorServiceExample _languageTranslatorExample = new LanguageTranslatorServiceExample(_username, _password);
+            LanguageTranslatorServiceExample _languageTranslatorExample = new LanguageTranslatorServiceExample(_username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

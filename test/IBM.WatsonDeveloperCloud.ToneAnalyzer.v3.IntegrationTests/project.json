@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
 
   "testRunner": "mstest",
 
@@ -17,7 +17,7 @@
     "OpenCover": "4.6.519",
     "coveralls.net": "0.7.0",
     "ReportGenerator": "2.4.5",
-    "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.0.0"
+    "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.1.0"
   },
 
   "frameworks": {
@@ -27,7 +27,6 @@
           "type": "platform",
           "version": "1.0.0"
         }
-        //"System.Runtime.Serialization.Xml": "4.1.1"
       },
       "imports": [
         "dotnet5.4",

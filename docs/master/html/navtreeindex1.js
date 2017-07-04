@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"d2/d65/namespace_i_b_m_1_1_watson_developer_cloud.html":[1,0,0,0],
 "d2/d65/namespace_i_b_m_1_1_watson_developer_cloud.html":[0,0,0,0],
 "d2/d6b/_field_8cs.html":[2,0,0,2,0,17],
 "d2/d6b/_intent_collection_response_8cs.html":[2,0,0,1,0,16],
@@ -57,8 +56,10 @@ var NAVTREEINDEX1 =
 "d2/dc5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument.html#a402f97c688b798e38cca3db6a11c3346":[1,0,0,0,4,0,0,23,0],
 "d2/dc5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument.html#a755867e54ea9be11e92360e38e99d6ab":[1,0,0,0,4,0,0,23,1],
 "d2/dc8/_create_workspace_8cs.html":[2,0,0,1,0,8],
+"d2/dcd/obj_2_release_2netstandard1_83_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,0,1,0,0,0],
 "d2/dd6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1.html":[0,0,0,0,4,0],
 "d2/dd6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1.html":[1,0,0,0,4,0],
+"d2/ded/_conversation_8v1_2obj_2_release_2netstandard1_83_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,1,1,0,0,0],
 "d2/df4/_visual_recognition_service_8cs.html":[2,0,0,9,4],
 "d2/dfa/_discovery_service_8cs.html":[2,0,0,2,2],
 "d3/d00/_query_notices_result_8cs.html":[2,0,0,2,0,33],
@@ -75,7 +76,6 @@ var NAVTREEINDEX1 =
 "d3/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_semantic_roles_action.html#a0e26682778c78c913d86caca7c324ab6":[1,0,0,0,4,0,0,27,2],
 "d3/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_semantic_roles_action.html#a71f3218bfd1b20babb9f2cd0527e4548":[1,0,0,0,4,0,0,27,1],
 "d3/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_semantic_roles_action.html#ae5a212bffca3b67510992f64926341a9":[1,0,0,0,4,0,0,27,0],
-"d3/d34/obj_2_release_2netstandard1_86_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,0,1,0,0,0],
 "d3/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_result.html":[1,0,0,0,8,0,0,20],
 "d3/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_result.html#a19bc8813623e2ea7b487d2691027a53a":[1,0,0,0,8,0,0,20,1],
 "d3/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_result.html#a7ef086067b5deadc3c28cfd73d5cf8b4":[1,0,0,0,8,0,0,20,0],

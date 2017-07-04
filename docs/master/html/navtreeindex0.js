@@ -13,7 +13,6 @@ var NAVTREEINDEX0 =
 "d0/d31/_features_8cs.html":[2,0,0,4,0,15],
 "d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models.html":[1,0,0,0,3,0,0,1],
 "d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models.html#a526f27faf2f41e4a33bbae330a8027a0":[1,0,0,0,3,0,0,1,0],
-"d0/d35/_visual_recognition_8v3_2obj_2_release_2netstandard1_86_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,9,1,0,0,0],
 "d0/d46/_create_dialog_node_8cs.html":[2,0,0,1,0,2],
 "d0/d4b/_document_snapshot_8cs.html":[2,0,0,2,0,13],
 "d0/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_entity.html":[1,0,0,0,0,0,0,37],
@@ -37,7 +36,6 @@ var NAVTREEINDEX0 =
 "d0/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection_response.html":[1,0,0,0,0,0,0,43],
 "d0/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection_response.html#a748f016065459a7a84f563a125f4cdf4":[1,0,0,0,0,0,0,43,0],
 "d0/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection_response.html#a8b8bc9f82ea27fab146de72a276c1a72":[1,0,0,0,0,0,0,43,1],
-"d0/d76/_discovery_8v1_2obj_2_release_2netstandard1_86_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,2,1,0,0,0],
 "d0/d83/_error_converter_8cs.html":[2,0,0,0,0,0,1],
 "d0/d8b/_delete_collection_response_8cs.html":[2,0,0,2,0,6],
 "d0/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_model_options.html":[1,0,0,0,3,0,0,0],
@@ -69,6 +67,7 @@ var NAVTREEINDEX0 =
 "d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features.html#adfd9e8b5a4da9370c516ed663a0b1638":[1,0,0,0,4,0,0,15,1],
 "d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features.html#af4763e15b0b475bb64a46067d7fd5319":[1,0,0,0,4,0,0,15,6],
 "d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features.html#af8b4817098bdef370f9fbcb9f109f2b7":[1,0,0,0,4,0,0,15,5],
+"d0/dee/_speech_to_text_8v1_2obj_2_release_2netstandard1_83_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,6,1,0,0,0],
 "d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html":[1,0,0,0,10,0,1],
 "d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a85285989b1118f0ff15f30bd827d58c8":[1,0,0,0,10,0,1,1],
 "d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#aa8790d4b1f16cdeaf88b73856cceaf21":[1,0,0,0,10,0,1,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "d2/d26/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_moa61c137ae08bf7061f8d0bc4b92c93d8.html#ae04525b41fd4377bf31d5ef45f050f77":[1,0,0,0,3,0,0,0,0,2],
 "d2/d27/_system_response_8cs.html":[2,0,0,1,0,36],
 "d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[1,0,0,0,0],
-"d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[0,0,0,0,0]
+"d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[0,0,0,0,0],
+"d2/d65/namespace_i_b_m_1_1_watson_developer_cloud.html":[1,0,0,0]
 };

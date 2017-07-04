@@ -1,10 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#a7c07deafe2f24d69a3e0dfd488ddaa27":[1,0,0,0,1,0,0,4,3],
-"da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3":[1,0,0,0,1,0,0,4,0],
-"da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a04c19fa1e772ab66f0aad2efe61f25cd":[1,0,0,0,1,0,0,4,0,1],
-"da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a3a52f3c22ed6fcde5bf696a6c02c9e73":[1,0,0,0,1,0,0,4,0,2],
-"da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3aaa85f1840e282d8a8304dbc2c0d7c9b2":[1,0,0,0,1,0,0,4,0,0],
 "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#aee13b92c049a17ba5c7f6ad8d18f6875":[1,0,0,0,1,0,0,4,4],
 "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#affec48603a03f42130e22ce50d8279a8":[1,0,0,0,1,0,0,4,2],
 "da/d72/_test_document_8cs.html":[2,0,0,2,0,36],
@@ -39,8 +34,8 @@ var NAVTREEINDEX5 =
 "da/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html#a7122af9af698a2d1124ecf0669554a8e":[1,0,0,0,4,0,0,17,1],
 "da/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html#ab80623fecda2219acc73c805036fa22c":[1,0,0,0,4,0,0,17,0],
 "da/dd5/_document_counts_8cs.html":[2,0,0,2,0,12],
-"da/dd8/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model.html":[0,0,0,0,1,0,0],
 "da/dd8/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model.html":[1,0,0,0,1,0,0],
+"da/dd8/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model.html":[0,0,0,0,1,0,0],
 "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech.html":[1,0,0,0,9],
 "da/ddb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech.html":[0,0,0,0,9],
 "da/de0/_value_collection_response_8cs.html":[2,0,0,1,0,43],
@@ -118,6 +113,7 @@ var NAVTREEINDEX5 =
 "db/d22/_speech_recognition_alternative_8cs.html":[2,0,0,6,0,16],
 "db/d23/_trait_tree_node_8cs.html":[2,0,0,5,0,6],
 "db/d33/_speech_to_text_service_8cs.html":[2,0,0,6,5],
+"db/d48/_tone_analyzer_8v3_2obj_2_release_2netstandard1_83_2dotnet-compile_8assemblyinfo_8cs.html":[2,0,0,8,1,0,0,0],
 "db/d50/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait_tree_node.html":[1,0,0,0,5,0,0,6],
 "db/d50/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait_tree_node.html#a1083c80648c9fd19ec38b0c68906f64a":[1,0,0,0,5,0,0,6,1],
 "db/d50/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait_tree_node.html#a98b1984e9de3e30a559eec537c5d7b2b":[1,0,0,0,5,0,0,6,0],
@@ -249,5 +245,9 @@ var NAVTREEINDEX5 =
 "dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html#a37a7b9db1824192673ec89523eaa9041":[1,0,0,0,0,0,0,44,0],
 "dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html#aa3a0c9e5acc246135d520b6cd0fd6a4f":[1,0,0,0,0,0,0,44,1],
 "dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html#aaf9c2b3b5c36c1dfecd679030f98ad98":[1,0,0,0,0,0,0,44,2],
-"dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html#abbd9a73fe3f9e97c8e3952a910146309":[1,0,0,0,0,0,0,44,4]
+"dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html#abbd9a73fe3f9e97c8e3952a910146309":[1,0,0,0,0,0,0,44,4],
+"dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html":[1,0,0,0,8,0,0,0],
+"dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html#a7706a7adeefab714ab8359b8452b2207":[1,0,0,0,8,0,0,0,0],
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html":[1,0,0,0,2,3],
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a052dbce8bb6f75951c9fc9b22349a1ad":[1,0,0,0,2,3,27]
 };

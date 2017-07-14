@@ -16,12 +16,12 @@
 */
 
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 
@@ -32,7 +32,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         const string SERVICE_NAME = "text_to_speech";
 
         const string PATH_VOICES = "/v1/voices";
-        const string PATH_VOICE = PATH_VOICES + "/{0}";
         const string PATH_SYNTHESIZE = "/v1/synthesize";
         const string PATH_PRONUNCIATION = "/v1/pronunciation";
         const string PATH_CUSTOMIZATIONS = "/v1/customizations";
@@ -73,128 +72,236 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             this.Client = httpClient;
         }
 
-        public List<Voice> GetVoices()
+        public VoiceSet GetVoices()
         {
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_VOICES)
-                          .As<Voices>()
-                          .Result.VoiceList;
+            VoiceSet result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .GetAsync($"{this.Endpoint}{PATH_VOICES}")
+                          .As<VoiceSet>()
+                          .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public Voice GetVoice(string voiceName)
+        public VoiceCustomization GetVoice(string voiceName, string customizationId = "")
         {
             if (string.IsNullOrEmpty(voiceName))
-                throw new ArgumentNullException("Parameter 'voiceName' must be provided");
+                throw new ArgumentNullException($"The parameter {nameof(voiceName)} must be provided");
 
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_VOICE, voiceName))
-                          .As<Voice>()
-                          .Result;
+            VoiceCustomization result;
 
+            try
+            {
+                var request =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .GetAsync($"{this.Endpoint}{PATH_VOICES}/{voiceName}");
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+
+                result =
+                    request.As<VoiceCustomization>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public Pronunciation GetPronunciation(string text)
-        {
-            return GetPronunciation(text, null, null);
-        }
-
-        public Pronunciation GetPronunciation(string text, Voice voice)
-        {
-            return GetPronunciation(text, voice, null);
-        }
-
-        public Pronunciation GetPronunciation(string text, Voice voice = null, Phoneme phoneme = null)
-        {
-            return getPronunciation(text, voice, phoneme);
-        }
-
-        private Pronunciation getPronunciation(string text, Voice voice, Phoneme phoneme)
-        {
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("Parameter 'text' must be provided");
-
-            var builder =
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_PRONUNCIATION)
-                          .WithArgument("text", text);
-
-            if (voice != null)
-                builder.WithArgument("voice", voice.Name);
-
-            if (phoneme != null)
-                builder.WithArgument("format", phoneme.Value);
-
-            return builder.As<Pronunciation>().Result;
-        }
-
-        public Stream Synthesize(string text, Voice voice)
-        {
-            return synthesize(text, voice, AudioType.OGG);
-        }
-
-        public Stream Synthesize(string text, Voice voice, AudioType audioType)
-        {
-            return synthesize(text, voice, audioType);
-        }
-
-        private Stream synthesize(string text, Voice voice, AudioType audioType)
+        public byte[] Synthesize(string text, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "")
         {
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("Parameter 'text' must be provided");
+                throw new ArgumentNullException($"The parameter {nameof(text)} must be provided");
 
-            if (voice == null)
-                throw new ArgumentNullException("Parameter 'voice' must be provided");
-
-            if (audioType == null)
-                throw new ArgumentNullException("Parameter 'audioType' must be provided");
-
-            var builder =
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_SYNTHESIZE)
-                          .WithArgument("text", text)
-                          .WithArgument("voice", voice.Name)
-                          .WithArgument("accept", audioType.Value);
-
-            return new MemoryStream(builder.AsByteArray().Result);
+            return Synthesize(text: text,
+                              body: null,
+                              accept: accept,
+                              voice: voice,
+                              customizationId: customizationId);
         }
 
-        public List<CustomVoiceModel> GetCustomVoiceModels()
+        public byte[] Synthesize(Text body, string accept = "audio/ogg;codecs=opus", string voice = "en-US_MichaelVoice", string customizationId = "")
         {
-            return this.GetCustomVoiceModels(null);
+            if (body == null)
+                throw new ArgumentNullException($"The parameter {nameof(body)} must be provided");
+
+            if (string.IsNullOrEmpty(body.TextProperty))
+                throw new ArgumentNullException($"The parameter {nameof(body.TextProperty)} must be provided");
+
+            return Synthesize(text: null,
+                              body: body,
+                              accept: accept,
+                              voice: voice,
+                              customizationId: customizationId);
         }
 
-        public List<CustomVoiceModel> GetCustomVoiceModels(string language)
+        private byte[] Synthesize(string text, Text body, string accept, string voice, string customizationId)
         {
-            var ret = Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_CUSTOMIZATIONS);
+            byte[] result = null;
 
-            if (!string.IsNullOrEmpty(language))
-                ret.WithArgument("language", language);
+            IRequest request = null;
 
-            return ret.As<CustomVoiceModels>()
-                          .Result.CustomVoiceList;
+            try
+            {
+                if (body == null)
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                                   .GetAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
+                                   .WithHeader("Accept", accept)
+                                   .WithArgument("accept", accept)
+                                   .WithArgument("voice", voice)
+                                   .WithArgument("text", text);
+                }
+                else
+                {
+                    request =
+                        this.Client.WithAuthentication(this.UserName, this.Password)
+                                   .PostAsync($"{this.Endpoint}{PATH_SYNTHESIZE}")
+                                   .WithHeader("Accept", accept)
+                                   .WithArgument("accept", accept)
+                                   .WithArgument("voice", voice)
+                                   .WithBody<Text>(body);
+                }
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+
+                result =
+                    request.AsByteArray()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public CustomVoiceModel GetCustomVoiceModel(string modelId)
+        public Pronunciation GetPronunciation(string text, string voice = "en-US_MichaelVoice", string format = "ipa", string customizationId = "")
         {
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException("ModelId must not be empty");
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException($"The parameter {nameof(text)} must be provided");
 
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelId))
-                          .As<CustomVoiceModel>()
+            Pronunciation result = null;
+
+            try
+            {
+                var request =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{this.Endpoint}{PATH_PRONUNCIATION}")
+                               .WithArgument("text", text);
+
+                if (!string.IsNullOrEmpty(voice))
+                    request.WithArgument("voice", voice);
+
+                if (!string.IsNullOrEmpty(format))
+                    request.WithArgument("format", format);
+
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customizationId", customizationId);
+
+                result =
+                    request.As<Pronunciation>()
+                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public Customizations ListCustomModels(string language = "")
+        {
+            Customizations result = null;
+
+            try
+            {
+                var ret =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}");
+
+                if (!string.IsNullOrEmpty(language))
+                    ret.WithArgument("language", language);
+
+                result =
+                    ret.As<Customizations>()
+                       .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        public CustomizationWords ListCustomModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException($"The parameter {nameof(customizationId)} must be provided");
+
+            CustomizationWords result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .GetAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}/{customizationId}")
+                          .As<CustomizationWords>()
                           .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public CustomVoiceModel SaveCustomVoiceModel(CustomVoiceModel model)
+        public CustomizationID CreateCustomModel(CustomVoice customVoice)
         {
-            if (string.IsNullOrEmpty(model.Id))
-                return saveNewCustomVoiceModel(model);
-            else
-                return updateCustomVoiceModel(model);
+            if (customVoice == null)
+                throw new ArgumentNullException($"The parameter {nameof(customVoice)} must be provided");
+
+            if (string.IsNullOrEmpty(customVoice.Name))
+                throw new ArgumentNullException($"The parameter {nameof(customVoice.Name)} must be provided");
+
+            CustomizationID result = null;
+
+            try
+            {
+                result =
+                    Client.WithAuthentication(this.UserName, this.Password)
+                          .PostAsync($"{this.Endpoint}{PATH_CUSTOMIZATIONS}")
+                          .WithBody<CustomVoice>(customVoice)
+                          .As<CustomizationID>()
+                          .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
         }
 
-        public CustomVoiceModel updateCustomVoiceModel(CustomVoiceModel model)
+        public Remove_CustomVoiceModel updateCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             string path = string.Format(PATH_CUSTOMIZATION, model.Id);
 
@@ -215,7 +322,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return model;
         }
 
-        private CustomVoiceModel saveNewCustomVoiceModel(CustomVoiceModel model)
+        private Remove_CustomVoiceModel saveNewCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             string path = PATH_CUSTOMIZATIONS;
 
@@ -230,7 +337,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 Client.WithAuthentication(this.UserName, this.Password)
                     .PostAsync(this.Endpoint + path)
                     .WithBody<CustomVoiceModelCreate>(createModel)
-                    .As<CustomVoiceModel>()
+                    .As<Remove_CustomVoiceModel>()
                     .Result;
 
             model.Id = retorno.Id;
@@ -238,7 +345,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             return model;
         }
 
-        public void DeleteCustomVoiceModel(CustomVoiceModel model)
+        public void DeleteCustomVoiceModel(Remove_CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -256,7 +363,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                           .AsMessage();
         }
 
-        public List<CustomWordTranslation> GetWords(CustomVoiceModel model)
+        public List<CustomWordTranslation> GetWords(Remove_CustomVoiceModel model)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -275,12 +382,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                           .Result.Words;
         }
 
-        public void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations)
+        public void SaveWords(Remove_CustomVoiceModel model, params CustomWordTranslation[] translations)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
 
-            if (translations.Length ==0)
+            if (translations.Length == 0)
                 throw new Exception("Must have at least one word to save");
 
             SaveWords(model.Id, translations);
@@ -305,7 +412,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                       .AsMessage().Result;
         }
 
-        public void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation)
+        public void DeleteWord(Remove_CustomVoiceModel model, CustomWordTranslation translation)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");
@@ -327,7 +434,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             DeleteWord(modelID, translation.Word);
         }
 
-        public void DeleteWord(CustomVoiceModel model, string word)
+        public void DeleteWord(Remove_CustomVoiceModel model, string word)
         {
             if (string.IsNullOrEmpty(model.Id))
                 throw new ArgumentNullException("Model id must not be empty");

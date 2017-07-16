@@ -32,9 +32,20 @@ namespace IBM.WatsonDeveloperCloud.Http.Filters
                 ServiceResponseException exception =
                     new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase}");
 
-                var jsonError = responseMessage.Content.ReadAsStringAsync().Result;
+                var error = responseMessage.Content.ReadAsStringAsync().Result;
 
-                exception.Error = JsonConvert.DeserializeObject<Error>(jsonError);
+                if (responseMessage.Content.Headers.ContentType.MediaType == HttpMediaType.APPLICATION_JSON)
+                {
+                    exception.Error = JsonConvert.DeserializeObject<Error>(error);
+                }
+                else
+                {
+                    exception.Error = new Error()
+                    {
+                        CodeDescription = responseMessage.StatusCode.ToString(),
+                        Message = error
+                    };
+                }
 
                 throw exception;
             }

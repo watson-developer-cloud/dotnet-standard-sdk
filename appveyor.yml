@@ -5,8 +5,6 @@ branches:
 configuration: Release
 platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
-hosts:
-  api.nuget.org: 93.184.221.200
 environment:
   COVERALLS_REPO_TOKEN:
     secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME
@@ -15,6 +13,8 @@ environment:
   CRED_SECRET:
     secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8=
   VCAP_SERVICES: C:\projects\dotnet-standard-sdk\config
+hosts:
+  api.nuget.org: 93.184.221.200
 install:
 - cmd: >-
     rm -rf packages

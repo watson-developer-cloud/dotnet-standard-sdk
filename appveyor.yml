@@ -5,6 +5,8 @@ branches:
 configuration: Release
 platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
+hosts:
+  api.nuget.org: 93.184.221.200
 environment:
   COVERALLS_REPO_TOKEN:
     secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME

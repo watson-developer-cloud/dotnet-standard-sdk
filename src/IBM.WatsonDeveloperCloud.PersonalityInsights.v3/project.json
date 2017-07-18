@@ -1,10 +1,10 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "title": "IBM.WatsonDeveloperCloud.PersonalityInsights.v3",
   "description": "IBM.WatsonDeveloperCloud.PersonalityInsights.v3 wraps the Watson Developer Cloud Personality Insights service (http://www.ibm.com/watson/developercloud/personality-insights.html)",
   "authors": [ "Watson Developer Cloud" ],
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "1.1.0",
+    "IBM.WatsonDeveloperCloud": "1.2.0",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1"
   },

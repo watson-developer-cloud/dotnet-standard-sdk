@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.1.0"
+   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.2.0"
 }
 
 ```
@@ -84,16 +84,29 @@ var result = _conversation.UpdateWorkspace(<workspace-id>, updatedWorkspace);
 Get a response to a user's input.
 ```cs
 //  create message request
-MessageRequest messageRequest = new MessageRequest()
+MessageRequest messageRequest0 = new MessageRequest()
 {
   Input = new InputData()
   {
-    Text = <input-string>
+    Text = <input-string0>
   }
 };
 
 //  send a message to the conversation instance
-var result = _conversation.Message(<workspace-id>, messageRequest);
+var result0 = _conversation.Message(<workspace-id>, messageRequest0);
+
+//  reference the message context to continue a conversation
+messageRequest messageRequest1 = new MessageRequest()
+{
+  Input = new InputData()
+  {
+    Text = <input-string1>
+  },
+  Context = result.Context
+};
+
+//  Send another message including message context.
+result1 = _conversation.Message(<workspace-id>, messageRequest1);
 ```
 
 #### List Counterexamples

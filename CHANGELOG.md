@@ -1,5 +1,11 @@
 Change Log
 ==========
+## Version 1.2.0
+_2017-07-18_
+* Fix: Update input and context in MessageRequest and MessageResponse for `Conversation` to be dynamic.
+* Fix: Changes in error handling to check if return error is a string or json object.
+* New: Conversation example showing messaging with conversation context.
+
 ## Version 1.1.0
 _2017-06-30_
 * Fix: Include support for Xamarin Android, Xamarin iOS and .NET Core App (4.6>).

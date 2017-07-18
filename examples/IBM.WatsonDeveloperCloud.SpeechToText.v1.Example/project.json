@@ -1,8 +1,8 @@
 ﻿{
-  "version": "1.1.0",
+  "version": "1.2.0",
   "dependencies": {
-    "IBM.WatsonDeveloperCloud": "1.1.0",
-    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.1.0",
+    "IBM.WatsonDeveloperCloud": "1.2.0",
+    "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.2.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"

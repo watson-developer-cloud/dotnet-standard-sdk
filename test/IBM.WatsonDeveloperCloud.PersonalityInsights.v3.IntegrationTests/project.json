@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
 
   "testRunner": "mstest",
 
@@ -12,7 +12,7 @@
     "MSTest.TestFramework": "1.0.6-preview",
     "NSubstitute": "2.0.2",
     "Newtonsoft.Json": "9.0.1",
-    "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.1.0",
+    "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.2.0",
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "OpenCover": "4.6.519",

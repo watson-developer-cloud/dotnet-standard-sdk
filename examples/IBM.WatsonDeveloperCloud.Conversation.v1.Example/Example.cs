@@ -32,7 +32,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             var _password = vcapServices["conversation"][0]["credentials"]["password"];
             var _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"];
 
-            ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+            ConversationContextExample _converationContextExample = new ConversationContextExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
             Console.ReadKey();
         }
     }

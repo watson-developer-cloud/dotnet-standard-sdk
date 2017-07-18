@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.1.0",
+  "version": "1.2.0",
 
   "testRunner": "mstest",
 
@@ -17,7 +17,7 @@
     "OpenCover": "4.6.519",
     "coveralls.net": "0.7.0",
     "ReportGenerator": "2.4.5.0",
-    "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.1.0"
+    "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.2.0"
   },
 
   "frameworks": {

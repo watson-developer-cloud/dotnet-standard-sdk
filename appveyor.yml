@@ -13,8 +13,6 @@ environment:
   CRED_SECRET:
     secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8=
   VCAP_SERVICES: C:\projects\dotnet-standard-sdk\config
-init:
-- ps: '[System.IO.File]::AppendAllText("C:\Windows\System32\drivers\etc\hosts", "`n93.184.221.200  api.nuget.org")'
 install:
 - cmd: >-
     rm -rf packages

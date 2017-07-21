@@ -16,7 +16,7 @@
 */
 
 //  Comment to enable testing of collections, collection images and similarity search.
-#define ENABLE_COLLECTIONS
+//#define ENABLE_COLLECTIONS
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http.Extensions;

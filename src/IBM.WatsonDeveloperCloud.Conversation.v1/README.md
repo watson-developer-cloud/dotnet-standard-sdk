@@ -365,4 +365,4 @@ List the events from the log of a workspace.
 var result = _conversation.ListLogs(<workspaceId>);
 ```
 
-[conversation]:https://www.ibm.com/watson/developercloud/doc/conversation/index.html
+[conversation]:https://console.bluemix.net/docs/services/conversation/index.html#about

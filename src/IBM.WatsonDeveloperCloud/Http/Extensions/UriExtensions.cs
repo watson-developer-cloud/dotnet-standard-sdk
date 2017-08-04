@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Http.Extensions
                 from argument in arguments
                 let key = WebUtility.UrlEncode(argument.Key)
                 let value = argument.Value != null ? WebUtility.UrlEncode(argument.Value.ToString()) : string.Empty
-                select key + "=" + value
+                select key + "=" + value.ToLower()
             );
             return new Uri(
                 uri

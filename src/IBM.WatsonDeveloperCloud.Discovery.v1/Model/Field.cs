@@ -31,7 +31,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The type of the field.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public enum FieldTypeEnum
         {
             
             /// <summary>
@@ -106,13 +106,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The type of the field.</value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public TypeEnum? FieldType { get; set; }
+        public FieldTypeEnum? FieldType { get; set; }
         /// <summary>
         /// The name of the field.
         /// </summary>
         /// <value>The name of the field.</value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
-        public string FieldName { get; private set; }
+        public virtual string FieldName { get; private set; }
     }
 
 }

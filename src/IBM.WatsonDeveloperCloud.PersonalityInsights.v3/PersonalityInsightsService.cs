@@ -62,14 +62,12 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             this.Client = httpClient;
         }
 
-        public Profile Profile(string contentType, string accept, ContentListContainer body, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        public Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (content == null)
+                throw new ArgumentNullException(nameof(content));
             if (string.IsNullOrEmpty(contentType))
                 throw new ArgumentNullException(nameof(contentType));
-            if (string.IsNullOrEmpty(accept))
-                throw new ArgumentNullException(nameof(accept));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -81,14 +79,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v3/profile")
                                 .WithArgument("version", VersionDate)
-                                .WithHeader("Content-Type", contentType)
+                                .WithHeader("content-type", contentType)
                                 .WithHeader("Content-Language", contentLanguage)
-                                .WithHeader("Accept", accept)
                                 .WithHeader("Accept-Language", acceptLanguage)
                                 .WithArgument("raw_scores", rawScores)
                                 .WithArgument("csv_headers", csvHeaders)
                                 .WithArgument("consumption_preferences", consumptionPreferences)
-                                .WithBody<ContentListContainer>(body)
+                                .WithBody<Content>(content)
                                 .As<Profile>()
                                 .Result;
             }

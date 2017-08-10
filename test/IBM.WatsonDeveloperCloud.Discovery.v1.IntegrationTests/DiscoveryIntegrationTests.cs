@@ -75,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
             _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
+            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
         }
 
         #region Environments
@@ -532,7 +532,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -723,7 +723,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             string _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
             string _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
+            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
 
             if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId) && !string.IsNullOrEmpty(_createdDocumentId))
                 _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);

@@ -45,7 +45,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum PENDING for pending
             /// </summary>
             [EnumMember(Value = "pending")]
-            PENDING
+            PENDING,
+            
+            /// <summary>
+            /// Enum MAINTENANCE for maintenance
+            /// </summary>
+            [EnumMember(Value = "maintenance")]
+            MAINTENANCE
         }
 
         /// <summary>
@@ -55,15 +61,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Unique identifier for this environment.
+        /// Unique identifier for the environment.
         /// </summary>
-        /// <value>Unique identifier for this environment.</value>
+        /// <value>Unique identifier for the environment.</value>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string EnvironmentId { get; private set; }
+        public virtual string EnvironmentId { get; private set; }
         /// <summary>
-        /// Name that identifies this environment.
+        /// Name that identifies the environment.
         /// </summary>
-        /// <value>Name that identifies this environment.</value>
+        /// <value>Name that identifies the environment.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
@@ -77,29 +83,29 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>Creation date of the environment, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// Date of most recent environment update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         /// <value>Date of most recent environment update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// If true, then the environment contains read-only collections which are maintained by IBM.
         /// </summary>
         /// <value>If true, then the environment contains read-only collections which are maintained by IBM.</value>
         [JsonProperty("read_only", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? _ReadOnly { get; private set; }
+        public virtual bool? _ReadOnly { get; private set; }
         /// <summary>
-        /// Size of the environment.
+        /// **Deprecated**: Size of the environment.
         /// </summary>
-        /// <value>Size of the environment.</value>
+        /// <value>**Deprecated**: Size of the environment.</value>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         public long? Size { get; set; }
         /// <summary>
-        /// Object containing information about disk and memory usage.
+        /// Details about the resource usage and capacity of the environment.
         /// </summary>
-        /// <value>Object containing information about disk and memory usage.</value>
+        /// <value>Details about the resource usage and capacity of the environment.</value>
         [JsonProperty("index_capacity", NullValueHandling = NullValueHandling.Ignore)]
         public IndexCapacity IndexCapacity { get; set; }
     }

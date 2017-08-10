@@ -30,14 +30,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Delete model. Deletes a custom model.
         /// </summary>
-        /// <param name="modelId">model_id of the model to delete</param>
-        /// <returns><see cref="object" />object</returns>
-        object DeleteModel(string modelId);
+        /// <param name="modelId">modelId of the model to delete.</param>
+        /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
+        InlineResponse200 DeleteModel(string modelId);
 
         /// <summary>
         /// List models. Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models that you have created and linked to your Natural Language Understanding service.
         /// </summary>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
-        ListModelsResults GetModels();
+        ListModelsResults ListModels();
     }
 }

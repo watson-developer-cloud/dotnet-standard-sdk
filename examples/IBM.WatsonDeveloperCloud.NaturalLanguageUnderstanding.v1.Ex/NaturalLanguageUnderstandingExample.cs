@@ -279,13 +279,13 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
         private void ListModels()
         {
             Console.WriteLine(string.Format("\nCalling ListModels()..."));
-            var result = _naturalLanguageUnderstandingService.GetModels();
+            var result = _naturalLanguageUnderstandingService.ListModels();
 
             if(result != null)
             {
                 if(result.Models != null && result.Models.Count > 0)
                 {
-                    foreach(CustomModel model in result.Models)
+                    foreach(ModelModel model in result.Models)
                     {
                         Console.WriteLine(string.Format("Model id: {0} | status: {1} | language: {3} | description: {4}", model.ModelId, model.Status, model.Language, model.Description));
                     }

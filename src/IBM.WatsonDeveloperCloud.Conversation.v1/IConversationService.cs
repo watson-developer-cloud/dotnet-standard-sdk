@@ -25,9 +25,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// Create counterexample. Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant input.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
-        /// <param name="body">A CreateExample object defining the content of the new user input example.</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse CreateCounterexample(string workspaceId, CreateExample body);
+        /// <param name="body">An object defining the content of the new user input counterexample.</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body);
 
         /// <summary>
         /// Delete counterexample. Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant input.
@@ -42,8 +42,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse GetCounterexample(string workspaceId, string text);
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        Counterexample GetCounterexample(string workspaceId, string text);
 
         /// <summary>
         /// List counterexamples. List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input.
@@ -53,24 +53,67 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="CounterexampleCollectionResponse" />CounterexampleCollectionResponse</returns>
-        CounterexampleCollectionResponse ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="CounterexampleCollection" />CounterexampleCollection</returns>
+        CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update counterexample. Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
-        /// <param name="body">An UpdateExample object defining the new text for the counterexample.</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse UpdateCounterexample(string workspaceId, string text, UpdateExample body);
+        /// <param name="body">An object defining the new text for the counterexample.</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body);
+        /// <summary>
+        /// Create dialog node. Create a dialog node.
+        /// </summary>
+        /// <param name="workspaceId">The workspace ID.</param>
+        /// <param name="body">A CreateDialogNode object defining the content of the new dialog node.</param>
+        /// <returns><see cref="DialogNode" />DialogNode</returns>
+        DialogNode CreateDialogNode(string workspaceId, CreateDialogNode body);
+
+        /// <summary>
+        /// Delete dialog node. Delete a dialog node from the workspace.
+        /// </summary>
+        /// <param name="workspaceId">The workspace ID.</param>
+        /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
+        /// <returns><see cref="object" />object</returns>
+        object DeleteDialogNode(string workspaceId, string dialogNode);
+
+        /// <summary>
+        /// Get dialog node. Get information about a dialog node.
+        /// </summary>
+        /// <param name="workspaceId">The workspace ID.</param>
+        /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
+        /// <returns><see cref="DialogNode" />DialogNode</returns>
+        DialogNode GetDialogNode(string workspaceId, string dialogNode);
+
+        /// <summary>
+        /// List dialog nodes. List the dialog nodes in the workspace.
+        /// </summary>
+        /// <param name="workspaceId">The workspace ID.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. The default page limit is 100. (optional)</param>
+        /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
+        /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
+        /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
+        DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+
+        /// <summary>
+        /// Update dialog node. Update information for a dialog node.
+        /// </summary>
+        /// <param name="workspaceId">The workspace ID.</param>
+        /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
+        /// <param name="body">An UpdateDialogNode object defining the new contents of the dialog node.</param>
+        /// <returns><see cref="DialogNode" />DialogNode</returns>
+        DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode body);
         /// <summary>
         /// Create entity. Create a new entity.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="body">A CreateEntity object defining the content of the new entity.</param>
-        /// <returns><see cref="EntityResponse" />EntityResponse</returns>
-        EntityResponse CreateEntity(string workspaceId, CreateEntity body);
+        /// <returns><see cref="Entity" />Entity</returns>
+        Entity CreateEntity(string workspaceId, CreateEntity body);
 
         /// <summary>
         /// Delete entity. Delete an entity from a workspace.
@@ -86,8 +129,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
-        /// <returns><see cref="EntityExportResponse" />EntityExportResponse</returns>
-        EntityExportResponse GetEntity(string workspaceId, string entity, bool? export = null);
+        /// <returns><see cref="EntityExport" />EntityExport</returns>
+        EntityExport GetEntity(string workspaceId, string entity, bool? export = null);
 
         /// <summary>
         /// List entities. List the entities for a workspace.
@@ -98,8 +141,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="EntityCollectionResponse" />EntityCollectionResponse</returns>
-        EntityCollectionResponse ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="EntityCollection" />EntityCollection</returns>
+        EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity. Update an existing entity with new or modified data.
@@ -107,16 +150,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="body">An UpdateEntity object defining the updated content of the entity.</param>
-        /// <returns><see cref="EntityResponse" />EntityResponse</returns>
-        EntityResponse UpdateEntity(string workspaceId, string entity, UpdateEntity body);
+        /// <returns><see cref="Entity" />Entity</returns>
+        Entity UpdateEntity(string workspaceId, string entity, UpdateEntity body);
         /// <summary>
         /// Create user input example. Add a new user input example to an intent.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="body">A CreateExample object defining the content of the new user input example.</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse CreateExample(string workspaceId, string intent, CreateExample body);
+        /// <returns><see cref="Example" />Example</returns>
+        Example CreateExample(string workspaceId, string intent, CreateExample body);
 
         /// <summary>
         /// Delete user input example. Delete a user input example from an intent.
@@ -133,8 +176,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="text">The text of the user input example.</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse GetExample(string workspaceId, string intent, string text);
+        /// <returns><see cref="Example" />Example</returns>
+        Example GetExample(string workspaceId, string intent, string text);
 
         /// <summary>
         /// List user input examples. List the user input examples for an intent.
@@ -145,8 +188,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="ExampleCollectionResponse" />ExampleCollectionResponse</returns>
-        ExampleCollectionResponse ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="ExampleCollection" />ExampleCollection</returns>
+        ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update user input example. Update the text of a user input example.
@@ -155,15 +198,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="text">The text of the user input example.</param>
         /// <param name="body">An UpdateExample object defining the new text for the user input example.</param>
-        /// <returns><see cref="ExampleResponse" />ExampleResponse</returns>
-        ExampleResponse UpdateExample(string workspaceId, string intent, string text, UpdateExample body);
+        /// <returns><see cref="Example" />Example</returns>
+        Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body);
         /// <summary>
         /// Create intent. Create a new intent.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="body">A CreateIntent object defining the content of the new intent.</param>
-        /// <returns><see cref="IntentResponse" />IntentResponse</returns>
-        IntentResponse CreateIntent(string workspaceId, CreateIntent body);
+        /// <returns><see cref="Intent" />Intent</returns>
+        Intent CreateIntent(string workspaceId, CreateIntent body);
 
         /// <summary>
         /// Delete intent. Delete an intent from a workspace.
@@ -179,8 +222,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
-        /// <returns><see cref="IntentExportResponse" />IntentExportResponse</returns>
-        IntentExportResponse GetIntent(string workspaceId, string intent, bool? export = null);
+        /// <returns><see cref="IntentExport" />IntentExport</returns>
+        IntentExport GetIntent(string workspaceId, string intent, bool? export = null);
 
         /// <summary>
         /// List intents. List the intents for a workspace.
@@ -191,8 +234,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="IntentCollectionResponse" />IntentCollectionResponse</returns>
-        IntentCollectionResponse ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="IntentCollection" />IntentCollection</returns>
+        IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update intent. Update an existing intent with new or modified data. You must provide data defining the content of the updated intent.
@@ -200,8 +243,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="body">An UpdateIntent object defining the updated content of the intent.</param>
-        /// <returns><see cref="IntentResponse" />IntentResponse</returns>
-        IntentResponse UpdateIntent(string workspaceId, string intent, UpdateIntent body);
+        /// <returns><see cref="Intent" />Intent</returns>
+        Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body);
         /// <summary>
         /// List log events. 
         /// </summary>
@@ -210,8 +253,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter. (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. The default page limit is 100. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="LogCollectionResponse" />LogCollectionResponse</returns>
-        LogCollectionResponse ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
+        /// <returns><see cref="LogCollection" />LogCollection</returns>
+        LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
         /// <summary>
         /// Get a response to a user's input. 
         /// </summary>
@@ -226,8 +269,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="body">A CreateSynonym object defining the new synonym for the entity value.</param>
-        /// <returns><see cref="SynonymResponse" />SynonymResponse</returns>
-        SynonymResponse CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body);
+        /// <returns><see cref="Synonym" />Synonym</returns>
+        Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body);
 
         /// <summary>
         /// Delete entity value synonym. Delete a synonym for an entity value.
@@ -246,8 +289,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
-        /// <returns><see cref="SynonymResponse" />SynonymResponse</returns>
-        SynonymResponse GetSynonym(string workspaceId, string entity, string value, string synonym);
+        /// <returns><see cref="Synonym" />Synonym</returns>
+        Synonym GetSynonym(string workspaceId, string entity, string value, string synonym);
 
         /// <summary>
         /// List entity value synonyms. List the synonyms for an entity value.
@@ -259,8 +302,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="SynonymCollectionResponse" />SynonymCollectionResponse</returns>
-        SynonymCollectionResponse ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="SynonymCollection" />SynonymCollection</returns>
+        SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity value synonym. Update the information about a synonym for an entity value.
@@ -270,16 +313,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
         /// <param name="body">An UpdateSynonym object defining the new information for an entity value synonym.</param>
-        /// <returns><see cref="SynonymResponse" />SynonymResponse</returns>
-        SynonymResponse UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body);
+        /// <returns><see cref="Synonym" />Synonym</returns>
+        Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body);
         /// <summary>
         /// Add entity value. Create a new value for an entity.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="body">A CreateValue object defining the content of the new value for the entity.</param>
-        /// <returns><see cref="ValueResponse" />ValueResponse</returns>
-        ValueResponse CreateValue(string workspaceId, string entity, CreateValue body);
+        /// <returns><see cref="Value" />Value</returns>
+        Value CreateValue(string workspaceId, string entity, CreateValue body);
 
         /// <summary>
         /// Delete entity value. Delete a value for an entity.
@@ -297,8 +340,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
-        /// <returns><see cref="ValueExportResponse" />ValueExportResponse</returns>
-        ValueExportResponse GetValue(string workspaceId, string entity, string value, bool? export = null);
+        /// <returns><see cref="ValueExport" />ValueExport</returns>
+        ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null);
 
         /// <summary>
         /// List entity values. List the values for an entity.
@@ -310,8 +353,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="ValueCollectionResponse" />ValueCollectionResponse</returns>
-        ValueCollectionResponse ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="ValueCollection" />ValueCollection</returns>
+        ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update entity value. Update the content of a value for an entity.
@@ -320,14 +363,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="body">An UpdateValue object defining the new content for value for the entity.</param>
-        /// <returns><see cref="ValueResponse" />ValueResponse</returns>
-        ValueResponse UpdateValue(string workspaceId, string entity, string value, UpdateValue body);
+        /// <returns><see cref="Value" />Value</returns>
+        Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body);
         /// <summary>
         /// Create workspace. Create a workspace based on component objects. You must provide workspace components defining the content of the new workspace.
         /// </summary>
         /// <param name="body">Valid data defining the content of the new workspace. (optional)</param>
-        /// <returns><see cref="WorkspaceResponse" />WorkspaceResponse</returns>
-        WorkspaceResponse CreateWorkspace(CreateWorkspace body = null);
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        Workspace CreateWorkspace(CreateWorkspace body = null);
 
         /// <summary>
         /// Delete workspace. Delete a workspace from the service instance.
@@ -341,8 +384,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
-        /// <returns><see cref="WorkspaceExportResponse" />WorkspaceExportResponse</returns>
-        WorkspaceExportResponse GetWorkspace(string workspaceId, bool? export = null);
+        /// <returns><see cref="WorkspaceExport" />WorkspaceExport</returns>
+        WorkspaceExport GetWorkspace(string workspaceId, bool? export = null);
 
         /// <summary>
         /// List workspaces. List the workspaces associated with a Conversation service instance.
@@ -351,15 +394,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
-        /// <returns><see cref="WorkspaceCollectionResponse" />WorkspaceCollectionResponse</returns>
-        WorkspaceCollectionResponse ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
+        WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
 
         /// <summary>
         /// Update workspace. Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace.
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="body">Valid data defining the new workspace content. Any elements included in the new data will completely replace the existing elements, including all subelements. Previously existing subelements are not retained unless they are included in the new data. (optional)</param>
-        /// <returns><see cref="WorkspaceResponse" />WorkspaceResponse</returns>
-        WorkspaceResponse UpdateWorkspace(string workspaceId, UpdateWorkspace body = null);
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace body = null);
     }
 }

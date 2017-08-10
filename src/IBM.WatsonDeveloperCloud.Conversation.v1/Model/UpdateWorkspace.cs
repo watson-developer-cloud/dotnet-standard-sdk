@@ -66,7 +66,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>An array of objects defining input examples that have been marked as irrelevant input.</value>
         [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateExample> Counterexamples { get; set; }
+        public List<CreateCounterexample> Counterexamples { get; set; }
         /// <summary>
         /// Any metadata related to the workspace.
         /// </summary>

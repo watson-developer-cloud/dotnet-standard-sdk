@@ -30,25 +30,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The unique identifier for the configuration.</value>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ConfigurationId { get; private set; }
+        public virtual string ConfigurationId { get; private set; }
         /// <summary>
         /// Status of the preview operation.
         /// </summary>
         /// <value>Status of the preview operation.</value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string Status { get; private set; }
+        public virtual string Status { get; private set; }
         /// <summary>
-        /// The number of 10 Kilobytes of field data that was enriched. This can be used to estimate the cost of running a real ingestion.
+        /// The number of 10-kB chunks of field data that were enriched. This can be used to estimate the cost of running a real ingestion.
         /// </summary>
-        /// <value>The number of 10 Kilobytes of field data that was enriched. This can be used to estimate the cost of running a real ingestion.</value>
+        /// <value>The number of 10-kB chunks of field data that were enriched. This can be used to estimate the cost of running a real ingestion.</value>
         [JsonProperty("enriched_field_units", NullValueHandling = NullValueHandling.Ignore)]
-        public float? EnrichedFieldUnits { get; private set; }
+        public virtual float? EnrichedFieldUnits { get; private set; }
         /// <summary>
         /// Format of the test document.
         /// </summary>
         /// <value>Format of the test document.</value>
         [JsonProperty("original_media_type", NullValueHandling = NullValueHandling.Ignore)]
-        public string OriginalMediaType { get; private set; }
+        public virtual string OriginalMediaType { get; private set; }
         /// <summary>
         /// An array of objects that describe each step in the preview process.
         /// </summary>

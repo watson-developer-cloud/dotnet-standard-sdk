@@ -35,7 +35,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         /// <value>Enter a custom model ID to override the standard entity detection model.</value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
-        public string Model { get; set; }
+        public string _Model { get; set; }
         /// <summary>
         /// Set this to true to return sentiment information for detected entities.
         /// </summary>

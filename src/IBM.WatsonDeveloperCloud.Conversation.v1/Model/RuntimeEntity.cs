@@ -49,6 +49,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>A decimal percentage that represents Watson's confidence in the entity.</value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public float? Confidence { get; set; }
+        /// <summary>
+        /// The metadata for the entity.
+        /// </summary>
+        /// <value>The metadata for the entity.</value>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public object Metadata { get; set; }
     }
 
 }

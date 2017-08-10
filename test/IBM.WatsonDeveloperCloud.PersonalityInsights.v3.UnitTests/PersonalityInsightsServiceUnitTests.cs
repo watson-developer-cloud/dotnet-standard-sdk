@@ -106,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
 
 
             //  Test Profile
-            ContentListContainer contentListContainer = new ContentListContainer()
+            Content content = new Content()
             {
                 ContentItems = new List<ContentItem>()
                 {
@@ -114,35 +114,12 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     {
                         Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
                         Language = ContentItem.LanguageEnum.EN,
-                        Content = content
+                        Content = "content"
                     }
                 }
             };
 
-            service.Profile(null, Arg.Any<string>(), contentListContainer);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Profile_No_Accept()
-        {
-            PersonalityInsightsService service =
-                new PersonalityInsightsService("username", "password", "versionDate");
-
-            //  Test Profile
-            ContentListContainer contentListContainer = new ContentListContainer()
-            {
-                ContentItems = new List<ContentItem>()
-                {
-                    new ContentItem()
-                    {
-                        Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
-                        Language = ContentItem.LanguageEnum.EN,
-                        Content = content
-                    }
-                }
-            };
-
-            service.Profile("test", null, contentListContainer);
+            service.Profile(content, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -151,7 +128,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             PersonalityInsightsService service =
                 new PersonalityInsightsService("username", "password", "versionDate");
             
-            service.Profile("Test", "me", null);
+            service.Profile(null, "contentType");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -162,7 +139,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             service.VersionDate = null;
 
             //  Test Profile
-            ContentListContainer contentListContainer = new ContentListContainer()
+            Content content = new Content()
             {
                 ContentItems = new List<ContentItem>()
                 {
@@ -170,12 +147,12 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     {
                         Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
                         Language = ContentItem.LanguageEnum.EN,
-                        Content = content
+                        Content = "content"
                     }
                 }
             };
 
-            service.Profile("contentType", "accept", contentListContainer);
+            service.Profile(content, "contentType");
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -193,7 +170,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                  });
 
             //  Test Profile
-            ContentListContainer contentListContainer = new ContentListContainer()
+            Content content = new Content()
             {
                 ContentItems = new List<ContentItem>()
                 {
@@ -201,7 +178,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     {
                         Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
                         Language = ContentItem.LanguageEnum.EN,
-                        Content = content
+                        Content = "content"
                     }
                 }
             };
@@ -209,7 +186,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             PersonalityInsightsService service = new PersonalityInsightsService(client);
             service.VersionDate = "versionDate";
 
-            service.Profile("contentType", "application/json", contentListContainer);
+            service.Profile(content, "contentType", "application/json");
         }
 
         [TestMethod]
@@ -228,18 +205,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     ProcessedLanguage = "en",
                     WordCount = 10,
                     WordCountMessage = "wordCountMessage",
-                    Personality = new List<TraitTreeNode>()
+                    Personality = new List<Trait>()
                     {
-                        new TraitTreeNode()
+                        new Trait()
                         {
                             TraitId = "traitID",
                             Name = "name",
                             Category = "category",
                             Percentile = 50.0,
                             RawScore = 25.0,
-                            Children = new List<TraitTreeNode>()
+                            Children = new List<Trait>()
                             {
-                                new TraitTreeNode()
+                                new Trait()
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
@@ -250,18 +227,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                             }
                         }
                     },
-                    Values = new List<TraitTreeNode>()
+                    Values = new List<Trait>()
                     {
-                        new TraitTreeNode()
+                        new Trait()
                         {
                             TraitId = "traitID",
                             Name = "name",
                             Category = "category",
                             Percentile = 50.0,
                             RawScore = 25.0,
-                            Children = new List<TraitTreeNode>()
+                            Children = new List<Trait>()
                             {
-                                new TraitTreeNode()
+                                new Trait()
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
@@ -272,18 +249,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                             }
                         }
                     },
-                    Needs = new List<TraitTreeNode>()
+                    Needs = new List<Trait>()
                     {
-                        new TraitTreeNode()
+                        new Trait()
                         {
                             TraitId = "traitID",
                             Name = "name",
                             Category = "category",
                             Percentile = 50.0,
                             RawScore = 25.0,
-                            Children = new List<TraitTreeNode>()
+                            Children = new List<Trait>()
                             {
-                                new TraitTreeNode()
+                                new Trait()
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
@@ -294,9 +271,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                             }
                         }
                     },
-                    Behavior = new List<BehaviorNode>()
+                    Behavior = new List<Behavior>()
                     {
-                        new BehaviorNode()
+                        new Behavior()
                         {
                             TraitId = "traitID",
                             Name = "name",
@@ -304,15 +281,15 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                             Percentage = 50.0
                         }
                     },
-                    ConsumptionPreferences = new List<ConsumptionPreferencesCategoryNode>()
+                    ConsumptionPreferences = new List<ConsumptionPreferencesCategory>()
                     {
-                        new ConsumptionPreferencesCategoryNode()
+                        new ConsumptionPreferencesCategory()
                         {
                             ConsumptionPreferenceCategoryId = "consumptionPreferenceCategoryId",
                             Name = "name",
-                            ConsumptionPreferences = new List<ConsumptionPreferencesNode>()
+                            ConsumptionPreferences = new List<ConsumptionPreferences>()
                             {
-                                new ConsumptionPreferencesNode()
+                                new ConsumptionPreferences()
                                 {
                                     ConsumptionPreferenceId = "consumptionPreferenceId",
                                     Name = "name",
@@ -333,7 +310,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             #endregion
 
             //  Test Profile
-            ContentListContainer contentListContainer = new ContentListContainer()
+            Content content = new Content()
             {
                 ContentItems = new List<ContentItem>()
                 {
@@ -341,7 +318,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     {
                         Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
                         Language = ContentItem.LanguageEnum.EN,
-                        Content = content
+                        Content = "content"
                     }
                 }
             };
@@ -362,7 +339,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
                 .Returns(request);
-            request.WithBody(Arg.Any<ContentListContainer>())
+            request.WithBody(Arg.Any<Content>())
                 .Returns(request);
 
             request.As<Profile>()
@@ -372,7 +349,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             service.VersionDate = "versionDate";
 
             var result =
-                service.Profile("contentType", "application/json", contentListContainer);
+                service.Profile(content, "contentType");
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());

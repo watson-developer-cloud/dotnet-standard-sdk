@@ -30,17 +30,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>Up to 50 messages logged with the request.</value>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<LogMessageResponse> LogMessages { get; set; }
+        public List<LogMessage> LogMessages { get; set; }
         /// <summary>
-        /// Responses to the user.
+        /// An array of responses to the user.
         /// </summary>
-        /// <value>Responses to the user.</value>
+        /// <value>An array of responses to the user.</value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Text { get; set; }
         /// <summary>
-        /// The nodes that were executed to create the response.
+        /// An array of the nodes that were triggered to create the response.
         /// </summary>
-        /// <value>The nodes that were executed to create the response.</value>
+        /// <value>An array of the nodes that were triggered to create the response.</value>
         [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> NodesVisited { get; set; }
     }

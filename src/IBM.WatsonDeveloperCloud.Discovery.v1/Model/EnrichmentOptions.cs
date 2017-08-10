@@ -228,7 +228,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>Required when using the `typed-rel` extract option. Should be set to the ID of a previously published custom Watson Knowledge Studio model.</value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
-        public string Model { get; set; }
+        public string _Model { get; set; }
     }
 
 }

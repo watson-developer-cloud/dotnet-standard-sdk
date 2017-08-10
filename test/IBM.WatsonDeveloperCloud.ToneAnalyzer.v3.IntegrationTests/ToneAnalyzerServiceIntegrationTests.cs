@@ -62,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
                 Text = inputText
             };
 
-            var result = service.Tone(toneInput, null, null);
+            var result = service.Tone(toneInput, "text/html", null);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.DocumentTone.ToneCategories.Count >= 1);

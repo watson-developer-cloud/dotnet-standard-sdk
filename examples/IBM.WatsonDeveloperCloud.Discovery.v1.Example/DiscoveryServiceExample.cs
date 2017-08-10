@@ -58,7 +58,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Constructor
         public DiscoveryServiceExample(string username, string password)
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
+            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
             //_discovery.Endpoint = "http://localhost:1234";
 
             GetEnvironments();
@@ -524,7 +524,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
 
                 if (result != null)
                 {

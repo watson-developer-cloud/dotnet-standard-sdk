@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>The user input from the request.</value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public MessageInput Input { get; set; }
         /// <summary>
         /// An array of intents recognized in the user input, sorted in descending order of confidence.
         /// </summary>
@@ -54,13 +54,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>State information for the conversation.</value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
+        public Context Context { get; set; }
         /// <summary>
         /// Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.
         /// </summary>
         /// <value>Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.</value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public RuntimeOutput Output { get; set; }
+        public OutputData Output { get; set; }
     }
 
 }

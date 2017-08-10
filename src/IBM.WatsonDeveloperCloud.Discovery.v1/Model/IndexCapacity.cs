@@ -20,10 +20,16 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Details about the disk and memory usage of this environment.
+    /// Details about the resource usage and capacity of the environment.
     /// </summary>
     public class IndexCapacity
     {
+        /// <summary>
+        /// Summary of the document usage statistics for the environment.
+        /// </summary>
+        /// <value>Summary of the document usage statistics for the environment.</value>
+        [JsonProperty("documents", NullValueHandling = NullValueHandling.Ignore)]
+        public EnvironmentDocuments Documents { get; set; }
         /// <summary>
         /// Summary of the disk usage of the environment.
         /// </summary>
@@ -31,9 +37,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public DiskUsage DiskUsage { get; set; }
         /// <summary>
-        /// Summary of the memory usage of the environment.
+        /// **Deprecated**: Summary of the memory usage of the environment.
         /// </summary>
-        /// <value>Summary of the memory usage of the environment.</value>
+        /// <value>**Deprecated**: Summary of the memory usage of the environment.</value>
         [JsonProperty("memory_usage", NullValueHandling = NullValueHandling.Ignore)]
         public MemoryUsage MemoryUsage { get; set; }
     }

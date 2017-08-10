@@ -15,7 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model

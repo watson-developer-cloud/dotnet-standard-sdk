@@ -76,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         [TestMethod]
         public void ListModels_Success()
         {
-            var result = naturalLanguageUnderstanding.GetModels();
+            var result = naturalLanguageUnderstanding.ListModels();
 
             Assert.IsNotNull(result);
         }

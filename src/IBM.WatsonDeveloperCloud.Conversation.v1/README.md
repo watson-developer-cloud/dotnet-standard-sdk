@@ -33,7 +33,7 @@ Before you can send requests to the service it must be instantiated and credenti
 ConversationService _conversation = new ConversationService();
 
 // set the credentials
-_conversation.SetCredential(<username>, <password>);
+_conversation.SetCredential("<username>", "<password>");
 ```
 
 #### List workspaces
@@ -47,9 +47,9 @@ Create a new workspace.
 ```cs
 CreateWorkspace workspace = new CreateWorkspace()
 {
-    Name = <workspace-name>,
-    Description = <workspace-description>,
-    Language = <workspace-language>
+    Name = "<workspace-name>",
+    Description = "<workspace-description>",
+    Language = "<workspace-language>"
 };
 
 var result = _conversation.CreateWorkspace(workspace);
@@ -58,13 +58,13 @@ var result = _conversation.CreateWorkspace(workspace);
 #### Delete workspace
 Delete an existing workspace.
 ```cs
-var result = _conversation.DeleteWorkspace(<workspace-id>);
+var result = _conversation.DeleteWorkspace("<workspace-id>");
 ```
 
 #### Get workspace details
 Get detailed information about a specific workspace.
 ```cs
-var result = _conversation.GetWorkspace(<workspace-id>);
+var result = _conversation.GetWorkspace("<workspace-id>");
 ```
 
 #### Update workspace details
@@ -72,12 +72,12 @@ Update an existing workspace.
 ```cs
 UpdateWorkspace updatedWorkspace = new UpdateWorkspace()
 {
-    Name = <updated-workspace-name>,
-    Description = <updated-workspace-description>,
-    Language = <updated-workspace-language>
+    Name = "<updated-workspace-name>",
+    Description = "<updated-workspace-description>",
+    Language = "<updated-workspace-language>"
 };
 
-var result = _conversation.UpdateWorkspace(<workspace-id>, updatedWorkspace);
+var result = _conversation.UpdateWorkspace("<workspace-id>", updatedWorkspace);
 ```
 
 #### Message
@@ -88,71 +88,71 @@ MessageRequest messageRequest0 = new MessageRequest()
 {
   Input = new InputData()
   {
-    Text = <input-string0>
+    Text = "<input-string0>"
   }
 };
 
 //  send a message to the conversation instance
-var result0 = _conversation.Message(<workspace-id>, messageRequest0);
+var result0 = _conversation.Message("<workspace-id>", messageRequest0);
 
 //  reference the message context to continue a conversation
-messageRequest messageRequest1 = new MessageRequest()
+MessageRequest messageRequest1 = new MessageRequest()
 {
   Input = new InputData()
   {
-    Text = <input-string1>
+    Text = "<input-string1>"
   },
-  Context = result.Context
+  Context = result0.Context
 };
 
 //  Send another message including message context.
-result1 = _conversation.Message(<workspace-id>, messageRequest1);
+var result1 = _conversation.Message("<workspace-id>", messageRequest1);
 ```
 
 #### List Counterexamples
 List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.ListCounterexamples(<workspaceId>);
+var result = _conversation.ListCounterexamples("<workspace-id>");
 ```
 
 #### Create Counterexamples
 Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-CreateExample example = new CreateExample()
+CreateCounterexample example = new CreateCounterexample()
 {
-    Text = <counterExample>
+    Text = "<counterExample>"
 };
 
-var result = _conversation.CreateCounterexample(<workspaceId>, example);
+var result = _conversation.CreateCounterexample("<workspace-id>", example);
 ```
 
 #### Delete Counterexample
 Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.DeleteCounterexample(<workspaceId>, <counterExample>);
+var result = _conversation.DeleteCounterexample("<workspace-id>", "<counterExample>");
 ```
 
 #### Get Counterexample
 Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.GetCounterexample(<workspaceId>, <counterExample>);
+var result = _conversation.GetCounterexample("<workspace-id>", "<counterExample>");
 ```
 
 #### Update Counterexample
 Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-UpdateExample updatedExample = new UpdateExample()
+UpdateCounterexample updatedExample = new UpdateCounterexample()
 {
-    Text = <updatedCounterExample>
+    Text = "<updatedCounterExample>"
 };
 
-var result = _conversation.UpdateCounterexample(<workspaceId>, <counterExample>, updatedExample);
+var result = _conversation.UpdateCounterexample("<workspace-id>", "<counterExample>", updatedExample);
 ```
 
 #### List Entities
 List the entities for a workspace.
 ```cs
-var result = _conversation.ListEntities(<workspaceId>);
+var result = _conversation.ListEntities("<workspace-id>");
 ```
 
 #### Create Entity
@@ -160,23 +160,23 @@ Create a new entity.
 ```cs
 CreateEntity entity = new CreateEntity()
 {
-    Entity = <entity>,
-    Description = <entity-description>
+    Entity = "<entity>",
+    Description = "<entity-description>"
 };
 
-var result = _conversation.CreateEntity(<workspaceId>, entity);
+var result = _conversation.CreateEntity("<workspace-id>", entity);
 ```
 
 #### Delete Entity
 Delete an entity from a workspace.
 ```cs
-var result = _conversation.DeleteEntity(<workspaceId>, <entity>);
+var result = _conversation.DeleteEntity("<workspace-id>", "<entity>");
 ```
 
 #### Get Entity
 Get information about an entity, optionally including all entity content.
 ```cs
-var result = _conversation.GetEntity(<workspaceId>, <entity>);
+var result = _conversation.GetEntity("<workspace-id>", "<entity>");
 ```
 
 #### Update Entity
@@ -186,17 +186,17 @@ Any elements included in the new JSON will completely replace the equivalent exi
 ```cs
 UpdateEntity updatedEntity = new UpdateEntity()
 {
-    Entity = updatedEntity,
-    Description = updatedEntityDescription
+    Entity = "<updatedEntity>",
+    Description = "<updatedEntityDescription>"
 };
 
-var result = _conversation.UpdateEntity(<workspaceId>, <entity>, updatedEntity);
+var result = _conversation.UpdateEntity("<workspace-id>", "<entity>", updatedEntity);
 ```
 
 #### List Entity Values
 List the values for an entity.
 ```cs
-var result = _conversation.ListValues(<workspaceId>, <entity>);
+var result = _conversation.ListValues("<workspace-id>", "<entity>");
 ```
 
 #### Add Entity Value
@@ -204,22 +204,22 @@ Add a new value to an entity.
 ```cs
 CreateValue value = new CreateValue()
 {
-    Value = <value>
+    Value = "<value>"
 };
 
-var result = _conversation.CreateValue(<workspaceId>, <entity>, value);
+var result = _conversation.CreateValue("<workspace-id>", "<entity>", value);
 ```
 
 #### Delete Entity Value
 Delete a value from an entity.
 ```cs
-var result = _conversation.DeleteValue(<workspaceId>, <entity>, <value>);
+var result = _conversation.DeleteValue("<workspace-id>", "<entity>", "<value>");
 ```
 
 #### Get Entity Value
 Get information about an entity value.
 ```cs
-var result = _conversation.GetValue(<workspaceId>, <entity>, <value>);
+var result = _conversation.GetValue("<workspace-id>", "<entity>", "<value>");
 ```
 
 #### Update Entity Value
@@ -229,16 +229,16 @@ Any elements included in the new JSON will completely replace the equivalent exi
 ```cs
 UpdateValue updatedValue = new UpdateValue()
 {
-    Value = <updatedValue>
+    Value = "<updatedValue>"
 };
 
-var result = _conversation.UpdateValue(<workspaceId>, <entity>, <value>, updatedValue);
+var result = _conversation.UpdateValue("<workspace-id>", "<entity>", "<value>", updatedValue);
 ```
 
 #### List Synonyms
 List the synonyms for an entity value.
 ```cs
-var result = _conversation.ListSynonyms(<workspaceId>, <entity>, <value>);
+var result = _conversation.ListSynonyms("<workspace-id>", "<entity>", "<value>");
 ```
 
 #### Add Synonym
@@ -246,22 +246,22 @@ Add a new synonym to an entity value.
 ```cs
 CreateSynonym synonym = new CreateSynonym()
 {
-    Synonym = <synonym>
+    Synonym = "<synonym>"
 };
 
-var result = _conversation.CreateSynonym(<workspaceId>, <entity>, <value>, synonym);
+var result = _conversation.CreateSynonym("<workspace-id>", "<entity>", "<value>", synonym);
 ```
 
 #### Delete Synonym
 Delete a synonym from an entity value.
 ```cs
-var result = _conversation.DeleteSynonym(<workspaceId>, <entity>, <value>, <synonym>);
+var result = _conversation.DeleteSynonym("<workspace-id>", "<entity>", "<value>", "<synonym>");
 ```
 
 #### Get Synonym
 Get information about a synonym of an entity value.
 ```cs
-var result = _conversation.GetSynonym(<workspaceId>, <entity>, <value>, <synonym>);
+var result = _conversation.GetSynonym("<workspace-id>", "<entity>", "<value>", "<synonym>");
 ```
 
 #### Update Synonym
@@ -269,16 +269,16 @@ Update an existing entity value synonym with new text.
 ```cs
 UpdateSynonym updatedSynonym = new UpdateSynonym()
 {
-    Synonym = <synonym>
+    Synonym = "<synonym>"
 };
 
-var result = _conversation.UpdateSynonym(<workspaceId>, <entity>, <value>, <synonym>, updatedSynonym);
+var result = _conversation.UpdateSynonym("<workspace-id>", "<entity>", "<value>", "<synonym>", updatedSynonym);
 ```
 
 #### List Intents
 List the intents for a workspace.
 ```cs
-var result = _conversation.ListIntents(<workspaceId>);
+var result = _conversation.ListIntents("<workspace-id>");
 ```
 
 #### Create Intent
@@ -286,23 +286,23 @@ Create a new intent.
 ```cs
 CreateIntent intent = new CreateIntent()
 {
-    Intent = <intent>,
-    Description = <intent-description>
+    Intent = "<intent>",
+    Description = "<intent-description>"
 };
 
-var result = _conversation.CreateIntent(<workspaceId>, intent);
+var result = _conversation.CreateIntent("<workspace-id>", intent);
 ```
 
 #### Delete Intent
 Delete an intent from a workspace.
 ```cs
-var result = _conversation.DeleteIntent(<workspaceId>, <intent>);
+var result = _conversation.DeleteIntent("<workspace-id>", "<intent>");
 ```
 
 #### Get Intent
 Get information about an intent, optionally including all intent content.
 ```cs
-var result = _conversation.GetIntent(<workspaceId>, <intent>);
+var result = _conversation.GetIntent("<workspace-id>", "<intent>");
 ```
 
 #### Update Intent
@@ -312,17 +312,17 @@ Any elements included in the new JSON will completely replace the equivalent exi
 ```cs
 UpdateIntent intent = new UpdateIntent()
 {
-    Intent = <intent>,
-    Description = <intent-description>
+    Intent = "<intent>",
+    Description = "<intent-description>"
 };
 
-var result = _conversation.UpdateIntent(<workspaceId>, <intent>, intent);
+var result = _conversation.UpdateIntent("<workspace-id>", "<intent>", intent);
 ```
 
 #### List Examples
 List the user input examples for an intent.
 ```cs
-var result = _conversation.ListExamples(<workspaceId>, <intent>);
+var result = _conversation.ListExamples("<workspace-id>", "<intent>");
 ```
 
 #### Create Example
@@ -330,22 +330,22 @@ Add a new user input example to an intent.
 ```cs
 CreateExample example = new CreateExample()
 {
-    Text = <example>
+    Text = "<example>"
 };
 
-var result = _conversation.CreateExample(<workspaceId>, <intent>, example);
+var result = _conversation.CreateExample("<workspace-id>", "<intent>", example);
 ```
 
 #### Delete Example
 Delete a user input example from an intent.
 ```cs
-var result = _conversation.DeleteExample(<workspaceId>, <intent>, <example>);
+var result = _conversation.DeleteExample("<workspace-id>", "<intent>", "<example>");
 ```
 
 #### Get Example
 Get information about a user input example.
 ```cs
-var result = _conversation.GetExample(<workspaceId>, <intent>, <example>);
+var result = _conversation.GetExample("<workspace-id>", "<intent>", "<example>");
 ```
 
 #### Update Example
@@ -353,16 +353,16 @@ Update the text of a user input example.
 ```cs
 UpdateExample updatedExample = new UpdateExample()
 {
-    Text = <example>
+    Text = "<example>"
 };
 
-var result = _conversation.UpdateExample(<workspaceId>, <intent>, <example>, updatedExample);
+var result = _conversation.UpdateExample("<workspace-id>", "<intent>", "<example>", updatedExample);
 ```
 
 #### List Log Events
 List the events from the log of a workspace.
 ```cs
-var result = _conversation.ListLogs(<workspaceId>);
+var result = _conversation.ListLogs("<workspace-id>");
 ```
 
 [conversation]:https://console.bluemix.net/docs/services/conversation/index.html#about

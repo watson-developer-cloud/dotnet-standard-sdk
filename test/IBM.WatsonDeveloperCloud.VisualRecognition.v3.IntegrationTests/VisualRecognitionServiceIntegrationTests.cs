@@ -42,9 +42,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData\turtle_positive_examples.zip";
         private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData\negative_examples.zip";
-        private string _createdClassifierName = "dotnet-standard-test-classifier";
+        private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
         private static string _createdClassifierId = "";
-        //private string _collectionNameToCreate = "dotnet-standard-test-collection";
+        //private string _collectionNameToCreate = "dotnet-standard-integration-test-collection";
         //private static string _createdCollectionId = "";
         //private static string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
@@ -68,6 +68,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t00_ClassifyGet_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             var result = service.Classify(_imageUrl);
@@ -81,6 +82,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t01_ClassifyPost_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
@@ -97,6 +99,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t02_DetectFacesGet_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             var result = service.DetectFaces(_faceUrl);
@@ -110,6 +113,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t03_DetectFacesPost_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
@@ -126,6 +130,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t04_GetClassifiersBrief_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
             var results = service.GetClassifiersBrief();
 
@@ -136,6 +141,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t05_GetClassifiersVerbose_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
             var results = service.GetClassifiersVerbose();
 
@@ -146,6 +152,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         public void t06_CreateClassifier_Success()
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
@@ -179,6 +186,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Assert.Fail("Created classsifier ID is null or empty.");
 
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
@@ -196,6 +204,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //public void t09_GetCollections_Success()
         //{
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.GetCollections();
@@ -209,6 +218,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //    DeleteDotnetCollections();
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.CreateCollection(_collectionNameToCreate);
@@ -227,6 +237,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Created collection ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.GetCollection(_createdCollectionId);
@@ -242,6 +253,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Created collection ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.GetCollectionImages(_createdCollectionId);
@@ -253,6 +265,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //public void t13_AddCollectionImages_Success()
         //{
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    using (FileStream imageStream = File.OpenRead(_localGiraffeFilePath), metadataStream = File.OpenRead(_localImageMetadataPath))
@@ -278,6 +291,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Added image ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.GetImage(_createdCollectionId, _addedImageId);
@@ -296,6 +310,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Added image ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.GetMetadata(_createdCollectionId, _addedImageId);
@@ -313,6 +328,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Added image ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    using (FileStream metadataStream = File.OpenRead(_localImageMetadataPath))
@@ -328,6 +344,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //public void t17_DeleteCollectionImageMetadata_Success()
         //{
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.DeleteImageMetadata(_createdCollectionId, _addedImageId);
@@ -339,6 +356,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //public void t18_FindSimilar_Success()
         //{
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    using (FileStream imageStream = File.OpenRead(_localTurtleFilePath))
@@ -360,6 +378,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Added image ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.DeleteImage(_createdCollectionId, _addedImageId);
@@ -374,6 +393,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //        Assert.Fail("Created collection ID is null or empty.");
 
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    var result = service.DeleteCollection(_createdCollectionId);
@@ -388,6 +408,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Assert.Fail("Created classsifier ID is null or empty.");
 
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             var result = service.DeleteClassifier(_createdClassifierId);
@@ -398,6 +419,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private bool IsClassifierReady(string classifierId)
         {
             VisualRecognitionService service = new VisualRecognitionService();
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
 
             var result = service.GetClassifier(classifierId);
@@ -422,6 +444,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         //private void DeleteDotnetCollections()
         //{
         //    VisualRecognitionService service = new VisualRecognitionService();
+        //    service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         //    service.SetCredential(apikey);
 
         //    List<string> collectionIdsToDelete = new List<string>();

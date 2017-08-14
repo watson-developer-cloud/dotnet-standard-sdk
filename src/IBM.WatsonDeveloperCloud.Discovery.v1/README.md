@@ -36,9 +36,9 @@ Creates an environment for the service instance. Note: You can create only one e
 ```cs
 CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
 {
-    Name = <environment-name>,
-    Description = <environment-description>,
-    Size = <environment-size>
+    Name = "<environment-name>",
+    Description = "<environment-description>",
+    Size = "<environment-size>"
 };
 
 var result = _discovery.CreateEnvironment(createEnvironmentRequest);
@@ -53,7 +53,7 @@ var result = _discovery.ListEnvironments();
 #### List environment details
 Gets detailed information about the specified environment.
 ```cs
-var result = _discovery.GetEnvironment(<environmentId>);
+var result = _discovery.GetEnvironment("<environmentId>");
 ```
 
 #### Update an environment
@@ -61,17 +61,17 @@ Updates an existing environment.
 ```cs
 UpdateEnvironmentRequest updateEnvironmentRequest = new UpdateEnvironmentRequest()
 {
-    Name = <updated-environment-name>,
-    Description = <updated-environment-description>
+    Name = "<updated-environment-name>",
+    Description = "<updated-environment-description>"
 };
 
-var result = _discovery.UpdateEnvironment(updateEnvironmentRequest);
+var result = _discovery.UpdateEnvironment("<environmentId>", updateEnvironmentRequest);
 ```
 
 #### Delete an environment
 Deletes an existing environment.
 ```cs
-var result = _discovery.DeleteEnvironment(<environmentId>);
+var result = _discovery.DeleteEnvironment("<environmentId>");
 ```
 
 #### Add an configuration
@@ -79,24 +79,24 @@ Adds a configuration to the service instance.
 ```cs
 Configuration configuration = new Configuration()
 {
-    Name = <configuration-name>,
-    Description = <configuration-description>,
+    Name = "<configuration-name>",
+    Description = "<configuration-description>",
     [...]
 };
 
-var result = _discovery.CreateConfiguration(<environmentId>, configuration);
+var result = _discovery.CreateConfiguration("<environmentId>", configuration);
 ```
 
 #### List configurations
 Lists existing configurations for the service instance.
 ```cs
-var result = _discovery.ListConfigurations(<environmentId>);
+var result = _discovery.ListConfigurations("<environmentId>");
 ```
 
 ##### List configuration details
 Get information about the specified configuration.
 ```cs
-var result = _discovery.GetConfiguration(<environmentId>, <configurationId>);
+var result = _discovery.GetConfiguration("<environmentId>", "<configurationId>");
 ```
 
 ##### Update a configuration
@@ -108,12 +108,12 @@ Documents are processed with a snapshot of the configuration that was in place a
 ```cs
 Configuration configuration = new Configuration()
 {
-    Name = <configuration-name>,
-    Description = <configuration-description>,
+    Name = "<configuration-name>",
+    Description = "<configuration-description>",
     [...]
 };
 
-var result = _discovery.UpdateConfiguration(<environmentId>, <configurationId>, configuration);
+var result = _discovery.UpdateConfiguration("<environmentId>", "<configurationId>", configuration);
 ```
 
 ##### Delete a configuration
@@ -121,7 +121,7 @@ Deletes an existing configuration from the service instance.
 
 The delete operation is performed unconditionally. A delete request succeeds even if the configuration is referenced by a collection or document ingestion. However, documents that have already been submitted for processing continue to use the deleted configuration; documents are always processed with a snapshot of the configuration as it existed at the time the document was submitted.
 ```cs
-var result = _discovery.DeleteConfiguration(<environmentId>, <configurationId>);
+var result = _discovery.DeleteConfiguration("<environmentId>", "<configurationId>");
 ```
 
 <!-- ##### Test your configuration on a document
@@ -134,72 +134,80 @@ Creates a new collection for storing documents.
 ```cs
 CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
 {
-    Language = <collectionLanguage>,
-    Name = <collectionName>,
-    Description = <collectionDescription>,
-    ConfigurationId = <configurationId>
+    Language = "<collectionLanguage>",
+    Name = "<collectionName>",
+    Description = "<collectionDescription>",
+    ConfigurationId = "<configurationId>"
 };
 
-var result = _discovery.CreateCollection(<environmentId>, createCollectionRequest);
+var result = _discovery.CreateCollection("<environmentId>", createCollectionRequest);
 ```
 
 ##### List collections
 Display a list of existing collections.
 ```cs
-var result = _discovery.ListCollections(<environmentId>);
+var result = _discovery.ListCollections("<environmentId>");
 ```
 
 ##### List collection details
 Show detailed information about an existing collection.
 ```cs
+var result = _discovery.ListCollections("<environmentId>", "<collectionId>");
 ```
 
 ##### Update an collection
 Creates a new collection for storing documents.
 ```cs
-var result = _discovery.GetCollection(<environmentId>, <collectionId>);
+UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
+{
+    Name = "<name>",
+    Description = "<description>",
+    ConfigurationId = "<configurationId>"
+};
+
+var result = _discovery.UpdateCollection("<environmentId>", "<collectionId>", updateCollectionRequest);
 ```
 
 ##### List fields
 Gets a list of the unique fields, and each field's type, that are stored in a collection's index.
 ```cs
-var result = _discovery.ListCollectionFields(<environmentId>, <collectionId>);
+var result = _discovery.ListCollectionFields("<environmentId>", "<collectionId>");
 ```
 
 ##### Delete an collection
 Deletes an existing collection.
 ```cs
-var result = _discovery.DeleteCollection(<environmentId>, <collectionId>);
+var result = _discovery.DeleteCollection("<environmentId>", "<collectionId>");
 ```
 
 ##### Add a document
 Add a document to your collection.
 ```cs
-using (FileStream fs = File.OpenRead(<filepath>))
+using (FileStream fs = File.OpenRead("<filepath>"))
 {
-    var result = _discovery.AddDocument(<environmentId>, <collectionId>, <configurationId>, fs as Stream);
+    var result = _discovery.AddDocument("<environmentId>", "<collectionId>", "<configurationId>", fs as Stream);
 }
 ```
 
 ##### Update a document
 Update or partially update a document to create or replace an existing document.
 ```cs
-using (FileStream fs = File.OpenRead(<filepath>))
+using (FileStream fs = File.OpenRead("<filepath>"))
 {
-    var result = _discovery.UpdateDocument(<environmentId>, <collectionId>, <documentId>, <configurationId>, fs as Stream);
+    var result = _discovery.UpdateDocument("<environmentId>", "<collectionId>", "<documentId>", fs as Stream);
 }
 ```
 
 ##### List document details
 Display status information about a submitted document.
 ```cs
-var result = _discovery.GetDocumentStatus(<environmentId, <collectionId>, <documentId>);
+var result = _discovery.GetDocumentStatus("<environmentId>", "<collectionId>", "<documentId>");
 ```
 
 ##### Delete a document
 Delete a document from a collection.
 ```cs
-var result = _discovery.DeleteDocument(<environmentId>, <collectionId>, <documentId>);
+var result = _discovery.DeleteDocument("<environmentId>", "<collectionId>", "<documentId>");
 ```
 
 ##### Queries
@@ -207,7 +215,7 @@ Query the documents in your collection.
 
 Once your content is uploaded and enriched by the Discovery service, you can build queries to search your content. For a deep dive into queries, see [Building Queries and Delivering Content][discovery-query].
 ```cs
-var result = _discovery.Query(<environmentId>, <collectionId>, <query>);
+var result = _discovery.Query("<environmentId>", "<collectionId>", "<query>");
 ```
 
 [discovery]: https://www.ibm.com/watson/developercloud/discovery.html

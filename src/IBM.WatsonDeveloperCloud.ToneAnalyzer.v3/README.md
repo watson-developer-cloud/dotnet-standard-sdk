@@ -24,6 +24,7 @@ Use [Tone Analyzer][tone-analyzer] to detect three types of tones from written t
 
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and credentials must be set.
+
 ```cs
 // create a Tone Analyzer Service instance
 ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService();
@@ -35,10 +36,35 @@ _toneAnalyzer.SetCredential("<username>", "<password>");
 
 #### Analyze tone
 Analyzes the tone of a piece of text. The message is analyzed for several tones - social, emotional, and language. For each tone, various traits are derived. For example, conscientiousness, agreeableness, and openness.
+
 ```cs
  // Analyze Tone
- var results = service.AnalyzeTone("A word is dead when it is said, some say. Emily Dickinson");
+ToneInput toneInput = new ToneInput()
+{
+    Text = <"inputText">
+};
 
+var result = service.Tone(toneInput, "<content-type>", null);
+
+```
+
+#### Analyze customer engagment tone
+Uses the customer engagement endpoint to analyze the tone of customer service and customer support conversations. For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic. You can submit a maximum of 128 KB of JSON input. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
+
+```cs
+ToneChatInput toneChatInput = new ToneChatInput()
+{
+    Utterances = new List<Utterance>()
+    {
+        new Utterance()
+        {
+            Text = "<inputText>",
+            User = "<chatUser>"
+        }
+    }
+};
+
+var result = service.ToneChat(toneChatInput);
 ```
 
 [tone-analyzer]: https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html

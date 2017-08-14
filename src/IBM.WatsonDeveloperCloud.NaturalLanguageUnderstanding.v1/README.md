@@ -38,14 +38,14 @@ Analyze features of natural language content.
 ```cs
 Parameters parameters = new Parameters()
 {
-    Text = <string-to-analyze>,
+    Text = "<string-to-analyze>",
     Features = new Features()
     {
         Keywords = new KeywordsOptions()
         {
-            Limit = 8,
-            Sentiment = true,
-            Emotion = true
+            Limit = "<keyword-limit>",
+            Sentiment = "<extract-sentiment>",
+            Emotion = "<extract-emotion>"
         }
     }
 };
@@ -56,7 +56,7 @@ var result = _naturalLanguageUnderstandingService.Analyze(parameters);
 #### List Models
 List available [custom models][custom_models].
 ```cs
-var result = _naturalLanguageUnderstandingService.GetModels();
+var result = _naturalLanguageUnderstandingService.ListModels();
 ```
 
 [natural_language_understanding]: https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/index.html

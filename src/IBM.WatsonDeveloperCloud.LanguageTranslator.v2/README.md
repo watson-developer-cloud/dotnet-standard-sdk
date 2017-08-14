@@ -76,7 +76,7 @@ var result = _languageTranslator.DeleteModel("<custom-model-id>");
 Returns information, including training status, about a specified translation model.
 ```cs
 //  gets details of a particular model
-var result = _languageTranslator.GetModelDetails("<model-id>");
+    var result = _languageTranslator.GetModelDetails("<model-id>");
 ```
 
 [language_translator]: https://www.ibm.com/watson/developercloud/doc/language-translator/index.html

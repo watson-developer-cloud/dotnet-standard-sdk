@@ -63,7 +63,7 @@ Compressed files containing positive examples are used to create “classes” t
 The compressed file containing negative examples is not used to create a class within the created classifier, but does define what the new classifier is not. Negative example files should contain images that do not depict the subject of any of the positive examples. You can only specify one negative example file in a single call. For more information, see [Structure of the training data][structure-of-the-training-data], and [Guidelines for good training][guidelines-for-good-training].
 ```cs
 //  create a dictionary of classnames and positive example data
-Dictionary"<string, byte[]>" positiveExamples = new Dictionary"<string, byte[]>"();
+Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
 positiveExamples.Add("<class-name>", "<positive-examples-data>");
 
 //  create a classifier using positive example dictionary and negative example data
@@ -96,11 +96,11 @@ Compressed files containing positive examples are used to create and update “c
 The compressed file containing negative examples is not used to create a class within the created classifier, but does define what the updated classifier is not. Negative example files should contain images that do not depict the subject of any of the positive examples. You can only specify one negative example file in a single call. For more information, see [Updating custom classifiers][updating-custom-classifiers].
 ```cs
 //  create a dictionary of classnames and positive example data
-Dictionary"<string, byte[]>" positiveExamples = new Dictionary"<string, byte[]>"();
+Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
 positiveExamples.Add("<class-name>", "<positive-examples-data>");
 
 //  updtae a classifier using positive example dictionary and negative example data
-var result = _visualRecognition.UpdateClassifier("<classifier-name>", positiveExamples, "<negative=examples-data>");
+var result = _visualRecognition.UpdateClassifier("<classifier-name>", positiveExamples, "<negative-examples-data>");
 ```
 
 #### Delete a classifier

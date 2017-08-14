@@ -47,12 +47,12 @@ Content content = new Content()
         {
             Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
             Language = ContentItem.LanguageEnum.EN,
-            Content = <content-to-analyze>
+            Content = "<content-to-analyze>"
         }
     }
 };
 
- var result = _personalityInsights.Profile("text/plain", "application/json", Content, rawScores: true, consumptionPreferences:true, csvHeaders:true);
+var result = _personalityInsights.Profile(content, "<content-type>", "<content-language>", "<accept-language>");
 ```
 
 [personality-insights]: https://www.ibm.com/watson/developercloud/personality-insights.html

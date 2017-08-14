@@ -93,7 +93,7 @@ Note about the Try It Out feature: The Try it out! button is not supported for u
 using (FileStream fs = File.OpenRead("<path-to-audio-file>"))
 {
   //  get a transcript of the audio file.
-  var results = _speechToText.Recognize(fs);
+  var results = _speechToText.Recognize(fs.GetMediaTypeFromFile(), fs);
 }
 
 
@@ -119,7 +119,7 @@ Requests results for a recognition task within a specified session. You can subm
 //  set up observe
 var taskObserveResult = Task.Factory.StartNew<List<SpeechRecognitionEvent>>(() =>
 {
-    return service.ObserveResult(<session-id>);
+    return _speechToText.ObserveResult("<session-id>");
 });
 
 //  get results
@@ -131,7 +131,7 @@ taskObserveResult.ContinueWith((antecedent) =>
 //  recognize session audio
 var taskRecognizeWithSession = Task.Factory.StartNew(() =>
 {
-    service.RecognizeWithSession(<session-id>, <audio-stream>.GetMediaTypeFromFile(), <metadata>, <audio-stream>, "chunked", <model-name>);
+    _speechToText.RecognizeWithSession("<session-id>", "<audio-stream>".GetMediaTypeFromFile(), "<audio-stream>", "chunked", "<model-name>");
 });
 ```
 
@@ -141,7 +141,7 @@ Sends audio and returns transcription results for a session-based recognition re
 //  recognize session audio
 var taskRecognizeWithSession = Task.Factory.StartNew(() =>
 {
-    service.RecognizeWithSession(<session-id>, <audio-stream>.GetMediaTypeFromFile(), <metadata>, <audio-stream>, "chunked", <model-name>);
+    _speechToText.RecognizeWithSession("<session-id>", "<audio-stream>".GetMediaTypeFromFile(), "<audio-stream>", "chunked", "<model-name>");
 });
 ```
 
@@ -150,7 +150,7 @@ Sends audio and returns transcription results for a session-based recognition re
 ```cs
 using (FileStream fs = File.OpenRead("<path-to-audio-file>"))
 {
-    var speechEvent = _speechToText.RecognizeWithSession(<session-id>, fs.GetMediaTypeFromFile(), fs);
+    var speechEvent = _speechToText.RecognizeWithSession("<session-id>", fs.GetMediaTypeFromFile(), fs);
 }
 ```
 
@@ -164,7 +164,7 @@ _speechToText.DeleteSession("<session-id>");
 #### Create a custom model
 Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.
 ```cs
-var result = _speechToText.CreateCustomModel(<custom-model-name>, <base-model>, <custom-model-description>);
+var result = _speechToText.CreateCustomModel("<custom-model-name>", "<base-model>", "<custom-model-description>");
 ```
 
 #### List custom models
@@ -182,7 +182,7 @@ var result = _speechToText.ListCustomModel("<customization-id>");
 #### Train a custom model
 Initiates the training of a custom language model with new corpora, words, or both. After adding training data to the custom model with the corpora or words methods, use this method to begin the actual training of the model on the new data. You can specify whether the custom model is to be trained with all words from its words resources or only with words that were added or modified by the user. Only the owner of a custom model can use this method to train the model.
 ```cs
-var result = _speechToText.TrainCustomModel(_createdCustomizationID);
+var result = _speechToText.TrainCustomModel("<_createdCustomizationID>");
 ```
 
 #### Reset a custom model

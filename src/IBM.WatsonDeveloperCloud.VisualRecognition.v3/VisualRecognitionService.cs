@@ -799,9 +799,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         #region Utils
         private string GetImageMimeTypeFromFilename(string filename)
         {
-            if (string.IsNullOrEmpty(filename))
-                throw new ArgumentNullException(nameof(filename));
-
             string imageMimeType = "";
             if (!string.IsNullOrEmpty(filename))
             {

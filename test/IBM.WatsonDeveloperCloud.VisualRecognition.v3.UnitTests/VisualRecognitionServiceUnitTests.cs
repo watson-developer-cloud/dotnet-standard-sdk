@@ -16,12 +16,14 @@
 */
 
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -113,7 +115,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                                     }
                                 }
                             }
+                        },
+                        Image = "image",
+                        Error = new ErrorInfoNoCode()
+                        {
+                            ErrorId = "errorId",
+                            Description = "errorDescription"
                         }
+                    }
+                },
+                Warnings = new List<WarningInfo>()
+                {
+                    new WarningInfo()
+                    {
+                        Description = "warningDescription",
+                        WarningId = "warningId"
                     }
                 }
             };
@@ -160,7 +176,46 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var classifications = service.Classify();
+            var classifications = service.Classify(url:null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Classify_Get_IncorrectOwners()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            List<string> owners = new List<string>()
+            {
+                "owner"
+            };
+
+            var classifications = service.Classify("url", owners: owners.ToArray());
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void Classify_Get_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.Classify("url");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -184,10 +239,34 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var classifications = service.Classify(Arg.Any<byte[]>(), null);
+            var classifications = service.Classify(imageData:null, imageDataName:null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void Classify_Post_NoImageName_NoMimetype_NoUrl()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify(new byte[4], null, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Classify_Post_Empty_Image_Name()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var classifications = service.Classify(Arg.Any<byte[]>(), null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Classify_Post_IncorrectOwners()
         {
             IClient client = this.CreateClient();
@@ -196,7 +275,34 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var classifications = service.Classify(Arg.Any<byte[]>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string[]>(), Arg.Any<string[]>());
+            List<string> owners = new List<string>()
+            {
+                "owner"
+            };
+
+            var classifications = service.Classify(new byte[4], "name", "mimetype", owners:owners.ToArray());
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void Classify_Post_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.Classify(imageData:new byte[4], imageDataName:"imageDataName", imageDataMimeType:"image/jpeg");
         }
 
         [TestMethod]
@@ -267,7 +373,29 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var classifications = service.DetectFaces();
+            var classifications = service.DetectFaces(url:null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DetectFaces_Get_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DetectFaces(url:"url");
         }
 
         [TestMethod]
@@ -282,6 +410,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 {
                     new FacesTopLevelSingle()
                     {
+                        Error = new ErrorInfoNoCode()
+                        {
+                            Description = "error description",
+                            ErrorId = "errorId"
+                        },
                         Faces = new List<OneFaceResult>()
                         {
                             new OneFaceResult()
@@ -398,6 +531,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var classifications = service.DetectFaces(new byte[4], "name", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void Detect_Faces_Post_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DetectFaces(imageData:new byte[4], imageDataName:"name", imageDataMimeType:"image/jpeg");
         }
 
         [TestMethod]
@@ -541,6 +696,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
         }
         #endregion
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetClassifiersBrief_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetClassifiersBrief();
+        }
+
         #region Classifiers
         [TestMethod]
         public void GetClassifiersBrief_Success()
@@ -587,6 +764,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             Assert.IsTrue(classifiers.Classifiers[0].Name == "turtle-classifier");
             Assert.IsTrue(classifiers.Classifiers[0].ClassifierId == "turtle-classifier-id");
             Assert.IsTrue(classifiers.Classifiers[0].Status == "ready");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetClassifiersVerbose_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetClassifiersVerbose();
         }
 
         [TestMethod]
@@ -696,7 +895,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
             positiveExamples.Add("classifier", new byte[4]);
 
-            var classifier = service.CreateClassifier(null, positiveExamples);
+            var classifier = service.CreateClassifier("classifierName", positiveExamples);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void CreateClassifier_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+            Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
+            positiveExamples.Add("classifier", new byte[4]);
+            service.CreateClassifier("classifierName", positiveExamples, new byte[4]);
         }
 
         [TestMethod]
@@ -802,6 +1024,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var result = service.DeleteClassifier(null);
         }
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteClassifier_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DeleteClassifier("classifierId");
+        }
+
         [TestMethod]
         public void DeleteClassifier_Success()
         {
@@ -841,6 +1085,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.GetClassifier(null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetClassifier_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetClassifier("classifierId");
         }
 
         [TestMethod]
@@ -908,7 +1174,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var result = service.UpdateClassifier(null);
+            var result = service.UpdateClassifier("classifierId ", null, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void UpdateClassifier_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+            Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
+            positiveExamples.Add("classifier", new byte[4]);
+            service.UpdateClassifier("classifierName", positiveExamples, new byte[4]);
         }
 
         [TestMethod]
@@ -1046,6 +1335,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
         #endregion
 
         #region Collections
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetCollections_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetCollections();
+        }
+
         [TestMethod]
         public void GetCollections_Success()
         {
@@ -1105,6 +1416,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var collection = service.CreateCollection(null);
         }
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void CreateCollection_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.CreateCollection("classifierId");
+        }
+
         [TestMethod]
         public void CreateCollection_Success()
         {
@@ -1160,6 +1493,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var result = service.DeleteCollection(null);
         }
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteCollection_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DeleteCollection("collectionId");
+        }
+
         [TestMethod]
         public void DeleteCollection_Success()
         {
@@ -1197,6 +1552,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.GetCollection(null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetCollection_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetCollection("collectionId");
         }
 
         [TestMethod]
@@ -1254,6 +1631,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var result = service.GetCollectionImages(null);
         }
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetCollectionImages_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetCollectionImages("collectionId");
+        }
+
         [TestMethod]
         public void GetCollectionImages_Success()
         {
@@ -1304,7 +1703,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             VisualRecognitionService service =
                 new VisualRecognitionService(client);
 
-            var result = service.AddImage(null, new byte[4], "imageFileName", new byte[4]);
+            var result = service.AddImage(null, new byte[4], "imageFileName.jpg", new byte[4]);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -1317,6 +1716,40 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.AddImage("collectionId", null, null, null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void AddImage_No_BadImageExetenstion()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var result = service.AddImage("collectionId", new byte[4], "imageFileName.abc");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void AddImage_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.AddImage("collectionId", new byte[4], "imageFilename.jpg");
         }
 
         [TestMethod]
@@ -1335,8 +1768,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                     {
                         ImageId = "imageId",
                         Created = "created",
-                        ImageFile = "imageFile"
-                    }
+                        ImageFile = "imageFile",
+                        Metadata = new Dictionary<string, string>()
+                    },
                 },
                 ImagesProcessed = 1
             };
@@ -1364,7 +1798,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
         }
 
         [TestMethod]
-        public void AddImage_Success()
+        public void AddImage_Success_Jpg()
         {
             IClient client = this.CreateClient();
             IRequest request = Substitute.For<IRequest>();
@@ -1407,6 +1841,50 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             Assert.IsTrue(collection.Images[0].ImageFile == "imageFile");
         }
 
+        [TestMethod]
+        public void AddImage_Success_Png()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(request);
+
+            CollectionsConfig response = new CollectionsConfig()
+            {
+                Images = new List<CollectionImagesConfig>()
+                {
+                    new CollectionImagesConfig()
+                    {
+                        ImageId = "imageId",
+                        Created = "created",
+                        ImageFile = "imageFile"
+                    }
+                },
+                ImagesProcessed = 1
+            };
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<HttpContent>())
+                .Returns(request);
+
+            request.As<CollectionsConfig>()
+                .Returns(Task.FromResult(response));
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var collection = service.AddImage("collectionName", new byte[4], "imageFilename.png", new byte[4]);
+
+            Assert.IsNotNull(collection);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(collection.Images[0].ImageId == "imageId");
+            Assert.IsTrue(collection.Images[0].Created == "created");
+            Assert.IsTrue(collection.Images[0].ImageFile == "imageFile");
+        }
+
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteImage_No_CollectionId_No_ImageId()
         {
@@ -1441,6 +1919,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.DeleteImage(null, "imageId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteImage_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DeleteImage("collectionId", "imageId");
         }
 
         [TestMethod]
@@ -1504,6 +2004,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.GetImage(null, "imageId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetImage_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetImage("collectionId", "imageFilename.jpg");
         }
 
         [TestMethod]
@@ -1578,6 +2100,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                 new VisualRecognitionService(client);
 
             var result = service.DeleteImageMetadata(null, "imageId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteImageMetadata_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.DeleteImageMetadata("collectionId", "imageId");
         }
 
         [TestMethod]
@@ -1655,6 +2199,61 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var result = service.AddImageMetadata(null, "imageId", new byte[4]);
         }
 
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddImageMetadata_No_Metadata()
+        {
+            IClient client = this.CreateClient();
+            IRequest request = Substitute.For<IRequest>();
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            var result = service.AddImageMetadata("collectionId", "imageId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void AddImageMetadata_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.AddImageMetadata("collectionId", "imageId", new byte[4]);
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetMetadata_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.GetMetadata("collectionId", "imageId");
+        }
 
         [TestMethod]
         public void GetImageMetadata_Success()
@@ -1781,6 +2380,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
             var result = service.FindSimilar("collectionId", new byte[4], null);
         }
 
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void FindSimilar_Catch_Exception()
+        {
+            #region Mock IClient
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                                string.Empty));
+                  });
+            #endregion
+
+            VisualRecognitionService service =
+                new VisualRecognitionService(client);
+
+            service.FindSimilar("collectionId", new byte[4], "image.jpg");
+        }
+
         [TestMethod]
         public void FindSimilar_Success()
         {
@@ -1798,7 +2419,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.UnitTests
                         ImageId = "imageId",
                         Created = "created",
                         ImageFile = "imageFile",
-                        Score = 0.98f
+                        Score = 0.98f,
+                        Metadata = new Dictionary<string, string>()
                     }
                 },
                 ImagesProcessed = 1

@@ -70,8 +70,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             VisualRecognitionService service = new VisualRecognitionService();
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             service.SetCredential(apikey);
+            List<string> classifiers = new List<string>()
+            {
+                "default"
+            };
 
-            var result = service.Classify(_imageUrl);
+            List<string> owners = new List<string>()
+            {
+                "IBM",
+                "me"
+            };
+
+            var result = service.Classify(_imageUrl, classifiers.ToArray(), owners.ToArray());
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Images);

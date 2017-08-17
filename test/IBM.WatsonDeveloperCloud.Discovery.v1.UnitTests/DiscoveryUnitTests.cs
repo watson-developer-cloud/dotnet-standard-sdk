@@ -252,8 +252,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Size = 1,
                 IndexCapacity = new IndexCapacity()
                 {
-                    DiskUsage = new DiskUsage(){},
-                    MemoryUsage = new MemoryUsage(){}
+                    DiskUsage = new DiskUsage() { },
+                    MemoryUsage = new MemoryUsage() { }
                 }
             };
             #endregion
@@ -410,8 +410,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Size = 1,
                 IndexCapacity = new IndexCapacity()
                 {
-                    DiskUsage = new DiskUsage(){},
-                    MemoryUsage = new MemoryUsage(){}
+                    DiskUsage = new DiskUsage() { },
+                    MemoryUsage = new MemoryUsage() { }
                 }
             };
             #endregion
@@ -561,7 +561,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
             service.VersionDate = null;
-            
+
             service.TestConfigurationInEnvironment("envronmentId");
         }
 
@@ -595,24 +595,33 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            TestDocument response = new TestDocument()
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.QueryId.Returns("queryId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
+            var response = Substitute.For<TestDocument>();
+            response.ConfigurationId.Returns("configurationId");
+            response.Status.Returns("status");
+            response.EnrichedFieldUnits.Returns(1.0f);
+            response.OriginalMediaType.Returns("originalMediaType");
+            response.Snapshots = new List<DocumentSnapshot>()
             {
-                Snapshots = new List<DocumentSnapshot>()
+                new DocumentSnapshot()
                 {
-                    new DocumentSnapshot()
-                    {
-                        Step = DocumentSnapshot.StepEnum.HTML_INPUT,
-                        Snapshot = new object() { }
-                    }
-                },
-                Notices = new List<Notice>()
-                {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    Step = DocumentSnapshot.StepEnum.HTML_INPUT,
+                    Snapshot = new object() { }
                 }
             };
+            response.Notices = new List<Notice>()
+            {
+                notice
+            };
+
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -639,15 +648,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
-            Assert.IsNull(result.ConfigurationId);
-            Assert.IsNull(result.Status);
-            Assert.IsNull(result.EnrichedFieldUnits);
-            Assert.IsNull(result.OriginalMediaType);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.ConfigurationId);
+            Assert.IsNotNull(result.Status);
+            Assert.IsNotNull(result.EnrichedFieldUnits);
+            Assert.IsNotNull(result.OriginalMediaType);
         }
 
         [TestMethod]
@@ -694,7 +703,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.TestConfigurationInEnvironment("environmentId", configuration:"configuration");
+            var result = service.TestConfigurationInEnvironment("environmentId", configuration: "configuration");
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -814,7 +823,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.TestConfigurationInEnvironment("environmentId", metadata:"metadata");
+            var result = service.TestConfigurationInEnvironment("environmentId", metadata: "metadata");
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
             Assert.IsNotNull(result.Snapshots);
@@ -939,7 +948,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                ExcludeTagsCompletely = new List<string>()
                                {
                                    "exclude"
-                               }, 
+                               },
                                ExcludeTagsKeepContent = new List<string>()
                                {
                                    "exclude but keep content"
@@ -1044,7 +1053,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Extract == "extract");
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Sentiment == false);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Quotations == false);
-            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.ShowSourceText== false);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.ShowSourceText == false);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.HierarchicalTypedRelations == false);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options._Model == "model");
         }
@@ -1070,7 +1079,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
             service.VersionDate = null;
-            
+
             service.CreateConfiguration("environmentId", new Configuration());
         }
 
@@ -1171,7 +1180,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.CreateConfiguration("environmentId",Configuration);
+            var result = service.CreateConfiguration("environmentId", Configuration);
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
@@ -1200,7 +1209,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
             service.VersionDate = null;
-            service.DeleteConfiguration("environmentId","ConfigurationId");
+            service.DeleteConfiguration("environmentId", "ConfigurationId");
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -1444,7 +1453,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                                                                Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
                                                                                string.Empty));
                  });
-            
+
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
 
@@ -1686,7 +1695,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Status = Collection.StatusEnum.PENDING,
                 ConfigurationId = "configurationId",
                 Language = "language",
-                DocumentCounts = new DocumentCounts() {}
+                DocumentCounts = new DocumentCounts() { }
             };
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())

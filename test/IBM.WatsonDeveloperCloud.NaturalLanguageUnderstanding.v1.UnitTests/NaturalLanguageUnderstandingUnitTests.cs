@@ -441,7 +441,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            InlineResponse200 response = new InlineResponse200() {};
+            InlineResponse200 response = new InlineResponse200()
+            {
+                Deleted = "true"
+            };
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -456,6 +459,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().DeleteAsync(Arg.Any<string>());
+            Assert.IsNotNull(result.Deleted);
         }
         #endregion
 

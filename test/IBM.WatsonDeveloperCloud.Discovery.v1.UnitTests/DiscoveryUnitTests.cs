@@ -141,6 +141,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var memoryUsage = Substitute.For<MemoryUsage>();
+            memoryUsage.PercentUsed.Returns(100);
+            memoryUsage.Total.Returns("total");
+            memoryUsage.TotalBytes.Returns(0);
+            memoryUsage.Used.Returns("used");
+            memoryUsage.UsedBytes.Returns(100);
+
+            var diskUsage = Substitute.For<DiskUsage>();
+            diskUsage.UsedBytes.Returns(0);
+            diskUsage.MaximumAllowedBytes.Returns(0);
+            diskUsage.TotalBytes.Returns(0);
+            diskUsage.Used.Returns("used");
+            diskUsage.Total.Returns("total");
+            diskUsage.PercentUsed.Returns(0);
+
             ListEnvironmentsResponse response = new ListEnvironmentsResponse()
             {
                 Environments = new List<ModelEnvironment>()
@@ -153,8 +168,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                        Size = 1,
                        IndexCapacity = new IndexCapacity()
                        {
-                           DiskUsage = new DiskUsage(){},
-                           MemoryUsage = new MemoryUsage(){}
+                           DiskUsage = diskUsage,
+                           MemoryUsage = memoryUsage
                        }
                    }
                }
@@ -181,6 +196,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Environments[0].Name == "name");
             Assert.IsTrue(result.Environments[0].Description == "description");
             Assert.IsTrue(result.Environments[0].Size == 1);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.PercentUsed == 0);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.Total == "total");
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.Used == "used");
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.TotalBytes == 0);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.MaximumAllowedBytes == 0);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.DiskUsage.UsedBytes == 0);
+
+            Assert.IsTrue(result.Environments[0].IndexCapacity.MemoryUsage.PercentUsed == 100);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.MemoryUsage.Total == "total");
+            Assert.IsTrue(result.Environments[0].IndexCapacity.MemoryUsage.Used == "used");
+            Assert.IsTrue(result.Environments[0].IndexCapacity.MemoryUsage.TotalBytes == 0);
+            Assert.IsTrue(result.Environments[0].IndexCapacity.MemoryUsage.UsedBytes == 100);
         }
         #endregion
 
@@ -599,9 +626,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             notice.NoticeId.Returns("noticeId");
             notice.Created.Returns(DateTime.MinValue);
             notice.DocumentId.Returns("documentId");
-            notice.QueryId.Returns("queryId");
             notice.Step.Returns("step");
             notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
             notice.Severity = Notice.SeverityEnum.ERROR;
 
             var response = Substitute.For<TestDocument>();
@@ -653,6 +680,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices[0].DocumentId);
             Assert.IsNotNull(result.Notices[0].Step);
             Assert.IsNotNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].QueryId);
             Assert.IsNotNull(result.ConfigurationId);
             Assert.IsNotNull(result.Status);
             Assert.IsNotNull(result.EnrichedFieldUnits);
@@ -669,6 +697,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             TestDocument response = new TestDocument()
             {
                 Snapshots = new List<DocumentSnapshot>()
@@ -681,10 +718,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 },
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
             #endregion
@@ -713,11 +747,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -730,6 +764,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             TestDocument response = new TestDocument()
             {
                 Snapshots = new List<DocumentSnapshot>()
@@ -742,10 +785,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 },
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
             #endregion
@@ -772,11 +812,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -789,6 +829,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             TestDocument response = new TestDocument()
             {
                 Snapshots = new List<DocumentSnapshot>()
@@ -801,10 +850,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 },
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
             #endregion
@@ -832,11 +878,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -886,136 +932,140 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var configuration = Substitute.For<Configuration>();
+            configuration.ConfigurationId.Returns("configurationId");
+            configuration.Created.Returns(DateTime.MinValue);
+            configuration.Updated.Returns(DateTime.MinValue);
+            configuration.Name = "name";
+            configuration.Description = "description";
+            configuration.Conversions = new Conversions()
+            {
+                Pdf = new PdfSettings()
+                {
+                    Heading = new PdfHeadingDetection()
+                    {
+                        Fonts = new List<FontSetting>()
+                        {
+                            new FontSetting()
+                            {
+                                Level = 1f,
+                                MinSize = 1f,
+                                MaxSize = 1f,
+                                Bold = false,
+                                Italic = false,
+                                Name = "name"
+                            }
+                        }
+                    }
+                },
+                Word = new WordSettings()
+                {
+                    Heading = new WordHeadingDetection()
+                    {
+                        Fonts = new List<FontSetting>()
+                        {
+                            new FontSetting()
+                            {
+                                Level = 1f,
+                                MinSize = 1f,
+                                MaxSize = 1f,
+                                Bold = false,
+                                Italic = false,
+                                Name = "name"
+                            }
+                        },
+                        Styles = new List<WordStyle>()
+                        {
+                            new WordStyle()
+                            {
+                                Level = 1.0f,
+                                Names = new List<string>
+                                {
+                                    "name"
+                                }
+                            }
+                        }
+                    }
+                },
+                Html = new HtmlSettings()
+                {
+                    ExcludeTagsCompletely = new List<string>()
+                    {
+                        "exclude"
+                    },
+                    ExcludeTagsKeepContent = new List<string>()
+                    {
+                        "exclude but keep content"
+                    },
+                    KeepContent = new XPathPatterns()
+                    {
+                        Xpaths = new List<string>()
+                        {
+                            "keepContent"
+                        }
+                    },
+                    ExcludeContent = new XPathPatterns()
+                    {
+                        Xpaths = new List<string>()
+                        {
+                            "excludeContent"
+                        }
+                    },
+                    KeepTagAttributes = new List<string>()
+                    {
+                        "keepTagAttributes"
+                    },
+                    ExcludeTagAttributes = new List<string>()
+                    {
+                        "excludeTagAttributes"
+                    }
+                },
+                JsonNormalizations = new List<NormalizationOperation>()
+                {
+                    new NormalizationOperation()
+                    {
+
+                    }
+                },
+
+            };
+            configuration.Enrichments = new List<Enrichment>()
+            {
+                new Enrichment()
+                {
+                    Description = "description",
+                    DestinationField = "destinationField",
+                    SourceField = "sourceField",
+                    Overwrite = false,
+                    EnrichmentName = "enrichmentName",
+                    IgnoreDownstreamErrors = false,
+                    Options = new EnrichmentOptions()
+                    {
+                        Language = EnrichmentOptions.LanguageEnum.EN,
+                        Extract = "extract",
+                        Sentiment = false,
+                        Quotations = false,
+                        ShowSourceText = false,
+                        HierarchicalTypedRelations = false,
+                        _Model= "model"
+                    }
+                }
+            };
+            configuration.Normalizations = new List<NormalizationOperation>()
+            {
+                new NormalizationOperation()
+                {
+                    Operation = NormalizationOperation.OperationEnum.MERGE,
+                    SourceField = "sourceField",
+                    DestinationField = "destinationField"
+                }
+            };
+
             ListConfigurationsResponse response = new ListConfigurationsResponse()
             {
                 Configurations = new List<Configuration>()
                {
-                   new Configuration()
-                   {
-                       Name = "name",
-                       Description = "description",
-                       Conversions = new Conversions()
-                       {
-                           Pdf = new PdfSettings()
-                           {
-                               Heading = new PdfHeadingDetection()
-                               {
-                                   Fonts = new List<FontSetting>()
-                                   {
-                                       new FontSetting()
-                                       {
-                                           Level = 1f,
-                                           MinSize = 1f,
-                                           MaxSize = 1f,
-                                           Bold = false,
-                                           Italic = false,
-                                           Name = "name"
-                                       }
-                                   }
-                               }
-                           },
-                           Word = new WordSettings()
-                           {
-                               Heading = new WordHeadingDetection()
-                               {
-                                   Fonts = new List<FontSetting>()
-                                   {
-                                       new FontSetting()
-                                       {
-                                           Level = 1f,
-                                           MinSize = 1f,
-                                           MaxSize = 1f,
-                                           Bold = false,
-                                           Italic = false,
-                                           Name = "name"
-                                       }
-                                   },
-                                   Styles = new List<WordStyle>()
-                                   {
-                                       new WordStyle()
-                                       {
-                                           Level = 1.0f,
-                                           Names = new List<string>
-                                           {
-                                               "name"
-                                           }
-                                       }
-                                   }
-                               }
-                           },
-                           Html = new HtmlSettings()
-                           {
-                               ExcludeTagsCompletely = new List<string>()
-                               {
-                                   "exclude"
-                               },
-                               ExcludeTagsKeepContent = new List<string>()
-                               {
-                                   "exclude but keep content"
-                               },
-                               KeepContent = new XPathPatterns()
-                               {
-                                   Xpaths = new List<string>()
-                                   {
-                                       "keepContent"
-                                   }
-                               },
-                               ExcludeContent = new XPathPatterns()
-                               {
-                                   Xpaths = new List<string>()
-                                   {
-                                       "excludeContent"
-                                   }
-                               },
-                               KeepTagAttributes = new List<string>()
-                               {
-                                   "keepTagAttributes"
-                               },
-                               ExcludeTagAttributes = new List<string>()
-                               {
-                                   "excludeTagAttributes"
-                               }
-                           },
-                           JsonNormalizations = new List<NormalizationOperation>()
-                           {
-                               new NormalizationOperation()
-                               {
-
-                               }
-                           }
-                       },
-                       Enrichments = new List<Enrichment>()
-                       {
-                           new Enrichment()
-                           {
-                               Description = "description",
-                               DestinationField = "destinationField",
-                               SourceField = "sourceField",
-                               Overwrite = false,
-                               EnrichmentName = "enrichmentName",
-                               IgnoreDownstreamErrors = false,
-                               Options = new EnrichmentOptions()
-                               {
-                                   Language = EnrichmentOptions.LanguageEnum.EN,
-                                   Extract = "extract",
-                                   Sentiment = false,
-                                   Quotations = false,
-                                   ShowSourceText = false,
-                                   HierarchicalTypedRelations = false,
-                                   _Model= "model"
-                               }
-                           }
-                       },
-                       Normalizations = new List<NormalizationOperation>()
-                       {
-                           new NormalizationOperation()
-                           {
-                               Operation = NormalizationOperation.OperationEnum.MERGE,
-                               SourceField = "sourceField",
-                               DestinationField = "destinationField"
-                           }
-                       }
-                   }
+                   configuration
                }
             };
             #endregion
@@ -1038,7 +1088,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Configurations.Count > 0);
             Assert.IsTrue(result.Configurations[0].Name == "name");
             Assert.IsTrue(result.Configurations[0].Description == "description");
-            Assert.IsNull(result.Configurations[0].ConfigurationId);
+            Assert.IsNotNull(result.Configurations[0].ConfigurationId);
             Assert.IsNotNull(result.Configurations[0].Created);
             Assert.IsNotNull(result.Configurations[0].Updated);
             Assert.IsNotNull(result.Configurations[0].Enrichments);
@@ -1242,16 +1292,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             DeleteConfigurationResponse response = new DeleteConfigurationResponse()
             {
                 ConfigurationId = "ConfigurationId",
                 Status = DeleteConfigurationResponse.StatusEnum.DELETED,
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
             #endregion
@@ -1273,11 +1329,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -1933,15 +1989,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region response
-            Collection response = new Collection()
-            {
-                Status = Collection.StatusEnum.PENDING,
-                Name = "name",
-                Description = "description",
-                ConfigurationId = "configurationId",
-                Language = "language",
-                DocumentCounts = new DocumentCounts() { }
-            };
+            var documentCounts = Substitute.For<DocumentCounts>();
+            documentCounts.Available.Returns(0);
+            documentCounts.Processing.Returns(0);
+            documentCounts.Failed.Returns(0);
+
+            var response = Substitute.For<Collection>();
+            response.Status = Collection.StatusEnum.PENDING;
+            response.Name = "name";
+            response.Description = "description";
+            response.ConfigurationId = "configurationId";
+            response.Language = "language";
+            response.DocumentCounts = documentCounts;
+            response.CollectionId.Returns("collectionId");
+            response.Created.Returns(DateTime.MinValue);
+            response.Updated.Returns(DateTime.MinValue);
+
             #endregion
 
             UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
@@ -1969,12 +2032,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Description == "description");
             Assert.IsTrue(result.ConfigurationId == "configurationId");
             Assert.IsTrue(result.Language == "language");
-            Assert.IsNull(result.CollectionId);
+            Assert.IsTrue(result.CollectionId == "collectionId");
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
-            Assert.IsNull(result.DocumentCounts.Available);
-            Assert.IsNull(result.DocumentCounts.Processing);
-            Assert.IsNull(result.DocumentCounts.Failed);
+            Assert.IsNotNull(result.DocumentCounts.Available);
+            Assert.IsNotNull(result.DocumentCounts.Processing);
+            Assert.IsNotNull(result.DocumentCounts.Failed);
         }
         #endregion
 
@@ -2030,14 +2093,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
+            var field = Substitute.For<Field>();
+            field.FieldName.Returns("field");
+            field.FieldType = Field.FieldTypeEnum.STRING;
+
             ListCollectionFieldsResponse response = new ListCollectionFieldsResponse()
             {
                 Fields = new List<Field>()
                 {
-                    new Field()
-                    {
-                        FieldType = Field.FieldTypeEnum.STRING
-                    }
+                    field
                 }
             };
             #endregion
@@ -2057,7 +2121,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Fields);
             Assert.IsTrue(result.Fields.Count > 0);
             Assert.IsTrue(result.Fields[0].FieldType == Field.FieldTypeEnum.STRING);
-            Assert.IsNull(result.Fields[0].FieldName);
+            Assert.IsTrue(result.Fields[0].FieldName == "field");
         }
         #endregion
         #endregion
@@ -2116,16 +2180,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.PostAsync(Arg.Any<string>())
                 .Returns(request);
 
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             DocumentAccepted documentAccepted = new DocumentAccepted()
             {
                 Status = DocumentAccepted.StatusEnum.PROCESSING,
                 DocumentId = "documentId",
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
 
@@ -2150,11 +2220,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -2166,16 +2236,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.PostAsync(Arg.Any<string>())
                 .Returns(request);
 
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             DocumentAccepted documentAccepted = new DocumentAccepted()
             {
                 Status = DocumentAccepted.StatusEnum.PROCESSING,
                 DocumentId = "documentId",
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
 
@@ -2200,11 +2276,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
         #endregion
 
@@ -2351,17 +2427,39 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            DocumentStatus response = new DocumentStatus()
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
+            //DocumentStatus response = new DocumentStatus()
+            //{
+            //    Status = DocumentStatus.StatusEnum.AVAILABLE,
+            //    ConfigurationId = "",
+            //    Notices = new List<Notice>()
+            //    {
+            //        notice
+            //    }
+            //};
+
+            var response = Substitute.For<DocumentStatus>();
+            response.Status = DocumentStatus.StatusEnum.AVAILABLE;
+            response.FileType = DocumentStatus.FileTypeEnum.HTML;
+            response.Filename = "fileName";
+            response.Sha1 = "sha1";
+            response.Notices = new List<Notice>()
             {
-                Status = DocumentStatus.StatusEnum.AVAILABLE,
-                Notices = new List<Notice>()
-                {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
-                }
+                notice
             };
+            response.DocumentId.Returns("documentId");
+            response.ConfigurationId.Returns("configurationId");
+            response.Created.Returns(DateTime.MinValue);
+            response.Updated.Returns(DateTime.MinValue);
+            response.StatusDescription.Returns("statusDescription");
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -2380,16 +2478,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
-            Assert.IsNull(result.DocumentId);
-            Assert.IsNull(result.ConfigurationId);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.DocumentId);
+            Assert.IsNotNull(result.ConfigurationId);
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
-            Assert.IsNull(result.StatusDescription);
+            Assert.IsNotNull(result.StatusDescription);
         }
         #endregion
 
@@ -2453,16 +2551,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.PostAsync(Arg.Any<string>())
                 .Returns(request);
 
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             DocumentAccepted documentAccepted = new DocumentAccepted()
             {
                 Status = DocumentAccepted.StatusEnum.PROCESSING,
                 DocumentId = "documentId",
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
 
@@ -2485,11 +2589,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
 
         [TestMethod]
@@ -2501,16 +2605,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             client.PostAsync(Arg.Any<string>())
                 .Returns(request);
 
+            var notice = Substitute.For<Notice>();
+            notice.NoticeId.Returns("noticeId");
+            notice.Created.Returns(DateTime.MinValue);
+            notice.DocumentId.Returns("documentId");
+            notice.Step.Returns("step");
+            notice.Description.Returns("description");
+            notice.QueryId.Returns("queryId");
+            notice.Severity = Notice.SeverityEnum.ERROR;
+
             DocumentAccepted documentAccepted = new DocumentAccepted()
             {
                 Status = DocumentAccepted.StatusEnum.PROCESSING,
                 DocumentId = "documentId",
                 Notices = new List<Notice>()
                 {
-                    new Notice()
-                    {
-                        Severity = Notice.SeverityEnum.ERROR
-                    }
+                    notice
                 }
             };
 
@@ -2533,11 +2643,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Notices);
             Assert.IsTrue(result.Notices.Count > 0);
             Assert.IsTrue(result.Notices[0].Severity == Notice.SeverityEnum.ERROR);
-            Assert.IsNull(result.Notices[0].NoticeId);
+            Assert.IsNotNull(result.Notices[0].NoticeId);
             Assert.IsNotNull(result.Notices[0].Created);
-            Assert.IsNull(result.Notices[0].DocumentId);
-            Assert.IsNull(result.Notices[0].Step);
-            Assert.IsNull(result.Notices[0].Description);
+            Assert.IsNotNull(result.Notices[0].DocumentId);
+            Assert.IsNotNull(result.Notices[0].Step);
+            Assert.IsNotNull(result.Notices[0].Description);
         }
         #endregion
         #endregion

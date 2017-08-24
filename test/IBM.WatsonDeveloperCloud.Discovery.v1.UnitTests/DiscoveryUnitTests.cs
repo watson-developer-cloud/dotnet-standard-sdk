@@ -2928,5 +2928,322 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsNotNull(result.Results[0].Metadata);
         }
         #endregion
+
+        #region Training Data
+        #region Delete Training Data
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteAllTrainingData_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.DeleteAllTrainingData(null, "collectionId");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteAllTrainingData_No_CollectionId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.DeleteAllTrainingData(null, "collectionId");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteAllTrainingData_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.DeleteAllTrainingData("environmentId", "collectionId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteAllTrainingData_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+
+            service.DeleteAllTrainingData("environmentId", "collectionId");
+        }
+
+        [TestMethod]
+        public void DeleteAllTrainingData_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            object response = new object();
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.As<object>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.DeleteAllTrainingData("environmentId", "collectionId");
+
+            Assert.IsNotNull(result);
+            client.Received().DeleteAsync(Arg.Any<string>());
+        }
+        #endregion
+
+        #region List Training Data
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListTrainingData_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.ListTrainingData(null, "collectionId");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListTrainingData_No_CollectionId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.ListTrainingData("environmentId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListTrainingData_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.ListTrainingData("environmentId", "collectionId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void ListTrainingData_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.ListTrainingData("environmentId", "collectionId");
+        }
+
+        [TestMethod]
+        public void ListTrainingData_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            var response = new TrainingDataSet()
+            {
+                EnvironmentId = "environmentId",
+                CollectionId = "collectionId",
+                Queries = new List<TrainingQuery>()
+                {
+                    new TrainingQuery()
+                    {
+                        QueryId = "queryId",
+                        NaturalLanguageQuery = "naturalLanguageQuery",
+                        Filter = "filter",
+                        Examples = new List<TrainingExample>()
+                        {
+                            new TrainingExample()
+                            {
+                                DocumentId = "documentId",
+                                CrossReference = "crossReference",
+                                Relevance = 1.0f
+                            }
+                        }
+                    }
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.As<TrainingDataSet>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.ListTrainingData("environmentId", "collectionId");
+
+            Assert.IsNotNull(result);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(response.EnvironmentId == "environmentId");
+            Assert.IsTrue(response.CollectionId== "collectionId");
+            Assert.IsNotNull(response.Queries);
+            Assert.IsTrue(response.Queries.Count > 0);
+            Assert.IsTrue(response.Queries[0].QueryId == "queryId");
+            Assert.IsTrue(response.Queries[0].NaturalLanguageQuery == "naturalLanguageQuery");
+            Assert.IsTrue(response.Queries[0].Filter == "filter");
+            Assert.IsNotNull(response.Queries[0].Examples);
+            Assert.IsTrue(response.Queries[0].Examples.Count > 0);
+            Assert.IsTrue(response.Queries[0].Examples[0].DocumentId == "documentId");
+            Assert.IsTrue(response.Queries[0].Examples[0].CrossReference == "crossReference");
+            Assert.IsTrue(response.Queries[0].Examples[0].Relevance == 1.0f);
+
+        }
+        #endregion
+
+        #region Add Training Data
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddTrainingData_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.AddTrainingData(null, "collectionId", new NewTrainingQuery());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddTrainingData_No_CollectionId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.AddTrainingData("environmentId", null, new NewTrainingQuery());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddTrainingData_No_Body()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.AddTrainingData("environmentId", "collectionId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void AddTrainingData_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+
+            service.AddTrainingData("environmentId", "collectionId", new NewTrainingQuery());
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void AddTrainingData_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+
+            service.AddTrainingData("environmentId", "collectionId", new NewTrainingQuery());
+        }
+
+        [TestMethod]
+        public void AddTrainingData_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region response
+            var response = new TrainingQuery()
+            {
+                QueryId = "queryId",
+                NaturalLanguageQuery = "naturalLanguageQuery",
+                Filter = "filter",
+                Examples = new List<TrainingExample>()
+                {
+                    new TrainingExample()
+                    {
+                        DocumentId = "documentId",
+                        CrossReference = "crossReference",
+                        Relevance = 1.0f
+                    }
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBody(Arg.Any<NewTrainingQuery>())
+                .Returns(request);
+            request.As<TrainingQuery>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var newTrainingQuery = new NewTrainingQuery()
+            {
+                NaturalLanguageQuery = "naturalLanguageQuery",
+                Filter = "filter",
+                Examples = new List<TrainingExample>()
+                {
+                    new TrainingExample()
+                    {
+                        DocumentId = "documentId",
+                        CrossReference = "crossReference",
+                        Relevance = 1.0f
+                    }
+                }
+            };
+
+            var result = service.AddTrainingData("environmentId", "collectionId", newTrainingQuery);
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.QueryId == "queryId");
+            Assert.IsTrue(result.NaturalLanguageQuery == "naturalLanguageQuery");
+            Assert.IsTrue(result.Filter == "filter");
+            Assert.IsNotNull(result.Examples);
+            Assert.IsTrue(result.Examples.Count > 0);
+            Assert.IsTrue(result.Examples[0].DocumentId == "documentId");
+            Assert.IsTrue(result.Examples[0].CrossReference == "crossReference");
+            Assert.IsTrue(result.Examples[0].Relevance == 1.0f);
+        }
+        #endregion
+
+        #region Delete Query
+        #endregion
+
+        #region Get Query
+        #endregion
+
+        #region Get Query Examples
+        #endregion
+
+        #region Add Example
+        #endregion
+
+        #region Remove Example Document
+        #endregion
+
+        #region Get Example Details
+        #endregion
+
+        #region Update Example
+        #endregion
+        #endregion
     }
 }

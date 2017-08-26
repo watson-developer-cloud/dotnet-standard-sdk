@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -54,6 +55,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
         private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private string _createdTrainingQueryId;
+        private string _createdTrainingExampleId;
 
         #region Constructor
         public DiscoveryServiceExample(string username, string password)
@@ -93,6 +96,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Query();
             GetNotices();
 
+            ListTrainingData();
+            AddTrainingData();
+            GetTrainingData();
+            CreateTrainingExample();
+            GetTrainingExample();
+            UpdateTrainingExample();
+
+            DeleteTrainingExample();
+            DeleteTrainingData();
+            DeleteAllTrainingData();
             DeleteDocument();
             DeleteCollection();
             DeleteConfiguration();
@@ -595,5 +608,190 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             }
         }
         #endregion
+
+        #region List Training Data
+        public void ListTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Add Training Data
+        public void AddTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling AddTrainingData()..."));
+
+            var newTrainingQuery = new NewTrainingQuery()
+            {
+                NaturalLanguageQuery = "why is the sky blue",
+                Filter = "text:meteorology"
+            };
+
+            var result = _discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = result.QueryId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Get Training Data
+        public void GetTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
+
+            var result = _discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Create Training Example
+        public void CreateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling CreateTrainingExample()..."));
+
+            var trainingExample = new TrainingExample()
+            {
+                DocumentId = _createdDocumentId,
+                Relevance = 1.0f
+            };
+
+            var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = result.DocumentId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Get Training Example
+        public void GetTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
+
+            var result = _discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Update Training Example
+        public void UpdateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling UpdateTrainingExample()..."));
+
+            var trainingExample = new TrainingExamplePatch()
+            {
+                CrossReference = "crossReference",
+                Relevance = 1.0f
+            };
+
+            var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete Training Example
+        public void DeleteTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
+
+            var result = _discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete Training Data
+        public void DeleteTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
+
+            var result = _discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete All Training Data
+        public void DeleteAllTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+        
     }
 }

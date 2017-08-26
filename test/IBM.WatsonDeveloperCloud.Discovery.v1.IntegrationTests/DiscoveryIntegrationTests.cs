@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
@@ -55,6 +56,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private string _createdCollectionDescription = "createdCollectionDescription";
         private string _updatedCollectionName = "updatedCollectionName";
         private CreateCollectionRequest.LanguageEnum _createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
+
+        private string _createdTrainingQueryId;
+        private string _createdTrainingExampleId;
 
         private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
@@ -577,6 +581,227 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Console.WriteLine(string.Format("\nCalling GetNoticies()..."));
 
             var result = _discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region List Training Data
+        [TestMethod]
+        public void ListTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Add Training Data
+        [TestMethod]
+        public void AddTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling AddTrainingData()..."));
+
+            var newTrainingQuery = new NewTrainingQuery()
+            {
+                NaturalLanguageQuery = "naturalLanguageQuery",
+                Filter = "filter",
+                Examples = new List<TrainingExample>()
+                {
+                    new TrainingExample()
+                    {
+                        DocumentId = "documentId",
+                        CrossReference = "crossReference",
+                        Relevance = 1.0f
+                    }
+                }
+            };
+
+            var result = _discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = result.QueryId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Get Training Data
+        [TestMethod]
+        public void GetTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
+
+            var result = _discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Create Training Example
+        [TestMethod]
+        public void CreateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling CreateTrainingExample()..."));
+
+            var trainingExample = new TrainingExample()
+            {
+                DocumentId = "documentId",
+                CrossReference = "crossReference",
+                Relevance = 1.0f
+            };
+
+            var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = result.DocumentId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Get Training Example
+        [TestMethod]
+        public void GetTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
+
+            var result = _discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Update Training Example
+        [TestMethod]
+        public void UpdateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling UpdateTrainingExample()..."));
+
+            var trainingExample = new TrainingExamplePatch()
+            {
+                CrossReference = "crossReference",
+                Relevance = 1.0f
+            };
+
+            var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Delete Training Example
+        [TestMethod]
+        public void DeleteTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
+
+            var result = _discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Delete Training Data
+        [TestMethod]
+        public void DeleteTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
+
+            var result = _discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+
+            Assert.IsNotNull(result);
+        }
+        #endregion
+
+        #region Delete All Training Data
+        [TestMethod]
+        public void DeleteAllTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {

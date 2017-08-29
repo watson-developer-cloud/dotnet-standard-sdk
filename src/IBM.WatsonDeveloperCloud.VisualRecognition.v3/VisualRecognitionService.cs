@@ -72,6 +72,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             this.Client = httpClient;
         }
 
+        private string _VersionDate;
+        public string VersionDate
+        {
+            get { return string.IsNullOrEmpty(_VersionDate) ? VERSION_DATE_2016_05_20 : _VersionDate; }
+            set { _VersionDate = value; }
+        }
+
         #region Classify
         public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
         {

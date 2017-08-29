@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.Discovery.v1": "1.3.0"
 }
 
 ```

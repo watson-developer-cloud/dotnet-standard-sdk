@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.2.0"
+   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.3.0"
 }
 
 ```

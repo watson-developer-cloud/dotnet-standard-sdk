@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.3.0"
 }
 
 ```

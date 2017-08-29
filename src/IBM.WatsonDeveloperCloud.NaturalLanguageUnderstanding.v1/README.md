@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.3.0"
 }
 
 ```

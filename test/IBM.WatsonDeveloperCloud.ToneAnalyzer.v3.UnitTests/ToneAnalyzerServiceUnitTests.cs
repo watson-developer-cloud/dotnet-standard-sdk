@@ -178,6 +178,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             service.VersionDate = "2016-05-19";
+            service.UserName = "username";
+            service.Password = "password";
 
             ToneInput toneInput = new ToneInput()
             {

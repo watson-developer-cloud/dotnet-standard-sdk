@@ -78,6 +78,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <value>ISO 639-1 code indicating the language to use in the analysis.</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
+        /// <summary>
+        /// Sets the maximum number of characters that are processed by the service.
+        /// </summary>
+        /// <value>Sets the maximum number of characters that are processed by the service.</value>
+        [JsonProperty("limit_text_characters", NullValueHandling = NullValueHandling.Ignore)]
+        public long? LimitTextCharacters { get; set; }
     }
 
 }

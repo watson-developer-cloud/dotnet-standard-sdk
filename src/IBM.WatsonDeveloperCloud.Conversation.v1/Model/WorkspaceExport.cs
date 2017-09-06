@@ -116,6 +116,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string WorkspaceId { get; private set; }
         /// <summary>
+        /// Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// </summary>
+        /// <value>Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
+        [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? LearningOptOut { get; set; }
+        /// <summary>
         /// An array of intents.
         /// </summary>
         /// <value>An array of intents.</value>

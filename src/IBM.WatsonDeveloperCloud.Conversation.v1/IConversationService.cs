@@ -250,7 +250,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
-        /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter. (optional)</param>
+        /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter. For more information, see the [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax). (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. The default page limit is 100. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>

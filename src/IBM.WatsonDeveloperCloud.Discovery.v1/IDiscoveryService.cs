@@ -116,7 +116,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">the ID of your environment.</param>
         /// <param name="collectionId">the ID of your collection.</param>
         /// <param name="configurationId">The ID of the configuration to use to process the document. If the `configuration` form part is also provided (both are present at the same time), then request will be rejected. (optional)</param>
-        /// <param name="file">The content of the document to ingest.The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
         DocumentAccepted AddDocument(string environmentId, string collectionId, string configurationId = null, System.IO.Stream file = null, string metadata = null);
@@ -145,7 +145,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">the ID of your environment.</param>
         /// <param name="collectionId">the ID of your collection.</param>
         /// <param name="documentId">the ID of your document.</param>
-        /// <param name="file">The content of the document to ingest.The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
         DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null);
@@ -226,7 +226,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="configuration">The configuration to use to process the document. If this part is provided, then the provided configuration is used to process the document. If the `configuration_id` is also provided (both are present at the same time), then request is rejected. The maximum supported configuration size is 1 MB. Configuration parts larger than 1 MB are rejected. See the `GET /configurations/{configuration_id}` operation for an example configuration. (optional)</param>
         /// <param name="step">Specify to only run the input document through the given step instead of running the input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`. (optional)</param>
         /// <param name="configurationId">The ID of the configuration to use to process the document. If the `configuration` form part is also provided (both are present at the same time), then request will be rejected. (optional)</param>
-        /// <param name="file">The content of the document to ingest.The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <returns><see cref="TestDocument" />TestDocument</returns>
         TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null);

@@ -22,7 +22,7 @@ using Newtonsoft.Json.Converters;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// DialogNodeNextStep.
+    /// The next step to execute following this dialog node.
     /// </summary>
     public class DialogNodeNextStep
     {

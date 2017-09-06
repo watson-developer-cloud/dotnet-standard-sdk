@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets Level
         /// </summary>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Level { get; set; }
+        public long? Level { get; set; }
         /// <summary>
         /// Gets or Sets Names
         /// </summary>

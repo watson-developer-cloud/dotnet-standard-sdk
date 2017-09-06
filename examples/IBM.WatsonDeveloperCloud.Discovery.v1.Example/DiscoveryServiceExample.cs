@@ -678,7 +678,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             var trainingExample = new TrainingExample()
             {
                 DocumentId = _createdDocumentId,
-                Relevance = 1.0f
+                Relevance = 1
             };
 
             var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
@@ -721,7 +721,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             var trainingExample = new TrainingExamplePatch()
             {
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
 
             var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);

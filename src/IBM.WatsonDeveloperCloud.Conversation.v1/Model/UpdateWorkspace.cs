@@ -73,6 +73,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>Any metadata related to the workspace.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
+        /// <summary>
+        /// Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// </summary>
+        /// <value>Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
+        [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? LearningOptOut { get; set; }
     }
 
 }

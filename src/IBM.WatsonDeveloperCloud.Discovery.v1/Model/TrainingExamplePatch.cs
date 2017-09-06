@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets Relevance
         /// </summary>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Relevance { get; set; }
+        public long? Relevance { get; set; }
     }
 
 }

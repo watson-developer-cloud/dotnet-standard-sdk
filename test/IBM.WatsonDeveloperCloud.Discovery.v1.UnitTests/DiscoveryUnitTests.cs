@@ -634,7 +634,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             var response = Substitute.For<TestDocument>();
             response.ConfigurationId.Returns("configurationId");
             response.Status.Returns("status");
-            response.EnrichedFieldUnits.Returns(1.0f);
+            response.EnrichedFieldUnits.Returns(1);
             response.OriginalMediaType.Returns("originalMediaType");
             response.Snapshots = new List<DocumentSnapshot>()
             {
@@ -948,9 +948,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         {
                             new FontSetting()
                             {
-                                Level = 1f,
-                                MinSize = 1f,
-                                MaxSize = 1f,
+                                Level = 1,
+                                MinSize = 1,
+                                MaxSize = 1,
                                 Bold = false,
                                 Italic = false,
                                 Name = "name"
@@ -966,9 +966,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         {
                             new FontSetting()
                             {
-                                Level = 1f,
-                                MinSize = 1f,
-                                MaxSize = 1f,
+                                Level = 1,
+                                MinSize = 1,
+                                MaxSize = 1,
                                 Bold = false,
                                 Italic = false,
                                 Name = "name"
@@ -978,7 +978,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         {
                             new WordStyle()
                             {
-                                Level = 1.0f,
+                                Level = 1,
                                 Names = new List<string>
                                 {
                                     "name"
@@ -1176,9 +1176,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                    {
                                        new FontSetting()
                                        {
-                                           Level = 1f,
-                                           MinSize = 1f,
-                                           MaxSize = 1f,
+                                           Level = 1,
+                                           MinSize = 1,
+                                           MaxSize = 1,
                                            Bold = false,
                                            Italic = false,
                                            Name = "name"
@@ -1403,9 +1403,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                    {
                                        new FontSetting()
                                        {
-                                           Level = 1f,
-                                           MinSize = 1f,
-                                           MaxSize = 1f,
+                                           Level = 1,
+                                           MinSize = 1,
+                                           MaxSize = 1,
                                            Bold = false,
                                            Italic = false,
                                            Name = "name"
@@ -1540,9 +1540,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                    {
                                        new FontSetting()
                                        {
-                                           Level = 1f,
-                                           MinSize = 1f,
-                                           MaxSize = 1f,
+                                           Level = 1,
+                                           MinSize = 1,
+                                           MaxSize = 1,
                                            Bold = false,
                                            Italic = false,
                                            Name = "name"
@@ -3070,7 +3070,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                             {
                                 DocumentId = "documentId",
                                 CrossReference = "crossReference",
-                                Relevance = 1.0f
+                                Relevance = 1
                             }
                         }
                     }
@@ -3177,7 +3177,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     {
                         DocumentId = "documentId",
                         CrossReference = "crossReference",
-                        Relevance = 1.0f
+                        Relevance = 1
                     }
                 }
             };
@@ -3203,7 +3203,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     {
                         DocumentId = "documentId",
                         CrossReference = "crossReference",
-                        Relevance = 1.0f
+                        Relevance = 1
                     }
                 }
             };
@@ -3371,7 +3371,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     {
                         DocumentId = "documentId",
                         CrossReference = "crossReference",
-                        Relevance = 1.0f
+                        Relevance = 1
                     }
                 }
             };
@@ -3476,7 +3476,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 DocumentId = "documentId",
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
             #endregion
 
@@ -3494,7 +3494,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 DocumentId = "documentId",
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
 
             var result = service.CreateTrainingExample("environmentId", "collectionId", "queryId", trainingExample);
@@ -3662,7 +3662,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 DocumentId = "documentId",
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
             #endregion
 
@@ -3762,14 +3762,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             {
                 DocumentId = "documentId",
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
             #endregion
 
             var trainingExample = new TrainingExamplePatch()
             {
                 CrossReference = "crossReference",
-                Relevance = 1.0f
+                Relevance = 1
             };
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())

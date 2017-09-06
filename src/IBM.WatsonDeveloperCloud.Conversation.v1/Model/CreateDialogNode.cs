@@ -184,8 +184,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// Gets or Sets NextStep
+        /// The next step to execute following this dialog node.
         /// </summary>
+        /// <value>The next step to execute following this dialog node.</value>
         [JsonProperty("next_step", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeNextStep NextStep { get; set; }
         /// <summary>

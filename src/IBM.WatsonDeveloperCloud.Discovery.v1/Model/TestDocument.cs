@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The number of 10-kB chunks of field data that were enriched. This can be used to estimate the cost of running a real ingestion.</value>
         [JsonProperty("enriched_field_units", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual float? EnrichedFieldUnits { get; private set; }
+        public virtual long? EnrichedFieldUnits { get; private set; }
         /// <summary>
         /// Format of the test document.
         /// </summary>

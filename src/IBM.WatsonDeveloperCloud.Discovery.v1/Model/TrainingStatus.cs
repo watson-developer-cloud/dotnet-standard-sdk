@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets TotalExamples
         /// </summary>
         [JsonProperty("total_examples", NullValueHandling = NullValueHandling.Ignore)]
-        public float? TotalExamples { get; set; }
+        public long? TotalExamples { get; set; }
         /// <summary>
         /// Gets or Sets Available
         /// </summary>
@@ -59,7 +59,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets Notices
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Notices { get; set; }
+        public long? Notices { get; set; }
         /// <summary>
         /// Gets or Sets SuccessfullyTrained
         /// </summary>

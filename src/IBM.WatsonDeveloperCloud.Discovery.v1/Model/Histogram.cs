@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
-    public class Translations
+    /// <summary>
+    /// Histogram.
+    /// </summary>
+    public class Histogram
     {
         /// <summary>
-        /// Translation output in UTF-8.
+        /// Interval of the aggregation. (For 'histogram' type).
         /// </summary>
-        [JsonProperty("translation")]
-        public string Translation { get; set; }
+        /// <value>Interval of the aggregation. (For 'histogram' type).</value>
+        [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual long? Interval { get; private set; }
     }
+
 }

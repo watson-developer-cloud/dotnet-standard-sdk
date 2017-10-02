@@ -15,8 +15,6 @@
 *
 */
 
-using Newtonsoft.Json;
-
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
@@ -24,11 +22,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// </summary>
     public class SystemResponse
     {
-        /// <summary>
-        /// Gets or Sets SystemResponseObject
-        /// </summary>
-        [JsonProperty("SystemResponseObject", NullValueHandling = NullValueHandling.Ignore)]
-        public object SystemResponseObject { get; set; }
     }
 
 }

@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>The text of the example.</value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
+        public string ExampleText { get; set; }
         /// <summary>
         /// The timestamp for creation of the example.
         /// </summary>

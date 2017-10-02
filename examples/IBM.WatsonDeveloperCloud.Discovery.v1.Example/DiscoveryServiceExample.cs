@@ -36,6 +36,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
+        private string _createdTrainingQueryId;
+        private string _createdTrainingExampleId;
 
         private string _createdEnvironmentName = "dotnet-test-environment";
         private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
@@ -55,13 +57,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
         private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
-        private string _createdTrainingQueryId;
-        private string _createdTrainingExampleId;
 
         #region Constructor
         public DiscoveryServiceExample(string username, string password)
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
             //_discovery.Endpoint = "http://localhost:1234";
 
             GetEnvironments();
@@ -81,7 +81,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             GetConfiguration();
             UpdateConfiguration();
 
-            PreviewEnvironment();
+            //PreviewEnvironment();
 
             GetCollections();
             CreateCollection();
@@ -502,7 +502,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -580,7 +580,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Query
         private void Query()
         {
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var result = _discovery.Query(_createdEnvironmentId, new List<string>() { _createdCollectionId }, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {

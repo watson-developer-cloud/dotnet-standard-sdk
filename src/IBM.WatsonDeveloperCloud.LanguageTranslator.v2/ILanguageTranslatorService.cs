@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
-using System.IO;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
@@ -24,81 +22,58 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
     public interface ILanguageTranslatorService
     {
         /// <summary>
-        /// Lists available models for the Language translator service with option to filter by source or by target language.
+        /// Translates the input text from the source language to the target language. 
         /// </summary>
-        /// <param name="_isDefault">Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</param>
-        /// <param name="_source">Define with target. Filters models by source language.</param>
-        /// <param name="_target">Define with source. Filters models by target language.</param>
-        /// <returns></returns>
-        TranslationModels ListModels(bool _isDefault, string _source, string _target);
+        /// <param name="body">The translate request containing the text, with optional source, target, and model_id.</param>
+        /// <returns><see cref="TranslationResult" />TranslationResult</returns>
+        TranslationResult Translate(TranslateRequest body);
+        /// <summary>
+        /// Identifies the language of the input text. 
+        /// </summary>
+        /// <param name="text">Input text in UTF-8 format.</param>
+        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
+        IdentifiedLanguages Identify(string text);
 
         /// <summary>
-        /// Uploads a TMX glossary file on top of a domain to customize a translation model.
-        /// Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
+        /// Lists all languages that can be identified by the API. Lists all languages that the service can identify. Returns the two-letter code (for example, `en` for English or `es` for Spanish) and name of each language.
         /// </summary>
-        /// <param name="_options">An object containing arguments used to create the custom model.</param>
-        /// <returns></returns>
-        CustomModels CreateModel(CreateModelOptions _options);
+        /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
+        IdentifiableLanguages ListIdentifiableLanguages();
+        /// <summary>
+        /// Uploads a TMX glossary file on top of a domain to customize a translation model. 
+        /// </summary>
+        /// <param name="baseModelId">Specifies the domain model that is used as the base for the training. To see current supported domain models, use the GET /v2/models parameter.</param>
+        /// <param name="name">The model name. Valid characters are letters, numbers, -, and _. No spaces. (optional)</param>
+        /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</param>
+        /// <param name="parallelCorpus">A TMX file that contains entries that are treated as a parallel corpus instead of a glossary. (optional)</param>
+        /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
+        /// <param name="forcedGlossaryContentType">The content type of forcedGlossary. (optional)</param>
+        /// <param name="parallelCorpusContentType">The content type of parallelCorpus. (optional)</param>
+        /// <param name="monolingualCorpusContentType">The content type of monolingualCorpus. (optional)</param>
+        /// <returns><see cref="TranslationModel" />TranslationModel</returns>
+        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, string forcedGlossaryContentType = null, string parallelCorpusContentType = null, string monolingualCorpusContentType = null);
 
         /// <summary>
-        /// Deletes trained translation models.
+        /// Deletes a custom translation model. 
         /// </summary>
-        /// <param name="_modelId">The model identifier.</param>
-        /// <returns></returns>
-        DeleteModels DeleteModel(string _modelId);
+        /// <param name="modelId">The model identifier.</param>
+        /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
+        DeleteModelResult DeleteModel(string modelId);
 
         /// <summary>
-        /// Returns information, including training status, about a specified translation model.
+        /// Get information about the given translation model, including training status. 
         /// </summary>
-        /// <param name="_modelId">The model identifier.</param>
-        /// <returns></returns>
-        ModelPayload GetModelDetails(string _modelId);
+        /// <param name="modelId">Model ID to use.</param>
+        /// <returns><see cref="TranslationModel" />TranslationModel</returns>
+        TranslationModel GetModel(string modelId);
 
         /// <summary>
-        /// Translates input text from the source language to the target language.
+        /// Lists available standard and custom models by source or target language. 
         /// </summary>
-        /// <param name="_modelId">The unique model_id of the translation model used to translate text. The model_id inherently specifies source, target language, and domain. If the model_id is specified, there is no need for the source and target parameters, and the values will be ignored.</param>
-        /// <param name="_text">Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</param>
-        /// <returns></returns>
-        TranslateResponse Translate(string _modelId, string _text);
-
-        /// <summary>
-        /// Translates input text from the source language to the target language.
-        /// </summary>
-        /// <param name="_source">Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system choose a default model with the right language pair to translate (usually the model based on the news domain).</param>
-        /// <param name="_target">Translation target language in 2 or 5 letter language code. Should use 2 letter codes except for when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a 2 letter language code is used, and no suitable default is found (such as “zh”), it returns an error.</param>
-        /// <param name="_text">Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</param>
-        /// <returns></returns>
-        TranslateResponse Translate(string _source, string _target, string _text);
-
-        /// <summary>
-        /// Translates input text from the source language to the target language.
-        /// </summary>
-        /// <param name="_modelId">The unique model_id of the translation model used to translate text. The model_id inherently specifies source, target language, and domain. If the model_id is specified, there is no need for the source and target parameters, and the values will be ignored.</param>
-        /// <param name="_text">Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</param>
-        /// <returns></returns>
-        TranslateResponse Translate(string _modelId, List<string> _text);
-
-        /// <summary>
-        /// Translates input text from the source language to the target language.
-        /// </summary>
-        /// <param name="_source">Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system choose a default model with the right language pair to translate (usually the model based on the news domain).</param>
-        /// <param name="_target">Translation target language in 2 or 5 letter language code. Should use 2 letter codes except for when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a 2 letter language code is used, and no suitable default is found (such as “zh”), it returns an error.</param>
-        /// <param name="_text">Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</param>
-        /// <returns></returns>
-        TranslateResponse Translate(string _source, string _target, List<string> _text);
-
-        /// <summary>
-        /// Return the list of languages it can detect.
-        /// </summary>
-        /// <returns></returns>
-        IdentifiableLanguages GetIdentifiableLanguages();
-
-        /// <summary>
-        /// Identify the language in which a text is written.
-        /// </summary>
-        /// <param name="_text">Input text in UTF-8 format</param>
-        /// <returns></returns>
-        IdentifiedLanguages Identify(string _text);
+        /// <param name="source">Filter models by source language. (optional)</param>
+        /// <param name="target">Filter models by target language. (optional)</param>
+        /// <param name="defaultModels">Valid values are leaving it unset, `true`, and `false`. When `true`, it filters models to return the defaultModels model or models. When `false`, it returns the non-defaultModels model or models. If not set, it returns all models, defaultModels and non-defaultModels. (optional)</param>
+        /// <returns><see cref="TranslationModels" />TranslationModels</returns>
+        TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null);
     }
 }

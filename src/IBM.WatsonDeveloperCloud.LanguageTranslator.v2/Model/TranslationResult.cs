@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,24 +20,29 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
-    public class TranslateResponse
+    /// <summary>
+    /// TranslationResult.
+    /// </summary>
+    public class TranslationResult
     {
-        /// <summary>
-        /// List of translation output in UTF-8, corresponding to the list of input text.
-        /// </summary>
-        [JsonProperty("translations")]
-        public List<Translations> Translations { get; set; }
-
         /// <summary>
         /// Number of words of the complete input text.
         /// </summary>
-        [JsonProperty("word_count")]
-        public int WordCount { get; set; }
-
+        /// <value>Number of words of the complete input text.</value>
+        [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? WordCount { get; set; }
         /// <summary>
         /// Number of characters of the complete input text.
         /// </summary>
-        [JsonProperty("character_count")]
-        public int CharacterCount { get; set; }
+        /// <value>Number of characters of the complete input text.</value>
+        [JsonProperty("character_count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? CharacterCount { get; set; }
+        /// <summary>
+        /// List of translation output in UTF-8, corresponding to the list of input text.
+        /// </summary>
+        /// <value>List of translation output in UTF-8, corresponding to the list of input text.</value>
+        [JsonProperty("translations", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Translation> Translations { get; set; }
     }
+
 }

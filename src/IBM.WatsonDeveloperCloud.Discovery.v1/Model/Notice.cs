@@ -55,9 +55,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
         public SeverityEnum? Severity { get; set; }
         /// <summary>
-        /// Identifies the notice. Many notices may have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.
+        /// Identifies the notice. Many notices might have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.
         /// </summary>
-        /// <value>Identifies the notice. Many notices may have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.</value>
+        /// <value>Identifies the notice. Many notices might have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.</value>
         [JsonProperty("notice_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string NoticeId { get; private set; }
         /// <summary>

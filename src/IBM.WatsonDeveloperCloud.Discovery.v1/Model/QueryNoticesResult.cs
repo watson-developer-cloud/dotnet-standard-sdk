@@ -42,6 +42,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>Metadata of the document.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
+        /// <summary>
+        /// The collection ID of the collection containing the document for this result.
+        /// </summary>
+        /// <value>The collection ID of the collection containing the document for this result.</value>
+        [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string CollectionId { get; set; }
     }
 
 }

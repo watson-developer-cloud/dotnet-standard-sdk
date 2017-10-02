@@ -39,8 +39,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             set { _versionDate = value; }
         }
 
-        /** The Constant DISCOVERY_VERSION_DATE_2017_08_01. */
-        public static string DISCOVERY_VERSION_DATE_2017_08_01 = "2017-08-01";
+        /** The Constant DISCOVERY_VERSION_DATE_2017_09_01. */
+        public static string DISCOVERY_VERSION_DATE_2017_09_01 = "2017-09-01";
 
         public DiscoveryService() : base(SERVICE_NAME, URL)
         {
@@ -58,7 +58,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             this.SetCredential(userName, password);
             if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             VersionDate = versionDate;
         }
@@ -71,25 +71,23 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             this.Client = httpClient;
         }
 
-        public Collection CreateCollection(string environmentId, CreateCollectionRequest body)
+        public ModelEnvironment CreateEnvironment(CreateEnvironmentRequest body)
         {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
-            Collection result = null;
+            ModelEnvironment result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections")
+                                .PostAsync($"{this.Endpoint}/v1/environments")
                                 .WithArgument("version", VersionDate)
-                                .WithBody<CreateCollectionRequest>(body)
-                                .As<Collection>()
+                                .WithBody<CreateEnvironmentRequest>(body)
+                                .As<ModelEnvironment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -100,24 +98,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
+        public DeleteEnvironmentResponse DeleteEnvironment(string environmentId)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
-            DeleteCollectionResponse result = null;
+            DeleteEnvironmentResponse result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
+                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}")
                                 .WithArgument("version", VersionDate)
-                                .As<DeleteCollectionResponse>()
+                                .As<DeleteEnvironmentResponse>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -128,24 +124,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public Collection GetCollection(string environmentId, string collectionId)
+        public ModelEnvironment GetEnvironment(string environmentId)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
-            Collection result = null;
+            ModelEnvironment result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}")
                                 .WithArgument("version", VersionDate)
-                                .As<Collection>()
+                                .As<ModelEnvironment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -156,23 +150,49 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId)
+        public ListEnvironmentsResponse ListEnvironments(string name = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            ListEnvironmentsResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("name", name)
+                                .As<ListEnvironmentsResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             ListCollectionFieldsResponse result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields")
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields")
                                 .WithArgument("version", VersionDate)
+                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
                                 .As<ListCollectionFieldsResponse>()
                                 .Result;
             }
@@ -184,52 +204,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public ListCollectionsResponse ListCollections(string environmentId, string name = null)
+        public ModelEnvironment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
-            ListCollectionsResponse result = null;
+            ModelEnvironment result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections")
+                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("name", name)
-                                .As<ListCollectionsResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            Collection result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateCollectionRequest>(body)
-                                .As<Collection>()
+                                .WithBody<UpdateEnvironmentRequest>(body)
+                                .As<ModelEnvironment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -247,7 +240,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configuration));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             Configuration result = null;
 
@@ -276,7 +269,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configurationId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             DeleteConfigurationResponse result = null;
 
@@ -304,7 +297,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configurationId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             Configuration result = null;
 
@@ -330,7 +323,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             ListConfigurationsResponse result = null;
 
@@ -361,7 +354,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configuration));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             Configuration result = null;
 
@@ -381,368 +374,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             return result;
         }
-        public DocumentAccepted AddDocument(string environmentId, string collectionId, string configurationId = null, System.IO.Stream file = null, string metadata = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            DocumentAccepted result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (file != null)
-                {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
-                    formData.Add(fileContent, "file");
-                }
-
-                if (metadata != null)
-                {
-                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    formData.Add(metadataContent, "metadata");
-                }
-
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("configuration_id", configurationId)
-                                .WithBodyContent(formData)
-                                .As<DocumentAccepted>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-            if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            DeleteDocumentResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
-                                .WithArgument("version", VersionDate)
-                                .As<DeleteDocumentResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-            if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            DocumentStatus result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
-                                .WithArgument("version", VersionDate)
-                                .As<DocumentStatus>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-            if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            DocumentAccepted result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (file != null)
-                {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
-                    formData.Add(fileContent, "file");
-                }
-
-                if (metadata != null)
-                {
-                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    formData.Add(metadataContent, "metadata");
-                }
-
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
-                                .WithArgument("version", VersionDate)
-                                .WithBodyContent(formData)
-                                .As<DocumentAccepted>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        public ModelEnvironment CreateEnvironment(CreateEnvironmentRequest body)
-        {
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            ModelEnvironment result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateEnvironmentRequest>(body)
-                                .As<ModelEnvironment>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public DeleteEnvironmentResponse DeleteEnvironment(string environmentId)
+        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            DeleteEnvironmentResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}")
-                                .WithArgument("version", VersionDate)
-                                .As<DeleteEnvironmentResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public ModelEnvironment GetEnvironment(string environmentId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            ModelEnvironment result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}")
-                                .WithArgument("version", VersionDate)
-                                .As<ModelEnvironment>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public ListEnvironmentsResponse ListEnvironments(string name = null)
-        {
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            ListEnvironmentsResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("name", name)
-                                .As<ListEnvironmentsResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public ModelEnvironment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            ModelEnvironment result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateEnvironmentRequest>(body)
-                                .As<ModelEnvironment>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, string sort = null, bool? highlight = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            QueryResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("filter", filter)
-                                .WithArgument("query", query)
-                                .WithArgument("natural_language_query", naturalLanguageQuery)
-                                .WithArgument("passages", passages)
-                                .WithArgument("aggregation", aggregation)
-                                .WithArgument("count", count)
-                                .WithArgument("return", returnFields)
-                                .WithArgument("offset", offset)
-                                .WithArgument("sort", sort)
-                                .WithArgument("highlight", highlight)
-                                .As<QueryResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, string sort = null, bool? highlight = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
-
-            QueryNoticesResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("filter", filter)
-                                .WithArgument("query", query)
-                                .WithArgument("natural_language_query", naturalLanguageQuery)
-                                .WithArgument("passages", passages)
-                                .WithArgument("aggregation", aggregation)
-                                .WithArgument("count", count)
-                                .WithArgument("return_fields", returnFields)
-                                .WithArgument("offset", offset)
-                                .WithArgument("sort", sort)
-                                .WithArgument("highlight", highlight)
-                                .As<QueryNoticesResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TestDocument result = null;
 
@@ -784,6 +422,484 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             return result;
         }
+        public Collection CreateCollection(string environmentId, CreateCollectionRequest body)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            Collection result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<CreateCollectionRequest>(body)
+                                .As<Collection>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            DeleteCollectionResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
+                                .WithArgument("version", VersionDate)
+                                .As<DeleteCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Collection GetCollection(string environmentId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            Collection result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
+                                .WithArgument("version", VersionDate)
+                                .As<Collection>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            ListCollectionFieldsResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields")
+                                .WithArgument("version", VersionDate)
+                                .As<ListCollectionFieldsResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public ListCollectionsResponse ListCollections(string environmentId, string name = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            ListCollectionsResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("name", name)
+                                .As<ListCollectionsResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            Collection result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<UpdateCollectionRequest>(body)
+                                .As<Collection>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            DocumentAccepted result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    formData.Add(fileContent, "file");
+                }
+
+                if (metadata != null)
+                {
+                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    formData.Add(metadataContent, "metadata");
+                }
+
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents")
+                                .WithArgument("version", VersionDate)
+                                .WithBodyContent(formData)
+                                .As<DocumentAccepted>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(documentId))
+                throw new ArgumentNullException(nameof(documentId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            DeleteDocumentResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
+                                .WithArgument("version", VersionDate)
+                                .As<DeleteDocumentResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(documentId))
+                throw new ArgumentNullException(nameof(documentId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            DocumentStatus result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
+                                .WithArgument("version", VersionDate)
+                                .As<DocumentStatus>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(documentId))
+                throw new ArgumentNullException(nameof(documentId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            DocumentAccepted result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    formData.Add(fileContent, "file");
+                }
+
+                if (metadata != null)
+                {
+                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    formData.Add(metadataContent, "metadata");
+                }
+
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}")
+                                .WithArgument("version", VersionDate)
+                                .WithBodyContent(formData)
+                                .As<DocumentAccepted>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public QueryResponse FederatedQuery(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("passages", passages)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null)
+                                .WithArgument("passages.count", passagesCount)
+                                .WithArgument("passages.characters", passagesCharacters)
+                                .WithArgument("deduplicate", deduplicate)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public QueryResponse Query(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("deduplicate", deduplicate)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryNoticesResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("passages", passages)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null)
+                                .WithArgument("passages.count", passagesCount)
+                                .WithArgument("passages.characters", passagesCharacters)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryNoticesResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public QueryNoticesResponse QueryNotices_0(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryNoticesResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryNoticesResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
         public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body)
         {
             if (string.IsNullOrEmpty(environmentId))
@@ -794,7 +910,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingQuery result = null;
 
@@ -827,7 +943,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingExample result = null;
 
@@ -856,7 +972,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             object result = null;
 
@@ -886,7 +1002,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(queryId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             object result = null;
 
@@ -918,7 +1034,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(exampleId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             object result = null;
 
@@ -948,7 +1064,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(queryId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingQuery result = null;
 
@@ -980,7 +1096,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(exampleId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingExample result = null;
 
@@ -1008,7 +1124,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingDataSet result = null;
 
@@ -1042,7 +1158,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_08_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
 
             TrainingExample result = null;
 

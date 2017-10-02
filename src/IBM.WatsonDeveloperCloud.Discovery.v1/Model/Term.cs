@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
-    public class CustomModels
+    /// <summary>
+    /// Term.
+    /// </summary>
+    public class Term
     {
         /// <summary>
-        /// Returns the base model that this translation model was trained on
+        /// Gets or Sets Count
         /// </summary>
-        [JsonProperty("model_id")]
-        public string ModelId { get; set; }
+        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual long? Count { get; private set; }
     }
+
 }

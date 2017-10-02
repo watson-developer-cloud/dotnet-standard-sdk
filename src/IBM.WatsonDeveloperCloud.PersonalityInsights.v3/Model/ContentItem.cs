@@ -77,7 +77,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
             /// Enum JA for ja
             /// </summary>
             [EnumMember(Value = "ja")]
-            JA
+            JA,
+            
+            /// <summary>
+            /// Enum KO for ko
+            /// </summary>
+            [EnumMember(Value = "ko")]
+            KO
         }
 
         /// <summary>

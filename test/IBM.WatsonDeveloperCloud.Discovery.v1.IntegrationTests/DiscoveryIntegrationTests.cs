@@ -40,6 +40,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
+        public static string _createdTrainingQueryId;
+        public static string _createdTrainingExampleId;
 
         private string _createdEnvironmentName = "dotnet-test-environment";
         private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
@@ -57,8 +59,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private string _updatedCollectionName = "updatedCollectionName";
         private CreateCollectionRequest.LanguageEnum _createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
 
-        private string _createdTrainingQueryId;
-        private string _createdTrainingExampleId;
 
         private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
@@ -79,7 +79,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
             _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
         }
 
         #region Environments
@@ -463,14 +463,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Preview Environment
-        [TestMethod]
+        //[TestMethod]
         public void PreviewEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
 
                 if (result != null)
                 {
@@ -493,7 +493,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -559,7 +559,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling Query()..."));
 
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var result = _discovery.Query(_createdEnvironmentId, new List<string>() { _createdCollectionId }, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {
@@ -682,8 +682,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             var trainingExample = new TrainingExample()
             {
-                DocumentId = "documentId",
-                CrossReference = "crossReference",
+                DocumentId = _createdDocumentId,
                 Relevance = 1
             };
 
@@ -769,7 +768,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Console.WriteLine("result is null.");
             }
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
         #endregion
 
@@ -791,7 +790,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Console.WriteLine("result is null.");
             }
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
         #endregion
 
@@ -812,7 +811,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Console.WriteLine("result is null.");
             }
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
         #endregion
 
@@ -948,7 +947,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             string _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
             string _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
 
             if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId) && !string.IsNullOrEmpty(_createdDocumentId))
                 _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);

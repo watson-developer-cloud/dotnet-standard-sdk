@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
-    public class DeleteModels
+    /// <summary>
+    /// Calculation.
+    /// </summary>
+    public class Calculation
     {
         /// <summary>
-        /// Indicates that the model was successfully deleted.
+        /// Value of the aggregation. (For 'max' and 'min' type).
         /// </summary>
-        [JsonProperty("deleted")]
-        public string Deleted { get; set; }
+        /// <value>Value of the aggregation. (For 'max' and 'min' type).</value>
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual double? Value { get; private set; }
     }
+
 }

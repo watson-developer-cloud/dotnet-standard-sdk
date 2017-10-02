@@ -71,6 +71,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>The location in the dialog context where the result of the action is stored.</value>
         [JsonProperty("result_variable", NullValueHandling = NullValueHandling.Ignore)]
         public string ResultVariable { get; set; }
+        /// <summary>
+        /// The name of the context variable that the client application will use to pass in credentials for the action.
+        /// </summary>
+        /// <value>The name of the context variable that the client application will use to pass in credentials for the action.</value>
+        [JsonProperty("credentials", NullValueHandling = NullValueHandling.Ignore)]
+        public string Credentials { get; set; }
     }
 
 }

@@ -29,13 +29,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>The name of the recognized intent.</value>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
+        public dynamic Intent { get; set; }
         /// <summary>
         /// A decimal percentage that represents Watson's confidence in the intent.
         /// </summary>
         /// <value>A decimal percentage that represents Watson's confidence in the intent.</value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        public dynamic Confidence { get; set; }
     }
 
 }

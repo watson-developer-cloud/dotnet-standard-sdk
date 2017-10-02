@@ -26,9 +26,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class QueryAggregation
     {
         /// <summary>
-        /// The type of aggregation command used. e.g. term, filter, max, min, etc.
+        /// The type of aggregation command used. For example: term, filter, max, min, etc.
         /// </summary>
-        /// <value>The type of aggregation command used. e.g. term, filter, max, min, etc.</value>
+        /// <value>The type of aggregation command used. For example: term, filter, max, min, etc.</value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
@@ -60,18 +60,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>Aggregations returned by the Discovery service.</value>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryAggregation> Aggregations { get; set; }
-        /// <summary>
-        /// Interval specified by using aggregation type 'timeslice'.
-        /// </summary>
-        /// <value>Interval specified by using aggregation type 'timeslice'.</value>
-        [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Interval { get; set; }
-        /// <summary>
-        /// Value of the aggregation. (For 'max' and 'min' type).
-        /// </summary>
-        /// <value>Value of the aggregation. (For 'max' and 'min' type).</value>
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Value { get; set; }
     }
 
 }

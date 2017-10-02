@@ -49,7 +49,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if(_questionContext != null)
             {
-                messageRequest.Context = _questionContext;
+                //messageRequest.Context = _questionContext;
+                messageRequest.Context = new Context();
+                messageRequest.Context.ConversationId = _questionContext.ConversationId;
+                messageRequest.Context.System = _questionContext.System;
             }
 
             var result = _conversation.Message(_workspaceID, messageRequest);

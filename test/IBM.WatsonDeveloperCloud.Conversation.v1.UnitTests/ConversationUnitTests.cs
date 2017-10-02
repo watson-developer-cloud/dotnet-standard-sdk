@@ -853,7 +853,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var valueExport = Substitute.For<ValueExport>();
             valueExport.Created.Returns(DateTime.MinValue);
             valueExport.Updated.Returns(DateTime.MinValue);
-            valueExport.EntityValue = "value";
+            valueExport.ValueText = "value";
             valueExport.Metadata = new object() { };
             valueExport.Synonyms = new List<string>()
             {
@@ -920,8 +920,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             Assert.IsTrue((bool)result.Entities[0].FuzzyMatch);
             Assert.IsNotNull(result.Entities[0].Values);
             Assert.IsTrue(result.Entities[0].Values.Count > 0);
-            Assert.IsTrue(!string.IsNullOrEmpty(result.Entities[0].Values[0].EntityValue));
-            Assert.IsTrue(result.Entities[0].Values[0].EntityValue == "value");
+            Assert.IsTrue(!string.IsNullOrEmpty(result.Entities[0].Values[0].ValueText));
+            Assert.IsTrue(result.Entities[0].Values[0].ValueText == "value");
             Assert.IsNotNull(result.Entities[0].Values[0].Metadata);
             Assert.IsNotNull(result.Entities[0].Values[0].Created);
             Assert.IsNotNull(result.Entities[0].Values[0].Updated);
@@ -1215,7 +1215,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<Example>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.Text = "text";
+            response.ExampleText = "text";
             #endregion
 
             CreateExample example = new CreateExample()
@@ -1237,7 +1237,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
-            Assert.IsTrue(result.Text == "text");
+            Assert.IsTrue(result.ExampleText == "text");
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
         }
@@ -1384,7 +1384,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<Example>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.Text = "text";
+            response.ExampleText = "text";
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -1399,7 +1399,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
-            Assert.IsTrue(result.Text == "text");
+            Assert.IsTrue(result.ExampleText == "text");
         }
         #endregion
 
@@ -1458,7 +1458,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var example = Substitute.For<Example>();
             example.Created.Returns(DateTime.MinValue);
             example.Updated.Returns(DateTime.MinValue);
-            example.Text = "text";
+            example.ExampleText = "text";
 
             ExampleCollection response = new ExampleCollection()
             {
@@ -1491,10 +1491,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             client.Received().GetAsync(Arg.Any<string>());
             Assert.IsNotNull(result.Examples);
             Assert.IsTrue(result.Examples.Count > 0);
-            Assert.IsTrue(!string.IsNullOrEmpty(result.Examples[0].Text));
+            Assert.IsTrue(!string.IsNullOrEmpty(result.Examples[0].ExampleText));
             Assert.IsNotNull(result.Examples[0].Created);
             Assert.IsNotNull(result.Examples[0].Updated);
-            Assert.IsTrue(result.Examples[0].Text == "text");
+            Assert.IsTrue(result.Examples[0].ExampleText == "text");
         }
         #endregion
 
@@ -1594,7 +1594,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<Example>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.Text = "text";
+            response.ExampleText = "text";
             #endregion
 
             UpdateExample example = new UpdateExample()
@@ -1616,7 +1616,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
-            Assert.IsTrue(result.Text == "text");
+            Assert.IsTrue(result.ExampleText == "text");
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
         }
@@ -1883,7 +1883,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var example = Substitute.For<Example>();
             example.Created.Returns(DateTime.MinValue);
             example.Updated.Returns(DateTime.MinValue);
-            example.Text = "text";
+            example.ExampleText = "text";
 
             var response = Substitute.For<IntentExport>();
             response.Created.Returns(DateTime.MinValue);
@@ -1918,7 +1918,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             Assert.IsTrue(result.Examples.Count > 0);
             Assert.IsNotNull(result.Examples[0].Created);
             Assert.IsNotNull(result.Examples[0].Updated);
-            Assert.IsTrue(result.Examples[0].Text == "text");
+            Assert.IsTrue(result.Examples[0].ExampleText == "text");
         }
         #endregion
 
@@ -1993,7 +1993,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var example = Substitute.For<Example>();
             example.Created.Returns(DateTime.MinValue);
             example.Updated.Returns(DateTime.MinValue);
-            example.Text = "example";
+            example.ExampleText = "example";
 
             var intentExport = Substitute.For<IntentExport>();
             intentExport.Created.Returns(DateTime.MinValue);
@@ -2047,7 +2047,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             Assert.IsTrue(result.Intents[0].Description == "description");
             Assert.IsNotNull(result.Intents[0].Examples);
             Assert.IsTrue(result.Intents[0].Examples.Count > 0);
-            Assert.IsTrue(result.Intents[0].Examples[0].Text == "example");
+            Assert.IsTrue(result.Intents[0].Examples[0].ExampleText == "example");
             Assert.IsNotNull(result.Intents[0].Examples[0].Created);
             Assert.IsNotNull(result.Intents[0].Examples[0].Updated);
         }
@@ -2275,9 +2275,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                             {
                                 ConversationId = "conversationId",
                                 System = new SystemResponse()
-                                {
-                                    SystemResponseObject = new object() { }
-                                }
                             },
                             Entities = new List<RuntimeEntity>()
                             {
@@ -2352,9 +2349,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                             {
                                 ConversationId = "conversationId",
                                 System = new SystemResponse()
-                                {
-                                    SystemResponseObject = new object() { }
-                                }
                             },
                             Output = new OutputData()
                             {
@@ -2438,9 +2432,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 {
                     ConversationId = "conversationId",
                     System = new SystemResponse()
-                    {
-                        SystemResponseObject = new object() { }
-                    }
                 },
                 Entities = new List<RuntimeEntity>()
                             {
@@ -2506,9 +2497,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 {
                     ConversationId = "conversationId",
                     System = new SystemResponse()
-                    {
-                        SystemResponseObject = new object() { }
-                    }
                 },
                 Entities = new List<RuntimeEntity>()
                             {
@@ -2582,9 +2570,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 {
                     ConversationId = "conversationId",
                     System = new SystemResponse()
-                    {
-                        SystemResponseObject = new object() { }
-                    }
                 },
                 Entities = new List<RuntimeEntity>()
                             {
@@ -2676,9 +2661,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 {
                     ConversationId = "conversationId",
                     System = new SystemResponse()
-                    {
-                        SystemResponseObject = new object() { }
-                    }
                 },
                 Output = new OutputData()
                 {
@@ -2714,9 +2696,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 {
                     ConversationId = "conversationId",
                     System = new SystemResponse()
-                    {
-                        SystemResponseObject = new object() { }
-                    }
                 },
                 Entities = new List<RuntimeEntity>()
                             {
@@ -3447,7 +3426,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<Value>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.EntityValue = "value";
+            response.ValueText = "value";
             response.Metadata = new object() { };
             #endregion
 
@@ -3475,7 +3454,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
-            Assert.IsTrue(result.EntityValue == "value");
+            Assert.IsTrue(result.ValueText == "value");
             Assert.IsNotNull(result.Metadata);
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
@@ -3634,7 +3613,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<ValueExport>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.EntityValue = "value";
+            response.ValueText = "value";
             response.Metadata = new object() { };
             response.Synonyms = new List<string>()
             {
@@ -3658,7 +3637,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             Assert.IsNotNull(result.Updated);
             Assert.IsNotNull(result.Metadata);
             Assert.IsNotNull(result.Synonyms);
-            Assert.IsTrue(result.EntityValue == "value");
+            Assert.IsTrue(result.ValueText == "value");
             Assert.IsTrue(result.Synonyms.Count > 0);
             Assert.IsTrue(result.Synonyms[0] == "synonym");
         }
@@ -3719,7 +3698,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var valueExport = Substitute.For<ValueExport>();
             valueExport.Created.Returns(DateTime.MinValue);
             valueExport.Updated.Returns(DateTime.MinValue);
-            valueExport.EntityValue = "value";
+            valueExport.ValueText = "value";
             valueExport.Metadata = new object() {  };
             valueExport.Synonyms = new List<string>()
             {
@@ -3767,7 +3746,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             client.Received().GetAsync(Arg.Any<string>());
             Assert.IsNotNull(result.Values);
             Assert.IsTrue(result.Values.Count > 0);
-            Assert.IsTrue(result.Values[0].EntityValue == "value");
+            Assert.IsTrue(result.Values[0].ValueText == "value");
             Assert.IsNotNull(result.Values[0].Metadata);
             Assert.IsNotNull(result.Values[0].Created);
             Assert.IsNotNull(result.Values[0].Updated);
@@ -3909,7 +3888,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var response = Substitute.For<Value>();
             response.Created.Returns(DateTime.MinValue);
             response.Updated.Returns(DateTime.MinValue);
-            response.EntityValue = "value";
+            response.ValueText = "value";
             response.Metadata = new object() { };
             #endregion
 
@@ -3938,7 +3917,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.EntityValue == "value");
+            Assert.IsTrue(result.ValueText == "value");
             Assert.IsNotNull(result.Metadata);
             Assert.IsNotNull(result.Created);
             Assert.IsNotNull(result.Updated);
@@ -4241,7 +4220,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var example = Substitute.For<Example>();
             example.Created.Returns(DateTime.MinValue);
             example.Updated.Returns(DateTime.MinValue);
-            example.Text = "text";
+            example.ExampleText = "text";
 
             var intentExport = Substitute.For<IntentExport>();
             intentExport.Created.Returns(DateTime.MinValue);
@@ -4256,7 +4235,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             var valueExport = Substitute.For<ValueExport>();
             valueExport.Created.Returns(DateTime.MinValue);
             valueExport.Updated.Returns(DateTime.MinValue);
-            valueExport.EntityValue = "value";
+            valueExport.ValueText = "value";
             valueExport.Metadata = new object() { };
             valueExport.Synonyms = new List<string>()
             {

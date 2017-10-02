@@ -54,14 +54,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void Constructor_UserName_Null()
         {
             DiscoveryService service =
-                new DiscoveryService(null, "password", DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+                new DiscoveryService(null, "password", DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Password_Null()
         {
             DiscoveryService service =
-                new DiscoveryService("username", null, DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+                new DiscoveryService("username", null, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -75,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void Constructor_With_UserName_Password()
         {
             DiscoveryService service =
-                new DiscoveryService("username", "password", DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01);
+                new DiscoveryService("username", "password", DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
 
             Assert.IsNotNull(service);
         }
@@ -127,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.ListEnvironments();
         }
 
@@ -256,7 +256,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Size = 1
             };
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.CreateEnvironment(environment);
         }
@@ -345,7 +345,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteEnvironment("environmentId");
         }
@@ -415,7 +415,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetEnvironment("EnvironmentId");
         }
 
@@ -518,7 +518,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 Description = "description"
             };
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.UpdateEnvironment("environmentId", environment);
         }
@@ -607,7 +607,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.TestConfigurationInEnvironment("environmentId");
         }
@@ -918,7 +918,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.ListConfigurations("environmentId");
         }
 
@@ -1042,7 +1042,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     Options = new EnrichmentOptions()
                     {
                         Language = EnrichmentOptions.LanguageEnum.EN,
-                        Extract = "extract",
+                        Extract = new List<string>()
+                        {
+                            "extract"
+                        },
                         Sentiment = false,
                         Quotations = false,
                         ShowSourceText = false,
@@ -1100,7 +1103,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             Assert.IsTrue(result.Configurations[0].Enrichments[0].IgnoreDownstreamErrors == false);
             Assert.IsNotNull(result.Configurations[0].Enrichments[0].Options);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Language == EnrichmentOptions.LanguageEnum.EN);
-            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Extract == "extract");
+            Assert.IsNotNull(result.Configurations[0].Enrichments[0].Options.Extract);
+            Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Extract[0] == "extract");
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Sentiment == false);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.Quotations == false);
             Assert.IsTrue(result.Configurations[0].Enrichments[0].Options.ShowSourceText == false);
@@ -1148,7 +1152,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.CreateConfiguration("environmentId", new Configuration());
         }
@@ -1200,7 +1204,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         Options = new EnrichmentOptions()
                         {
                             Language = EnrichmentOptions.LanguageEnum.EN,
-                            Extract = "extract",
+                            Extract = new List<string>() { "extract" },
                             Sentiment = false,
                             Quotations = false,
                             ShowSourceText = false,
@@ -1277,7 +1281,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteConfiguration("environmentId", "configurationId");
         }
@@ -1375,7 +1379,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetConfiguration("environmentId", "ConfigurationId");
         }
 
@@ -1427,7 +1431,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         Options = new EnrichmentOptions()
                         {
                             Language = EnrichmentOptions.LanguageEnum.EN,
-                            Extract = "extract",
+                            Extract = new List<string>()
+                            {
+                                "extract"
+                            },
                             Sentiment = false,
                             Quotations = false,
                             ShowSourceText = false,
@@ -1511,7 +1518,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.UpdateConfiguration("environmentId", "ConfigurationId", new Configuration());
         }
@@ -1564,7 +1571,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                         Options = new EnrichmentOptions()
                         {
                             Language = EnrichmentOptions.LanguageEnum.EN,
-                            Extract = "extract",
+                            Extract = new List<string>()
+                            {
+                                "extract"
+                            },
                             Sentiment = false,
                             Quotations = false,
                             ShowSourceText = false,
@@ -1637,7 +1647,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.ListCollections("environmentId");
         }
 
@@ -1730,7 +1740,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.CreateCollection("environmentId", new CreateCollectionRequest());
         }
@@ -1814,7 +1824,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteCollection("environmentId", "collectionId");
         }
@@ -1891,7 +1901,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetCollection("environmentId", "collectionId");
         }
 
@@ -1974,7 +1984,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.UpdateCollection("environmentId", "collectionId", new UpdateCollectionRequest());
         }
@@ -2079,7 +2089,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.ListCollectionFields("environmentId", "collectionId");
         }
 
@@ -2166,7 +2176,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.AddDocument("environmentId", "collectionId");
         }
@@ -2329,7 +2339,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteDocument("environmentId", "collectionId", "doucmentId");
         }
@@ -2413,7 +2423,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetDocumentStatus("environmentId", "collectionId", "documentId");
         }
 
@@ -2537,7 +2547,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.UpdateDocument("environmentId", "collectionId", "documentId");
         }
@@ -2657,7 +2667,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void Query_No_EnvironmentId()
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
-            service.Query(null, "collectionId");
+            service.Query(null, new List<string>() { "collectionId" });
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -2672,7 +2682,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
             service.VersionDate = null;
-            service.Query("environmentId", "collectionId");
+            service.Query("environmentId", new List<string>() { "collectionId" });
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -2690,8 +2700,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
-            service.Query("environmentId", "collectionId");
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
+            service.Query("environmentId", new List<string>() { "collectionId" });
         }
 
         [TestMethod]
@@ -2745,15 +2755,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                             {
 
                             }
-                        },
-                        Interval = 1,
-                        Value = 1.0
+                        }
                     }
                 }
             };
             #endregion
 
+
+
+
+
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
@@ -2763,15 +2777,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<long>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
                 .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
@@ -2781,7 +2797,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.Query("environmentId", "collectionId");
+            var result = service.Query("environmentId", new List<string>() { "collectionId" });
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
@@ -2826,7 +2842,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.QueryNotices("environmentId", "collectionId");
         }
 
@@ -2881,9 +2897,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                             {
 
                             }
-                        },
-                        Interval = 1,
-                        Value = 1.0
+                        }
                     }
                 }
             };
@@ -2968,7 +2982,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteAllTrainingData("environmentId", "collectionId");
         }
@@ -3039,7 +3053,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.ListTrainingData("environmentId", "collectionId");
         }
 
@@ -3151,7 +3165,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.AddTrainingData("environmentId", "collectionId", new NewTrainingQuery());
         }
@@ -3268,7 +3282,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteTrainingData("environmentId", "collectionId", "queryId");
         }
@@ -3346,7 +3360,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetTrainingData("environmentId", "collectionId", "queryId");
         }
 
@@ -3457,7 +3471,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.CreateTrainingExample("environmentId", "collectionId", "queryId", new TrainingExample());
         }
@@ -3559,7 +3573,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.DeleteTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
@@ -3644,7 +3658,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
             service.GetTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
 
@@ -3743,7 +3757,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_08_01;
+            service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
 
             service.UpdateTrainingExample("environmentId", "collectionId", "queryId", "exampleId", new TrainingExamplePatch());
         }

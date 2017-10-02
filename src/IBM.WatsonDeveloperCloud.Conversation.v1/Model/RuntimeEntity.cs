@@ -30,31 +30,31 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>The recognized entity from a term in the input.</value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
-        public string Entity { get; set; }
+        public dynamic Entity { get; set; }
         /// <summary>
         /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
         /// </summary>
         /// <value>Zero-based character offsets that indicate where the entity value begins and ends in the input text.</value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
-        public List<long?> Location { get; set; }
+        public dynamic Location { get; set; }
         /// <summary>
         /// The term in the input text that was recognized.
         /// </summary>
         /// <value>The term in the input text that was recognized.</value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public string Value { get; set; }
+        public dynamic Value { get; set; }
         /// <summary>
         /// A decimal percentage that represents Watson's confidence in the entity.
         /// </summary>
         /// <value>A decimal percentage that represents Watson's confidence in the entity.</value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Confidence { get; set; }
+        public dynamic Confidence { get; set; }
         /// <summary>
         /// The metadata for the entity.
         /// </summary>
         /// <value>The metadata for the entity.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public dynamic Metadata { get; set; }
     }
 
 }

@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
@@ -82,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                                 .PostAsync($"{this.Endpoint}/v3/tone")
                                 .WithArgument("version", VersionDate)
                                 .WithHeader("content-type", contentType)
-                                .WithArgument("tones", tones)
+                                .WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null)
                                 .WithArgument("sentences", sentences)
                                 .WithBody<ToneInput>(toneInput)
                                 .As<ToneAnalysis>()

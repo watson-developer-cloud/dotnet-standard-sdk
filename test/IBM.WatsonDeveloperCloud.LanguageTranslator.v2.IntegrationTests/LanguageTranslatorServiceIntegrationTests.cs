@@ -16,10 +16,13 @@
 */
 
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
+using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
 {
@@ -53,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             LanguageTranslatorService service =
                 new LanguageTranslatorService(_userName, _password);
             
-            var results = service.GetIdentifiableLanguages();
+            var results = service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -76,8 +79,18 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             LanguageTranslatorService service =
                 new LanguageTranslatorService(_userName, _password);
-            
-            var results = service.Translate("en", "pt", "Hello! How are you?");
+
+            var translateRequest = new TranslateRequest()
+            {
+                Text = new List<string>()
+                {
+                    "Hello! How are you?"
+                },
+                Source = "en",
+                Target = "pt"
+            };
+
+            var results = service.Translate(translateRequest);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Translations.Count > 0);
@@ -89,7 +102,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             LanguageTranslatorService service =
                 new LanguageTranslatorService(_userName, _password);
             
-            var results = service.ListModels(true, "en", string.Empty);
+            var results = service.ListModels();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Models.Count > 0);
@@ -101,7 +114,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             LanguageTranslatorService service =
                 new LanguageTranslatorService(_userName, _password);
             
-            var results = service.GetModelDetails("en-pt");
+            var results = service.GetModel("en-pt");
 
             Assert.IsNotNull(results);
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));

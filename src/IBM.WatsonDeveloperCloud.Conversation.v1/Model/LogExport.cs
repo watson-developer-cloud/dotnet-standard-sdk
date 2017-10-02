@@ -54,6 +54,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>The timestamp for the system response to the message.</value>
         [JsonProperty("response_timestamp", NullValueHandling = NullValueHandling.Ignore)]
         public string ResponseTimestamp { get; set; }
+        /// <summary>
+        /// The workspace ID.
+        /// </summary>
+        /// <value>The workspace ID.</value>
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string WorkspaceId { get; set; }
+        /// <summary>
+        /// The language of the workspace where the message request was made.
+        /// </summary>
+        /// <value>The language of the workspace where the message request was made.</value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
+        public string Language { get; set; }
     }
 
 }

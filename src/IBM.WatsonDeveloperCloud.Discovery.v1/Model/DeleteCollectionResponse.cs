@@ -27,9 +27,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class DeleteCollectionResponse
     {
         /// <summary>
-        /// The status of the collection. The status of a successful deletion operation is <tt>deleted</tt>.
+        /// The status of the collection. The status of a successful deletion operation is `deleted`.
         /// </summary>
-        /// <value>The status of the collection. The status of a successful deletion operation is <tt>deleted</tt>.</value>
+        /// <value>The status of the collection. The status of a successful deletion operation is `deleted`.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -42,9 +42,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// The status of the collection. The status of a successful deletion operation is <tt>deleted</tt>.
+        /// The status of the collection. The status of a successful deletion operation is `deleted`.
         /// </summary>
-        /// <value>The status of the collection. The status of a successful deletion operation is <tt>deleted</tt>.</value>
+        /// <value>The status of the collection. The status of a successful deletion operation is `deleted`.</value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>

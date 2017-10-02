@@ -15,22 +15,21 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// DeleteModelResult.
     /// </summary>
-    public class IdentifiedLanguages
+    public class DeleteModelResult
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// "OK" indicates that the model was successfully deleted.
         /// </summary>
-        /// <value>A ranking of identified languages with confidence scores.</value>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        /// <value>"OK" indicates that the model was successfully deleted.</value>
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string Status { get; set; }
     }
 
 }

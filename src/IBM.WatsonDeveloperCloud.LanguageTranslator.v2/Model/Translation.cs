@@ -15,22 +15,21 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// Translation.
     /// </summary>
-    public class IdentifiedLanguages
+    public class Translation
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// Translation output in UTF-8.
         /// </summary>
-        /// <value>A ranking of identified languages with confidence scores.</value>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        /// <value>Translation output in UTF-8.</value>
+        [JsonProperty("translation", NullValueHandling = NullValueHandling.Ignore)]
+        public string TranslationOutput { get; set; }
     }
 
 }

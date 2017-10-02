@@ -19,6 +19,7 @@ using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 {
@@ -56,7 +57,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
                 if(result.Models != null && result.Models.Count > 0)
                 {
                     Console.WriteLine("Models found:");
-                    foreach (ModelPayload model in result.Models)
+                    foreach (TranslationModel model in result.Models)
                     {
                         Console.WriteLine(string.Format("Name: {0} | Status: {1} | ModelID: {2}", model.Name, model.Status, model.ModelId));
                     }
@@ -79,12 +80,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
                 Console.WriteLine(string.Format("Calling CreateModel({0}, {1}, {2})...", _baseModel, _customModelName, _glossaryPath));
-                var result =
-                    _languageTranslator.CreateModel(CreateModelOptions.CreateOptions()
-                                                                      .WithBaseModelId(_baseModel)
-                                                                      .WithName(_customModelName)
-                                                                      .SetForcedGlossary(fs));
-
+                
+                var result = _languageTranslator.CreateModel(_baseModel, _customModelName, fs);
+                
                 if (result != null)
                 {
                     Console.WriteLine(string.Format("Model ID: {0}", result.ModelId));
@@ -103,7 +101,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         {
             Console.WriteLine(string.Format("Calling GetModdelDetails({0})...", _customModelID));
 
-            var result = _languageTranslator.GetModelDetails(_customModelID);
+            var result = _languageTranslator.GetModel(_customModelID);
 
             if (result != null)
             {
@@ -121,16 +119,25 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         {
             Console.WriteLine(string.Format("Calling Translate({0}, {1})...", _customModelID, _text));
 
-            var result = _languageTranslator.Translate(_customModelID, _text);
+            var translateRequest = new TranslateRequest()
+            {
+                Text = new List<string>()
+                {
+                    _text
+                },
+                ModelId = _customModelID
+            };
+
+            var result = _languageTranslator.Translate(translateRequest);
 
             if (result != null)
             {
                 Console.WriteLine(string.Format("Word Count: {0} | Character Count: {1}", result.WordCount, result.CharacterCount));
                 if(result.Translations != null && result.Translations.Count > 0)
                 {
-                    foreach(Translations translation in result.Translations)
+                    foreach(Translation translation in result.Translations)
                     {
-                        Console.WriteLine(string.Format("Translation: {0}", translation.Translation));
+                        Console.WriteLine(string.Format("Translation: {0}", translation.TranslationOutput));
                     }
                 }
                 else
@@ -148,9 +155,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Get Identifiable Languages
         private void GetIdentifiableLanguages()
         {
-            Console.WriteLine("Calling GetIdentifiableLanguages()...");
+            Console.WriteLine("Calling ListIdentifiableLanguages()...");
 
-            var result = _languageTranslator.GetIdentifiableLanguages();
+            var result = _languageTranslator.ListIdentifiableLanguages();
 
             if (result != null)
             {
@@ -212,7 +219,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 
             if (result != null)
             {
-                Console.WriteLine("deleted: {0}", result.Deleted);
+                Console.WriteLine("deleted: {0}", result.Status);
             }
             else
             {

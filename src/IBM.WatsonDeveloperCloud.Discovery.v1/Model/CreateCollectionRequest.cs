@@ -27,9 +27,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class CreateCollectionRequest
     {
         /// <summary>
-        /// The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.
+        /// The language of the documents stored in the collection, in the form of an ISO 639-1 language code.
         /// </summary>
-        /// <value>The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.</value>
+        /// <value>The language of the documents stored in the collection, in the form of an ISO 639-1 language code.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LanguageEnum
         {
@@ -54,9 +54,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.
+        /// The language of the documents stored in the collection, in the form of an ISO 639-1 language code.
         /// </summary>
-        /// <value>The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.</value>
+        /// <value>The language of the documents stored in the collection, in the form of an ISO 639-1 language code.</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public LanguageEnum? Language { get; set; }
         /// <summary>

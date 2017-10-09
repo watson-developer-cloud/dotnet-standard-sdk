@@ -72,9 +72,9 @@ var result = _languageTranslator.ListModels();
 #### Create a model
 Uploads a TMX glossary file on top of a domain to customize a translation model.Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
 ```cs
-using (FileStream fs = File.OpenRead("<glossary-file-path>"))
+using (FileStream fs = File.OpenRead(_glossaryPath))
 {
-    var result = _languageTranslator.CreateModel("<base-model-id>", "<custom-model-name>", fs);
+    var result = _languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary:fs, forcedGlossaryContentType:"<glossary-mime-type>");
 }
 ```
 

@@ -36,14 +36,23 @@ _languageTranslator.SetCredential("<username>", "<password>");
 Translates input text from the source language to the target language.
 ```cs
 // Translate '"Hello! How are you?' from English to Portuguese using the Language Translator service
-var results = _languageTranslator.Translate("en", "pt", "Hello! How are you?");
+var translateRequest = new TranslateRequest()
+{
+    Text = new List<string>()
+    {
+        "Hello! How are you?"
+    },
+    ModelId = "en-pt"
+};
+
+var results = _languageTranslator.Translate(translateRequest);
 ```
 
 #### Identifiable languages
 Return the list of languages it can detect.
 ```cs
 //  returns a list of identifiable languages
-var result = _languageTranslator.GetIdentifiableLanguages();
+var result = _languageTranslator.ListIdentifiableLanguages();
 ```
 
 #### Identify language
@@ -60,10 +69,14 @@ Lists available models for language translation with option to filter by source 
 var result = _languageTranslator.ListModels();
 ```
 
-<!-- #### Create a model
+#### Create a model
 Uploads a TMX glossary file on top of a domain to customize a translation model.Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
 ```cs
-``` -->
+using (FileStream fs = File.OpenRead("<glossary-file-path>"))
+{
+    var result = _languageTranslator.CreateModel("<base-model-id>", "<custom-model-name>", fs);
+}
+```
 
 #### Delete a model
 Deletes trained translation models.

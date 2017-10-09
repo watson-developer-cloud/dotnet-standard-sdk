@@ -129,19 +129,19 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 if (forcedGlossary != null)
                 {
                     var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
-                    formData.Add(forcedGlossaryContent, "forced_glossary", "file.xml");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
                 }
 
                 if (parallelCorpus != null)
                 {
                     var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
-                    formData.Add(parallelCorpusContent, "parallel_corpus");
+                    formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
                 }
 
                 if (monolingualCorpus != null)
                 {
                     var monolingualCorpusContent = new ByteArrayContent((monolingualCorpus as Stream).ReadAllBytes());
-                    formData.Add(monolingualCorpusContent, "monolingual_corpus");
+                    formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
                 }
 
                 result = this.Client.WithAuthentication(this.UserName, this.Password)

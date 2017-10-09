@@ -4,7 +4,9 @@
   "testRunner": "mstest",
 
   "buildOptions": {
-    "copyToOutput": "appsettings.json"
+    "copyToOutput": {
+      "include": [ "appsettings.json", "./glossary.tmx" ]
+    }
   },
 
   "dependencies": {

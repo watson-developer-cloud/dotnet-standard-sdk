@@ -129,18 +129,27 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 if (forcedGlossary != null)
                 {
                     var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(forcedGlossaryContentType, out contentType);
+                    forcedGlossaryContent.Headers.ContentType = contentType;
                     formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
                 }
 
                 if (parallelCorpus != null)
                 {
                     var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(parallelCorpusContentType, out contentType);
+                    parallelCorpusContent.Headers.ContentType = contentType;
                     formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
                 }
 
                 if (monolingualCorpus != null)
                 {
                     var monolingualCorpusContent = new ByteArrayContent((monolingualCorpus as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(monolingualCorpusContentType, out contentType);
+                    monolingualCorpusContent.Headers.ContentType = contentType;
                     formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
                 }
 

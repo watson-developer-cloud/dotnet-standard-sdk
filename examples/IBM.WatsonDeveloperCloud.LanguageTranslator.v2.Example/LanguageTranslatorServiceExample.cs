@@ -28,9 +28,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
     {
         private LanguageTranslatorService _languageTranslator = new LanguageTranslatorService();
         private string _glossaryPath = "glossary.tmx";
-        private string _baseModel = "en-es";
+        private string _baseModel = "en-fr";
         private string _customModelName = "dotnetExampleModel";
-        private string _customModelID = "en-es";
+        private string _customModelID = "en-fr";
         private string _text = "I'm sorry, Dave. I'm afraid I can't do that.";
 
         public LanguageTranslatorServiceExample(string username, string password)
@@ -43,7 +43,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
             Translate();
             GetIdentifiableLanguages();
             Identify();
-            //DeleteModel();
+            DeleteModel();
+
+            Console.WriteLine("\nLanguage Translation examples complete.");
         }
 
         #region List Models
@@ -89,7 +91,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Get Model Details
         private void GetModelDetails()
         {
-            Console.WriteLine(string.Format("Calling GetModdelDetails({0})...", _customModelID));
+            Console.WriteLine(string.Format("Calling GetModelDetails({0})...", _customModelID));
 
             var result = _languageTranslator.GetModel(_customModelID);
 
@@ -107,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Translate
         private void Translate()
         {
-            Console.WriteLine(string.Format("Calling Translate({0}, {1})...", _customModelID, _text));
+            Console.WriteLine(string.Format("Calling Translate({0}, {1})...", _baseModel, _text));
 
             var translateRequest = new TranslateRequest()
             {
@@ -115,7 +117,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
                 {
                     _text
                 },
-                ModelId = _customModelID
+                ModelId = _baseModel
             };
 
             var result = _languageTranslator.Translate(translateRequest);

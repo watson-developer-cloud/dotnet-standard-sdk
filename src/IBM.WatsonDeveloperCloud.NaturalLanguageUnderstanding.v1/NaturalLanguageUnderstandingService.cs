@@ -66,8 +66,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             this.Client = httpClient;
         }
 
-        public AnalysisResults Analyze(Parameters parameters = null)
+        public AnalysisResults Analyze(Parameters parameters)
         {
+            if (parameters == null)
+                throw new ArgumentNullException(nameof(parameters));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");

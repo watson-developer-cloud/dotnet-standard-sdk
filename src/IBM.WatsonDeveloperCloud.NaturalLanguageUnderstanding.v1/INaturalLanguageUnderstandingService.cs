@@ -24,9 +24,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Analyze text, HTML, or a public webpage. Analyzes text, HTML, or a public webpage with one or more text analysis features.
         /// </summary>
-        /// <param name="parameters">An object containing request parameters. The `features` object and one of the `text`, `html`, or `url` attributes are required. (optional)</param>
+        /// <param name="parameters">An object containing request parameters. The `features` object and one of the `text`, `html`, or `url` attributes are required.</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
-        AnalysisResults Analyze(Parameters parameters = null);
+        AnalysisResults Analyze(Parameters parameters);
         /// <summary>
         /// Delete model. Deletes a custom model.
         /// </summary>

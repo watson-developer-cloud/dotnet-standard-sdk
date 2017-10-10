@@ -2667,7 +2667,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void Query_No_EnvironmentId()
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
-            service.Query(null, new List<string>() { "collectionId" });
+            service.Query(null, "collectionId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -2682,7 +2682,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
             service.VersionDate = null;
-            service.Query("environmentId", new List<string>() { "collectionId" });
+            service.Query("environmentId", "collectionId");
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -2701,7 +2701,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
-            service.Query("environmentId", new List<string>() { "collectionId" });
+            service.Query("environmentId", "collectionId");
         }
 
         [TestMethod]
@@ -2797,7 +2797,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             DiscoveryService service = new DiscoveryService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.Query("environmentId", new List<string>() { "collectionId" });
+            var result = service.Query("environmentId", "collectionId");
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());

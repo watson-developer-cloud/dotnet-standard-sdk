@@ -50,7 +50,43 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum DE for de
             /// </summary>
             [EnumMember(Value = "de")]
-            DE
+            DE,
+            
+            /// <summary>
+            /// Enum AR for ar
+            /// </summary>
+            [EnumMember(Value = "ar")]
+            AR,
+            
+            /// <summary>
+            /// Enum FR for fr
+            /// </summary>
+            [EnumMember(Value = "fr")]
+            FR,
+            
+            /// <summary>
+            /// Enum IT for it
+            /// </summary>
+            [EnumMember(Value = "it")]
+            IT,
+            
+            /// <summary>
+            /// Enum JA for ja
+            /// </summary>
+            [EnumMember(Value = "ja")]
+            JA,
+            
+            /// <summary>
+            /// Enum KO for ko
+            /// </summary>
+            [EnumMember(Value = "ko")]
+            KO,
+            
+            /// <summary>
+            /// Enum PT_BR for pt-br
+            /// </summary>
+            [EnumMember(Value = "pt-br")]
+            PT_BR
         }
 
         /// <summary>

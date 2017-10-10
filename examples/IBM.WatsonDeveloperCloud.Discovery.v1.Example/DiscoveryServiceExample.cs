@@ -580,7 +580,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Query
         private void Query()
         {
-            var result = _discovery.Query(_createdEnvironmentId, new List<string>() { _createdCollectionId }, null, null, _naturalLanguageQuery);
+            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {

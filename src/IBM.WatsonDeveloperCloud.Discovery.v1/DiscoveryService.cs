@@ -397,7 +397,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (file != null)
                 {
                     var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
-                    formData.Add(fileContent, "file");
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 if (metadata != null)
@@ -609,7 +612,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (file != null)
                 {
                     var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
-                    formData.Add(fileContent, "file");
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 if (metadata != null)
@@ -714,7 +720,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (file != null)
                 {
                     var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
-                    formData.Add(fileContent, "file");
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 if (metadata != null)
@@ -737,7 +746,86 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             return result;
         }
-        public QueryResponse FederatedQuery(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null)
+        public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("deduplicate", deduplicate)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+
+            QueryNoticesResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices")
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
+                                .WithArgument("filter", filter)
+                                .WithArgument("query", query)
+                                .WithArgument("natural_language_query", naturalLanguageQuery)
+                                .WithArgument("aggregation", aggregation)
+                                .WithArgument("count", count)
+                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
+                                .WithArgument("offset", offset)
+                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
+                                .WithArgument("highlight", highlight)
+                                .WithArgument("deduplicate.field", deduplicateField)
+                                .As<QueryNoticesResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -767,46 +855,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null)
                                 .WithArgument("passages.count", passagesCount)
                                 .WithArgument("passages.characters", passagesCharacters)
-                                .WithArgument("deduplicate", deduplicate)
-                                .WithArgument("deduplicate.field", deduplicateField)
-                                .As<QueryResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public QueryResponse Query(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
-
-            QueryResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
-                                .WithArgument("filter", filter)
-                                .WithArgument("query", query)
-                                .WithArgument("natural_language_query", naturalLanguageQuery)
-                                .WithArgument("aggregation", aggregation)
-                                .WithArgument("count", count)
-                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
-                                .WithArgument("offset", offset)
-                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
-                                .WithArgument("highlight", highlight)
                                 .WithArgument("deduplicate", deduplicate)
                                 .WithArgument("deduplicate.field", deduplicateField)
                                 .As<QueryResponse>()
@@ -850,45 +898,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null)
                                 .WithArgument("passages.count", passagesCount)
                                 .WithArgument("passages.characters", passagesCharacters)
-                                .WithArgument("deduplicate.field", deduplicateField)
-                                .As<QueryNoticesResponse>()
-                                .Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public QueryNoticesResponse QueryNotices_0(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
-
-            QueryNoticesResponse result = null;
-
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null)
-                                .WithArgument("filter", filter)
-                                .WithArgument("query", query)
-                                .WithArgument("natural_language_query", naturalLanguageQuery)
-                                .WithArgument("aggregation", aggregation)
-                                .WithArgument("count", count)
-                                .WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null)
-                                .WithArgument("offset", offset)
-                                .WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null)
-                                .WithArgument("highlight", highlight)
                                 .WithArgument("deduplicate.field", deduplicateField)
                                 .As<QueryNoticesResponse>()
                                 .Result;

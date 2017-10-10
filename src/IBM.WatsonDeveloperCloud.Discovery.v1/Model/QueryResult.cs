@@ -29,25 +29,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The unique identifier of the document.</value>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public string Id { get; set; }
+        public dynamic Id { get; set; }
         /// <summary>
         /// The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.
         /// </summary>
         /// <value>The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.</value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        public dynamic Score { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
         /// <value>Metadata of the document.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public dynamic Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
         /// <value>The collection ID of the collection containing the document for this result.</value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string CollectionId { get; set; }
+        public dynamic CollectionId { get; set; }
     }
 
 }

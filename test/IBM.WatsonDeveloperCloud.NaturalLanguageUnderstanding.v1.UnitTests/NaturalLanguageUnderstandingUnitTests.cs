@@ -107,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("username", "password", "versionDate");
             service.VersionDate = null;
 
-            service.Analyze();
+            service.Analyze(new Parameters());
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -127,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
 
-            service.Analyze();
+            service.Analyze(new Parameters());
         }
 
         [TestMethod]

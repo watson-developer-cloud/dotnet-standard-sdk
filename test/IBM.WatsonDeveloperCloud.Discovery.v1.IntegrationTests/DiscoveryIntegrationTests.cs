@@ -459,7 +459,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Preview Environment
-        [TestMethod]
+        //[TestMethod]
         public void PreviewEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));

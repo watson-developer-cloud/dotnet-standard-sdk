@@ -29,7 +29,7 @@ You complete these steps to implement your application:
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and credentials must be set.
 ```cs
-// create a Language Translator Service instance
+// create a Conversation Service instance
 ConversationService _conversation = new ConversationService();
 
 // set the credentials

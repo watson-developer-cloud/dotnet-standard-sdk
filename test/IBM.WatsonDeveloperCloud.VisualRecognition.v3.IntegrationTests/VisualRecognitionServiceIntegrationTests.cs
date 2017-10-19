@@ -390,6 +390,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             VisualRecognitionService service = new VisualRecognitionService();
             service.SetCredential(apikey);
 
+            #region Delay
+            Delay(_delayTime);
+            #endregion
+
             var result = service.DeleteClassifier(_createdClassifierId);
 
             Assert.IsNotNull(result);
@@ -456,5 +460,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             return containsClass;
         }
+
+        #region Delay
+        //  Introducing a delay because of a known issue with Visual Recognition where newly created classifiers 
+        //  will disappear without being deleted if a delete is attempted less than ~10 seconds after creation.
+        private int _delayTime = 15000;
+        private void Delay(int delayTime)
+        {
+            Console.WriteLine(string.Format("Delaying for {0} ms", delayTime));
+            Thread.Sleep(delayTime);
+        }
+        #endregion
     }
 }

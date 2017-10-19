@@ -62,21 +62,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
             UpdateClassifier();
-            GetCollections();
+            //GetCollections();
 
-            DeleteDotnetCollections();
+            //DeleteDotnetCollections();
 
-            CreateCollection();
-            GetCollection();
-            GetCollectionImages();
-            AddCollectionImages();
-            GetCollectionImage();
-            GetCollectionImageMetadata();
-            AddCollectionImageMetadata();
-            DeleteCollectionImageMetadata();
-            FindSimilar();
-            DeleteCollectionImage();
-            DeleteCollection();
+            //CreateCollection();
+            //GetCollection();
+            //GetCollectionImages();
+            //AddCollectionImages();
+            //GetCollectionImage();
+            //GetCollectionImageMetadata();
+            //AddCollectionImageMetadata();
+            //DeleteCollectionImageMetadata();
+            //FindSimilar();
+            //DeleteCollectionImage();
+            //DeleteCollection();
             DeleteClassifier();
 
             Console.WriteLine("\n\nOperation complete");
@@ -261,6 +261,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         {
             if (string.IsNullOrEmpty(_createdClassifierId))
                 throw new ArgumentNullException(nameof(_createdClassifierId));
+
+            #region Delay
+            Delay(_delayTime);
+            #endregion
 
             Console.WriteLine(string.Format("\nCalling DeleteClassifier(\"{0}\")...", _createdClassifierId));
 
@@ -674,5 +678,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                 Console.WriteLine("There are no matching collections to delete.");
             }
         }
+
+        #region Delay
+        //  Introducing a delay because of a known issue with Visual Recognition where newly created classifiers 
+        //  will disappear without being deleted if a delete is attempted less than ~10 seconds after creation.
+        private int _delayTime = 15000;
+        private void Delay(int delayTime)
+        {
+            Console.WriteLine(string.Format("Delaying for {0} ms", delayTime));
+            Thread.Sleep(delayTime);
+        }
+        #endregion
     }
 }

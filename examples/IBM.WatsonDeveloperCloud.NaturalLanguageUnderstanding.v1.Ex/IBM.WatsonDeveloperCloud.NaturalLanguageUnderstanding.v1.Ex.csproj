@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Ex</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Ex</PackageId>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
+    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>

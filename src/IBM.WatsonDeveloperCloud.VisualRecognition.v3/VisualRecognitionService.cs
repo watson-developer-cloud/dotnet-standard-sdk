@@ -144,7 +144,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var imageContent = new ByteArrayContent(imageData);
                     imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
-                    formData.Add(imageContent, imageDataName, imageDataName);
+                    formData.Add(imageContent, "images_file", imageDataName);
                 }
 
                 if (!string.IsNullOrEmpty(parameters))

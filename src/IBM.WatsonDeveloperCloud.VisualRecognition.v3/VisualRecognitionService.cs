@@ -151,7 +151,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(parametersContent);
+                    formData.Add(parametersContent, "parameters");
                 }
 
                 result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFY}")

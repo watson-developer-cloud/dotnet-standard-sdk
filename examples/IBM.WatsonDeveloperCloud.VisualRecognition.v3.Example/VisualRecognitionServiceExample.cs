@@ -22,6 +22,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 {
@@ -62,6 +63,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
             UpdateClassifier();
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+            ClassifyWithClassifier();
+            GetClassifiersVerbose();
             DeleteClassifier();
 
             Console.WriteLine("\n\nOperation complete");
@@ -96,6 +101,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                     foreach (ClassifyPerClassifier classifier in image._Classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
                             Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+            }
+        }
+
+        private void ClassifyWithClassifier()
+        {
+            string[] classifierIDs = { _createdClassifierId };
+            using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
+            {
+                Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _localTurtleFilePath));
+                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localTurtleFilePath), "image/jpeg", classifierIDs: classifierIDs);
+
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
         }
 

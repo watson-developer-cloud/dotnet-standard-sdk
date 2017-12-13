@@ -22,6 +22,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 {
@@ -32,7 +33,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
-        private string _localImageMetadataPath = @"VisualRecognitionTestData\imageMetadata.json";
         private string _localFaceFilePath = @"VisualRecognitionTestData\obama.jpg";
         private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData\giraffe_positive_examples.zip";
@@ -42,9 +42,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-classifier";
         private string _createdClassifierId = "";
-        private string _collectionNameToCreate = "dotnet-standard-test-collection";
-        private string _createdCollectionId = "";
-        private string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         public VisualRecognitionServiceExample(string apikey)
@@ -62,6 +59,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
             UpdateClassifier();
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+            ClassifyWithClassifier();
+            GetClassifiersVerbose();
             DeleteClassifier();
 
             Console.WriteLine("\n\nOperation complete");
@@ -96,6 +97,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                     foreach (ClassifyPerClassifier classifier in image._Classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
                             Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+            }
+        }
+
+        private void ClassifyWithClassifier()
+        {
+            string[] classifierIDs = { _createdClassifierId };
+            using (FileStream fs = File.OpenRead(_localTurtleFilePath))
+            {
+                Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _localTurtleFilePath));
+                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localTurtleFilePath), "image/jpeg", classifierIDs: classifierIDs);
+
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
         }
 

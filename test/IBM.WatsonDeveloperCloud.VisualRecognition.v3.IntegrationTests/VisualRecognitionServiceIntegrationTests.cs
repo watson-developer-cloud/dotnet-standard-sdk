@@ -34,9 +34,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
-        //private string _localImageMetadataPath = @"VisualRecognitionTestData\imageMetadata.json";
         private string _localFaceFilePath = @"VisualRecognitionTestData\obama.jpg";
-        //private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
+        private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData\giraffe_positive_examples.zip";
         private string _giraffeClassname = "giraffe";
         private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData\turtle_positive_examples.zip";
@@ -44,9 +43,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-classifier";
         private static string _createdClassifierId = "";
-        //private string _collectionNameToCreate = "dotnet-standard-test-collection";
-        //private static string _createdCollectionId = "";
-        //private static string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
@@ -192,197 +188,46 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
         }
 
-        //[TestMethod]
-        //public void t09_GetCollections_Success()
-        //{
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
+        [TestMethod]
+        public void t09_WaitForClassifier()
+        {
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
 
-        //    var result = service.GetCollections();
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t10_CreateCollection_Success()
-        //{
-        //    DeleteDotnetCollections();
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.CreateCollection(_collectionNameToCreate);
-
-        //    _createdCollectionId = result.CollectionId;
-        //    Console.WriteLine(string.Format("Created collection {0}", _createdCollectionId));
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsTrue(!string.IsNullOrEmpty(_createdCollectionId));
-        //}
-
-        //[TestMethod]
-        //public void t11_GetCollection_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.GetCollection(_createdCollectionId);
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsTrue(result.CollectionId == _createdCollectionId);
-        //}
-
-        //[TestMethod]
-        //public void t12_GetCollectionImages_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.GetCollectionImages(_createdCollectionId);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t13_AddCollectionImages_Success()
-        //{
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    using (FileStream imageStream = File.OpenRead(_localGiraffeFilePath), metadataStream = File.OpenRead(_localImageMetadataPath))
-        //    {
-        //        var result = service.AddImage(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
-
-        //        _addedImageId = result.Images[0].ImageId;
-        //        Console.WriteLine(string.Format("Added image {0}", _addedImageId));
-
-        //        Assert.IsNotNull(result);
-        //        Assert.IsTrue(result.ImagesProcessed > 0);
-        //        Assert.IsTrue(!string.IsNullOrEmpty(_addedImageId));
-        //    }
-        //}
-
-        //[TestMethod]
-        //public void t14_GetCollectionImage_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    if (string.IsNullOrEmpty(_addedImageId))
-        //        Assert.Fail("Added image ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.GetImage(_createdCollectionId, _addedImageId);
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsTrue(result.ImageId == _addedImageId);
-        //}
-
-        //[TestMethod]
-        //public void t15_GetCollectionImageMetadata_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    if (string.IsNullOrEmpty(_addedImageId))
-        //        Assert.Fail("Added image ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.GetMetadata(_createdCollectionId, _addedImageId);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t16_AddCollectionImageMetadata_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    if (string.IsNullOrEmpty(_addedImageId))
-        //        Assert.Fail("Added image ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    using (FileStream metadataStream = File.OpenRead(_localImageMetadataPath))
-        //    {
-        //        var result = service.AddImageMetadata(_createdCollectionId, _addedImageId, metadataStream.ReadAllBytes());
-
-        //        Assert.IsNotNull(result);
-        //        Assert.IsTrue(result.Count > 0);
-        //    }
-        //}
-
-        //[TestMethod]
-        //public void t17_DeleteCollectionImageMetadata_Success()
-        //{
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.DeleteImageMetadata(_createdCollectionId, _addedImageId);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t18_FindSimilar_Success()
-        //{
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    using (FileStream imageStream = File.OpenRead(_localTurtleFilePath))
-        //    {
-        //        var result = service.FindSimilar(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath));
-
-        //        Assert.IsNotNull(result);
-        //        Assert.IsTrue(result.ImagesProcessed > 0);
-        //    }
-        //}
-
-        //[TestMethod]
-        //public void t19_DeleteCollectionImage_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    if (string.IsNullOrEmpty(_addedImageId))
-        //        Assert.Fail("Added image ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.DeleteImage(_createdCollectionId, _addedImageId);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t20_DeleteCollection_Success()
-        //{
-        //    if (string.IsNullOrEmpty(_createdCollectionId))
-        //        Assert.Fail("Created collection ID is null or empty.");
-
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    var result = service.DeleteCollection(_createdCollectionId);
-
-        //    Assert.IsNotNull(result);
-        //}
+            Assert.IsTrue(true);
+        }
 
         [TestMethod]
-        public void t21_DeleteClassifier_Success()
+        public void t10_ClassifyPost_Success()
+        {
+            VisualRecognitionService service = new VisualRecognitionService();
+            service.SetCredential(apikey);
+            string[] classifierIDs = { _createdClassifierId };
+
+            using (FileStream fs = File.OpenRead(_localTurtleFilePath))
+            {
+                var result = service.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localTurtleFilePath), "image/jpeg", classifierIDs: classifierIDs);
+
+                Assert.IsNotNull(result);
+                Assert.IsNotNull(result.Images);
+                Assert.IsTrue(result.CustomClasses > 0);
+                float giraffeScore = 0;
+                float turtleScore = 0;
+                List<ClassResult> classResults = result.Images[0]?._Classifiers[0]?.Classes;
+                foreach(ClassResult classResult in classResults)
+                {
+                    if (classResult._Class == _giraffeClassname)
+                        giraffeScore = classResult.Score;
+                    if (classResult._Class == _turtleClassname)
+                        turtleScore = classResult.Score;
+                }
+                Assert.IsTrue(giraffeScore < turtleScore);
+                Assert.IsTrue(result.Images.Count > 0);
+            }
+        }
+
+        [TestMethod]
+        public void t11_DeleteClassifier_Success()
         {
             if (string.IsNullOrEmpty(_createdClassifierId))
                 Assert.Fail("Created classsifier ID is null or empty.");
@@ -422,31 +267,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             return result.Status.ToLower() == "ready";
         }
-
-        //private void DeleteDotnetCollections()
-        //{
-        //    VisualRecognitionService service = new VisualRecognitionService();
-        //    service.SetCredential(apikey);
-
-        //    List<string> collectionIdsToDelete = new List<string>();
-
-        //    var collections = service.GetCollections();
-
-        //    foreach (CreateCollection collection in collections.Collections)
-        //    {
-        //        string name = collection.Name;
-        //        string id = collection.CollectionId;
-
-        //        if (name == _collectionNameToCreate)
-        //            collectionIdsToDelete.Add(id);
-        //    }
-
-        //    if (collectionIdsToDelete.Count > 0)
-        //    {
-        //        foreach (string collectionIdToDelete in collectionIdsToDelete)
-        //            service.DeleteCollection(collectionIdToDelete);
-        //    }
-        //}
 
         private bool ContainsClass(GetClassifiersPerClassifierVerbose result, string classname)
         {

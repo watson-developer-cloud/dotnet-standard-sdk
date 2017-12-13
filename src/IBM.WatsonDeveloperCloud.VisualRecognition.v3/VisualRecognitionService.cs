@@ -144,14 +144,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var imageContent = new ByteArrayContent(imageData);
                     imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
-                    formData.Add(imageContent, imageDataName, imageDataName);
+                    formData.Add(imageContent, "images_file", imageDataName);
                 }
 
                 if (!string.IsNullOrEmpty(parameters))
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(parametersContent);
+                    formData.Add(parametersContent, "parameters");
                 }
 
                 result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFY}")

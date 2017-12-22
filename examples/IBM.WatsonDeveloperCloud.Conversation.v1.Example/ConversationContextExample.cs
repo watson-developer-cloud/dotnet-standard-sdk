@@ -44,13 +44,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
                 Input = new InputData()
                 {
                     Text = _questionArray[questionIndex]
-                }
+                },
+                AlternateIntents = true
             };
 
             if(_questionContext != null)
             {
                 messageRequest.Context = new Context();
-                messageRequest.Context.ConversationId = _questionContext.ConversationId;
+                messageRequest.Context.ConversationId = _questionContext.conversation_id;
                 messageRequest.Context.System = _questionContext.system;
             }
 

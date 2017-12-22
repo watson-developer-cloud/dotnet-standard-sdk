@@ -18,8 +18,7 @@
 using System;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
-using System.Net;
-using System.Net.Http;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -31,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
             try
             {
-                credentials = GetCredentials(
+                credentials = Utility.SimpleGet(
                     Environment.GetEnvironmentVariable("VCAP_URL"),
                     Environment.GetEnvironmentVariable("VCAP_USERNAME"),
                     Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
@@ -49,21 +48,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
             DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_username.ToString(), _password.ToString());
             Console.ReadKey();
-        }
-
-        private static async Task<string> GetCredentials(string url, string username, string password)
-        {
-            var credentials = new NetworkCredential(username, password);
-            var handler = new HttpClientHandler()
-            {
-                Credentials = credentials
-            };
-
-            var client = new HttpClient(handler);
-            var stringTask = client.GetStringAsync(url);
-            var msg = await stringTask;
-
-            return msg;
         }
     }
 }

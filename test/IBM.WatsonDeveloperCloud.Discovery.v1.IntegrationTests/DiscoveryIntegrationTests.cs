@@ -87,7 +87,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
             
             var vcapServices = JObject.Parse(credentials);
-            _endpoint = vcapServices["discovery"]["username"].Value<string>();
+            _endpoint = vcapServices["discovery"]["url"].Value<string>();
             _username = vcapServices["discovery"]["username"].Value<string>();
             _password = vcapServices["discovery"]["password"].Value<string>();
 

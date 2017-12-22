@@ -43,15 +43,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             Task.WaitAll();
 
             var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["conversation"]["url"];
             var _username = vcapServices["conversation"]["username"];
             var _password = vcapServices["conversation"]["password"];
             var _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";   //vcapServices["conversation"]["workspace_id"];
 
             //  Uncomment to run the service example.
-            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
 
             //  Uncomment to run the context example.
-            ConversationContextExample _converationContextExample = new ConversationContextExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+            ConversationContextExample _converationContextExample = new ConversationContextExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
 
             Console.ReadKey();
         }

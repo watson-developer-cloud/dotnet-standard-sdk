@@ -43,10 +43,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Task.WaitAll();
 
             var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["discovery"]["url"];
             var _username = vcapServices["discovery"]["username"];
             var _password = vcapServices["discovery"]["password"];
 
-            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_username.ToString(), _password.ToString());
+            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_url.ToString(), _username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

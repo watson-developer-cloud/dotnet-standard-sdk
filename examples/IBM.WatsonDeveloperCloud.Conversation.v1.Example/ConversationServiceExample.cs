@@ -43,11 +43,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         private string _createdExample = "example";
 
         #region Constructor
-        public ConversationServiceExample(string username, string password, string workspaceID)
+        public ConversationServiceExample(string url, string username, string password, string workspaceID)
         {
-            _conversation = new ConversationService(username, password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+            _conversation = new ConversationService();
+            _conversation.Endpoint = url;
+            _conversation.UserName = username;
+            _conversation.Password = password;
+            _conversation.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+
             _workspaceID = workspaceID;
-            //_conversation.Endpoint = "http://localhost:1234";
 
             ListWorkspaces();
             CreateWorkspace();

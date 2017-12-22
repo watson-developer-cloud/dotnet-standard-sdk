@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         public string _username;
         public string _password;
         public string _endpoint;
-        public DiscoveryService _discovery;
+        public DiscoveryService discovery;
         private static string credentials = string.Empty;
 
         private static string _existingEnvironmentId;
@@ -91,7 +91,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _username = vcapServices["discovery"]["username"].Value<string>();
             _password = vcapServices["discovery"]["password"].Value<string>();
 
-            _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
+            discovery = new DiscoveryService();
+            discovery.Endpoint = _endpoint;
+            discovery.UserName = _username;
+            discovery.Password = _password;
+            discovery.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
         }
 
         #region Environments
@@ -99,7 +103,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         public void GetEnvironments()
         {
             Console.WriteLine(string.Format("\nCalling GetEnvironments()..."));
-            var result = _discovery.ListEnvironments();
+            var result = discovery.ListEnvironments();
 
             if (result != null)
             {
@@ -134,7 +138,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             };
 
             Console.WriteLine(string.Format("\nCalling CreateEnvironment()..."));
-            var result = _discovery.CreateEnvironment(createEnvironmentRequest);
+            var result = discovery.CreateEnvironment(createEnvironmentRequest);
 
             if (result != null)
             {
@@ -178,7 +182,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
         private void IsEnvironmentReady(string environmentId)
         {
-            var result = _discovery.GetEnvironment(environmentId);
+            var result = discovery.GetEnvironment(environmentId);
             Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
 
             if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
@@ -201,7 +205,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         public void GetEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling GetEnvironment()..."));
-            var result = _discovery.GetEnvironment(_createdEnvironmentId);
+            var result = discovery.GetEnvironment(_createdEnvironmentId);
 
             if (result != null)
             {
@@ -234,7 +238,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Description = _updatedEnvironmentDescription
             };
 
-            var result = _discovery.UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
+            var result = discovery.UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
 
             if (result != null)
             {
@@ -264,7 +268,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetConfigurations()..."));
 
-            var result = _discovery.ListConfigurations(_createdEnvironmentId);
+            var result = discovery.ListConfigurations(_createdEnvironmentId);
 
             if (result != null)
             {
@@ -292,7 +296,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             };
 
-            var result = _discovery.CreateConfiguration(_createdEnvironmentId, configuration);
+            var result = discovery.CreateConfiguration(_createdEnvironmentId, configuration);
 
             if (result != null)
             {
@@ -314,7 +318,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetConfiguration()..."));
 
-            var result = _discovery.GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var result = discovery.GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
 
             if (result != null)
             {
@@ -341,7 +345,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Name = _updatedConfigurationName
             };
 
-            var result = _discovery.UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, configuration);
+            var result = discovery.UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, configuration);
 
             if (result != null)
             {
@@ -365,7 +369,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetCollections()..."));
 
-            var result = _discovery.ListCollections(_createdEnvironmentId);
+            var result = discovery.ListCollections(_createdEnvironmentId);
 
             if (result != null)
             {
@@ -392,7 +396,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 ConfigurationId = _createdConfigurationId
             };
 
-            var result = _discovery.CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            var result = discovery.CreateCollection(_createdEnvironmentId, createCollectionRequest);
 
             if (result != null)
             {
@@ -420,7 +424,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("_createdCollectionId is null");
 
-            var result = _discovery.GetCollection(_createdEnvironmentId, _createdCollectionId);
+            var result = discovery.GetCollection(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -447,7 +451,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Name = _updatedCollectionName,
             };
 
-            var result = _discovery.UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
+            var result = discovery.UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
 
             if (result != null)
             {
@@ -468,7 +472,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetCollectionFields()..."));
 
-            var result = _discovery.ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
+            var result = discovery.ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -491,7 +495,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
+                var result = discovery.TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
 
                 if (result != null)
                 {
@@ -514,7 +518,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                var result = discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -535,7 +539,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetDocument()..."));
 
-            var result = _discovery.GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var result = discovery.GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
 
             if (result != null)
             {
@@ -557,7 +561,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+                var result = discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -580,7 +584,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling Query()..."));
 
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+            var result = discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {
@@ -601,7 +605,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetNoticies()..."));
 
-            var result = _discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var result = discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
 
             if (result != null)
             {
@@ -622,7 +626,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
 
-            var result = _discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var result = discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -658,7 +662,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var result = _discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+            var result = discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
 
             if (result != null)
             {
@@ -680,7 +684,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
 
-            var result = _discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var result = discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
 
             if (result != null)
             {
@@ -707,7 +711,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            var result = discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
 
             if (result != null)
             {
@@ -729,7 +733,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
 
-            var result = _discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var result = discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             if (result != null)
             {
@@ -756,7 +760,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+            var result = discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
 
             if (result != null)
             {
@@ -777,7 +781,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
 
-            var result = _discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var result = discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             if (result != null)
             {
@@ -799,7 +803,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
 
-            var result = _discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var result = discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
 
             if (result != null)
             {
@@ -821,7 +825,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
 
-            var result = _discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var result = discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -840,7 +844,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         public void DeleteExistingEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
-            var result = _discovery.DeleteEnvironment(_existingEnvironmentId);
+            var result = discovery.DeleteEnvironment(_existingEnvironmentId);
 
             if (result != null)
             {
@@ -877,7 +881,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (string.IsNullOrEmpty(_createdDocumentId))
                 Assert.Fail("_createdDocumentId is null");
 
-            var result = _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var result = discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
 
             if (result != null)
             {
@@ -904,7 +908,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (string.IsNullOrEmpty(_createdCollectionId))
                 Assert.Fail("_createdCollectionId is null");
 
-            var result = _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var result = discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -931,7 +935,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (string.IsNullOrEmpty(_createdConfigurationId))
                 Assert.Fail("_createdConfigurationId is null");
 
-            var result = _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var result = discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
 
             if (result != null)
             {
@@ -955,7 +959,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (string.IsNullOrEmpty(_createdEnvironmentId))
                 Assert.Fail("_createdEnvironmentId is null");
 
-            var result = _discovery.DeleteEnvironment(_createdEnvironmentId);
+            var result = discovery.DeleteEnvironment(_createdEnvironmentId);
 
             if (result != null)
             {

@@ -20,6 +20,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
@@ -30,6 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         public string _password;
         public string _endpoint;
         public ConversationService conversation;
+        private static string credentials = string.Empty;
 
         public string _workspaceID;
         public string _inputString = "Turn on the winshield wipers";
@@ -50,19 +53,29 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-                File.ReadAllText(environmentVariable);
+                Task.WaitAll();
+            }
 
-            var vcapServices =
-            JObject.Parse(fileContent);
+            var vcapServices = JObject.Parse(credentials);
 
-            _endpoint = vcapServices["conversation"][0]["credentials"]["url"].Value<string>();
-            _username = vcapServices["conversation"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["conversation"][0]["credentials"]["password"].Value<string>();
-            _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"].Value<string>();
+            _endpoint = vcapServices["conversation"]["url"].Value<string>();
+            _username = vcapServices["conversation"]["username"].Value<string>();
+            _password = vcapServices["conversation"]["password"].Value<string>();
+            _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
 
             conversation = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
         }

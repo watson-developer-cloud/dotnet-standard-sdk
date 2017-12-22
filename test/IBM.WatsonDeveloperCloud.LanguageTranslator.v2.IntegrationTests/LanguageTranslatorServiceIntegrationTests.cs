@@ -16,11 +16,13 @@
 */
 
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
 {
@@ -30,6 +32,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private static string _userName;
         private static string _password;
         private static string _endpoint;
+        private LanguageTranslatorService languageTranslator;
+        private static string credentials = string.Empty;
 
         private static string _glossaryPath = "glossary.tmx";
         private static string _glossaryMimeType = "text/xml";
@@ -41,27 +45,38 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-            File.ReadAllText(environmentVariable);
+                Task.WaitAll();
 
-            var vcapServices =
-            JObject.Parse(fileContent);
+                var vcapServices = JObject.Parse(credentials);
 
-            _endpoint = vcapServices["language_translator"][0]["credentials"]["url"].Value<string>();
-            _userName = vcapServices["language_translator"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["language_translator"][0]["credentials"]["password"].Value<string>();
+                _endpoint = vcapServices["language_translator"]["url"].Value<string>();
+                _userName = vcapServices["language_translator"]["username"].Value<string>();
+                _password = vcapServices["language_translator"]["password"].Value<string>();
+            }
         }
 
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
+            languageTranslator.Endpoint = _endpoint;
             
-            var results = service.ListIdentifiableLanguages();
+            var results = languageTranslator.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -70,10 +85,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void Identify_Sucess()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
+            languageTranslator.Endpoint = _endpoint;
 
-            var results = service.Identify(_text);
+            var results = languageTranslator.Identify(_text);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -82,8 +98,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void Translate_Sucess()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
+            languageTranslator.Endpoint = _endpoint;
 
             var translateRequest = new TranslateRequest()
             {
@@ -94,7 +111,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
                 ModelId = _baseModel
             };
 
-            var results = service.Translate(translateRequest);
+            var results = languageTranslator.Translate(translateRequest);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Translations.Count > 0);
@@ -103,10 +120,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void LisListModels_Sucess()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
-            
-            var results = service.ListModels();
+            languageTranslator.Endpoint = _endpoint;
+
+            var results = languageTranslator.ListModels();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Models.Count > 0);
@@ -115,10 +133,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void GetModelDetails_Success()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
-            
-            var results = service.GetModel(_baseModel);
+            languageTranslator.Endpoint = _endpoint;
+
+            var results = languageTranslator.GetModel(_baseModel);
 
             Assert.IsNotNull(results);
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));
@@ -127,14 +146,15 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void CreateModel_Success()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
+            languageTranslator.Endpoint = _endpoint;
 
             TranslationModel result;
 
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
-                result = service.CreateModel(_baseModel, _customModelName, forcedGlossary: fs, forcedGlossaryContentType: _glossaryMimeType);
+                result = languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary: fs, forcedGlossaryContentType: _glossaryMimeType);
 
                 if (result != null)
                 {
@@ -153,10 +173,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void DeleteModel_Success()
         {
-            LanguageTranslatorService service =
+            languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
+            languageTranslator.Endpoint = _endpoint;
 
-            var result = service.DeleteModel(_customModelID);
+            var result = languageTranslator.DeleteModel(_customModelID);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Status == "OK");

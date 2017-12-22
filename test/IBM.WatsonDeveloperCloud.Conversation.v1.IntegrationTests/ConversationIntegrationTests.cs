@@ -28,27 +28,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
     [TestClass]
     public class ConversationIntegrationTests
     {
-        public string _username;
-        public string _password;
-        public string _endpoint;
-        public ConversationService conversation;
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
+        private ConversationService conversation;
         private static string credentials = string.Empty;
 
-        public string _workspaceID;
-        public string _inputString = "Turn on the winshield wipers";
+        private static string _workspaceID;
+        private string _inputString = "Turn on the winshield wipers";
 
-        public static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
-        public static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script.";
-        public static string _createdWorkspaceLanguage = "en";
-        public static string _createdWorkspaceId;
-        public static string _createdEntity = "entity";
-        public static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
-        public static string _createdValue = "value";
-        public static string _createdIntent = "intent";
-        public static string _createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
-        public static string _createdCounterExampleText = "Example text";
-        public static string _createdSynonym = "synonym";
-        public static string _createdExample = "example";
+        private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
+        private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script.";
+        private static string _createdWorkspaceLanguage = "en";
+        private static string _createdWorkspaceId;
+        private static string _createdEntity = "entity";
+        private static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
+        private static string _createdValue = "value";
+        private static string _createdIntent = "intent";
+        private static string _createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
+        private static string _createdCounterExampleText = "Example text";
+        private static string _createdSynonym = "synonym";
+        private static string _createdExample = "example";
 
         [TestInitialize]
         public void Setup()
@@ -68,15 +68,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 }
 
                 Task.WaitAll();
+                var vcapServices = JObject.Parse(credentials);
+
+                _endpoint = vcapServices["conversation"]["url"].Value<string>();
+                _username = vcapServices["conversation"]["username"].Value<string>();
+                _password = vcapServices["conversation"]["password"].Value<string>();
+                _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
             }
-
-            var vcapServices = JObject.Parse(credentials);
-
-            _endpoint = vcapServices["conversation"]["url"].Value<string>();
-            _username = vcapServices["conversation"]["username"].Value<string>();
-            _password = vcapServices["conversation"]["password"].Value<string>();
-            _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
-
+            
             conversation = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
             conversation.Endpoint = _endpoint;
         }

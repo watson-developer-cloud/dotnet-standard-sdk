@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using Newtonsoft.Json;
 using System.IO;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -31,6 +30,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         public string _password;
         public string _endpoint;
         public DiscoveryService _discovery;
+
+        private static string _existingEnvironmentId;
 
         private static string _createdEnvironmentId;
         private static string _createdConfigurationId;
@@ -65,6 +66,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             //_discovery.Endpoint = "http://localhost:1234";
 
             GetEnvironments();
+            if(!string.IsNullOrEmpty(_existingEnvironmentId))
+                DeleteExistingEnvironment();
             CreateEnvironment();
             Task.Factory.StartNew(() =>
             {
@@ -124,6 +127,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+
+                foreach (ModelEnvironment environment in result.Environments)
+                {
+                    if (!(bool)environment._ReadOnly)
+                    {
+                        _existingEnvironmentId = environment.EnvironmentId;
+                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment {0} to delete", environment.Name));
+                    }
+                }
             }
             else
             {
@@ -792,6 +804,31 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             }
         }
         #endregion
-        
+
+        #region Delete Existing Environment
+        public void DeleteExistingEnvironment()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
+            var result = _discovery.DeleteEnvironment(_existingEnvironmentId);
+
+            if (result != null)
+            {
+                if (result != null)
+                {
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+
+                _existingEnvironmentId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
     }
 }

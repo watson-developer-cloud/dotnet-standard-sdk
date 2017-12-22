@@ -23,8 +23,9 @@ using System.Threading;
 using Newtonsoft.Json;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
-using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
@@ -35,6 +36,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         public string _password;
         public string _endpoint;
         public DiscoveryService _discovery;
+        private static string credentials = string.Empty;
+
+        private static string _existingEnvironmentId;
 
         private static string _createdEnvironmentId;
         private static string _createdConfigurationId;
@@ -66,18 +70,27 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = GetCredentials(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-                File.ReadAllText(environmentVariable);
-
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            _endpoint = vcapServices["discovery"][0]["credentials"]["url"].Value<string>();
-            _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
+                Task.WaitAll();
+            }
+            
+            var vcapServices = JObject.Parse(credentials);
+            _endpoint = vcapServices["discovery"]["username"].Value<string>();
+            _username = vcapServices["discovery"]["username"].Value<string>();
+            _password = vcapServices["discovery"]["password"].Value<string>();
 
             _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
         }
@@ -92,6 +105,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                foreach (ModelEnvironment environment in result.Environments)
+                {
+                    if (!(bool)environment._ReadOnly)
+                    {
+                        _existingEnvironmentId = environment.EnvironmentId;
+                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment {0} to delete", environment.Name));
+                        DeleteExistingEnvironment();
+                    }
+                }
             }
             else
             {
@@ -812,6 +834,49 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
 
             Assert.IsNull(result);
+        }
+        #endregion
+
+        #region Delete Existing Environment
+        public void DeleteExistingEnvironment()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
+            var result = _discovery.DeleteEnvironment(_existingEnvironmentId);
+
+            if (result != null)
+            {
+                if (result != null)
+                {
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+
+                _existingEnvironmentId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Get Credentials
+        private static async Task<string> GetCredentials(string url, string username, string password)
+        {
+            var credentials = new NetworkCredential(username, password);
+            var handler = new HttpClientHandler()
+            {
+                Credentials = credentials
+            };
+
+            var client = new HttpClient(handler);
+            var stringTask = client.GetStringAsync(url);
+            var msg = await stringTask;
+
+            return msg;
         }
         #endregion
 

@@ -16,8 +16,10 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -25,14 +27,35 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["discovery"][0]["credentials"]["username"];
-            var _password = vcapServices["discovery"][0]["credentials"]["password"];
+            string credentials = string.Empty;
+
+            credentials = GetCredentials(
+                Environment.GetEnvironmentVariable("VCAP_URL"),
+                Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _username = vcapServices["discovery"]["username"];
+            var _password = vcapServices["discovery"]["password"];
 
             DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_username.ToString(), _password.ToString());
             Console.ReadKey();
+        }
+
+        private static async Task<string> GetCredentials(string url, string username, string password)
+        {
+            var credentials = new NetworkCredential(username, password);
+            var handler = new HttpClientHandler()
+            {
+                Credentials = credentials
+            };
+
+            var client = new HttpClient(handler);
+            var stringTask = client.GetStringAsync(url);
+            var msg = await stringTask;
+
+            return msg;
         }
     }
 }

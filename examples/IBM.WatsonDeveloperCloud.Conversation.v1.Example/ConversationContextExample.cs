@@ -31,11 +31,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
         public ConversationContextExample(string url, string username, string password, string workspaceId)
         {
-            _conversation = new ConversationService();
+            _conversation = new ConversationService(username, password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
             _conversation.Endpoint = url;
-            _conversation.UserName = username;
-            _conversation.Password = password;
-            _conversation.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
 
             _workspaceID = workspaceId;
 

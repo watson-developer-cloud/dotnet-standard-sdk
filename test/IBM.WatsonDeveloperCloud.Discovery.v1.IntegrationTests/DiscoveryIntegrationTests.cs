@@ -91,11 +91,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _username = vcapServices["discovery"]["username"].Value<string>();
             _password = vcapServices["discovery"]["password"].Value<string>();
 
-            discovery = new DiscoveryService();
+            discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
             discovery.Endpoint = _endpoint;
-            discovery.UserName = _username;
-            discovery.Password = _password;
-            discovery.VersionDate = DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01;
         }
 
         #region Environments

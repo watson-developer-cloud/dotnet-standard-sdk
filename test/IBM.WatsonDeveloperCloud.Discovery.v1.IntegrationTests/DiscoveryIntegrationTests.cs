@@ -31,10 +31,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
     [TestClass]
     public class DiscoveryIntegrationTests
     {
-        public string _username;
-        public string _password;
-        public string _endpoint;
-        public DiscoveryService discovery;
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
+        private DiscoveryService discovery;
         private static string credentials = string.Empty;
 
         private static string _existingEnvironmentId;
@@ -43,8 +43,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
-        public static string _createdTrainingQueryId;
-        public static string _createdTrainingExampleId;
+        private static string _createdTrainingQueryId;
+        private static string _createdTrainingExampleId;
 
         private string _createdEnvironmentName = "dotnet-test-environment";
         private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
@@ -84,13 +84,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
 
                 Task.WaitAll();
+
+                var vcapServices = JObject.Parse(credentials);
+                _endpoint = vcapServices["discovery"]["url"].Value<string>();
+                _username = vcapServices["discovery"]["username"].Value<string>();
+                _password = vcapServices["discovery"]["password"].Value<string>();
             }
             
-            var vcapServices = JObject.Parse(credentials);
-            _endpoint = vcapServices["discovery"]["url"].Value<string>();
-            _username = vcapServices["discovery"]["username"].Value<string>();
-            _password = vcapServices["discovery"]["password"].Value<string>();
-
             discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
             discovery.Endpoint = _endpoint;
         }

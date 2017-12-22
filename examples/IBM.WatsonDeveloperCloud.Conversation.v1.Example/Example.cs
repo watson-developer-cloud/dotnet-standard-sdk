@@ -16,8 +16,10 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 {
@@ -25,16 +27,48 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["conversation"][0]["credentials"]["username"];
-            var _password = vcapServices["conversation"][0]["credentials"]["password"];
-            var _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"];
+            string credentials = string.Empty;
 
+            try
+            {
+                credentials = GetCredentials(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _username = vcapServices["conversation"]["username"];
+            var _password = vcapServices["conversation"]["password"];
+            var _workspaceID = vcapServices["conversation"]["workspace_id"];
+
+            //  Uncomment to run the service example.
             //ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+
+            //  Uncomment to run the context example.
             ConversationContextExample _converationContextExample = new ConversationContextExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
             Console.ReadKey();
+        }
+
+        private static async Task<string> GetCredentials(string url, string username, string password)
+        {
+            var credentials = new NetworkCredential(username, password);
+            var handler = new HttpClientHandler()
+            {
+                Credentials = credentials
+            };
+
+            var client = new HttpClient(handler);
+            var stringTask = client.GetStringAsync(url);
+            var msg = await stringTask;
+
+            return msg;
         }
     }
 }

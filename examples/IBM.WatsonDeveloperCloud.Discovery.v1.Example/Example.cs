@@ -29,10 +29,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             string credentials = string.Empty;
 
-            credentials = GetCredentials(
-                Environment.GetEnvironmentVariable("VCAP_URL"),
-                Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            try
+            {
+                credentials = GetCredentials(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
             Task.WaitAll();
 
             var vcapServices = JObject.Parse(credentials);

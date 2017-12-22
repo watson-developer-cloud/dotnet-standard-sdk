@@ -24,8 +24,7 @@ using Newtonsoft.Json;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
@@ -74,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 try
                 {
-                    credentials = GetCredentials(
+                    credentials = Utility.SimpleGet(
                         Environment.GetEnvironmentVariable("VCAP_URL"),
                         Environment.GetEnvironmentVariable("VCAP_USERNAME"),
                         Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
@@ -862,24 +861,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
         }
         #endregion
-
-        #region Get Credentials
-        private static async Task<string> GetCredentials(string url, string username, string password)
-        {
-            var credentials = new NetworkCredential(username, password);
-            var handler = new HttpClientHandler()
-            {
-                Credentials = credentials
-            };
-
-            var client = new HttpClient(handler);
-            var stringTask = client.GetStringAsync(url);
-            var msg = await stringTask;
-
-            return msg;
-        }
-        #endregion
-
+        
         #region Tear Down
         [TestMethod]
         public void DeleteDocument()

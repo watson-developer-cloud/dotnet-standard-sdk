@@ -16,6 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
@@ -42,11 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         private string _createdExample = "example";
 
         #region Constructor
-        public ConversationServiceExample(string username, string password, string workspaceID)
+        public ConversationServiceExample(string url, string username, string password, string workspaceID)
         {
             _conversation = new ConversationService(username, password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+            _conversation.Endpoint = url;
+
             _workspaceID = workspaceID;
-            //_conversation.Endpoint = "http://localhost:1234";
 
             ListWorkspaces();
             CreateWorkspace();
@@ -115,41 +117,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             Console.WriteLine(string.Format("\nCalling Message(\"{0}\")...", _inputString));
             var result = _conversation.Message(_workspaceID, messageRequest);
 
-            if (result != null)
-            {
-                if (result.Intents != null)
-                {
-                    foreach (RuntimeIntent intent in result.Intents)
-                    {
-                        Console.WriteLine(string.Format("intent: {0} | confidence: {1}", intent.Intent, intent.Confidence));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Intents is null.");
-                }
-
-                if (result.Output != null)
-                {
-                    if (result.Output.Text != null && result.Output.Text.Count > 0)
-                    {
-                        foreach (string output in result.Output.Text)
-                            Console.WriteLine(string.Format("Output: \"{0}\"", output));
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is no output.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Output is null.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Failed to message.");
-            }
+           Console.WriteLine(string.Format("result: {0}", JsonConvert.SerializeObject(result, Formatting.Indented)));
         }
         #endregion
 

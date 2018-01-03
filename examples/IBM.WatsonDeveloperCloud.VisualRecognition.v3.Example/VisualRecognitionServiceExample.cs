@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 
     public class VisualRecognitionServiceExample
     {
-        private VisualRecognitionService _visualRecognition = new VisualRecognitionService();
+        private VisualRecognitionService _visualRecognition;
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
@@ -47,8 +47,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         private string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
-        public VisualRecognitionServiceExample(string apikey)
+        public VisualRecognitionServiceExample(string url, string apikey)
         {
+            _visualRecognition = new VisualRecognitionService(apikey, url);
+
             _visualRecognition.SetCredential(apikey);
 
             ClassifyGet();
@@ -62,21 +64,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
             UpdateClassifier();
-            GetCollections();
-
-            DeleteDotnetCollections();
-
-            CreateCollection();
-            GetCollection();
-            GetCollectionImages();
-            AddCollectionImages();
-            GetCollectionImage();
-            GetCollectionImageMetadata();
-            AddCollectionImageMetadata();
-            DeleteCollectionImageMetadata();
-            FindSimilar();
-            DeleteCollectionImage();
-            DeleteCollection();
             DeleteClassifier();
 
             Console.WriteLine("\n\nOperation complete");
@@ -325,305 +312,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                 }
             }
         }
-
-        private void GetCollections()
-        {
-            Console.WriteLine("\nCalling GetCollections()...");
-
-            var result = _visualRecognition.GetCollections();
-
-            if (result != null)
-            {
-                if (result.Collections != null && result.Collections.Count > 0)
-                {
-                    foreach (CreateCollection collection in result.Collections)
-                        Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", collection.Name, collection.CollectionId, collection.Status));
-                }
-                else
-                {
-                    Console.WriteLine("There are no collections.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void CreateCollection()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateCollection(\"{0}\")...", _collectionNameToCreate));
-
-            var result = _visualRecognition.CreateCollection(_collectionNameToCreate);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
-
-                _createdCollectionId = result.CollectionId;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void DeleteCollection()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            Console.WriteLine(string.Format("\nCalling DeleteCollection(\"{0}\")...", _createdCollectionId));
-
-            var result = _visualRecognition.DeleteCollection(_createdCollectionId);
-
-            if (result != null)
-                Console.WriteLine(string.Format("Collection {0} deleted.", _createdCollectionId));
-        }
-
-        private void GetCollection()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            Console.WriteLine(string.Format("\nCalling GetCollection(\"{0}\")...", _createdCollectionId));
-
-            var result = _visualRecognition.GetCollection(_createdCollectionId);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("name: {0} | collection id: {1} | status: {2}", result.Name, result.CollectionId, result.Status));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void GetCollectionImages()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            Console.WriteLine(string.Format("\nCalling GetCollectionImages(\"{0}\")...", _createdCollectionId));
-
-            var result = _visualRecognition.GetCollectionImages(_createdCollectionId);
-
-            if (result != null)
-            {
-                if (result.Images != null && result.Images.Count > 0)
-                {
-                    foreach (GetCollectionsBrief image in result.Images)
-                        Console.WriteLine(string.Format("imageId: {0} | imageFile: {1} | created: {2} | metadata{3}", image.ImageId, image.ImageFile, image.Created, image.Metadata));
-                }
-                else
-                {
-                    Console.WriteLine("There are no images.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void AddCollectionImages()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            using (FileStream imageStream = File.OpenRead(_localGiraffeFilePath), metadataStream = File.OpenRead(_localImageMetadataPath))
-            {
-                Console.WriteLine(string.Format("\nCalling AddImage(\"{0}\", \"{1}\")...", _createdCollectionId, _localGiraffeFilePath));
-
-                var result = _visualRecognition.AddImage(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), metadataStream.ReadAllBytes());
-
-                if (result != null)
-                {
-                    Console.WriteLine("Number of images processed: {0}", result.ImagesProcessed);
-                    foreach (CollectionImagesConfig image in result.Images)
-                    {
-                        Console.WriteLine("file: {0} | id: {1}", image.ImageFile, image.ImageId);
-
-                        if (image.Metadata != null && image.Metadata.Count > 0)
-                        {
-                            foreach (KeyValuePair<string, string> kvp in image.Metadata)
-                                Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
-                        }
-                        else
-                        {
-                            Console.WriteLine("There is no metadata for this image.");
-                        }
-
-                        _addedImageId = image.ImageId;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Result is null.");
-                }
-            }
-        }
-
-        private void DeleteCollectionImage()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            if (string.IsNullOrEmpty(_addedImageId))
-                throw new ArgumentNullException(nameof(_addedImageId));
-
-            Console.WriteLine(string.Format("\nCalling DeleteImage(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
-
-            var result = _visualRecognition.DeleteImage(_createdCollectionId, _addedImageId);
-
-            if (result != null)
-                Console.WriteLine(string.Format("Image {0} deleted from collection {1}.", _addedImageId, _createdCollectionId));
-        }
-
-        private void GetCollectionImage()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            if (string.IsNullOrEmpty(_addedImageId))
-                throw new ArgumentNullException(nameof(_addedImageId));
-
-            Console.WriteLine(string.Format("\nCalling GetCollectionImages(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
-
-            var result = _visualRecognition.GetImage(_createdCollectionId, _addedImageId);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("imageId: {0} | imageFile: {1} | created: {2} | metadata{3}", result.ImageId, result.ImageFile, result.Created, result.Metadata));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void DeleteCollectionImageMetadata()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            if (string.IsNullOrEmpty(_addedImageId))
-                throw new ArgumentNullException(nameof(_addedImageId));
-
-            Console.WriteLine(string.Format("\nCalling DeleteImageMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
-
-            var result = _visualRecognition.DeleteImageMetadata(_createdCollectionId, _addedImageId);
-        }
-
-        private void GetCollectionImageMetadata()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            if (string.IsNullOrEmpty(_addedImageId))
-                throw new ArgumentNullException(nameof(_addedImageId));
-
-            Console.WriteLine(string.Format("\nCalling GetMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
-
-            var result = _visualRecognition.GetMetadata(_createdCollectionId, _addedImageId);
-
-            if (result != null)
-            {
-                foreach (KeyValuePair<string, string> item in result)
-                    Console.WriteLine(string.Format("\tMetadata: {0}, {1}", item.Key, item.Value));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        private void AddCollectionImageMetadata()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            if (string.IsNullOrEmpty(_addedImageId))
-                throw new ArgumentNullException(nameof(_addedImageId));
-
-            using (FileStream metadataStream = File.OpenRead(_localImageMetadataPath))
-            {
-                Console.WriteLine(string.Format("\nCalling AddMetadata(\"{0}\", \"{1}\")...", _createdCollectionId, _addedImageId));
-
-                var result = _visualRecognition.AddImageMetadata(_createdCollectionId, _addedImageId, metadataStream.ReadAllBytes());
-
-                if (result != null && result.Count > 0)
-                {
-                    foreach (KeyValuePair<string, string> kvp in result)
-                        Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
-                }
-                else
-                {
-                    Console.WriteLine("Result is null.");
-                }
-            }
-
-        }
-
-        private void FindSimilar()
-        {
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                throw new ArgumentNullException(nameof(_createdCollectionId));
-
-            using (FileStream imageStream = File.OpenRead(_localTurtleFilePath))
-            {
-                Console.WriteLine(string.Format("\nCalling FindSimilar(\"{0}\", \"{1}\")...", _createdCollectionId, _localTurtleFilePath));
-
-                var result = _visualRecognition.FindSimilar(_createdCollectionId, imageStream.ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath));
-
-                if (result != null)
-                {
-                    Console.WriteLine("Number of images processed: {0}", result.ImagesProcessed);
-                    foreach (SimilarImageConfig image in result.SimilarImages)
-                    {
-                        Console.WriteLine("file: {0} | id: {1} | score: {2}", image.ImageFile, image.ImageId, image.Score);
-
-                        if (image.Metadata != null && image.Metadata.Count > 0)
-                        {
-                            foreach (KeyValuePair<string, string> kvp in image.Metadata)
-                                Console.WriteLine("\t{0} : {1}", kvp.Key, kvp.Value);
-                        }
-                        else
-                        {
-                            Console.WriteLine("There is no metadata for this image.");
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Result is null.");
-                }
-            }
-        }
-
-        private void DeleteAllClassifiers()
-        {
-            Console.WriteLine("Getting classifiers");
-            var classifiers = _visualRecognition.GetClassifiersBrief();
-
-            List<string> classifierIds = new List<string>();
-
-            foreach (GetClassifiersPerClassifierBrief classifier in classifiers.Classifiers)
-                classifierIds.Add(classifier.ClassifierId);
-
-            Console.WriteLine(string.Format("Deleting {0} classifiers", classifierIds.Count));
-
-            foreach (string classifierId in classifierIds)
-            {
-                Console.WriteLine(string.Format("Deleting classifier {0}", classifierId));
-                _visualRecognition.DeleteClassifier(classifierId);
-                Console.WriteLine(string.Format("\tClassifier {0} deleted", classifierId));
-            }
-
-            Console.WriteLine("Operation complete");
-        }
-
+        
         private bool IsClassifierReady(string classifierId)
         {
             var result = _visualRecognition.GetClassifier(classifierId);
@@ -641,38 +330,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             }
 
             return result.Status.ToLower() == "ready";
-        }
-
-        private void DeleteDotnetCollections()
-        {
-            Console.WriteLine("\nGetting all collections");
-            List<string> collectionIdsToDelete = new List<string>();
-
-            var collections = _visualRecognition.GetCollections();
-
-            foreach (CreateCollection collection in collections.Collections)
-            {
-                string name = collection.Name;
-                string id = collection.CollectionId;
-                Console.WriteLine(string.Format("name: {0} | id: {1}", name, id));
-
-                if (name == _collectionNameToCreate)
-                    collectionIdsToDelete.Add(id);
-            }
-
-            if (collectionIdsToDelete.Count > 0)
-            {
-                foreach (string collectionIdToDelete in collectionIdsToDelete)
-                {
-                    Console.WriteLine(string.Format("Deleting collection {0}.", collectionIdToDelete));
-                    _visualRecognition.DeleteCollection(collectionIdToDelete);
-                    Console.WriteLine(string.Format("\tCollection {0} deleted.", collectionIdToDelete));
-                }
-            }
-            else
-            {
-                Console.WriteLine("There are no matching collections to delete.");
-            }
         }
     }
 }

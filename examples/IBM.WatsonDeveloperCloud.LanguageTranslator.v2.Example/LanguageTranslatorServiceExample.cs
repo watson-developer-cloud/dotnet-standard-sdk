@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 {
     public class LanguageTranslatorServiceExample
     {
-        private LanguageTranslatorService _languageTranslator = new LanguageTranslatorService();
+        private LanguageTranslatorService _languageTranslator;
         private string _glossaryPath = "glossary.tmx";
         private string _glossaryMimeType = "text/xml";
         private string _baseModel = "en-fr";
@@ -33,9 +33,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         private string _customModelID = "en-fr";
         private string _text = "I'm sorry, Dave. I'm afraid I can't do that.";
 
-        public LanguageTranslatorServiceExample(string username, string password)
+        public LanguageTranslatorServiceExample(string url, string username, string password)
         {
-            _languageTranslator.SetCredential(username, password);
+            _languageTranslator = new LanguageTranslatorService(username, password);
+            _languageTranslator.Endpoint = url;
 
             ListModels();
             CreateModel();

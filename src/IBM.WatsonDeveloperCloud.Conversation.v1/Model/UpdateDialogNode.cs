@@ -28,9 +28,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     public class UpdateDialogNode
     {
         /// <summary>
-        /// How the node is processed.
+        /// How the dialog node is processed.
         /// </summary>
-        /// <value>How the node is processed.</value>
+        /// <value>How the dialog node is processed.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum NodeTypeEnum
         {
@@ -124,9 +124,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         }
 
         /// <summary>
-        /// How the node is processed.
+        /// How the dialog node is processed.
         /// </summary>
-        /// <value>How the node is processed.</value>
+        /// <value>How the dialog node is processed.</value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public NodeTypeEnum? NodeType { get; set; }
         /// <summary>

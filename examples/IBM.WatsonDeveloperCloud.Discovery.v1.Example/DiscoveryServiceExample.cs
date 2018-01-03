@@ -62,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Constructor
         public DiscoveryServiceExample(string url, string username, string password)
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
+            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
             _discovery.Endpoint = url;
 
             GetEnvironments();
@@ -128,7 +128,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
 
-                foreach (ModelEnvironment environment in result.Environments)
+                foreach (Model.Environment environment in result.Environments)
                 {
                     if (!(bool)environment._ReadOnly)
                     {
@@ -256,7 +256,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             var result = _discovery.GetEnvironment(environmentId);
             Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
 
-            if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
+            if (result.Status == Model.Environment.StatusEnum.ACTIVE)
             {
                 autoEvent.Set();
             }
@@ -269,7 +269,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 });
             }
 
-            return result.Status == ModelEnvironment.StatusEnum.ACTIVE;
+            return result.Status == Model.Environment.StatusEnum.ACTIVE;
         }
         #endregion
 

@@ -43,6 +43,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <value>The title of the document.</value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
+        /// <summary>
+        /// URL of a prominent image on the webpage.
+        /// </summary>
+        /// <value>URL of a prominent image on the webpage.</value>
+        [JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
+        public string Image { get; set; }
+        /// <summary>
+        /// RSS/ATOM feeds found on the webpage.
+        /// </summary>
+        /// <value>RSS/ATOM feeds found on the webpage.</value>
+        [JsonProperty("feeds", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Feed> Feeds { get; set; }
     }
 
 }

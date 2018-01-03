@@ -27,7 +27,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
     {
         private LanguageTranslatorService _languageTranslator;
         private string _glossaryPath = "glossary.tmx";
-        private string _glossaryMimeType = "text/xml";
         private string _baseModel = "en-fr";
         private string _customModelName = "dotnetExampleModel";
         private string _customModelID = "en-fr";
@@ -74,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
             {
                 Console.WriteLine(string.Format("Calling CreateModel({0}, {1}, {2})...", _baseModel, _customModelName, _glossaryPath));
                 
-                var result = _languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary:fs, forcedGlossaryContentType:_glossaryMimeType);
+                var result = _languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary:fs);
 
                 if (result != null)
                 {

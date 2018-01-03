@@ -80,9 +80,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
-        /// An array of synonyms.
+        /// An array of synonyms for the entity value.
         /// </summary>
-        /// <value>An array of synonyms.</value>
+        /// <value>An array of synonyms for the entity value.</value>
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
         /// <summary>

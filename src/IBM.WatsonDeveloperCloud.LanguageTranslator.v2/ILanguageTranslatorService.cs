@@ -47,11 +47,8 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</param>
         /// <param name="parallelCorpus">A TMX file that contains entries that are treated as a parallel corpus instead of a glossary. (optional)</param>
         /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
-        /// <param name="forcedGlossaryContentType">The content type of forcedGlossary. (optional)</param>
-        /// <param name="parallelCorpusContentType">The content type of parallelCorpus. (optional)</param>
-        /// <param name="monolingualCorpusContentType">The content type of monolingualCorpus. (optional)</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, string forcedGlossaryContentType = null, string parallelCorpusContentType = null, string monolingualCorpusContentType = null);
+        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null);
 
         /// <summary>
         /// Deletes a custom translation model. 

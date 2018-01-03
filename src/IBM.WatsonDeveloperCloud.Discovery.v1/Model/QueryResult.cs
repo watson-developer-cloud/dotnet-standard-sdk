@@ -31,9 +31,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Id { get; set; }
         /// <summary>
-        /// The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.
+        /// *Deprecated* This field is now part of the `result_metadata` object.
         /// </summary>
-        /// <value>The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.</value>
+        /// <value>*Deprecated* This field is now part of the `result_metadata` object.</value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Score { get; set; }
         /// <summary>
@@ -48,6 +48,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>The collection ID of the collection containing the document for this result.</value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic CollectionId { get; set; }
+        /// <summary>
+        /// Gets or Sets ResultMetadata
+        /// </summary>
+        [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic ResultMetadata { get; set; }
     }
 
 }

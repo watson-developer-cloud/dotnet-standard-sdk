@@ -47,13 +47,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The position of the first character of the extracted passage in the originating field.</value>
         [JsonProperty("start_offset", NullValueHandling = NullValueHandling.Ignore)]
-        public float? StartOffset { get; set; }
+        public long? StartOffset { get; set; }
         /// <summary>
         /// The position of the last character of the extracted passage in the originating field.
         /// </summary>
         /// <value>The position of the last character of the extracted passage in the originating field.</value>
         [JsonProperty("end_offset", NullValueHandling = NullValueHandling.Ignore)]
-        public float? EndOffset { get; set; }
+        public long? EndOffset { get; set; }
         /// <summary>
         /// The label of the field from which the passage has been extracted.
         /// </summary>

@@ -202,7 +202,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             Profile response =
                 new Profile()
                 {
-                    ProcessedLanguage = "en",
+                    ProcessedLanguage = Profile.ProcessedLanguageEnum.EN,
                     WordCount = 10,
                     WordCountMessage = "wordCountMessage",
                     Personality = new List<Trait>()
@@ -211,7 +211,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                         {
                             TraitId = "traitID",
                             Name = "name",
-                            Category = "category",
+                            Category = Trait.CategoryEnum.NEEDS,
                             Percentile = 50.0,
                             RawScore = 25.0,
                             Children = new List<Trait>()
@@ -220,7 +220,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
-                                Category = "category",
+                                Category = Trait.CategoryEnum.NEEDS,
                                 Percentile = 50.0,
                                 RawScore = 25.0
                                 }
@@ -233,7 +233,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                         {
                             TraitId = "traitID",
                             Name = "name",
-                            Category = "category",
+                            Category = Trait.CategoryEnum.PERSONALITY,
                             Percentile = 50.0,
                             RawScore = 25.0,
                             Children = new List<Trait>()
@@ -242,7 +242,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
-                                Category = "category",
+                                Category = Trait.CategoryEnum.PERSONALITY,
                                 Percentile = 50.0,
                                 RawScore = 25.0
                                 }
@@ -255,7 +255,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                         {
                             TraitId = "traitID",
                             Name = "name",
-                            Category = "category",
+                            Category = Trait.CategoryEnum.NEEDS,
                             Percentile = 50.0,
                             RawScore = 25.0,
                             Children = new List<Trait>()
@@ -264,7 +264,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                                 {
                                 TraitId = "traitID",
                                 Name = "name",
-                                Category = "category",
+                                Category = Trait.CategoryEnum.NEEDS,
                                 Percentile = 50.0,
                                 RawScore = 25.0
                                 }
@@ -302,7 +302,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
                     {
                         new Warning()
                         {
-                            WarningId = "warningId",
+                            WarningId = Warning.WarningIdEnum.WORD_COUNT_MESSAGE,
                             Message = "message"
                         }
                     }
@@ -357,7 +357,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
             Assert.IsTrue(result.ConsumptionPreferences.Count > 0);
             Assert.IsTrue(result.Needs.Count > 0);
             Assert.IsTrue(result.Personality.Count > 0);
-            Assert.IsTrue(result.ProcessedLanguage == "en");
+            Assert.IsTrue(result.ProcessedLanguage == Profile.ProcessedLanguageEnum.EN);
             Assert.IsTrue(result.WordCount == 10);
             Assert.IsTrue(result.Values.Count > 0);
             Assert.IsTrue(result.Warnings.Count > 0);

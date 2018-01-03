@@ -174,7 +174,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null)
+        public Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -189,6 +189,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
                                 .WithArgument("version", VersionDate)
+                                .WithArgument("append", append)
                                 .WithBody<UpdateWorkspace>(properties)
                                 .As<Workspace>()
                                 .Result;
@@ -1142,8 +1143,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             return result;
         }
-        public LogCollection ListAllLogs(string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
+        public LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
         {
+            if (string.IsNullOrEmpty(filter))
+                throw new ArgumentNullException(nameof(filter));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1155,8 +1158,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/logs")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("sort", sort)
                                 .WithArgument("filter", filter)
+                                .WithArgument("sort", sort)
                                 .WithArgument("page_limit", pageLimit)
                                 .WithArgument("cursor", cursor)
                                 .As<LogCollection>()

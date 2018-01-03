@@ -421,6 +421,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                    .Returns(request);
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
             request.WithBody(Arg.Any<ToneChatInput>())
                    .Returns(request);
             request.As<UtteranceAnalyses>()

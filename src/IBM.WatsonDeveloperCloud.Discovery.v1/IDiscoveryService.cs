@@ -25,9 +25,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Add an environment. Creates a new environment.  You can create only one environment per service instance. An attempt to create another environment results in an error.
         /// </summary>
-        /// <param name="body">A JSON object that defines an environment name and optional description.</param>
-        /// <returns><see cref="ModelEnvironment" />ModelEnvironment</returns>
-        ModelEnvironment CreateEnvironment(CreateEnvironmentRequest body);
+        /// <param name="body">An object that defines an environment name and optional description.</param>
+        /// <returns><see cref="Environment" />Environment</returns>
+        Environment CreateEnvironment(CreateEnvironmentRequest body);
 
         /// <summary>
         /// Delete environment. 
@@ -40,8 +40,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Get environment info. 
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <returns><see cref="ModelEnvironment" />ModelEnvironment</returns>
-        ModelEnvironment GetEnvironment(string environmentId);
+        /// <returns><see cref="Environment" />Environment</returns>
+        Environment GetEnvironment(string environmentId);
 
         /// <summary>
         /// List environments. List existing environments for the service instance.
@@ -62,14 +62,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Update an environment. Updates an environment. The environment's `name` and  `description` parameters can be changed. You must specify a `name` for the environment.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="body">A JSON object that defines the environment's name and, optionally, description.</param>
-        /// <returns><see cref="ModelEnvironment" />ModelEnvironment</returns>
-        ModelEnvironment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body);
+        /// <param name="body">An object that defines the environment's name and, optionally, description.</param>
+        /// <returns><see cref="Environment" />Environment</returns>
+        Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body);
         /// <summary>
         /// Add configuration. Creates a new configuration.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they are ignored and overridden by the system, and an error is not returned so that the overridden fields do not need to be removed when copying a configuration.  The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="configuration">Input a JSON object that enables you to customize how your content is ingested and what enrichments are added to your data.   `name` is required and must be unique within the current `environment`. All other properties are optional.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they will be ignored and overridden by the system (an error is not returned so that the overridden fields do not need to be removed when copying a configuration).   The configuration can contain unrecognized JSON fields. Any such fields will be ignored and will not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
+        /// <param name="configuration">Input an object that enables you to customize how your content is ingested and what enrichments are added to your data.   `name` is required and must be unique within the current `environment`. All other properties are optional.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they will be ignored and overridden by the system (an error is not returned so that the overridden fields do not need to be removed when copying a configuration).   The configuration can contain unrecognized JSON fields. Any such fields will be ignored and will not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
         /// <returns><see cref="Configuration" />Configuration</returns>
         Configuration CreateConfiguration(string environmentId, Configuration configuration);
 
@@ -102,7 +102,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
-        /// <param name="configuration">Input a JSON object that enables you to update and customize how your data is ingested and what enrichments are added to your data.  The `name` parameter is required and must be unique within the current `environment`. All other properties are optional, but if they are omitted  the default values replace the current value of each omitted property.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, they are ignored and overridden by the system, and an error is not returned so that the overridden fields do not need to be removed when updating a configuration.   The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
+        /// <param name="configuration">Input an object that enables you to update and customize how your data is ingested and what enrichments are added to your data.  The `name` parameter is required and must be unique within the current `environment`. All other properties are optional, but if they are omitted  the default values replace the current value of each omitted property.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, they are ignored and overridden by the system, and an error is not returned so that the overridden fields do not need to be removed when updating a configuration.   The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
         /// <returns><see cref="Configuration" />Configuration</returns>
         Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration);
         /// <summary>
@@ -121,7 +121,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Create a collection. 
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="body">Input a JSON object that allows you to add a collection.</param>
+        /// <param name="body">Input an object that allows you to add a collection.</param>
         /// <returns><see cref="Collection" />Collection</returns>
         Collection CreateCollection(string environmentId, CreateCollectionRequest body);
 
@@ -162,7 +162,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body">Input a JSON object that allows you to update a collection. (optional)</param>
+        /// <param name="body">Input an object that allows you to update a collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null);
         /// <summary>
@@ -266,6 +266,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null);
 
         /// <summary>
+        /// Knowledge Graph entity query. See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="entityQuery">An object specifying the entities to query, which functions to perform, and any additional constraints.</param>
+        /// <returns><see cref="QueryEntitiesResponse" />QueryEntitiesResponse</returns>
+        QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery);
+
+        /// <summary>
         /// Query system notices. Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated when ingesting documents and performing relevance training. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
@@ -286,6 +295,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed from the returned results. Duplicate comparison is limited to the current query only, `offset` is not considered. This parameter is currently Beta functionality. (optional)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
         QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null);
+
+        /// <summary>
+        /// Knowledge Graph relationship query. See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="relationshipQuery">An object that describes the relationships to be queried and any query constraints (such as filters).</param>
+        /// <returns><see cref="QueryRelationsResponse" />QueryRelationsResponse</returns>
+        QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery);
         /// <summary>
         ///  Adds a query to the training data for this collection. The query can contain a filter and natural language query.
         /// </summary>
@@ -358,6 +376,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <returns><see cref="TrainingDataSet" />TrainingDataSet</returns>
         TrainingDataSet ListTrainingData(string environmentId, string collectionId);
+
+        /// <summary>
+        ///  List all examples for this training data query.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="queryId">The ID of the query used for training.</param>
+        /// <returns><see cref="TrainingExampleList" />TrainingExampleList</returns>
+        TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId);
 
         /// <summary>
         ///  Changes the label or cross reference query for this training example.

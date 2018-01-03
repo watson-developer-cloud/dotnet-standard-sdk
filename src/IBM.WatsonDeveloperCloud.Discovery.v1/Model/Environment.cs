@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Details about an environment.
     /// </summary>
-    public class ModelEnvironment
+    public class Environment
     {
         /// <summary>
         /// Status of the environment.

@@ -36,7 +36,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private static string credentials = string.Empty;
 
         private static string _glossaryPath = "glossary.tmx";
-        private static string _glossaryMimeType = "text/xml";
         private static string _baseModel = "en-fr";
         private static string _customModelName = "dotnetExampleModel";
         private static string _customModelID = "en-fr";
@@ -154,7 +153,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
-                result = languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary: fs, forcedGlossaryContentType: _glossaryMimeType);
+                result = languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
 
                 if (result != null)
                 {

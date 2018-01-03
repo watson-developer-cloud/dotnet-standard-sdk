@@ -25,6 +25,7 @@ using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Util;
+using Environment = System.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
@@ -90,8 +91,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 _username = vcapServices["discovery"]["username"].Value<string>();
                 _password = vcapServices["discovery"]["password"].Value<string>();
             }
-            
-            discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
+
+            discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
             discovery.Endpoint = _endpoint;
         }
 
@@ -105,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                foreach (ModelEnvironment environment in result.Environments)
+                foreach (Model.Environment environment in result.Environments)
                 {
                     if (!(bool)environment._ReadOnly)
                     {
@@ -159,6 +160,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(result.EnvironmentId);
             Assert.IsTrue(result.Name == _createdEnvironmentName);
             Assert.IsTrue(result.Description == _createdEnvironmentDescription);
+
         }
 
         #region Is Environment Ready
@@ -182,7 +184,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var result = discovery.GetEnvironment(environmentId);
             Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
 
-            if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
+            if (result.Status == Model.Environment.StatusEnum.ACTIVE)
             {
                 autoEvent.Set();
             }
@@ -862,7 +864,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
         }
         #endregion
-        
+
         #region Tear Down
         [TestMethod]
         public void DeleteDocument()
@@ -995,7 +997,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             string _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
             string _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
 
-            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_09_01);
+            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
 
             if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId) && !string.IsNullOrEmpty(_createdDocumentId))
                 _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);

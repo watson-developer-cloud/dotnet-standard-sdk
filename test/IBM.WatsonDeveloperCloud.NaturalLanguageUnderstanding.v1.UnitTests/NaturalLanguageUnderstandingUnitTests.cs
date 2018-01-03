@@ -335,7 +335,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                     },
                     Entities = new EntitiesOptions()
                     {
-                        _Model = "model",
+                        Model = "model",
                         Sentiment = true,
                         Emotion = true,
                         Limit = 1
@@ -349,7 +349,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                     Metadata = new MetadataOptions() {},
                     Relations = new RelationsOptions()
                     {
-                        _Model = "model"
+                        Model = "model"
                     },
                     SemanticRoles = new SemanticRolesOptions()
                     {
@@ -505,9 +505,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             #region Response
             ListModelsResults response = new ListModelsResults()
             {
-                Models = new List<ModelModel>()
+                Models = new List<Model.Model>()
                 {
-                    new ModelModel()
+                    new Model.Model()
                     {
                         Status = "status",
                         ModelId = "modelId",

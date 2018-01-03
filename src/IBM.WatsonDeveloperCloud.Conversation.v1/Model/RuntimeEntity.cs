@@ -55,6 +55,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>The metadata for the entity.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Metadata { get; set; }
+        /// <summary>
+        /// The recognized capture groups for the entity, as defined by the entity pattern.
+        /// </summary>
+        /// <value>The recognized capture groups for the entity, as defined by the entity pattern.</value>
+        [JsonProperty("groups", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic Groups { get; set; }
     }
 
 }

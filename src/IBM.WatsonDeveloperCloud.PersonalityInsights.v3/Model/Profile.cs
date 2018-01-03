@@ -16,7 +16,9 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
 {
@@ -26,11 +28,50 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     public class Profile
     {
         /// <summary>
-        /// The language model that was used to process the input; for example, `en`.
+        /// The language model that was used to process the input.
         /// </summary>
-        /// <value>The language model that was used to process the input; for example, `en`.</value>
+        /// <value>The language model that was used to process the input.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ProcessedLanguageEnum
+        {
+            
+            /// <summary>
+            /// Enum AR for ar
+            /// </summary>
+            [EnumMember(Value = "ar")]
+            AR,
+            
+            /// <summary>
+            /// Enum EN for en
+            /// </summary>
+            [EnumMember(Value = "en")]
+            EN,
+            
+            /// <summary>
+            /// Enum ES for es
+            /// </summary>
+            [EnumMember(Value = "es")]
+            ES,
+            
+            /// <summary>
+            /// Enum JA for ja
+            /// </summary>
+            [EnumMember(Value = "ja")]
+            JA,
+            
+            /// <summary>
+            /// Enum KO for ko
+            /// </summary>
+            [EnumMember(Value = "ko")]
+            KO
+        }
+
+        /// <summary>
+        /// The language model that was used to process the input.
+        /// </summary>
+        /// <value>The language model that was used to process the input.</value>
         [JsonProperty("processed_language", NullValueHandling = NullValueHandling.Ignore)]
-        public string ProcessedLanguage { get; set; }
+        public ProcessedLanguageEnum? ProcessedLanguage { get; set; }
         /// <summary>
         /// The number of words that were found in the input.
         /// </summary>

@@ -150,9 +150,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         [JsonProperty("default_model", NullValueHandling = NullValueHandling.Ignore)]
         public bool? DefaultModel { get; set; }
         /// <summary>
-        /// Returns the Bluemix ID of the instance that created the model, or an empty string if it is a model that is trained by IBM.
+        /// Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.
         /// </summary>
-        /// <value>Returns the Bluemix ID of the instance that created the model, or an empty string if it is a model that is trained by IBM.</value>
+        /// <value>Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.</value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
     }

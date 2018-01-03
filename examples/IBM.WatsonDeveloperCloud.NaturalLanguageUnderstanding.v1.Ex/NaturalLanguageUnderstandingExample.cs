@@ -285,7 +285,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
             {
                 if(result.Models != null && result.Models.Count > 0)
                 {
-                    foreach(ModelModel model in result.Models)
+                    foreach(Model.Model model in result.Models)
                     {
                         Console.WriteLine(string.Format("Model id: {0} | status: {1} | language: {3} | description: {4}", model.ModelId, model.Status, model.Language, model.Description));
                     }

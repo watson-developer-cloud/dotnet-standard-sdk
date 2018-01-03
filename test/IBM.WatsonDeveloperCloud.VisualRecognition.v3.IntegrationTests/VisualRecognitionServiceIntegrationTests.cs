@@ -31,7 +31,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
     [TestClass]
     public class VisualRecognitionServiceIntegrationTests
     {
-        private VisualRecognitionService _visualRecognition;
         private static string credentials = string.Empty;
         private static string _apikey;
         private static string _endpoint;

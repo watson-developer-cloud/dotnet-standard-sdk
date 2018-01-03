@@ -80,7 +80,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v3/profile")
                                 .WithArgument("version", VersionDate)
-                                .WithHeader("content-type", contentType)
+                                .WithHeader("Content-Type", contentType)
                                 .WithHeader("Content-Language", contentLanguage)
                                 .WithHeader("Accept-Language", acceptLanguage)
                                 .WithArgument("raw_scores", rawScores)

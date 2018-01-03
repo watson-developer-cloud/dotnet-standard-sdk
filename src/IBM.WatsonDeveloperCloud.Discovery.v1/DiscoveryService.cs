@@ -25,6 +25,7 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json;
 using System;
+using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {
@@ -39,8 +40,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             set { _versionDate = value; }
         }
 
-        /** The Constant DISCOVERY_VERSION_DATE_2017_09_01. */
-        public static string DISCOVERY_VERSION_DATE_2017_09_01 = "2017-09-01";
+        /** The Constant DISCOVERY_VERSION_DATE_2017_11_07. */
+        public static string DISCOVERY_VERSION_DATE_2017_11_07 = "2017-11-07";
 
         public DiscoveryService() : base(SERVICE_NAME, URL)
         {
@@ -58,7 +59,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             this.SetCredential(userName, password);
             if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             VersionDate = versionDate;
         }
@@ -71,15 +72,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             this.Client = httpClient;
         }
 
-        public ModelEnvironment CreateEnvironment(CreateEnvironmentRequest body)
+        public Environment CreateEnvironment(CreateEnvironmentRequest body)
         {
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
-            ModelEnvironment result = null;
+            Environment result = null;
 
             try
             {
@@ -87,7 +88,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments")
                                 .WithArgument("version", VersionDate)
                                 .WithBody<CreateEnvironmentRequest>(body)
-                                .As<ModelEnvironment>()
+                                .As<Environment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -104,7 +105,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DeleteEnvironmentResponse result = null;
 
@@ -124,22 +125,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public ModelEnvironment GetEnvironment(string environmentId)
+        public Environment GetEnvironment(string environmentId)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
-            ModelEnvironment result = null;
+            Environment result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}")
                                 .WithArgument("version", VersionDate)
-                                .As<ModelEnvironment>()
+                                .As<Environment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -154,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         {
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             ListEnvironmentsResponse result = null;
 
@@ -183,7 +184,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionIds));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             ListCollectionFieldsResponse result = null;
 
@@ -204,7 +205,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
-        public ModelEnvironment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
+        public Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -212,9 +213,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
-            ModelEnvironment result = null;
+            Environment result = null;
 
             try
             {
@@ -222,7 +223,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}")
                                 .WithArgument("version", VersionDate)
                                 .WithBody<UpdateEnvironmentRequest>(body)
-                                .As<ModelEnvironment>()
+                                .As<Environment>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -240,7 +241,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configuration));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Configuration result = null;
 
@@ -269,7 +270,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configurationId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DeleteConfigurationResponse result = null;
 
@@ -297,7 +298,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configurationId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Configuration result = null;
 
@@ -323,7 +324,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             ListConfigurationsResponse result = null;
 
@@ -354,7 +355,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(configuration));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Configuration result = null;
 
@@ -380,7 +381,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TestDocument result = null;
 
@@ -433,7 +434,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Collection result = null;
 
@@ -462,7 +463,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DeleteCollectionResponse result = null;
 
@@ -490,7 +491,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Collection result = null;
 
@@ -518,7 +519,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             ListCollectionFieldsResponse result = null;
 
@@ -544,7 +545,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(environmentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             ListCollectionsResponse result = null;
 
@@ -573,7 +574,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             Collection result = null;
 
@@ -601,7 +602,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DocumentAccepted result = null;
 
@@ -649,7 +650,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(documentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DeleteDocumentResponse result = null;
 
@@ -679,7 +680,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(documentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DocumentStatus result = null;
 
@@ -709,7 +710,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(documentId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             DocumentAccepted result = null;
 
@@ -754,7 +755,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionIds));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             QueryResponse result = null;
 
@@ -794,7 +795,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionIds));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             QueryNoticesResponse result = null;
 
@@ -833,7 +834,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             QueryResponse result = null;
 
@@ -868,6 +869,37 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
+        public QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (entityQuery == null)
+                throw new ArgumentNullException(nameof(entityQuery));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            QueryEntitiesResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<QueryEntities>(entityQuery)
+                                .As<QueryEntitiesResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
         public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
@@ -876,7 +908,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             QueryNoticesResponse result = null;
 
@@ -909,6 +941,37 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             return result;
         }
+
+        public QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (relationshipQuery == null)
+                throw new ArgumentNullException(nameof(relationshipQuery));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            QueryRelationsResponse result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<QueryRelations>(relationshipQuery)
+                                .As<QueryRelationsResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
         public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body)
         {
             if (string.IsNullOrEmpty(environmentId))
@@ -919,7 +982,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingQuery result = null;
 
@@ -952,7 +1015,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingExample result = null;
 
@@ -981,7 +1044,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             object result = null;
 
@@ -1011,7 +1074,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(queryId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             object result = null;
 
@@ -1043,7 +1106,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(exampleId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             object result = null;
 
@@ -1073,7 +1136,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(queryId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingQuery result = null;
 
@@ -1105,7 +1168,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(exampleId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingExample result = null;
 
@@ -1133,7 +1196,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(collectionId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingDataSet result = null;
 
@@ -1143,6 +1206,36 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data")
                                 .WithArgument("version", VersionDate)
                                 .As<TrainingDataSet>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (string.IsNullOrEmpty(queryId))
+                throw new ArgumentNullException(nameof(queryId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            TrainingExampleList result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples")
+                                .WithArgument("version", VersionDate)
+                                .As<TrainingExampleList>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -1167,7 +1260,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_09_01'");
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
 
             TrainingExample result = null;
 

@@ -116,7 +116,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             return result;
         }
-        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, string forcedGlossaryContentType = null, string parallelCorpusContentType = null, string monolingualCorpusContentType = null)
+        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
         {
             if (string.IsNullOrEmpty(baseModelId))
                 throw new ArgumentNullException(nameof(baseModelId));
@@ -130,7 +130,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 {
                     var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(forcedGlossaryContentType, out contentType);
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
                     formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
                 }
@@ -139,7 +139,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 {
                     var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(parallelCorpusContentType, out contentType);
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
                     formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
                 }
@@ -148,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 {
                     var monolingualCorpusContent = new ByteArrayContent((monolingualCorpus as Stream).ReadAllBytes());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(monolingualCorpusContentType, out contentType);
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/plain", out contentType);
                     monolingualCorpusContent.Headers.ContentType = contentType;
                     formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
                 }

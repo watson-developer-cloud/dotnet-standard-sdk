@@ -16,12 +16,10 @@
 */
 
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
-using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Example
 {
@@ -29,30 +27,13 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Example
     {
         public static void Main(string[] args)
         {
-            string credentials = string.Empty;
+            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            var fileContent = File.ReadAllText(environmentVariable);
+            var vcapServices = JObject.Parse(fileContent);
+            var _username = vcapServices["personality_insights"][0]["credentials"]["username"];
+            var _password = vcapServices["personality_insights"][0]["credentials"]["password"];
 
-            try
-            {
-                credentials = Utility.SimpleGet(
-                    Environment.GetEnvironmentVariable("VCAP_URL"),
-                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-            }
-
-            Task.WaitAll();
-
-            var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["personality_insights"]["url"].Value<string>();
-            var _username = vcapServices["personality_insights"]["username"].Value<string>();
-            var _password = vcapServices["personality_insights"]["password"].Value<string>();
-
-            PersonalityInsightsService _personalityInsights = new PersonalityInsightsService(_username, _password, "2016-10-20");
-            _personalityInsights.Endpoint = _url;
-
+            PersonalityInsightsService _personalityInsights = new PersonalityInsightsService(_username.ToString(), _password.ToString(), "2016-10-20");
             string contentToProfile = "The IBM Watson™ Personality Insights service provides a Representational State Transfer (REST) Application Programming Interface (API) that enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can report consumption preferences based on the results of its analysis, and for JSON content that is timestamped, it can report temporal behavior.";
 
             //  Test Profile
@@ -71,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Example
 
             var result = _personalityInsights.Profile(content, "text/plain", acceptLanguage:"application/json", rawScores: true, consumptionPreferences:true, csvHeaders:true);
 
-            Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            Console.WriteLine(string.Format("Profile result: {0}", result));
 
             Console.ReadKey();
         }

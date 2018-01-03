@@ -16,10 +16,12 @@
 */
 
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
+using IBM.WatsonDeveloperCloud.Util;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
 {
@@ -27,14 +29,30 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["tone_analyzer"][0]["credentials"]["username"];
-            var _password = vcapServices["tone_analyzer"][0]["credentials"]["password"];
-            string versionDate = "2016-05-19";
+            string credentials = string.Empty;
 
-            ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService(_username.ToString(), _password.ToString(), versionDate);
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["tone_analyzer"]["url"].Value<string>();
+            var _username = vcapServices["tone_analyzer"]["username"].Value<string>();
+            var _password = vcapServices["tone_analyzer"]["password"].Value<string>();
+            var versionDate = "2016-05-19";
+
+            ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
+            _toneAnalyzer.Endpoint = _url;
 
             //  Test PostTone
             ToneInput toneInput = new ToneInput()
@@ -42,8 +60,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
                 Text = "How are you doing? My name is Taj!"
             };
 
-            var postToneResult = _toneAnalyzer.Tone(toneInput, null, null);
-            Console.WriteLine(string.Format("postToneResult: {0}", postToneResult.SentencesTone));
+            var postToneResult = _toneAnalyzer.Tone(toneInput, "application/json", null);
+            Console.WriteLine(string.Format("post tone result: {0}", JsonConvert.SerializeObject(postToneResult, Formatting.Indented)));
 
             //  Test ToneChat
             ToneChatInput toneChatInput = new ToneChatInput()
@@ -58,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
             };
 
             var toneChatResult = _toneAnalyzer.ToneChat(toneChatInput);
-            Console.WriteLine(string.Format("toneChatResult: {0}", toneChatResult));
+            Console.WriteLine(string.Format("tone chat result: {0}", JsonConvert.SerializeObject(toneChatResult, Formatting.Indented)));
 
 
             Console.ReadKey();

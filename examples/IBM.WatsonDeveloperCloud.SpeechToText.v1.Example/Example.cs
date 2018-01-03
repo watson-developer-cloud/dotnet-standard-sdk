@@ -16,8 +16,9 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using IBM.WatsonDeveloperCloud.Util;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
 {
@@ -25,14 +26,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
     {
         static void Main(string[] args)
         {
-            //  Get credentials from environmental variables. Alternatively, instantiate the service with username and password directly.
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["speech_to_text"][0]["credentials"]["username"];
-            var _password = vcapServices["speech_to_text"][0]["credentials"]["password"];
+            string credentials = string.Empty;
 
-            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_username.ToString(), _password.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["speech_to_text"]["url"].Value<string>();
+            var _username = vcapServices["speech_to_text"]["username"].Value<string>();
+            var _password = vcapServices["speech_to_text"]["password"].Value<string>();
+
+            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_url, _username, _password);
             Console.ReadKey();
         }
     }

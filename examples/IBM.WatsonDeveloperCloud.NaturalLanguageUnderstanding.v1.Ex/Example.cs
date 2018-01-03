@@ -16,8 +16,9 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
 {
@@ -25,13 +26,28 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["natural_language_understanding"][0]["credentials"]["username"];
-            var _password = vcapServices["natural_language_understanding"][0]["credentials"]["password"];
+            string credentials = string.Empty;
 
-            NaturalLanguageUnderstandingExample _naturalLanguageUnderstandingExample = new NaturalLanguageUnderstandingExample(_username.ToString(), _password.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["natural_language_understanding"]["url"];
+            var _username = vcapServices["natural_language_understanding"]["username"];
+            var _password = vcapServices["natural_language_understanding"]["password"];
+
+            NaturalLanguageUnderstandingExample _naturalLanguageUnderstandingExample = new NaturalLanguageUnderstandingExample(_url.ToString(), _username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

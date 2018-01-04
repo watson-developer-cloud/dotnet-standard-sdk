@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 */
-using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
+
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
@@ -22,6 +22,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 {

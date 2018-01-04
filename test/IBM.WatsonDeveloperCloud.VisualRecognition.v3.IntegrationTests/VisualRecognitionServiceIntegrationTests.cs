@@ -213,14 +213,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void t09_WaitBeforeDelete()
-        {
-            WaitTimer();
-            autoEvent.WaitOne();
-            Assert.IsTrue(true);
-        }
-
-        [TestMethod]
         public void t10_DeleteClassifier_Success()
         {
             if (string.IsNullOrEmpty(_createdClassifierId))
@@ -233,7 +225,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             Delay(_delayTime);
             #endregion
 
-            var result = service.DeleteClassifier(_createdClassifierId);
+            var result = _visualRecognition.DeleteClassifier(_createdClassifierId);
 
             Assert.IsNotNull(result);
         }

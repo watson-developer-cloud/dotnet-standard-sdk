@@ -37,9 +37,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
-        //private string _localImageMetadataPath = @"VisualRecognitionTestData\imageMetadata.json";
         private string _localFaceFilePath = @"VisualRecognitionTestData\obama.jpg";
-        //private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
+        private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData\giraffe_positive_examples.zip";
         private string _giraffeClassname = "giraffe";
         private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData\turtle_positive_examples.zip";
@@ -47,9 +46,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
         private static string _createdClassifierId = "";
-        //private string _collectionNameToCreate = "dotnet-standard-integration-test-collection";
-        //private static string _createdCollectionId = "";
-        //private static string _addedImageId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
@@ -233,7 +229,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
             _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
 
-            var result = _visualRecognition.DeleteClassifier(_createdClassifierId);
+            #region Delay
+            Delay(_delayTime);
+            #endregion
+
+            var result = service.DeleteClassifier(_createdClassifierId);
 
             Assert.IsNotNull(result);
         }
@@ -275,10 +275,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return containsClass;
         }
 
-        private void WaitTimer()
+        #region Delay
+        //  Introducing a delay because of a known issue with Visual Recognition where newly created classifiers 
+        //  will disappear without being deleted if a delete is attempted less than ~10 seconds after creation.
+        private int _delayTime = 15000;
+        private void Delay(int delayTime)
         {
-            System.Threading.Thread.Sleep(15000);
-            autoEvent.Set();
+            Console.WriteLine(string.Format("Delaying for {0} ms", delayTime));
+            Thread.Sleep(delayTime);
         }
+        #endregion
     }
 }

@@ -33,6 +33,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
         private string _localFaceFilePath = @"VisualRecognitionTestData\obama.jpg";
+        private string _localTurtleFilePath = @"VisualRecognitionTestData\turtle_to_classify.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData\giraffe_positive_examples.zip";
         private string _giraffeClassname = "giraffe";
         private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData\turtle_positive_examples.zip";
@@ -59,6 +60,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
             UpdateClassifier();
+            IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+            ClassifyWithClassifier();
+            GetClassifiersVerbose();
             DeleteClassifier();
 
             Console.WriteLine("\n\nOperation complete");
@@ -93,6 +98,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                     foreach (ClassifyPerClassifier classifier in image._Classifiers)
                         foreach (ClassResult classResult in classifier.Classes)
                             Console.WriteLine(string.Format("class: {0} | score: {1} | type hierarchy: {2}", classResult._Class, classResult.Score, classResult.TypeHierarchy));
+            }
+        }
+
+        private void ClassifyWithClassifier()
+        {
+            string[] classifierIDs = { _createdClassifierId };
+            using (FileStream fs = File.OpenRead(_localTurtleFilePath))
+            {
+                Console.WriteLine(string.Format("\nCalling Classify(\"{0}\")...", _localTurtleFilePath));
+                var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localTurtleFilePath), "image/jpeg", classifierIDs: classifierIDs);
+
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
         }
 
@@ -244,6 +261,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
             if (string.IsNullOrEmpty(_createdClassifierId))
                 throw new ArgumentNullException(nameof(_createdClassifierId));
 
+            #region Delay
+            Delay(_delayTime);
+            #endregion
+
             Console.WriteLine(string.Format("\nCalling DeleteClassifier(\"{0}\")...", _createdClassifierId));
 
             var result = _visualRecognition.DeleteClassifier(_createdClassifierId);
@@ -307,7 +328,29 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
                 }
             }
         }
-        
+
+        private void DeleteAllClassifiers()
+        {
+            Console.WriteLine("Getting classifiers");
+            var classifiers = _visualRecognition.GetClassifiersBrief();
+
+            List<string> classifierIds = new List<string>();
+
+            foreach (GetClassifiersPerClassifierBrief classifier in classifiers.Classifiers)
+                classifierIds.Add(classifier.ClassifierId);
+
+            Console.WriteLine(string.Format("Deleting {0} classifiers", classifierIds.Count));
+
+            foreach (string classifierId in classifierIds)
+            {
+                Console.WriteLine(string.Format("Deleting classifier {0}", classifierId));
+                _visualRecognition.DeleteClassifier(classifierId);
+                Console.WriteLine(string.Format("\tClassifier {0} deleted", classifierId));
+            }
+
+            Console.WriteLine("Operation complete");
+        }
+
         private bool IsClassifierReady(string classifierId)
         {
             var result = _visualRecognition.GetClassifier(classifierId);
@@ -326,5 +369,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 
             return result.Status.ToLower() == "ready";
         }
+
+        #region Delay
+        //  Introducing a delay because of a known issue with Visual Recognition where newly created classifiers 
+        //  will disappear without being deleted if a delete is attempted less than ~10 seconds after creation.
+        private int _delayTime = 15000;
+        private void Delay(int delayTime)
+        {
+            Console.WriteLine(string.Format("Delaying for {0} ms", delayTime));
+            Thread.Sleep(delayTime);
+        }
+        #endregion
     }
 }

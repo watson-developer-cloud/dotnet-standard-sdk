@@ -41,4 +41,4 @@ Analyzes the tone of a piece of text. The message is analyzed for several tones 
 
 ```
 
-[tone-analyzer]: https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html
+[tone-analyzer]: https://console.bluemix.net/docs/services/tone-analyzer/index.html

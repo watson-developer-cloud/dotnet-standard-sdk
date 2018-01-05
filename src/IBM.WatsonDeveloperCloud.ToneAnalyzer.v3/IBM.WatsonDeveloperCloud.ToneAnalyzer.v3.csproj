@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3 wraps the Watson Developer Cloud Tone Analyzer service (http://www.ibm.com/watson/developercloud/tone-analyzer.html)</Description>
+    <AssemblyTitle>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyTitle>
+    <VersionPrefix>1.3.0</VersionPrefix>
+    <Authors>Watson Developer Cloud</Authors>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyName>
+    <PackageId>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</PackageId>
+    <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
+    <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <Target Name="PostcompileScript" AfterTargets="Build">
+    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
+  </Target>
+
+</Project>

@@ -66,9 +66,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         public Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
             if (content == null)
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException("'content' is required for 'Profile()'");
             if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
+                throw new ArgumentNullException("'contentType' is required for 'Profile()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");

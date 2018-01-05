@@ -75,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Environment CreateEnvironment(CreateEnvironmentRequest body)
         {
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateEnvironment()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -102,7 +102,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DeleteEnvironmentResponse DeleteEnvironment(string environmentId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteEnvironment()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -128,7 +128,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Environment GetEnvironment(string environmentId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetEnvironment()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -179,9 +179,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListFields()'");
             if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
+                throw new ArgumentNullException("'collectionIds' is required for 'ListFields()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -208,9 +208,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'UpdateEnvironment()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateEnvironment()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -236,9 +236,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Configuration CreateConfiguration(string environmentId, Configuration configuration)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'CreateConfiguration()'");
             if (configuration == null)
-                throw new ArgumentNullException(nameof(configuration));
+                throw new ArgumentNullException("'configuration' is required for 'CreateConfiguration()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -265,9 +265,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteConfiguration()'");
             if (string.IsNullOrEmpty(configurationId))
-                throw new ArgumentNullException(nameof(configurationId));
+                throw new ArgumentNullException("'configurationId' is required for 'DeleteConfiguration()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -293,9 +293,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Configuration GetConfiguration(string environmentId, string configurationId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetConfiguration()'");
             if (string.IsNullOrEmpty(configurationId))
-                throw new ArgumentNullException(nameof(configurationId));
+                throw new ArgumentNullException("'configurationId' is required for 'GetConfiguration()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -321,7 +321,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public ListConfigurationsResponse ListConfigurations(string environmentId, string name = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListConfigurations()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -348,11 +348,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'UpdateConfiguration()'");
             if (string.IsNullOrEmpty(configurationId))
-                throw new ArgumentNullException(nameof(configurationId));
+                throw new ArgumentNullException("'configurationId' is required for 'UpdateConfiguration()'");
             if (configuration == null)
-                throw new ArgumentNullException(nameof(configuration));
+                throw new ArgumentNullException("'configuration' is required for 'UpdateConfiguration()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -378,7 +378,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'TestConfigurationInEnvironment()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -429,9 +429,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Collection CreateCollection(string environmentId, CreateCollectionRequest body)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'CreateCollection()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateCollection()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -458,9 +458,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteCollection()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'DeleteCollection()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -486,9 +486,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Collection GetCollection(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetCollection()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'GetCollection()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -514,9 +514,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListCollectionFields()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'ListCollectionFields()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -542,7 +542,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public ListCollectionsResponse ListCollections(string environmentId, string name = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListCollections()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -569,9 +569,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'UpdateCollection()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'UpdateCollection()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -597,9 +597,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'AddDocument()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'AddDocument()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -643,11 +643,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteDocument()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'DeleteDocument()'");
             if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
+                throw new ArgumentNullException("'documentId' is required for 'DeleteDocument()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -673,11 +673,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetDocumentStatus()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'GetDocumentStatus()'");
             if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
+                throw new ArgumentNullException("'documentId' is required for 'GetDocumentStatus()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -703,11 +703,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'UpdateDocument()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'UpdateDocument()'");
             if (string.IsNullOrEmpty(documentId))
-                throw new ArgumentNullException(nameof(documentId));
+                throw new ArgumentNullException("'documentId' is required for 'UpdateDocument()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -750,9 +750,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'FederatedQuery()'");
             if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
+                throw new ArgumentNullException("'collectionIds' is required for 'FederatedQuery()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -790,9 +790,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'FederatedQueryNotices()'");
             if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
+                throw new ArgumentNullException("'collectionIds' is required for 'FederatedQueryNotices()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -829,9 +829,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'Query()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'Query()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -872,11 +872,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'QueryEntities()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'QueryEntities()'");
             if (entityQuery == null)
-                throw new ArgumentNullException(nameof(entityQuery));
+                throw new ArgumentNullException("'entityQuery' is required for 'QueryEntities()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -903,9 +903,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'QueryNotices()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'QueryNotices()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -945,11 +945,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'QueryRelations()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'QueryRelations()'");
             if (relationshipQuery == null)
-                throw new ArgumentNullException(nameof(relationshipQuery));
+                throw new ArgumentNullException("'relationshipQuery' is required for 'QueryRelations()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -975,11 +975,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'AddTrainingData()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'AddTrainingData()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'AddTrainingData()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1006,13 +1006,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'CreateTrainingExample()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'CreateTrainingExample()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'CreateTrainingExample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateTrainingExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1039,9 +1039,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public object DeleteAllTrainingData(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteAllTrainingData()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'DeleteAllTrainingData()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1067,11 +1067,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public object DeleteTrainingData(string environmentId, string collectionId, string queryId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteTrainingData()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'DeleteTrainingData()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'DeleteTrainingData()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1097,13 +1097,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public object DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'DeleteTrainingExample()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'DeleteTrainingExample()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'DeleteTrainingExample()'");
             if (string.IsNullOrEmpty(exampleId))
-                throw new ArgumentNullException(nameof(exampleId));
+                throw new ArgumentNullException("'exampleId' is required for 'DeleteTrainingExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1129,11 +1129,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetTrainingData()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'GetTrainingData()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'GetTrainingData()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1159,13 +1159,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'GetTrainingExample()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'GetTrainingExample()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'GetTrainingExample()'");
             if (string.IsNullOrEmpty(exampleId))
-                throw new ArgumentNullException(nameof(exampleId));
+                throw new ArgumentNullException("'exampleId' is required for 'GetTrainingExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1191,9 +1191,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingDataSet ListTrainingData(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListTrainingData()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'ListTrainingData()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1219,11 +1219,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'ListTrainingExamples()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'ListTrainingExamples()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'ListTrainingExamples()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
@@ -1249,15 +1249,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body)
         {
             if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
+                throw new ArgumentNullException("'environmentId' is required for 'UpdateTrainingExample()'");
             if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
+                throw new ArgumentNullException("'collectionId' is required for 'UpdateTrainingExample()'");
             if (string.IsNullOrEmpty(queryId))
-                throw new ArgumentNullException(nameof(queryId));
+                throw new ArgumentNullException("'queryId' is required for 'UpdateTrainingExample()'");
             if (string.IsNullOrEmpty(exampleId))
-                throw new ArgumentNullException(nameof(exampleId));
+                throw new ArgumentNullException("'exampleId' is required for 'UpdateTrainingExample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateTrainingExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");

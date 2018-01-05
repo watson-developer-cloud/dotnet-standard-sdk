@@ -69,7 +69,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         public AnalysisResults Analyze(Parameters parameters)
         {
             if (parameters == null)
-                throw new ArgumentNullException(nameof(parameters));
+                throw new ArgumentNullException("'parameters' is required for 'Analyze()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");
@@ -95,7 +95,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         public InlineResponse200 DeleteModel(string modelId)
         {
             if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException(nameof(modelId));
+                throw new ArgumentNullException("'modelId' is required for 'DeleteModel()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");

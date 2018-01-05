@@ -96,7 +96,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteWorkspace(string workspaceId)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteWorkspace()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -122,7 +122,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetWorkspace()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -177,7 +177,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateWorkspace()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -204,7 +204,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public MessageResponse Message(string workspaceId, MessageRequest request = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'Message()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -230,9 +230,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Intent CreateIntent(string workspaceId, CreateIntent body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateIntent()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateIntent()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -259,9 +259,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteIntent(string workspaceId, string intent)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteIntent()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'DeleteIntent()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -287,9 +287,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public IntentExport GetIntent(string workspaceId, string intent, bool? export = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetIntent()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'GetIntent()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -316,7 +316,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListIntents()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -347,11 +347,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateIntent()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'UpdateIntent()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateIntent()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -377,11 +377,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Example CreateExample(string workspaceId, string intent, CreateExample body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateExample()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'CreateExample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -408,11 +408,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteExample(string workspaceId, string intent, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteExample()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'DeleteExample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'DeleteExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -438,11 +438,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Example GetExample(string workspaceId, string intent, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetExample()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'GetExample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'GetExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -468,9 +468,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListExamples()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'ListExamples()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -500,13 +500,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateExample()'");
             if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+                throw new ArgumentNullException("'intent' is required for 'UpdateExample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'UpdateExample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateExample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -532,9 +532,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Entity CreateEntity(string workspaceId, CreateEntity properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateEntity()'");
             if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+                throw new ArgumentNullException("'properties' is required for 'CreateEntity()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -561,9 +561,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteEntity(string workspaceId, string entity)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteEntity()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'DeleteEntity()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -589,9 +589,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public EntityExport GetEntity(string workspaceId, string entity, bool? export = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetEntity()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'GetEntity()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -618,7 +618,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListEntities()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -649,11 +649,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateEntity()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'UpdateEntity()'");
             if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+                throw new ArgumentNullException("'properties' is required for 'UpdateEntity()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -679,11 +679,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Value CreateValue(string workspaceId, string entity, CreateValue body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateValue()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'CreateValue()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateValue()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -710,11 +710,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteValue(string workspaceId, string entity, string value)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteValue()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'DeleteValue()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'DeleteValue()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -740,11 +740,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetValue()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'GetValue()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'GetValue()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -771,9 +771,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListValues()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'ListValues()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -804,13 +804,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateValue()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'UpdateValue()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'UpdateValue()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateValue()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -836,13 +836,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateSynonym()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'CreateSynonym()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'CreateSynonym()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateSynonym()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -869,13 +869,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteSynonym()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'DeleteSynonym()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'DeleteSynonym()'");
             if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
+                throw new ArgumentNullException("'synonym' is required for 'DeleteSynonym()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -901,13 +901,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Synonym GetSynonym(string workspaceId, string entity, string value, string synonym)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetSynonym()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'GetSynonym()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'GetSynonym()'");
             if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
+                throw new ArgumentNullException("'synonym' is required for 'GetSynonym()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -933,11 +933,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListSynonyms()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'ListSynonyms()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'ListSynonyms()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -967,15 +967,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateSynonym()'");
             if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException("'entity' is required for 'UpdateSynonym()'");
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+                throw new ArgumentNullException("'value' is required for 'UpdateSynonym()'");
             if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
+                throw new ArgumentNullException("'synonym' is required for 'UpdateSynonym()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateSynonym()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1001,9 +1001,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateDialogNode()'");
             if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+                throw new ArgumentNullException("'properties' is required for 'CreateDialogNode()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1030,9 +1030,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteDialogNode(string workspaceId, string dialogNode)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteDialogNode()'");
             if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
+                throw new ArgumentNullException("'dialogNode' is required for 'DeleteDialogNode()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1058,9 +1058,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public DialogNode GetDialogNode(string workspaceId, string dialogNode)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetDialogNode()'");
             if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
+                throw new ArgumentNullException("'dialogNode' is required for 'GetDialogNode()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1086,7 +1086,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListDialogNodes()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1116,11 +1116,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateDialogNode()'");
             if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
+                throw new ArgumentNullException("'dialogNode' is required for 'UpdateDialogNode()'");
             if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+                throw new ArgumentNullException("'properties' is required for 'UpdateDialogNode()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1146,7 +1146,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(filter))
-                throw new ArgumentNullException(nameof(filter));
+                throw new ArgumentNullException("'filter' is required for 'ListAllLogs()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1176,7 +1176,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListLogs()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1205,9 +1205,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'CreateCounterexample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'CreateCounterexample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1234,9 +1234,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public object DeleteCounterexample(string workspaceId, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'DeleteCounterexample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'DeleteCounterexample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1262,9 +1262,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Counterexample GetCounterexample(string workspaceId, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'GetCounterexample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'GetCounterexample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1290,7 +1290,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'ListCounterexamples()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
@@ -1320,11 +1320,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         public Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
         {
             if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+                throw new ArgumentNullException("'workspaceId' is required for 'UpdateCounterexample()'");
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+                throw new ArgumentNullException("'text' is required for 'UpdateCounterexample()'");
             if (body == null)
-                throw new ArgumentNullException(nameof(body));
+                throw new ArgumentNullException("'body' is required for 'UpdateCounterexample()'");
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");

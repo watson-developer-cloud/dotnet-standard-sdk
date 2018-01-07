@@ -34,12 +34,6 @@ var dir_5256ff93b4e9e06f445ec8585da2fc27 =
     [ "ErrorInfoNoCode.cs", "dc/d07/_error_info_no_code_8cs.html", [
       [ "ErrorInfoNoCode", "de/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_info_no_code.html", "de/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_info_no_code" ]
     ] ],
-    [ "ErrorInfoWithCode.cs", "d3/d98/_error_info_with_code_8cs.html", [
-      [ "ErrorInfoWithCode", "d6/d8c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_info_with_code.html", "d6/d8c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_info_with_code" ]
-    ] ],
-    [ "ErrorTopLevel.cs", "d4/def/_error_top_level_8cs.html", [
-      [ "ErrorTopLevel", "d2/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_top_level.html", "d2/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_error_top_level" ]
-    ] ],
     [ "Faces.cs", "d0/dc8/_faces_8cs.html", [
       [ "Faces", "d8/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_faces.html", "d8/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_faces" ]
     ] ],

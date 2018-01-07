@@ -8,7 +8,8 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_mo
       [ "AR", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a5b61a1b298a0d06efa6933a97e68d763", null ],
       [ "EN", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606aaa85f1840e282d8a8304dbc2c0d7c9b2", null ],
       [ "ES", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a04c19fa1e772ab66f0aad2efe61f25cd", null ],
-      [ "JA", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a58806e006b14b04a535784a5462d09b0", null ]
+      [ "JA", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a58806e006b14b04a535784a5462d09b0", null ],
+      [ "KO", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a5fed318f9c859ad1b31120392472c25a", null ]
     ] ],
     [ "Content", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a26725d0862c17bcbf5f3e5bf061dc7e9", null ],
     [ "Contenttype", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a6f2b02ef60acd02a705f37df7b6584a4", null ],

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operationenum',['OperationEnum',['../df/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_normalization_operation.html#a478e8c286c6ef789ae4df5b43544dea7',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::NormalizationOperation']]]
+  ['categoryenum',['CategoryEnum',['../d1/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait.html#a016bb80ab40a85a28fab9efcadf35711',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model::Trait']]],
+  ['contenttypeenum',['ContenttypeEnum',['../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model::ContentItem']]]
 ];

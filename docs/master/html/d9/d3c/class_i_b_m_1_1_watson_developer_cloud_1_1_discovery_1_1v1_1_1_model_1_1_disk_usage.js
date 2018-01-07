@@ -1,8 +1,9 @@
 var class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage =
 [
-    [ "PercentUsed", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a1746ecfb54d0791cb59f10707739f37e", null ],
-    [ "Total", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a548042b742cc976c02aa58aa66cff545", null ],
-    [ "TotalBytes", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a7a4ac9cc8c6757cc42a62c824b6c2c7b", null ],
-    [ "Used", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a10a62023541ade9eb19f35c912a9f201", null ],
-    [ "UsedBytes", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a78fd8c2fa0005ff544ff6d01d8cca878", null ]
+    [ "MaximumAllowedBytes", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#ade0b3a0ca3bfd1c169c0eb0b8f87c7b6", null ],
+    [ "PercentUsed", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#ae3a67a0859661e4040c7f34d77a73464", null ],
+    [ "Total", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#aba1aef2d7eea2530e607d95b1aa72505", null ],
+    [ "TotalBytes", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a243ed13122504e3b9d5bd7f6226f9410", null ],
+    [ "Used", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a692113452034ae6f900ee2a0f5022865", null ],
+    [ "UsedBytes", "d9/d3c/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_disk_usage.html#a6a98e027605afbfa7da4bc5ca8a1e110", null ]
 ];

@@ -1,7 +1,9 @@
 var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity =
 [
-    [ "Confidence", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a7f39d380b45db96b8278691f2ca933ac", null ],
-    [ "Entity", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a1aebbb0218955c5c22300cf05fcb7951", null ],
-    [ "Location", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a5b7618e367cbaaed1a1f0e4a6848eedb", null ],
-    [ "Value", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a290f45215e3193c7fb97fda65f71498b", null ]
+    [ "Confidence", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a602b0d9902f762e0f976805ebfcebf5f", null ],
+    [ "Entity", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a9ff1b35c352eef233ddc0fd7e9bf2899", null ],
+    [ "Groups", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a9c919af7c5b2403bf260511b87878c9c", null ],
+    [ "Location", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#ad3c90a9e0e45c1b7187d872f26eebc00", null ],
+    [ "Metadata", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#ae92a4da62f5954179f9c908690fae23e", null ],
+    [ "Value", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html#a8f6484cd2d343e4bd07cdd1e0cb09eff", null ]
 ];

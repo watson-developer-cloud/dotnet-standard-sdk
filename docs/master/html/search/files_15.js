@@ -18,7 +18,7 @@ var searchData=
   ['wordslist_2ecs',['WordsList.cs',['../d1/d97/_words_list_8cs.html',1,'']]],
   ['wordstyle_2ecs',['WordStyle.cs',['../d6/d94/_word_style_8cs.html',1,'']]],
   ['wordtype_2ecs',['WordType.cs',['../d7/da9/_word_type_8cs.html',1,'']]],
-  ['workspacecollectionresponse_2ecs',['WorkspaceCollectionResponse.cs',['../d1/d2a/_workspace_collection_response_8cs.html',1,'']]],
-  ['workspaceexportresponse_2ecs',['WorkspaceExportResponse.cs',['../d2/d9d/_workspace_export_response_8cs.html',1,'']]],
-  ['workspaceresponse_2ecs',['WorkspaceResponse.cs',['../d6/d01/_workspace_response_8cs.html',1,'']]]
+  ['workspace_2ecs',['Workspace.cs',['../dc/da1/_workspace_8cs.html',1,'']]],
+  ['workspacecollection_2ecs',['WorkspaceCollection.cs',['../d0/dc3/_workspace_collection_8cs.html',1,'']]],
+  ['workspaceexport_2ecs',['WorkspaceExport.cs',['../de/def/_workspace_export_8cs.html',1,'']]]
 ];

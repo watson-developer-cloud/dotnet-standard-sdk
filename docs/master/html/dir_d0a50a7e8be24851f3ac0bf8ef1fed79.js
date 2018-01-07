@@ -1,13 +1,22 @@
 var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
 [
+    [ "CaptureGroup.cs", "d4/d62/_capture_group_8cs.html", [
+      [ "CaptureGroup", "d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group.html", "d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group" ]
+    ] ],
     [ "Context.cs", "de/d08/_context_8cs.html", [
       [ "Context", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context.html", "d1/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_context" ]
     ] ],
-    [ "CounterexampleCollectionResponse.cs", "d6/d2b/_counterexample_collection_response_8cs.html", [
-      [ "CounterexampleCollectionResponse", "d3/d74/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample_collection_response.html", "d3/d74/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample_collection_response" ]
+    [ "Counterexample.cs", "d0/d19/_counterexample_8cs.html", [
+      [ "Counterexample", "d0/d5d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample.html", "d0/d5d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample" ]
+    ] ],
+    [ "CounterexampleCollection.cs", "d4/dc3/_counterexample_collection_8cs.html", [
+      [ "CounterexampleCollection", "df/d8c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample_collection.html", "df/d8c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_counterexample_collection" ]
+    ] ],
+    [ "CreateCounterexample.cs", "d4/d6d/_create_counterexample_8cs.html", [
+      [ "CreateCounterexample", "db/d41/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_counterexample.html", "db/d41/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_counterexample" ]
     ] ],
     [ "CreateDialogNode.cs", "d0/d46/_create_dialog_node_8cs.html", [
-      [ "CreateDialogNode", "d5/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_dialog_node.html", null ]
+      [ "CreateDialogNode", "d5/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_dialog_node.html", "d5/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_dialog_node" ]
     ] ],
     [ "CreateEntity.cs", "db/d6e/_create_entity_8cs.html", [
       [ "CreateEntity", "de/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_entity.html", "de/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_entity" ]
@@ -27,47 +36,56 @@ var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
     [ "CreateWorkspace.cs", "d2/dc8/_create_workspace_8cs.html", [
       [ "CreateWorkspace", "dc/df5/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_workspace.html", "dc/df5/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_workspace" ]
     ] ],
-    [ "DialogNodeResponse.cs", "d3/d93/_dialog_node_response_8cs.html", [
-      [ "DialogNodeResponse", "d9/d28/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_response.html", null ]
+    [ "DialogNode.cs", "dc/da6/_dialog_node_8cs.html", [
+      [ "DialogNode", "d0/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node.html", "d0/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node" ]
     ] ],
-    [ "EntityCollectionResponse.cs", "da/d64/_entity_collection_response_8cs.html", [
-      [ "EntityCollectionResponse", "df/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_collection_response.html", "df/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_collection_response" ]
+    [ "DialogNodeAction.cs", "d7/d31/_dialog_node_action_8cs.html", [
+      [ "DialogNodeAction", "dc/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_action.html", "dc/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_action" ]
     ] ],
-    [ "EntityExportResponse.cs", "d8/d93/_entity_export_response_8cs.html", [
-      [ "EntityExportResponse", "d5/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_export_response.html", "d5/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_export_response" ]
+    [ "DialogNodeCollection.cs", "d6/df3/_dialog_node_collection_8cs.html", [
+      [ "DialogNodeCollection", "dc/d54/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_collection.html", "dc/d54/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_collection" ]
     ] ],
-    [ "EntityResponse.cs", "da/d04/_entity_response_8cs.html", [
-      [ "EntityResponse", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response.html", "d4/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_response" ]
+    [ "DialogNodeNextStep.cs", "d6/dfb/_dialog_node_next_step_8cs.html", [
+      [ "DialogNodeNextStep", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step" ]
     ] ],
-    [ "ExampleCollectionResponse.cs", "df/d71/_example_collection_response_8cs.html", [
-      [ "ExampleCollectionResponse", "dc/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_collection_response.html", "dc/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_collection_response" ]
+    [ "Entity.cs", "de/db3/_entity_8cs.html", [
+      [ "Entity", "df/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity.html", "df/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity" ]
     ] ],
-    [ "ExampleResponse.cs", "d5/d24/_example_response_8cs.html", [
-      [ "ExampleResponse", "dd/de6/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_response.html", "dd/de6/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_response" ]
+    [ "EntityCollection.cs", "d4/df5/_entity_collection_8cs.html", [
+      [ "EntityCollection", "d1/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_collection.html", "d1/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_collection" ]
+    ] ],
+    [ "EntityExport.cs", "d0/d04/_entity_export_8cs.html", [
+      [ "EntityExport", "d0/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_export.html", "d0/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity_export" ]
+    ] ],
+    [ "Example.cs", "d6/d38/_example_8cs.html", [
+      [ "Example", "d4/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example.html", "d4/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example" ]
+    ] ],
+    [ "ExampleCollection.cs", "d3/df9/_example_collection_8cs.html", [
+      [ "ExampleCollection", "dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_collection.html", "dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_example_collection" ]
     ] ],
     [ "InputData.cs", "da/dbf/_input_data_8cs.html", [
       [ "InputData", "d7/d92/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_input_data.html", "d7/d92/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_input_data" ]
     ] ],
-    [ "IntentCollectionResponse.cs", "d2/d6b/_intent_collection_response_8cs.html", [
-      [ "IntentCollectionResponse", "dd/d85/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_collection_response.html", "dd/d85/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_collection_response" ]
+    [ "Intent.cs", "dd/deb/_intent_8cs.html", [
+      [ "Intent", "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent.html", "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent" ]
     ] ],
-    [ "IntentExportResponse.cs", "d9/d8d/_intent_export_response_8cs.html", [
-      [ "IntentExportResponse", "d3/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_export_response.html", "d3/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_export_response" ]
+    [ "IntentCollection.cs", "d6/daf/_intent_collection_8cs.html", [
+      [ "IntentCollection", "dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_collection.html", "dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_collection" ]
     ] ],
-    [ "IntentResponse.cs", "d7/d79/_intent_response_8cs.html", [
-      [ "IntentResponse", "d8/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_response.html", "d8/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_response" ]
+    [ "IntentExport.cs", "d9/d79/_intent_export_8cs.html", [
+      [ "IntentExport", "dd/da9/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_export.html", "dd/da9/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent_export" ]
     ] ],
-    [ "LogCollectionResponse.cs", "d5/deb/_log_collection_response_8cs.html", [
-      [ "LogCollectionResponse", "d4/d44/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_collection_response.html", "d4/d44/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_collection_response" ]
+    [ "LogCollection.cs", "d3/d50/_log_collection_8cs.html", [
+      [ "LogCollection", "db/dd0/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_collection.html", "db/dd0/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_collection" ]
     ] ],
-    [ "LogExportResponse.cs", "dc/d32/_log_export_response_8cs.html", [
-      [ "LogExportResponse", "d4/d41/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export_response.html", "d4/d41/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export_response" ]
+    [ "LogExport.cs", "dd/df7/_log_export_8cs.html", [
+      [ "LogExport", "d6/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export.html", "d6/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export" ]
     ] ],
-    [ "LogMessageResponse.cs", "d6/dbc/_log_message_response_8cs.html", [
-      [ "LogMessageResponse", "d1/d98/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message_response.html", "d1/d98/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message_response" ]
+    [ "LogMessage.cs", "df/d26/_log_message_8cs.html", [
+      [ "LogMessage", "dd/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message.html", "dd/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message" ]
     ] ],
-    [ "LogPaginationResponse.cs", "da/ded/_log_pagination_response_8cs.html", [
-      [ "LogPaginationResponse", "df/d79/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination_response.html", "df/d79/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination_response" ]
+    [ "LogPagination.cs", "d1/d1c/_log_pagination_8cs.html", [
+      [ "LogPagination", "dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html", "dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination" ]
     ] ],
     [ "MessageInput.cs", "da/d54/_message_input_8cs.html", [
       [ "MessageInput", "dd/df9/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_input.html", "dd/df9/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_input" ]
@@ -81,11 +99,8 @@ var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
     [ "OutputData.cs", "d7/da4/_output_data_8cs.html", [
       [ "OutputData", "d3/d02/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_output_data.html", "d3/d02/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_output_data" ]
     ] ],
-    [ "PaginationResponse.cs", "d6/d63/_pagination_response_8cs.html", [
-      [ "PaginationResponse", "d3/d9a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination_response.html", "d3/d9a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination_response" ]
-    ] ],
-    [ "RuntimeContext.cs", "d6/d56/_runtime_context_8cs.html", [
-      [ "RuntimeContext", "d4/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_context.html", "d4/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_context" ]
+    [ "Pagination.cs", "df/dc5/_pagination_8cs.html", [
+      [ "Pagination", "dd/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination.html", "dd/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination" ]
     ] ],
     [ "RuntimeEntity.cs", "d5/d71/_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity.html", "d5/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_entity" ]
@@ -93,23 +108,20 @@ var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
     [ "RuntimeIntent.cs", "df/dd6/_runtime_intent_8cs.html", [
       [ "RuntimeIntent", "df/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_intent.html", "df/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_intent" ]
     ] ],
-    [ "RuntimeLogMessage.cs", "db/da1/_runtime_log_message_8cs.html", [
-      [ "RuntimeLogMessage", "d7/d68/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_log_message.html", "d7/d68/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_log_message" ]
+    [ "Synonym.cs", "d3/d42/_synonym_8cs.html", [
+      [ "Synonym", "da/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym.html", "da/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym" ]
     ] ],
-    [ "RuntimeOutput.cs", "de/d6b/_runtime_output_8cs.html", [
-      [ "RuntimeOutput", "d6/d02/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_output.html", "d6/d02/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_output" ]
-    ] ],
-    [ "RuntimeSystemContext.cs", "da/d8c/_runtime_system_context_8cs.html", [
-      [ "RuntimeSystemContext", "d0/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_system_context.html", "d0/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_runtime_system_context" ]
-    ] ],
-    [ "SynonymCollectionResponse.cs", "da/d16/_synonym_collection_response_8cs.html", [
-      [ "SynonymCollectionResponse", "d1/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection_response.html", "d1/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection_response" ]
-    ] ],
-    [ "SynonymResponse.cs", "df/d8a/_synonym_response_8cs.html", [
-      [ "SynonymResponse", "d3/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_response.html", "d3/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_response" ]
+    [ "SynonymCollection.cs", "d5/d32/_synonym_collection_8cs.html", [
+      [ "SynonymCollection", "d5/d6e/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection.html", "d5/d6e/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection" ]
     ] ],
     [ "SystemResponse.cs", "d2/d27/_system_response_8cs.html", [
-      [ "SystemResponse", "dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response.html", "dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response" ]
+      [ "SystemResponse", "dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response.html", null ]
+    ] ],
+    [ "UpdateCounterexample.cs", "dd/d96/_update_counterexample_8cs.html", [
+      [ "UpdateCounterexample", "df/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_counterexample.html", "df/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_counterexample" ]
+    ] ],
+    [ "UpdateDialogNode.cs", "d9/d9a/_update_dialog_node_8cs.html", [
+      [ "UpdateDialogNode", "db/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_dialog_node.html", "db/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_dialog_node" ]
     ] ],
     [ "UpdateEntity.cs", "d9/d7d/_update_entity_8cs.html", [
       [ "UpdateEntity", "d0/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_entity.html", "d0/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_entity" ]
@@ -129,22 +141,22 @@ var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
     [ "UpdateWorkspace.cs", "d4/dc7/_update_workspace_8cs.html", [
       [ "UpdateWorkspace", "d1/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_workspace.html", "d1/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_update_workspace" ]
     ] ],
-    [ "ValueCollectionResponse.cs", "da/de0/_value_collection_response_8cs.html", [
-      [ "ValueCollectionResponse", "d0/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection_response.html", "d0/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection_response" ]
+    [ "Value.cs", "dd/dcd/_value_8cs.html", [
+      [ "Value", "d9/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value.html", "d9/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value" ]
     ] ],
-    [ "ValueExportResponse.cs", "d1/d34/_value_export_response_8cs.html", [
-      [ "ValueExportResponse", "dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response.html", "dc/d19/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export_response" ]
+    [ "ValueCollection.cs", "de/dc5/_value_collection_8cs.html", [
+      [ "ValueCollection", "d2/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection.html", "d2/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_collection" ]
     ] ],
-    [ "ValueResponse.cs", "d6/d36/_value_response_8cs.html", [
-      [ "ValueResponse", "dc/d75/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_response.html", "dc/d75/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_response" ]
+    [ "ValueExport.cs", "d0/d0e/_value_export_8cs.html", [
+      [ "ValueExport", "d9/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export.html", "d9/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_value_export" ]
     ] ],
-    [ "WorkspaceCollectionResponse.cs", "d1/d2a/_workspace_collection_response_8cs.html", [
-      [ "WorkspaceCollectionResponse", "d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response.html", "d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response" ]
+    [ "Workspace.cs", "dc/da1/_workspace_8cs.html", [
+      [ "Workspace", "d9/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace.html", "d9/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace" ]
     ] ],
-    [ "WorkspaceExportResponse.cs", "d2/d9d/_workspace_export_response_8cs.html", [
-      [ "WorkspaceExportResponse", "d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response.html", "d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response" ]
+    [ "WorkspaceCollection.cs", "d0/dc3/_workspace_collection_8cs.html", [
+      [ "WorkspaceCollection", "d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection.html", "d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection" ]
     ] ],
-    [ "WorkspaceResponse.cs", "d6/d01/_workspace_response_8cs.html", [
-      [ "WorkspaceResponse", "d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response.html", "d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response" ]
+    [ "WorkspaceExport.cs", "de/def/_workspace_export_8cs.html", [
+      [ "WorkspaceExport", "d6/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export.html", "d6/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export" ]
     ] ]
 ];

@@ -26,7 +26,7 @@ var searchData=
   ['speechtotextservice',['SpeechToTextService',['../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1']]],
   ['streamextension',['StreamExtension',['../d5/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions_1_1_stream_extension.html',1,'IBM::WatsonDeveloperCloud::Http::Extensions']]],
   ['supportedfeatures',['SupportedFeatures',['../d3/dab/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_supported_features.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
-  ['synonymcollectionresponse',['SynonymCollectionResponse',['../d1/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['synonymresponse',['SynonymResponse',['../d3/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['synonym',['Synonym',['../da/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['synonymcollection',['SynonymCollection',['../d5/d6e/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_synonym_collection.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
   ['systemresponse',['SystemResponse',['../dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
 ];

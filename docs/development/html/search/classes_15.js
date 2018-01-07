@@ -17,7 +17,7 @@ var searchData=
   ['wordsettings',['WordSettings',['../d3/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_word_settings.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
   ['wordslist',['WordsList',['../d6/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words_list.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
   ['wordstyle',['WordStyle',['../dc/d0e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_word_style.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['workspacecollectionresponse',['WorkspaceCollectionResponse',['../d7/d3a/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['workspaceexportresponse',['WorkspaceExportResponse',['../d1/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['workspaceresponse',['WorkspaceResponse',['../d7/d89/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
+  ['workspace',['Workspace',['../d9/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['workspacecollection',['WorkspaceCollection',['../d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['workspaceexport',['WorkspaceExport',['../d6/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
 ];

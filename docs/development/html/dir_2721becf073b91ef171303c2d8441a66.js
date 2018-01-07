@@ -18,9 +18,6 @@ var dir_2721becf073b91ef171303c2d8441a66 =
     [ "ConceptsResult.cs", "de/dee/_concepts_result_8cs.html", [
       [ "ConceptsResult", "d5/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_result.html", "d5/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_result" ]
     ] ],
-    [ "CustomModel.cs", "d1/de9/_i_b_m_8_watson_developer_cloud_8_natural_language_understanding_8v1_2_model_2_custom_model_8cs.html", [
-      [ "CustomModel", "d6/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_custom_model.html", "d6/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_custom_model" ]
-    ] ],
     [ "DisambiguationResult.cs", "d0/d5e/_disambiguation_result_8cs.html", [
       [ "DisambiguationResult", "db/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html", "db/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result" ]
     ] ],
@@ -45,11 +42,20 @@ var dir_2721becf073b91ef171303c2d8441a66 =
     [ "EntitiesResult.cs", "d5/dfb/_entities_result_8cs.html", [
       [ "EntitiesResult", "db/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_result.html", "db/d09/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_result" ]
     ] ],
+    [ "EntityMention.cs", "d5/d4a/_entity_mention_8cs.html", [
+      [ "EntityMention", "df/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entity_mention.html", "df/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entity_mention" ]
+    ] ],
     [ "Features.cs", "d0/d31/_features_8cs.html", [
       [ "Features", "d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features.html", "d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features" ]
     ] ],
     [ "FeatureSentimentResults.cs", "d8/d65/_feature_sentiment_results_8cs.html", [
       [ "FeatureSentimentResults", "dc/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feature_sentiment_results.html", "dc/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feature_sentiment_results" ]
+    ] ],
+    [ "Feed.cs", "d8/d27/_feed_8cs.html", [
+      [ "Feed", "de/df4/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feed.html", "de/df4/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feed" ]
+    ] ],
+    [ "InlineResponse200.cs", "d2/d87/_inline_response200_8cs.html", [
+      [ "InlineResponse200", "d0/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_inline_response200.html", "d0/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_inline_response200" ]
     ] ],
     [ "KeywordsOptions.cs", "de/d7e/_keywords_options_8cs.html", [
       [ "KeywordsOptions", "da/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html", "da/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options" ]
@@ -65,6 +71,9 @@ var dir_2721becf073b91ef171303c2d8441a66 =
     ] ],
     [ "MetadataResult.cs", "dc/d40/_metadata_result_8cs.html", [
       [ "MetadataResult", "df/d16/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_result.html", "df/d16/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_result" ]
+    ] ],
+    [ "Model.cs", "db/d88/_model_8cs.html", [
+      [ "Model", "df/d17/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "df/d17/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ]
     ] ],
     [ "Parameters.cs", "de/d9c/_parameters_8cs.html", [
       [ "Parameters", "dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters.html", "dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters" ]

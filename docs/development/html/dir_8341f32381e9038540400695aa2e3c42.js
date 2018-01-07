@@ -15,7 +15,7 @@ var dir_8341f32381e9038540400695aa2e3c42 =
     [ "Customizations.cs", "db/dea/_customizations_8cs.html", [
       [ "Customizations", "de/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customizations.html", "de/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customizations" ]
     ] ],
-    [ "CustomModel.cs", "d8/df6/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_custom_model_8cs.html", [
+    [ "CustomModel.cs", "d8/d84/_custom_model_8cs.html", [
       [ "CustomModel", "d2/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_model.html", "d2/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_model" ]
     ] ],
     [ "KeywordResult.cs", "d7/dd7/_keyword_result_8cs.html", [

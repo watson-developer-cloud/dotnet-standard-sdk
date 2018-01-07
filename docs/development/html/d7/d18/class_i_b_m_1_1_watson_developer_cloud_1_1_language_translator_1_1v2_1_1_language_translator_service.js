@@ -3,14 +3,11 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_lan
     [ "LanguageTranslatorService", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad604433abebd5f359c4b2ae13d910241", null ],
     [ "LanguageTranslatorService", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a3e2cd56def339b9012397ba2206fea18", null ],
     [ "LanguageTranslatorService", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a9a73998febec6974aea0e98622981dce", null ],
-    [ "CreateModel", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a23453be658dd6f2538226f2091d4d935", null ],
-    [ "DeleteModel", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad690a22c308d4c99ea3132e209e89004", null ],
-    [ "GetIdentifiableLanguages", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a5f263e1494568800ae885abada66c2e1", null ],
-    [ "GetModelDetails", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a139845c51c18b1663c45972ebdf37c36", null ],
-    [ "Identify", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a1f438998ca072ca889a7af0693830f9b", null ],
-    [ "ListModels", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ac1fc28cc1a0b31f62a0fab5198bb2d25", null ],
-    [ "Translate", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a5e3ff4e5150868a1fa62ec2ddd4356cc", null ],
-    [ "Translate", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a1d1efd4f476600e020301e2ba20aa7be", null ],
-    [ "Translate", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a73c7c91eafd15c13a301131e00a4fdcb", null ],
-    [ "Translate", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a032052b87f58805d9b567ad49e866aab", null ]
+    [ "CreateModel", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a2aadbfea46ad1bce7c2a75508274a216", null ],
+    [ "DeleteModel", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a941e64a050d96ed916e7ddccae1cd592", null ],
+    [ "GetModel", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a2a2476f6f6ad58eb31e1b58b89aa8156", null ],
+    [ "Identify", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a72712a0a7c4f935857de6a73904aaca3", null ],
+    [ "ListIdentifiableLanguages", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a65a71ca1351f6c149118e425ef0308d1", null ],
+    [ "ListModels", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a102ffc12e5b66bad1e1db04076342521", null ],
+    [ "Translate", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad5b40ad9d8639b3c02fb86d2b418d6c3", null ]
 ];

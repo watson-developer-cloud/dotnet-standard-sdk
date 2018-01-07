@@ -8,7 +8,6 @@ var searchData=
   ['metadata',['Metadata',['../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
   ['metadataoptions',['MetadataOptions',['../d8/d28/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
   ['metadataresult',['MetadataResult',['../df/d16/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_result.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
-  ['modelclass',['ModelClass',['../d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
-  ['modelenvironment',['ModelEnvironment',['../de/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_model_environment.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['modelpayload',['ModelPayload',['../df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html',1,'IBM::WatsonDeveloperCloud::LanguageTranslator::v2::Model']]]
+  ['model',['Model',['../df/d17/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
+  ['modelclass',['ModelClass',['../d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]]
 ];

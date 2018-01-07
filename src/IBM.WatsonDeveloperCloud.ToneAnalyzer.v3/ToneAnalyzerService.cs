@@ -68,9 +68,9 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         public ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
             if (toneInput == null)
-                throw new ArgumentNullException("'toneInput' is required for 'Tone()'");
+                throw new ArgumentNullException(nameof(toneInput));
             if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException("'contentType' is required for 'Tone()'");
+                throw new ArgumentNullException(nameof(contentType));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -102,7 +102,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         public UtteranceAnalyses ToneChat(ToneChatInput utterances, string acceptLanguage = null)
         {
             if (utterances == null)
-                throw new ArgumentNullException("'utterances' is required for 'ToneChat()'");
+                throw new ArgumentNullException(nameof(utterances));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");

@@ -122,12 +122,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             ClassifyPost result = null;
 
             if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1} are required for 'Classify()'", "'imageData'", "'urls'"));
+                throw new ArgumentNullException(string.Format("{0} or {1} are required for 'Classify()'", nameof(imageData), "'urls'"));
 
             if (imageData != null)
             {
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentException(string.Format("{0} or {1} are required for 'Classify()'", "'imageDataName'", "'imageDataMimeType'"));
+                    throw new ArgumentException(string.Format("{0} and {1} are required for 'Classify()'", nameof(imageDataName),nameof(imageDataMimeType)));
             }
 
             if (owners != null)
@@ -208,12 +208,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             Faces result = null;
 
             if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1} are required for 'DetectFaces()'", "'imageData'", "'urls'"));
+                throw new ArgumentNullException(string.Format("{0} or {1} are required for 'DetectFaces()'", nameof(imageData), "'urls'"));
 
             if (imageData != null)
             {
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentNullException(string.Format("{0} or {1} are required for 'DetectFaces()'", "'imageDataName'", "'imageDataMimeType'"));
+                    throw new ArgumentNullException(string.Format("{0} and {1} are required for 'DetectFaces()'", nameof(imageDataName), nameof(imageDataMimeType)));
             }
 
             try
@@ -310,10 +310,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             GetClassifiersPerClassifierVerbose result = null;
 
             if (string.IsNullOrEmpty(classifierName))
-                throw new ArgumentNullException("'classifierName' is required for 'CreateClassifier()'");
+                throw new ArgumentNullException(nameof(classifierName));
 
             if (positiveExamplesData == null)
-                throw new ArgumentNullException("'positiveExamplesData' is required for 'GetClassifier()'");
+                throw new ArgumentNullException(nameof(positiveExamplesData));
 
             if (positiveExamplesData.Count < 2 && negativeExamplesData == null)
                 throw new ArgumentNullException("Training a Visual Recognition classifier requires at least two positive example files or one positive example and negative example file.");
@@ -361,7 +361,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             object result = null;
 
             if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for DeleteClassifier()");
+                throw new ArgumentNullException(nameof(classifierId));
 
             try
             {
@@ -384,7 +384,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
         {
             if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for 'GetClassifier()'");
+                throw new ArgumentNullException(nameof(classifierId));
 
             GetClassifiersPerClassifierVerbose result = null;
 
@@ -409,7 +409,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             GetClassifiersPerClassifierVerbose result = null;
 
             if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for 'UpdateClassifier()'");
+                throw new ArgumentNullException(nameof(classifierId));
 
             if (positiveExamplesData == null && negativeExamplesData == null)
                 throw new ArgumentNullException("Positive example data and/or negative example data are required to update a classifier.");
@@ -449,26 +449,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
 
             return result;
-        }
-        #endregion
-
-        #region Utils
-        private string GetImageMimeTypeFromFilename(string filename)
-        {
-            string imageMimeType = "";
-            if (!string.IsNullOrEmpty(filename))
-            {
-                string ext = Path.GetExtension(filename).ToLower();
-
-                if (ext == ".jpg" || ext == ".jpeg")
-                    imageMimeType = "image/jpeg";
-                else if (ext == ".png")
-                    imageMimeType = "image/png";
-                else
-                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
-            }
-
-            return imageMimeType;
         }
         #endregion
     }

@@ -58,7 +58,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         public TranslationResult Translate(TranslateRequest body)
         {
             if (body == null)
-                throw new ArgumentNullException("'body' is required for 'Translate()'");
+                throw new ArgumentNullException(nameof(body));
             TranslationResult result = null;
 
             try
@@ -79,7 +79,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         public IdentifiedLanguages Identify(string text)
         {
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("'text' is required for 'Identify()'");
+                throw new ArgumentNullException(nameof(text));
             IdentifiedLanguages result = null;
 
             try
@@ -119,7 +119,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
         {
             if (string.IsNullOrEmpty(baseModelId))
-                throw new ArgumentNullException("'baseModelId' is required for 'CreateModel()'");
+                throw new ArgumentNullException(nameof(baseModelId));
             TranslationModel result = null;
 
             try
@@ -172,7 +172,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         public DeleteModelResult DeleteModel(string modelId)
         {
             if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException("'modelId' is required for 'DeleteModel()'");
+                throw new ArgumentNullException(nameof(modelId));
             DeleteModelResult result = null;
 
             try
@@ -193,7 +193,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         public TranslationModel GetModel(string modelId)
         {
             if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException("'modelId' is required for 'GetModel()'");
+                throw new ArgumentNullException(nameof(modelId));
             TranslationModel result = null;
 
             try

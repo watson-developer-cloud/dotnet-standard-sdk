@@ -27,7 +27,7 @@ var searchData=
   ['speechtotextservice_2ecs',['SpeechToTextService.cs',['../db/d33/_speech_to_text_service_8cs.html',1,'']]],
   ['streamextension_2ecs',['StreamExtension.cs',['../df/d85/_stream_extension_8cs.html',1,'']]],
   ['supportedfeatures_2ecs',['SupportedFeatures.cs',['../db/d88/_supported_features_8cs.html',1,'']]],
-  ['synonymcollectionresponse_2ecs',['SynonymCollectionResponse.cs',['../da/d16/_synonym_collection_response_8cs.html',1,'']]],
-  ['synonymresponse_2ecs',['SynonymResponse.cs',['../df/d8a/_synonym_response_8cs.html',1,'']]],
+  ['synonym_2ecs',['Synonym.cs',['../d3/d42/_synonym_8cs.html',1,'']]],
+  ['synonymcollection_2ecs',['SynonymCollection.cs',['../d5/d32/_synonym_collection_8cs.html',1,'']]],
   ['systemresponse_2ecs',['SystemResponse.cs',['../d2/d27/_system_response_8cs.html',1,'']]]
 ];

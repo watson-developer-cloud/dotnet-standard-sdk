@@ -100,149 +100,150 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguage
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5c1b2e274cd1f4dc110d9014f358cfe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models.html">TranslationModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a5c1b2e274cd1f4dc110d9014f358cfe9">ListModels</a> (bool _isDefault, string _source, string _target)</td></tr>
-<tr class="memdesc:a5c1b2e274cd1f4dc110d9014f358cfe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists available models for the Language translator service with option to filter by source or by target language.  <a href="#a5c1b2e274cd1f4dc110d9014f358cfe9">More...</a><br /></td></tr>
-<tr class="separator:a5c1b2e274cd1f4dc110d9014f358cfe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad883b382ee46530a085ba567c480de5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models.html">CustomModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ad883b382ee46530a085ba567c480de5d">CreateModel</a> (<a class="el" href="../../d0/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_model_options.html">CreateModelOptions</a> _options)</td></tr>
-<tr class="memdesc:ad883b382ee46530a085ba567c480de5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.  <a href="#ad883b382ee46530a085ba567c480de5d">More...</a><br /></td></tr>
-<tr class="separator:ad883b382ee46530a085ba567c480de5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e3868115415dc8595e5a39b99d4ad15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_models.html">DeleteModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a7e3868115415dc8595e5a39b99d4ad15">DeleteModel</a> (string _modelId)</td></tr>
-<tr class="memdesc:a7e3868115415dc8595e5a39b99d4ad15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes trained translation models.  <a href="#a7e3868115415dc8595e5a39b99d4ad15">More...</a><br /></td></tr>
-<tr class="separator:a7e3868115415dc8595e5a39b99d4ad15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47447dbea50701ab9bee3da4ae3dfbc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html">ModelPayload</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a47447dbea50701ab9bee3da4ae3dfbc0">GetModelDetails</a> (string _modelId)</td></tr>
-<tr class="memdesc:a47447dbea50701ab9bee3da4ae3dfbc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information, including training status, about a specified translation model.  <a href="#a47447dbea50701ab9bee3da4ae3dfbc0">More...</a><br /></td></tr>
-<tr class="separator:a47447dbea50701ab9bee3da4ae3dfbc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d1c2053e4651b7302be0b3147a06f0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a3d1c2053e4651b7302be0b3147a06f0e">Translate</a> (string _modelId, string _text)</td></tr>
-<tr class="memdesc:a3d1c2053e4651b7302be0b3147a06f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates input text from the source language to the target language.  <a href="#a3d1c2053e4651b7302be0b3147a06f0e">More...</a><br /></td></tr>
-<tr class="separator:a3d1c2053e4651b7302be0b3147a06f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9bab0e95293b1d9eae2f37eee1fa5ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ae9bab0e95293b1d9eae2f37eee1fa5ea">Translate</a> (string _source, string _target, string _text)</td></tr>
-<tr class="memdesc:ae9bab0e95293b1d9eae2f37eee1fa5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates input text from the source language to the target language.  <a href="#ae9bab0e95293b1d9eae2f37eee1fa5ea">More...</a><br /></td></tr>
-<tr class="separator:ae9bab0e95293b1d9eae2f37eee1fa5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0083ef94a19d2bd2925845ad7698bf0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a0083ef94a19d2bd2925845ad7698bf0c">Translate</a> (string _modelId, List&lt; string &gt; _text)</td></tr>
-<tr class="memdesc:a0083ef94a19d2bd2925845ad7698bf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates input text from the source language to the target language.  <a href="#a0083ef94a19d2bd2925845ad7698bf0c">More...</a><br /></td></tr>
-<tr class="separator:a0083ef94a19d2bd2925845ad7698bf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad126d6cca7fc28cd960f44b208eeb2b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ad126d6cca7fc28cd960f44b208eeb2b3">Translate</a> (string _source, string _target, List&lt; string &gt; _text)</td></tr>
-<tr class="memdesc:ad126d6cca7fc28cd960f44b208eeb2b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates input text from the source language to the target language.  <a href="#ad126d6cca7fc28cd960f44b208eeb2b3">More...</a><br /></td></tr>
-<tr class="separator:ad126d6cca7fc28cd960f44b208eeb2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c36084dd7daa13cde8474490df9256"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html">IdentifiableLanguages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a64c36084dd7daa13cde8474490df9256">GetIdentifiableLanguages</a> ()</td></tr>
-<tr class="memdesc:a64c36084dd7daa13cde8474490df9256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the list of languages it can detect.  <a href="#a64c36084dd7daa13cde8474490df9256">More...</a><br /></td></tr>
-<tr class="separator:a64c36084dd7daa13cde8474490df9256"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a240bad73c8653a23feffcb5dee1da827"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_languages.html">IdentifiedLanguages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a240bad73c8653a23feffcb5dee1da827">Identify</a> (string _text)</td></tr>
-<tr class="memdesc:a240bad73c8653a23feffcb5dee1da827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identify the language in which a text is written.  <a href="#a240bad73c8653a23feffcb5dee1da827">More...</a><br /></td></tr>
-<tr class="separator:a240bad73c8653a23feffcb5dee1da827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8323899905e64d491f72cc4c02123b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/dc9/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_result.html">TranslationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ad8323899905e64d491f72cc4c02123b2">Translate</a> (<a class="el" href="../../df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html">TranslateRequest</a> body)</td></tr>
+<tr class="memdesc:ad8323899905e64d491f72cc4c02123b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the input text from the source language to the target language.  <a href="#ad8323899905e64d491f72cc4c02123b2">More...</a><br /></td></tr>
+<tr class="separator:ad8323899905e64d491f72cc4c02123b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9868f669b050a87fb7adf1c90dbce81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_languages.html">IdentifiedLanguages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ac9868f669b050a87fb7adf1c90dbce81">Identify</a> (string text)</td></tr>
+<tr class="memdesc:ac9868f669b050a87fb7adf1c90dbce81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the language of the input text.  <a href="#ac9868f669b050a87fb7adf1c90dbce81">More...</a><br /></td></tr>
+<tr class="separator:ac9868f669b050a87fb7adf1c90dbce81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bbe13e59276db0ae1b4dde32abc6c6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html">IdentifiableLanguages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a0bbe13e59276db0ae1b4dde32abc6c6e">ListIdentifiableLanguages</a> ()</td></tr>
+<tr class="memdesc:a0bbe13e59276db0ae1b4dde32abc6c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all languages that can be identified by the API. Lists all languages that the service can identify. Returns the two-letter code (for example, <code>en</code> for English or <code>es</code> for Spanish) and name of each language.  <a href="#a0bbe13e59276db0ae1b4dde32abc6c6e">More...</a><br /></td></tr>
+<tr class="separator:a0bbe13e59276db0ae1b4dde32abc6c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a040bccdae6af3ae17c12bbb120b57c57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a040bccdae6af3ae17c12bbb120b57c57">CreateModel</a> (string baseModelId, string name=null, System.IO.Stream forcedGlossary=null, System.IO.Stream parallelCorpus=null, System.IO.Stream monolingualCorpus=null)</td></tr>
+<tr class="memdesc:a040bccdae6af3ae17c12bbb120b57c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a TMX glossary file on top of a domain to customize a translation model.  <a href="#a040bccdae6af3ae17c12bbb120b57c57">More...</a><br /></td></tr>
+<tr class="separator:a040bccdae6af3ae17c12bbb120b57c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e535ef1f7b87a6a80aa0405cc1e17e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d81/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_model_result.html">DeleteModelResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a5e535ef1f7b87a6a80aa0405cc1e17e1">DeleteModel</a> (string modelId)</td></tr>
+<tr class="memdesc:a5e535ef1f7b87a6a80aa0405cc1e17e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a custom translation model.  <a href="#a5e535ef1f7b87a6a80aa0405cc1e17e1">More...</a><br /></td></tr>
+<tr class="separator:a5e535ef1f7b87a6a80aa0405cc1e17e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe14673b6a4c03872167ada1ebe792f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#acbe14673b6a4c03872167ada1ebe792f">GetModel</a> (string modelId)</td></tr>
+<tr class="memdesc:acbe14673b6a4c03872167ada1ebe792f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get information about the given translation model, including training status.  <a href="#acbe14673b6a4c03872167ada1ebe792f">More...</a><br /></td></tr>
+<tr class="separator:acbe14673b6a4c03872167ada1ebe792f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeb18997f69c2d0d26074ab7b36c9044"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models.html">TranslationModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#aaeb18997f69c2d0d26074ab7b36c9044">ListModels</a> (string source=null, string target=null, bool? defaultModels=null)</td></tr>
+<tr class="memdesc:aaeb18997f69c2d0d26074ab7b36c9044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists available standard and custom models by source or target language.  <a href="#aaeb18997f69c2d0d26074ab7b36c9044">More...</a><br /></td></tr>
+<tr class="separator:aaeb18997f69c2d0d26074ab7b36c9044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad883b382ee46530a085ba567c480de5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad883b382ee46530a085ba567c480de5d">&#9670;&nbsp;</a></span>CreateModel()</h2>
+<a id="a040bccdae6af3ae17c12bbb120b57c57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a040bccdae6af3ae17c12bbb120b57c57">&#9670;&nbsp;</a></span>CreateModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d0/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_custom_models.html">CustomModels</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.CreateModel </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d0/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_create_model_options.html">CreateModelOptions</a>&#160;</td>
-          <td class="paramname"><em>_options</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_options</td><td>An object containing arguments used to create the custom model.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a23453be658dd6f2538226f2091d4d935">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
-
-</div>
-</div>
-<a id="a7e3868115415dc8595e5a39b99d4ad15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e3868115415dc8595e5a39b99d4ad15">&#9670;&nbsp;</a></span>DeleteModel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_models.html">DeleteModels</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.DeleteModel </td>
+          <td class="memname"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.CreateModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_modelId</em></td><td>)</td>
+          <td class="paramname"><em>baseModelId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramname"><em>forcedGlossary</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramname"><em>parallelCorpus</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramname"><em>monolingualCorpus</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes trained translation models. </p>
+<p>Uploads a TMX glossary file on top of a domain to customize a translation model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_modelId</td><td>The model identifier.</td></tr>
+    <tr><td class="paramname">baseModelId</td><td>Specifies the domain model that is used as the base for the training. To see current supported domain models, use the GET /v2/models parameter.</td></tr>
+    <tr><td class="paramname">name</td><td>The model name. Valid characters are letters, numbers, -, and _. No spaces. (optional)</td></tr>
+    <tr><td class="paramname">forcedGlossary</td><td>A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</td></tr>
+    <tr><td class="paramname">parallelCorpus</td><td>A TMX file that contains entries that are treated as a parallel corpus instead of a glossary. (optional)</td></tr>
+    <tr><td class="paramname">monolingualCorpus</td><td>A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TranslationModelTranslationModel</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad690a22c308d4c99ea3132e209e89004">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a2aadbfea46ad1bce7c2a75508274a216">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
-<a id="a64c36084dd7daa13cde8474490df9256"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64c36084dd7daa13cde8474490df9256">&#9670;&nbsp;</a></span>GetIdentifiableLanguages()</h2>
+<a id="a5e535ef1f7b87a6a80aa0405cc1e17e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e535ef1f7b87a6a80aa0405cc1e17e1">&#9670;&nbsp;</a></span>DeleteModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html">IdentifiableLanguages</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.GetIdentifiableLanguages </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Return the list of languages it can detect. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a5f263e1494568800ae885abada66c2e1">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
-
-</div>
-</div>
-<a id="a47447dbea50701ab9bee3da4ae3dfbc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47447dbea50701ab9bee3da4ae3dfbc0">&#9670;&nbsp;</a></span>GetModelDetails()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../df/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_model_payload.html">ModelPayload</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.GetModelDetails </td>
+          <td class="memname"><a class="el" href="../../d3/d81/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_model_result.html">DeleteModelResult</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.DeleteModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_modelId</em></td><td>)</td>
+          <td class="paramname"><em>modelId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns information, including training status, about a specified translation model. </p>
+<p>Deletes a custom translation model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_modelId</td><td>The model identifier.</td></tr>
+    <tr><td class="paramname">modelId</td><td>The model identifier.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>DeleteModelResultDeleteModelResult</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a139845c51c18b1663c45972ebdf37c36">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a941e64a050d96ed916e7ddccae1cd592">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
-<a id="a240bad73c8653a23feffcb5dee1da827"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a240bad73c8653a23feffcb5dee1da827">&#9670;&nbsp;</a></span>Identify()</h2>
+<a id="acbe14673b6a4c03872167ada1ebe792f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe14673b6a4c03872167ada1ebe792f">&#9670;&nbsp;</a></span>GetModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.GetModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get information about the given translation model, including training status. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modelId</td><td><a class="el" href="../../d8/d3e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model.html">Model</a> ID to use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TranslationModelTranslationModel</dd></dl>
+
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a2a2476f6f6ad58eb31e1b58b89aa8156">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
+<a id="ac9868f669b050a87fb7adf1c90dbce81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9868f669b050a87fb7adf1c90dbce81">&#9670;&nbsp;</a></span>Identify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,27 +252,49 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identified_languages.html">IdentifiedLanguages</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Identify </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_text</em></td><td>)</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Identify the language in which a text is written. </p>
+<p>Identifies the language of the input text. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_text</td><td>Input text in UTF-8 format</td></tr>
+    <tr><td class="paramname">text</td><td>Input text in UTF-8 format.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>IdentifiedLanguagesIdentifiedLanguages</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a1f438998ca072ca889a7af0693830f9b">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a72712a0a7c4f935857de6a73904aaca3">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
-<a id="a5c1b2e274cd1f4dc110d9014f358cfe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c1b2e274cd1f4dc110d9014f358cfe9">&#9670;&nbsp;</a></span>ListModels()</h2>
+<a id="a0bbe13e59276db0ae1b4dde32abc6c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bbe13e59276db0ae1b4dde32abc6c6e">&#9670;&nbsp;</a></span>ListIdentifiableLanguages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html">IdentifiableLanguages</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.ListIdentifiableLanguages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lists all languages that can be identified by the API. Lists all languages that the service can identify. Returns the two-letter code (for example, <code>en</code> for English or <code>es</code> for Spanish) and name of each language. </p>
+<dl class="section return"><dt>Returns</dt><dd>IdentifiableLanguagesIdentifiableLanguages</dd></dl>
+
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a65a71ca1351f6c149118e425ef0308d1">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
+<a id="aaeb18997f69c2d0d26074ab7b36c9044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeb18997f69c2d0d26074ab7b36c9044">&#9670;&nbsp;</a></span>ListModels()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,20 +302,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="../../db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models.html">TranslationModels</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.ListModels </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>_isDefault</em>, </td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>source</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_source</em>, </td>
+          <td class="paramname"><em>target</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_target</em>&#160;</td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>defaultModels</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -302,192 +325,47 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists available models for the Language translator service with option to filter by source or by target language. </p>
+<p>Lists available standard and custom models by source or target language. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_isDefault</td><td>Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.</td></tr>
-    <tr><td class="paramname">_source</td><td>Define with target. Filters models by source language.</td></tr>
-    <tr><td class="paramname">_target</td><td>Define with source. Filters models by target language.</td></tr>
+    <tr><td class="paramname">source</td><td>Filter models by source language. (optional)</td></tr>
+    <tr><td class="paramname">target</td><td>Filter models by target language. (optional)</td></tr>
+    <tr><td class="paramname">defaultModels</td><td>Valid values are leaving it unset, <code>true</code>, and <code>false</code>. When <code>true</code>, it filters models to return the defaultModels model or models. When <code>false</code>, it returns the non-defaultModels model or models. If not set, it returns all models, defaultModels and non-defaultModels. (optional)</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TranslationModelsTranslationModels</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ac1fc28cc1a0b31f62a0fab5198bb2d25">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a102ffc12e5b66bad1e1db04076342521">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
-<a id="a3d1c2053e4651b7302be0b3147a06f0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d1c2053e4651b7302be0b3147a06f0e">&#9670;&nbsp;</a></span>Translate() <span class="overload">[1/4]</span></h2>
+<a id="ad8323899905e64d491f72cc4c02123b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8323899905e64d491f72cc4c02123b2">&#9670;&nbsp;</a></span>Translate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Translate </td>
+          <td class="memname"><a class="el" href="../../da/dc9/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_result.html">TranslationResult</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Translate </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_modelId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="../../df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html">TranslateRequest</a>&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_text</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Translates input text from the source language to the target language. </p>
+<p>Translates the input text from the source language to the target language. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_modelId</td><td>The unique model_id of the translation model used to translate text. The model_id inherently specifies source, target language, and domain. If the model_id is specified, there is no need for the source and target parameters, and the values will be ignored.</td></tr>
-    <tr><td class="paramname">_text</td><td>Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</td></tr>
+    <tr><td class="paramname">body</td><td>The translate request containing the text, with optional source, target, and model_id.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TranslationResultTranslationResult</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a5e3ff4e5150868a1fa62ec2ddd4356cc">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
-
-</div>
-</div>
-<a id="ae9bab0e95293b1d9eae2f37eee1fa5ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9bab0e95293b1d9eae2f37eee1fa5ea">&#9670;&nbsp;</a></span>Translate() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Translate </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_text</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Translates input text from the source language to the target language. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_source</td><td>Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system choose a default model with the right language pair to translate (usually the model based on the news domain).</td></tr>
-    <tr><td class="paramname">_target</td><td>Translation target language in 2 or 5 letter language code. Should use 2 letter codes except for when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a 2 letter language code is used, and no suitable default is found (such as “zh”), it returns an error.</td></tr>
-    <tr><td class="paramname">_text</td><td>Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a1d1efd4f476600e020301e2ba20aa7be">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
-
-</div>
-</div>
-<a id="a0083ef94a19d2bd2925845ad7698bf0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0083ef94a19d2bd2925845ad7698bf0c">&#9670;&nbsp;</a></span>Translate() <span class="overload">[3/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Translate </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_modelId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">List&lt; string &gt;&#160;</td>
-          <td class="paramname"><em>_text</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Translates input text from the source language to the target language. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_modelId</td><td>The unique model_id of the translation model used to translate text. The model_id inherently specifies source, target language, and domain. If the model_id is specified, there is no need for the source and target parameters, and the values will be ignored.</td></tr>
-    <tr><td class="paramname">_text</td><td>Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a73c7c91eafd15c13a301131e00a4fdcb">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
-
-</div>
-</div>
-<a id="ad126d6cca7fc28cd960f44b208eeb2b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad126d6cca7fc28cd960f44b208eeb2b3">&#9670;&nbsp;</a></span>Translate() <span class="overload">[4/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d4/ddd/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_response.html">TranslateResponse</a> IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService.Translate </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_source</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>_target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">List&lt; string &gt;&#160;</td>
-          <td class="paramname"><em>_text</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Translates input text from the source language to the target language. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_source</td><td>Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system choose a default model with the right language pair to translate (usually the model based on the news domain).</td></tr>
-    <tr><td class="paramname">_target</td><td>Translation target language in 2 or 5 letter language code. Should use 2 letter codes except for when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a 2 letter language code is used, and no suitable default is found (such as “zh”), it returns an error.</td></tr>
-    <tr><td class="paramname">_text</td><td>Input text in UTF-8 encoding. Multiple text query parameters indicate multiple input paragraphs, and a single string is valid input.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#a032052b87f58805d9b567ad49e866aab">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad5b40ad9d8639b3c02fb86d2b418d6c3">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>

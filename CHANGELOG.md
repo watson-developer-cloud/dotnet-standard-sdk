@@ -1,5 +1,11 @@
 Change Log
 ==========
+## Version 1.3.0
+_2018-01-07_
+* New: Generate Language Translator service.
+* Fix: Update Visual Recognition service to reflect API changes.
+* New: Use credential service for testing credentials.
+
 ## Version 1.2.0
 _2017-07-18_
 * Fix: Update input and context in MessageRequest and MessageResponse for `Conversation` to be dynamic.

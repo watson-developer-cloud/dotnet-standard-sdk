@@ -11,6 +11,7 @@ packages/
 coverage/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+.nuget
 
 # Build results
 [Dd]ebug/

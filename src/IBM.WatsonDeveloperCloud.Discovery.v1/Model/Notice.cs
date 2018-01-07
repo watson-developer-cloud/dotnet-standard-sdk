@@ -23,7 +23,7 @@ using System;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// A notice produced by the ingestion process.
+    /// A notice produced for the collection.
     /// </summary>
     public class Notice
     {
@@ -55,35 +55,41 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
         public SeverityEnum? Severity { get; set; }
         /// <summary>
-        /// Identifies the notice. Many notices may have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.
+        /// Identifies the notice. Many notices might have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.
         /// </summary>
-        /// <value>Identifies the notice. Many notices may have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.</value>
+        /// <value>Identifies the notice. Many notices might have the same ID. This field exists so that user applications can programmatically identify a notice and take automatic corrective action.</value>
         [JsonProperty("notice_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string NoticeId { get; private set; }
+        public virtual string NoticeId { get; private set; }
         /// <summary>
         /// The creation date of the collection in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         /// <value>The creation date of the collection in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
-        /// Unique identifier of the ingested document.
+        /// Unique identifier of the document.
         /// </summary>
-        /// <value>Unique identifier of the ingested document.</value>
+        /// <value>Unique identifier of the document.</value>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string DocumentId { get; private set; }
+        public virtual string DocumentId { get; private set; }
         /// <summary>
-        /// Ingestion step in which the notice occurred.
+        /// Unique identifier of the query used for relevance training.
         /// </summary>
-        /// <value>Ingestion step in which the notice occurred.</value>
+        /// <value>Unique identifier of the query used for relevance training.</value>
+        [JsonProperty("query_id", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string QueryId { get; private set; }
+        /// <summary>
+        /// Ingestion or training step in which the notice occurred.
+        /// </summary>
+        /// <value>Ingestion or training step in which the notice occurred.</value>
         [JsonProperty("step", NullValueHandling = NullValueHandling.Ignore)]
-        public string Step { get; private set; }
+        public virtual string Step { get; private set; }
         /// <summary>
         /// The description of the notice.
         /// </summary>
         /// <value>The description of the notice.</value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; private set; }
+        public virtual string Description { get; private set; }
     }
 
 }

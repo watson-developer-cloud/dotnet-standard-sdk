@@ -20,51 +20,64 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
     [TestClass]
     public class ConversationIntegrationTests
     {
-        public string _username;
-        public string _password;
-        public string _endpoint;
-        public ConversationService conversation;
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
+        private ConversationService conversation;
+        private static string credentials = string.Empty;
 
-        public string _workspaceID;
-        public string _inputString = "Turn on the winshield wipers";
+        private static string _workspaceID;
+        private string _inputString = "Turn on the winshield wipers";
 
-        public static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
-        public static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script.";
-        public static string _createdWorkspaceLanguage = "en";
-        public static string _createdWorkspaceId;
-        public static string _createdEntity = "entity";
-        public static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
-        public static string _createdValue = "value";
-        public static string _createdIntent = "intent";
-        public static string _createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
-        public static string _createdCounterExampleText = "Example text";
-        public static string _createdSynonym = "synonym";
-        public static string _createdExample = "example";
+        private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
+        private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script.";
+        private static string _createdWorkspaceLanguage = "en";
+        private static string _createdWorkspaceId;
+        private static string _createdEntity = "entity";
+        private static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
+        private static string _createdValue = "value";
+        private static string _createdIntent = "intent";
+        private static string _createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
+        private static string _createdCounterExampleText = "Example text";
+        private static string _createdSynonym = "synonym";
+        private static string _createdExample = "example";
 
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-                File.ReadAllText(environmentVariable);
+                Task.WaitAll();
+                var vcapServices = JObject.Parse(credentials);
 
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            _endpoint = vcapServices["conversation"][0]["credentials"]["url"].Value<string>();
-            _username = vcapServices["conversation"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["conversation"][0]["credentials"]["password"].Value<string>();
-            _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"].Value<string>();
-
+                _endpoint = vcapServices["conversation"]["url"].Value<string>();
+                _username = vcapServices["conversation"]["username"].Value<string>();
+                _password = vcapServices["conversation"]["password"].Value<string>();
+                _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
+            }
+            
             conversation = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+            conversation.Endpoint = _endpoint;
         }
 
 
@@ -85,42 +98,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             var result = conversation.Message(_workspaceID, messageRequest);
 
             Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Intents != null)
-                {
-                    foreach (RuntimeIntent intent in result.Intents)
-                    {
-                        Console.WriteLine(string.Format("intent: {0} | confidence: {1}", intent.Intent, intent.Confidence));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Intents is null.");
-                }
-
-                if (result.Output != null)
-                {
-                    if (result.Output.Text != null && result.Output.Text.Count > 0)
-                    {
-                        foreach (string output in result.Output.Text)
-                            Console.WriteLine(string.Format("Output: \"{0}\"", output));
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is no output.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Output is null.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Failed to message.");
-            }
         }
         #endregion
 
@@ -137,7 +114,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Workspaces != null && result.Workspaces.Count > 0)
                 {
-                    foreach (WorkspaceResponse workspace in result.Workspaces)
+                    foreach (Workspace workspace in result.Workspaces)
                         Console.WriteLine(string.Format("Workspace name: {0} | WorkspaceID: {1}", workspace.Name, workspace.WorkspaceId));
                 }
                 else
@@ -239,7 +216,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Counterexamples.Count > 0)
                 {
-                    foreach (ExampleResponse counterExample in result.Counterexamples)
+                    foreach (Counterexample counterExample in result.Counterexamples)
                         Console.WriteLine(string.Format("CounterExample name: {0} | Created: {1}", counterExample.Text, counterExample.Created));
                 }
                 else
@@ -258,7 +235,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         {
             Console.WriteLine("\nCalling CreateCounterExample()...");
 
-            CreateExample example = new CreateExample()
+            CreateCounterexample example = new CreateCounterexample()
             {
                 Text = _createdCounterExampleText
             };
@@ -300,7 +277,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         {
             string updatedCounterExampleText = _createdCounterExampleText + "-updated";
             Console.WriteLine(string.Format("\nCalling UpdateCounterExample({0}, {1})...", _createdWorkspaceId, updatedCounterExampleText));
-            UpdateExample example = new UpdateExample()
+            UpdateCounterexample example = new UpdateCounterexample()
             {
                 Text = updatedCounterExampleText
             };
@@ -334,8 +311,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Entities != null && result.Entities.Count > 0)
                 {
-                    foreach (EntityExportResponse entity in result.Entities)
-                        Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.Entity, entity.Description));
+                    foreach (EntityExport entity in result.Entities)
+                        Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.EntityName, entity.Description));
                 }
                 else
                 {
@@ -364,7 +341,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
             }
             else
             {
@@ -382,7 +359,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
             }
             else
             {
@@ -409,7 +386,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
                 _createdEntity = updatedEntity;
                 _createdEntityDescription = updatedEntityDescription;
             }
@@ -433,8 +410,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Values != null && result.Values.Count > 0)
                 {
-                    foreach (ValueExportResponse value in result.Values)
-                        Console.WriteLine(string.Format("value: {0} | Created: {1}", value.Value, value.Created));
+                    foreach (ValueExport value in result.Values)
+                        Console.WriteLine(string.Format("value: {0} | Created: {1}", value.ValueText, value.Created));
                 }
                 else
                 {
@@ -462,7 +439,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
             }
             else
             {
@@ -480,7 +457,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
             }
             else
             {
@@ -506,7 +483,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
                 _createdValue = updatedValue;
             }
             else
@@ -529,8 +506,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Synonyms != null && result.Synonyms.Count > 0)
                 {
-                    foreach (SynonymResponse synonym in result.Synonyms)
-                        Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.Synonym, synonym.Created));
+                    foreach (Synonym synonym in result.Synonyms)
+                        Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.SynonymText, synonym.Created));
                 }
                 else
                 {
@@ -558,7 +535,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
             }
             else
             {
@@ -576,7 +553,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
             }
             else
             {
@@ -601,7 +578,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
                 _createdSynonym = updatedSynonym;
             }
             else
@@ -624,8 +601,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Intents != null && result.Intents.Count > 0)
                 {
-                    foreach (IntentExportResponse intent in result.Intents)
-                        Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.Intent, intent.Created));
+                    foreach (IntentExport intent in result.Intents)
+                        Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.IntentName, intent.Created));
                 }
                 else
                 {
@@ -654,7 +631,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
             }
             else
             {
@@ -672,7 +649,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
             }
             else
             {
@@ -699,7 +676,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
                 _createdIntent = updatedIntent;
                 _createdIntentDescription = updatedIntentDescription;
             }
@@ -723,8 +700,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Examples != null && result.Examples.Count > 0)
                 {
-                    foreach (ExampleResponse example in result.Examples)
-                        Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.Text, example.Created));
+                    foreach (Example example in result.Examples)
+                        Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.ExampleText, example.Created));
                 }
                 else
                 {
@@ -753,7 +730,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
             }
             else
             {
@@ -771,7 +748,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
             }
             else
             {
@@ -796,7 +773,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
                 _createdExample = updatedExample;
             }
             else
@@ -837,7 +814,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 if (result.Logs != null && result.Logs.Count > 0)
                 {
-                    foreach (LogExportResponse log in result.Logs)
+                    foreach (LogExport log in result.Logs)
                         Console.WriteLine(string.Format("Log: {0} | Request timestamp: {1}", log.LogId, log.RequestTimestamp));
                 }
                 else

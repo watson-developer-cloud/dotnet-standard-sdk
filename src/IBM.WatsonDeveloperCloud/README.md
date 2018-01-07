@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
 
 ### Watson Developer Cloud
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud": "1.2.0"
+   "IBM.WatsonDeveloperCloud": "1.3.0"
 }
 
 ```

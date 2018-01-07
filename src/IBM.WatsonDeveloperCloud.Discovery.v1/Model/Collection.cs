@@ -45,7 +45,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum PENDING for pending
             /// </summary>
             [EnumMember(Value = "pending")]
-            PENDING
+            PENDING,
+            
+            /// <summary>
+            /// Enum MAINTENANCE for maintenance
+            /// </summary>
+            [EnumMember(Value = "maintenance")]
+            MAINTENANCE
         }
 
         /// <summary>
@@ -59,7 +65,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The unique identifier of the collection.</value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string CollectionId { get; private set; }
+        public virtual string CollectionId { get; private set; }
         /// <summary>
         /// The name of the collection.
         /// </summary>
@@ -77,13 +83,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The creation date of the collection in the format yyyy-MM-dd'T'HH:mmcon:ss.SSS'Z'.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp of when the collection was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         /// <value>The timestamp of when the collection was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The unique identifier of the collection's configuration.
         /// </summary>
@@ -91,9 +97,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfigurationId { get; set; }
         /// <summary>
-        /// The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.
+        /// The language of the documents stored in the collection. Permitted values include `en_us` (U.S. English), `de` (German), and `es` (Spanish).
         /// </summary>
-        /// <value>The language of the documents stored in the collection. The value should be in the form of an ISO 639-1 language code.</value>
+        /// <value>The language of the documents stored in the collection. Permitted values include `en_us` (U.S. English), `de` (German), and `es` (Spanish).</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
@@ -102,6 +108,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>The object providing information about the documents in the collection. Present only when retrieving details of a collection.</value>
         [JsonProperty("document_counts", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentCounts DocumentCounts { get; set; }
+        /// <summary>
+        /// The object providing information about the disk usage of the collection. Present only when retrieving details of a collection.
+        /// </summary>
+        /// <value>The object providing information about the disk usage of the collection. Present only when retrieving details of a collection.</value>
+        [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
+        public CollectionDiskUsage DiskUsage { get; set; }
+        /// <summary>
+        /// Provides information about the status of relevance training for collection.
+        /// </summary>
+        /// <value>Provides information about the status of relevance training for collection.</value>
+        [JsonProperty("training_status", NullValueHandling = NullValueHandling.Ignore)]
+        public TrainingStatus TrainingStatus { get; set; }
     }
 
 }

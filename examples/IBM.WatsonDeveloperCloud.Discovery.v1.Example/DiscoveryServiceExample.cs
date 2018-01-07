@@ -31,10 +31,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         public string _endpoint;
         public DiscoveryService _discovery;
 
+        private static string _existingEnvironmentId;
+
         private static string _createdEnvironmentId;
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
+        private string _createdTrainingQueryId;
+        private string _createdTrainingExampleId;
 
         private string _createdEnvironmentName = "dotnet-test-environment";
         private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
@@ -56,12 +60,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         #region Constructor
-        public DiscoveryServiceExample(string username, string password)
+        public DiscoveryServiceExample(string url, string username, string password)
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2016_12_01);
-            //_discovery.Endpoint = "http://localhost:1234";
+            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
+            _discovery.Endpoint = url;
 
             GetEnvironments();
+            if(!string.IsNullOrEmpty(_existingEnvironmentId))
+                DeleteExistingEnvironment();
             CreateEnvironment();
             Task.Factory.StartNew(() =>
             {
@@ -78,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             GetConfiguration();
             UpdateConfiguration();
 
-            PreviewEnvironment();
+            //PreviewEnvironment();
 
             GetCollections();
             CreateCollection();
@@ -93,6 +99,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Query();
             GetNotices();
 
+            ListTrainingData();
+            AddTrainingData();
+            GetTrainingData();
+            CreateTrainingExample();
+            GetTrainingExample();
+            UpdateTrainingExample();
+
+            DeleteTrainingExample();
+            DeleteTrainingData();
+            DeleteAllTrainingData();
             DeleteDocument();
             DeleteCollection();
             DeleteConfiguration();
@@ -111,6 +127,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+
+                foreach (Model.Environment environment in result.Environments)
+                {
+                    if (!(bool)environment._ReadOnly)
+                    {
+                        _existingEnvironmentId = environment.EnvironmentId;
+                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment {0} to delete", environment.Name));
+                    }
+                }
             }
             else
             {
@@ -231,7 +256,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             var result = _discovery.GetEnvironment(environmentId);
             Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
 
-            if (result.Status == ModelEnvironment.StatusEnum.ACTIVE)
+            if (result.Status == Model.Environment.StatusEnum.ACTIVE)
             {
                 autoEvent.Set();
             }
@@ -244,7 +269,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 });
             }
 
-            return result.Status == ModelEnvironment.StatusEnum.ACTIVE;
+            return result.Status == Model.Environment.StatusEnum.ACTIVE;
         }
         #endregion
 
@@ -489,7 +514,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -524,7 +549,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -567,7 +592,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Query
         private void Query()
         {
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {
@@ -588,6 +613,216 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region List Training Data
+        public void ListTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Add Training Data
+        public void AddTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling AddTrainingData()..."));
+
+            var newTrainingQuery = new NewTrainingQuery()
+            {
+                NaturalLanguageQuery = "why is the sky blue",
+                Filter = "text:meteorology"
+            };
+
+            var result = _discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = result.QueryId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Get Training Data
+        public void GetTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
+
+            var result = _discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Create Training Example
+        public void CreateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling CreateTrainingExample()..."));
+
+            var trainingExample = new TrainingExample()
+            {
+                DocumentId = _createdDocumentId,
+                Relevance = 1
+            };
+
+            var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = result.DocumentId;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Get Training Example
+        public void GetTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
+
+            var result = _discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Update Training Example
+        public void UpdateTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling UpdateTrainingExample()..."));
+
+            var trainingExample = new TrainingExamplePatch()
+            {
+                CrossReference = "crossReference",
+                Relevance = 1
+            };
+
+            var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete Training Example
+        public void DeleteTrainingExample()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
+
+            var result = _discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingExampleId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete Training Data
+        public void DeleteTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
+
+            var result = _discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                _createdTrainingQueryId = null;
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete All Training Data
+        public void DeleteAllTrainingData()
+        {
+            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
+
+            var result = _discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("result is null.");
+            }
+        }
+        #endregion
+
+        #region Delete Existing Environment
+        public void DeleteExistingEnvironment()
+        {
+            Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
+            var result = _discovery.DeleteEnvironment(_existingEnvironmentId);
+
+            if (result != null)
+            {
+                if (result != null)
+                {
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+
+                _existingEnvironmentId = null;
             }
             else
             {

@@ -49,9 +49,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("overwrite", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Overwrite { get; set; }
         /// <summary>
-        /// Name of the enrichment service to call. Currently the only valid value is `alchemy_language`.
+        /// Name of the enrichment service to call. Current options are `natural_language_understanding` and `elements`.   When using `natual_language_understanding`, the `options` object must contain Natural Language Understanding Options.   When using `elements` the `options` object must contain Element Classification options. Additionally, when using the `elements` enrichment the configuration specified and files ingested must meet all the criteria specified in [the documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)     Previous API versions also supported `alchemy_language`.
         /// </summary>
-        /// <value>Name of the enrichment service to call. Currently the only valid value is `alchemy_language`.</value>
+        /// <value>Name of the enrichment service to call. Current options are `natural_language_understanding` and `elements`.   When using `natual_language_understanding`, the `options` object must contain Natural Language Understanding Options.   When using `elements` the `options` object must contain Element Classification options. Additionally, when using the `elements` enrichment the configuration specified and files ingested must meet all the criteria specified in [the documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)     Previous API versions also supported `alchemy_language`.</value>
         [JsonProperty("enrichment", NullValueHandling = NullValueHandling.Ignore)]
         public string EnrichmentName { get; set; }
         /// <summary>

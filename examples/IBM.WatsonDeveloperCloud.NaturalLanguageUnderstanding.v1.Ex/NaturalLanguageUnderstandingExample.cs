@@ -25,10 +25,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
 
         private string _nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
         #region Constructor
-        public NaturalLanguageUnderstandingExample(string username, string password)
+        public NaturalLanguageUnderstandingExample(string url, string username, string password)
         {
             _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService(username, password, NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
-            //_naturalLanguageUnderstandingService.Endpoint = "http://localhost:1234";
+            _naturalLanguageUnderstandingService.Endpoint = url;
 
             Analyze();
             ListModels();
@@ -279,13 +279,13 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
         private void ListModels()
         {
             Console.WriteLine(string.Format("\nCalling ListModels()..."));
-            var result = _naturalLanguageUnderstandingService.GetModels();
+            var result = _naturalLanguageUnderstandingService.ListModels();
 
             if(result != null)
             {
                 if(result.Models != null && result.Models.Count > 0)
                 {
-                    foreach(CustomModel model in result.Models)
+                    foreach(Model.Model model in result.Models)
                     {
                         Console.WriteLine(string.Format("Model id: {0} | status: {1} | language: {3} | description: {4}", model.ModelId, model.Status, model.Language, model.Description));
                     }

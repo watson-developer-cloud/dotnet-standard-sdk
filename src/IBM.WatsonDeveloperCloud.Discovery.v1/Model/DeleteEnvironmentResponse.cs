@@ -48,9 +48,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// The unique identifier for this environment.
+        /// The unique identifier for the environment.
         /// </summary>
-        /// <value>The unique identifier for this environment.</value>
+        /// <value>The unique identifier for the environment.</value>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnvironmentId { get; set; }
     }

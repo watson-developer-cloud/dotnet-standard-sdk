@@ -14,9 +14,11 @@
 * limitations under the License.
 *
 */
+
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 {
@@ -24,13 +26,28 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
     {
         static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["language_translator"][0]["credentials"]["username"];
-            var _password = vcapServices["language_translator"][0]["credentials"]["password"];
+            string credentials = string.Empty;
 
-            LanguageTranslatorServiceExample _languageTranslatorExample = new LanguageTranslatorServiceExample(_username.ToString(), _password.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["language_translator"]["url"];
+            var _username = vcapServices["language_translator"]["username"];
+            var _password = vcapServices["language_translator"]["password"];
+
+            LanguageTranslatorServiceExample _languageTranslatorExample = new LanguageTranslatorServiceExample(_url.ToString(), _username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

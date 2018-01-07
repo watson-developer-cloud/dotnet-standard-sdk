@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +20,17 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
+    /// <summary>
+    /// The response type for listing existing translation models.
+    /// </summary>
     public class TranslationModels
     {
         /// <summary>
-        /// An List of available models.
+        /// An array of available models.
         /// </summary>
-        [JsonProperty("models")]
-        public List<ModelPayload> Models { get; set; }
+        /// <value>An array of available models.</value>
+        [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TranslationModel> Models { get; set; }
     }
+
 }

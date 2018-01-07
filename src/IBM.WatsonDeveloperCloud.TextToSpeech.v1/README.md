@@ -29,7 +29,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.TextToSpeech.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "1.3.0"
 }
 
 ```
@@ -91,7 +91,7 @@ Synthesizes text to spoken audio, returning the synthesized audio stream as an a
 With either request method, you can provide plain text or text that is annotated with SSML.
 ```cs
 //  returns a stream of audio data from text in wave format using the Allison voice
-var results = _textToSpeech.Synthesize(_text, Voice.EN_ALLISON, AudioType.WAV);
+var results = _textToSpeech.Synthesize(_text, "<voice>", "<audio-type>");
 ```
 
 <!-- #### Synthesize audio using websockets
@@ -207,7 +207,7 @@ Returns the translation for a single word from the specified custom model. The o
 Deletes a single word from the specified custom voice model. Only the owner of a custom voice model can use this method to delete a word from the model.
 ```cs
 //  deletes the word "jpl" from the custom voice model
-_textToSpeech.DeleteWord(_customVoiceModelID, "jpl");
+_textToSpeech.DeleteWord(_customVoiceModelID, "<word-to-delete>");
 ```
 
 [text-to-speech]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/index.html

@@ -18,6 +18,7 @@
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
+using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
@@ -33,37 +34,48 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
     public class SpeechToTextServiceIntegrationTest
     {
         private const string SESSION_STATUS_INITIALIZED = "initialized";
-        private string _userName;
-        private string _password;
-        private string _endpoint;
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
         private static string _createdCustomizationID;
-        AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private static string credentials = string.Empty;
+        private SpeechToTextService _speechToText;
 
         [TestInitialize]
         public void Setup()
         {
 
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-            File.ReadAllText(environmentVariable);
+                Task.WaitAll();
 
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            _endpoint = vcapServices["speech_to_text"][0]["credentials"]["url"].Value<string>();
-            _userName = vcapServices["speech_to_text"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["speech_to_text"][0]["credentials"]["password"].Value<string>();
+                var vcapServices = JObject.Parse(credentials);
+                _endpoint = vcapServices["speech_to_text"]["url"].Value<string>();
+                _username = vcapServices["speech_to_text"]["username"].Value<string>();
+                _password = vcapServices["speech_to_text"]["password"].Value<string>();
+            }
         }
 
         [TestMethod]
         public void t00_GetModels_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            var results = service.GetModels();
+            var results = _speechToText.GetModels();
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Models);
@@ -75,12 +87,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t01_GetModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
-            var results = service.GetModel(modelName);
+            var results = _speechToText.GetModel(modelName);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Name);
@@ -90,17 +102,17 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t02_CreateSession_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             string modelName = "en-US_NarrowbandModel";
 
-            var model = service.GetModel(modelName);
+            var model = _speechToText.GetModel(modelName);
 
             var result =
-                service.CreateSession(model.Name);
+                _speechToText.CreateSession(model.Name);
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.SessionId);
@@ -109,18 +121,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t03_GetSessionStatus_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
-            var model = service.GetModel(modelName);
+            var model = _speechToText.GetModel(modelName);
 
             var session =
-                service.CreateSession(model.Name);
+                _speechToText.CreateSession(model.Name);
 
             var result =
-                service.GetSessionStatus(session);
+                _speechToText.GetSessionStatus(session);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(SESSION_STATUS_INITIALIZED, result.Session.State);
@@ -129,14 +141,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t04_Recognize_BodyContent_Sucess()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             FileStream audio =
                 File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
-                service.Recognize(audio.GetMediaTypeFromFile(), audio, "");
+                _speechToText.Recognize(audio.GetMediaTypeFromFile(), audio, "");
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -148,14 +160,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t05_Recognize_FormData_Sucess()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             FileStream audio =
                 File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
-                service.Recognize(audio.GetMediaTypeFromFile(),
+                _speechToText.Recognize(audio.GetMediaTypeFromFile(),
                                   new Metadata()
                                   {
                                       PartContentType = audio.GetMediaTypeFromFile()
@@ -172,19 +184,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t06_Recognize_WithSession_BodyContent_Sucess()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             string modelName = "en-US_BroadbandModel";
 
             var session =
-                service.CreateSession(modelName);
+                _speechToText.CreateSession(modelName);
 
             FileStream audio =
                 File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
-                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
+                _speechToText.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.Results);
@@ -196,19 +208,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t07_Recognize_WithSession_FormData_Sucess()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             string modelName = "en-US_BroadbandModel";
 
             var session =
-                service.CreateSession(modelName);
+                _speechToText.CreateSession(modelName);
 
             FileStream audio =
                 File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
 
             var results =
-                service.RecognizeWithSession(session.SessionId,
+                _speechToText.RecognizeWithSession(session.SessionId,
                                              audio.GetMediaTypeFromFile(),
                                              new Metadata()
                                              {
@@ -226,15 +238,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t08_ObserveResult_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             string modelName = "en-US_BroadbandModel";
 
             var session =
-                service.CreateSession(modelName);
+                _speechToText.CreateSession(modelName);
 
             FileStream audio =
                 File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
@@ -246,7 +258,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var taskObserveResult = Task.Factory.StartNew<List<SpeechRecognitionEvent>>(() =>
             {
-                return service.ObserveResult(session.SessionId, interimResults: true);
+                return _speechToText.ObserveResult(session.SessionId, interimResults: true);
             });
 
             taskObserveResult.ContinueWith((antecedent) =>
@@ -263,7 +275,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var taskRecognizeWithSession = Task.Factory.StartNew(() =>
             {
-                service.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "chunked", modelName);
+                _speechToText.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "chunked", modelName);
             });
 
             taskObserveResult.Wait();
@@ -272,15 +284,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t09_CreateCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             string modelName = "en-US_BroadbandModel";
 
             var customizationId =
-                service.CreateCustomModel("model_test", modelName, "Test of Create Custom Model method");
+                _speechToText.CreateCustomModel("model_test", modelName, "Test of Create Custom Model method");
 
             _createdCustomizationID = customizationId.CustomizationId;
 
@@ -291,10 +303,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t10_AddCorpus_Success()
         {
-            SpeechToTextService service =
-               new SpeechToTextService(_userName, _password);
+            _speechToText =
+               new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
@@ -302,7 +314,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             var body =
                 File.OpenRead(@"SpeechToTextTestData\test-stt-corpus.txt");
 
-            object result = service.AddCorpus(customization,
+            object result = _speechToText.AddCorpus(customization,
                               "stt_integration",
                               false,
                               body);
@@ -313,15 +325,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t11_TrainCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            var result = service.TrainCustomModel(customization);
+            var result = _speechToText.TrainCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -337,12 +349,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t13_AddCustomWords_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
-            object result = service.AddCustomWords(_createdCustomizationID,
+            object result = _speechToText.AddCustomWords(_createdCustomizationID,
                                   new Words()
                                   {
                                       WordsProperty = new List<Word>()
@@ -383,15 +395,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t14_TrainCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            var result = service.TrainCustomModel(customization);
+            var result = _speechToText.TrainCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -407,15 +419,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t16_AddCustomWord_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            object result = service.AddCustomWord(customization,
+            object result = _speechToText.AddCustomWord(customization,
                                   "social",
                                   new WordDefinition()
                                   {
@@ -432,15 +444,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t17_TrainCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            var result = service.TrainCustomModel(customization);
+            var result = _speechToText.TrainCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -456,13 +468,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t19_ListCustomModels_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customizations =
-                service.ListCustomModels();
+                _speechToText.ListCustomModels();
 
             Assert.IsNotNull(customizations);
             Assert.IsNotNull(customizations.Customization);
@@ -472,13 +484,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t20_ListCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var result =
-                service.ListCustomModel(_createdCustomizationID);
+                _speechToText.ListCustomModel(_createdCustomizationID);
 
             Assert.IsNotNull(result);
             Assert.IsFalse(string.IsNullOrEmpty(result.CustomizationId));
@@ -487,16 +499,16 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t21_ListCorpora_Success()
         {
-            SpeechToTextService service =
-               new SpeechToTextService(_userName, _password);
+            _speechToText =
+               new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
             var corpora =
-                service.ListCorpora(customization);
+                _speechToText.ListCorpora(customization);
 
             Assert.IsNotNull(corpora);
             Assert.IsNotNull(corpora.CorporaProperty);
@@ -506,19 +518,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t22_GetCorpus_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
             var corpora =
-                service.ListCorpora(customization);
+                _speechToText.ListCorpora(customization);
 
             var corpus =
-                service.GetCorpus(customization, corpora.CorporaProperty.First().Name);
+                _speechToText.GetCorpus(customization, corpora.CorporaProperty.First().Name);
 
             Assert.IsNotNull(corpus);
             Assert.IsNotNull(corpus.Name);
@@ -528,13 +540,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t23_ListCustomWords_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var words =
-                service.ListCustomWords(_createdCustomizationID, null, null);
+                _speechToText.ListCustomWords(_createdCustomizationID, null, null);
 
             Assert.IsNotNull(words);
         }
@@ -542,37 +554,37 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t24_ListCustomWord_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
             var words =
-                service.ListCustomWords(customization, WordType.All, null);
+                _speechToText.ListCustomWords(customization, WordType.All, null);
 
             var word =
-                service.ListCustomWord(customization, words.Words.First().Word);
+                _speechToText.ListCustomWord(customization, words.Words.First().Word);
 
             Assert.IsNotNull(word);
         }
         [TestMethod]
         public void t25_DeleteCustomWord_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
             var words =
-                service.ListCustomWords(customization, WordType.All, null);
+                _speechToText.ListCustomWords(customization, WordType.All, null);
 
-            object result = service.DeleteCustomWord(customization, words.Words.First().Word);
+            object result = _speechToText.DeleteCustomWord(customization, words.Words.First().Word);
 
             Assert.IsNotNull(result);
         }
@@ -580,12 +592,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t26_TrainCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
-            var result = service.TrainCustomModel(_createdCustomizationID);
+            var result = _speechToText.TrainCustomModel(_createdCustomizationID);
 
             Assert.IsNotNull(result);
         }
@@ -602,18 +614,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t28_DeleteCorpus_Success()
         {
-            SpeechToTextService service =
-              new SpeechToTextService(_userName, _password);
+            _speechToText =
+              new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
             var corpora =
-                service.ListCorpora(customization);
+                _speechToText.ListCorpora(customization);
 
-            var result = service.DeleteCorpus(customization, corpora.CorporaProperty.First().Name);
+            var result = _speechToText.DeleteCorpus(customization, corpora.CorporaProperty.First().Name);
 
             Assert.IsNotNull(result);
         }
@@ -621,15 +633,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t29_ResetCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            var result = service.ResetCustomModel(customization);
+            var result = _speechToText.ResetCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -637,15 +649,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t30_UpgradeCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            var result = service.UpgradeCustomModel(customization);
+            var result = _speechToText.UpgradeCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -653,15 +665,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void t31_DeleteCustomModel_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
-            service.Endpoint = _endpoint;
+            _speechToText.Endpoint = _endpoint;
 
             var customization =
                 _createdCustomizationID;
 
-            object result = service.DeleteCustomModel(customization);
+            object result = _speechToText.DeleteCustomModel(customization);
 
             Assert.IsNotNull(result);
         }
@@ -669,27 +681,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         //[TestMethod]
         public void t32_DeleteSession_Success()
         {
-            SpeechToTextService service =
-                new SpeechToTextService(_userName, _password);
+            _speechToText =
+                new SpeechToTextService(_username, _password);
 
             string modelName = "en-US_NarrowbandModel";
 
-            var model = service.GetModel(modelName);
+            var model = _speechToText.GetModel(modelName);
 
             var session =
-                service.CreateSession(model.Name);
+                _speechToText.CreateSession(model.Name);
 
-            object result = service.DeleteSession(session);
+            object result = _speechToText.DeleteSession(session);
 
             Assert.IsNotNull(result);
         }
 
         private bool IsTrainingComplete()
         {
-            SpeechToTextService service = new SpeechToTextService(_userName, _password);
-            service.Endpoint = _endpoint;
+            _speechToText = new SpeechToTextService(_username, _password);
+            _speechToText.Endpoint = _endpoint;
 
-            var result = service.ListCustomModel(_createdCustomizationID);
+            var result = _speechToText.ListCustomModel(_createdCustomizationID);
 
             string status = result.Status.ToLower();
             Console.WriteLine(string.Format("Classifier status is {0}", status));

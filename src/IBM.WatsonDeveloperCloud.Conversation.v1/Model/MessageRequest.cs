@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>An input object that includes the input text.</value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public InputData Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>State information for the conversation. Continue a conversation by including the context object from the previous response.</value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
+        public Context Context { get; set; }
         /// <summary>
         /// Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
         /// </summary>

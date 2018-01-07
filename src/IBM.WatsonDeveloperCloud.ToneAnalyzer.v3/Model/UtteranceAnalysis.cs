@@ -43,6 +43,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// <value>An array of `ToneChatScore` objects that provides results for the most prevalent tones of the utterance. The array includes results for any tone whose score is at least 0.5. The array is empty if no tone has a score that meets this threshold.</value>
         [JsonProperty("tones", NullValueHandling = NullValueHandling.Ignore)]
         public List<ToneChatScore> Tones { get; set; }
+        /// <summary>
+        /// **`2017-09-21`:** An error message if the utterance contains more than 500 characters. The service does not analyze the utterance. **`2016-05-19`:** Not returned.
+        /// </summary>
+        /// <value>**`2017-09-21`:** An error message if the utterance contains more than 500 characters. The service does not analyze the utterance. **`2016-05-19`:** Not returned.</value>
+        [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
+        public string Error { get; set; }
     }
 
 }

@@ -16,8 +16,9 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -25,13 +26,28 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["discovery"][0]["credentials"]["username"];
-            var _password = vcapServices["discovery"][0]["credentials"]["password"];
+            string credentials = string.Empty;
 
-            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_username.ToString(), _password.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["discovery"]["url"];
+            var _username = vcapServices["discovery"]["username"];
+            var _password = vcapServices["discovery"]["password"];
+
+            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_url.ToString(), _username.ToString(), _password.ToString());
             Console.ReadKey();
         }
     }

@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 */
-using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
+
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using System;
@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 
     public class VisualRecognitionServiceExample
     {
-        private VisualRecognitionService _visualRecognition = new VisualRecognitionService();
+        private VisualRecognitionService _visualRecognition;
         private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
         private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/220px-President_Barack_Obama.jpg";
         private string _localGiraffeFilePath = @"VisualRecognitionTestData\giraffe_to_classify.jpg";
@@ -44,8 +44,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
         private string _createdClassifierId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
-        public VisualRecognitionServiceExample(string apikey)
+        public VisualRecognitionServiceExample(string url, string apikey)
         {
+            _visualRecognition = new VisualRecognitionService(apikey, url);
+
             _visualRecognition.SetCredential(apikey);
 
             ClassifyGet();

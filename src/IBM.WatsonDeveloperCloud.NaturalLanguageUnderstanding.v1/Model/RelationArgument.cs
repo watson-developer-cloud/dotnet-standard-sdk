@@ -31,6 +31,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<RelationEntity> Entities { get; set; }
         /// <summary>
+        /// Character offsets indicating the beginning and end of the mention in the analyzed text.
+        /// </summary>
+        /// <value>Character offsets indicating the beginning and end of the mention in the analyzed text.</value>
+        [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
+        public List<long?> Location { get; set; }
+        /// <summary>
         /// Text that corresponds to the argument.
         /// </summary>
         /// <value>Text that corresponds to the argument.</value>

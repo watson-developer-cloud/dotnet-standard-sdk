@@ -37,9 +37,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// Size of the environment.
+        /// **Deprecated**: Size of the environment.
         /// </summary>
-        /// <value>Size of the environment.</value>
+        /// <value>**Deprecated**: Size of the environment.</value>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         public long? Size { get; set; }
     }

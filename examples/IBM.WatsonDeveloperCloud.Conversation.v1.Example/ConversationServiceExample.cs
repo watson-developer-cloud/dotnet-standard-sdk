@@ -16,6 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
@@ -42,11 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         private string _createdExample = "example";
 
         #region Constructor
-        public ConversationServiceExample(string username, string password, string workspaceID)
+        public ConversationServiceExample(string url, string username, string password, string workspaceID)
         {
             _conversation = new ConversationService(username, password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+            _conversation.Endpoint = url;
+
             _workspaceID = workspaceID;
-            //_conversation.Endpoint = "http://localhost:1234";
 
             ListWorkspaces();
             CreateWorkspace();
@@ -115,41 +117,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             Console.WriteLine(string.Format("\nCalling Message(\"{0}\")...", _inputString));
             var result = _conversation.Message(_workspaceID, messageRequest);
 
-            if (result != null)
-            {
-                if (result.Intents != null)
-                {
-                    foreach (RuntimeIntent intent in result.Intents)
-                    {
-                        Console.WriteLine(string.Format("intent: {0} | confidence: {1}", intent.Intent, intent.Confidence));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Intents is null.");
-                }
-
-                if (result.Output != null)
-                {
-                    if (result.Output.Text != null && result.Output.Text.Count > 0)
-                    {
-                        foreach (string output in result.Output.Text)
-                            Console.WriteLine(string.Format("Output: \"{0}\"", output));
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is no output.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Output is null.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Failed to message.");
-            }
+           Console.WriteLine(string.Format("result: {0}", JsonConvert.SerializeObject(result, Formatting.Indented)));
         }
         #endregion
 
@@ -163,7 +131,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Workspaces != null && result.Workspaces.Count > 0)
                 {
-                    foreach (WorkspaceResponse workspace in result.Workspaces)
+                    foreach (Workspace workspace in result.Workspaces)
                         Console.WriteLine(string.Format("Workspace name: {0} | WorkspaceID: {1}", workspace.Name, workspace.WorkspaceId));
                 }
                 else
@@ -267,7 +235,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Counterexamples.Count > 0)
                 {
-                    foreach (ExampleResponse counterExample in result.Counterexamples)
+                    foreach (Counterexample counterExample in result.Counterexamples)
                         Console.WriteLine(string.Format("CounterExample name: {0} | Created: {1}", counterExample.Text, counterExample.Created));
                 }
                 else
@@ -285,7 +253,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         {
             Console.WriteLine("\nCalling CreateCounterExample()...");
 
-            CreateExample example = new CreateExample()
+            CreateCounterexample example = new CreateCounterexample()
             {
                 Text = _createdCounterExampleText
             };
@@ -321,7 +289,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         {
             string updatedCounterExampleText = _createdCounterExampleText + "-updated";
             Console.WriteLine(string.Format("\nCalling UpdateCounterExample({0}, {1})...", _createdWorkspaceId, updatedCounterExampleText));
-            UpdateExample example = new UpdateExample()
+            UpdateCounterexample example = new UpdateCounterexample()
             {
                 Text = updatedCounterExampleText
             };
@@ -365,8 +333,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Entities != null && result.Entities.Count > 0)
                 {
-                    foreach (EntityExportResponse entity in result.Entities)
-                        Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.Entity, entity.Description));
+                    foreach (EntityExport entity in result.Entities)
+                        Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.EntityName, entity.Description));
                 }
                 else
                 {
@@ -392,7 +360,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
             }
             else
             {
@@ -407,7 +375,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
             }
             else
             {
@@ -431,7 +399,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.Entity, result.Description));
+                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
                 _createdEntity = updatedEntity;
                 _createdEntityDescription = updatedEntityDescription;
             }
@@ -467,8 +435,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Values != null && result.Values.Count > 0)
                 {
-                    foreach (ValueExportResponse value in result.Values)
-                        Console.WriteLine(string.Format("value: {0} | Created: {1}", value.Value, value.Created));
+                    foreach (ValueExport value in result.Values)
+                        Console.WriteLine(string.Format("value: {0} | Created: {1}", value.ValueText, value.Created));
                 }
                 else
                 {
@@ -493,7 +461,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
             }
             else
             {
@@ -508,7 +476,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
             }
             else
             {
@@ -531,7 +499,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("value: {0}", result.Value));
+                Console.WriteLine(string.Format("value: {0}", result.ValueText));
                 _createdValue = updatedValue;
             }
             else
@@ -566,8 +534,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Synonyms != null && result.Synonyms.Count > 0)
                 {
-                    foreach (SynonymResponse synonym in result.Synonyms)
-                        Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.Synonym, synonym.Created));
+                    foreach (Synonym synonym in result.Synonyms)
+                        Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.SynonymText, synonym.Created));
                 }
                 else
                 {
@@ -592,7 +560,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
             }
             else
             {
@@ -607,7 +575,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
             }
             else
             {
@@ -629,7 +597,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("synonym: {0}", result.Synonym));
+                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
                 _createdSynonym = updatedSynonym;
             }
             else
@@ -664,8 +632,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Intents != null && result.Intents.Count > 0)
                 {
-                    foreach (IntentExportResponse intent in result.Intents)
-                        Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.Intent, intent.Created));
+                    foreach (IntentExport intent in result.Intents)
+                        Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.IntentName, intent.Created));
                 }
                 else
                 {
@@ -691,7 +659,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
             }
             else
             {
@@ -706,7 +674,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
             }
             else
             {
@@ -730,7 +698,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine("intent: {0} | description: {1}", result.Intent, result.Description);
+                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
                 _createdIntent = updatedIntent;
                 _createdIntentDescription = updatedIntentDescription;
             }
@@ -766,8 +734,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Examples != null && result.Examples.Count > 0)
                 {
-                    foreach (ExampleResponse example in result.Examples)
-                        Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.Text, example.Created));
+                    foreach (Model.Example example in result.Examples)
+                        Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.ExampleText, example.Created));
                 }
                 else
                 {
@@ -793,7 +761,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
             }
             else
             {
@@ -808,7 +776,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
             }
             else
             {
@@ -830,7 +798,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("example: {0}", result.Text));
+                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
                 _createdExample = updatedExample;
             }
             else
@@ -865,7 +833,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             {
                 if (result.Logs != null && result.Logs.Count > 0)
                 {
-                    foreach (LogExportResponse log in result.Logs)
+                    foreach (LogExport log in result.Logs)
                         Console.WriteLine(string.Format("Log: {0} | Request timestamp: {1}", log.LogId, log.RequestTimestamp));
                 }
                 else

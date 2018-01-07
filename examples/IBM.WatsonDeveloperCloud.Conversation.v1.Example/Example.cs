@@ -16,8 +16,9 @@
 */
 
 using System;
-using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 {
@@ -25,15 +26,34 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
     {
         public static void Main(string[] args)
         {
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var _username = vcapServices["conversation"][0]["credentials"]["username"];
-            var _password = vcapServices["conversation"][0]["credentials"]["password"];
-            var _workspaceID = vcapServices["conversation"][0]["credentials"]["workspaceId"];
+            string credentials = string.Empty;
 
-            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
-            ConversationContextExample _converationContextExample = new ConversationContextExample(_username.ToString(), _password.ToString(), _workspaceID.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["conversation"]["url"];
+            var _username = vcapServices["conversation"]["username"];
+            var _password = vcapServices["conversation"]["password"];
+            var _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";   //vcapServices["conversation"]["workspace_id"];
+
+            //  Uncomment to run the service example.
+            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
+
+            //  Uncomment to run the context example.
+            ConversationContextExample _converationContextExample = new ConversationContextExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
+
             Console.ReadKey();
         }
     }

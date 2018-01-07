@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
@@ -31,23 +32,29 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
+        /// The name of the entity.
+        /// </summary>
+        /// <value>The name of the entity.</value>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
+        /// <summary>
         /// Relevance score from 0 to 1. Higher values indicate greater relevance.
         /// </summary>
         /// <value>Relevance score from 0 to 1. Higher values indicate greater relevance.</value>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
         public float? Relevance { get; set; }
         /// <summary>
+        /// Entity mentions and locations.
+        /// </summary>
+        /// <value>Entity mentions and locations.</value>
+        [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<EntityMention> Mentions { get; set; }
+        /// <summary>
         /// How many times the entity was mentioned in the text.
         /// </summary>
         /// <value>How many times the entity was mentioned in the text.</value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
-        /// <summary>
-        /// The name of the entity.
-        /// </summary>
-        /// <value>The name of the entity.</value>
-        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
         /// <summary>
         /// Emotion analysis results for the entity, enabled with the "emotion" option.
         /// </summary>

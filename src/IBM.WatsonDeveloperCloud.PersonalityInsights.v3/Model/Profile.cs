@@ -16,7 +16,9 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
 {
@@ -26,11 +28,50 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     public class Profile
     {
         /// <summary>
-        /// The language model that was used to process the input; for example, `en`.
+        /// The language model that was used to process the input.
         /// </summary>
-        /// <value>The language model that was used to process the input; for example, `en`.</value>
+        /// <value>The language model that was used to process the input.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ProcessedLanguageEnum
+        {
+            
+            /// <summary>
+            /// Enum AR for ar
+            /// </summary>
+            [EnumMember(Value = "ar")]
+            AR,
+            
+            /// <summary>
+            /// Enum EN for en
+            /// </summary>
+            [EnumMember(Value = "en")]
+            EN,
+            
+            /// <summary>
+            /// Enum ES for es
+            /// </summary>
+            [EnumMember(Value = "es")]
+            ES,
+            
+            /// <summary>
+            /// Enum JA for ja
+            /// </summary>
+            [EnumMember(Value = "ja")]
+            JA,
+            
+            /// <summary>
+            /// Enum KO for ko
+            /// </summary>
+            [EnumMember(Value = "ko")]
+            KO
+        }
+
+        /// <summary>
+        /// The language model that was used to process the input.
+        /// </summary>
+        /// <value>The language model that was used to process the input.</value>
         [JsonProperty("processed_language", NullValueHandling = NullValueHandling.Ignore)]
-        public string ProcessedLanguage { get; set; }
+        public ProcessedLanguageEnum? ProcessedLanguage { get; set; }
         /// <summary>
         /// The number of words that were found in the input.
         /// </summary>
@@ -48,31 +89,31 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         /// </summary>
         /// <value>Detailed results for the Big Five personality characteristics (dimensions and facets) inferred from the input text.</value>
         [JsonProperty("personality", NullValueHandling = NullValueHandling.Ignore)]
-        public List<TraitTreeNode> Personality { get; set; }
+        public List<Trait> Personality { get; set; }
         /// <summary>
         /// Detailed results for the Needs characteristics inferred from the input text.
         /// </summary>
         /// <value>Detailed results for the Needs characteristics inferred from the input text.</value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
-        public List<TraitTreeNode> Values { get; set; }
+        public List<Trait> Values { get; set; }
         /// <summary>
         /// Detailed results for the Values characteristics inferred from the input text.
         /// </summary>
         /// <value>Detailed results for the Values characteristics inferred from the input text.</value>
         [JsonProperty("needs", NullValueHandling = NullValueHandling.Ignore)]
-        public List<TraitTreeNode> Needs { get; set; }
+        public List<Trait> Needs { get; set; }
         /// <summary>
         /// For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in terms of temporal characteristics. The results include information about the distribution of the content over the days of the week and the hours of the day.
         /// </summary>
         /// <value>For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in terms of temporal characteristics. The results include information about the distribution of the content over the days of the week and the hours of the day.</value>
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
-        public List<BehaviorNode> Behavior { get; set; }
+        public List<Behavior> Behavior { get; set; }
         /// <summary>
         /// If the `consumption_preferences` query parameter is `true`, detailed results for each category of consumption preferences. Each element of the array provides information inferred from the input text for the individual preferences of that category.
         /// </summary>
         /// <value>If the `consumption_preferences` query parameter is `true`, detailed results for each category of consumption preferences. Each element of the array provides information inferred from the input text for the individual preferences of that category.</value>
         [JsonProperty("consumption_preferences", NullValueHandling = NullValueHandling.Ignore)]
-        public List<ConsumptionPreferencesCategoryNode> ConsumptionPreferences { get; set; }
+        public List<ConsumptionPreferencesCategory> ConsumptionPreferences { get; set; }
         /// <summary>
         /// Warning messages associated with the input text submitted with the request. The array is empty if the input generated no warnings.
         /// </summary>

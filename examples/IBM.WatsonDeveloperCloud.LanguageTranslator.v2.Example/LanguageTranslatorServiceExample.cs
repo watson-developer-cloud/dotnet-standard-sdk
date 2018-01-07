@@ -15,25 +15,27 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.LanguageTranslator.v2;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using System;
 using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 {
     public class LanguageTranslatorServiceExample
     {
-        private LanguageTranslatorService _languageTranslator = new LanguageTranslatorService();
+        private LanguageTranslatorService _languageTranslator;
         private string _glossaryPath = "glossary.tmx";
-        private string _baseModel = "en-es";
-        private string _customModelName = "dotnet-standard-custom-translation-model";
-        private string _customModelID = "en-es";
+        private string _baseModel = "en-fr";
+        private string _customModelName = "dotnetExampleModel";
+        private string _customModelID = "en-fr";
         private string _text = "I'm sorry, Dave. I'm afraid I can't do that.";
 
-        public LanguageTranslatorServiceExample(string username, string password)
+        public LanguageTranslatorServiceExample(string url, string username, string password)
         {
-            _languageTranslator.SetCredential(username, password);
+            _languageTranslator = new LanguageTranslatorService(username, password);
+            _languageTranslator.Endpoint = url;
 
             ListModels();
             CreateModel();
@@ -41,7 +43,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
             Translate();
             GetIdentifiableLanguages();
             Identify();
-            //DeleteModel();
+            DeleteModel();
+
+            Console.WriteLine("\nLanguage Translation examples complete.");
         }
 
         #region List Models
@@ -51,24 +55,13 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 
             var result = _languageTranslator.ListModels();
 
-            if(result != null)
+            if (result != null)
             {
-                if(result.Models != null && result.Models.Count > 0)
-                {
-                    Console.WriteLine("Models found:");
-                    foreach (ModelPayload model in result.Models)
-                    {
-                        Console.WriteLine(string.Format("Name: {0} | Status: {1} | ModelID: {2}", model.Name, model.Status, model.ModelId));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No models were found.");
-                }
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to list models.");
+                Console.WriteLine("result is null.");
             }
         }
         #endregion
@@ -79,20 +72,17 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
                 Console.WriteLine(string.Format("Calling CreateModel({0}, {1}, {2})...", _baseModel, _customModelName, _glossaryPath));
-                var result =
-                    _languageTranslator.CreateModel(CreateModelOptions.CreateOptions()
-                                                                      .WithBaseModelId(_baseModel)
-                                                                      .WithName(_customModelName)
-                                                                      .SetForcedGlossary(fs));
+                
+                var result = _languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary:fs);
 
                 if (result != null)
                 {
-                    Console.WriteLine(string.Format("Model ID: {0}", result.ModelId));
+                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
                     _customModelID = result.ModelId;
                 }
                 else
                 {
-                    Console.WriteLine("Failed to create custom model.");
+                    Console.WriteLine("result is null.");
                 }
             }
         }
@@ -101,17 +91,17 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Get Model Details
         private void GetModelDetails()
         {
-            Console.WriteLine(string.Format("Calling GetModdelDetails({0})...", _customModelID));
+            Console.WriteLine(string.Format("Calling GetModelDetails({0})...", _customModelID));
 
-            var result = _languageTranslator.GetModelDetails(_customModelID);
+            var result = _languageTranslator.GetModel(_customModelID);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Name: {0} | Status: {1} | ModelID: {2}", result.Name, result.Status, result.ModelId));
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine(string.Format("Failed to get details for model {0}.", _customModelID));
+                Console.WriteLine("result is null.");
             }
         }
         #endregion
@@ -119,28 +109,26 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Translate
         private void Translate()
         {
-            Console.WriteLine(string.Format("Calling Translate({0}, {1})...", _customModelID, _text));
+            Console.WriteLine(string.Format("Calling Translate({0}, {1})...", _baseModel, _text));
 
-            var result = _languageTranslator.Translate(_customModelID, _text);
+            var translateRequest = new TranslateRequest()
+            {
+                Text = new List<string>()
+                {
+                    _text
+                },
+                ModelId = _baseModel
+            };
+
+            var result = _languageTranslator.Translate(translateRequest);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Word Count: {0} | Character Count: {1}", result.WordCount, result.CharacterCount));
-                if(result.Translations != null && result.Translations.Count > 0)
-                {
-                    foreach(Translations translation in result.Translations)
-                    {
-                        Console.WriteLine(string.Format("Translation: {0}", translation.Translation));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Translation was not found.");
-                }
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to translate.");
+                Console.WriteLine("result is null.");
             }
         }
         #endregion
@@ -148,28 +136,17 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         #region Get Identifiable Languages
         private void GetIdentifiableLanguages()
         {
-            Console.WriteLine("Calling GetIdentifiableLanguages()...");
+            Console.WriteLine("Calling ListIdentifiableLanguages()...");
 
-            var result = _languageTranslator.GetIdentifiableLanguages();
+            var result = _languageTranslator.ListIdentifiableLanguages();
 
             if (result != null)
             {
-                if (result.Languages != null && result.Languages.Count > 0)
-                {
-                    Console.WriteLine("Languages found.");
-                    foreach (IdentifiableLanguage language in result.Languages)
-                    {
-                        Console.WriteLine(string.Format("Name: {0} | Lanuguage: {1}", language.Name, language.Language));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Identifiable languages were not found.");
-                }
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to get identifiable languages.");
+                Console.WriteLine("result is null.");
             }
         }
         #endregion
@@ -183,22 +160,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 
             if (result != null)
             {
-                if (result.Languages != null && result.Languages.Count > 0)
-                {
-                    Console.WriteLine("Languages identified.");
-                    foreach (IdentifiedLanguage language in result.Languages)
-                    {
-                        Console.WriteLine(string.Format("Language: {0} | Confidence: {1}", language.Language, language.Confidence));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Language was not found.");
-                }
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to identify languages.");
+                Console.WriteLine("result is null.");
             }
         }
         #endregion
@@ -212,11 +178,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
 
             if (result != null)
             {
-                Console.WriteLine("deleted: {0}", result.Deleted);
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to delete models.");
+                Console.WriteLine("result is null.");
             }
         }
         #endregion

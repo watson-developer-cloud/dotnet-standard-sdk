@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
 
 ### Conversation
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.Conversation.v1": "1.3.0"
 }
 
 ```
@@ -29,7 +29,7 @@ You complete these steps to implement your application:
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and credentials must be set.
 ```cs
-// create a Language Translator Service instance
+// create a Conversation Service instance
 ConversationService _conversation = new ConversationService();
 
 // set the credentials
@@ -365,4 +365,4 @@ List the events from the log of a workspace.
 var result = _conversation.ListLogs(<workspaceId>);
 ```
 
-[conversation]:https://www.ibm.com/watson/developercloud/doc/conversation/index.html
+[conversation]:https://console.bluemix.net/docs/services/conversation/index.html#about

@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1/)
 
 ### Natural Language Understanding
 With [Natural Language Understanding][natural_language_understanding] developers can analyze semantic features of text input, including - categories, concepts, emotion, entities, keywords, metadata, relations, semantic roles, and sentiment.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.2.0"
+   "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "1.3.0"
 }
 
 ```

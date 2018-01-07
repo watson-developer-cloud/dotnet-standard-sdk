@@ -15,7 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
@@ -30,19 +29,30 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The unique identifier of the document.</value>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public string Id { get; set; }
+        public dynamic Id { get; set; }
         /// <summary>
-        /// The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.
+        /// *Deprecated* This field is now part of the `result_metadata` object.
         /// </summary>
-        /// <value>The confidence score of the result's analysis. Scores range from 0 to 1, with a higher score indicating greater confidence.</value>
+        /// <value>*Deprecated* This field is now part of the `result_metadata` object.</value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        public dynamic Score { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
         /// <value>Metadata of the document.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public dynamic Metadata { get; set; }
+        /// <summary>
+        /// The collection ID of the collection containing the document for this result.
+        /// </summary>
+        /// <value>The collection ID of the collection containing the document for this result.</value>
+        [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic CollectionId { get; set; }
+        /// <summary>
+        /// Gets or Sets ResultMetadata
+        /// </summary>
+        [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic ResultMetadata { get; set; }
     }
 
 }

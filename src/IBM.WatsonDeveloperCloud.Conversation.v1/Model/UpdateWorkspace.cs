@@ -66,13 +66,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>An array of objects defining input examples that have been marked as irrelevant input.</value>
         [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateExample> Counterexamples { get; set; }
+        public List<CreateCounterexample> Counterexamples { get; set; }
         /// <summary>
         /// Any metadata related to the workspace.
         /// </summary>
         /// <value>Any metadata related to the workspace.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
+        /// <summary>
+        /// Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// </summary>
+        /// <value>Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
+        [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? LearningOptOut { get; set; }
     }
 
 }

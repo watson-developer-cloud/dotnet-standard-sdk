@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
@@ -64,10 +65,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             this.Client = httpClient;
         }
 
-        public ToneAnalysis Tone(ToneInput body, string tones = null, bool? sentences = null)
+        public ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+            if (toneInput == null)
+                throw new ArgumentNullException(nameof(toneInput));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
 
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -79,9 +82,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v3/tone")
                                 .WithArgument("version", VersionDate)
-                                .WithArgument("tones", tones)
+                                .WithHeader("Content-Type", contentType)
+                                .WithHeader("Content-Language", contentLanguage)
+                                .WithHeader("Accept-Language", acceptLanguage)
                                 .WithArgument("sentences", sentences)
-                                .WithBody<ToneInput>(body)
+                                .WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null)
+                                .WithBody<ToneInput>(toneInput)
                                 .As<ToneAnalysis>()
                                 .Result;
             }
@@ -93,7 +99,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             return result;
         }
 
-        public UtteranceAnalyses ToneChat(ToneChatInput utterances)
+        public UtteranceAnalyses ToneChat(ToneChatInput utterances, string acceptLanguage = null)
         {
             if (utterances == null)
                 throw new ArgumentNullException(nameof(utterances));
@@ -108,6 +114,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v3/tone_chat")
                                 .WithArgument("version", VersionDate)
+                                .WithHeader("Accept-Language", acceptLanguage)
                                 .WithBody<ToneChatInput>(utterances)
                                 .As<UtteranceAnalyses>()
                                 .Result;

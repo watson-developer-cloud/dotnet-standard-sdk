@@ -55,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             : this()
         {
             if (string.IsNullOrEmpty(apikey))
-                throw new ArgumentNullException(nameof(apikey));
+                throw new ArgumentNullException("'apikey' is required");
 
             if (!string.IsNullOrEmpty(endpoint))
                 this.Endpoint = endpoint;
@@ -67,9 +67,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             : this()
         {
             if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
+                throw new ArgumentNullException("'httpClient' is required");
 
             this.Client = httpClient;
+        }
+
+        private string _VersionDate;
+        public string VersionDate
+        {
+            get { return string.IsNullOrEmpty(_VersionDate) ? VERSION_DATE_2016_05_20 : _VersionDate; }
+            set { _VersionDate = value; }
         }
 
         #region Classify
@@ -78,7 +85,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             ClassifyTopLevelMultiple result = null;
 
             if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException("'url' is required for 'Classify()'");
 
             string _classifierIDs = classifierIDs != null ? string.Join(",", classifierIDs) : "default";
 
@@ -115,12 +122,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             ClassifyPost result = null;
 
             if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1}", nameof(imageData), nameof(urls)));
+                throw new ArgumentNullException(string.Format("{0} or {1} are required for 'Classify()'", nameof(imageData), "'urls'"));
 
             if (imageData != null)
             {
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
+                    throw new ArgumentException(string.Format("{0} and {1} are required for 'Classify()'", nameof(imageDataName),nameof(imageDataMimeType)));
             }
 
             if (owners != null)
@@ -144,14 +151,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 {
                     var imageContent = new ByteArrayContent(imageData);
                     imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
-                    formData.Add(imageContent, imageDataName, imageDataName);
+                    formData.Add(imageContent, "images_file", imageDataName);
                 }
 
                 if (!string.IsNullOrEmpty(parameters))
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(parametersContent);
+                    formData.Add(parametersContent, "parameters");
                 }
 
                 result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFY}")
@@ -175,7 +182,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public Faces DetectFaces(string url)
         {
             if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException(nameof(url));
+                throw new ArgumentNullException("'url' is required for 'DetectFaces()'");
 
             Faces result = null;
 
@@ -201,12 +208,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             Faces result = null;
 
             if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1}", nameof(imageData), nameof(urls)));
+                throw new ArgumentNullException(string.Format("{0} or {1} are required for 'DetectFaces()'", nameof(imageData), "'urls'"));
 
             if (imageData != null)
             {
                 if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentNullException(string.Format("{0} or {1}", nameof(imageDataName), nameof(imageDataMimeType)));
+                    throw new ArgumentNullException(string.Format("{0} and {1} are required for 'DetectFaces()'", nameof(imageDataName), nameof(imageDataMimeType)));
             }
 
             try
@@ -265,7 +272,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     .WithArgument("api_key", ApiKey)
                     .WithArgument("version", VERSION_DATE_2016_05_20)
                     .WithArgument("verbose", false)
-                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersTopLevelBrief>()
                     .Result;
             }
@@ -387,7 +393,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
                     .WithArgument("api_key", ApiKey)
                     .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
                     .As<GetClassifiersPerClassifierVerbose>()
                     .Result;
             }
@@ -444,378 +449,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
 
             return result;
-        }
-        #endregion
-
-        #region Collections
-        public GetCollections GetCollections()
-        {
-            GetCollections result = null;
-
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{PATH_COLLECTIONS}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<GetCollections>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public CreateCollection CreateCollection(string name)
-        {
-            CreateCollection result = null;
-
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException(nameof(name));
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (!string.IsNullOrEmpty(name))
-                {
-
-                    var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    nameContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(nameContent, "name");
-                }
-
-                result = this.Client.PostAsync($"{this.Endpoint}{PATH_COLLECTIONS}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithBodyContent(formData)
-                    .As<CreateCollection>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public object DeleteCollection(string collectionId)
-        {
-            object result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            try
-            {
-                result = this.Client.DeleteAsync($"{this.Endpoint}{PATH_COLLECTIONS}/{collectionId}")
-                               .WithArgument("api_key", ApiKey)
-                               .WithArgument("version", VERSION_DATE_2016_05_20)
-                               .As<object>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public CreateCollection GetCollection(string collectionId)
-        {
-            CreateCollection result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION, collectionId)}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<CreateCollection>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region Images
-        public GetCollectionImages GetCollectionImages(string collectionId)
-        {
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            GetCollectionImages result = null;
-
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGES, collectionId)}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<GetCollectionImages>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public CollectionsConfig AddImage(string collectionId, byte[] imageData, string imageFileName, byte[] imageMetadata = null)
-        {
-            CollectionsConfig result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (imageData == null || string.IsNullOrEmpty(imageFileName))
-                throw new ArgumentNullException("Image and image name required.");
-
-            string imageMimeType = GetImageMimeTypeFromFilename(imageFileName);
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                var imageDataContent = new ByteArrayContent(imageData);
-                imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
-                formData.Add(imageDataContent, "image_file", imageFileName);
-
-
-                if (imageMetadata != null)
-                {
-                    var imageMetadataContent = new ByteArrayContent(imageMetadata);
-                    imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(imageMetadataContent, "metadata", "metadata.json");
-                }
-
-                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGES, collectionId)}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .As<CollectionsConfig>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public object DeleteImage(string collectionId, string imageId)
-        {
-            object result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
-
-            try
-            {
-                result = this.Client.DeleteAsync($"{this.Endpoint}/v3/collections/{collectionId}/images/{imageId}")
-                               .WithArgument("api_key", ApiKey)
-                               .WithArgument("version", VERSION_DATE_2016_05_20)
-                               .As<object>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public GetCollectionsBrief GetImage(string collectionId, string imageId)
-        {
-            GetCollectionsBrief result = null;
-
-            if(string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
-
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE, collectionId, imageId)}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<GetCollectionsBrief>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region Metadata
-        public object DeleteImageMetadata(string collectionId, string imageId)
-        {
-            object result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
-
-            try
-            {
-                result = this.Client.DeleteAsync($"{this.Endpoint}/v3/collections/{collectionId}/images/{imageId}/metadata")
-                               .WithArgument("api_key", ApiKey)
-                               .WithArgument("version", VERSION_DATE_2016_05_20)
-                               .As<object>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public Dictionary<string, string> GetMetadata(string collectionId, string imageId)
-        {
-            Dictionary<string, string> result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
-
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<Dictionary<string, string>>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public Dictionary<string, string> AddImageMetadata(string collectionId, string imageId, byte[] imageMetadata)
-        {
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (string.IsNullOrEmpty(imageId))
-                throw new ArgumentNullException(nameof(imageId));
-
-            if (imageMetadata == null)
-                throw new ArgumentNullException(nameof(imageMetadata));
-
-            Dictionary<string, string> result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                var imageMetadataContent = new ByteArrayContent(imageMetadata);
-                imageMetadataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                formData.Add(imageMetadataContent, "metadata", "metadata.json");
-
-                result = this.Client.PutAsync($"{ this.Endpoint}{string.Format(PATH_COLLECTION_IMAGE_METADATA, collectionId, imageId)}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .As<Dictionary<string, string>>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region Find Similar
-        public SimilarImagesConfig FindSimilar(string collectionId, byte[] imageData, string imageFileName, int limit = 10)
-        {
-            SimilarImagesConfig result = null;
-
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if (imageData == null || string.IsNullOrEmpty(imageFileName))
-                throw new ArgumentNullException("Image and image name required.");
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-                string imageMimeType = GetImageMimeTypeFromFilename(imageFileName);
-
-                var imageDataContent = new ByteArrayContent(imageData);
-                imageDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageMimeType);
-                formData.Add(imageDataContent, "image_file", imageFileName);
-
-                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_FIND_SIMILAR, collectionId)}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("limit", limit.ToString())
-                    .WithBodyContent(formData)
-                    .As<SimilarImagesConfig>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region Utils
-        private string GetImageMimeTypeFromFilename(string filename)
-        {
-            if (string.IsNullOrEmpty(filename))
-                throw new ArgumentNullException(nameof(filename));
-
-            string imageMimeType = "";
-            if (!string.IsNullOrEmpty(filename))
-            {
-                string ext = Path.GetExtension(filename).ToLower();
-
-                if (ext == ".jpg" || ext == ".jpeg")
-                    imageMimeType = "image/jpeg";
-                else if (ext == ".png")
-                    imageMimeType = "image/png";
-                else
-                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
-            }
-
-            return imageMimeType;
         }
         #endregion
     }

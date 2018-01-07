@@ -165,24 +165,28 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                    .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
                    .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
                    .Returns(request);
-            request.WithBody<ToneInput>(Arg.Any<ToneInput>(), Arg.Any<MediaTypeHeaderValue>())
+            request.WithBody<ToneInput>(Arg.Any<ToneInput>())
                    .Returns(request);
             request.As<ToneAnalysis>()
                    .Returns(Task.FromResult(response));
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             service.VersionDate = "2016-05-19";
+            service.UserName = "username";
+            service.Password = "password";
 
             ToneInput toneInput = new ToneInput()
             {
                 Text = Arg.Any<string>()
             };
 
-            var analyzeTone = service.Tone(toneInput, Arg.Any<string>(), Arg.Any<bool>());
+            var analyzeTone = service.Tone(toneInput, "text/html");
 
             Assert.IsNotNull(analyzeTone);
             client.Received().PostAsync(Arg.Any<string>());
@@ -228,7 +232,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
                 Text = "test"
             };
 
-            service.Tone(toneInput);
+            service.Tone(toneInput, "application/json");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -288,7 +292,72 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
             #endregion
 
             ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
-            var analyzeTone = service.Tone(null, "tones", true);
+            var analyzeTone = service.Tone(null, "application/json");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Tone_ContentTypeEmpty()
+        {
+            #region response
+            ToneAnalysis response = new ToneAnalysis()
+            {
+                SentencesTone = new List<SentenceAnalysis>()
+                {
+                    new SentenceAnalysis()
+                    {
+                        SentenceId = 0,
+                        InputFrom = 0,
+                        InputTo = 0,
+                        Text = "string",
+                        ToneCategories = new List<ToneCategory>()
+                        {
+                            new ToneCategory()
+                            {
+                                CategoryName = "string",
+                                CategoryId = "string",
+                                Tones = new List<ToneScore>()
+                                {
+                                    new ToneScore()
+                                    {
+                                        ToneName = "string",
+                                        ToneId = "string",
+                                        Score = 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                DocumentTone = new DocumentAnalysis()
+                {
+                    ToneCategories = new List<ToneCategory>()
+                    {
+                        new ToneCategory()
+                        {
+                            CategoryName = "string",
+                            CategoryId = "string",
+                            Tones = new List<ToneScore>()
+                            {
+                                new ToneScore()
+                                {
+                                    ToneName = "string",
+                                    ToneId = "string",
+                                    Score = 0
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            #endregion
+
+            ToneInput toneInput = new ToneInput()
+            {
+                Text = Arg.Any<string>()
+            };
+
+            ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
+            var analyzeTone = service.Tone(toneInput, null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -302,7 +371,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
                 Text = Arg.Any<string>()
             };
 
-            var analyzeTone = service.Tone(toneInput, Arg.Any<string>(), Arg.Any<bool>());
+            var analyzeTone = service.Tone(toneInput, "application/json");
         }
 
         [TestMethod]
@@ -351,6 +420,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
                   .Returns(request);
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                   .Returns(request);
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
                    .Returns(request);
             request.WithBody(Arg.Any<ToneChatInput>())
                    .Returns(request);

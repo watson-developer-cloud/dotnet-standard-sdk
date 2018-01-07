@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The entities extracted from a sentence in a given document.
+    /// An entity that corresponds with an argument in a relation.
     /// </summary>
     public class RelationEntity
     {

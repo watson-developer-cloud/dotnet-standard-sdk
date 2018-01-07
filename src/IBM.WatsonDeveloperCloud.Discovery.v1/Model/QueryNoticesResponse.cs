@@ -40,6 +40,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryAggregation> Aggregations { get; set; }
+        /// <summary>
+        /// Gets or Sets Passages
+        /// </summary>
+        [JsonProperty("passages", NullValueHandling = NullValueHandling.Ignore)]
+        public List<QueryPassages> Passages { get; set; }
+        /// <summary>
+        /// Gets or Sets DuplicatesRemoved
+        /// </summary>
+        [JsonProperty("duplicates_removed", NullValueHandling = NullValueHandling.Ignore)]
+        public long? DuplicatesRemoved { get; set; }
     }
 
 }

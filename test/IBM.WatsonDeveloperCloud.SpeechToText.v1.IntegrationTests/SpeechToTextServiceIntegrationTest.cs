@@ -717,7 +717,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 });
             }
 
-            return result.Status.ToLower() == "ready";
+            return result.Status.ToLower() == "ready" || result.Status.ToLower() == "available";
         }
     }
 }

@@ -1,0 +1,11 @@
+var namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model =
+[
+    [ "Behavior", "d3/de1/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_behavior.html", "d3/de1/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_behavior" ],
+    [ "ConsumptionPreferences", "df/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences.html", "df/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences" ],
+    [ "ConsumptionPreferencesCategory", "d6/d11/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences_category.html", "d6/d11/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences_category" ],
+    [ "Content", "db/d67/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content.html", "db/d67/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content" ],
+    [ "ContentItem", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html", "d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item" ],
+    [ "Profile", "df/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html", "df/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile" ],
+    [ "Trait", "d1/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait.html", "d1/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait" ],
+    [ "Warning", "dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html", "dd/ded/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_warning" ]
+];

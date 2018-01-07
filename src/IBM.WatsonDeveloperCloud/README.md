@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
 
 ### Watson Developer Cloud
 

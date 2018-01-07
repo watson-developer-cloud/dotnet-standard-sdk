@@ -20,35 +20,48 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTests
 {
     [TestClass]
     public class NaturalLanguageUnderstandingIntTests
     {
-        public string _username;
-        public string _password;
-        public string _endpoint;
-        public NaturalLanguageUnderstandingService naturalLanguageUnderstanding;
-        public string _nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
+        private NaturalLanguageUnderstandingService naturalLanguageUnderstanding;
+        private static string credentials = string.Empty;
+        private string _nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
 
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-                File.ReadAllText(environmentVariable);
+                Task.WaitAll();
 
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            _endpoint = vcapServices["natural_language_understanding"][0]["credentials"]["url"].Value<string>();
-            _username = vcapServices["natural_language_understanding"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["natural_language_understanding"][0]["credentials"]["password"].Value<string>();
+                var vcapServices = JObject.Parse(credentials);
+                _endpoint = vcapServices["natural_language_understanding"]["url"].Value<string>();
+                _username = vcapServices["natural_language_understanding"]["username"].Value<string>();
+                _password = vcapServices["natural_language_understanding"]["password"].Value<string>();
+            }
 
             naturalLanguageUnderstanding = new NaturalLanguageUnderstandingService(_username, _password, NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+            naturalLanguageUnderstanding.Endpoint = _endpoint;
         }
 
         [TestMethod]
@@ -76,7 +89,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         [TestMethod]
         public void ListModels_Success()
         {
-            var result = naturalLanguageUnderstanding.GetModels();
+            var result = naturalLanguageUnderstanding.ListModels();
 
             Assert.IsNotNull(result);
         }

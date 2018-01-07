@@ -107,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("username", "password", "versionDate");
             service.VersionDate = null;
 
-            service.Analyze();
+            service.Analyze(new Parameters());
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -127,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
 
-            service.Analyze();
+            service.Analyze(new Parameters());
         }
 
         [TestMethod]
@@ -441,12 +441,15 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() {};
+            InlineResponse200 response = new InlineResponse200()
+            {
+                Deleted = "true"
+            };
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<InlineResponse200>()
                 .Returns(Task.FromResult(response));
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
@@ -456,6 +459,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().DeleteAsync(Arg.Any<string>());
+            Assert.IsNotNull(result.Deleted);
         }
         #endregion
 
@@ -466,7 +470,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("username", "password", "versionDate");
             service.VersionDate = null;
 
-            service.GetModels();
+            service.ListModels();
         }
 
         [TestMethod, ExpectedException(typeof(AggregateException))]
@@ -486,7 +490,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
 
-            service.GetModels();
+            service.ListModels();
         }
 
         [TestMethod]
@@ -501,9 +505,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             #region Response
             ListModelsResults response = new ListModelsResults()
             {
-                Models = new List<CustomModel>()
+                Models = new List<Model.Model>()
                 {
-                    new CustomModel()
+                    new Model.Model()
                     {
                         Status = "status",
                         ModelId = "modelId",
@@ -522,7 +526,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             service.VersionDate = "versionDate";
 
-            var result = service.GetModels();
+            var result = service.ListModels();
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());

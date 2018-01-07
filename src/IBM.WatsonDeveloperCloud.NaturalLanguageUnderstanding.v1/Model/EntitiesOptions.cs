@@ -31,6 +31,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
         /// <summary>
+        /// Set this to true to return locations of entity mentions.
+        /// </summary>
+        /// <value>Set this to true to return locations of entity mentions.</value>
+        [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Mentions { get; set; }
+        /// <summary>
         /// Enter a custom model ID to override the standard entity detection model.
         /// </summary>
         /// <value>Enter a custom model ID to override the standard entity detection model.</value>

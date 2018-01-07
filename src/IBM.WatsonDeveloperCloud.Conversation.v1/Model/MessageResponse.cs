@@ -36,19 +36,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>An array of intents recognized in the user input, sorted in descending order of confidence.</value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeIntent> Intents { get; set; }
+        public dynamic Intents { get; set; }
         /// <summary>
         /// An array of entities identified in the user input.
         /// </summary>
         /// <value>An array of entities identified in the user input.</value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeEntity> Entities { get; set; }
+        public dynamic Entities { get; set; }
         /// <summary>
         /// Whether to return more than one intent. `true` indicates that all matching intents are returned.
         /// </summary>
         /// <value>Whether to return more than one intent. `true` indicates that all matching intents are returned.</value>
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? AlternateIntents { get; set; }
+        public dynamic AlternateIntents { get; set; }
         /// <summary>
         /// State information for the conversation.
         /// </summary>
@@ -60,7 +60,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.</value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public RuntimeOutput Output { get; set; }
+        public dynamic Output { get; set; }
     }
 
 }

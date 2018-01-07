@@ -31,6 +31,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// <value>An array of `UtteranceAnalysis` objects that provides the results for each utterance of the input.</value>
         [JsonProperty("utterances_tone", NullValueHandling = NullValueHandling.Ignore)]
         public List<UtteranceAnalysis> UtterancesTone { get; set; }
+        /// <summary>
+        /// **`2017-09-21`:** A warning message if the content contains more than 50 utterances. The service analyzes only the first 50 utterances. **`2016-05-19`:** Not returned.
+        /// </summary>
+        /// <value>**`2017-09-21`:** A warning message if the content contains more than 50 utterances. The service analyzes only the first 50 utterances. **`2016-05-19`:** Not returned.</value>
+        [JsonProperty("warning", NullValueHandling = NullValueHandling.Ignore)]
+        public string Warning { get; set; }
     }
 
 }

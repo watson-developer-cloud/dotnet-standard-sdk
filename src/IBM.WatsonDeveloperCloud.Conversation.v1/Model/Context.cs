@@ -29,12 +29,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>The unique identifier of the conversation.</value>
         [JsonProperty("conversation_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ConversationId { get; set; }
+        public dynamic ConversationId { get; set; }
         /// <summary>
-        /// Gets or Sets System
+        /// For internal use only.
         /// </summary>
+        /// <value>For internal use only.</value>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public SystemResponse System { get; set; }
+        public dynamic System { get; set; }
     }
 
 }

@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>An input object that includes the input text.</value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public InputData Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>

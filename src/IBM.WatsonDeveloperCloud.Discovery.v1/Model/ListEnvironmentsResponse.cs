@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>An array of [environments] that are available for the service instance.</value>
         [JsonProperty("environments", NullValueHandling = NullValueHandling.Ignore)]
-        public List<ModelEnvironment> Environments { get; set; }
+        public List<Environment> Environments { get; set; }
     }
 
 }

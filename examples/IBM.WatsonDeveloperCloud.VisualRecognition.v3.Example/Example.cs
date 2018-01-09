@@ -14,10 +14,10 @@
 * limitations under the License.
 *
 */
-
 using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
+using System.Threading.Tasks;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
 {
@@ -25,13 +25,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Example
     {
         static void Main(string[] args)
         {
-            //  Get credentials from environmental variables. Alternatively, instantiate the service with apikey directly.
-            var environmentVariable = Environment.GetEnvironmentVariable("VCAP_SERVICES");
-            var fileContent = File.ReadAllText(environmentVariable);
-            var vcapServices = JObject.Parse(fileContent);
-            var apikey = vcapServices["visual_recognition"][0]["credentials"]["apikey"];
+            string credentials = string.Empty;
 
-            VisualRecognitionServiceExample _visualRecognitionExample = new VisualRecognitionServiceExample(apikey.ToString());
+            try
+            {
+                credentials = Utility.SimpleGet(
+                    Environment.GetEnvironmentVariable("VCAP_URL"),
+                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var vcapServices = JObject.Parse(credentials);
+            var _url = vcapServices["visual_recognition"]["url"].Value<string>();
+            var _apikey = vcapServices["visual_recognition"]["api_key"].Value<string>();
+
+            VisualRecognitionServiceExample _visualRecognitionExample = new VisualRecognitionServiceExample(_url, _apikey);
             Console.ReadKey();
         }
     }

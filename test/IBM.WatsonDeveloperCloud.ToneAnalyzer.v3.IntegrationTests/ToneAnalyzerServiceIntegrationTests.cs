@@ -16,11 +16,13 @@
 */
 
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
 {
@@ -28,41 +30,52 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
     [TestClass]
     public class ToneAnalyzerServiceIntegrationTests
     {
-        private string _userName;
-        private string _password;
-        private string _endpoint;
+        private static string _username;
+        private static string _password;
+        private static string _endpoint;
         private string inputText = "Hello! Welcome to IBM Watson! How can I help you?";
         private string chatUser = "testChatUser";
         private string versionDate = "2016-05-19";
+        private static string credentials = string.Empty;
+        private ToneAnalyzerService _toneAnalyzer;
 
         [TestInitialize]
         public void Setup()
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            if (string.IsNullOrEmpty(credentials))
+            {
+                try
+                {
+                    credentials = Utility.SimpleGet(
+                        Environment.GetEnvironmentVariable("VCAP_URL"),
+                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                }
 
-            var fileContent =
-            File.ReadAllText(environmentVariable);
+                Task.WaitAll();
 
-            var vcapServices =
-            JObject.Parse(fileContent);
-
-            _endpoint = vcapServices["tone_analyzer"][0]["credentials"]["url"].Value<string>();
-            _userName = vcapServices["tone_analyzer"][0]["credentials"]["username"].Value<string>();
-            _password = vcapServices["tone_analyzer"][0]["credentials"]["password"].Value<string>();
+                var vcapServices = JObject.Parse(credentials);
+                _endpoint = vcapServices["tone_analyzer"]["url"].Value<string>();
+                _username = vcapServices["tone_analyzer"]["username"].Value<string>();
+                _password = vcapServices["tone_analyzer"]["password"].Value<string>();
+            }
         }
 
         [TestMethod]
         public void PostTone_Success()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService(_userName, _password, versionDate);
+            _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
 
             ToneInput toneInput = new ToneInput()
             {
                 Text = inputText
             };
 
-            var result = service.Tone(toneInput, null, null);
+            var result = _toneAnalyzer.Tone(toneInput, "text/html", null);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.DocumentTone.ToneCategories.Count >= 1);
@@ -72,7 +85,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         [TestMethod]
         public void ToneChat_Success()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService(_userName, _password, versionDate);
+            _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
 
             ToneChatInput toneChatInput = new ToneChatInput()
             {
@@ -85,7 +98,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
                     }
                 }
             };
-            var result = service.ToneChat(toneChatInput);
+            var result = _toneAnalyzer.ToneChat(toneChatInput);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.UtterancesTone.Count > 0);

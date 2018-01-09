@@ -630,7 +630,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                         Confidence = 0.5,
                                         Word = "Word"
                                     }
-                                }
+                                },
+                                StartTime = 0.0,
+                                Endtime = 1.0
                             }
                         }
                     }
@@ -720,6 +722,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                             }
                         },
                         Final = true,
+                        Speaker =1,
                         KeywordResults = new KeywordResults()
                         {
                             Keyword = new List<KeywordResult>()

@@ -26,15 +26,15 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     public class ToneAnalysis
     {
         /// <summary>
-        /// An object of type `DocumentAnalysis` that provides the results for the full document of the input content.
+        /// An object of type `DocumentAnalysis` that provides the results of the analysis for the full input document.
         /// </summary>
-        /// <value>An object of type `DocumentAnalysis` that provides the results for the full document of the input content.</value>
+        /// <value>An object of type `DocumentAnalysis` that provides the results of the analysis for the full input document.</value>
         [JsonProperty("document_tone", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentAnalysis DocumentTone { get; set; }
         /// <summary>
-        /// An array of `SentenceAnalysis` objects that provides the results for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.
+        /// An array of `SentenceAnalysis` objects that provides the results of the analysis for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.
         /// </summary>
-        /// <value>An array of `SentenceAnalysis` objects that provides the results for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.</value>
+        /// <value>An array of `SentenceAnalysis` objects that provides the results of the analysis for the individual sentences of the input content. The service returns results only for the first 100 sentences of the input. The field is omitted if the `sentences` parameter of the request is set to `false`.</value>
         [JsonProperty("sentences_tone", NullValueHandling = NullValueHandling.Ignore)]
         public List<SentenceAnalysis> SentencesTone { get; set; }
     }

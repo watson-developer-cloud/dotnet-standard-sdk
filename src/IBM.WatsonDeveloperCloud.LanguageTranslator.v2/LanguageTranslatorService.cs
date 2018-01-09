@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,41 +15,28 @@
 *
 */
 
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using IBM.WatsonDeveloperCloud.Service;
-using Newtonsoft.Json.Linq;
-using System.Runtime.ExceptionServices;
-using IBM.WatsonDeveloperCloud.Http.Extensions;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {
     public class LanguageTranslatorService : WatsonService, ILanguageTranslatorService
     {
         const string SERVICE_NAME = "language_translator";
-
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
-        const string PATH_IDENTIFIABLE_LANGUAGES = "/v2/identifiable_languages";
-        const string PATH_IDENTIFY = "/v2/identify";
-        const string PATH_TRANSLATE = "/v2/translate";
-        const string PATH_LIST_MODELS = "/v2/models";
-        const string PATH_MODEL = "/v2/models";
-
-        public LanguageTranslatorService()
-            : base(SERVICE_NAME, URL)
+        public LanguageTranslatorService() : base(SERVICE_NAME, URL)
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public LanguageTranslatorService(string userName, string password)
-            : this()
+        public LanguageTranslatorService(string userName, string password) : this()
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -60,8 +47,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.SetCredential(userName, password);
         }
 
-        public LanguageTranslatorService(IClient httpClient)
-            : this()
+        public LanguageTranslatorService(IClient httpClient) : this()
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -69,109 +55,42 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.Client = httpClient;
         }
 
-        public TranslationModels ListModels(bool isDefault = true, string source = null, string target = null)
+        public TranslationResult Translate(TranslateRequest body)
         {
-            TranslationModels result = null;
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+            TranslationResult result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_LIST_MODELS}")
-                               .WithArgument("source", source)
-                               .WithArgument("target", target)
-                               .WithArgument("default", isDefault.ToString())
-                               .As<TranslationModels>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                //ExceptionDispatchInfo.Capture(ae.Flatten().InnerException).Throw();
-
-                throw ae.Flatten().InnerException;
-            }
-
-            return result;
-        }
-
-        public CustomModels CreateModel(CreateModelOptions _options)
-        {
-            CustomModels result = null;
-
-            if (string.IsNullOrEmpty(_options.BaseModelId))
-                throw new ArgumentNullException($"Argument is not valid: {nameof(_options.BaseModelId)}");
-
-            if (_options.Name.Contains(" "))
-                throw new ArgumentException($"Argument is not valid (No spaces): {nameof(_options.Name)}");
-
-            if (_options.ForcedGlossary == null && _options.ParallelCorpus == null && _options.MonolingualCorpus == null)
-                throw new ArgumentNullException($"Glossary or Corpus file is not valid");
-
-            double fileSize = _options.ForcedGlossary != null ? (_options.ForcedGlossary.Length ) / Math.Pow(1024, 2) : 0;
-            fileSize += _options.ParallelCorpus != null ? (_options.ParallelCorpus.Length) / Math.Pow(1024, 2) : 0;
-            fileSize += _options.MonolingualCorpus != null ? (_options.MonolingualCorpus.Length) / Math.Pow(1024, 2) : 0;
-
-            if (fileSize > 250)
-                throw new Exception("The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.");
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if(_options.ForcedGlossary != null)
-                {
-                    var forcedGlossaryContent = new ByteArrayContent((_options.ForcedGlossary as Stream).ReadAllBytes());
-                    forcedGlossaryContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
-                    formData.Add(forcedGlossaryContent, "forced_glossary", _options.ForcedGlossary.Name);
-                }
-
-                if (_options.ParallelCorpus != null)
-                {
-                    var parallelCorpusContent = new ByteArrayContent((_options.ParallelCorpus as Stream).ReadAllBytes());
-                    parallelCorpusContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
-                    formData.Add(parallelCorpusContent, "forced_glossary", _options.ParallelCorpus.Name);
-                }
-
-                if (_options.MonolingualCorpus != null)
-                {
-                    var monolingualCorpusContent = new ByteArrayContent((_options.MonolingualCorpus as Stream).ReadAllBytes());
-                    monolingualCorpusContent.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
-                    formData.Add(monolingualCorpusContent, "forced_glossary", _options.MonolingualCorpus.Name);
-                }
-
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}{PATH_MODEL}")
-                                .WithArgument("base_model_id", _options.BaseModelId)
-                                .WithArgument("name", _options.Name)
-                                .WithBodyContent(formData)
-                                .As<CustomModels>()
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/translate")
+                                .WithBody<TranslateRequest>(body)
+                                .As<TranslationResult>()
                                 .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-
-        public DeleteModels DeleteModel(string modelId)
+        public IdentifiedLanguages Identify(string text)
         {
-            DeleteModels result = null;
-
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException($"Argument is not valid: {nameof(modelId)}");
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+            IdentifiedLanguages result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync($"{this.Endpoint}{PATH_MODEL}{modelId}")
-                               .As<DeleteModels>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/identify")
+                                .WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN))
+                                .As<IdentifiedLanguages>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -179,97 +98,70 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             return result;
         }
 
-        public ModelPayload GetModelDetails(string modelId)
-        {
-            ModelPayload result = null;
-
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException($"Argument is not valid: {nameof(modelId)}");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_MODEL}/{modelId}")
-                               .As<ModelPayload>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public TranslateResponse Translate(string modelId, string text)
-        {
-            return this.Translate(modelId, null, null, new List<string>() { text });
-        }
-
-        public TranslateResponse Translate(string source, string target, string text)
-        {
-            return this.Translate(null, source, target, new List<string>() { text });
-        }
-
-        public TranslateResponse Translate(string modelId, List<string> text)
-        {
-            return this.Translate(modelId, null, null, text);
-        }
-
-        public TranslateResponse Translate(string source, string target, List<string> text)
-        {
-            return this.Translate(null, source, target, text);
-        }
-
-        private TranslateResponse Translate(string modelId, string source, string target, List<string> text)
-        {
-            TranslateResponse result = null;
-
-            try
-            {
-                JObject json = null;
-
-                if (!string.IsNullOrEmpty(modelId))
-                    json =
-                        new JObject(
-                            new JProperty("model_id", modelId),
-                            new JProperty("text", new JArray(text)));
-                else
-                    json =
-                        new JObject(
-                            new JProperty("source", source),
-                            new JProperty("target", target),
-                            new JProperty("text", new JArray(text)));
-
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                          .PostAsync(this.Endpoint + PATH_TRANSLATE)
-                          .WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                          .As<TranslateResponse>()
-                          .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public IdentifiableLanguages GetIdentifiableLanguages()
+        public IdentifiableLanguages ListIdentifiableLanguages()
         {
             IdentifiableLanguages result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_IDENTIFIABLE_LANGUAGES}")
-                               .As<IdentifiableLanguages>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/identifiable_languages")
+                                .As<IdentifiableLanguages>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
+        {
+            if (string.IsNullOrEmpty(baseModelId))
+                throw new ArgumentNullException(nameof(baseModelId));
+            TranslationModel result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (forcedGlossary != null)
+                {
+                    var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    forcedGlossaryContent.Headers.ContentType = contentType;
+                    formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
+                }
+
+                if (parallelCorpus != null)
+                {
+                    var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    parallelCorpusContent.Headers.ContentType = contentType;
+                    formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
+                }
+
+                if (monolingualCorpus != null)
+                {
+                    var monolingualCorpusContent = new ByteArrayContent((monolingualCorpus as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/plain", out contentType);
+                    monolingualCorpusContent.Headers.ContentType = contentType;
+                    formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
+                }
+
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/models")
+                                .WithArgument("base_model_id", baseModelId)
+                                .WithArgument("name", name)
+                                .WithBodyContent(formData)
+                                .As<TranslationModel>()
+                                .Result;
+            }
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -277,21 +169,63 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             return result;
         }
 
-        public IdentifiedLanguages Identify(string _text)
+        public DeleteModelResult DeleteModel(string modelId)
         {
-            IdentifiedLanguages result = null;
+            if (string.IsNullOrEmpty(modelId))
+                throw new ArgumentNullException(nameof(modelId));
+            DeleteModelResult result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_IDENTIFY}")
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .WithBodyContent(new StringContent(_text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN))
-                               .As<IdentifiedLanguages>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v2/models/{modelId}")
+                                .As<DeleteModelResult>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public TranslationModel GetModel(string modelId)
+        {
+            if (string.IsNullOrEmpty(modelId))
+                throw new ArgumentNullException(nameof(modelId));
+            TranslationModel result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/models/{modelId}")
+                                .As<TranslationModel>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null)
+        {
+            TranslationModels result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/models")
+                                .WithArgument("source", source)
+                                .WithArgument("target", target)
+                                .WithArgument("default", defaultModels)
+                                .As<TranslationModels>()
+                                .Result;
+            }
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }

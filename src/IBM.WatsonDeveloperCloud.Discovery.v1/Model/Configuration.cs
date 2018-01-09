@@ -31,7 +31,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The unique identifier of the configuration.</value>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ConfigurationId { get; private set; }
+        public virtual string ConfigurationId { get; private set; }
         /// <summary>
         /// The name of the configuration.
         /// </summary>
@@ -43,13 +43,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         /// <value>The creation date of the configuration in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp of when the configuration was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         /// <value>The timestamp of when the configuration was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.</value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The description of the configuration, if available.
         /// </summary>

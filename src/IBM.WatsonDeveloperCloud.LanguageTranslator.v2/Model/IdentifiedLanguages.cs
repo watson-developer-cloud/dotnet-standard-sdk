@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +20,17 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
 {
+    /// <summary>
+    /// IdentifiedLanguages.
+    /// </summary>
     public class IdentifiedLanguages
     {
         /// <summary>
         /// A ranking of identified languages with confidence scores.
         /// </summary>
-        [JsonProperty("languages")]
+        /// <value>A ranking of identified languages with confidence scores.</value>
+        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
         public List<IdentifiedLanguage> Languages { get; set; }
     }
+
 }

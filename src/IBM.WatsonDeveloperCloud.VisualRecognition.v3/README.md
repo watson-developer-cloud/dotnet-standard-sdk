@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
 
 ### Visual Recognition
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and celebrity faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.2.0"
+   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.3.1"
 }
 
 ```
@@ -63,7 +63,7 @@ Compressed files containing positive examples are used to create “classes” t
 The compressed file containing negative examples is not used to create a class within the created classifier, but does define what the new classifier is not. Negative example files should contain images that do not depict the subject of any of the positive examples. You can only specify one negative example file in a single call. For more information, see [Structure of the training data][structure-of-the-training-data], and [Guidelines for good training][guidelines-for-good-training].
 ```cs
 //  create a dictionary of classnames and positive example data
-Dictionary"<string, byte[]>" positiveExamples = new Dictionary"<string, byte[]>"();
+Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
 positiveExamples.Add("<class-name>", "<positive-examples-data>");
 
 //  create a classifier using positive example dictionary and negative example data
@@ -96,11 +96,11 @@ Compressed files containing positive examples are used to create and update “c
 The compressed file containing negative examples is not used to create a class within the created classifier, but does define what the updated classifier is not. Negative example files should contain images that do not depict the subject of any of the positive examples. You can only specify one negative example file in a single call. For more information, see [Updating custom classifiers][updating-custom-classifiers].
 ```cs
 //  create a dictionary of classnames and positive example data
-Dictionary"<string, byte[]>" positiveExamples = new Dictionary"<string, byte[]>"();
+Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
 positiveExamples.Add("<class-name>", "<positive-examples-data>");
 
 //  updtae a classifier using positive example dictionary and negative example data
-var result = _visualRecognition.UpdateClassifier("<classifier-name>", positiveExamples, "<negative=examples-data>");
+var result = _visualRecognition.UpdateClassifier("<classifier-name>", positiveExamples, "<negative-examples-data>");
 ```
 
 #### Delete a classifier

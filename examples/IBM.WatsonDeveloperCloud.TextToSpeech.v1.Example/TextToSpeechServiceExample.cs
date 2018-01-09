@@ -33,9 +33,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example
         private string _customVoiceModelLanguage = "en-US";
         private string _customVoiceModelUpdatedLanguage = "es-ES";
 
-        public TextToSpeechServiceExample(string username, string password)
+        public TextToSpeechServiceExample(string url, string username, string password)
         {
-            _textToSpeech.SetCredential(username, password);
+            _textToSpeech = new TextToSpeechService(username, password);
+            _textToSpeech.Endpoint = url;
 
             GetVoices();
             GetVoice();

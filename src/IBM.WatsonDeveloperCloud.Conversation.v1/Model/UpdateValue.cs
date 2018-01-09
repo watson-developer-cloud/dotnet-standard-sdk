@@ -16,7 +16,9 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
@@ -25,6 +27,33 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// </summary>
     public class UpdateValue
     {
+        /// <summary>
+        /// Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.
+        /// </summary>
+        /// <value>Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ValueTypeEnum
+        {
+            
+            /// <summary>
+            /// Enum SYNONYMS for synonyms
+            /// </summary>
+            [EnumMember(Value = "synonyms")]
+            SYNONYMS,
+            
+            /// <summary>
+            /// Enum PATTERNS for patterns
+            /// </summary>
+            [EnumMember(Value = "patterns")]
+            PATTERNS
+        }
+
+        /// <summary>
+        /// Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.
+        /// </summary>
+        /// <value>Specifies the type of value (`synonyms` or `patterns`). The default value is `synonyms`.</value>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public ValueTypeEnum? ValueType { get; set; }
         /// <summary>
         /// The text of the entity value.
         /// </summary>
@@ -43,6 +72,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>An array of synonyms for the entity value.</value>
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
+        /// <summary>
+        /// An array of patterns for the entity value. A pattern is specified as a regular expression.
+        /// </summary>
+        /// <value>An array of patterns for the entity value. A pattern is specified as a regular expression.</value>
+        [JsonProperty("patterns", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Patterns { get; set; }
     }
 
 }

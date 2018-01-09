@@ -82,8 +82,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Pe
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example", "examples\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example.xproj", "{40ADCBF1-2FC1-4ACC-8DA0-2DB0174B7E03}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests.xproj", "{F4448D3D-913D-4FE0-85F6-60F04EB7C134}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests\IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests.xproj", "{7DA05E71-3503-4982-AAB6-26C9B76BDD5F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntTests", "test\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntTests\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntTests.xproj", "{A6BC7470-79A2-4C7E-923A-748540791D97}"
@@ -105,6 +103,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests\IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests.xproj", "{4302B718-98DA-4922-84D6-6839495F4B71}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Discovery.v1.Example", "examples\IBM.WatsonDeveloperCloud.Discovery.v1.Example\IBM.WatsonDeveloperCloud.Discovery.v1.Example.xproj", "{F15ADA39-381E-4E5F-8E18-E08B51635016}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Conversation.v1.IntegrationTests.xproj", "{F4448D3D-913D-4FE0-85F6-60F04EB7C134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,10 +212,6 @@ Global
 		{40ADCBF1-2FC1-4ACC-8DA0-2DB0174B7E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40ADCBF1-2FC1-4ACC-8DA0-2DB0174B7E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40ADCBF1-2FC1-4ACC-8DA0-2DB0174B7E03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DA05E71-3503-4982-AAB6-26C9B76BDD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DA05E71-3503-4982-AAB6-26C9B76BDD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA05E71-3503-4982-AAB6-26C9B76BDD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -260,6 +256,10 @@ Global
 		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15ADA39-381E-4E5F-8E18-E08B51635016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4448D3D-913D-4FE0-85F6-60F04EB7C134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,7 +301,6 @@ Global
 		{9F05DE48-0665-4691-8687-AE428A19B09A} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{80915AD4-F490-4CCB-A0E2-83CF18A8D510} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{40ADCBF1-2FC1-4ACC-8DA0-2DB0174B7E03} = {C7873F44-7188-49BE-84C5-532BE4E07147}
-		{F4448D3D-913D-4FE0-85F6-60F04EB7C134} = {8B927AB2-21F8-40DE-BE6B-5B1105453133}
 		{7DA05E71-3503-4982-AAB6-26C9B76BDD5F} = {8B927AB2-21F8-40DE-BE6B-5B1105453133}
 		{A6BC7470-79A2-4C7E-923A-748540791D97} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{B401A97F-FD61-4CC9-9392-26324A8E5461} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
@@ -313,5 +312,6 @@ Global
 		{0248BA8F-0351-4F9C-ACB3-7D9FE42A4CB1} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{4302B718-98DA-4922-84D6-6839495F4B71} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{F15ADA39-381E-4E5F-8E18-E08B51635016} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
+		{F4448D3D-913D-4FE0-85F6-60F04EB7C134} = {8B927AB2-21F8-40DE-BE6B-5B1105453133}
 	EndGlobalSection
 EndGlobal

@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
 {
     public class SpeechToTextServiceExample
     {
-        private SpeechToTextService _speechToText = new SpeechToTextService();
+        private SpeechToTextService _speechToText;
         private string _path = "test-audio.wav";
         private string _modelToGet = "en-US_BroadbandModel";
         private string _createdCustomizationID;
@@ -38,9 +38,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         string modelName = "en-US_BroadbandModel";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
-        public SpeechToTextServiceExample(string username, string password)
+        public SpeechToTextServiceExample(string url, string username, string password)
         {
-            _speechToText.SetCredential(username, password);
+            _speechToText = new SpeechToTextService(username, password);
+            _speechToText.Endpoint = url;
 
             GetModels();
             GetModel(_modelToGet);

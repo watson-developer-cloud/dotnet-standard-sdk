@@ -28,17 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets Level
         /// </summary>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Level { get; set; }
+        public long? Level { get; set; }
         /// <summary>
         /// Gets or Sets MinSize
         /// </summary>
         [JsonProperty("min_size", NullValueHandling = NullValueHandling.Ignore)]
-        public float? MinSize { get; set; }
+        public long? MinSize { get; set; }
         /// <summary>
         /// Gets or Sets MaxSize
         /// </summary>
         [JsonProperty("max_size", NullValueHandling = NullValueHandling.Ignore)]
-        public float? MaxSize { get; set; }
+        public long? MaxSize { get; set; }
         /// <summary>
         /// Gets or Sets Bold
         /// </summary>

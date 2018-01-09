@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['ko',['KO',['../da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a5fed318f9c859ad1b31120392472c25a',1,'IBM.WatsonDeveloperCloud.Discovery.v1.Model.CreateCollectionRequest.KO()'],['../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a5fed318f9c859ad1b31120392472c25a',1,'IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ContentItem.KO()'],['../df/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#a1a78900ab398451912118c1a9a4b848ca5fed318f9c859ad1b31120392472c25a',1,'IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.Profile.KO()']]]
+];

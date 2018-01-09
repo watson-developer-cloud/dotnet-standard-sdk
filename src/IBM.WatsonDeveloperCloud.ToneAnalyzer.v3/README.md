@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3/)
 
 ### Tone Analyzer
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.3.0"
+   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "1.3.1"
 }
 
 ```

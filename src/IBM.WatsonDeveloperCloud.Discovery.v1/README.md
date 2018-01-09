@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
 
 ### Discovery
 The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data - including your own proprietary data, as well as public and third-party data.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery.v1": "1.3.0"
+   "IBM.WatsonDeveloperCloud.Discovery.v1": "1.3.1"
 }
 
 ```

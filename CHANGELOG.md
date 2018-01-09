@@ -1,5 +1,8 @@
 Change Log
 ==========
+## Version 1.3.1
+* Fix: Change `Context` in `MessageRequest` to `dynamic`.
+
 ## Version 1.3.0
 _2018-01-07_
 * New: Generate Language Translator service.

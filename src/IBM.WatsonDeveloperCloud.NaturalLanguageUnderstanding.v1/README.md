@@ -59,7 +59,7 @@ List available [custom models][custom_models].
 var result = _naturalLanguageUnderstandingService.GetModels();
 ```
 
-[natural_language_understanding]: https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/index.html
-[custom_models]: https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html
+[natural_language_understanding]: https://console.bluemix.net/docs/services/natural-language-understanding/index.html
+[custom_models]: https://console.bluemix.net/docs/services/natural-language-understanding/customizing.html
 [entities]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#entities
 [relations]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#relations

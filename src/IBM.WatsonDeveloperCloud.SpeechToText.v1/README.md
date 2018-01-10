@@ -306,4 +306,4 @@ Removing a custom word does not affect the custom model until you train the mode
 object result = _speechToText.DeleteCustomWord("<customization-id>", "<word-name>");
 ```
 
-[speech-to-text]: https://www.ibm.com/watson/developercloud/doc/speech-to-text/index.html
+[speech-to-text]: https://console.bluemix.net/docs/services/speech-to-text/index.html

@@ -210,6 +210,6 @@ Once your content is uploaded and enriched by the Discovery service, you can bui
 var result = _discovery.Query(<environmentId>, <collectionId>, <query>);
 ```
 
-[discovery]: https://www.ibm.com/watson/developercloud/discovery.html
-[discovery-sizing]: https://www.ibm.com/watson/developercloud/discovery.html#pricing-block
+[discovery]: https://www.ibm.com/watson/services/discovery/
+[discovery-sizing]: https://www.ibm.com/watson/services/discovery/#pricing-block
 [discovery-query]: https://console.bluemix.net/docs/services/discovery/using.html

@@ -31,6 +31,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
     [TestClass]
     public class VisualRecognitionServiceIntegrationTests
     {
+        VisualRecognitionService _visualRecognition;
         private static string credentials = string.Empty;
         private static string _apikey;
         private static string _endpoint;
@@ -44,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData\negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
-        private static string _createdClassifierId = "";
+        private string _createdClassifierId = "";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
@@ -71,13 +72,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 _apikey = vcapServices["visual_recognition"]["api_key"].Value<string>();
             }
 
+            _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
+            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
         }
 
         [TestMethod]
-        public void t00_ClassifyGet_Success()
+        public void ClassifyGetSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             List<string> classifiers = new List<string>()
             {
                 "default"
@@ -97,11 +98,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void t01_ClassifyPost_Success()
+        public void ClassifyPostSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
-
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
                 var result = _visualRecognition.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
@@ -113,11 +111,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void t02_DetectFacesGet_Success()
+        public void DetectFacesGetSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
-
             var result = _visualRecognition.DetectFaces(_faceUrl);
 
             Assert.IsNotNull(result);
@@ -126,11 +121,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void t03_DetectFacesPost_Success()
+        public void DetectFacesPostSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
-
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
                 var result = _visualRecognition.DetectFaces((fs as Stream).ReadAllBytes(), Path.GetFileName(_localFaceFilePath), "image/jpeg");
@@ -142,31 +134,64 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void t04_GetClassifiersBrief_Success()
+        public void GetClassifiersBriefSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
             var results = _visualRecognition.GetClassifiersBrief();
 
             Assert.IsNotNull(results);
         }
 
         [TestMethod]
-        public void t05_GetClassifiersVerbose_Success()
+        public void GetClassifiersVerboseSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
+            _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
             var results = _visualRecognition.GetClassifiersVerbose();
 
             Assert.IsNotNull(results);
         }
 
         [TestMethod]
-        public void t06_CreateClassifier_Success()
+        public void CreateClassifierSuccess()
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
+            var createClassifierResponse = CreateClassifier();
+            _createdClassifierId = createClassifierResponse.ClassifierId;
 
+            Assert.IsNotNull(createClassifierResponse);
+        }
+
+        [TestMethod]
+        public void UpdateClassifierSuccess()
+        {
+            var createClassifierResponse = CreateClassifier();
+
+            //  Wait for classifier to finish training
+            var isClassifierReady = IsClassifierReady(_createdClassifierId);
+            autoEvent.WaitOne();
+
+            var updateClassiferResponse = UpdateClassifier();
+
+            Assert.IsNotNull(updateClassiferResponse);
+        }
+
+        [TestMethod]
+        public void DeleteClassifierSuccess()
+        {
+            var createClassifierResponse = CreateClassifier();
+            var deleteClassifierResponse = DeleteClassifier(createClassifierResponse.ClassifierId);
+
+            Assert.IsNotNull(deleteClassifierResponse);
+        }
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            if (!string.IsNullOrEmpty(_createdClassifierId))
+                DeleteClassifier(_createdClassifierId);
+        }
+
+        #region CreateClassifier
+        public GetClassifiersPerClassifierVerbose CreateClassifier()
+        {
             using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
             {
                 Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
@@ -177,66 +202,48 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 _createdClassifierId = result.ClassifierId;
                 Console.WriteLine(string.Format("Created classifier {0}", _createdClassifierId));
 
-                Assert.IsNotNull(result);
-                Assert.IsTrue(!string.IsNullOrEmpty(_createdClassifierId));
+                return result;
             }
         }
+        #endregion
 
-        [TestMethod]
-        public void t07_WaitForClassifier()
+        #region UpdateClassifier
+        public GetClassifiersPerClassifierVerbose UpdateClassifier()
         {
-            IsClassifierReady(_createdClassifierId);
-            autoEvent.WaitOne();
-
-            Assert.IsTrue(true);
-        }
-
-        [TestMethod]
-        public void t08_UpdateClassifier_Success()
-        {
-            if (string.IsNullOrEmpty(_createdClassifierId))
-                Assert.Fail("Created classsifier ID is null or empty.");
-
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
-
             using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
             {
                 Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
                 positiveExamples.Add(_turtleClassname, positiveExamplesStream.ReadAllBytes());
 
                 var result = _visualRecognition.UpdateClassifier(_createdClassifierId, positiveExamples);
+                Console.WriteLine(string.Format("Updated classifier {0}", _createdClassifierId));
 
-                Assert.IsNotNull(result);
+                return result;
             }
         }
+        #endregion
 
-        [TestMethod]
-        public void t10_DeleteClassifier_Success()
+        #region DeleteClassifier
+        public object DeleteClassifier(string classifierId)
         {
-            if (string.IsNullOrEmpty(_createdClassifierId))
-                Assert.Fail("Created classsifier ID is null or empty.");
-
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
-
             #region Delay
             Delay(_delayTime);
             #endregion
 
-            var result = _visualRecognition.DeleteClassifier(_createdClassifierId);
+            var result = _visualRecognition.DeleteClassifier(classifierId);
+            _createdClassifierId = null;
+            Console.WriteLine(string.Format("Deleted classifier {0}", classifierId));
 
-            Assert.IsNotNull(result);
+            return result;
         }
+        #endregion
 
+        #region IsClassifierReady
         private bool IsClassifierReady(string classifierId)
         {
-            VisualRecognitionService _visualRecognition = new VisualRecognitionService(_apikey, _endpoint);
-            _visualRecognition.Client.BaseClient.Timeout = TimeSpan.FromMinutes(60);
+            var getClassifierResponse = _visualRecognition.GetClassifier(classifierId);
 
-            var result = _visualRecognition.GetClassifier(classifierId);
-
-            string status = result.Status.ToLower();
+            string status = getClassifierResponse.Status.ToLower();
             Console.WriteLine(string.Format("Classifier status is {0}", status));
 
             if (status == "ready")
@@ -250,21 +257,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 });
             }
 
-            return result.Status.ToLower() == "ready";
+            return getClassifierResponse.Status.ToLower() == "ready";
         }
-
-        private bool ContainsClass(GetClassifiersPerClassifierVerbose result, string classname)
-        {
-            bool containsClass = false;
-
-            foreach (ModelClass _class in result.Classes)
-            {
-                if (_class._Class == classname)
-                    containsClass = true;
-            }
-
-            return containsClass;
-        }
+        #endregion
 
         #region Delay
         //  Introducing a delay because of a known issue with Visual Recognition where newly created classifiers 

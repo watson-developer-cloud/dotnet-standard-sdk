@@ -16,7 +16,7 @@
 */
 
 //  Uncomment to test without creating a new classifier each test
-#define PERSISTENT_CLASSIFIER
+//#define PERSISTENT_CLASSIFIER
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
@@ -227,8 +227,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             Console.WriteLine(string.Format("Tearing down..."));
 #if !PERSISTENT_CLASSIFIER
-            if(!string.IsNullOrEmpty(_createdClassifierId))
-            DeleteClassifier(_createdClassifierId);
+            if (!string.IsNullOrEmpty(_createdClassifierId))
+            {
+                try
+                {
+                    var getClassifierResult = _visualRecognition.GetClassifier(_createdClassifierId);
+                    if(getClassifierResult != null)
+                        DeleteClassifier(_createdClassifierId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Classifier {0} not found: {1}", _createdClassifierId, e.Message);
+                    _createdClassifierId = null;
+                }
+
+            }
 #endif
         }
 #endregion

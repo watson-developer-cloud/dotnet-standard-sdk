@@ -22,6 +22,7 @@ using System.IO;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
@@ -75,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 _password = vcapServices["conversation"]["password"].Value<string>();
                 _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
             }
-            
+
             conversation = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
             conversation.Endpoint = _endpoint;
         }
@@ -96,6 +97,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             Console.WriteLine(string.Format("\nCalling Message(\"{0}\")...", _inputString));
             var result = conversation.Message(_workspaceID, messageRequest);
+            Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
 
             Assert.IsNotNull(result);
         }
@@ -801,33 +803,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #region Logs
         [TestMethod]
-        public void ListLogEvents_Success()
+        public void ListLogEventsSuccess()
         {
-            Console.WriteLine(string.Format("\nCalling ListLogEvents({0})...", _createdWorkspaceId));
-            var result = conversation.ListLogs(_createdWorkspaceId);
-
+            Console.WriteLine("Running Test ListLogEventsSuccess.");
+            var result = ListLogEvents();
             Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Logs != null && result.Logs.Count > 0)
-                {
-                    foreach (LogExport log in result.Logs)
-                        Console.WriteLine(string.Format("Log: {0} | Request timestamp: {1}", log.LogId, log.RequestTimestamp));
-                }
-                else
-                {
-                    Console.WriteLine("There are no logs.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Logs are null.");
-            }
         }
-        #endregion
 
         #region Delete
         [TestMethod]
@@ -936,6 +918,233 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Console.WriteLine("Result is null.");
             }
+        }
+        #endregion
+
+        #region Message
+        #endregion
+
+        #region ListWorkspaces
+        #endregion
+        #region CreateWorkspace
+        #endregion
+        #region GetWorkspace
+        #endregion
+        #region UpdateWorkspace
+        #endregion
+
+        #region ListCounterExamples
+        #endregion
+        #region CreateCounterExample
+        #endregion
+        #region GetCounterExample
+        #endregion
+        #region UpdateCounterExample
+        #endregion
+
+        #region ListEntities
+        #endregion
+        #region CreateEntity
+        #endregion
+        #region GetEntity
+        #endregion
+        #region UpdateEntity
+        #endregion
+
+        #region ListValues
+        #endregion
+        #region CreateValue
+        #endregion
+        #region GetValue
+        #endregion
+        #region UpdateValue
+        #endregion
+
+        #region ListSynonyms
+        #endregion
+        #region CreateSynonym
+        #endregion
+        #region GetSynonym
+        #endregion
+        #region UpdateSynonym
+        #endregion
+
+        #region ListIntents
+        #endregion
+        #region CreateIntent
+        #endregion
+        #region GetIntent
+        #endregion
+        #region UpdateIntent
+        #endregion
+
+        #region ListExamples
+        #endregion
+        #region CreateExample
+        #endregion
+        #region GetExample
+        #endregion
+        #region UpdateExample
+        #endregion
+        
+        #region ListLogEvents
+        public LogCollection ListLogEvents()
+        {
+            Console.WriteLine(string.Format("Attempting to ListLogEvents({0})...", _createdWorkspaceId));
+            var result = conversation.ListLogs(_createdWorkspaceId);
+
+            if (result != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to get logs for {0}.", _createdWorkspaceId);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteExample
+        private object DeleteExample(string workspaceId, string intent, string example)
+        {
+            Console.WriteLine("Attempting to DeleteExample({0}, {1}, {2})...", workspaceId, intent, example);
+            var result = conversation.DeleteExample(workspaceId, intent, example);
+
+            if (result != null)
+            {
+                Console.WriteLine("Deleted example {0}", example);
+                _createdExample = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete Example {0}", example);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteIntent
+        private object DeleteIntent(string workspaceId, string intent)
+        {
+            Console.WriteLine(string.Format("Attempting to DeleteIntent({0}, {1})...", workspaceId, intent));
+            var result = conversation.DeleteIntent(workspaceId, intent);
+
+            Assert.IsNotNull(result);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("Deleted intent {0}", intent));
+                _createdIntent = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete Intent {0}.", intent);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteSynonym
+        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
+        {
+            Console.WriteLine(string.Format("Attempting to DeleteSynonym({0}, {1}, {2}, {3})...", workspaceId, entity, value, synonym));
+            var result = conversation.DeleteSynonym(workspaceId, entity, value, synonym);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("Deleted synonym {0}", synonym));
+                _createdSynonym = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete Synonym {0}", synonym);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteValue
+        private object DeleteValue(string workspaceId, string entity, string value)
+        {
+            Console.WriteLine(string.Format("Attempting to DeleteValue({0}, {1}, {2})...", workspaceId, entity, value));
+            var result = conversation.DeleteValue(workspaceId, entity, value);
+
+            if (result != null)
+            {
+                Console.WriteLine("Deleted value {0}", value);
+                _createdValue = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete value {0}", value);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteEntity
+        private object DeleteEntity(string workspaceId, string entity)
+        {
+            Console.WriteLine(string.Format("Attempting to DeleteEntity({0}, {1})...", workspaceId, entity));
+            var result = conversation.DeleteEntity(workspaceId, entity);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("Deleted entity {0}.", entity));
+                _createdEntity = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete entity {0}", entity);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteCounterExample
+        private object DeleteCounterExample(string workspaceId, string counterExample)
+        {
+            Console.WriteLine(string.Format("Attempting to DeletCounterExample({0}, {1})...", workspaceId, counterExample));
+            var result = conversation.DeleteCounterexample(workspaceId, counterExample);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("CounterExample {0} deleted.", counterExample));
+                _createdCounterExampleText = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete CounterExample {0}.", counterExample);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteWorkspace
+        private object DeleteWorkspace(string workspaceId)
+        {
+            Console.WriteLine(string.Format("Attempting to DeleteWorkspace({0})...", workspaceId));
+            var result = conversation.DeleteWorkspace(workspaceId);
+
+            if (result != null)
+            {
+                Console.WriteLine(string.Format("Workspace {0} deleted.", workspaceId));
+                _createdWorkspaceId = null;
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete workspace {0}.", workspaceId);
+            }
+
+            return result;
         }
         #endregion
     }

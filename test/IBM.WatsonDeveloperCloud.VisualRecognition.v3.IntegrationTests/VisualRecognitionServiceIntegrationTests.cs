@@ -15,7 +15,9 @@
 *
 */
 
-//  Uncomment to test without creating a new classifier each test
+//  Uncomment to test without creating a new classifier each test. VisualStudio on Mac has a hard-coded 60 second
+//  timeout on tests so creating a classifier and waiting for training to update a classifier fails unless this
+//  is uncommented.
 //#define PERSISTENT_CLASSIFIER
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
@@ -192,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             var createClassifierResponse = CreateClassifier();
 
             //  Wait for classifier to finish training
-            var isClassifierReady = IsClassifierReady(_createdClassifierId);
+            IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
 #endif
 
@@ -211,7 +213,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             var createClassifierResponse = CreateClassifier();
 
             //  Wait for classifier to finish training
-            var isClassifierReady = IsClassifierReady(_createdClassifierId);
+            IsClassifierReady(_createdClassifierId);
             autoEvent.WaitOne();
 #endif
 
@@ -298,7 +300,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 #endregion
 
 #region IsClassifierReady
-        private bool IsClassifierReady(string classifierId)
+        private void IsClassifierReady(string classifierId)
         {
             var getClassifierResponse = _visualRecognition.GetClassifier(classifierId);
 
@@ -315,8 +317,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                     IsClassifierReady(classifierId);
                 });
             }
-
-            return getClassifierResponse.Status.ToLower() == "ready";
         }
 #endregion
     }

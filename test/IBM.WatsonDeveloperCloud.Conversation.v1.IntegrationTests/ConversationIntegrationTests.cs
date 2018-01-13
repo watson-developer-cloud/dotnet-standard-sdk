@@ -921,207 +921,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #region Message
-        #endregion
-
-        #region ListWorkspaces
-        #endregion
         #region CreateWorkspace
-        #endregion
-        #region GetWorkspace
-        #endregion
-        #region UpdateWorkspace
-        #endregion
-
-        #region ListCounterExamples
-        #endregion
-        #region CreateCounterExample
-        #endregion
-        #region GetCounterExample
-        #endregion
-        #region UpdateCounterExample
-        #endregion
-
-        #region ListEntities
-        #endregion
-        #region CreateEntity
-        #endregion
-        #region GetEntity
-        #endregion
-        #region UpdateEntity
-        #endregion
-
-        #region ListValues
-        #endregion
-        #region CreateValue
-        #endregion
-        #region GetValue
-        #endregion
-        #region UpdateValue
-        #endregion
-
-        #region ListSynonyms
-        #endregion
-        #region CreateSynonym
-        #endregion
-        #region GetSynonym
-        #endregion
-        #region UpdateSynonym
-        #endregion
-
-        #region ListIntents
-        #endregion
-        #region CreateIntent
-        #endregion
-        #region GetIntent
-        #endregion
-        #region UpdateIntent
-        #endregion
-
-        #region ListExamples
-        #endregion
-        #region CreateExample
-        #endregion
-        #region GetExample
-        #endregion
-        #region UpdateExample
-        #endregion
-        
-        #region ListLogEvents
-        public LogCollection ListLogEvents()
+        private Workspace CreateWorkspace()
         {
-            Console.WriteLine(string.Format("Attempting to ListLogEvents({0})...", _createdWorkspaceId));
-            var result = conversation.ListLogs(_createdWorkspaceId);
+            Console.WriteLine("Attempting to CreateWorkspace()");
+            var result = ConversationService.CreateWorkspace(();
 
             if (result != null)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+                Console.WriteLine("CreateWorkspace() succeeded");
             }
             else
             {
-                Console.WriteLine("Failed to get logs for {0}.", _createdWorkspaceId);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteExample
-        private object DeleteExample(string workspaceId, string intent, string example)
-        {
-            Console.WriteLine("Attempting to DeleteExample({0}, {1}, {2})...", workspaceId, intent, example);
-            var result = conversation.DeleteExample(workspaceId, intent, example);
-
-            if (result != null)
-            {
-                Console.WriteLine("Deleted example {0}", example);
-                _createdExample = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete Example {0}", example);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteIntent
-        private object DeleteIntent(string workspaceId, string intent)
-        {
-            Console.WriteLine(string.Format("Attempting to DeleteIntent({0}, {1})...", workspaceId, intent));
-            var result = conversation.DeleteIntent(workspaceId, intent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted intent {0}", intent));
-                _createdIntent = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete Intent {0}.", intent);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteSynonym
-        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
-        {
-            Console.WriteLine(string.Format("Attempting to DeleteSynonym({0}, {1}, {2}, {3})...", workspaceId, entity, value, synonym));
-            var result = conversation.DeleteSynonym(workspaceId, entity, value, synonym);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted synonym {0}", synonym));
-                _createdSynonym = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete Synonym {0}", synonym);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteValue
-        private object DeleteValue(string workspaceId, string entity, string value)
-        {
-            Console.WriteLine(string.Format("Attempting to DeleteValue({0}, {1}, {2})...", workspaceId, entity, value));
-            var result = conversation.DeleteValue(workspaceId, entity, value);
-
-            if (result != null)
-            {
-                Console.WriteLine("Deleted value {0}", value);
-                _createdValue = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete value {0}", value);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteEntity
-        private object DeleteEntity(string workspaceId, string entity)
-        {
-            Console.WriteLine(string.Format("Attempting to DeleteEntity({0}, {1})...", workspaceId, entity));
-            var result = conversation.DeleteEntity(workspaceId, entity);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted entity {0}.", entity));
-                _createdEntity = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete entity {0}", entity);
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteCounterExample
-        private object DeleteCounterExample(string workspaceId, string counterExample)
-        {
-            Console.WriteLine(string.Format("Attempting to DeletCounterExample({0}, {1})...", workspaceId, counterExample));
-            var result = conversation.DeleteCounterexample(workspaceId, counterExample);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("CounterExample {0} deleted.", counterExample));
-                _createdCounterExampleText = null;
-            }
-            else
-            {
-                Console.WriteLine("Failed to delete CounterExample {0}.", counterExample);
+                Console.WriteLine("Failed to CreateWorkspace()");
             }
 
             return result;
@@ -1129,19 +941,797 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteWorkspace
-        private object DeleteWorkspace(string workspaceId)
+        private object DeleteWorkspace()
         {
-            Console.WriteLine(string.Format("Attempting to DeleteWorkspace({0})...", workspaceId));
-            var result = conversation.DeleteWorkspace(workspaceId);
+            Console.WriteLine("Attempting to DeleteWorkspace()");
+            var result = ConversationService.DeleteWorkspace((workspaceId:);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Workspace {0} deleted.", workspaceId));
-                _createdWorkspaceId = null;
+                Console.WriteLine("DeleteWorkspace() succeeded");
             }
             else
             {
-                Console.WriteLine("Failed to delete workspace {0}.", workspaceId);
+                Console.WriteLine("Failed to DeleteWorkspace()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetWorkspace
+        private WorkspaceExport GetWorkspace()
+        {
+            Console.WriteLine("Attempting to GetWorkspace()");
+            var result = ConversationService.GetWorkspace((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("GetWorkspace() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetWorkspace()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListWorkspaces
+        private WorkspaceCollection ListWorkspaces()
+        {
+            Console.WriteLine("Attempting to ListWorkspaces()");
+            var result = ConversationService.ListWorkspaces(();
+
+            if (result != null)
+            {
+                Console.WriteLine("ListWorkspaces() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListWorkspaces()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateWorkspace
+        private Workspace UpdateWorkspace()
+        {
+            Console.WriteLine("Attempting to UpdateWorkspace()");
+            var result = ConversationService.UpdateWorkspace((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateWorkspace() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateWorkspace()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Message
+        private MessageResponse Message()
+        {
+            Console.WriteLine("Attempting to Message()");
+            var result = ConversationService.Message((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("Message() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to Message()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateIntent
+        private Intent CreateIntent()
+        {
+            Console.WriteLine("Attempting to CreateIntent()");
+            var result = ConversationService.CreateIntent((workspaceId:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateIntent() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateIntent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteIntent
+        private object DeleteIntent()
+        {
+            Console.WriteLine("Attempting to DeleteIntent()");
+            var result = ConversationService.DeleteIntent((workspaceId:, intent:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteIntent() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteIntent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetIntent
+        private IntentExport GetIntent()
+        {
+            Console.WriteLine("Attempting to GetIntent()");
+            var result = ConversationService.GetIntent((workspaceId:, intent:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("GetIntent() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetIntent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListIntents
+        private IntentCollection ListIntents()
+        {
+            Console.WriteLine("Attempting to ListIntents()");
+            var result = ConversationService.ListIntents((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListIntents() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListIntents()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateIntent
+        private Intent UpdateIntent()
+        {
+            Console.WriteLine("Attempting to UpdateIntent()");
+            var result = ConversationService.UpdateIntent((workspaceId:, intent:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateIntent() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateIntent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateExample
+        private Example CreateExample()
+        {
+            Console.WriteLine("Attempting to CreateExample()");
+            var result = ConversationService.CreateExample((workspaceId:, intent:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateExample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteExample
+        private object DeleteExample()
+        {
+            Console.WriteLine("Attempting to DeleteExample()");
+            var result = ConversationService.DeleteExample((workspaceId:, intent:, text:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteExample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetExample
+        private Example GetExample()
+        {
+            Console.WriteLine("Attempting to GetExample()");
+            var result = ConversationService.GetExample((workspaceId:, intent:, text:);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetExample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListExamples
+        private ExampleCollection ListExamples()
+        {
+            Console.WriteLine("Attempting to ListExamples()");
+            var result = ConversationService.ListExamples((workspaceId:, intent:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListExamples() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListExamples()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateExample
+        private Example UpdateExample()
+        {
+            Console.WriteLine("Attempting to UpdateExample()");
+            var result = ConversationService.UpdateExample((workspaceId:, intent:, text:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateExample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateEntity
+        private Entity CreateEntity()
+        {
+            Console.WriteLine("Attempting to CreateEntity()");
+            var result = ConversationService.CreateEntity((workspaceId:, properties:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateEntity() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteEntity
+        private object DeleteEntity()
+        {
+            Console.WriteLine("Attempting to DeleteEntity()");
+            var result = ConversationService.DeleteEntity((workspaceId:, entity:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteEntity() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetEntity
+        private EntityExport GetEntity()
+        {
+            Console.WriteLine("Attempting to GetEntity()");
+            var result = ConversationService.GetEntity((workspaceId:, entity:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("GetEntity() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListEntities
+        private EntityCollection ListEntities()
+        {
+            Console.WriteLine("Attempting to ListEntities()");
+            var result = ConversationService.ListEntities((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListEntities() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListEntities()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateEntity
+        private Entity UpdateEntity()
+        {
+            Console.WriteLine("Attempting to UpdateEntity()");
+            var result = ConversationService.UpdateEntity((workspaceId:, entity:, properties:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateEntity() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateValue
+        private Value CreateValue()
+        {
+            Console.WriteLine("Attempting to CreateValue()");
+            var result = ConversationService.CreateValue((workspaceId:, entity:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateValue() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteValue
+        private object DeleteValue()
+        {
+            Console.WriteLine("Attempting to DeleteValue()");
+            var result = ConversationService.DeleteValue((workspaceId:, entity:, value:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteValue() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetValue
+        private ValueExport GetValue()
+        {
+            Console.WriteLine("Attempting to GetValue()");
+            var result = ConversationService.GetValue((workspaceId:, entity:, value:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("GetValue() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListValues
+        private ValueCollection ListValues()
+        {
+            Console.WriteLine("Attempting to ListValues()");
+            var result = ConversationService.ListValues((workspaceId:, entity:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListValues() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListValues()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateValue
+        private Value UpdateValue()
+        {
+            Console.WriteLine("Attempting to UpdateValue()");
+            var result = ConversationService.UpdateValue((workspaceId:, entity:, value:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateValue() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateSynonym
+        private Synonym CreateSynonym()
+        {
+            Console.WriteLine("Attempting to CreateSynonym()");
+            var result = ConversationService.CreateSynonym((workspaceId:, entity:, value:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateSynonym() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteSynonym
+        private object DeleteSynonym()
+        {
+            Console.WriteLine("Attempting to DeleteSynonym()");
+            var result = ConversationService.DeleteSynonym((workspaceId:, entity:, value:, synonym:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteSynonym() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetSynonym
+        private Synonym GetSynonym()
+        {
+            Console.WriteLine("Attempting to GetSynonym()");
+            var result = ConversationService.GetSynonym((workspaceId:, entity:, value:, synonym:);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetSynonym() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListSynonyms
+        private SynonymCollection ListSynonyms()
+        {
+            Console.WriteLine("Attempting to ListSynonyms()");
+            var result = ConversationService.ListSynonyms((workspaceId:, entity:, value:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListSynonyms() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListSynonyms()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateSynonym
+        private Synonym UpdateSynonym()
+        {
+            Console.WriteLine("Attempting to UpdateSynonym()");
+            var result = ConversationService.UpdateSynonym((workspaceId:, entity:, value:, synonym:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateSynonym() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateDialogNode
+        private DialogNode CreateDialogNode()
+        {
+            Console.WriteLine("Attempting to CreateDialogNode()");
+            var result = ConversationService.CreateDialogNode((workspaceId:, properties:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateDialogNode() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteDialogNode
+        private object DeleteDialogNode()
+        {
+            Console.WriteLine("Attempting to DeleteDialogNode()");
+            var result = ConversationService.DeleteDialogNode((workspaceId:, dialogNode:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteDialogNode() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetDialogNode
+        private DialogNode GetDialogNode()
+        {
+            Console.WriteLine("Attempting to GetDialogNode()");
+            var result = ConversationService.GetDialogNode((workspaceId:, dialogNode:);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetDialogNode() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListDialogNodes
+        private DialogNodeCollection ListDialogNodes()
+        {
+            Console.WriteLine("Attempting to ListDialogNodes()");
+            var result = ConversationService.ListDialogNodes((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListDialogNodes() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListDialogNodes()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateDialogNode
+        private DialogNode UpdateDialogNode()
+        {
+            Console.WriteLine("Attempting to UpdateDialogNode()");
+            var result = ConversationService.UpdateDialogNode((workspaceId:, dialogNode:, properties:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateDialogNode() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListAllLogs
+        private LogCollection ListAllLogs()
+        {
+            Console.WriteLine("Attempting to ListAllLogs()");
+            var result = ConversationService.ListAllLogs((filter:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListAllLogs() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListAllLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListLogs
+        private LogCollection ListLogs()
+        {
+            Console.WriteLine("Attempting to ListLogs()");
+            var result = ConversationService.ListLogs((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListLogs() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateCounterexample
+        private Counterexample CreateCounterexample()
+        {
+            Console.WriteLine("Attempting to CreateCounterexample()");
+            var result = ConversationService.CreateCounterexample((workspaceId:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateCounterexample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateCounterexample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteCounterexample
+        private object DeleteCounterexample()
+        {
+            Console.WriteLine("Attempting to DeleteCounterexample()");
+            var result = ConversationService.DeleteCounterexample((workspaceId:, text:);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteCounterexample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteCounterexample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetCounterexample
+        private Counterexample GetCounterexample()
+        {
+            Console.WriteLine("Attempting to GetCounterexample()");
+            var result = ConversationService.GetCounterexample((workspaceId:, text:);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetCounterexample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetCounterexample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListCounterexamples
+        private CounterexampleCollection ListCounterexamples()
+        {
+            Console.WriteLine("Attempting to ListCounterexamples()");
+            var result = ConversationService.ListCounterexamples((workspaceId:, );
+
+            if (result != null)
+            {
+                Console.WriteLine("ListCounterexamples() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListCounterexamples()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateCounterexample
+        private Counterexample UpdateCounterexample()
+        {
+            Console.WriteLine("Attempting to UpdateCounterexample()");
+            var result = ConversationService.UpdateCounterexample((workspaceId:, text:, body:);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateCounterexample() succeeded");
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateCounterexample()");
             }
 
             return result;

@@ -32,16 +32,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private ConversationService conversation;
+        private ConversationService service;
         private static string credentials = string.Empty;
 
         private static string _workspaceID;
         private string _inputString = "Turn on the winshield wipers";
 
         private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
-        private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script.";
+        private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script. Please delete this.";
         private static string _createdWorkspaceLanguage = "en";
-        private static string _createdWorkspaceId;
         private static string _createdEntity = "entity";
         private static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
         private static string _createdValue = "value";
@@ -77,8 +76,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
             }
 
-            conversation = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
-            conversation.Endpoint = _endpoint;
+            service = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26)
+            {
+                Endpoint = _endpoint
+            };
         }
 
 
@@ -95,841 +96,846 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 AlternateIntents = true
             };
 
-            Console.WriteLine(string.Format("\nCalling Message(\"{0}\")...", _inputString));
-            var result = conversation.Message(_workspaceID, messageRequest);
-            Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            var results = Message(_workspaceID, messageRequest);
 
-            Assert.IsNotNull(result);
+            Assert.IsNotNull(results);
         }
         #endregion
+        /* Old tests
+        //#region Workspaces
+        //[TestMethod]
+        //public void ListWorkspaces_Success()
+        //{
+        //    Console.WriteLine("\nCalling ListWorkspaces()...");
+        //    var result = service.ListWorkspaces();
 
-        #region Workspaces
-        [TestMethod]
-        public void ListWorkspaces_Success()
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Workspaces != null && result.Workspaces.Count > 0)
+        //        {
+        //            foreach (Workspace workspace in result.Workspaces)
+        //                Console.WriteLine(string.Format("Workspace name: {0} | WorkspaceID: {1}", workspace.Name, workspace.WorkspaceId));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no workspaces.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Workspaces are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateWorkspace_Success()
+        //{
+        //    Console.WriteLine("\nCalling CreateWorkspace()...");
+        //    CreateWorkspace workspace = new CreateWorkspace()
+        //    {
+        //        Name = _createdWorkspaceName,
+        //        Description = _createdWorkspaceDescription,
+        //        Language = _createdWorkspaceLanguage
+        //    };
+
+        //    var result = service.CreateWorkspace(workspace);
+
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Workspace Name: {0}, id: {1}, description: {2}", result.Name, result.WorkspaceId, result.Description));
+        //        if (!string.IsNullOrEmpty(result.WorkspaceId))
+        //            _createdWorkspaceId = result.WorkspaceId;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+
+        //    Assert.IsNotNull(result);
+        //}
+
+        //[TestMethod]
+        //public void GetWorkspace_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetWorkspace({0})...", _createdWorkspaceId));
+
+        //    var result = service.GetWorkspace(_createdWorkspaceId);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Workspace name: {0} | id: {1} | description: {2}", result.Name, result.WorkspaceId, result.Description));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateWorkspace_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling UpdateWorkspace({0})...", _createdWorkspaceId));
+
+        //    UpdateWorkspace workspace = new UpdateWorkspace()
+        //    {
+        //        Name = _createdWorkspaceName + "-updated",
+        //        Description = _createdWorkspaceDescription + "-updated",
+        //        Language = _createdWorkspaceLanguage
+        //    };
+
+        //    var result = service.UpdateWorkspace(_createdWorkspaceId, workspace);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Updated Workspace name: {0} | id: {1} | description: {2}", result.Name, result.WorkspaceId, result.Description));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Counter Examples
+        //[TestMethod]
+        //public void ListCounterExamples_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListCounterExamples({0})...", _createdWorkspaceId));
+
+        //    var result = service.ListCounterexamples(_createdWorkspaceId);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Counterexamples.Count > 0)
+        //        {
+        //            foreach (Counterexample counterExample in result.Counterexamples)
+        //                Console.WriteLine(string.Format("CounterExample name: {0} | Created: {1}", counterExample.Text, counterExample.Created));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no counter examples.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("CounterExamples are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateCounterExample_Success()
+        //{
+        //    Console.WriteLine("\nCalling CreateCounterExample()...");
+
+        //    CreateCounterexample example = new CreateCounterexample()
+        //    {
+        //        Text = _createdCounterExampleText
+        //    };
+
+        //    var result = service.CreateCounterexample(_createdWorkspaceId, example);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetCounterExample_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetCounterExample({0}, {1})...", _createdWorkspaceId, _createdCounterExampleText));
+        //    var result = service.GetCounterexample(_createdWorkspaceId, _createdCounterExampleText);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateCounterExample_Success()
+        //{
+        //    string updatedCounterExampleText = _createdCounterExampleText + "-updated";
+        //    Console.WriteLine(string.Format("\nCalling UpdateCounterExample({0}, {1})...", _createdWorkspaceId, updatedCounterExampleText));
+        //    UpdateCounterexample example = new UpdateCounterexample()
+        //    {
+        //        Text = updatedCounterExampleText
+        //    };
+
+        //    var result = service.UpdateCounterexample(_createdWorkspaceId, _createdCounterExampleText, example);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
+        //        _createdCounterExampleText = updatedCounterExampleText;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Entities
+        //[TestMethod]
+        //public void ListEntities_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListEntities({0})...", _createdWorkspaceId));
+        //    var result = service.ListEntities(_createdWorkspaceId);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Entities != null && result.Entities.Count > 0)
+        //        {
+        //            foreach (EntityExport entity in result.Entities)
+        //                Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.EntityName, entity.Description));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no entities.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Entities are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateEntity_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling CreateEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
+        //    CreateEntity entity = new CreateEntity()
+        //    {
+        //        Entity = _createdEntity,
+        //        Description = _createdEntityDescription
+        //    };
+
+        //    var result = service.CreateEntity(_createdWorkspaceId, entity);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetEntity_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
+        //    var result = service.GetEntity(_createdWorkspaceId, _createdEntity);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateEntity_Success()
+        //{
+        //    string updatedEntity = _createdEntity + "-updated";
+        //    string updatedEntityDescription = _createdEntityDescription + "-updated";
+
+        //    Console.WriteLine(string.Format("\nCalling UpdateEntity({0}, {1})...", _createdWorkspaceId, _createdEntity, updatedEntity));
+        //    UpdateEntity entity = new UpdateEntity()
+        //    {
+        //        Entity = updatedEntity,
+        //        Description = updatedEntityDescription
+        //    };
+
+        //    var result = service.UpdateEntity(_createdWorkspaceId, _createdEntity, entity);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
+        //        _createdEntity = updatedEntity;
+        //        _createdEntityDescription = updatedEntityDescription;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Values
+        //[TestMethod]
+        //public void ListValues_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListValues({0}, {1})...", _createdWorkspaceId, _createdEntity));
+        //    var result = service.ListValues(_createdWorkspaceId, _createdEntity);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Values != null && result.Values.Count > 0)
+        //        {
+        //            foreach (ValueExport value in result.Values)
+        //                Console.WriteLine(string.Format("value: {0} | Created: {1}", value.ValueText, value.Created));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no values.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Values are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateValue_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling CreateValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
+        //    CreateValue value = new CreateValue()
+        //    {
+        //        Value = _createdValue
+        //    };
+
+        //    var result = service.CreateValue(_createdWorkspaceId, _createdEntity, value);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("value: {0}", result.ValueText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetValue_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
+        //    var result = service.GetValue(_createdWorkspaceId, _createdEntity, _createdValue);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("value: {0}", result.ValueText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateValue_Success()
+        //{
+        //    string updatedValue = _createdValue + "-updated";
+
+        //    Console.WriteLine(string.Format("\nCalling UpdateValue({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, updatedValue));
+
+        //    UpdateValue value = new UpdateValue()
+        //    {
+        //        Value = updatedValue
+        //    };
+
+        //    var result = service.UpdateValue(_createdWorkspaceId, _createdEntity, _createdValue, value);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("value: {0}", result.ValueText));
+        //        _createdValue = updatedValue;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Synonyms
+        //[TestMethod]
+        //public void ListSynonyms_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListSynonyms({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
+        //    var result = service.ListSynonyms(_createdWorkspaceId, _createdEntity, _createdValue);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Synonyms != null && result.Synonyms.Count > 0)
+        //        {
+        //            foreach (Synonym synonym in result.Synonyms)
+        //                Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.SynonymText, synonym.Created));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no synonyms.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Synonyms are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateSynonym_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling CreateSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
+        //    CreateSynonym synonym = new CreateSynonym()
+        //    {
+        //        Synonym = _createdSynonym
+        //    };
+
+        //    var result = service.CreateSynonym(_createdWorkspaceId, _createdEntity, _createdValue, synonym);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetSynonym_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
+        //    var result = service.GetSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateSynonym_Success()
+        //{
+        //    string updatedSynonym = _createdSynonym + "-updated";
+        //    Console.WriteLine(string.Format("\nCalling UpdateSynonym({0}, {1}, {2}, {3}, {4})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym, updatedSynonym));
+
+        //    UpdateSynonym synonym = new UpdateSynonym()
+        //    {
+        //        Synonym = updatedSynonym
+        //    };
+
+        //    var result = service.UpdateSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym, synonym);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
+        //        _createdSynonym = updatedSynonym;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Intents
+        //[TestMethod]
+        //public void ListIntents_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListIntents({0})...", _createdWorkspaceId));
+        //    var result = service.ListIntents(_createdWorkspaceId);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Intents != null && result.Intents.Count > 0)
+        //        {
+        //            foreach (IntentExport intent in result.Intents)
+        //                Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.IntentName, intent.Created));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no intents.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Intents are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateIntent_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling CreateIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
+        //    CreateIntent intent = new CreateIntent()
+        //    {
+        //        Intent = _createdIntent,
+        //        Description = _createdIntentDescription
+        //    };
+
+        //    var result = service.CreateIntent(_createdWorkspaceId, intent);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetIntent_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
+        //    var result = service.GetIntent(_createdWorkspaceId, _createdIntent);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateIntent_Success()
+        //{
+        //    string updatedIntent = _createdIntent + "-updated";
+        //    string updatedIntentDescription = _createdIntentDescription + "-updated";
+        //    Console.WriteLine(string.Format("\nCalling UpdateIntent({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, updatedIntent));
+
+        //    UpdateIntent intent = new UpdateIntent()
+        //    {
+        //        Intent = updatedIntent,
+        //        Description = updatedIntentDescription
+        //    };
+
+        //    var result = service.UpdateIntent(_createdWorkspaceId, _createdIntent, intent);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
+        //        _createdIntent = updatedIntent;
+        //        _createdIntentDescription = updatedIntentDescription;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //#region Examples
+        //[TestMethod]
+        //public void ListExamples_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling ListExamples({0}, {1})...", _createdWorkspaceId, _createdIntent));
+        //    var result = service.ListExamples(_createdWorkspaceId, _createdIntent);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        if (result.Examples != null && result.Examples.Count > 0)
+        //        {
+        //            foreach (Example example in result.Examples)
+        //                Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.ExampleText, example.Created));
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("There are no examples.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Examples are null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void CreateExample_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling CreateExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
+
+        //    CreateExample example = new CreateExample()
+        //    {
+        //        Text = _createdExample
+        //    };
+
+        //    var result = service.CreateExample(_createdWorkspaceId, _createdIntent, example);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("example: {0}", result.ExampleText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void GetExample_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling GetExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
+        //    var result = service.GetExample(_createdWorkspaceId, _createdIntent, _createdExample);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("example: {0}", result.ExampleText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void UpdateExample_Success()
+        //{
+        //    string updatedExample = _createdExample + "-updated";
+        //    Console.WriteLine(string.Format("\nCalling UpdateExample({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdIntent, _createdExample, updatedExample));
+
+        //    UpdateExample example = new UpdateExample()
+        //    {
+        //        Text = updatedExample
+        //    };
+
+        //    var result = service.UpdateExample(_createdWorkspaceId, _createdIntent, _createdExample, example);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("example: {0}", result.ExampleText));
+        //        _createdExample = updatedExample;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteExample_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
+        //    var result = service.DeleteExample(_createdWorkspaceId, _createdIntent, _createdExample);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Deleted example {0}.", _createdExample));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+
+        //[TestMethod]
+        //public void ListLogEventsSuccess()
+        //{
+        //    Console.WriteLine("Running Test ListLogEventsSuccess.");
+        //    var result = listlo();
+        //    Assert.IsNotNull(result);
+        //}
+
+        //#region Delete
+        //[TestMethod]
+        //public void DeleteIntent_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
+        //    var result = service.DeleteIntent(_createdWorkspaceId, _createdIntent);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Deleted intent {0}", _createdIntent));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteSynonym_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
+        //    var result = service.DeleteSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Deleted synonym {0}", _createdSynonym));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteValue_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
+        //    var result = service.DeleteValue(_createdWorkspaceId, _createdEntity, _createdValue);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine("Deleted value {0}", _createdValue);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteEntity_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
+        //    var result = service.DeleteEntity(_createdWorkspaceId, _createdEntity);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Deleted entity {0}.", _createdEntity));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteCounterExample_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteCounterExample({0}, {1})...", _createdWorkspaceId, _createdCounterExampleText));
+        //    var result = service.DeleteCounterexample(_createdWorkspaceId, _createdCounterExampleText);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Deleted counterExample {0}.", _createdCounterExampleText));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+
+        //[TestMethod]
+        //public void DeleteWorkspace_Success()
+        //{
+        //    Console.WriteLine(string.Format("\nCalling DeleteWorkspace({0})...", _createdWorkspaceId));
+        //    var result = service.DeleteWorkspace(_createdWorkspaceId);
+
+        //    Assert.IsNotNull(result);
+
+        //    if (result != null)
+        //    {
+        //        Console.WriteLine(string.Format("Workspace {0} deleted.", _createdWorkspaceId));
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Result is null.");
+        //    }
+        //}
+        //#endregion
+        */
+
+        #region CreateWorkspace
+        private Workspace CreateWorkspace()
         {
-            Console.WriteLine("\nCalling ListWorkspaces()...");
-            var result = conversation.ListWorkspaces();
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Workspaces != null && result.Workspaces.Count > 0)
-                {
-                    foreach (Workspace workspace in result.Workspaces)
-                        Console.WriteLine(string.Format("Workspace name: {0} | WorkspaceID: {1}", workspace.Name, workspace.WorkspaceId));
-                }
-                else
-                {
-                    Console.WriteLine("There are no workspaces.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Workspaces are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateWorkspace_Success()
-        {
-            Console.WriteLine("\nCalling CreateWorkspace()...");
+            Console.WriteLine("\nAttempting to CreateWorkspace()");
             CreateWorkspace workspace = new CreateWorkspace()
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
                 Language = _createdWorkspaceLanguage
             };
-
-            var result = conversation.CreateWorkspace(workspace);
-
+            var result = service.CreateWorkspace(workspace);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Workspace Name: {0}, id: {1}, description: {2}", result.Name, result.WorkspaceId, result.Description));
-                if (!string.IsNullOrEmpty(result.WorkspaceId))
-                    _createdWorkspaceId = result.WorkspaceId;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void GetWorkspace_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetWorkspace({0})...", _createdWorkspaceId));
-
-            var result = conversation.GetWorkspace(_createdWorkspaceId);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Workspace name: {0} | id: {1} | description: {2}", result.Name, result.WorkspaceId, result.Description));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateWorkspace_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateWorkspace({0})...", _createdWorkspaceId));
-
-            UpdateWorkspace workspace = new UpdateWorkspace()
-            {
-                Name = _createdWorkspaceName + "-updated",
-                Description = _createdWorkspaceDescription + "-updated",
-                Language = _createdWorkspaceLanguage
-            };
-
-            var result = conversation.UpdateWorkspace(_createdWorkspaceId, workspace);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Updated Workspace name: {0} | id: {1} | description: {2}", result.Name, result.WorkspaceId, result.Description));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Counter Examples
-        [TestMethod]
-        public void ListCounterExamples_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListCounterExamples({0})...", _createdWorkspaceId));
-
-            var result = conversation.ListCounterexamples(_createdWorkspaceId);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Counterexamples.Count > 0)
-                {
-                    foreach (Counterexample counterExample in result.Counterexamples)
-                        Console.WriteLine(string.Format("CounterExample name: {0} | Created: {1}", counterExample.Text, counterExample.Created));
-                }
-                else
-                {
-                    Console.WriteLine("There are no counter examples.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("CounterExamples are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateCounterExample_Success()
-        {
-            Console.WriteLine("\nCalling CreateCounterExample()...");
-
-            CreateCounterexample example = new CreateCounterexample()
-            {
-                Text = _createdCounterExampleText
-            };
-
-            var result = conversation.CreateCounterexample(_createdWorkspaceId, example);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetCounterExample_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetCounterExample({0}, {1})...", _createdWorkspaceId, _createdCounterExampleText));
-            var result = conversation.GetCounterexample(_createdWorkspaceId, _createdCounterExampleText);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateCounterExample_Success()
-        {
-            string updatedCounterExampleText = _createdCounterExampleText + "-updated";
-            Console.WriteLine(string.Format("\nCalling UpdateCounterExample({0}, {1})...", _createdWorkspaceId, updatedCounterExampleText));
-            UpdateCounterexample example = new UpdateCounterexample()
-            {
-                Text = updatedCounterExampleText
-            };
-
-            var result = conversation.UpdateCounterexample(_createdWorkspaceId, _createdCounterExampleText, example);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("CounterExample name: {0}, created: {1}", result.Text, result.Created));
-                _createdCounterExampleText = updatedCounterExampleText;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Entities
-        [TestMethod]
-        public void ListEntities_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListEntities({0})...", _createdWorkspaceId));
-            var result = conversation.ListEntities(_createdWorkspaceId);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Entities != null && result.Entities.Count > 0)
-                {
-                    foreach (EntityExport entity in result.Entities)
-                        Console.WriteLine(string.Format("Entity: {0} | Created: {1}", entity.EntityName, entity.Description));
-                }
-                else
-                {
-                    Console.WriteLine("There are no entities.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Entities are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateEntity_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
-            CreateEntity entity = new CreateEntity()
-            {
-                Entity = _createdEntity,
-                Description = _createdEntityDescription
-            };
-
-            var result = conversation.CreateEntity(_createdWorkspaceId, entity);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetEntity_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
-            var result = conversation.GetEntity(_createdWorkspaceId, _createdEntity);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateEntity_Success()
-        {
-            string updatedEntity = _createdEntity + "-updated";
-            string updatedEntityDescription = _createdEntityDescription + "-updated";
-
-            Console.WriteLine(string.Format("\nCalling UpdateEntity({0}, {1})...", _createdWorkspaceId, _createdEntity, updatedEntity));
-            UpdateEntity entity = new UpdateEntity()
-            {
-                Entity = updatedEntity,
-                Description = updatedEntityDescription
-            };
-
-            var result = conversation.UpdateEntity(_createdWorkspaceId, _createdEntity, entity);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("entity: {0} | description: {1}", result.EntityName, result.Description));
-                _createdEntity = updatedEntity;
-                _createdEntityDescription = updatedEntityDescription;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Values
-        [TestMethod]
-        public void ListValues_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListValues({0}, {1})...", _createdWorkspaceId, _createdEntity));
-            var result = conversation.ListValues(_createdWorkspaceId, _createdEntity);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Values != null && result.Values.Count > 0)
-                {
-                    foreach (ValueExport value in result.Values)
-                        Console.WriteLine(string.Format("value: {0} | Created: {1}", value.ValueText, value.Created));
-                }
-                else
-                {
-                    Console.WriteLine("There are no values.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Values are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateValue_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
-            CreateValue value = new CreateValue()
-            {
-                Value = _createdValue
-            };
-
-            var result = conversation.CreateValue(_createdWorkspaceId, _createdEntity, value);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("value: {0}", result.ValueText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetValue_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
-            var result = conversation.GetValue(_createdWorkspaceId, _createdEntity, _createdValue);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("value: {0}", result.ValueText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateValue_Success()
-        {
-            string updatedValue = _createdValue + "-updated";
-
-            Console.WriteLine(string.Format("\nCalling UpdateValue({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, updatedValue));
-
-            UpdateValue value = new UpdateValue()
-            {
-                Value = updatedValue
-            };
-
-            var result = conversation.UpdateValue(_createdWorkspaceId, _createdEntity, _createdValue, value);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("value: {0}", result.ValueText));
-                _createdValue = updatedValue;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Synonyms
-        [TestMethod]
-        public void ListSynonyms_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListSynonyms({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
-            var result = conversation.ListSynonyms(_createdWorkspaceId, _createdEntity, _createdValue);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Synonyms != null && result.Synonyms.Count > 0)
-                {
-                    foreach (Synonym synonym in result.Synonyms)
-                        Console.WriteLine(string.Format("Synonym: {0} | Created: {1}", synonym.SynonymText, synonym.Created));
-                }
-                else
-                {
-                    Console.WriteLine("There are no synonyms.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Synonyms are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateSynonym_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
-            CreateSynonym synonym = new CreateSynonym()
-            {
-                Synonym = _createdSynonym
-            };
-
-            var result = conversation.CreateSynonym(_createdWorkspaceId, _createdEntity, _createdValue, synonym);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetSynonym_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
-            var result = conversation.GetSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateSynonym_Success()
-        {
-            string updatedSynonym = _createdSynonym + "-updated";
-            Console.WriteLine(string.Format("\nCalling UpdateSynonym({0}, {1}, {2}, {3}, {4})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym, updatedSynonym));
-
-            UpdateSynonym synonym = new UpdateSynonym()
-            {
-                Synonym = updatedSynonym
-            };
-
-            var result = conversation.UpdateSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym, synonym);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("synonym: {0}", result.SynonymText));
-                _createdSynonym = updatedSynonym;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Intents
-        [TestMethod]
-        public void ListIntents_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListIntents({0})...", _createdWorkspaceId));
-            var result = conversation.ListIntents(_createdWorkspaceId);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Intents != null && result.Intents.Count > 0)
-                {
-                    foreach (IntentExport intent in result.Intents)
-                        Console.WriteLine(string.Format("Intent: {0} | Created: {1}", intent.IntentName, intent.Created));
-                }
-                else
-                {
-                    Console.WriteLine("There are no intents.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Intents are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateIntent_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
-            CreateIntent intent = new CreateIntent()
-            {
-                Intent = _createdIntent,
-                Description = _createdIntentDescription
-            };
-
-            var result = conversation.CreateIntent(_createdWorkspaceId, intent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetIntent_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
-            var result = conversation.GetIntent(_createdWorkspaceId, _createdIntent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateIntent_Success()
-        {
-            string updatedIntent = _createdIntent + "-updated";
-            string updatedIntentDescription = _createdIntentDescription + "-updated";
-            Console.WriteLine(string.Format("\nCalling UpdateIntent({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, updatedIntent));
-
-            UpdateIntent intent = new UpdateIntent()
-            {
-                Intent = updatedIntent,
-                Description = updatedIntentDescription
-            };
-
-            var result = conversation.UpdateIntent(_createdWorkspaceId, _createdIntent, intent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine("intent: {0} | description: {1}", result.IntentName, result.Description);
-                _createdIntent = updatedIntent;
-                _createdIntentDescription = updatedIntentDescription;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region Examples
-        [TestMethod]
-        public void ListExamples_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling ListExamples({0}, {1})...", _createdWorkspaceId, _createdIntent));
-            var result = conversation.ListExamples(_createdWorkspaceId, _createdIntent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                if (result.Examples != null && result.Examples.Count > 0)
-                {
-                    foreach (Example example in result.Examples)
-                        Console.WriteLine(string.Format("Example: {0} | Created: {1}", example.ExampleText, example.Created));
-                }
-                else
-                {
-                    Console.WriteLine("There are no examples.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Examples are null.");
-            }
-        }
-
-        [TestMethod]
-        public void CreateExample_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
-
-            CreateExample example = new CreateExample()
-            {
-                Text = _createdExample
-            };
-
-            var result = conversation.CreateExample(_createdWorkspaceId, _createdIntent, example);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void GetExample_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling GetExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
-            var result = conversation.GetExample(_createdWorkspaceId, _createdIntent, _createdExample);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void UpdateExample_Success()
-        {
-            string updatedExample = _createdExample + "-updated";
-            Console.WriteLine(string.Format("\nCalling UpdateExample({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdIntent, _createdExample, updatedExample));
-
-            UpdateExample example = new UpdateExample()
-            {
-                Text = updatedExample
-            };
-
-            var result = conversation.UpdateExample(_createdWorkspaceId, _createdIntent, _createdExample, example);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("example: {0}", result.ExampleText));
-                _createdExample = updatedExample;
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteExample_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteExample({0}, {1}, {2})...", _createdWorkspaceId, _createdIntent, _createdExample));
-            var result = conversation.DeleteExample(_createdWorkspaceId, _createdIntent, _createdExample);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted example {0}.", _createdExample));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        [TestMethod]
-        public void ListLogEventsSuccess()
-        {
-            Console.WriteLine("Running Test ListLogEventsSuccess.");
-            var result = ListLogEvents();
-            Assert.IsNotNull(result);
-        }
-
-        #region Delete
-        [TestMethod]
-        public void DeleteIntent_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteIntent({0}, {1})...", _createdWorkspaceId, _createdIntent));
-            var result = conversation.DeleteIntent(_createdWorkspaceId, _createdIntent);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted intent {0}", _createdIntent));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteSynonym_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteSynonym({0}, {1}, {2}, {3})...", _createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym));
-            var result = conversation.DeleteSynonym(_createdWorkspaceId, _createdEntity, _createdValue, _createdSynonym);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted synonym {0}", _createdSynonym));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteValue_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteValue({0}, {1}, {2})...", _createdWorkspaceId, _createdEntity, _createdValue));
-            var result = conversation.DeleteValue(_createdWorkspaceId, _createdEntity, _createdValue);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine("Deleted value {0}", _createdValue);
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteEntity_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteEntity({0}, {1})...", _createdWorkspaceId, _createdEntity));
-            var result = conversation.DeleteEntity(_createdWorkspaceId, _createdEntity);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted entity {0}.", _createdEntity));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteCounterExample_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteCounterExample({0}, {1})...", _createdWorkspaceId, _createdCounterExampleText));
-            var result = conversation.DeleteCounterexample(_createdWorkspaceId, _createdCounterExampleText);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Deleted counterExample {0}.", _createdCounterExampleText));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-
-        [TestMethod]
-        public void DeleteWorkspace_Success()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteWorkspace({0})...", _createdWorkspaceId));
-            var result = conversation.DeleteWorkspace(_createdWorkspaceId);
-
-            Assert.IsNotNull(result);
-
-            if (result != null)
-            {
-                Console.WriteLine(string.Format("Workspace {0} deleted.", _createdWorkspaceId));
-            }
-            else
-            {
-                Console.WriteLine("Result is null.");
-            }
-        }
-        #endregion
-
-        #region CreateWorkspace
-        private Workspace CreateWorkspace()
-        {
-            Console.WriteLine("Attempting to CreateWorkspace()");
-            var result = ConversationService.CreateWorkspace(();
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateWorkspace() succeeded");
+                Console.WriteLine("CreateWorkspace() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -941,14 +947,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteWorkspace
-        private object DeleteWorkspace()
+        private object DeleteWorkspace(string workspaceId)
         {
-            Console.WriteLine("Attempting to DeleteWorkspace()");
-            var result = ConversationService.DeleteWorkspace((workspaceId:);
+            Console.WriteLine("\nAttempting to DeleteWorkspace()");
+            var result = service.DeleteWorkspace(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteWorkspace() succeeded");
+                Console.WriteLine("DeleteWorkspace() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -960,14 +966,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetWorkspace
-        private WorkspaceExport GetWorkspace()
+        private WorkspaceExport GetWorkspace(string workspaceId)
         {
-            Console.WriteLine("Attempting to GetWorkspace()");
-            var result = ConversationService.GetWorkspace((workspaceId:, );
+            Console.WriteLine("\nAttempting to GetWorkspace()");
+            var result = service.GetWorkspace(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("GetWorkspace() succeeded");
+                Console.WriteLine("GetWorkspace() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -981,12 +987,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListWorkspaces
         private WorkspaceCollection ListWorkspaces()
         {
-            Console.WriteLine("Attempting to ListWorkspaces()");
-            var result = ConversationService.ListWorkspaces(();
+            Console.WriteLine("\nAttempting to ListWorkspaces()");
+            var result = service.ListWorkspaces();
 
             if (result != null)
             {
-                Console.WriteLine("ListWorkspaces() succeeded");
+                Console.WriteLine("ListWorkspaces() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -998,14 +1004,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateWorkspace
-        private Workspace UpdateWorkspace()
+        private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties)
         {
-            Console.WriteLine("Attempting to UpdateWorkspace()");
-            var result = ConversationService.UpdateWorkspace((workspaceId:, );
+            Console.WriteLine("\nAttempting to UpdateWorkspace()");
+            var result = service.UpdateWorkspace(workspaceId: workspaceId, properties:properties);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateWorkspace() succeeded");
+                Console.WriteLine("UpdateWorkspace() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1017,14 +1023,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Message
-        private MessageResponse Message()
+        private MessageResponse Message(string workspaceId, MessageRequest request)
         {
-            Console.WriteLine("Attempting to Message()");
-            var result = ConversationService.Message((workspaceId:, );
+            Console.WriteLine("\nAttempting to Message()");
+            var result = service.Message(workspaceId: workspaceId, request:request);
 
             if (result != null)
             {
-                Console.WriteLine("Message() succeeded");
+                Console.WriteLine("Message() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1036,14 +1042,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateIntent
-        private Intent CreateIntent()
+        private Intent CreateIntent(string workspaceId, CreateIntent body)
         {
-            Console.WriteLine("Attempting to CreateIntent()");
-            var result = ConversationService.CreateIntent((workspaceId:, body:);
+            Console.WriteLine("\nAttempting to CreateIntent()");
+            var result = service.CreateIntent(workspaceId: workspaceId, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("CreateIntent() succeeded");
+                Console.WriteLine("CreateIntent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1055,14 +1061,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteIntent
-        private object DeleteIntent()
+        private object DeleteIntent(string workspaceId, string intent)
         {
-            Console.WriteLine("Attempting to DeleteIntent()");
-            var result = ConversationService.DeleteIntent((workspaceId:, intent:);
+            Console.WriteLine("\nAttempting to DeleteIntent()");
+            var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteIntent() succeeded");
+                Console.WriteLine("DeleteIntent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1074,14 +1080,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetIntent
-        private IntentExport GetIntent()
+        private IntentExport GetIntent(string workspaceId, string intent)
         {
-            Console.WriteLine("Attempting to GetIntent()");
-            var result = ConversationService.GetIntent((workspaceId:, intent:, );
+            Console.WriteLine("\nAttempting to GetIntent()");
+            var result = service.GetIntent(workspaceId: workspaceId, intent: intent);
 
             if (result != null)
             {
-                Console.WriteLine("GetIntent() succeeded");
+                Console.WriteLine("GetIntent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1093,14 +1099,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListIntents
-        private IntentCollection ListIntents()
+        private IntentCollection ListIntents(string workspaceId)
         {
-            Console.WriteLine("Attempting to ListIntents()");
-            var result = ConversationService.ListIntents((workspaceId:, );
+            Console.WriteLine("\nAttempting to ListIntents()");
+            var result = service.ListIntents(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("ListIntents() succeeded");
+                Console.WriteLine("ListIntents() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1112,14 +1118,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateIntent
-        private Intent UpdateIntent()
+        private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
         {
-            Console.WriteLine("Attempting to UpdateIntent()");
-            var result = ConversationService.UpdateIntent((workspaceId:, intent:, body:);
+            Console.WriteLine("\nAttempting to UpdateIntent()");
+            var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateIntent() succeeded");
+                Console.WriteLine("UpdateIntent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1131,14 +1137,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateExample
-        private Example CreateExample()
+        private Example CreateExample(string workspaceId, string intent, CreateExample body)
         {
-            Console.WriteLine("Attempting to CreateExample()");
-            var result = ConversationService.CreateExample((workspaceId:, intent:, body:);
+            Console.WriteLine("\nAttempting to CreateExample()");
+            var result = service.CreateExample(workspaceId: workspaceId, intent: intent, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("CreateExample() succeeded");
+                Console.WriteLine("CreateExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1150,14 +1156,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteExample
-        private object DeleteExample()
+        private object DeleteExample(string workspaceId, string intent, string text)
         {
-            Console.WriteLine("Attempting to DeleteExample()");
-            var result = ConversationService.DeleteExample((workspaceId:, intent:, text:);
+            Console.WriteLine("\nAttempting to DeleteExample()");
+            var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteExample() succeeded");
+                Console.WriteLine("DeleteExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1169,14 +1175,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetExample
-        private Example GetExample()
+        private Example GetExample(string workspaceId, string intent, string text)
         {
-            Console.WriteLine("Attempting to GetExample()");
-            var result = ConversationService.GetExample((workspaceId:, intent:, text:);
+            Console.WriteLine("\nAttempting to GetExample()");
+            var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text);
 
             if (result != null)
             {
-                Console.WriteLine("GetExample() succeeded");
+                Console.WriteLine("GetExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1188,14 +1194,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListExamples
-        private ExampleCollection ListExamples()
+        private ExampleCollection ListExamples(string workspaceId, string intent)
         {
-            Console.WriteLine("Attempting to ListExamples()");
-            var result = ConversationService.ListExamples((workspaceId:, intent:, );
+            Console.WriteLine("\nAttempting to ListExamples()");
+            var result = service.ListExamples(workspaceId: workspaceId, intent: intent);
 
             if (result != null)
             {
-                Console.WriteLine("ListExamples() succeeded");
+                Console.WriteLine("ListExamples() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1207,14 +1213,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateExample
-        private Example UpdateExample()
+        private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
         {
-            Console.WriteLine("Attempting to UpdateExample()");
-            var result = ConversationService.UpdateExample((workspaceId:, intent:, text:, body:);
+            Console.WriteLine("\nAttempting to UpdateExample()");
+            var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateExample() succeeded");
+                Console.WriteLine("UpdateExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1226,14 +1232,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateEntity
-        private Entity CreateEntity()
+        private Entity CreateEntity(string workspaceId, CreateEntity properties)
         {
-            Console.WriteLine("Attempting to CreateEntity()");
-            var result = ConversationService.CreateEntity((workspaceId:, properties:);
+            Console.WriteLine("\nAttempting to CreateEntity()");
+            var result = service.CreateEntity(workspaceId: workspaceId, properties: properties);
 
             if (result != null)
             {
-                Console.WriteLine("CreateEntity() succeeded");
+                Console.WriteLine("CreateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1245,14 +1251,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteEntity
-        private object DeleteEntity()
+        private object DeleteEntity(string workspaceId, string entity)
         {
-            Console.WriteLine("Attempting to DeleteEntity()");
-            var result = ConversationService.DeleteEntity((workspaceId:, entity:);
+            Console.WriteLine("\nAttempting to DeleteEntity()");
+            var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteEntity() succeeded");
+                Console.WriteLine("DeleteEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1264,14 +1270,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetEntity
-        private EntityExport GetEntity()
+        private EntityExport GetEntity(string workspaceId, string entity)
         {
-            Console.WriteLine("Attempting to GetEntity()");
-            var result = ConversationService.GetEntity((workspaceId:, entity:, );
+            Console.WriteLine("\nAttempting to GetEntity()");
+            var result = service.GetEntity(workspaceId: workspaceId, entity: entity);
 
             if (result != null)
             {
-                Console.WriteLine("GetEntity() succeeded");
+                Console.WriteLine("GetEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1283,14 +1289,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListEntities
-        private EntityCollection ListEntities()
+        private EntityCollection ListEntities(string workspaceId)
         {
-            Console.WriteLine("Attempting to ListEntities()");
-            var result = ConversationService.ListEntities((workspaceId:, );
+            Console.WriteLine("\nAttempting to ListEntities()");
+            var result = service.ListEntities(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("ListEntities() succeeded");
+                Console.WriteLine("ListEntities() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1302,14 +1308,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateEntity
-        private Entity UpdateEntity()
+        private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
         {
-            Console.WriteLine("Attempting to UpdateEntity()");
-            var result = ConversationService.UpdateEntity((workspaceId:, entity:, properties:);
+            Console.WriteLine("\nAttempting to UpdateEntity()");
+            var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateEntity() succeeded");
+                Console.WriteLine("UpdateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1321,14 +1327,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateValue
-        private Value CreateValue()
+        private Value CreateValue(string workspaceId, string entity, CreateValue body)
         {
-            Console.WriteLine("Attempting to CreateValue()");
-            var result = ConversationService.CreateValue((workspaceId:, entity:, body:);
+            Console.WriteLine("\nAttempting to CreateValue()");
+            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("CreateValue() succeeded");
+                Console.WriteLine("CreateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1340,14 +1346,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteValue
-        private object DeleteValue()
+        private object DeleteValue(string workspaceId, string entity, string value)
         {
-            Console.WriteLine("Attempting to DeleteValue()");
-            var result = ConversationService.DeleteValue((workspaceId:, entity:, value:);
+            Console.WriteLine("\nAttempting to DeleteValue()");
+            var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteValue() succeeded");
+                Console.WriteLine("DeleteValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1359,14 +1365,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetValue
-        private ValueExport GetValue()
+        private ValueExport GetValue(string workspaceId, string entity, string value)
         {
-            Console.WriteLine("Attempting to GetValue()");
-            var result = ConversationService.GetValue((workspaceId:, entity:, value:, );
+            Console.WriteLine("\nAttempting to GetValue()");
+            var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value);
 
             if (result != null)
             {
-                Console.WriteLine("GetValue() succeeded");
+                Console.WriteLine("GetValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1378,14 +1384,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListValues
-        private ValueCollection ListValues()
+        private ValueCollection ListValues(string workspaceId, string entity)
         {
-            Console.WriteLine("Attempting to ListValues()");
-            var result = ConversationService.ListValues((workspaceId:, entity:, );
+            Console.WriteLine("\nAttempting to ListValues()");
+            var result = service.ListValues(workspaceId: workspaceId, entity: entity);
 
             if (result != null)
             {
-                Console.WriteLine("ListValues() succeeded");
+                Console.WriteLine("ListValues() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1397,14 +1403,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateValue
-        private Value UpdateValue()
+        private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
         {
-            Console.WriteLine("Attempting to UpdateValue()");
-            var result = ConversationService.UpdateValue((workspaceId:, entity:, value:, body:);
+            Console.WriteLine("\nAttempting to UpdateValue()");
+            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateValue() succeeded");
+                Console.WriteLine("UpdateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1416,14 +1422,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateSynonym
-        private Synonym CreateSynonym()
+        private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
         {
-            Console.WriteLine("Attempting to CreateSynonym()");
-            var result = ConversationService.CreateSynonym((workspaceId:, entity:, value:, body:);
+            Console.WriteLine("\nAttempting to CreateSynonym()");
+            var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("CreateSynonym() succeeded");
+                Console.WriteLine("CreateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1435,14 +1441,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteSynonym
-        private object DeleteSynonym()
+        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            Console.WriteLine("Attempting to DeleteSynonym()");
-            var result = ConversationService.DeleteSynonym((workspaceId:, entity:, value:, synonym:);
+            Console.WriteLine("\nAttempting to DeleteSynonym()");
+            var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteSynonym() succeeded");
+                Console.WriteLine("DeleteSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1454,14 +1460,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetSynonym
-        private Synonym GetSynonym()
+        private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            Console.WriteLine("Attempting to GetSynonym()");
-            var result = ConversationService.GetSynonym((workspaceId:, entity:, value:, synonym:);
+            Console.WriteLine("\nAttempting to GetSynonym()");
+            var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
             if (result != null)
             {
-                Console.WriteLine("GetSynonym() succeeded");
+                Console.WriteLine("GetSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1473,14 +1479,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListSynonyms
-        private SynonymCollection ListSynonyms()
+        private SynonymCollection ListSynonyms(string workspaceId, string entity, string value)
         {
-            Console.WriteLine("Attempting to ListSynonyms()");
-            var result = ConversationService.ListSynonyms((workspaceId:, entity:, value:, );
+            Console.WriteLine("\nAttempting to ListSynonyms()");
+            var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value);
 
             if (result != null)
             {
-                Console.WriteLine("ListSynonyms() succeeded");
+                Console.WriteLine("ListSynonyms() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1492,14 +1498,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateSynonym
-        private Synonym UpdateSynonym()
+        private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
         {
-            Console.WriteLine("Attempting to UpdateSynonym()");
-            var result = ConversationService.UpdateSynonym((workspaceId:, entity:, value:, synonym:, body:);
+            Console.WriteLine("\nAttempting to UpdateSynonym()");
+            var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateSynonym() succeeded");
+                Console.WriteLine("UpdateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1511,14 +1517,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateDialogNode
-        private DialogNode CreateDialogNode()
+        private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
         {
-            Console.WriteLine("Attempting to CreateDialogNode()");
-            var result = ConversationService.CreateDialogNode((workspaceId:, properties:);
+            Console.WriteLine("\nAttempting to CreateDialogNode()");
+            var result = service.CreateDialogNode(workspaceId: workspaceId, properties: properties);
 
             if (result != null)
             {
-                Console.WriteLine("CreateDialogNode() succeeded");
+                Console.WriteLine("CreateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1530,14 +1536,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteDialogNode
-        private object DeleteDialogNode()
+        private object DeleteDialogNode(string workspaceId, string dialogNode)
         {
-            Console.WriteLine("Attempting to DeleteDialogNode()");
-            var result = ConversationService.DeleteDialogNode((workspaceId:, dialogNode:);
+            Console.WriteLine("\nAttempting to DeleteDialogNode()");
+            var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteDialogNode() succeeded");
+                Console.WriteLine("DeleteDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1549,14 +1555,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetDialogNode
-        private DialogNode GetDialogNode()
+        private DialogNode GetDialogNode(string workspaceId, string dialogNode)
         {
-            Console.WriteLine("Attempting to GetDialogNode()");
-            var result = ConversationService.GetDialogNode((workspaceId:, dialogNode:);
+            Console.WriteLine("\nAttempting to GetDialogNode()");
+            var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
             if (result != null)
             {
-                Console.WriteLine("GetDialogNode() succeeded");
+                Console.WriteLine("GetDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1568,14 +1574,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListDialogNodes
-        private DialogNodeCollection ListDialogNodes()
+        private DialogNodeCollection ListDialogNodes(string workspaceId)
         {
-            Console.WriteLine("Attempting to ListDialogNodes()");
-            var result = ConversationService.ListDialogNodes((workspaceId:, );
+            Console.WriteLine("\nAttempting to ListDialogNodes()");
+            var result = service.ListDialogNodes(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("ListDialogNodes() succeeded");
+                Console.WriteLine("ListDialogNodes() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1587,14 +1593,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateDialogNode
-        private DialogNode UpdateDialogNode()
+        private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
         {
-            Console.WriteLine("Attempting to UpdateDialogNode()");
-            var result = ConversationService.UpdateDialogNode((workspaceId:, dialogNode:, properties:);
+            Console.WriteLine("\nAttempting to UpdateDialogNode()");
+            var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateDialogNode() succeeded");
+                Console.WriteLine("UpdateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1606,14 +1612,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListAllLogs
-        private LogCollection ListAllLogs()
+        private LogCollection ListAllLogs(string filter)
         {
-            Console.WriteLine("Attempting to ListAllLogs()");
-            var result = ConversationService.ListAllLogs((filter:, );
+            Console.WriteLine("\nAttempting to ListAllLogs()");
+            var result = service.ListAllLogs(filter: filter);
 
             if (result != null)
             {
-                Console.WriteLine("ListAllLogs() succeeded");
+                Console.WriteLine("ListAllLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1625,14 +1631,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListLogs
-        private LogCollection ListLogs()
+        private LogCollection ListLogs(string workspaceId)
         {
-            Console.WriteLine("Attempting to ListLogs()");
-            var result = ConversationService.ListLogs((workspaceId:, );
+            Console.WriteLine("\nAttempting to ListLogs()");
+            var result = service.ListLogs(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("ListLogs() succeeded");
+                Console.WriteLine("ListLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1644,14 +1650,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateCounterexample
-        private Counterexample CreateCounterexample()
+        private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
         {
-            Console.WriteLine("Attempting to CreateCounterexample()");
-            var result = ConversationService.CreateCounterexample((workspaceId:, body:);
+            Console.WriteLine("\nAttempting to CreateCounterexample()");
+            var result = service.CreateCounterexample(workspaceId: workspaceId, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("CreateCounterexample() succeeded");
+                Console.WriteLine("CreateCounterexample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1663,14 +1669,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteCounterexample
-        private object DeleteCounterexample()
+        private object DeleteCounterexample(string workspaceId, string text)
         {
-            Console.WriteLine("Attempting to DeleteCounterexample()");
-            var result = ConversationService.DeleteCounterexample((workspaceId:, text:);
+            Console.WriteLine("\nAttempting to DeleteCounterexample()");
+            var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text);
 
             if (result != null)
             {
-                Console.WriteLine("DeleteCounterexample() succeeded");
+                Console.WriteLine("DeleteCounterexample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1682,14 +1688,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetCounterexample
-        private Counterexample GetCounterexample()
+        private Counterexample GetCounterexample(string workspaceId, string text)
         {
-            Console.WriteLine("Attempting to GetCounterexample()");
-            var result = ConversationService.GetCounterexample((workspaceId:, text:);
+            Console.WriteLine("\nAttempting to GetCounterexample()");
+            var result = service.GetCounterexample(workspaceId: workspaceId, text: text);
 
             if (result != null)
             {
-                Console.WriteLine("GetCounterexample() succeeded");
+                Console.WriteLine("GetCounterexample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1701,14 +1707,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListCounterexamples
-        private CounterexampleCollection ListCounterexamples()
+        private CounterexampleCollection ListCounterexamples(string workspaceId)
         {
-            Console.WriteLine("Attempting to ListCounterexamples()");
-            var result = ConversationService.ListCounterexamples((workspaceId:, );
+            Console.WriteLine("\nAttempting to ListCounterexamples()");
+            var result = service.ListCounterexamples(workspaceId: workspaceId);
 
             if (result != null)
             {
-                Console.WriteLine("ListCounterexamples() succeeded");
+                Console.WriteLine("ListCounterexamples() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -1720,14 +1726,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateCounterexample
-        private Counterexample UpdateCounterexample()
+        private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
         {
-            Console.WriteLine("Attempting to UpdateCounterexample()");
-            var result = ConversationService.UpdateCounterexample((workspaceId:, text:, body:);
+            Console.WriteLine("\nAttempting to UpdateCounterexample()");
+            var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body);
 
             if (result != null)
             {
-                Console.WriteLine("UpdateCounterexample() succeeded");
+                Console.WriteLine("UpdateCounterexample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {

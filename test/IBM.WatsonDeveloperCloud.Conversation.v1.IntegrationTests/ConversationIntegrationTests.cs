@@ -1252,6 +1252,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listDialogNodes);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateDialogNode_Success()
         {
@@ -1271,7 +1272,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 Description = _dialogNodeDesc
             };
             var createDialogNodeResult = CreateDialogNode(workspaceId, createDialogNode);
-            //var deleteDialogNodeResult = DeleteDialogNode(workspaceId, createDialogNode.DialogNode);
+            var deleteDialogNodeResult = DeleteDialogNode(workspaceId, createDialogNode.DialogNode);
             var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
 
             Assert.IsNotNull(createDialogNodeResult);
@@ -1279,7 +1280,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(createDialogNodeResult.Description == createDialogNode.Description);
         }
 
-        //[TestMethod]
+        [Ignore]
+        [TestMethod]
         public void GetDialogNode_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -1299,7 +1301,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             };
             var createDialogNodeResult = CreateDialogNode(workspaceId, createDialogNode);
             var getDialogNodeResult = GetDialogNode(workspaceId, createDialogNode.DialogNode);
-            //var deleteDialogNodeResult = DeleteDialogNode(workspaceId, createDialogNode.DialogNode);
+            var deleteDialogNodeResult = DeleteDialogNode(workspaceId, createDialogNode.DialogNode);
             var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
 
             Assert.IsNotNull(getDialogNodeResult);
@@ -1307,7 +1309,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getDialogNodeResult.Description == createDialogNode.Description);
         }
 
-        //[TestMethod]
+        [Ignore]
+        [TestMethod]
         public void UpdateDialogNode_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -1334,7 +1337,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 Description = updatedDialogNodeDescription
             };
             var updateDialogNodeResult = UpdateDialogNode(workspaceId, createDialogNode.DialogNode, updateDialogNode);
-            //var deleteDialogNodeResult = DeleteDialogNode(workspaceId, updateDialogNode.DialogNode);
+            var deleteDialogNodeResult = DeleteDialogNode(workspaceId, updateDialogNode.DialogNode);
             var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
 
             Assert.IsNotNull(updateDialogNodeResult);
@@ -1342,7 +1345,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateDialogNodeResult.Description == updateDialogNode.Description);
         }
 
-        //[TestMethod]
+        [Ignore]
+        [TestMethod]
         public void DeleteDialogNode_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()

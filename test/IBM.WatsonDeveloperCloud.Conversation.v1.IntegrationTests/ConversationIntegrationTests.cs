@@ -51,6 +51,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string _createdExample = "example";
         private static string _dialogNodeName = "test-dialog-node";
         private static string _dialogNodeDesc = ".NET SDK Integration test dialog node";
+        private int _delayTimeInMilliseconds = 500;
 
         [TestInitialize]
         public void Setup()
@@ -86,15 +87,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             var workspaces = service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
-            foreach(Workspace workspace in workspaces.Workspaces)
+            foreach (Workspace workspace in workspaces.Workspaces)
             {
                 if (workspace.Name == _createdWorkspaceName)
                     dotnet_workpaces.Add(workspace.WorkspaceId);
             }
 
-            foreach(string workspaceId in dotnet_workpaces)
+            foreach (string workspaceId in dotnet_workpaces)
             {
-                service.DeleteWorkspace(workspaceId);
+                DeleteWorkspace(workspaceId);
             }
         }
 
@@ -112,7 +113,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
             foreach (string workspaceId in dotnet_workpaces)
             {
-                service.DeleteWorkspace(workspaceId);
+                DeleteWorkspace(workspaceId);
             }
         }
 
@@ -150,7 +151,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -168,7 +170,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -217,7 +220,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -370,7 +374,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -388,7 +393,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -415,7 +421,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -443,7 +450,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -481,7 +489,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -509,7 +518,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -536,7 +546,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -570,7 +581,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -605,7 +617,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -647,7 +660,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -682,7 +696,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -716,7 +731,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -757,7 +773,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -799,7 +816,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -846,7 +864,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -888,7 +907,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -906,7 +926,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -933,7 +954,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -961,7 +983,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -996,7 +1019,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1024,7 +1048,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1051,7 +1076,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1084,7 +1110,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1118,7 +1145,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1157,7 +1185,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1191,7 +1220,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1209,7 +1239,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1235,7 +1266,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1262,7 +1294,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1296,7 +1329,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1322,7 +1356,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Name = _createdWorkspaceName,
                 Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
             };
 
             var createWorkspaceResult = CreateWorkspace(workspace);
@@ -1346,6 +1381,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateWorkspace
         private Workspace CreateWorkspace(CreateWorkspace workspace)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateWorkspace()");
             var result = service.CreateWorkspace(workspace);
 
@@ -1365,6 +1401,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteWorkspace
         private object DeleteWorkspace(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = service.DeleteWorkspace(workspaceId: workspaceId);
 
@@ -1384,6 +1421,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetWorkspace
         private WorkspaceExport GetWorkspace(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetWorkspace()");
             var result = service.GetWorkspace(workspaceId: workspaceId);
 
@@ -1403,6 +1441,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListWorkspaces
         private WorkspaceCollection ListWorkspaces()
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListWorkspaces()");
             var result = service.ListWorkspaces();
 
@@ -1422,6 +1461,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateWorkspace
         private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateWorkspace()");
             var result = service.UpdateWorkspace(workspaceId: workspaceId, properties: properties);
 
@@ -1441,6 +1481,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region Message
         private MessageResponse Message(string workspaceId, MessageRequest request)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to Message()");
             var result = service.Message(workspaceId: workspaceId, request: request);
 
@@ -1460,6 +1501,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateIntent
         private Intent CreateIntent(string workspaceId, CreateIntent body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateIntent()");
             var result = service.CreateIntent(workspaceId: workspaceId, body: body);
 
@@ -1479,6 +1521,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteIntent
         private object DeleteIntent(string workspaceId, string intent)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent);
 
@@ -1498,6 +1541,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetIntent
         private IntentExport GetIntent(string workspaceId, string intent)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetIntent()");
             var result = service.GetIntent(workspaceId: workspaceId, intent: intent);
 
@@ -1517,6 +1561,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListIntents
         private IntentCollection ListIntents(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListIntents()");
             var result = service.ListIntents(workspaceId: workspaceId);
 
@@ -1536,6 +1581,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateIntent
         private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateIntent()");
             var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body);
 
@@ -1555,6 +1601,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateExample
         private Example CreateExample(string workspaceId, string intent, CreateExample body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateExample()");
             var result = service.CreateExample(workspaceId: workspaceId, intent: intent, body: body);
 
@@ -1574,6 +1621,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteExample
         private object DeleteExample(string workspaceId, string intent, string text)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
 
@@ -1593,6 +1641,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetExample
         private Example GetExample(string workspaceId, string intent, string text)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetExample()");
             var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text);
 
@@ -1612,6 +1661,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListExamples
         private ExampleCollection ListExamples(string workspaceId, string intent)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListExamples()");
             var result = service.ListExamples(workspaceId: workspaceId, intent: intent);
 
@@ -1631,6 +1681,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateExample
         private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateExample()");
             var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body);
 
@@ -1650,6 +1701,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateEntity
         private Entity CreateEntity(string workspaceId, CreateEntity properties)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateEntity()");
             var result = service.CreateEntity(workspaceId: workspaceId, properties: properties);
 
@@ -1669,6 +1721,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteEntity
         private object DeleteEntity(string workspaceId, string entity)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity);
 
@@ -1688,6 +1741,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetEntity
         private EntityExport GetEntity(string workspaceId, string entity)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetEntity()");
             var result = service.GetEntity(workspaceId: workspaceId, entity: entity);
 
@@ -1707,6 +1761,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListEntities
         private EntityCollection ListEntities(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListEntities()");
             var result = service.ListEntities(workspaceId: workspaceId);
 
@@ -1726,6 +1781,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateEntity
         private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateEntity()");
             var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties);
 
@@ -1745,6 +1801,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateValue
         private Value CreateValue(string workspaceId, string entity, CreateValue body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateValue()");
             var result = service.CreateValue(workspaceId: workspaceId, entity: entity, body: body);
 
@@ -1764,6 +1821,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteValue
         private object DeleteValue(string workspaceId, string entity, string value)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
 
@@ -1783,6 +1841,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetValue
         private ValueExport GetValue(string workspaceId, string entity, string value)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetValue()");
             var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value);
 
@@ -1802,6 +1861,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListValues
         private ValueCollection ListValues(string workspaceId, string entity)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListValues()");
             var result = service.ListValues(workspaceId: workspaceId, entity: entity);
 
@@ -1821,6 +1881,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateValue
         private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateValue()");
             var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, body: body);
 
@@ -1840,6 +1901,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateSynonym
         private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateSynonym()");
             var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body);
 
@@ -1859,6 +1921,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteSynonym
         private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
@@ -1878,6 +1941,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetSynonym
         private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetSynonym()");
             var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
@@ -1897,6 +1961,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListSynonyms
         private SynonymCollection ListSynonyms(string workspaceId, string entity, string value)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListSynonyms()");
             var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value);
 
@@ -1916,6 +1981,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateSynonym
         private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateSynonym()");
             var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body);
 
@@ -1935,6 +2001,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateDialogNode
         private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateDialogNode()");
             var result = service.CreateDialogNode(workspaceId: workspaceId, properties: properties);
 
@@ -1954,6 +2021,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteDialogNode
         private object DeleteDialogNode(string workspaceId, string dialogNode)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
@@ -1973,6 +2041,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetDialogNode
         private DialogNode GetDialogNode(string workspaceId, string dialogNode)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetDialogNode()");
             var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
@@ -1992,6 +2061,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListDialogNodes
         private DialogNodeCollection ListDialogNodes(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListDialogNodes()");
             var result = service.ListDialogNodes(workspaceId: workspaceId);
 
@@ -2011,6 +2081,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateDialogNode
         private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateDialogNode()");
             var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties);
 
@@ -2030,6 +2101,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListAllLogs
         private LogCollection ListAllLogs(string filter)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListAllLogs()");
             var result = service.ListAllLogs(filter: filter);
 
@@ -2049,6 +2121,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListLogs
         private LogCollection ListLogs(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListLogs()");
             var result = service.ListLogs(workspaceId: workspaceId);
 
@@ -2068,6 +2141,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateCounterexample
         private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateCounterexample()");
             var result = service.CreateCounterexample(workspaceId: workspaceId, body: body);
 
@@ -2087,6 +2161,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteCounterexample
         private object DeleteCounterexample(string workspaceId, string text)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text);
 
@@ -2106,6 +2181,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region GetCounterexample
         private Counterexample GetCounterexample(string workspaceId, string text)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetCounterexample()");
             var result = service.GetCounterexample(workspaceId: workspaceId, text: text);
 
@@ -2125,6 +2201,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region ListCounterexamples
         private CounterexampleCollection ListCounterexamples(string workspaceId)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListCounterexamples()");
             var result = service.ListCounterexamples(workspaceId: workspaceId);
 
@@ -2144,6 +2221,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateCounterexample
         private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
         {
+            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateCounterexample()");
             var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body);
 
@@ -2157,6 +2235,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
 
             return result;
+        }
+        #endregion
+
+        #region Delay
+        private void Delay(int delayTimeInMilliseconds)
+        {
+            System.Threading.Thread.Sleep(delayTimeInMilliseconds);
         }
         #endregion
     }

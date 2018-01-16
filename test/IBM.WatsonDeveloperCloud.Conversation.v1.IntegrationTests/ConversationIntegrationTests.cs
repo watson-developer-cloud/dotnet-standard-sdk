@@ -22,6 +22,7 @@ using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
@@ -81,8 +82,39 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             {
                 Endpoint = _endpoint
             };
+
+            var workspaces = service.ListWorkspaces();
+            List<string> dotnet_workpaces = new List<string>();
+
+            foreach(Workspace workspace in workspaces.Workspaces)
+            {
+                if (workspace.Name == _createdWorkspaceName)
+                    dotnet_workpaces.Add(workspace.WorkspaceId);
+            }
+
+            foreach(string workspaceId in dotnet_workpaces)
+            {
+                service.DeleteWorkspace(workspaceId);
+            }
         }
 
+        [TestCleanup]
+        public void Teardown()
+        {
+            var workspaces = service.ListWorkspaces();
+            List<string> dotnet_workpaces = new List<string>();
+
+            foreach (Workspace workspace in workspaces.Workspaces)
+            {
+                if (workspace.Name == _createdWorkspaceName)
+                    dotnet_workpaces.Add(workspace.WorkspaceId);
+            }
+
+            foreach (string workspaceId in dotnet_workpaces)
+            {
+                service.DeleteWorkspace(workspaceId);
+            }
+        }
 
         #region Message
         [TestMethod]

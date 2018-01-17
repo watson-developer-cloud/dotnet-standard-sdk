@@ -1042,7 +1042,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}")
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
                                 .WithArgument("version", VersionDate)
                                 .As<object>()
                                 .Result;
@@ -1070,7 +1070,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}")
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
                                 .WithArgument("version", VersionDate)
                                 .As<DialogNode>()
                                 .Result;
@@ -1130,7 +1130,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}")
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
                                 .WithArgument("version", VersionDate)
                                 .WithBody<UpdateDialogNode>(properties)
                                 .As<DialogNode>()

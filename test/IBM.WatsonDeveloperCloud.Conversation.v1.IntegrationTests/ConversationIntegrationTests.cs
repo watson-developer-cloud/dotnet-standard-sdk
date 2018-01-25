@@ -165,6 +165,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(result);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateWorkspace_Success()
         {
@@ -234,6 +235,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
 
 
+        [Ignore]
         [TestMethod]
         public void DeleteWorkspace_Success()
         {
@@ -273,6 +275,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listCounterExamplesResult.Counterexamples);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateCounterExample_Success()
         {
@@ -361,6 +364,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateCounterexampleResult.Text == updateCounterExample.Text);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteCounterExample_Success()
         {
@@ -407,6 +411,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listEntitiesResult);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateEntity_Success()
         {
@@ -503,6 +508,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateEntityResult.Description == updateEntity.Description);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteEntity_Success()
         {
@@ -560,6 +566,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listValuesResult);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateValue_Success()
         {
@@ -674,6 +681,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateValueResult.ValueText == updateValue.Value);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteValue_Success()
         {
@@ -745,6 +753,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listSynonymsResult);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateSynonym_Success()
         {
@@ -878,6 +887,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateSynonymResult.SynonymText == updateSynonym.Synonym);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteSynonym_Success()
         {
@@ -940,6 +950,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listIntentsReult);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateIntent_Success()
         {
@@ -1033,6 +1044,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateIntentResult.IntentName == updateIntent.Intent);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteIntent_Success()
         {
@@ -1090,6 +1102,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listExamplesResult);
         }
 
+        [Ignore]
         [TestMethod]
         public void CreateExample_Success()
         {
@@ -1199,6 +1212,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(updateExampleResult.ExampleText == updateExample.Text);
         }
 
+        [Ignore]
         [TestMethod]
         public void DeleteExample_Success()
         {
@@ -1281,7 +1295,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(createDialogNodeResult.Description == createDialogNode.Description);
         }
 
-        [Ignore]
         [TestMethod]
         public void GetDialogNode_Success()
         {
@@ -1310,7 +1323,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getDialogNodeResult.Description == createDialogNode.Description);
         }
 
-        [Ignore]
         [TestMethod]
         public void UpdateDialogNode_Success()
         {

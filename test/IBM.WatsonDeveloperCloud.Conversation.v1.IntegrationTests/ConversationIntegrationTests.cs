@@ -104,7 +104,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("error: {1}", e.Message);
+                    Console.WriteLine("error: {0}", e.Message);
                 }
 
             }
@@ -132,7 +132,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("error: {1}", e.Message);
+                    Console.WriteLine("error: {0}", e.Message);
                 }
 
             }

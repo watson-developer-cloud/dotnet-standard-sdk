@@ -25,7 +25,7 @@ using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Util;
-using Environment = System.Environment;
+using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 {
@@ -35,10 +35,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private DiscoveryService discovery;
+        private DiscoveryService service;
         private static string credentials = string.Empty;
-
-        private static string _existingEnvironmentId;
 
         private static string _createdEnvironmentId;
         private static string _createdConfigurationId;
@@ -75,9 +73,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 try
                 {
                     credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                        System.Environment.GetEnvironmentVariable("VCAP_URL"),
+                        System.Environment.GetEnvironmentVariable("VCAP_USERNAME"),
+                        System.Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
                 }
                 catch (Exception e)
                 {
@@ -85,48 +83,93 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
 
                 Task.WaitAll();
-
                 var vcapServices = JObject.Parse(credentials);
+
                 _endpoint = vcapServices["discovery"]["url"].Value<string>();
                 _username = vcapServices["discovery"]["username"].Value<string>();
                 _password = vcapServices["discovery"]["password"].Value<string>();
             }
 
-            discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
-            discovery.Endpoint = _endpoint;
+            service = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
+            service.Endpoint = _endpoint;
+
+            DeleteExistingEnvironment();
+        }
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            DeleteExistingEnvironment();
+        }
+
+        private void DeleteExistingEnvironment()
+        {
+            var listEnvironmentsResult = ListEnvironments();
+
+            if (listEnvironmentsResult != null)
+            {
+                foreach (Environment environment in listEnvironmentsResult.Environments)
+                {
+                    if (!(bool)environment._ReadOnly)
+                        DeleteEnvironment(environment.EnvironmentId);
+                }
+            }
         }
 
         #region Environments
         [TestMethod]
-        public void GetEnvironments()
+        public void TestEnvironments_Success()
         {
-            Console.WriteLine(string.Format("\nCalling GetEnvironments()..."));
-            var result = discovery.ListEnvironments();
+            var listEnvironmentsResult = ListEnvironments();
 
-            if (result != null)
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                foreach (Model.Environment environment in result.Environments)
-                {
-                    if (!(bool)environment._ReadOnly)
-                    {
-                        _existingEnvironmentId = environment.EnvironmentId;
-                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment {0} to delete", environment.Name));
-                        DeleteExistingEnvironment();
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Environments.Count > 0);
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
+            {
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
+
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
+
+            UpdateEnvironmentRequest updateEnvironmentRequest = new UpdateEnvironmentRequest()
+            {
+                Name = _updatedEnvironmentName,
+                Description = _updatedEnvironmentDescription
+            };
+
+            var updateEnvironmentResult = UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
+
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
+
+            Assert.IsNotNull(updateEnvironmentResult);
+            Assert.IsTrue(updateEnvironmentResult.Name == _updatedEnvironmentName);
+            Assert.IsTrue(updateEnvironmentResult.Description == _updatedEnvironmentDescription);
+            Assert.IsNotNull(createEnvironmentResults);
+            Assert.IsNotNull(createEnvironmentResults.EnvironmentId);
+            Assert.IsTrue(createEnvironmentResults.Name == _createdEnvironmentName);
+            Assert.IsTrue(createEnvironmentResults.Description == _createdEnvironmentDescription);
+            Assert.IsNotNull(listEnvironmentsResult);
+            Assert.IsTrue(listEnvironmentsResult.Environments.Count > 0);
+            Assert.IsNotNull(deleteEnvironmentResult);
+            Assert.IsTrue(deleteEnvironmentResult.Status == DeleteEnvironmentResponse.StatusEnum.DELETED);
+
+            _createdEnvironmentId = null;
         }
+        #endregion
 
+        #region Configurations
         [TestMethod]
-        public void CreateEnvironment()
+        public void TestConfigurations_Success()
         {
             CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
@@ -135,158 +178,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Size = _createdEnvironmentSize
             };
 
-            Console.WriteLine(string.Format("\nCalling CreateEnvironment()..."));
-            var result = discovery.CreateEnvironment(createEnvironmentRequest);
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
 
-            if (result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                _createdEnvironmentId = result.EnvironmentId;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.EnvironmentId);
-            Assert.IsTrue(result.Name == _createdEnvironmentName);
-            Assert.IsTrue(result.Description == _createdEnvironmentDescription);
-
-        }
-
-        #region Is Environment Ready
-        [TestMethod]
-        public void WaitForEnvironment()
-        {
             Task.Factory.StartNew(() =>
             {
                 Console.WriteLine("Checking environment status in 30 seconds...");
-                System.Threading.Thread.Sleep(30000);
+                Thread.Sleep(30000);
             });
 
             IsEnvironmentReady(_createdEnvironmentId);
             autoEvent.WaitOne();
 
-            Assert.IsTrue(true);
-        }
-
-        private void IsEnvironmentReady(string environmentId)
-        {
-            var result = discovery.GetEnvironment(environmentId);
-            Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
-
-            if (result.Status == Model.Environment.StatusEnum.ACTIVE)
-            {
-                autoEvent.Set();
-            }
-            else
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(30000);
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    IsEnvironmentReady(environmentId);
-                });
-            }
-        }
-        #endregion
-
-        [TestMethod]
-        public void GetEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling GetEnvironment()..."));
-            var result = discovery.GetEnvironment(_createdEnvironmentId);
-
-            if (result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.EnvironmentId == _createdEnvironmentId);
-        }
-
-        [TestMethod]
-        public void UpdateEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateEnvironment()..."));
-
-            UpdateEnvironmentRequest updateEnvironmentRequest = new UpdateEnvironmentRequest()
-            {
-                Name = _updatedEnvironmentName,
-                Description = _updatedEnvironmentDescription
-            };
-
-            var result = discovery.UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
-
-            if (result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Name == _updatedEnvironmentName);
-            Assert.IsTrue(result.Description == _updatedEnvironmentDescription);
-        }
-        #endregion
-
-        #region Configurations
-        [TestMethod]
-        public void GetConfigurations()
-        {
-            Console.WriteLine(string.Format("\nCalling GetConfigurations()..."));
-
-            var result = discovery.ListConfigurations(_createdEnvironmentId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Configurations);
-            Assert.IsTrue(result.Configurations.Count > 0);
-        }
-
-        [TestMethod]
-        public void CreateConfiguration()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateConfiguration()..."));
+            var listConfigurationsResults = ListConfigurations(_createdEnvironmentId);
 
             Configuration configuration = new Configuration()
             {
@@ -295,97 +199,77 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             };
 
-            var result = discovery.CreateConfiguration(_createdEnvironmentId, configuration);
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdConfigurationId = result.ConfigurationId;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            var getConfigurationResults = GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Name == _createdConfigurationName);
-            Assert.IsTrue(result.Description == _createdConfigurationDescription);
-        }
-
-        [TestMethod]
-        public void GetConfiguration()
-        {
-            Console.WriteLine(string.Format("\nCalling GetConfiguration()..."));
-
-            var result = discovery.GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.ConfigurationId == _createdConfigurationId);
-            Assert.IsTrue(result.Description == _createdConfigurationDescription);
-            Assert.IsTrue(result.Name == _createdConfigurationName);
-        }
-
-        [TestMethod]
-        public void UpdateConfiguration()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateConfiguration()..."));
-
-            Configuration configuration = new Configuration()
+            Configuration updateConfiguration = new Configuration()
             {
                 Name = _updatedConfigurationName
             };
 
-            var result = discovery.UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, configuration);
+            var updateConfigurationResults = UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, updateConfiguration);
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.ConfigurationId == _createdConfigurationId);
-            Assert.IsTrue(result.Description == _createdConfigurationDescription);
-            Assert.IsTrue(result.Name == _updatedConfigurationName);
+            Assert.IsNotNull(deleteConfigurationResults);
+            Assert.IsTrue(deleteConfigurationResults.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(updateConfigurationResults);
+            Assert.IsTrue(updateConfigurationResults.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(updateConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(updateConfigurationResults.Name == _updatedConfigurationName);
+            Assert.IsNotNull(getConfigurationResults);
+            Assert.IsTrue(getConfigurationResults.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(getConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(getConfigurationResults.Name == _createdConfigurationName);
+            Assert.IsNotNull(createConfigurationResults);
+            Assert.IsTrue(createConfigurationResults.Name == _createdConfigurationName);
+            Assert.IsTrue(createConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsNotNull(listConfigurationsResults);
+            Assert.IsNotNull(listConfigurationsResults.Configurations);
+            Assert.IsTrue(listConfigurationsResults.Configurations.Count > 0);
+
+            _createdConfigurationId = null;
+            _createdEnvironmentId = null;
         }
         #endregion
 
         #region Collections
         [TestMethod]
-        public void GetCollections()
+        public void TestCollections_Success()
         {
-            Console.WriteLine(string.Format("\nCalling GetCollections()..."));
-
-            var result = discovery.ListCollections(_createdEnvironmentId);
-
-            if (result != null)
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
+
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
             {
-                Console.WriteLine("result is null.");
-            }
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
 
-            Assert.IsNotNull(result);
-        }
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
 
-        [TestMethod]
-        public void CreateCollection()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateCollection()..."));
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_createdEnvironmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
@@ -395,94 +279,42 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 ConfigurationId = _createdConfigurationId
             };
 
-            var result = discovery.CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdCollectionId = result.CollectionId;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Name == _createdCollectionName);
-            Assert.IsTrue(result.Description == _createdCollectionDescription);
-        }
-
-        [TestMethod]
-        public void GetCollection()
-        {
-            Console.WriteLine(string.Format("\nCalling GetCollection()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                Assert.Fail("_createdEnvironmentId is null");
-
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                Assert.Fail("_createdCollectionId is null");
-
-            var result = discovery.GetCollection(_createdEnvironmentId, _createdCollectionId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.CollectionId == _createdCollectionId);
-            Assert.IsTrue(result.Name == _createdCollectionName);
-            Assert.IsTrue(result.Description == _createdCollectionDescription);
-        }
-
-        [TestMethod]
-        public void UpdateCollection()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateCollection()..."));
+            var getCollectionResult = GetCollection(_createdEnvironmentId, _createdCollectionId);
 
             UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
             {
                 Name = _updatedCollectionName,
             };
 
-            var result = discovery.UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
+            var updateCollectionResult = UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            var listCollectionFieldsResult = ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Name == _updatedCollectionName);
-            Assert.IsTrue(result.CollectionId == _createdCollectionId);
-        }
+            var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
 
-        [TestMethod]
-        public void GetCollectionFields()
-        {
-            Console.WriteLine(string.Format("\nCalling GetCollectionFields()..."));
+            Assert.IsNotNull(deleteCollectionResult);
+            Assert.IsTrue(deleteCollectionResult.Status == DeleteCollectionResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(listCollectionFieldsResult);
+            Assert.IsNotNull(updateCollectionResult);
+            Assert.IsTrue(updateCollectionResult.Name == _updatedCollectionName);
+            Assert.IsTrue(updateCollectionResult.CollectionId == _createdCollectionId);
+            Assert.IsNotNull(getCollectionResult);
+            Assert.IsTrue(getCollectionResult.CollectionId == _createdCollectionId);
+            Assert.IsTrue(getCollectionResult.Name == _createdCollectionName);
+            Assert.IsTrue(getCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsNotNull(createCollectionResult);
+            Assert.IsTrue(createCollectionResult.Name == _createdCollectionName);
+            Assert.IsTrue(createCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsNotNull(listCollectionsResult);
 
-            var result = discovery.ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
+            _createdEnvironmentId = null;
+            _createdConfigurationId = null;
+            _createdCollectionId = null;
         }
         #endregion
 
@@ -494,7 +326,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = discovery.TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
+                var result = TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
 
                 if (result != null)
                 {
@@ -512,139 +344,271 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
         #region Documents
         [TestMethod]
-        public void AddDocument()
+        public void TestDocuments_Success()
         {
-            Console.WriteLine(string.Format("\nCalling AddDocument()..."));
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
+            {
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
+
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
+            {
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
+
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
+
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_createdEnvironmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
-
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                    _createdDocumentId = result.DocumentId;
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                Assert.IsNotNull(result);
-            }
-        }
-
-        [TestMethod]
-        public void GetDocument()
-        {
-            Console.WriteLine(string.Format("\nCalling GetDocument()..."));
-
-            var result = discovery.GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
+                addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.DocumentId == _createdDocumentId);
-        }
+            var getDocumentStatusResult = GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
 
-        [TestMethod]
-        public void UpdateDocument()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
-
+            DocumentAccepted updateDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
-
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                Assert.IsNotNull(result);
-                Assert.IsTrue(result.DocumentId == _createdDocumentId);
+                updateDocumentResult = UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
             }
+
+            var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
+
+            Assert.IsNotNull(deleteDocumentResult);
+            Assert.IsTrue(deleteDocumentResult.Status == DeleteDocumentResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(updateDocumentResult);
+            Assert.IsTrue(updateDocumentResult.DocumentId == _createdDocumentId);
+            Assert.IsNotNull(getDocumentStatusResult);
+            Assert.IsTrue(getDocumentStatusResult.DocumentId == _createdDocumentId);
+            Assert.IsNotNull(addDocumentResult);
+
+            _createdDocumentId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _createdEnvironmentId = null;
         }
         #endregion
 
         #region Query
         [TestMethod]
-        public void Query()
+        public void TestQuery()
         {
-            Console.WriteLine(string.Format("\nCalling Query()..."));
-
-            var result = discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
-
-            if (result != null)
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
+
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
+
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
+
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_createdEnvironmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            Assert.IsNotNull(result);
+            var queryResult = Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+
+            var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
+
+            Assert.IsNotNull(queryResult);
+
+            _createdDocumentId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _createdEnvironmentId = null;
         }
         #endregion
 
         #region Notices
         [TestMethod]
-        public void GetNotices()
+        public void TestGetNotices()
         {
-            Console.WriteLine(string.Format("\nCalling GetNoticies()..."));
-
-            var result = discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
-
-            if (result != null)
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
+
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
+
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
+
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_createdEnvironmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            Assert.IsNotNull(result);
+            var queryResult = Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+            var queryNoticesResult = QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+
+            var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
+
+            Assert.IsNotNull(queryNoticesResult);
+
+            _createdEnvironmentId = null;
+            _createdConfigurationId = null;
+            _createdCollectionId = null;
+            _createdDocumentId = null;
         }
         #endregion
 
-        #region List Training Data
+        #region Training Data
         [TestMethod]
-        public void ListTrainingData()
+        public void TestTrainingData()
         {
-            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
-
-            var result = discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
-
-            if (result != null)
+            CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
+                Name = _createdEnvironmentName,
+                Description = _createdEnvironmentDescription,
+                Size = _createdEnvironmentSize
+            };
+
+            var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
+            _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+
+            Task.Factory.StartNew(() =>
             {
-                Console.WriteLine("result is null.");
-            }
+                Console.WriteLine("Checking environment status in 30 seconds...");
+                Thread.Sleep(30000);
+            });
 
-            Assert.IsNotNull(result);
-        }
-        #endregion
+            IsEnvironmentReady(_createdEnvironmentId);
+            autoEvent.WaitOne();
 
-        #region Add Training Data
-        [TestMethod]
-        public void AddTrainingData()
-        {
-            Console.WriteLine(string.Format("\nCalling AddTrainingData()..."));
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_createdEnvironmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            var listTrainingDataResult = ListTrainingData(_createdEnvironmentId, _createdCollectionId);
 
             var newTrainingQuery = new NewTrainingQuery()
             {
@@ -661,355 +625,797 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var result = discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+            var addTrainingDataResult = AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+            _createdTrainingQueryId = addTrainingDataResult.QueryId;
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdTrainingQueryId = result.QueryId;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-        }
-        #endregion
-
-        #region Get Training Data
-        [TestMethod]
-        public void GetTrainingData()
-        {
-            Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
-
-            var result = discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-        }
-        #endregion
-
-        #region Create Training Example
-        [TestMethod]
-        public void CreateTrainingExample()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateTrainingExample()..."));
+            var getTrainingDataResult = GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
 
             var trainingExample = new TrainingExample()
             {
                 DocumentId = _createdDocumentId,
+                CrossReference = "crossReference",
                 Relevance = 1
             };
 
-            var result = discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            var createTrainingExampleResult = CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdTrainingExampleId = result.DocumentId;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            var getTrainingExampleResult = GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
-            Assert.IsNotNull(result);
-        }
-        #endregion
-
-        #region Get Training Example
-        [TestMethod]
-        public void GetTrainingExample()
-        {
-            Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
-
-            var result = discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNotNull(result);
-        }
-        #endregion
-
-        #region Update Training Example
-        [TestMethod]
-        public void UpdateTrainingExample()
-        {
-            Console.WriteLine(string.Format("\nCalling UpdateTrainingExample()..."));
-
-            var trainingExample = new TrainingExamplePatch()
+            var updateTrainingExample = new TrainingExamplePatch()
             {
                 CrossReference = "crossReference",
                 Relevance = 1
             };
 
-            var result = discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+            var updateTrainingExampleResult = UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
 
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
+            var deleteTrainingExampleResult = DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var deleteTrainingDataResult = DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var deleteAllTrainingDataResult = DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(deleteAllTrainingDataResult);
+            Assert.IsNull(deleteTrainingDataResult);
+            Assert.IsNull(deleteTrainingExampleResult);
+            Assert.IsNotNull(updateTrainingExampleResult);
+            Assert.IsNotNull(getTrainingExampleResult);
+            Assert.IsNotNull(createTrainingExampleResult);
+            Assert.IsNotNull(getTrainingDataResult);
+            Assert.IsNotNull(addTrainingDataResult);
+            Assert.IsNotNull(listTrainingDataResult);
+
+            _createdTrainingExampleId = null;
+            _createdTrainingQueryId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _createdEnvironmentId = null;
         }
         #endregion
 
-        #region Delete Training Example
-        [TestMethod]
-        public void DeleteTrainingExample()
+        #region IsEnvironmentReady
+        private void IsEnvironmentReady(string environmentId)
         {
-            Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
+            var result = GetEnvironment(environmentId);
+            Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
 
-            var result = discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-
-            if (result != null)
+            if (result.Status == Environment.StatusEnum.ACTIVE)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdTrainingExampleId = null;
+                autoEvent.Set();
             }
             else
             {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNull(result);
-        }
-        #endregion
-
-        #region Delete Training Data
-        [TestMethod]
-        public void DeleteTrainingData()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
-
-            var result = discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdTrainingQueryId = null;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNull(result);
-        }
-        #endregion
-
-        #region Delete All Training Data
-        [TestMethod]
-        public void DeleteAllTrainingData()
-        {
-            Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
-
-            var result = discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
-
-            if (result != null)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-
-            Assert.IsNull(result);
-        }
-        #endregion
-
-        #region Delete Existing Environment
-        public void DeleteExistingEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
-            var result = discovery.DeleteEnvironment(_existingEnvironmentId);
-
-            if (result != null)
-            {
-                if (result != null)
+                Task.Factory.StartNew(() =>
                 {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                _existingEnvironmentId = null;
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking environment status in 30 seconds...");
+                    IsEnvironmentReady(environmentId);
+                });
             }
         }
         #endregion
-
-        #region Tear Down
-        [TestMethod]
-        public void DeleteDocument()
+        
+        #region CreateEnvironment
+        private Environment CreateEnvironment(CreateEnvironmentRequest body)
         {
-            Console.WriteLine(string.Format("\nCalling DeleteDocument()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                Assert.Fail("_createdEnvironmentId is null");
-
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                Assert.Fail("_createdCollectionId is null");
-
-            if (string.IsNullOrEmpty(_createdDocumentId))
-                Assert.Fail("_createdDocumentId is null");
-
-            var result = discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            Console.WriteLine("\nAttempting to CreateEnvironment()");
+            var result = service.CreateEnvironment(body: body);
 
             if (result != null)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdDocumentId = null;
+                Console.WriteLine("CreateEnvironment() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Failed to CreateEnvironment()");
             }
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Status == DeleteDocumentResponse.StatusEnum.DELETED);
+            return result;
         }
+        #endregion
 
-        [TestMethod]
-        public void DeleteCollection()
+        #region DeleteEnvironment
+        private DeleteEnvironmentResponse DeleteEnvironment(string environmentId)
         {
-            Console.WriteLine(string.Format("\nCalling DeleteCollection()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                Assert.Fail("_createdEnvironmentId is null");
-
-            if (string.IsNullOrEmpty(_createdCollectionId))
-                Assert.Fail("_createdCollectionId is null");
-
-            var result = discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            Console.WriteLine("\nAttempting to DeleteEnvironment()");
+            var result = service.DeleteEnvironment(environmentId: environmentId);
 
             if (result != null)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdCollectionId = null;
+                Console.WriteLine("DeleteEnvironment() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Failed to DeleteEnvironment()");
             }
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Status == DeleteCollectionResponse.StatusEnum.DELETED);
+            return result;
         }
+        #endregion
 
-        [TestMethod]
-        public void DeleteConfiguration()
+        #region GetEnvironment
+        private Environment GetEnvironment(string environmentId)
         {
-            Console.WriteLine(string.Format("\nCalling DeleteConfiguration()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                Assert.Fail("_createdEnvironmentId is null");
-
-            if (string.IsNullOrEmpty(_createdConfigurationId))
-                Assert.Fail("_createdConfigurationId is null");
-
-            var result = discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            Console.WriteLine("\nAttempting to GetEnvironment()");
+            var result = service.GetEnvironment(environmentId: environmentId);
 
             if (result != null)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                _createdConfigurationId = null;
+                Console.WriteLine("GetEnvironment() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Failed to GetEnvironment()");
             }
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
+            return result;
         }
+        #endregion
 
-        [TestMethod]
-        public void DeleteEnvironment()
+        #region ListEnvironments
+        private ListEnvironmentsResponse ListEnvironments()
         {
-            Console.WriteLine(string.Format("\nCalling DeleteEnvironment()..."));
-
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
-                Assert.Fail("_createdEnvironmentId is null");
-
-            var result = discovery.DeleteEnvironment(_createdEnvironmentId);
+            Console.WriteLine("\nAttempting to ListEnvironments()");
+            var result = service.ListEnvironments();
 
             if (result != null)
             {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                    _createdEnvironmentId = null;
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
+                Console.WriteLine("ListEnvironments() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("result is null.");
+                Console.WriteLine("Failed to ListEnvironments()");
             }
 
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Status == DeleteEnvironmentResponse.StatusEnum.DELETED);
+            return result;
         }
+        #endregion
 
-        [ClassCleanup]
-        public static void TearDown()
+        #region ListFields
+        private ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds)
         {
-            var environmentVariable =
-            Environment.GetEnvironmentVariable("VCAP_SERVICES");
+            Console.WriteLine("\nAttempting to ListFields()");
+            var result = service.ListFields(environmentId: environmentId, collectionIds: collectionIds);
 
-            var fileContent =
-                File.ReadAllText(environmentVariable);
+            if (result != null)
+            {
+                Console.WriteLine("ListFields() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListFields()");
+            }
 
-            var vcapServices =
-            JObject.Parse(fileContent);
+            return result;
+        }
+        #endregion
 
-            string _endpoint = vcapServices["discovery"][0]["credentials"]["url"].Value<string>();
-            string _username = vcapServices["discovery"][0]["credentials"]["username"].Value<string>();
-            string _password = vcapServices["discovery"][0]["credentials"]["password"].Value<string>();
+        #region UpdateEnvironment
+        private Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
+        {
+            Console.WriteLine("\nAttempting to UpdateEnvironment()");
+            var result = service.UpdateEnvironment(environmentId: environmentId, body: body);
 
-            DiscoveryService _discovery = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
+            if (result != null)
+            {
+                Console.WriteLine("UpdateEnvironment() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateEnvironment()");
+            }
 
-            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId) && !string.IsNullOrEmpty(_createdDocumentId))
-                _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            return result;
+        }
+        #endregion
 
-            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdCollectionId))
-                _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+        #region CreateConfiguration
+        private Configuration CreateConfiguration(string environmentId, Configuration configuration)
+        {
+            Console.WriteLine("\nAttempting to CreateConfiguration()");
+            var result = service.CreateConfiguration(environmentId: environmentId, configuration: configuration);
 
-            if (!string.IsNullOrEmpty(_createdEnvironmentId) && !string.IsNullOrEmpty(_createdConfigurationId))
-                _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            if (result != null)
+            {
+                Console.WriteLine("CreateConfiguration() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateConfiguration()");
+            }
 
-            if (!string.IsNullOrEmpty(_createdEnvironmentId))
-                _discovery.DeleteEnvironment(_createdEnvironmentId);
+            return result;
+        }
+        #endregion
+
+        #region DeleteConfiguration
+        private DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId)
+        {
+            Console.WriteLine("\nAttempting to DeleteConfiguration()");
+            var result = service.DeleteConfiguration(environmentId: environmentId, configurationId: configurationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteConfiguration() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteConfiguration()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetConfiguration
+        private Configuration GetConfiguration(string environmentId, string configurationId)
+        {
+            Console.WriteLine("\nAttempting to GetConfiguration()");
+            var result = service.GetConfiguration(environmentId: environmentId, configurationId: configurationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetConfiguration() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetConfiguration()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListConfigurations
+        private ListConfigurationsResponse ListConfigurations(string environmentId)
+        {
+            Console.WriteLine("\nAttempting to ListConfigurations()");
+            var result = service.ListConfigurations(environmentId: environmentId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListConfigurations() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListConfigurations()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateConfiguration
+        private Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration)
+        {
+            Console.WriteLine("\nAttempting to UpdateConfiguration()");
+            var result = service.UpdateConfiguration(environmentId: environmentId, configurationId: configurationId, configuration: configuration);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateConfiguration() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateConfiguration()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region TestConfigurationInEnvironment
+        private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration, string step)
+        {
+            Console.WriteLine("\nAttempting to TestConfigurationInEnvironment()");
+            var result = service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step);
+
+            if (result != null)
+            {
+                Console.WriteLine("TestConfigurationInEnvironment() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to TestConfigurationInEnvironment()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateCollection
+        private Collection CreateCollection(string environmentId, CreateCollectionRequest body)
+        {
+            Console.WriteLine("\nAttempting to CreateCollection()");
+            var result = service.CreateCollection(environmentId: environmentId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateCollection() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateCollection()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteCollection
+        private DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to DeleteCollection()");
+            var result = service.DeleteCollection(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteCollection() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteCollection()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetCollection
+        private Collection GetCollection(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to GetCollection()");
+            var result = service.GetCollection(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetCollection() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetCollection()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListCollectionFields
+        private ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to ListCollectionFields()");
+            var result = service.ListCollectionFields(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListCollectionFields() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListCollectionFields()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListCollections
+        private ListCollectionsResponse ListCollections(string environmentId)
+        {
+            Console.WriteLine("\nAttempting to ListCollections()");
+            var result = service.ListCollections(environmentId: environmentId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListCollections() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListCollections()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateCollection
+        private Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body)
+        {
+            Console.WriteLine("\nAttempting to UpdateCollection()");
+            var result = service.UpdateCollection(environmentId: environmentId, collectionId: collectionId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateCollection() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateCollection()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region AddDocument
+        private DocumentAccepted AddDocument(string environmentId, string collectionId, Stream fs, string metadata)
+        {
+            Console.WriteLine("\nAttempting to AddDocument()");
+            var result = service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: fs, metadata: metadata);
+
+            if (result != null)
+            {
+                Console.WriteLine("AddDocument() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to AddDocument()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteDocument
+        private DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId)
+        {
+            Console.WriteLine("\nAttempting to DeleteDocument()");
+            var result = service.DeleteDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteDocument() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteDocument()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetDocumentStatus
+        private DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId)
+        {
+            Console.WriteLine("\nAttempting to GetDocumentStatus()");
+            var result = service.GetDocumentStatus(environmentId: environmentId, collectionId: collectionId, documentId: documentId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetDocumentStatus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetDocumentStatus()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateDocument
+        private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, Stream file, string metadata)
+        {
+            Console.WriteLine("\nAttempting to UpdateDocument()");
+            var result = service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateDocument() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateDocument()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region FederatedQuery
+        private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds)
+        {
+            Console.WriteLine("\nAttempting to FederatedQuery()");
+            var result = service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds);
+
+            if (result != null)
+            {
+                Console.WriteLine("FederatedQuery() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to FederatedQuery()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region FederatedQueryNotices
+        private QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds)
+        {
+            Console.WriteLine("\nAttempting to FederatedQueryNotices()");
+            var result = service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds);
+
+            if (result != null)
+            {
+                Console.WriteLine("FederatedQueryNotices() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to FederatedQueryNotices()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Query
+        private QueryResponse Query(string environmentId, string collectionId, string filter, string query, string naturalLanguageQuery)
+        {
+            Console.WriteLine("\nAttempting to Query()");
+            var result = service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine("Query() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Query()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region QueryEntities
+        private QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery)
+        {
+            Console.WriteLine("\nAttempting to QueryEntities()");
+            var result = service.QueryEntities(environmentId: environmentId, collectionId: collectionId, entityQuery: entityQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine("QueryEntities() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to QueryEntities()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region QueryNotices
+        private QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter, string query, string naturalLanguageQuery, bool passages)
+        {
+            Console.WriteLine("\nAttempting to QueryNotices()");
+            var result = service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages);
+
+            if (result != null)
+            {
+                Console.WriteLine("QueryNotices() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to QueryNotices()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region QueryRelations
+        private QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery)
+        {
+            Console.WriteLine("\nAttempting to QueryRelations()");
+            var result = service.QueryRelations(environmentId: environmentId, collectionId: collectionId, relationshipQuery: relationshipQuery);
+
+            if (result != null)
+            {
+                Console.WriteLine("QueryRelations() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to QueryRelations()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region AddTrainingData
+        private TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body)
+        {
+            Console.WriteLine("\nAttempting to AddTrainingData()");
+            var result = service.AddTrainingData(environmentId: environmentId, collectionId: collectionId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("AddTrainingData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to AddTrainingData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateTrainingExample
+        private TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body)
+        {
+            Console.WriteLine("\nAttempting to CreateTrainingExample()");
+            var result = service.CreateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateTrainingExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateTrainingExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteAllTrainingData
+        private object DeleteAllTrainingData(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to DeleteAllTrainingData()");
+            var result = service.DeleteAllTrainingData(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteAllTrainingData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteAllTrainingData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteTrainingData
+        private object DeleteTrainingData(string environmentId, string collectionId, string queryId)
+        {
+            Console.WriteLine("\nAttempting to DeleteTrainingData()");
+            var result = service.DeleteTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteTrainingData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteTrainingData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteTrainingExample
+        private object DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
+        {
+            Console.WriteLine("\nAttempting to DeleteTrainingExample()");
+            var result = service.DeleteTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteTrainingExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteTrainingExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetTrainingData
+        private TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId)
+        {
+            Console.WriteLine("\nAttempting to GetTrainingData()");
+            var result = service.GetTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetTrainingData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetTrainingData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetTrainingExample
+        private TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
+        {
+            Console.WriteLine("\nAttempting to GetTrainingExample()");
+            var result = service.GetTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetTrainingExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetTrainingExample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListTrainingData
+        private TrainingDataSet ListTrainingData(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to ListTrainingData()");
+            var result = service.ListTrainingData(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListTrainingData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListTrainingData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListTrainingExamples
+        private TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId)
+        {
+            Console.WriteLine("\nAttempting to ListTrainingExamples()");
+            var result = service.ListTrainingExamples(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListTrainingExamples() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListTrainingExamples()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateTrainingExample
+        private TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body)
+        {
+            Console.WriteLine("\nAttempting to UpdateTrainingExample()");
+            var result = service.UpdateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateTrainingExample() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateTrainingExample()");
+            }
+
+            return result;
         }
         #endregion
     }

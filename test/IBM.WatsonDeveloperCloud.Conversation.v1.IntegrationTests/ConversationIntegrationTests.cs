@@ -156,8 +156,47 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-
         #region Workspaces
+        [TestMethod]
+        public void TestWorkspaces_Success()
+        {
+            var ListWorkspacesResult = ListWorkspaces();
+
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+
+            var getWorkspaceResult = GetWorkspace(workspaceId);
+
+            UpdateWorkspace updateWorkspace = new UpdateWorkspace()
+            {
+                Name = _createdWorkspaceName + "-updated",
+                Description = _createdWorkspaceDescription + "-updated",
+                Language = _createdWorkspaceLanguage
+            };
+
+            var updateWorkspaceResult = UpdateWorkspace(workspaceId, updateWorkspace);
+
+            var deleteWorkspaceResult = DeleteWorkspace(createWorkspaceResult.WorkspaceId);
+
+            Assert.IsNotNull(createWorkspaceResult);
+            Assert.IsFalse(string.IsNullOrEmpty(workspaceId));
+            Assert.IsNotNull(getWorkspaceResult);
+            Assert.IsFalse(string.IsNullOrEmpty(getWorkspaceResult.WorkspaceId));
+            Assert.IsNotNull(updateWorkspaceResult);
+            Assert.IsFalse(string.IsNullOrEmpty(updateWorkspaceResult.WorkspaceId));
+            Assert.IsNotNull(ListWorkspacesResult);
+            Assert.IsNotNull(deleteWorkspaceResult);
+        }
+
+        [Ignore]
         [TestMethod]
         public void ListWorkspaces_Success()
         {
@@ -185,6 +224,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(workspaceId));
         }
 
+        [Ignore]
         [TestMethod]
         public void GetWorkspace_Success()
         {
@@ -206,6 +246,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(getWorkspaceResult.WorkspaceId));
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateWorkspace_Success()
         {
@@ -232,9 +273,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(updateWorkspaceResult);
             Assert.IsFalse(string.IsNullOrEmpty(updateWorkspaceResult.WorkspaceId));
         }
-
-
-
+        
         [Ignore]
         [TestMethod]
         public void DeleteWorkspace_Success()
@@ -255,6 +294,52 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Counter Examples
+        [TestMethod]
+        public void TestCounterExamples_Success()
+        {
+            CreateWorkspace createWorkspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage
+            };
+
+            var createWorkspaceResult = CreateWorkspace(createWorkspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+            var listCounterExamplesResult = ListCounterexamples(workspaceId);
+
+            CreateCounterexample example = new CreateCounterexample()
+            {
+                Text = _createdCounterExampleText
+            };
+
+            var createCounterexampleResult = CreateCounterexample(workspaceId, example);
+
+            var getCounterexampleResult = GetCounterexample(workspaceId, example.Text);
+
+            string updatedCounterExampleText = _createdCounterExampleText + "-updated";
+            UpdateCounterexample updateCounterExample = new UpdateCounterexample()
+            {
+                Text = updatedCounterExampleText
+            };
+
+            var updateCounterexampleResult = UpdateCounterexample(workspaceId, example.Text, updateCounterExample);
+
+            var deleteCounterexampleResult = DeleteCounterexample(workspaceId, updateCounterExample.Text);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listCounterExamplesResult);
+            Assert.IsNotNull(listCounterExamplesResult.Counterexamples);
+            Assert.IsNotNull(createCounterexampleResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createCounterexampleResult.Text));
+            Assert.IsNotNull(getCounterexampleResult);
+            Assert.IsFalse(string.IsNullOrEmpty(getCounterexampleResult.Text));
+            Assert.IsNotNull(updateCounterexampleResult);
+            Assert.IsTrue(updateCounterexampleResult.Text == updateCounterExample.Text);
+            Assert.IsNotNull(deleteCounterexampleResult);
+        }
+
+        [Ignore]
         [TestMethod]
         public void ListCounterExamples_Success()
         {
@@ -302,6 +387,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(createCounterexampleResult.Text));
         }
 
+        [Ignore]
         [TestMethod]
         public void GetCounterExample_Success()
         {
@@ -330,6 +416,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(getCounterexampleResult.Text));
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateCounterExample_Success()
         {
@@ -393,6 +480,55 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Entities
         [TestMethod]
+        public void TestEntities_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+            var listEntitiesResult = ListEntities(workspaceId);
+
+            CreateEntity entity = new CreateEntity()
+            {
+                Entity = _createdEntity,
+                Description = _createdEntityDescription
+            };
+
+            var createEntityResult = CreateEntity(workspaceId, entity);
+            var getEntityResult = GetEntity(workspaceId, entity.Entity);
+
+            string updatedEntity = _createdEntity + "-updated";
+            string updatedEntityDescription = _createdEntityDescription + "-updated";
+            UpdateEntity updateEntity = new UpdateEntity()
+            {
+                Entity = updatedEntity,
+                Description = updatedEntityDescription
+            };
+
+            var updateEntityResult = UpdateEntity(workspaceId, entity.Entity, updateEntity);
+
+            var deleteEntityResult = DeleteEntity(workspaceId, updateEntity.Entity);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listEntitiesResult);
+            Assert.IsNotNull(createEntityResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.EntityName));
+            Assert.IsNotNull(getEntityResult);
+            Assert.IsTrue(getEntityResult.EntityName == entity.Entity);
+            Assert.IsNotNull(updateEntityResult);
+            Assert.IsTrue(updateEntityResult.EntityName == updateEntity.Entity);
+            Assert.IsTrue(updateEntityResult.Description == updateEntity.Description);
+            Assert.IsNotNull(deleteEntityResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListEntities_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -440,6 +576,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.EntityName));
         }
 
+        [Ignore]
         [TestMethod]
         public void GetEntity_Success()
         {
@@ -469,6 +606,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getEntityResult.EntityName == entity.Entity);
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateEntity_Success()
         {
@@ -539,6 +677,60 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Values
         [TestMethod]
+        public void TestValues_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+
+            CreateEntity entity = new CreateEntity()
+            {
+                Entity = _createdEntity,
+                Description = _createdEntityDescription
+            };
+
+            var createEntityResult = CreateEntity(workspaceId, entity);
+            var listValuesResult = ListValues(workspaceId, entity.Entity);
+
+            CreateValue value = new CreateValue()
+            {
+                Value = _createdValue
+            };
+
+            var createValueResult = CreateValue(workspaceId, entity.Entity, value);
+            var getValueResult = GetValue(workspaceId, entity.Entity, value.Value);
+
+            string updatedValue = _createdValue + "-updated";
+            UpdateValue updateValue = new UpdateValue()
+            {
+                Value = updatedValue
+            };
+
+            var updateValueResult = UpdateValue(workspaceId, entity.Entity, value.Value, updateValue);
+
+            var deleteValueResult = DeleteValue(workspaceId, entity.Entity, updateValue.Value);
+            var deleteEntityResult = DeleteEntity(workspaceId, entity.Entity);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listValuesResult);
+            Assert.IsNotNull(createValueResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createValueResult.ValueText));
+            Assert.IsNotNull(getValueResult);
+            Assert.IsTrue(getValueResult.ValueText == value.Value);
+            Assert.IsNotNull(updateValueResult);
+            Assert.IsTrue(updateValueResult.ValueText == updateValue.Value);
+            Assert.IsNotNull(deleteValueResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListValues_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -602,6 +794,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(createValueResult.ValueText));
         }
 
+        [Ignore]
         [TestMethod]
         public void GetValue_Success()
         {
@@ -638,6 +831,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getValueResult.ValueText == value.Value);
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateValue_Success()
         {
@@ -719,6 +913,65 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Synonyms
         [TestMethod]
+        public void TestSynonyms_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+
+            CreateEntity entity = new CreateEntity()
+            {
+                Entity = _createdEntity,
+                Description = _createdEntityDescription
+            };
+
+            var createEntityResult = CreateEntity(workspaceId, entity);
+            CreateValue value = new CreateValue()
+            {
+                Value = _createdValue
+            };
+
+            var createValueResult = CreateValue(workspaceId, entity.Entity, value);
+            var listSynonymsResult = ListSynonyms(workspaceId, entity.Entity, value.Value);
+
+            CreateSynonym synonym = new CreateSynonym()
+            {
+                Synonym = _createdSynonym
+            };
+            var createSynonymResult = CreateSynonym(workspaceId, entity.Entity, value.Value, synonym);
+            var getSynonymResult = GetSynonym(workspaceId, entity.Entity, value.Value, synonym.Synonym);
+
+            string updatedSynonym = _createdSynonym + "-updated";
+            UpdateSynonym updateSynonym = new UpdateSynonym()
+            {
+                Synonym = updatedSynonym
+            };
+            var updateSynonymResult = UpdateSynonym(workspaceId, entity.Entity, value.Value, synonym.Synonym, updateSynonym);
+
+            var deleteSynonymResult = DeleteSynonym(workspaceId, entity.Entity, value.Value, updateSynonym.Synonym);
+            var deleteValueResult = DeleteValue(workspaceId, entity.Entity, value.Value);
+            var deleteEntityResult = DeleteEntity(workspaceId, entity.Entity);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listSynonymsResult);
+            Assert.IsNotNull(createSynonymResult);
+            Assert.IsTrue(createSynonymResult.SynonymText == synonym.Synonym);
+            Assert.IsNotNull(getSynonymResult);
+            Assert.IsTrue(getSynonymResult.SynonymText == synonym.Synonym);
+            Assert.IsNotNull(updateSynonymResult);
+            Assert.IsTrue(updateSynonymResult.SynonymText == updateSynonym.Synonym);
+            Assert.IsNotNull(deleteSynonymResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListSynonyms_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -796,6 +1049,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(createSynonymResult.SynonymText == synonym.Synonym);
         }
 
+        [Ignore]
         [TestMethod]
         public void GetSynonym_Success()
         {
@@ -839,6 +1093,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getSynonymResult.SynonymText == synonym.Synonym);
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateSynonym_Success()
         {
@@ -932,6 +1187,53 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Intents
         [TestMethod]
+        public void TestIntents_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+            var listIntentsReult = ListIntents(workspaceId);
+
+            CreateIntent createIntent = new CreateIntent()
+            {
+                Intent = _createdIntent,
+                Description = _createdIntentDescription
+            };
+
+            var createIntentResult = CreateIntent(workspaceId, createIntent);
+            var getIntentResult = GetIntent(workspaceId, createIntent.Intent);
+
+            string updatedIntent = _createdIntent + "-updated";
+            string updatedIntentDescription = _createdIntentDescription + "-updated";
+            UpdateIntent updateIntent = new UpdateIntent()
+            {
+                Intent = updatedIntent,
+                Description = updatedIntentDescription
+            };
+
+            var updateIntentResult = UpdateIntent(workspaceId, createIntent.Intent, updateIntent);
+            var deleteIntentResult = DeleteIntent(workspaceId, updateIntent.Intent);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listIntentsReult);
+            Assert.IsNotNull(createIntentResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createIntentResult.IntentName));
+            Assert.IsNotNull(getIntentResult);
+            Assert.IsFalse(string.IsNullOrEmpty(getIntentResult.IntentName));
+            Assert.IsNotNull(updateIntentResult);
+            Assert.IsTrue(updateIntentResult.IntentName == updateIntent.Intent);
+            Assert.IsNotNull(deleteIntentResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListIntents_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -979,6 +1281,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(createIntentResult.IntentName));
         }
 
+        [Ignore]
         [TestMethod]
         public void GetIntent_Success()
         {
@@ -1008,6 +1311,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsFalse(string.IsNullOrEmpty(getIntentResult.IntentName));
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateIntent_Success()
         {
@@ -1075,6 +1379,58 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Examples
         [TestMethod]
+        public void TestExamples_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+
+            CreateIntent createIntent = new CreateIntent()
+            {
+                Intent = _createdIntent,
+                Description = _createdIntentDescription
+            };
+
+            var createIntentResult = CreateIntent(workspaceId, createIntent);
+            var listExamplesResult = ListExamples(workspaceId, createIntent.Intent);
+
+            CreateExample createExample = new CreateExample()
+            {
+                Text = _createdExample
+            };
+            var createExampleResult = CreateExample(workspaceId, createIntent.Intent, createExample);
+            var getExampleResult = GetExample(workspaceId, createIntent.Intent, createExample.Text);
+
+            string updatedExample = _createdExample + "-updated";
+            UpdateExample updateExample = new UpdateExample()
+            {
+                Text = updatedExample
+            };
+            var updateExampleResult = UpdateExample(workspaceId, createIntent.Intent, createExample.Text, updateExample);
+
+            var deleteExampleResult = DeleteExample(workspaceId, createIntent.Intent, updateExample.Text);
+            var deleteIntentResult = DeleteIntent(workspaceId, createIntent.Intent);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listExamplesResult);
+            Assert.IsNotNull(createExampleResult);
+            Assert.IsTrue(createExampleResult.ExampleText == createExample.Text);
+            Assert.IsNotNull(getExampleResult);
+            Assert.IsTrue(getExampleResult.ExampleText == createExample.Text);
+            Assert.IsNotNull(updateExampleResult);
+            Assert.IsTrue(updateExampleResult.ExampleText == updateExample.Text);
+            Assert.IsNotNull(deleteExampleResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListExamples_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -1137,6 +1493,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(createExampleResult.ExampleText == createExample.Text);
         }
 
+        [Ignore]
         [TestMethod]
         public void GetExample_Success()
         {
@@ -1172,6 +1529,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(getExampleResult.ExampleText == createExample.Text);
         }
 
+        [Ignore]
         [TestMethod]
         public void UpdateExample_Success()
         {
@@ -1249,6 +1607,55 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 
         #region Dialog Nodes
         [TestMethod]
+        public void TestDialogNodes_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+            var listDialogNodes = ListDialogNodes(workspaceId);
+
+            CreateDialogNode createDialogNode = new CreateDialogNode()
+            {
+                DialogNode = _dialogNodeName,
+                Description = _dialogNodeDesc
+            };
+            var createDialogNodeResult = CreateDialogNode(workspaceId, createDialogNode);
+            var getDialogNodeResult = GetDialogNode(workspaceId, createDialogNode.DialogNode);
+
+            string updatedDialogNodeName = _dialogNodeName + "_updated";
+            string updatedDialogNodeDescription = _dialogNodeDesc + "_updated";
+            UpdateDialogNode updateDialogNode = new UpdateDialogNode()
+            {
+                DialogNode = updatedDialogNodeName,
+                Description = updatedDialogNodeDescription
+            };
+
+            var updateDialogNodeResult = UpdateDialogNode(workspaceId, createDialogNode.DialogNode, updateDialogNode);
+            var deleteDialogNodeResult = DeleteDialogNode(workspaceId, updateDialogNode.DialogNode);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listDialogNodes);
+            Assert.IsNotNull(createDialogNodeResult);
+            Assert.IsTrue(createDialogNodeResult.DialogNodeId == createDialogNode.DialogNode);
+            Assert.IsTrue(createDialogNodeResult.Description == createDialogNode.Description);
+            Assert.IsNotNull(getDialogNodeResult);
+            Assert.IsTrue(getDialogNodeResult.DialogNodeId == createDialogNode.DialogNode);
+            Assert.IsTrue(getDialogNodeResult.Description == createDialogNode.Description);
+            Assert.IsNotNull(updateDialogNodeResult);
+            Assert.IsTrue(updateDialogNodeResult.DialogNodeId == updateDialogNode.DialogNode);
+            Assert.IsTrue(updateDialogNodeResult.Description == updateDialogNode.Description);
+            Assert.IsNotNull(deleteDialogNodeResult);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void ListDialogNodes_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -1295,6 +1702,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsTrue(createDialogNodeResult.Description == createDialogNode.Description);
         }
 
+        [Ignore]
         [TestMethod]
         public void GetDialogNode_Success()
         {
@@ -1413,7 +1821,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listAllLogsResult);
         }
         #endregion
-
 
         #region CreateWorkspace
         private Workspace CreateWorkspace(CreateWorkspace workspace)

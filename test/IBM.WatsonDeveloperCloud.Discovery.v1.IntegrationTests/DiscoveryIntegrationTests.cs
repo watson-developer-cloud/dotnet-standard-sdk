@@ -608,6 +608,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
             _createdCollectionId = createCollectionResult.CollectionId;
 
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
+            }
+
+            var getDocumentStatusResult = GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+
+            DocumentAccepted updateDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                updateDocumentResult = UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+            }
+            
             var listTrainingDataResult = ListTrainingData(_createdEnvironmentId, _createdCollectionId);
 
             var newTrainingQuery = new NewTrainingQuery()
@@ -633,7 +648,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var trainingExample = new TrainingExample()
             {
                 DocumentId = _createdDocumentId,
-                CrossReference = "crossReference",
                 Relevance = 1
             };
 
@@ -653,6 +667,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var deleteTrainingExampleResult = DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
             var deleteTrainingDataResult = DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
             var deleteAllTrainingDataResult = DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
             var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
             var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
@@ -672,6 +687,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _createdCollectionId = null;
             _createdConfigurationId = null;
             _createdEnvironmentId = null;
+            _createdDocumentId = null;
         }
         #endregion
 

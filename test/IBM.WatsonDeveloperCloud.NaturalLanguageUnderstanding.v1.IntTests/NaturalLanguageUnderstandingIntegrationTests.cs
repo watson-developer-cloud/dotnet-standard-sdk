@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTests
 {
     [TestClass]
-    public class NaturalLanguageUnderstandingIntTests
+    public class NaturalLanguageUnderstandingIntegrationTests
     {
         private static string _username;
         private static string _password;

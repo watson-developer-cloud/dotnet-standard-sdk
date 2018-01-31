@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.0" />
-    <PackageReference Include="Wdc.System.Net.Http.Formatting.NetStandard" Version="1.0.0" />
+    <PackageReference Include="Wdc.System.Net.Http.Formatting.NetStandard" Version="1.0.7" />
   </ItemGroup>
 
   <Target Name="PostcompileScript" AfterTargets="Build">

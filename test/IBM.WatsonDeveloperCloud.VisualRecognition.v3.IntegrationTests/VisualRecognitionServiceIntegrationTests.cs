@@ -15,13 +15,7 @@
 *
 */
 
-//  Uncomment to test without creating a new classifier each test. VisualStudio on Mac has a hard-coded 60 second
-//  timeout on tests so creating a classifier and waiting for training to update a classifier fails unless this
-//  is uncommented.
-//#define PERSISTENT_CLASSIFIER
-
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
-using IBM.WatsonDeveloperCloud.Http.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
@@ -51,11 +45,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
-#if PERSISTENT_CLASSIFIER
-        private static string _createdClassifierId = "";
-#else
-        private string _createdClassifierId = "";
-#endif
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         #region Setup
@@ -89,219 +78,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
-
-        //#region Tests
-        //        [TestMethod]
-        //        public void ClassifyGetSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running test Classify GET"));
-
-        //            List<string> classifiers = new List<string>()
-        //            {
-        //                "default"
-        //            };
-
-        //            List<string> owners = new List<string>()
-        //            {
-        //                "IBM",
-        //                "me"
-        //            };
-
-        //            var result = service.Classify(_imageUrl, classifiers.ToArray(), owners.ToArray());
-
-        //            Assert.IsNotNull(result);
-        //            Assert.IsNotNull(result.Images);
-        //            Assert.IsTrue(result.Images.Count > 0);
-        //        }
-
-        //        [TestMethod]
-        //        public void ClassifyPostSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test Classify POST"));
-        //            using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
-        //            {
-        //                var result = service.Classify((fs as Stream).ReadAllBytes(), Path.GetFileName(_localGiraffeFilePath), "image/jpeg");
-
-        //                Assert.IsNotNull(result);
-        //                Assert.IsNotNull(result.Images);
-        //                Assert.IsTrue(result.Images.Count > 0);
-        //            }
-        //        }
-
-        //        [TestMethod]
-        //        public void DetectFacesGetSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test DetectFaces GET"));
-        //            var result = service.DetectFaces(_faceUrl);
-
-        //            Assert.IsNotNull(result);
-        //            Assert.IsNotNull(result.Images);
-        //            Assert.IsTrue(result.Images.Count > 0);
-        //        }
-
-        //        [TestMethod]
-        //        public void DetectFacesPostSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test DetectFaces POST"));
-        //            using (FileStream fs = File.OpenRead(_localFaceFilePath))
-        //            {
-        //                var result = service.DetectFaces((fs as Stream).ReadAllBytes(), Path.GetFileName(_localFaceFilePath), "image/jpeg");
-
-        //                Assert.IsNotNull(result);
-        //                Assert.IsNotNull(result.Images);
-        //                Assert.IsTrue(result.Images.Count > 0);
-        //            }
-        //        }
-
-        //        [TestMethod]
-        //        public void GetClassifiersBriefSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test GetClassifiersBrief"));
-        //            var results = service.GetClassifiersBrief();
-
-        //            Assert.IsNotNull(results);
-        //        }
-
-        //        [TestMethod]
-        //        public void GetClassifiersVerboseSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test GetClassifiersVerbose"));
-        //            service = new VisualRecognitionService(_apikey, _endpoint);
-        //            var results = service.GetClassifiersVerbose();
-
-        //            Assert.IsNotNull(results);
-        //        }
-
-        //        [TestMethod]
-        //        public void CreateClassifierSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test CreateClassifier"));
-        //            var createClassifierResponse = CreateClassifier();
-
-        //            Assert.IsNotNull(createClassifierResponse);
-
-        //#if PERSISTENT_CLASSIFIER
-        //            //  Wait for classifier to finish training
-        //            var isClassifierReady = IsClassifierReady(_createdClassifierId);
-        //            autoEvent.WaitOne();
-        //#endif
-        //        }
-
-        //        [TestMethod]
-        //        public void UpdateClassifierSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test UpdateClassifier"));
-        //#if !PERSISTENT_CLASSIFIER
-        //            var createClassifierResponse = CreateClassifier();
-
-        //            //  Wait for classifier to finish training
-        //            IsClassifierReady(_createdClassifierId);
-        //            autoEvent.WaitOne();
-        //#endif
-
-        //            var updateClassiferResponse = UpdateClassifier(_createdClassifierId);
-
-        //            Assert.IsNotNull(updateClassiferResponse);
-
-
-        //        }
-
-        //        [TestMethod]
-        //        public void DeleteClassifierSuccess()
-        //        {
-        //            Console.WriteLine(string.Format("Running Test DeleteClassifier"));
-        //#if !PERSISTENT_CLASSIFIER
-        //            var createClassifierResponse = CreateClassifier();
-
-        //            //  Wait for classifier to finish training
-        //            IsClassifierReady(_createdClassifierId);
-        //            autoEvent.WaitOne();
-        //#endif
-
-        //            var deleteClassifierResponse = DeleteClassifier(_createdClassifierId);
-
-        //            Assert.IsNotNull(deleteClassifierResponse);
-        //        }
-        //#endregion
-
-        //#region Teardown
-        //        [TestCleanup]
-        //        public void Teardown()
-        //        {
-        //            Console.WriteLine(string.Format("Tearing down..."));
-        //#if !PERSISTENT_CLASSIFIER
-        //            if (!string.IsNullOrEmpty(_createdClassifierId))
-        //            {
-        //                try
-        //                {
-        //                    var getClassifierResult = service.GetClassifier(_createdClassifierId);
-        //                    if(getClassifierResult != null)
-        //                        DeleteClassifier(_createdClassifierId);
-        //                }
-        //                catch (Exception e)
-        //                {
-        //                    Console.WriteLine("Classifier {0} not found: {1}", _createdClassifierId, e.Message);
-        //                    _createdClassifierId = null;
-        //                }
-
-        //            }
-        //#endif
-        //        }
-        //#endregion
-
-        //#region CreateClassifier
-        //        private GetClassifiersPerClassifierVerbose CreateClassifier()
-        //        {
-        //            using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
-        //            {
-        //                Console.WriteLine(string.Format("Attempting to create classifier {0}", _createdClassifierName));
-
-        //                Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
-        //                positiveExamples.Add(_giraffeClassname, positiveExamplesStream.ReadAllBytes());
-
-        //                var result = service.CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream.ReadAllBytes());
-
-        //                _createdClassifierId = result.ClassifierId;
-        //                Console.WriteLine(string.Format("Created classifier {0}", _createdClassifierId));
-
-        //                return result;
-        //            }
-        //        }
-        //#endregion
-
-        //#region UpdateClassifier
-        //        private GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId)
-        //        {
-        //            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
-        //            {
-        //                Console.WriteLine(string.Format("Attempting to update classifier {0}", classifierId));
-
-        //                Dictionary<string, byte[]> positiveExamples = new Dictionary<string, byte[]>();
-        //                positiveExamples.Add(_turtleClassname, positiveExamplesStream.ReadAllBytes());
-
-        //                var result = service.UpdateClassifier(classifierId, positiveExamples);
-        //                Console.WriteLine(string.Format("Updated classifier {0}", classifierId));
-
-        //                return result;
-        //            }
-        //        }
-        //#endregion
-
-        //#region DeleteClassifier
-        //        private object DeleteClassifier(string classifierId)
-        //        {
-        //            Console.WriteLine(string.Format("Attempting to delete classifier {0}", classifierId));
-        //            //Delay(_delayTime);
-        //            var result = service.DeleteClassifier(classifierId);
-        //            _createdClassifierId = null;
-        //            Console.WriteLine(string.Format("Deleted classifier {0}", classifierId));
-
-        //            return result;
-        //        }
-        //#endregion
-
-
-
+        
         #region General
         [TestMethod]
         public void Classify_Success()
@@ -364,6 +141,47 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             var listClassifiersResult = service.ListClassifiers();
 
+            Classifier createClassifierResult = null;
+            using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
+            {
+                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
+                CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
+                createClassifierResult = service.CreateClassifier(createClassifier);
+            }
+
+            string createdClassifierId = createClassifierResult.ClassifierId;
+
+            var getClassifierResult = service.GetClassifier(createdClassifierId);
+
+            try
+            {
+                IsClassifierReady(createdClassifierId);
+            }
+            catch(Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+            autoEvent.WaitOne();
+
+            Classifier updateClassifierResult = null;
+            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+            {
+                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                updateClassifierResult = service.UpdateClassifier(updateClassifier);
+            }
+
+            var deleteClassifierResult = service.DeleteClassifier(createdClassifierId);
+
+            Assert.IsNotNull(deleteClassifierResult);
+            Assert.IsNotNull(updateClassifierResult);
+            Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
+            Assert.IsNotNull(getClassifierResult);
+            Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
+            Assert.IsNotNull(createClassifierResult);
+            Assert.IsTrue(createClassifierResult.Name == _createdClassifierName);
             Assert.IsNotNull(listClassifiersResult);
         }
         #endregion
@@ -377,13 +195,26 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             Console.WriteLine(string.Format("Classifier status is {0}", getClassifierResponse.Status.ToString()));
 
             if (getClassifierResponse.Status == Classifier.StatusEnum.READY)
+            {
                 autoEvent.Set();
+            }
+            else if (getClassifierResponse.Status == Classifier.StatusEnum.FAILED)
+            {
+                throw new Exception("Classifier failed!");
+            }
             else
             {
                 Task.Factory.StartNew(() =>
                 {
                     System.Threading.Thread.Sleep(1000);
-                    IsClassifierReady(classifierId);
+                    try
+                    {
+                        IsClassifierReady(classifierId);
+                    }
+                    catch(Exception e)
+                    {
+                        throw e;
+                    }
                 });
             }
         }
@@ -429,10 +260,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region CreateClassifier
-        private Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream classnameNegativeExamples)
+        private Classifier CreateClassifier(CreateClassifier createClassifier)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = service.CreateClassifier(name: name, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: classnameNegativeExamples);
+            var result = service.CreateClassifier(createClassifier);
 
             if (result != null)
             {
@@ -505,10 +336,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region UpdateClassifier
-        private Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
+        private Classifier UpdateClassifier(UpdateClassifier updateClassifier)
         {
             Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = service.UpdateClassifier(classifierId: classifierId, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: negativeExamples);
+            var result = service.UpdateClassifier(updateClassifier);
 
             if (result != null)
             {

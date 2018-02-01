@@ -15,31 +15,27 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// OneFaceResultAge
+    /// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
     /// </summary>
-    public class OneFaceResultAge
+    public class ErrorInfo
     {
         /// <summary>
-        /// Estimated minimum age.
+        /// Codified error string. For example, `limit_exceeded`.
         /// </summary>
-        /// <value>Estimated minimum age.</value>
-        [JsonProperty("min")]
-        public int? Min { get; set; }
+        /// <value>Codified error string. For example, `limit_exceeded`.</value>
+        [JsonProperty("error_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string ErrorId { get; set; }
         /// <summary>
-        /// Estimated maximum age.
+        /// Human-readable error description. For example, `File size limit exceeded`.
         /// </summary>
-        /// <value>Estimated maximum age.</value>
-        [JsonProperty("max")]
-        public int? Max { get; set; }
-        /// <summary>
-        /// Confidence score, on a scale of 0.0 to 1.0.
-        /// </summary>
-        [JsonProperty("score")]
-        public float Score { get; set; }
+        /// <value>Human-readable error description. For example, `File size limit exceeded`.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
     }
+
 }

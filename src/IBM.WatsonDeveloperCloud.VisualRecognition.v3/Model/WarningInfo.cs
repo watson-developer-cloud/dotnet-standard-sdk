@@ -15,26 +15,27 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Information about something that went wrong. Omitted if no warning.
+    /// Information about something that went wrong.
     /// </summary>
     public class WarningInfo
     {
         /// <summary>
-        /// Codified warning string, like 'limit_reached'.
+        /// Codified warning string, such as `limit_reached`.
         /// </summary>
-        /// <value>Codified warning string, like 'limit_reached'.</value>
-        [JsonProperty("warning_id")]
+        /// <value>Codified warning string, such as `limit_reached`.</value>
+        [JsonProperty("warning_id", NullValueHandling = NullValueHandling.Ignore)]
         public string WarningId { get; set; }
         /// <summary>
-        /// Human-readable warning string, like 'Max number of images (100) reached.'.
+        /// Information about the error.
         /// </summary>
-        /// <value>Human-readable warning string, like 'Max number of images (100) reached.'.</value>
-        [JsonProperty("description")]
+        /// <value>Information about the error.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }
+
 }

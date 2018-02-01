@@ -15,30 +15,35 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Only included if identified celebrity, otherwise set to \&quot;\&quot;.
+    /// Provides information about the face.
     /// </summary>
-    public class OneFaceResultIdentity
+    public class Face
     {
         /// <summary>
-        /// Name of the person.
+        /// Gets or Sets Age
         /// </summary>
-        /// <value>Name of the person.</value>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("age", NullValueHandling = NullValueHandling.Ignore)]
+        public FaceAge Age { get; set; }
         /// <summary>
-        /// Confidence score, on a scale of 0.0 to 1.0.
+        /// Gets or Sets Gender
         /// </summary>
-        [JsonProperty("score")]
-        public float Score { get; set; }
+        [JsonProperty("gender", NullValueHandling = NullValueHandling.Ignore)]
+        public FaceGender Gender { get; set; }
         /// <summary>
-        /// Type hierarchy, e.g. 'People/Leaders/Presidents/USA/Barack Obama'. Only included if found.
+        /// Gets or Sets FaceLocation
         /// </summary>
-        [JsonProperty("type_hierarchy")]
-        public string TypeHierarchy { get; set; }
+        [JsonProperty("face_location", NullValueHandling = NullValueHandling.Ignore)]
+        public FaceLocation FaceLocation { get; set; }
+        /// <summary>
+        /// Gets or Sets Identity
+        /// </summary>
+        [JsonProperty("identity", NullValueHandling = NullValueHandling.Ignore)]
+        public FaceIdentity Identity { get; set; }
     }
+
 }

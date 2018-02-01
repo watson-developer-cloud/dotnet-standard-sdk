@@ -17,42 +17,32 @@
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// success
+    /// Classifier and score combination.
     /// </summary>
-    public class CreateCollection
+    public class ClassifierResult
     {
         /// <summary>
-        /// Gets or Sets CollectionId
+        /// Name of the classifier.
         /// </summary>
-        [JsonProperty("collection_id")]
-        public string CollectionId { get; set; }
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [JsonProperty("name")]
+        /// <value>Name of the classifier.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// Gets or Sets Created
+        /// The ID of a classifier identified in the image.
         /// </summary>
-        [JsonProperty("created")]
-        public string Created { get; set; }
+        /// <value>The ID of a classifier identified in the image.</value>
+        [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string ClassifierId { get; set; }
         /// <summary>
-        /// Gets or Sets Images
+        /// An array of classes within the classifier.
         /// </summary>
-        [JsonProperty("images")]
-        public int? Images { get; set; }
-        /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [JsonProperty("status")]
-        public string Status { get; set; }
-        /// <summary>
-        /// Gets or Sets Capacity
-        /// </summary>
-        [JsonProperty("capacity")]
-        public string Capacity { get; set; }
+        /// <value>An array of classes within the classifier.</value>
+        [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ClassResult> Classes { get; set; }
     }
+
 }

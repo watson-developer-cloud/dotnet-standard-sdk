@@ -15,38 +15,39 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// OneFaceResultFaceLocation
+    /// Defines the location of the bounding box around the face.
     /// </summary>
-    public class OneFaceResultFaceLocation
+    public class FaceLocation
     {
         /// <summary>
         /// Width in pixels of face region.
         /// </summary>
         /// <value>Width in pixels of face region.</value>
-        [JsonProperty("width")]
-        public decimal? Width { get; set; }
+        [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Width { get; set; }
         /// <summary>
         /// Height in pixels of face region.
         /// </summary>
         /// <value>Height in pixels of face region.</value>
-        [JsonProperty("height")]
-        public decimal? Height { get; set; }
+        [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Height { get; set; }
         /// <summary>
-        /// x-position of top-left pixel of face region.
+        /// X-position of top-left pixel of face region.
         /// </summary>
-        /// <value>x-position of top-left pixel of face region.</value>
-        [JsonProperty("left")]
-        public decimal? Left { get; set; }
+        /// <value>X-position of top-left pixel of face region.</value>
+        [JsonProperty("left", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Left { get; set; }
         /// <summary>
-        /// y-position of top-left pixel of face region.
+        /// Y-position of top-left pixel of face region.
         /// </summary>
-        /// <value>y-position of top-left pixel of face region.</value>
-        [JsonProperty("top")]
-        public decimal? Top { get; set; }
+        /// <value>Y-position of top-left pixel of face region.</value>
+        [JsonProperty("top", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Top { get; set; }
     }
+
 }

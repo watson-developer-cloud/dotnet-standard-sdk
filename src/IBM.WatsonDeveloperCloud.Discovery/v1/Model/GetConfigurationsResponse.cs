@@ -1,0 +1,45 @@
+
+
+/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 the "License";
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
+
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
+{
+    using System.Linq;
+
+    public partial class GetConfigurationsResponse
+    {
+        /// <summary>
+        /// Initializes a new instance of the GetConfigurationsResponse class.
+        /// </summary>
+        public GetConfigurationsResponse() { }
+
+        /// <summary>
+        /// Initializes a new instance of the GetConfigurationsResponse class.
+        /// </summary>
+        public GetConfigurationsResponse(System.Collections.Generic.IList<ConfigurationRef> configurations = default(System.Collections.Generic.IList<ConfigurationRef>))
+        {
+            Configurations = configurations;
+        }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "configurations")]
+        public List<ConfigurationRef> Configurations { get; set; }
+
+    }
+}

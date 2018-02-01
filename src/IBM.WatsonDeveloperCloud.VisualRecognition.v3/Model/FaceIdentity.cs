@@ -20,16 +20,16 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Result of a class within a classifier.
+    /// Provides information about a celebrity who is detected in the image. Not returned when a celebrity is not detected.
     /// </summary>
-    public class ClassResult
+    public class FaceIdentity
     {
         /// <summary>
-        /// The name of the class.
+        /// Name of the person.
         /// </summary>
-        /// <value>The name of the class.</value>
-        [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
-        public string ClassName { get; set; }
+        /// <value>Name of the person.</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
         /// <summary>
         /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
         /// </summary>

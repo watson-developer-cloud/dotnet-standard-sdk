@@ -20,28 +20,22 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Result of a class within a classifier.
+    /// Provides information about the gender of the face. If there are more than 10 faces in an image, the response might return the confidence score 0.
     /// </summary>
-    public class ClassResult
+    public class FaceGender
     {
         /// <summary>
-        /// The name of the class.
+        /// Gender identified by the face. For example, `MALE` or `FEMALE`.
         /// </summary>
-        /// <value>The name of the class.</value>
-        [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
-        public string ClassName { get; set; }
+        /// <value>Gender identified by the face. For example, `MALE` or `FEMALE`.</value>
+        [JsonProperty("gender", NullValueHandling = NullValueHandling.Ignore)]
+        public string Gender { get; set; }
         /// <summary>
         /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
         /// </summary>
         /// <value>Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.</value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
-        /// <summary>
-        /// Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.
-        /// </summary>
-        /// <value>Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.</value>
-        [JsonProperty("type_hierarchy", NullValueHandling = NullValueHandling.Ignore)]
-        public string TypeHierarchy { get; set; }
     }
 
 }

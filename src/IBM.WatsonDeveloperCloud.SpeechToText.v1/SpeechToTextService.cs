@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,663 +15,509 @@
 *
 */
 
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
-    public class SpeechToTextService : WatsonService, ISpeechToTextService
+    public partial class SpeechToTextService : WatsonService, ISpeechToTextService
     {
         const string SERVICE_NAME = "speech_to_text";
-
-        //const string RELATIVE_PATH = "/speech-to-text/api";
-
-        const string PATH_MODELS = "/v1/models";
-        const string PATH_CREATE_SESSION = "/v1/sessions";
-        const string PATH_DELETE_SESSION = "/v1/sessions";
-        const string PATH_RECOGNIZE = "/v1/recognize";
-        const string PATH_SESSION_RECOGNIZE = "/v1/sessions/{0}/recognize";
-        const string PATH_OBSERVE_RESULT = "/v1/sessions/{0}/observe_result";
-        const string PATH_CUSTOM_MODEL = "/v1/customizations";
-
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
-
-        const string MODEL_NAME_DEFUALT = "en-US_BroadbandModel";
-
-        public SpeechToTextService()
-            : base(SERVICE_NAME, URL)
+        public SpeechToTextService() : base(SERVICE_NAME, URL)
         {
-            this.Endpoint = URL;
+            if(!string.IsNullOrEmpty(this.Endpoint))
+                this.Endpoint = URL;
         }
 
-        public SpeechToTextService(IClient client)
-            : base(SERVICE_NAME, URL, client) { }
 
-        public SpeechToTextService(string userName, string password)
-            : this()
+        public SpeechToTextService(string userName, string password) : this()
         {
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentNullException(nameof(userName));
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
             this.SetCredential(userName, password);
+
         }
 
-        public SpeechModelSet GetModels()
+        public SpeechToTextService(IClient httpClient) : this()
         {
-            SpeechModelSet result = null;
+            if (httpClient == null)
+                throw new ArgumentNullException(nameof(httpClient));
 
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                            .GetAsync($"{this.Endpoint}{PATH_MODELS}")
-                            .As<SpeechModelSet>()
-                            .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
+            this.Client = httpClient;
         }
 
-        public SpeechModel GetModel(string modelName)
+        public SpeechModel GetModel(string modelId)
         {
-            if (string.IsNullOrEmpty(modelName))
-                throw new ArgumentNullException("modelName can not be null or empty");
-
+            if (string.IsNullOrEmpty(modelId))
+                throw new ArgumentNullException(nameof(modelId));
             SpeechModel result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                        .GetAsync($"{this.Endpoint}{PATH_MODELS}/{modelName}")
-                        .As<SpeechModel>()
-                        .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/models/{modelId}")
+                                .As<SpeechModel>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public Session CreateSession(string modelName)
+        public SpeechModels ListModels()
         {
-            Session result = null;
+            SpeechModels result = null;
 
             try
             {
-                if (string.IsNullOrEmpty(modelName))
-                    modelName = MODEL_NAME_DEFUALT;
-
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CREATE_SESSION}")
-                               .WithArgument("model", modelName)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<Session>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/models")
+                                .As<SpeechModels>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
-
-        public RecognizeStatus GetSessionStatus(Session session)
+        public SpeechSession CreateSession(string model = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null)
         {
-            return this.GetSessionStatus(session.SessionId);
-        }
-
-        public RecognizeStatus GetSessionStatus(string sessionId)
-        {
-            RecognizeStatus result = null;
-
-            if (string.IsNullOrEmpty(sessionId))
-                throw new ArgumentNullException("session id can not be null or empty");
+            SpeechSession result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}")
-                               .WithHeader("Cookie", sessionId)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<RecognizeStatus>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/sessions")
+                                .WithArgument("model", model)
+                                .WithArgument("customization_id", customizationId)
+                                .WithArgument("acoustic_customization_id", acousticCustomizationId)
+                                .WithArgument("customization_weight", customizationWeight)
+                                .WithArgument("version", version)
+                                .As<SpeechSession>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
-        }
-
-        public object DeleteSession(Session session)
-        {
-            return this.DeleteSession(session.SessionId);
         }
 
         public object DeleteSession(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
-                throw new ArgumentNullException("session id can not be null or empty");
-
+                throw new ArgumentNullException(nameof(sessionId));
             object result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync(string.Format("{0}{1}/{2}", this.Endpoint, PATH_DELETE_SESSION, sessionId))
-                               .AsMessage()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/sessions/{sessionId}")
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public SpeechRecognitionEvent Recognize(string contentType, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
-        {
-            if (audio == null)
-                throw new ArgumentNullException($"{nameof(audio)}");
-
-            return
-                this.Recognize(sessionId: string.Empty,
-                               contentType: contentType,
-                               transferEncoding: transferEncoding,
-                               metaData: null,
-                               audio: audio,
-                               customizationId: customizationId,
-                               continuous: continuous,
-                               keywords: keywords,
-                               keywordsThreshold: keywordsThreshold,
-                               wordAlternativesThreshold: wordAlternativesThreshold,
-                               wordConfidence: wordConfidence,
-                               timestamps: timestamps,
-                               smartFormatting: smartFormatting,
-                               speakerLabels: speakerLabels,
-                               profanityFilter: profanityFilter,
-                               maxAlternatives: maxAlternatives,
-                               inactivityTimeout: inactivityTimeout,
-                               model: model);
-        }
-
-        public SpeechRecognitionEvent Recognize(string contentType, Metadata metaData, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
-        {
-            if (metaData == null)
-                throw new ArgumentNullException($"{nameof(metaData)}");
-
-            if (audio == null)
-                throw new ArgumentNullException($"{nameof(audio)}");
-
-            return
-                this.Recognize(sessionId: string.Empty,
-                               contentType: contentType,
-                               transferEncoding: transferEncoding,
-                               metaData: metaData,
-                               audio: audio,
-                               customizationId: customizationId,
-                               model: model);
-        }
-
-        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
+        public SessionStatus GetSessionStatus(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
-                throw new ArgumentNullException($"{nameof(sessionId)}");
+                throw new ArgumentNullException(nameof(sessionId));
+            SessionStatus result = null;
 
-            if (audio == null)
-                throw new ArgumentNullException($"{nameof(audio)}");
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/sessions/{sessionId}/recognize")
+                                .As<SessionStatus>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-            return
-                this.Recognize(sessionId,
-                               contentType: contentType,
-                               transferEncoding: transferEncoding,
-                               metaData: null,
-                               audio: audio,
-                               customizationId: customizationId,
-                               continuous: continuous,
-                               keywords: keywords,
-                               keywordsThreshold: keywordsThreshold,
-                               wordAlternativesThreshold: wordAlternativesThreshold,
-                               wordConfidence: wordConfidence,
-                               timestamps: timestamps,
-                               smartFormatting: smartFormatting,
-                               speakerLabels: speakerLabels,
-                               profanityFilter: profanityFilter,
-                               maxAlternatives: maxAlternatives,
-                               inactivityTimeout: inactivityTimeout,
-                               model: model);
+            return result;
         }
-
-        public SpeechRecognitionEvent RecognizeWithSession(string sessionId, string contentType, Metadata metaData, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
+        public RecognitionJob CheckJob(string id)
         {
-            if (string.IsNullOrEmpty(sessionId))
-                throw new ArgumentNullException($"{nameof(sessionId)}");
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException(nameof(id));
+            RecognitionJob result = null;
 
-            if (metaData == null)
-                throw new ArgumentNullException($"{nameof(metaData)}");
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/recognitions/{id}")
+                                .As<RecognitionJob>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-            if (audio == null)
-                throw new ArgumentNullException($"{nameof(audio)}");
-
-            return
-                this.Recognize(sessionId,
-                               contentType: contentType,
-                               transferEncoding: transferEncoding,
-                               metaData: metaData,
-                               audio: audio,
-                               customizationId: customizationId,
-                               model: model);
+            return result;
         }
 
-        private SpeechRecognitionEvent Recognize(string sessionId, string contentType, Metadata metaData, Stream audio, string transferEncoding = "", string model = "", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
+        public RecognitionJobs CheckJobs()
+        {
+            RecognitionJobs result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/recognitions")
+                                .As<RecognitionJobs>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public RecognitionJob CreateJob(byte[] audio, string contentType, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string transferEncoding = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
+        {
+            if (audio == null)
+                throw new ArgumentNullException(nameof(audio));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            RecognitionJob result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/recognitions")
+                                .WithHeader("Content-Type", contentType)
+                                .WithHeader("Transfer-Encoding", transferEncoding)
+                                .WithArgument("model", model)
+                                .WithArgument("callback_url", callbackUrl)
+                                .WithArgument("events", events)
+                                .WithArgument("user_token", userToken)
+                                .WithArgument("results_ttl", resultsTtl)
+                                .WithArgument("customization_id", customizationId)
+                                .WithArgument("acoustic_customization_id", acousticCustomizationId)
+                                .WithArgument("customization_weight", customizationWeight)
+                                .WithArgument("version", version)
+                                .WithArgument("inactivity_timeout", inactivityTimeout)
+                                .WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null)
+                                .WithArgument("keywords_threshold", keywordsThreshold)
+                                .WithArgument("max_alternatives", maxAlternatives)
+                                .WithArgument("word_alternatives_threshold", wordAlternativesThreshold)
+                                .WithArgument("word_confidence", wordConfidence)
+                                .WithArgument("timestamps", timestamps)
+                                .WithArgument("profanity_filter", profanityFilter)
+                                .WithArgument("smart_formatting", smartFormatting)
+                                .WithArgument("speaker_labels", speakerLabels)
+                                .WithBody<byte[]>(audio)
+                                .As<RecognitionJob>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteJob(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException(nameof(id));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null)
+        {
+            if (string.IsNullOrEmpty(callbackUrl))
+                throw new ArgumentNullException(nameof(callbackUrl));
+            RegisterStatus result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/register_callback")
+                                .WithArgument("callback_url", callbackUrl)
+                                .WithArgument("user_secret", userSecret)
+                                .As<RegisterStatus>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object UnregisterCallback(string callbackUrl)
+        {
+            if (string.IsNullOrEmpty(callbackUrl))
+                throw new ArgumentNullException(nameof(callbackUrl));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/unregister_callback")
+                                .WithArgument("callback_url", callbackUrl)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
         {
             if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException($"{nameof(contentType)}");
-
-            SpeechRecognitionEvent result = null;
+                throw new ArgumentNullException(nameof(contentType));
+            if (createLanguageModel == null)
+                throw new ArgumentNullException(nameof(createLanguageModel));
+            LanguageModel result = null;
 
             try
             {
-                string urlService = string.Empty;
-                IRequest request = null;
-
-                if (string.IsNullOrEmpty(sessionId))
-                {
-                    request =
-                        this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_RECOGNIZE}");
-                }
-                else
-                {
-                    request =
-                        this.Client.WithAuthentication(this.UserName, this.Password)
-                                   .PostAsync($"{this.Endpoint}{string.Format(PATH_SESSION_RECOGNIZE, sessionId)}")
-                                   .WithHeader("Cookie", sessionId);
-                }
-
-                if (!string.IsNullOrEmpty(transferEncoding))
-                    request.WithHeader("Transfer-Encoding", transferEncoding);
-
-                if (metaData == null)
-                {
-                    // if a session exists, the model should not be sent
-                    if (string.IsNullOrEmpty(sessionId))
-                        request.WithArgument("model", model);
-
-                    if (!string.IsNullOrEmpty(customizationId))
-                        request.WithArgument("customization_id", customizationId);
-
-                    if (continuous.HasValue)
-                        request.WithArgument("continuous", continuous.Value);
-
-                    if (inactivityTimeout.HasValue && inactivityTimeout.Value > 0)
-                        request.WithArgument("inactivity_timeout", inactivityTimeout.Value);
-
-                    if (keywords != null && keywords.Length > 0)
-                        request.WithArgument("keywords", keywords);
-
-                    if (keywordsThreshold.HasValue && keywordsThreshold.Value > 0)
-                        request.WithArgument("keywords_threshold", keywordsThreshold.Value);
-
-                    if (maxAlternatives.HasValue && maxAlternatives.Value > 0)
-                        request.WithArgument("max_alternatives", maxAlternatives.Value);
-
-                    if (wordAlternativesThreshold.HasValue && wordAlternativesThreshold.Value > 0)
-                        request.WithArgument("word_alternatives_threshold", wordAlternativesThreshold.Value);
-
-                    if (wordConfidence.HasValue)
-                        request.WithArgument("word_confidence", wordConfidence.Value);
-
-                    if (timestamps.HasValue)
-                        request.WithArgument("timestamps", timestamps.Value);
-
-                    if (profanityFilter)
-                        request.WithArgument("profanity_filter", profanityFilter);
-
-                    if (smartFormatting.HasValue)
-                        request.WithArgument("smart_formatting", smartFormatting.Value);
-
-                    if (speakerLabels.HasValue)
-                        request.WithArgument("speaker_labels", speakerLabels.Value);
-
-                    StreamContent bodyContent = new StreamContent(audio);
-                    bodyContent.Headers.Add("Content-Type", contentType);
-
-                    request.WithBodyContent(bodyContent);
-                }
-                else
-                {
-                    var json = JsonConvert.SerializeObject(metaData);
-
-                    StringContent metadata = new StringContent(json);
-                    metadata.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON);
-
-                    var audioContent = new ByteArrayContent((audio as Stream).ReadAllBytes());
-                    audioContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
-
-                    MultipartFormDataContent formData = new MultipartFormDataContent();
-
-                    // if a session exists, the model should not be sent
-                    if (string.IsNullOrEmpty(sessionId))
-                        request.WithArgument("model", model);
-
-                    formData.Add(metadata, "metadata");
-                    formData.Add(audioContent, "upload");
-
-                    request.WithBodyContent(formData);
-                }
-
-                result =
-                    request.As<SpeechRecognitionEvent>()
-                           .Result;
-
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations")
+                                .WithHeader("Content-Type", contentType)
+                                .WithBody<CreateLanguageModel>(createLanguageModel)
+                                .As<LanguageModel>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public List<SpeechRecognitionEvent> ObserveResult(string sessionId, int? sequenceId = (int?)null, bool interimResults = false)
-        {
-            List<SpeechRecognitionEvent> result = null;
-
-            if (string.IsNullOrEmpty(sessionId))
-                throw new ArgumentNullException("SessionId can not be null or empty");
-
-            try
-            {
-                var request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{string.Format(PATH_OBSERVE_RESULT, sessionId)}");
-
-                if (sequenceId.HasValue)
-                    request.WithArgument("sequence_id", sequenceId);
-
-                if (interimResults)
-                    request.WithArgument("interim_results", interimResults);
-
-                var strResult =
-                    request.AsString()
-                           .Result;
-                var serializer = new JsonSerializer();
-
-                using (var jsonReader = new JsonTextReader(new StringReader(strResult)))
-                {
-                    jsonReader.SupportMultipleContent = true;
-                    result = new List<SpeechRecognitionEvent>();
-
-                    while (jsonReader.Read())
-                    {
-                        var speechRecognitionEvent = serializer.Deserialize<SpeechRecognitionEvent>(jsonReader);
-                        result.Add(speechRecognitionEvent);
-                    }
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public CustomizationID CreateCustomModel(string model, string baseModelName, string description)
-        {
-            return CreateCustomModel(new CustomModel()
-            {
-                Name = model,
-                BaseModelName = baseModelName,
-                Description = description
-            });
-        }
-
-        public CustomizationID CreateCustomModel(CustomModel options)
-        {
-            CustomizationID result = null;
-
-            if (string.IsNullOrEmpty(options.Name))
-                throw new ArgumentNullException(nameof(options.Name));
-
-            if (string.IsNullOrEmpty(options.BaseModelName))
-                throw new ArgumentNullException(nameof(options.BaseModelName));
-
-            try
-            {
-                var json =
-                    JObject.FromObject(options);
-
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}")
-                               .WithBody<JObject>(json, MediaTypeHeaderValue.Parse(HttpMediaType.APPLICATION_JSON))
-                               .As<CustomizationID>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public Customizations ListCustomModels(string language = "en-US")
-        {
-            Customizations result;
-
-            if (string.IsNullOrEmpty(language))
-                throw new ArgumentNullException($"{nameof(language)}");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}")
-                               .WithArgument("language", language)
-                               .As<Customizations>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public Customization ListCustomModel(string customizationId)
-        {
-            Customization result;
-
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            try
-            {
-                result =
-                   this.Client.WithAuthentication(this.UserName, this.Password)
-                              .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}")
-                              .As<Customization>()
-                              .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public object TrainCustomModel(string customizationId, string wordTypeToAdd = "all")
+        public object DeleteLanguageModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
+                throw new ArgumentNullException(nameof(customizationId));
             object result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                              .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/train")
-                              .WithArgument("word_type_to_add", wordTypeToAdd)
-                              .AsString();
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}")
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public object ResetCustomModel(string customizationId)
+        public LanguageModel GetLanguageModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
+                throw new ArgumentNullException(nameof(customizationId));
+            LanguageModel result = null;
 
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}")
+                                .As<LanguageModel>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public LanguageModels ListLanguageModels(string language = null)
+        {
+            LanguageModels result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations")
+                                .WithArgument("language", language)
+                                .As<LanguageModels>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object ResetLanguageModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
             object result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                              .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/reset")
-                              .AsString();
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset")
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public object UpgradeCustomModel(string customizationId)
+        public object TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
         {
             if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            object result = null;
-            try
-            {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                              .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/upgrade_model")
-                              .AsString();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public object DeleteCustomModel(string customizationId)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
+                throw new ArgumentNullException(nameof(customizationId));
             object result = null;
 
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                              .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}")
-                              .AsString();
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train")
+                                .WithArgument("word_type_to_add", wordTypeToAdd)
+                                .WithArgument("customization_weight", customizationWeight)
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public object AddCorpus(string customizationId, string corpusName, bool allowOverwrite, Stream body)
+        public object UpgradeLanguageModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
 
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public object AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
             if (string.IsNullOrEmpty(corpusName))
-                throw new ArgumentNullException($"{nameof(corpusName)}");
-
-            if (corpusName.ToLower().Equals("user"))
-                throw new ArgumentException($"The {nameof(corpusName)} can not be the string 'user'");
-
-            if (corpusName.Any(Char.IsWhiteSpace))
-                throw new ArgumentException($"The {nameof(corpusName)} cannot contain spaces");
-
-            if (body == null)
-                throw new ArgumentNullException($"The {nameof(body)} is required");
-
+                throw new ArgumentNullException(nameof(corpusName));
+            if (corpusFile == null)
+                throw new ArgumentNullException(nameof(corpusFile));
             object result = null;
 
             try
             {
                 var formData = new MultipartFormDataContent();
 
-                var forcedGlossaryContent = new ByteArrayContent((body as Stream).ReadAllBytes());
-                forcedGlossaryContent.Headers.ContentType = MediaTypeHeaderValue.Parse(HttpMediaType.TEXT);
-                formData.Add(forcedGlossaryContent, "body");
+                if (corpusFile != null)
+                {
+                    var corpusFileContent = new ByteArrayContent((corpusFile as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(corpusFileContentType, out contentType);
+                    corpusFileContent.Headers.ContentType = contentType;
+                    formData.Add(corpusFileContent, "corpus_file", "filename");
+                }
 
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                                  .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{corpusName}")
-                                  .WithArgument("allow_overwrite ", allowOverwrite)
-                                  .WithBodyContent(formData)
-                                  .AsString()
-                                  .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
+                                .WithArgument("allow_overwrite", allowOverwrite)
+                                .WithBodyContent(formData)
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
         }
 
-        public Corpora ListCorpora(string customizationId)
+        public object DeleteCorpus(string customizationId, string corpusName)
         {
-            Corpora result = null;
-
             if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(corpusName))
+                throw new ArgumentNullException(nameof(corpusName));
+            object result = null;
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora")
-                               .As<Corpora>()
-                               .Result;
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
             }
 
             return result;
@@ -679,206 +525,415 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
         public Corpus GetCorpus(string customizationId, string corpusName)
         {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(corpusName))
+                throw new ArgumentNullException(nameof(corpusName));
             Corpus result = null;
 
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (string.IsNullOrEmpty(corpusName))
-                throw new ArgumentNullException($"{nameof(corpusName)}");
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{corpusName}")
-                               .As<Corpus>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public object DeleteCorpus(string customizationId, string name)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException($"{nameof(name)}");
-
-            object result = null;
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/corpora/{name}")
-                               .AsString()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result; 
-        }
-
-        public object AddCustomWords(string customizationId, Words body)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (body == null)
-                throw new ArgumentNullException($"{nameof(body)}");
-
-            object result = null;
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words")
-                               .WithBody<Words>(body)
-                               .AsString()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public object AddCustomWord(string customizationId, string wordname, WordDefinition body)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (string.IsNullOrEmpty(wordname))
-                throw new ArgumentNullException($"{nameof(wordname)}");
-
-            if (body == null)
-                throw new ArgumentNullException($"{nameof(body)}");
-
-            object result = null;
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PutAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
-                               .WithBody<WordDefinition>(body)
-                               .AsString()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public WordsList ListCustomWords(string customizationId, WordType? wordType, Sort? sort)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            WordsList result = null;
-
-            try
-            {
-
-                var request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words");
-
-                if (wordType.HasValue)
-                {
-                    request.WithArgument("word_type", wordType.Value.ToString().ToLower());
-                }
-
-                if (sort.HasValue)
-                {
-                    switch (sort.Value)
-                    {
-                        case Sort.AscendingAlphabetical:
-                            request.WithArgument("sort", "+alphabetical");
-                            break;
-                        case Sort.DescendingAlphabetical:
-                            request.WithArgument("sort", "-alphabetical");
-                            break;
-                        case Sort.AscendingCount:
-                            request.WithArgument("sort", "+count");
-                            break;
-                        case Sort.DescendingCount:
-                            request.WithArgument("sort", "-count");
-                            break;
-                    }
-                }
-
-                result =
-                    request.As<WordsList>()
-                           .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public WordData ListCustomWord(string customizationId, string wordname)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (string.IsNullOrEmpty(wordname))
-                throw new ArgumentNullException($"{nameof(wordname)}");
-
-            WordData result = null;
-
-            try
-            {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}")
-                               .As<WordData>()
-                               .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.InnerException as ServiceResponseException;
-            }
-
-            return result;
-        }
-
-        public object DeleteCustomWord(string customizationId, string wordname)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException($"{nameof(customizationId)}");
-
-            if (string.IsNullOrEmpty(wordname))
-                throw new ArgumentNullException($"{nameof(wordname)}");
-
-            object result = null;
             try
             {
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
-                           .DeleteAsync($"{this.Endpoint}{PATH_CUSTOM_MODEL}/{customizationId}/words/{wordname}");
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
+                                .As<Corpus>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
-                throw ae.InnerException as ServiceResponseException;
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Corpora ListCorpora(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            Corpora result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora")
+                                .As<Corpora>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public object AddWord(string customizationId, string wordName, string contentType, CustomWord customWord)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(wordName))
+                throw new ArgumentNullException(nameof(wordName));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            if (customWord == null)
+                throw new ArgumentNullException(nameof(customWord));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
+                                .WithHeader("Content-Type", contentType)
+                                .WithBody<CustomWord>(customWord)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object AddWords(string customizationId, string contentType, CustomWords customWords)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            if (customWords == null)
+                throw new ArgumentNullException(nameof(customWords));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words")
+                                .WithHeader("Content-Type", contentType)
+                                .WithBody<CustomWords>(customWords)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteWord(string customizationId, string wordName)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(wordName))
+                throw new ArgumentNullException(nameof(wordName));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Word GetWord(string customizationId, string wordName)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(wordName))
+                throw new ArgumentNullException(nameof(wordName));
+            Word result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
+                                .As<Word>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Words ListWords(string customizationId, string wordType = null, string sort = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            Words result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words")
+                                .WithArgument("word_type", wordType)
+                                .WithArgument("sort", sort)
+                                .As<Words>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public AcousticModel CreateAcousticModel(string contentType, CreateAcousticModel createAcousticModel)
+        {
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            if (createAcousticModel == null)
+                throw new ArgumentNullException(nameof(createAcousticModel));
+            AcousticModel result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations")
+                                .WithHeader("Content-Type", contentType)
+                                .WithBody<CreateAcousticModel>(createAcousticModel)
+                                .As<AcousticModel>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteAcousticModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public AcousticModel GetAcousticModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            AcousticModel result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}")
+                                .As<AcousticModel>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public AcousticModels ListAcousticModels(string language = null)
+        {
+            AcousticModels result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations")
+                                .WithArgument("language", language)
+                                .As<AcousticModels>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object ResetAcousticModel(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object TrainAcousticModel(string customizationId, string customLanguageModelId = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train")
+                                .WithArgument("custom_language_model_id", customLanguageModelId)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object UpgradeAcousticModel(string customizationId, string customLanguageModelId = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade")
+                                .WithArgument("custom_language_model_id", customLanguageModelId)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        public object AddAudio(string customizationId, string audioName, List<byte[]> audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(audioName))
+                throw new ArgumentNullException(nameof(audioName));
+            if (audioResource == null)
+                throw new ArgumentNullException(nameof(audioResource));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
+                                .WithHeader("Content-Type", contentType)
+                                .WithHeader("Contained-Content-Type", containedContentType)
+                                .WithArgument("allow_overwrite", allowOverwrite)
+                                .WithBody<List<byte[]>>(audioResource)
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteAudio(string customizationId, string audioName)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(audioName))
+                throw new ArgumentNullException(nameof(audioName));
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
+                                .As<object>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public AudioListing GetAudio(string customizationId, string audioName)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(audioName))
+                throw new ArgumentNullException(nameof(audioName));
+            AudioListing result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
+                                .As<AudioListing>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public AudioResources ListAudio(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            AudioResources result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio")
+                                .As<AudioResources>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
             }
 
             return result;

@@ -41,17 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example.csproj", "{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.SpeechToText.v1.Example", "examples\IBM.WatsonDeveloperCloud.SpeechToText.v1.Example\IBM.WatsonDeveloperCloud.SpeechToText.v1.Example.csproj", "{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example", "examples\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example.csproj", "{57F32C34-089A-4FDA-8D86-32D8EACA25D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests.csproj", "{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests.csproj", "{D1D1AB0E-BA2F-448B-9054-76FE18539B55}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests.csproj", "{672F1559-1034-46A3-8C71-22E27EFC0886}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.SpeechToText.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.SpeechToText.v1.UnitTests\IBM.WatsonDeveloperCloud.SpeechToText.v1.UnitTests.csproj", "{A2600CA7-8295-407E-8936-F2315D27D434}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests\IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests.csproj", "{81EB9E4C-929C-4D23-A995-19E36FA78467}"
 EndProject
@@ -103,7 +97,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NaturalLanguageClassifierV1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1", "src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj", "{6AF22994-1DDB-468E-BF93-77E907005E52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests\IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests.csproj", "{9F669547-FE9B-441D-8091-D5094E4A644A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests\IBM.WatsonDeveloperCloud.NLC.v1.IntegrationTests.csproj", "{9F669547-FE9B-441D-8091-D5094E4A644A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,10 +129,6 @@ Global
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -151,14 +141,6 @@ Global
 		{D1D1AB0E-BA2F-448B-9054-76FE18539B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1D1AB0E-BA2F-448B-9054-76FE18539B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1D1AB0E-BA2F-448B-9054-76FE18539B55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{672F1559-1034-46A3-8C71-22E27EFC0886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{672F1559-1034-46A3-8C71-22E27EFC0886}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{672F1559-1034-46A3-8C71-22E27EFC0886}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{672F1559-1034-46A3-8C71-22E27EFC0886}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2600CA7-8295-407E-8936-F2315D27D434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2600CA7-8295-407E-8936-F2315D27D434}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2600CA7-8295-407E-8936-F2315D27D434}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2600CA7-8295-407E-8936-F2315D27D434}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81EB9E4C-929C-4D23-A995-19E36FA78467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81EB9E4C-929C-4D23-A995-19E36FA78467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81EB9E4C-929C-4D23-A995-19E36FA78467}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -281,12 +263,9 @@ Global
 		{B8A228E3-E05B-451B-8504-7BB9ED05E1B3} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{7DA635B2-0020-46D6-AEAE-5DFBA24123FD} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 		{384D6BAB-04EA-48E4-AAEA-ECDB308618D5} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
-		{868E9C3A-9C9F-4F98-ABD8-D68A1DA12C4F} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{57F32C34-089A-4FDA-8D86-32D8EACA25D4} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 		{3FE948B6-FD0E-4FBF-8310-1F86D46ECABB} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
 		{D1D1AB0E-BA2F-448B-9054-76FE18539B55} = {4A6D2C37-7500-4E47-A4DA-849B25E5F24D}
-		{672F1559-1034-46A3-8C71-22E27EFC0886} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
-		{A2600CA7-8295-407E-8936-F2315D27D434} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{81EB9E4C-929C-4D23-A995-19E36FA78467} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 		{D80F048D-2263-40BF-A611-13C75BA8A3FB} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 		{34F55944-7DB0-4EC1-9600-9686C9DEA071} = {8B927AB2-21F8-40DE-BE6B-5B1105453133}

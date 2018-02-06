@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class RecognizeStatus
+    /// <summary>
+    /// RecognitionJobs.
+    /// </summary>
+    public class RecognitionJobs
     {
         /// <summary>
-        /// Gets or sets description of the state and possible actions for the
-        /// current session.
+        /// An array of objects that provides the status for each of the user's current jobs. The array is empty if the user has no current jobs.
         /// </summary>
-        [JsonProperty("session")]
-        public SessionStatus Session { get; set; }
+        /// <value>An array of objects that provides the status for each of the user's current jobs. The array is empty if the user has no current jobs.</value>
+        [JsonProperty("recognitions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<RecognitionJob> Recognitions { get; set; }
     }
+
 }

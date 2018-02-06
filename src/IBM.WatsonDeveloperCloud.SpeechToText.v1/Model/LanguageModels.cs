@@ -21,16 +21,16 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     /// <summary>
-    /// Words.
+    /// LanguageModels.
     /// </summary>
-    public class Words
+    public class LanguageModels
     {
         /// <summary>
-        /// Information about each word in the custom model's words resource. The array is empty if the custom model has no words.
+        /// An array of objects that provides information about each available custom language model. The array is empty if the requesting service credentials own no custom language models (if no language is specified) or own no custom language models for the specified language.
         /// </summary>
-        /// <value>Information about each word in the custom model's words resource. The array is empty if the custom model has no words.</value>
-        [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Word> _Words { get; set; }
+        /// <value>An array of objects that provides information about each available custom language model. The array is empty if the requesting service credentials own no custom language models (if no language is specified) or own no custom language models for the specified language.</value>
+        [JsonProperty("customizations", NullValueHandling = NullValueHandling.Ignore)]
+        public List<LanguageModel> Customizations { get; set; }
     }
 
 }

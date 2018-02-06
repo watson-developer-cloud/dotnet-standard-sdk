@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,19 +15,22 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public partial class WordsList
+    /// <summary>
+    /// CustomWords.
+    /// </summary>
+    public class CustomWords
     {
         /// <summary>
-        /// Gets or sets information about each word in the custom model's
-        /// words resource. The array is empty if the custom model has no
-        /// words.
+        /// An array of objects that provides information about each custom word that is to be added to or updated in the custom language model.
         /// </summary>
-        [JsonProperty(PropertyName = "words")]
-        public IList<WordData> Words { get; set; }
+        /// <value>An array of objects that provides information about each custom word that is to be added to or updated in the custom language model.</value>
+        [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CustomWord> Words { get; set; }
     }
+
 }

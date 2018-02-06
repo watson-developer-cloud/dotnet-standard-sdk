@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,19 +15,22 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
-    public class Customizations
+    /// <summary>
+    /// SpeechModels.
+    /// </summary>
+    public class SpeechModels
     {
         /// <summary>
-        /// Gets or sets information about each available custom model. The
-        /// array is empty if the user owns no custom models (if no language
-        /// is specified) or owns no custom models for the specified language.
+        /// Information about each available model.
         /// </summary>
-        [JsonProperty(PropertyName = "customizations")]
-        public IList<Customization> Customization { get; set; }
+        /// <value>Information about each available model.</value>
+        [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SpeechModel> Models { get; set; }
     }
+
 }

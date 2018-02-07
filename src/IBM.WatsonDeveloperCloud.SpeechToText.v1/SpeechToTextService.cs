@@ -384,11 +384,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations")
-                                .WithArgument("language", language)
-                                .As<LanguageModels>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                    .GetAsync($"{this.Endpoint}/v1/customizations");
+
+                if (!string.IsNullOrEmpty(language))
+                    request.WithArgument("language", language);
+
+                result = request.As<LanguageModels>()
+                    .Result;
+                //result = this.Client.WithAuthentication(this.UserName, this.Password)
+                //                .GetAsync($"{this.Endpoint}/v1/customizations")
+                //                .WithArgument("language", language)
+                //                .As<LanguageModels>()
+                //                .Result;
             }
             catch(AggregateException ae)
             {

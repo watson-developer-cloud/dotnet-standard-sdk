@@ -90,22 +90,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
-        #region Sessions
-        [Ignore]
-        [TestMethod]
-        public void TestSessions_Success()
-        {
-            var createSessionResult = CreateSession();
-            string sessionId = createSessionResult.SessionId;
-
-            var deleteSessionResult = DeleteSession(sessionId);
-
-            Assert.IsNotNull(deleteSessionResult);
-            Assert.IsNotNull(createSessionResult);
-            Assert.IsNotNull(createSessionResult.SessionId);
-        }
-        #endregion
-
         #region Custom Language Models
         [TestMethod]
         public void TestCustomLanguageModels_Success()
@@ -122,10 +106,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             string customizationId = createLanguageModelResult.CustomizationId;
 
             var getLanguageModelResult = GetLanguageModel(customizationId);
+            
+            var trainLanguageModelResult = TrainLanguageModel(customizationId);
+            CheckTrainingStatus(customizationId);
+            autoEvent.WaitOne();
+
+            var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
+            CheckTrainingStatus(customizationId);
+            autoEvent.WaitOne();
+
+            var resetLanguageModelResult = ResetLanguageModel(customizationId);
+            CheckTrainingStatus(customizationId);
+            autoEvent.WaitOne();
 
             var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
 
             Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsNotNull(resetLanguageModelResult);
+            Assert.IsNotNull(trainLanguageModelResult);
+            Assert.IsNotNull(upgradeLanguageModelResult);
             Assert.IsNotNull(getLanguageModelResult);
             Assert.IsTrue(getLanguageModelResult.CustomizationId == customizationId);
             Assert.IsNotNull(createLanguageModelResult);
@@ -173,178 +172,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             return result;
         }
         #endregion
-
-        #region CreateSession
-        private SpeechSession CreateSession(string model = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null)
-        {
-            Console.WriteLine("\nAttempting to CreateSession()");
-            var result = service.CreateSession(model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateSession() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateSession()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteSession
-        private object DeleteSession(string sessionId)
-        {
-            Console.WriteLine("\nAttempting to DeleteSession()");
-            var result = service.DeleteSession(sessionId: sessionId);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteSession() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteSession()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetSessionStatus
-        private SessionStatus GetSessionStatus(string sessionId)
-        {
-            Console.WriteLine("\nAttempting to GetSessionStatus()");
-            var result = service.GetSessionStatus(sessionId: sessionId);
-
-            if (result != null)
-            {
-                Console.WriteLine("GetSessionStatus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to GetSessionStatus()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CheckJob
-        private RecognitionJob CheckJob(string id)
-        {
-            Console.WriteLine("\nAttempting to CheckJob()");
-            var result = service.CheckJob(id: id);
-
-            if (result != null)
-            {
-                Console.WriteLine("CheckJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CheckJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CheckJobs
-        private RecognitionJobs CheckJobs()
-        {
-            Console.WriteLine("\nAttempting to CheckJobs()");
-            var result = service.CheckJobs();
-
-            if (result != null)
-            {
-                Console.WriteLine("CheckJobs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CheckJobs()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CreateJob
-        private RecognitionJob CreateJob(byte[] audio, string contentType, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string transferEncoding = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
-        {
-            Console.WriteLine("\nAttempting to CreateJob()");
-            var result = service.CreateJob(audio: audio, contentType: contentType, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, transferEncoding: transferEncoding, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteJob
-        private object DeleteJob(string id)
-        {
-            Console.WriteLine("\nAttempting to DeleteJob()");
-            var result = service.DeleteJob(id: id);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region RegisterCallback
-        private RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null)
-        {
-            Console.WriteLine("\nAttempting to RegisterCallback()");
-            var result = service.RegisterCallback(callbackUrl: callbackUrl, userSecret: userSecret);
-
-            if (result != null)
-            {
-                Console.WriteLine("RegisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to RegisterCallback()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UnregisterCallback
-        private object UnregisterCallback(string callbackUrl)
-        {
-            Console.WriteLine("\nAttempting to UnregisterCallback()");
-            var result = service.UnregisterCallback(callbackUrl: callbackUrl);
-
-            if (result != null)
-            {
-                Console.WriteLine("UnregisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UnregisterCallback()");
-            }
-
-            return result;
-        }
-        #endregion
-
+        
         #region CreateLanguageModel
         private LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
         {
@@ -1485,28 +1313,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         //    Assert.IsNotNull(result);
         //}
 
-        //private bool IsTrainingComplete()
-        //{
-        //    _speechToText = new SpeechToTextService(_username, _password);
-        //    _speechToText.Endpoint = _endpoint;
+        private void CheckTrainingStatus(string classifierId)
+        {
+            var listCustomModelResult = service.GetLanguageModel(_createdCustomizationID);
 
-        //    var result = _speechToText.ListCustomModel(_createdCustomizationID);
+            Console.WriteLine(string.Format("Classifier status is {0}", listCustomModelResult.Status));
 
-        //    string status = result.Status.ToLower();
-        //    Console.WriteLine(string.Format("Classifier status is {0}", status));
-
-        //    if (status == "ready" || status == "available")
-        //        autoEvent.Set();
-        //    else
-        //    {
-        //        Task.Factory.StartNew(() =>
-        //        {
-        //            System.Threading.Thread.Sleep(5000);
-        //            IsTrainingComplete();
-        //        });
-        //    }
-
-        //    return result.Status.ToLower() == "ready";
-        //}
+            if (listCustomModelResult.Status == LanguageModel.StatusEnum.READY || listCustomModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckTrainingStatus(classifierId);
+                });
+            }
+        }
     }
 }

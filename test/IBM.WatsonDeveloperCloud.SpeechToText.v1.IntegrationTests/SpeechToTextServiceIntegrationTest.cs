@@ -38,11 +38,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private static string _createdCustomizationID;
         private AutoResetEvent autoEvent = new AutoResetEvent(false);
         private static string credentials = string.Empty;
         private string _enUsBroadbandModel = "en-US_BroadbandModel";
         private string _customModelName = "dotnet-integration-test-custom-model";
+        private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
+        private string _corpusName = "The Jabberwocky";
+        private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
         private SpeechToTextService service;
 
         [TestInitialize]
@@ -99,37 +101,119 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
             {
                 Name = _customModelName,
-                BaseModelName = _enUsBroadbandModel
+                BaseModelName = _enUsBroadbandModel,
+                Description = _customModelDescription
             };
 
             var createLanguageModelResult = CreateLanguageModel("application/json", createLanguageModel);
             string customizationId = createLanguageModelResult.CustomizationId;
 
             var getLanguageModelResult = GetLanguageModel(customizationId);
+
+            var listCorporaResults = ListCorpora(customizationId);
+
+            object addCorpusResults = null;
+            using (FileStream corpusStream = File.OpenRead(_corpusPath))
+            {
+                addCorpusResults = AddCorpus(customizationId, _corpusName, corpusStream);
+            }
+
+            var getCorpusResults = GetCorpus(customizationId, _corpusName);
+
+            var listCustomWordsResult = ListWords(customizationId);
+
+            var customWords = new CustomWords()
+            {
+                Words = new List<CustomWord>()
+                            {
+                                new CustomWord()
+                                {
+                                    DisplayAs = "Watson",
+                                    SoundsLike = new List<string>()
+                                    {
+                                        "wat son"
+                                    },
+                                    Word = "watson"
+                                },
+                                new CustomWord()
+                                {
+                                    DisplayAs = "C#",
+                                    SoundsLike = new List<string>()
+                                    {
+                                        "si sharp"
+                                    },
+                                    Word = "csharp"
+                                },
+                                new CustomWord()
+                                {
+                                    DisplayAs = "SDK",
+                                    SoundsLike = new List<string>()
+                                    {
+                                        "S.D.K."
+                                    },
+                                    Word = "sdk"
+                                }
+                            }
+            };
+
+            var addCustomWordsResult = AddWords(customizationId, "application/json", customWords);
+
+            var customWord = new CustomWord()
+            {
+                DisplayAs = ".NET",
+                SoundsLike = new List<string>()
+                {
+                    "dotnet"
+                },
+                Word = "dotnet"
+            };
+
+            var addCustomWordResult = AddWord(customizationId, "dotnet", "application/json", customWord);
+
+            var getCustomWordResult = GetWord(customizationId, "dotnet");
+
+            //CheckTrainingStatus(customizationId);
+            //autoEvent.WaitOne();
+            //var trainLanguageModelResult = TrainLanguageModel(customizationId);
+
+            //CheckTrainingStatus(customizationId);
+            //autoEvent.WaitOne();
+            //var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
+
+            //CheckTrainingStatus(customizationId);
+            //autoEvent.WaitOne();
+            //var resetLanguageModelResult = ResetLanguageModel(customizationId);
+
+            var deleteCustomWordResults = DeleteWord(customizationId, "csharp");
+
+            var deleteCorpusResults = DeleteCorpus(customizationId, _corpusName);
+
+            //CheckTrainingStatus(customizationId);
+            //autoEvent.WaitOne();
+            var deleteLanguageModelResults = DeleteLanguageModel(customizationId);
+
+            Assert.IsNotNull(deleteCustomWordResults);
+            Assert.IsNotNull(deleteCorpusResults);
+            Assert.IsNotNull(deleteLanguageModelResults);
+            //Assert.IsNotNull(resetLanguageModelResult);
+            //Assert.IsNotNull(upgradeLanguageModelResult);
+            //Assert.IsNotNull(trainLanguageModelResult);
             
-            var trainLanguageModelResult = TrainLanguageModel(customizationId);
-            CheckTrainingStatus(customizationId);
-            autoEvent.WaitOne();
-
-            var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
-            CheckTrainingStatus(customizationId);
-            autoEvent.WaitOne();
-
-            var resetLanguageModelResult = ResetLanguageModel(customizationId);
-            CheckTrainingStatus(customizationId);
-            autoEvent.WaitOne();
-
-            var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
-
-            Assert.IsNotNull(deleteLanguageModelResult);
-            Assert.IsNotNull(resetLanguageModelResult);
-            Assert.IsNotNull(trainLanguageModelResult);
-            Assert.IsNotNull(upgradeLanguageModelResult);
+            Assert.IsNotNull(getCustomWordResult);
+            Assert.IsTrue(getCustomWordResult._Word == "dotnet");
+            Assert.IsNotNull(addCustomWordResult);
+            Assert.IsNotNull(addCustomWordsResult);
+            Assert.IsNotNull(listCustomWordsResult);
+            Assert.IsNotNull(listCustomWordsResult._Words);
+            Assert.IsNotNull(getCorpusResults);
+            Assert.IsTrue(getCorpusResults.Name == _corpusName);
+            Assert.IsTrue(getCorpusResults.OutOfVocabularyWords > 0);
+            Assert.IsNotNull(addCorpusResults);
+            Assert.IsNotNull(listCorporaResults);
+            Assert.IsNotNull(listCorporaResults._Corpora);
             Assert.IsNotNull(getLanguageModelResult);
             Assert.IsTrue(getLanguageModelResult.CustomizationId == customizationId);
             Assert.IsNotNull(createLanguageModelResult);
-            Assert.IsTrue(createLanguageModelResult.Name == _customModelName);
-            Assert.IsTrue(createLanguageModelResult.BaseModelName == _enUsBroadbandModel);
             Assert.IsNotNull(listLanguageModelsResult);
             Assert.IsNotNull(listLanguageModelsResult.Customizations);
         }
@@ -172,7 +256,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             return result;
         }
         #endregion
-        
+
         #region CreateLanguageModel
         private LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
         {
@@ -1315,7 +1399,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
         private void CheckTrainingStatus(string classifierId)
         {
-            var listCustomModelResult = service.GetLanguageModel(_createdCustomizationID);
+            var listCustomModelResult = service.GetLanguageModel(classifierId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", listCustomModelResult.Status));
 

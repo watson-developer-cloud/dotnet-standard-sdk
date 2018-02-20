@@ -120,6 +120,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var getCorpusResults = GetCorpus(customizationId, _corpusName);
 
+            CheckCorpusStatus(customizationId, _corpusName);
+            autoEvent.WaitOne();
+
+            var trainLanguageModelResult = TrainLanguageModel(customizationId);
+            CheckCustomizationStatus(customizationId);
+            autoEvent.WaitOne();
+            Assert.IsNotNull(trainLanguageModelResult);
+            trainLanguageModelResult = null;
+
             var listCustomWordsResult = ListWords(customizationId);
 
             var customWords = new CustomWords()
@@ -172,33 +181,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var getCustomWordResult = GetWord(customizationId, "dotnet");
 
+            //trainLanguageModelResult = TrainLanguageModel(customizationId);
             //CheckTrainingStatus(customizationId);
             //autoEvent.WaitOne();
-            //var trainLanguageModelResult = TrainLanguageModel(customizationId);
+            //Assert.IsNotNull(trainLanguageModelResult);
+            //trainLanguageModelResult = null;
 
-            //CheckTrainingStatus(customizationId);
-            //autoEvent.WaitOne();
             //var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
+            //Assert.IsNotNull(upgradeLanguageModelResult);
 
-            //CheckTrainingStatus(customizationId);
-            //autoEvent.WaitOne();
             //var resetLanguageModelResult = ResetLanguageModel(customizationId);
+            //Assert.IsNotNull(resetLanguageModelResult);
 
             var deleteCustomWordResults = DeleteWord(customizationId, "csharp");
 
             var deleteCorpusResults = DeleteCorpus(customizationId, _corpusName);
 
-            //CheckTrainingStatus(customizationId);
-            //autoEvent.WaitOne();
             var deleteLanguageModelResults = DeleteLanguageModel(customizationId);
 
             Assert.IsNotNull(deleteCustomWordResults);
             Assert.IsNotNull(deleteCorpusResults);
             Assert.IsNotNull(deleteLanguageModelResults);
-            //Assert.IsNotNull(resetLanguageModelResult);
-            //Assert.IsNotNull(upgradeLanguageModelResult);
-            //Assert.IsNotNull(trainLanguageModelResult);
-            
             Assert.IsNotNull(getCustomWordResult);
             Assert.IsTrue(getCustomWordResult._Word == "dotnet");
             Assert.IsNotNull(addCustomWordResult);
@@ -1397,21 +1400,45 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         //    Assert.IsNotNull(result);
         //}
 
-        private void CheckTrainingStatus(string classifierId)
+        private void CheckCustomizationStatus(string classifierId)
         {
-            var listCustomModelResult = service.GetLanguageModel(classifierId);
+            var getLangaugeModelResult = service.GetLanguageModel(classifierId);
 
-            Console.WriteLine(string.Format("Classifier status is {0}", listCustomModelResult.Status));
+            Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Status));
 
-            if (listCustomModelResult.Status == LanguageModel.StatusEnum.READY || listCustomModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
+            if (getLangaugeModelResult.Status == LanguageModel.StatusEnum.READY || getLangaugeModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
                 autoEvent.Set();
             else
             {
                 Task.Factory.StartNew(() =>
                 {
                     System.Threading.Thread.Sleep(5000);
-                    CheckTrainingStatus(classifierId);
+                    CheckCustomizationStatus(classifierId);
                 });
+            }
+        }
+
+        private void CheckCorpusStatus(string classifierId, string corpusName)
+        {
+            var getCorpusResult = service.GetCorpus(classifierId, corpusName);
+
+            Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
+
+            if(getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckCorpusStatus(classifierId, corpusName);
+                });
+            }
+            else if(getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
+            {
+                throw new Exception("Corpus status is undetermined.");
+            }
+            else
+            {
+                autoEvent.Set();
             }
         }
     }

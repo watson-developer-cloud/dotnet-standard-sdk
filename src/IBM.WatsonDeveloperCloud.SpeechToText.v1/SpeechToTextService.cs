@@ -18,10 +18,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
@@ -65,9 +67,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models/{modelId}")
-                                .As<SpeechModel>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/models/{modelId}");
+                result = request.As<SpeechModel>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -84,9 +86,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models")
-                                .As<SpeechModels>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/models");
+                result = request.As<SpeechModels>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -107,11 +109,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations")
-                                .WithHeader("Content-Type", contentType)
-                                .WithBody<CreateLanguageModel>(createLanguageModel)
-                                .As<LanguageModel>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations");
+                request.WithHeader("Content-Type", contentType);
+                request.WithBody<CreateLanguageModel>(createLanguageModel);
+                result = request.As<LanguageModel>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -130,9 +132,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -151,9 +153,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}")
-                                .As<LanguageModel>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                result = request.As<LanguageModel>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -171,18 +173,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                    .GetAsync($"{this.Endpoint}/v1/customizations");
-
-                if (!string.IsNullOrEmpty(language))
+                                .GetAsync($"{this.Endpoint}/v1/customizations");
+                if(!string.IsNullOrEmpty(language))
                     request.WithArgument("language", language);
-
                 result = request.As<LanguageModels>()
-                    .Result;
-                //result = this.Client.WithAuthentication(this.UserName, this.Password)
-                //                .GetAsync($"{this.Endpoint}/v1/customizations")
-                //                .WithArgument("language", language)
-                //                .As<LanguageModels>()
-                //                .Result;
+                                .Result;
             }
             catch(AggregateException ae)
             {
@@ -200,9 +195,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -223,13 +218,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
-
-                if (!string.IsNullOrEmpty(wordTypeToAdd))
-                                request.WithArgument("word_type_to_add", wordTypeToAdd);
-                if (customizationWeight != null)
-                                request.WithArgument("customization_weight", customizationWeight);
-                                
-                result = request.As<object>().Result;
+                if(!string.IsNullOrEmpty(wordTypeToAdd))
+                    request.WithArgument("word_type_to_add", wordTypeToAdd);
+                if(customizationWeight != null)
+                    request.WithArgument("customization_weight", customizationWeight);
+                result = request.As<object>()
+                                .Result;
             }
             catch(AggregateException ae)
             {
@@ -247,9 +241,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -282,11 +276,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     formData.Add(corpusFileContent, "corpus_file", "filename");
                 }
 
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
-                                .WithArgument("allow_overwrite", allowOverwrite)
-                                .WithBodyContent(formData)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                if(allowOverwrite != null)
+                    request.WithArgument("allow_overwrite", allowOverwrite);
+                request.WithBodyContent(formData);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -307,9 +302,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -330,9 +325,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}")
-                                .As<Corpus>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                result = request.As<Corpus>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -351,9 +346,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora")
-                                .As<Corpora>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
+                result = request.As<Corpora>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -377,11 +372,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
-                                .WithHeader("Content-Type", contentType)
-                                .WithBody<CustomWord>(customWord)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+                request.WithHeader("Content-Type", contentType);
+                request.WithBody<CustomWord>(customWord);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -404,11 +399,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words")
-                                .WithHeader("Content-Type", contentType)
-                                .WithBody<CustomWords>(customWords)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                request.WithHeader("Content-Type", contentType);
+                request.WithBody<CustomWords>(customWords);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -429,9 +424,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -452,9 +447,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}")
-                                .As<Word>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+                result = request.As<Word>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -473,11 +468,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words")
-                                .WithArgument("word_type", wordType)
-                                .WithArgument("sort", sort)
-                                .As<Words>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                if(!string.IsNullOrEmpty(wordType))
+                    request.WithArgument("word_type", wordType);
+                if(!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                result = request.As<Words>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -497,11 +494,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations")
-                                .WithHeader("Content-Type", contentType)
-                                .WithBody<CreateAcousticModel>(createAcousticModel)
-                                .As<AcousticModel>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
+                request.WithHeader("Content-Type", contentType);
+                request.WithBody<CreateAcousticModel>(createAcousticModel);
+                result = request.As<AcousticModel>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -520,9 +517,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -541,9 +538,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}")
-                                .As<AcousticModel>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+                result = request.As<AcousticModel>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -560,10 +557,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations")
-                                .WithArgument("language", language)
-                                .As<AcousticModels>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
+                if(!string.IsNullOrEmpty(language))
+                    request.WithArgument("language", language);
+                result = request.As<AcousticModels>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -582,9 +580,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -603,10 +601,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train")
-                                .WithArgument("custom_language_model_id", customLanguageModelId)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
+                if(!string.IsNullOrEmpty(customLanguageModelId))
+                    request.WithArgument("custom_language_model_id", customLanguageModelId);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -625,10 +624,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade")
-                                .WithArgument("custom_language_model_id", customLanguageModelId)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
+                if(!string.IsNullOrEmpty(customLanguageModelId))
+                    request.WithArgument("custom_language_model_id", customLanguageModelId);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -652,13 +652,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
-                                .WithHeader("Content-Type", contentType)
-                                .WithHeader("Contained-Content-Type", containedContentType)
-                                .WithArgument("allow_overwrite", allowOverwrite)
-                                .WithBody<List<byte[]>>(audioResource)
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                request.WithHeader("Content-Type", contentType);
+                request.WithHeader("Contained-Content-Type", containedContentType);
+                if(allowOverwrite != null)
+                    request.WithArgument("allow_overwrite", allowOverwrite);
+                request.WithBody<List<byte[]>>(audioResource);
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -679,9 +680,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
-                                .As<object>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                result = request.As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -702,9 +703,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}")
-                                .As<AudioListing>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                result = request.As<AudioListing>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -723,9 +724,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio")
-                                .As<AudioResources>()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
+                result = request.As<AudioResources>()
                                 .Result;
             }
             catch(AggregateException ae)

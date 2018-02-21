@@ -605,6 +605,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                 .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
                 if(!string.IsNullOrEmpty(customLanguageModelId))
                     request.WithArgument("custom_language_model_id", customLanguageModelId);
+                request.WithArgument("force", true);
                 result = request.As<object>()
                                 .Result;
             }
@@ -638,7 +639,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             return result;
         }
-        public object AddAudio(string customizationId, string audioName, List<byte[]> audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        public object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException(nameof(customizationId));
@@ -656,9 +657,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                 .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
                 request.WithHeader("Content-Type", contentType);
                 request.WithHeader("Contained-Content-Type", containedContentType);
-                if(allowOverwrite != null)
+                if (allowOverwrite != null)
                     request.WithArgument("allow_overwrite", allowOverwrite);
-                request.WithBody<List<byte[]>>(audioResource);
+
+                var trainingDataContent = new ByteArrayContent(audioResource);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                trainingDataContent.Headers.ContentType = audioType;
+
+                request.WithBodyContent(trainingDataContent);
                 result = request.As<object>()
                                 .Result;
             }

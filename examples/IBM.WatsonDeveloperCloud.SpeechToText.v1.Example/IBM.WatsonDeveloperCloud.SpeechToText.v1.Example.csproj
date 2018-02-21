@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="SpeechToTextTestData\test-audio.wav;SpeechToTextTestData\test-stt-corpus.txt;.\test-audio.wav">
+    <None Update="SpeechToTextTestData\test-audio.wav;SpeechToTextTestData\theJabberwocky-utf8.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -15,9 +15,7 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
-using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
 using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -26,6 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,17 +34,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
     [TestClass]
     public class SpeechToTextServiceIntegrationTest
     {
-        private const string SESSION_STATUS_INITIALIZED = "initialized";
+        //private const string SESSION_STATUS_INITIALIZED = "initialized";
         private static string _username;
         private static string _password;
         private static string _endpoint;
         private AutoResetEvent autoEvent = new AutoResetEvent(false);
         private static string credentials = string.Empty;
-        private string _enUsBroadbandModel = "en-US_BroadbandModel";
+        private const string EN_US = "en-US_BroadbandModel";
         private string _customModelName = "dotnet-integration-test-custom-model";
         private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
         private string _corpusName = "The Jabberwocky";
         private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
+        private string _acousticModelName = "dotnet-integration-test-custom-acoustic-model";
+        private string _acousticModelDescription = "A custom model to teset .NET SDK Speech to Text acoustic customization.";
+        private string _acousticResourceUrl = "https://ia802302.us.archive.org/10/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit.mp3";
+        private string _acousticResourceName = "firstOrbit";
+        private string _acousticResourceMimeType = "audio/mpeg";
         private SpeechToTextService service;
 
         [TestInitialize]
@@ -83,10 +88,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         {
             var listModelsResult = ListModels();
 
-            var getModelResult = GetModel(_enUsBroadbandModel);
+            var getModelResult = GetModel(EN_US);
 
             Assert.IsNotNull(getModelResult);
-            Assert.IsTrue(getModelResult.Name == _enUsBroadbandModel);
+            Assert.IsTrue(getModelResult.Name == EN_US);
             Assert.IsNotNull(listModelsResult);
             Assert.IsNotNull(listModelsResult.Models);
         }
@@ -101,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
             {
                 Name = _customModelName,
-                BaseModelName = _enUsBroadbandModel,
+                BaseModelName = EN_US,
                 Description = _customModelDescription
             };
 
@@ -167,6 +172,16 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var addCustomWordsResult = AddWords(customizationId, "application/json", customWords);
 
+            CheckCustomizationStatus(customizationId);
+            autoEvent.WaitOne();
+
+            trainLanguageModelResult = TrainLanguageModel(customizationId);
+            Assert.IsNotNull(trainLanguageModelResult);
+            trainLanguageModelResult = null;
+
+            CheckCustomizationStatus(customizationId);
+            autoEvent.WaitOne();
+
             var customWord = new CustomWord()
             {
                 DisplayAs = ".NET",
@@ -181,21 +196,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var getCustomWordResult = GetWord(customizationId, "dotnet");
 
-            //trainLanguageModelResult = TrainLanguageModel(customizationId);
-            //CheckTrainingStatus(customizationId);
-            //autoEvent.WaitOne();
-            //Assert.IsNotNull(trainLanguageModelResult);
-            //trainLanguageModelResult = null;
+            trainLanguageModelResult = TrainLanguageModel(customizationId);
+            CheckCustomizationStatus(customizationId);
+            autoEvent.WaitOne();
+            Assert.IsNotNull(trainLanguageModelResult);
+            trainLanguageModelResult = null;
+
+            CheckCorpusStatus(customizationId, _corpusName);
+            autoEvent.WaitOne();
 
             //var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
-            //Assert.IsNotNull(upgradeLanguageModelResult);
-
-            //var resetLanguageModelResult = ResetLanguageModel(customizationId);
-            //Assert.IsNotNull(resetLanguageModelResult);
+            //  Assert.IsNotNull(upgradeLanguageModelResult);
 
             var deleteCustomWordResults = DeleteWord(customizationId, "csharp");
 
             var deleteCorpusResults = DeleteCorpus(customizationId, _corpusName);
+
+            var resetLanguageModelResult = ResetLanguageModel(customizationId);
+            Assert.IsNotNull(resetLanguageModelResult);
 
             var deleteLanguageModelResults = DeleteLanguageModel(customizationId);
 
@@ -210,7 +228,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             Assert.IsNotNull(listCustomWordsResult._Words);
             Assert.IsNotNull(getCorpusResults);
             Assert.IsTrue(getCorpusResults.Name == _corpusName);
-            Assert.IsTrue(getCorpusResults.OutOfVocabularyWords > 0);
             Assert.IsNotNull(addCorpusResults);
             Assert.IsNotNull(listCorporaResults);
             Assert.IsNotNull(listCorporaResults._Corpora);
@@ -219,6 +236,84 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             Assert.IsNotNull(createLanguageModelResult);
             Assert.IsNotNull(listLanguageModelsResult);
             Assert.IsNotNull(listLanguageModelsResult.Customizations);
+        }
+        #endregion
+
+        #region Acoustic Customizations
+        [TestMethod]
+        public void TestAcousticCustomizations()
+        {
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var listAcousticModelsResult = ListAcousticModels();
+
+            var acousticModel = new CreateAcousticModel
+            {
+                Name = _acousticModelName,
+                BaseModelName = EN_US,
+                Description = _acousticModelDescription
+            };
+
+            var createAcousticModelResult = CreateAcousticModel("application/json", acousticModel);
+            var acousticCustomizationId = createAcousticModelResult.CustomizationId;
+
+            var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
+
+
+            var listAudioResult = ListAudio(acousticCustomizationId);
+
+            object addAudioResult = null;
+
+            addAudioResult = AddAudio(acousticCustomizationId, _acousticResourceName, acousticResourceData, _acousticResourceMimeType, allowOverwrite: true);
+
+            var getAudioResult = GetAudio(acousticCustomizationId, _acousticResourceName);
+
+            CheckAudioStatus(acousticCustomizationId, _acousticResourceName);
+            autoEvent.WaitOne();
+
+            CheckAcousticCustomizationStatus(acousticCustomizationId);
+            autoEvent.WaitOne();
+
+            var trainAcousticModelResult = TrainAcousticModel(acousticCustomizationId);
+
+            CheckAcousticCustomizationStatus(acousticCustomizationId);
+            autoEvent.WaitOne();
+
+            //var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
+
+            //CheckAcousticCustomizationStatus(acousticCustomizationId);
+            //autoEvent.WaitOne();
+
+            var deleteAudioResult = DeleteAudio(acousticCustomizationId, _acousticResourceName);
+
+            var resetAcousticModelResult = ResetAcousticModel(acousticCustomizationId);
+
+            var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
+
+            Assert.IsNotNull(deleteAudioResult);
+            Assert.IsNotNull(deleteAcousticModelResult);
+
+            Assert.IsNotNull(getAudioResult);
+            Assert.IsTrue(getAudioResult.Name == _acousticResourceName);
+            Assert.IsNotNull(addAudioResult);
+            Assert.IsNotNull(listAudioResult);
+            Assert.IsNotNull(listAudioResult.Audio);
+            Assert.IsNotNull(getAcousticModelResult);
+            Assert.IsTrue(getAcousticModelResult.Name == _acousticModelName);
+            Assert.IsTrue(getAcousticModelResult.Description == _acousticModelDescription);
+            Assert.IsNotNull(createAcousticModelResult);
+            Assert.IsNotNull(listAcousticModelsResult);
         }
         #endregion
 
@@ -698,7 +793,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region AddAudio
-        private object AddAudio(string customizationId, string audioName, List<byte[]> audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        private object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
         {
             Console.WriteLine("\nAttempting to AddAudio()");
             var result = service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
@@ -772,634 +867,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             return result;
         }
         #endregion
-
-        //[TestMethod]
-        //public void t00_GetModels_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    var results = _speechToText.GetModels();
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Models);
-        //    Assert.IsTrue(results.Models.Count > 0);
-        //    Assert.IsNotNull(results.Models.First().Name);
-        //    Assert.IsNotNull(results.Models.First().SupportedFeatures);
-        //}
-
-        //[TestMethod]
-        //public void t01_GetModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    string modelName = "en-US_NarrowbandModel";
-
-        //    var results = _speechToText.GetModel(modelName);
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Name);
-        //    Assert.IsNotNull(results.SupportedFeatures);
-        //}
-
-        //[TestMethod]
-        //public void t02_CreateSession_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    string modelName = "en-US_NarrowbandModel";
-
-        //    var model = _speechToText.GetModel(modelName);
-
-        //    var result =
-        //        _speechToText.CreateSession(model.Name);
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsNotNull(result.SessionId);
-        //}
-
-        //[TestMethod]
-        //public void t03_GetSessionStatus_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    string modelName = "en-US_NarrowbandModel";
-
-        //    var model = _speechToText.GetModel(modelName);
-
-        //    var session =
-        //        _speechToText.CreateSession(model.Name);
-
-        //    var result =
-        //        _speechToText.GetSessionStatus(session);
-
-        //    Assert.IsNotNull(result);
-        //    Assert.AreEqual(SESSION_STATUS_INITIALIZED, result.Session.State);
-        //}
-
-        //[TestMethod]
-        //public void t04_Recognize_BodyContent_Sucess()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    FileStream audio =
-        //        File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
-
-        //    var results =
-        //        _speechToText.Recognize(audio.GetMediaTypeFromFile(), audio, "");
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Results);
-        //    Assert.IsTrue(results.Results.Count > 0);
-        //    Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
-        //    Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
-        //}
-
-        //[TestMethod]
-        //public void t05_Recognize_FormData_Sucess()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    FileStream audio =
-        //        File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
-
-        //    var results =
-        //        _speechToText.Recognize(audio.GetMediaTypeFromFile(),
-        //                          new Metadata()
-        //                          {
-        //                              PartContentType = audio.GetMediaTypeFromFile()
-        //                          },
-        //                          audio);
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Results);
-        //    Assert.IsTrue(results.Results.Count > 0);
-        //    Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
-        //    Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
-        //}
-
-        //[TestMethod]
-        //public void t06_Recognize_WithSession_BodyContent_Sucess()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    string modelName = "en-US_BroadbandModel";
-
-        //    var session =
-        //        _speechToText.CreateSession(modelName);
-
-        //    FileStream audio =
-        //        File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
-
-        //    var results =
-        //        _speechToText.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), audio);
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Results);
-        //    Assert.IsTrue(results.Results.Count > 0);
-        //    Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
-        //    Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
-        //}
-
-        //[TestMethod]
-        //public void t07_Recognize_WithSession_FormData_Sucess()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    string modelName = "en-US_BroadbandModel";
-
-        //    var session =
-        //        _speechToText.CreateSession(modelName);
-
-        //    FileStream audio =
-        //        File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
-
-        //    var results =
-        //        _speechToText.RecognizeWithSession(session.SessionId,
-        //                                     audio.GetMediaTypeFromFile(),
-        //                                     new Metadata()
-        //                                     {
-        //                                         PartContentType = audio.GetMediaTypeFromFile()
-        //                                     },
-        //                                     audio);
-
-        //    Assert.IsNotNull(results);
-        //    Assert.IsNotNull(results.Results);
-        //    Assert.IsTrue(results.Results.Count > 0);
-        //    Assert.IsTrue(results.Results.First().Alternatives.Count > 0);
-        //    Assert.IsNotNull(results.Results.First().Alternatives.First().Transcript);
-        //}
-
-        //[TestMethod]
-        //public void t08_ObserveResult_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    string modelName = "en-US_BroadbandModel";
-
-        //    var session =
-        //        _speechToText.CreateSession(modelName);
-
-        //    FileStream audio =
-        //        File.OpenRead(@"SpeechToTextTestData\test-audio.wav");
-
-        //    Metadata metadata = new Metadata()
-        //    {
-        //        PartContentType = audio.GetMediaTypeFromFile()
-        //    };
-
-        //    var taskObserveResult = Task.Factory.StartNew<List<SpeechRecognitionEvent>>(() =>
-        //    {
-        //        return _speechToText.ObserveResult(session.SessionId, interimResults: true);
-        //    });
-
-        //    taskObserveResult.ContinueWith((antecedent) =>
-        //    {
-        //        var results = antecedent.Result;
-
-        //        Assert.IsNotNull(results);
-        //        Assert.IsTrue(results.Count > 0);
-        //        Assert.IsNotNull(results.First().Results);
-        //        Assert.IsTrue(results.First().Results.Count > 0);
-        //        Assert.IsTrue(results.First().Results.First().Alternatives.Count > 0);
-        //        Assert.IsNotNull(results.First().Results.First().Alternatives.First().Transcript);
-        //    });
-
-        //    var taskRecognizeWithSession = Task.Factory.StartNew(() =>
-        //    {
-        //        _speechToText.RecognizeWithSession(session.SessionId, audio.GetMediaTypeFromFile(), metadata, audio, "chunked", modelName);
-        //    });
-
-        //    taskObserveResult.Wait();
-        //}
-
-        //[TestMethod]
-        //public void t09_CreateCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    string modelName = "en-US_BroadbandModel";
-
-        //    var customizationId =
-        //        _speechToText.CreateCustomModel("model_test", modelName, "Test of Create Custom Model method");
-
-        //    _createdCustomizationID = customizationId.CustomizationId;
-
-        //    Assert.IsNotNull(customizationId);
-        //    Assert.IsNotNull(customizationId.CustomizationId);
-        //}
-
-        //[TestMethod]
-        //public void t10_AddCorpus_Success()
-        //{
-        //    _speechToText =
-        //       new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var body =
-        //        File.OpenRead(@"SpeechToTextTestData\test-stt-corpus.txt");
-
-        //    object result = _speechToText.AddCorpus(customization,
-        //                      "stt_integration",
-        //                      false,
-        //                      body);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t11_TrainCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var result = _speechToText.TrainCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t12_WaitForTraining()
-        //{
-        //    IsTrainingComplete();
-        //    autoEvent.WaitOne();
-        //    Assert.IsTrue(true);
-        //}
-
-        //[TestMethod]
-        //public void t13_AddCustomWords_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    object result = _speechToText.AddCustomWords(_createdCustomizationID,
-        //                          new Words()
-        //                          {
-        //                              WordsProperty = new List<Word>()
-        //                              {
-        //                                  new Word()
-        //                                  {
-        //                                     DisplayAs = "Watson",
-        //                                     SoundsLike = new List<string>()
-        //                                     {
-        //                                         "wat son"
-        //                                     },
-        //                                     WordProperty = "watson"
-        //                                  },
-        //                                  new Word()
-        //                                  {
-        //                                     DisplayAs = "C#",
-        //                                     SoundsLike = new List<string>()
-        //                                     {
-        //                                         "si sharp"
-        //                                     },
-        //                                     WordProperty = "csharp"
-        //                                  },
-        //                                   new Word()
-        //                                  {
-        //                                     DisplayAs = "SDK",
-        //                                     SoundsLike = new List<string>()
-        //                                     {
-        //                                         "S.D.K."
-        //                                     },
-        //                                     WordProperty = "sdk"
-        //                                  }
-        //                              }
-        //                          });
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t14_TrainCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var result = _speechToText.TrainCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t15_WaitForTraining()
-        //{
-        //    IsTrainingComplete();
-        //    autoEvent.WaitOne();
-        //    Assert.IsTrue(true);
-        //}
-
-        //[TestMethod]
-        //public void t16_AddCustomWord_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    object result = _speechToText.AddCustomWord(customization,
-        //                          "social",
-        //                          new WordDefinition()
-        //                          {
-        //                              DisplayAs = "Social",
-        //                              SoundsLike = new List<string>()
-        //                                     {
-        //                                         "so cial"
-        //                                     }
-        //                          });
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t17_TrainCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var result = _speechToText.TrainCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t18_WaitForTraining()
-        //{
-        //    IsTrainingComplete();
-        //    autoEvent.WaitOne();
-        //    Assert.IsTrue(true);
-        //}
-
-        //[TestMethod]
-        //public void t19_ListCustomModels_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customizations =
-        //        _speechToText.ListCustomModels();
-
-        //    Assert.IsNotNull(customizations);
-        //    Assert.IsNotNull(customizations.Customization);
-        //    Assert.IsTrue(customizations.Customization.Count() > 0);
-        //}
-
-        //[TestMethod]
-        //public void t20_ListCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var result =
-        //        _speechToText.ListCustomModel(_createdCustomizationID);
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsFalse(string.IsNullOrEmpty(result.CustomizationId));
-        //}
-
-        //[TestMethod]
-        //public void t21_ListCorpora_Success()
-        //{
-        //    _speechToText =
-        //       new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var corpora =
-        //        _speechToText.ListCorpora(customization);
-
-        //    Assert.IsNotNull(corpora);
-        //    Assert.IsNotNull(corpora.CorporaProperty);
-        //    Assert.IsTrue(corpora.CorporaProperty.Count() > 0);
-        //}
-
-        //[TestMethod]
-        //public void t22_GetCorpus_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var corpora =
-        //        _speechToText.ListCorpora(customization);
-
-        //    var corpus =
-        //        _speechToText.GetCorpus(customization, corpora.CorporaProperty.First().Name);
-
-        //    Assert.IsNotNull(corpus);
-        //    Assert.IsNotNull(corpus.Name);
-        //    Assert.AreEqual(corpora.CorporaProperty.First().Name, corpus.Name);
-        //}
-
-        //[TestMethod]
-        //public void t23_ListCustomWords_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var words =
-        //        _speechToText.ListCustomWords(_createdCustomizationID, null, null);
-
-        //    Assert.IsNotNull(words);
-        //}
-
-        //[TestMethod]
-        //public void t24_ListCustomWord_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var words =
-        //        _speechToText.ListCustomWords(customization, WordType.All, null);
-
-        //    var word =
-        //        _speechToText.ListCustomWord(customization, words.Words.First().Word);
-
-        //    Assert.IsNotNull(word);
-        //}
-        //[TestMethod]
-        //public void t25_DeleteCustomWord_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var words =
-        //        _speechToText.ListCustomWords(customization, WordType.All, null);
-
-        //    object result = _speechToText.DeleteCustomWord(customization, words.Words.First().Word);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t26_TrainCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var result = _speechToText.TrainCustomModel(_createdCustomizationID);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t27_WaitForTraining()
-        //{
-        //    IsTrainingComplete();
-        //    autoEvent.WaitOne();
-        //    Assert.IsTrue(true);
-        //}
-
-
-        //[TestMethod]
-        //public void t28_DeleteCorpus_Success()
-        //{
-        //    _speechToText =
-        //      new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var corpora =
-        //        _speechToText.ListCorpora(customization);
-
-        //    var result = _speechToText.DeleteCorpus(customization, corpora.CorporaProperty.First().Name);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t29_ResetCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var result = _speechToText.ResetCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t30_UpgradeCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    var result = _speechToText.UpgradeCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        //[TestMethod]
-        //public void t31_DeleteCustomModel_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    _speechToText.Endpoint = _endpoint;
-
-        //    var customization =
-        //        _createdCustomizationID;
-
-        //    object result = _speechToText.DeleteCustomModel(customization);
-
-        //    Assert.IsNotNull(result);
-        //}
-
-        ////[TestMethod]
-        //public void t32_DeleteSession_Success()
-        //{
-        //    _speechToText =
-        //        new SpeechToTextService(_username, _password);
-
-        //    string modelName = "en-US_NarrowbandModel";
-
-        //    var model = _speechToText.GetModel(modelName);
-
-        //    var session =
-        //        _speechToText.CreateSession(model.Name);
-
-        //    object result = _speechToText.DeleteSession(session);
-
-        //    Assert.IsNotNull(result);
-        //}
-
+        
         private void CheckCustomizationStatus(string classifierId)
         {
             var getLangaugeModelResult = service.GetLanguageModel(classifierId);
@@ -1440,6 +908,57 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             {
                 autoEvent.Set();
             }
+        }
+
+        private void CheckAcousticCustomizationStatus(string classifierId)
+        {
+            var getAcousticModelResult = service.GetAcousticModel(classifierId);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Status));
+
+            if (getAcousticModelResult.Status == AcousticModel.StatusEnum.AVAILABLE || getAcousticModelResult.Status == AcousticModel.StatusEnum.READY)
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        private void CheckAudioStatus(string classifierId, string audioname)
+        {
+            var getAudioResult = service.GetAudio(classifierId, audioname);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Status));
+
+            if (getAudioResult.Status == AudioListing.StatusEnum.OK)
+            {
+                autoEvent.Set();
+            }
+            else if (getAudioResult.Status == AudioListing.StatusEnum.INVALID)
+            {
+                throw new Exception("Adding audio failed");
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        public async Task<byte[]> DownloadAcousticResource(string acousticResourceUrl)
+        {
+            var client = new HttpClient();
+            var task = client.GetByteArrayAsync(acousticResourceUrl);
+            var msg = await task;
+
+            return msg;
         }
     }
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 
@@ -67,8 +68,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="request">The user's input, with optional intents, entities, and other properties from the response. (optional)</param>
+        /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message. (optional, default to false)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        MessageResponse Message(string workspaceId, MessageRequest request = null);
+        MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null);
         /// <summary>
         /// Create intent. Create a new intent.
         /// </summary>

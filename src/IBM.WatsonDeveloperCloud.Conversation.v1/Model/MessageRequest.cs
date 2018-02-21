@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>State information for the conversation. Continue a conversation by including the context object from the previous response.</value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
+        public Context Context { get; set; }
         /// <summary>
         /// Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
         /// </summary>

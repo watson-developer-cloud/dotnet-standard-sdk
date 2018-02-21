@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,12 +16,9 @@
 */
 
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json;
 using System;
@@ -455,6 +452,37 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
 
+        public Expansions CreateExpansions(string environmentId, string collectionId, Expansions body)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (body == null)
+                throw new ArgumentNullException(nameof(body));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            Expansions result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions")
+                                .WithArgument("version", VersionDate)
+                                .WithBody<Expansions>(body)
+                                .As<Expansions>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
         public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
         {
             if (string.IsNullOrEmpty(environmentId))
@@ -473,6 +501,34 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}")
                                 .WithArgument("version", VersionDate)
                                 .As<DeleteCollectionResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public object DeleteExpansions(string environmentId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            object result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions")
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
                                 .Result;
             }
             catch(AggregateException ae)
@@ -556,6 +612,34 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .WithArgument("version", VersionDate)
                                 .WithArgument("name", name)
                                 .As<ListCollectionsResponse>()
+                                .Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public Expansions ListExpansions(string environmentId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'DISCOVERY_VERSION_DATE_2017_11_07'");
+
+            Expansions result = null;
+
+            try
+            {
+                result = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions")
+                                .WithArgument("version", VersionDate)
+                                .As<Expansions>()
                                 .Result;
             }
             catch(AggregateException ae)

@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -201,7 +201,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             return result;
         }
-        public MessageResponse Message(string workspaceId, MessageRequest request = null)
+        public MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -216,6 +216,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 result = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message")
                                 .WithArgument("version", VersionDate)
+                                .WithArgument("nodes_visited_details", nodesVisitedDetails)
                                 .WithBody<MessageRequest>(request)
                                 .As<MessageResponse>()
                                 .Result;

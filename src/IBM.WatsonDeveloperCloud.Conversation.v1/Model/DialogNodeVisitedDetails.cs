@@ -15,21 +15,27 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
+namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// QueryRelationsArgument.
+    /// DialogNodeVisitedDetails.
     /// </summary>
-    public class QueryRelationsArgument
+    public class DialogNodeVisitedDetails
     {
         /// <summary>
-        /// Gets or Sets Entities
+        /// A dialog node that was triggered during processing of the input message.
         /// </summary>
-        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryEntitiesEntity> Entities { get; set; }
+        /// <value>A dialog node that was triggered during processing of the input message.</value>
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
+        /// <summary>
+        /// The title of the dialog node.
+        /// </summary>
+        /// <value>The title of the dialog node.</value>
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
     }
 
 }

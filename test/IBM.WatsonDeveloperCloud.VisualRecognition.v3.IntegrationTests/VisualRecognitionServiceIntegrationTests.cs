@@ -139,7 +139,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void TestClassifiers_Success()
         {
-            var listClassifiersResult = service.ListClassifiers();
+            var listClassifiersResult = ListClassifiers();
 
             Classifier createClassifierResult = null;
             using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
@@ -147,12 +147,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
                 positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
                 CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
-                createClassifierResult = service.CreateClassifier(createClassifier);
+                createClassifierResult = CreateClassifier(createClassifier);
             }
 
             string createdClassifierId = createClassifierResult.ClassifierId;
 
-            var getClassifierResult = service.GetClassifier(createdClassifierId);
+            var getClassifierResult = GetClassifier(createdClassifierId);
 
             try
             {
@@ -164,20 +164,20 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
             autoEvent.WaitOne();
 
-            Classifier updateClassifierResult = null;
-            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
-            {
-                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-                UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                updateClassifierResult = service.UpdateClassifier(updateClassifier);
-            }
+            //Classifier updateClassifierResult = null;
+            //using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+            //{
+            //    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+            //    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+            //    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+            //    updateClassifierResult = UpdateClassifier(updateClassifier);
+            //}
 
-            var deleteClassifierResult = service.DeleteClassifier(createdClassifierId);
+            var deleteClassifierResult = DeleteClassifier(createdClassifierId);
 
             Assert.IsNotNull(deleteClassifierResult);
-            Assert.IsNotNull(updateClassifierResult);
-            Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
+            //Assert.IsNotNull(updateClassifierResult);
+            //Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(getClassifierResult);
             Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(createClassifierResult);
@@ -281,6 +281,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #region DeleteClassifier
         private object DeleteClassifier(string classifierId)
         {
+            Console.WriteLine("Waiting 60 seconds before deleteing classifier.");
+            Thread.Sleep(60000);
+
             Console.WriteLine("\nAttempting to DeleteClassifier()");
             var result = service.DeleteClassifier(classifierId: classifierId);
 

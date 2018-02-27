@@ -153,61 +153,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-        //public Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null)
-        //{
-        //    if (string.IsNullOrEmpty(name))
-        //        throw new ArgumentNullException(nameof(name));
-        //    if (classnamePositiveExamples == null)
-        //        throw new ArgumentNullException(nameof(classnamePositiveExamples));
-
-        //    if(string.IsNullOrEmpty(VersionDate))
-        //        throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
-
-        //    Classifier result = null;
-
-        //    try
-        //    {
-        //        var formData = new MultipartFormDataContent();
-
-        //        if (name != null)
-        //        {
-        //            var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-        //            nameContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-        //            formData.Add(nameContent, "name");
-        //        }
-
-        //        if (classnamePositiveExamples != null)
-        //        {
-        //            var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
-        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-        //            classnamePositiveExamplesContent.Headers.ContentType = contentType;
-        //            formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
-        //        }
-
-        //        if (negativeExamples != null)
-        //        {
-        //            var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
-        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-        //            negativeExamplesContent.Headers.ContentType = contentType;
-        //            formData.Add(negativeExamplesContent, "negative_examples", "filename");
-        //        }
-
-        //        result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers")
-        //                        .WithArgument("api_key", ApiKey)
-        //                        .WithArgument("version", VersionDate)
-        //                        .WithBodyContent(formData)
-        //                        .As<Classifier>()
-        //                        .Result;
-        //    }
-        //    catch(AggregateException ae)
-        //    {
-        //        throw ae.Flatten();
-        //    }
-
-        //    return result;
-        //}
 
         public object DeleteClassifier(string classifierId)
         {
@@ -285,52 +230,5 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-
-        //public Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
-        //{
-        //    if (string.IsNullOrEmpty(classifierId))
-        //        throw new ArgumentNullException(nameof(classifierId));
-
-        //    if(string.IsNullOrEmpty(VersionDate))
-        //        throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
-
-        //    Classifier result = null;
-
-        //    try
-        //    {
-        //        var formData = new MultipartFormDataContent();
-
-        //        if (classnamePositiveExamples != null)
-        //        {
-        //            var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
-        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-        //            classnamePositiveExamplesContent.Headers.ContentType = contentType;
-        //            formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
-        //        }
-
-        //        if (negativeExamples != null)
-        //        {
-        //            var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
-        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-        //            negativeExamplesContent.Headers.ContentType = contentType;
-        //            formData.Add(negativeExamplesContent, "negative_examples", "filename");
-        //        }
-
-        //        result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}")
-        //                        .WithArgument("api_key", ApiKey)
-        //                        .WithArgument("version", VersionDate)
-        //                        .WithBodyContent(formData)
-        //                        .As<Classifier>()
-        //                        .Result;
-        //    }
-        //    catch(AggregateException ae)
-        //    {
-        //        throw ae.Flatten();
-        //    }
-
-        //    return result;
-        //}
     }
 }

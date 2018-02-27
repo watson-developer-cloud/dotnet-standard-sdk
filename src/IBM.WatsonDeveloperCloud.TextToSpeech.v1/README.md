@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.TextToSpeech.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.TextToSpeech.v1/)
 
 ### Text to Speech
 
@@ -29,7 +29,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.TextToSpeech.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "1.3.0"
+   "IBM.WatsonDeveloperCloud.TextToSpeech.v1": "1.3.1"
 }
 
 ```
@@ -210,8 +210,8 @@ Deletes a single word from the specified custom voice model. Only the owner of a
 _textToSpeech.DeleteWord(_customVoiceModelID, "<word-to-delete>");
 ```
 
-[text-to-speech]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/index.html
-[using-ssml]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/SSML.html
-[using-sprs]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/SPRs.html
-[understanding-customization]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-intro.html
-[using-customization]: https://www.ibm.com/watson/developercloud/doc/text-to-speech/custom-using.html
+[text-to-speech]: https://console.bluemix.net/docs/services/text-to-speech/index.html
+[using-ssml]: https://console.bluemix.net/docs/services/text-to-speech/SSML.html
+[using-sprs]: https://console.bluemix.net/docs/services/text-to-speech/SPRs.html
+[understanding-customization]: https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html
+[using-customization]: https://console.bluemix.net/docs/services/text-to-speech/custom-using.html

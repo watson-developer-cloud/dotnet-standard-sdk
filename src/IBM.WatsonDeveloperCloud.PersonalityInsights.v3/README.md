@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
 
 ### Personality Insights
 
@@ -19,7 +19,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.2.0"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "1.3.1"
 }
 
 ```
@@ -56,5 +56,5 @@ ContentListContainer contentListContainer = new ContentListContainer()
 ```
 
 [personality-insights]: https://www.ibm.com/watson/developercloud/personality-insights.html
-[personality-models]: https://www.ibm.com/watson/developercloud/doc/personality-insights/models.html
-[consumption-preferences]:https://www.ibm.com/watson/developercloud/doc/personality-insights/preferences.html
+[personality-models]: https://console.bluemix.net/docs/services/personality-insights/models.html
+[consumption-preferences]:https://console.bluemix.net/docs/services/personality-insights/preferences.html

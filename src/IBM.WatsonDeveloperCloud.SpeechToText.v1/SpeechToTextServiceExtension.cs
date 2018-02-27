@@ -281,5 +281,43 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             return result;
         }
+
+        public object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(audioName))
+                throw new ArgumentNullException(nameof(audioName));
+            if (audioResource == null)
+                throw new ArgumentNullException(nameof(audioResource));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
+            object result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                request.WithHeader("Content-Type", contentType);
+                request.WithHeader("Contained-Content-Type", containedContentType);
+                if (allowOverwrite != null)
+                    request.WithArgument("allow_overwrite", allowOverwrite);
+
+                var trainingDataContent = new ByteArrayContent(audioResource);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                trainingDataContent.Headers.ContentType = audioType;
+
+                request.WithBodyContent(trainingDataContent);
+                result = request.As<object>()
+                                .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
     }
 }

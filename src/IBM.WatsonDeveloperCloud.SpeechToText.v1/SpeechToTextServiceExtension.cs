@@ -297,20 +297,22 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                    .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+
                 request.WithHeader("Content-Type", contentType);
                 request.WithHeader("Contained-Content-Type", containedContentType);
+
                 if (allowOverwrite != null)
                     request.WithArgument("allow_overwrite", allowOverwrite);
 
                 var trainingDataContent = new ByteArrayContent(audioResource);
-                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                MediaTypeHeaderValue audioType;
+                MediaTypeHeaderValue.TryParse(contentType, out audioType);
                 trainingDataContent.Headers.ContentType = audioType;
 
                 request.WithBodyContent(trainingDataContent);
-                result = request.As<object>()
-                                .Result;
+
+                result = request.As<object>().Result;
             }
             catch (AggregateException ae)
             {

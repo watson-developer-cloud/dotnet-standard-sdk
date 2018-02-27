@@ -15,8 +15,8 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
@@ -25,9 +25,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     public class ModelClass
     {
         /// <summary>
-        /// Gets or Sets _Class
+        /// The name of the class.
         /// </summary>
-        [JsonProperty("class")]
-        public string _Class { get; set; }
+        /// <value>The name of the class.</value>
+        [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
+        public string ClassName { get; set; }
     }
+
 }

@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,17 +20,17 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// KeywordResults.
+    /// </summary>
     public class KeywordResults
     {
         /// <summary>
-        /// Gets or sets list of each keyword entered via the `keywords`
-        /// parameter and, for each keyword, an array of `KeywordResult`
-        /// objects that provides information about its occurrences in the
-        /// input audio. The keys of the list are the actual keyword strings.
-        /// A keyword for which no matches are spotted in the input is
-        /// omitted from the array.
+        /// A list of each keyword entered via the `keywords` parameter and, for each keyword, an array of `KeywordResult` objects that provides information about its occurrences in the input audio. The keys of the list are the actual keyword strings. A keyword for which no matches are spotted in the input is omitted from the array.
         /// </summary>
-        [JsonProperty("keyword")]
+        /// <value>A list of each keyword entered via the `keywords` parameter and, for each keyword, an array of `KeywordResult` objects that provides information about its occurrences in the input audio. The keys of the list are the actual keyword strings. A keyword for which no matches are spotted in the input is omitted from the array.</value>
+        [JsonProperty("keyword", NullValueHandling = NullValueHandling.Ignore)]
         public List<KeywordResult> Keyword { get; set; }
     }
+
 }

@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,365 +15,219 @@
 *
 */
 
-using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
-using IBM.WatsonDeveloperCloud.Http;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.IO;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
-    public class VisualRecognitionService : WatsonService, IVisualRecognitionService
+    public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
-        const string PATH_CLASSIFY = "/v3/classify";
-        const string PATH_DETECT_FACES = "/v3/detect_faces";
-        const string PATH_CLASSIFIERS = "/v3/classifiers";
-        const string PATH_CLASSIFIER = "/v3/classifiers/{0}";
-        const string PATH_COLLECTIONS = "/v3/collections";
-        const string PATH_COLLECTION = "/v3/collections/{0}";
-        const string PATH_COLLECTION_IMAGES = "/v3/collections/{0}/images";
-        const string PATH_COLLECTION_IMAGE = "/v3/collections/{0}/images/{1}";
-        const string PATH_COLLECTION_IMAGE_METADATA = "/v3/collections/{0}/images/{1}/metadata";
-        const string PATH_FIND_SIMILAR = "/v3/collections/{0}/find_similar";
-        const string VERSION_DATE_2016_05_20 = "2016-05-20";
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
-
-        public VisualRecognitionService()
-            : base(SERVICE_NAME, URL)
+        private string _versionDate;
+        public string VersionDate
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            get { return _versionDate; }
+            set { _versionDate = value; }
+        }
+
+        /** The Constant VISUAL_RECOGNITION_VERSION_DATE_2016_05_20. */
+        public static string VISUAL_RECOGNITION_VERSION_DATE_2016_05_20 = "2016-05-20";
+
+        public VisualRecognitionService() : base(SERVICE_NAME, URL)
+        {
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public VisualRecognitionService(string apikey, string endpoint)
-            : this()
+
+        public VisualRecognitionService(string apikey, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(apikey))
-                throw new ArgumentNullException("'apikey' is required");
-
-            if (!string.IsNullOrEmpty(endpoint))
-                this.Endpoint = endpoint;
+                throw new ArgumentNullException(nameof(apikey));
 
             this.SetCredential(apikey);
+
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+
+            VersionDate = versionDate;
         }
 
-        public VisualRecognitionService(IClient httpClient)
-            : this()
+        public VisualRecognitionService(IClient httpClient) : this()
         {
             if (httpClient == null)
-                throw new ArgumentNullException("'httpClient' is required");
+                throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
         }
 
-        private string _VersionDate;
-        public string VersionDate
+        public ClassifiedImages Classify(System.IO.Stream imagesFile = null, string parameters = null, string acceptLanguage = null, string imagesFileContentType = null)
         {
-            get { return string.IsNullOrEmpty(_VersionDate) ? VERSION_DATE_2016_05_20 : _VersionDate; }
-            set { _VersionDate = value; }
-        }
 
-        #region Classify
-        public ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
-        {
-            ClassifyTopLevelMultiple result = null;
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
 
-            if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException("'url' is required for 'Classify()'");
-
-            string _classifierIDs = classifierIDs != null ? string.Join(",", classifierIDs) : "default";
-
-            if (owners != null)
-                foreach (string owner in owners)
-                    if (owner.ToLower() != "ibm" && owner.ToLower() != "me")
-                        throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
-
-            string _owners = owners != null ? string.Join(",", owners) : "IBM,me";
+            ClassifiedImages result = null;
 
             try
             {
-                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFY}")
-                    .WithHeader("Accept-Language", "en")
-                    .WithArgument("url", url)
-                    .WithArgument("classifier_ids", _classifierIDs)
-                    .WithArgument("owners", _owners)
-                    .WithArgument("threshold", threshold.ToString())
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .As<ClassifyTopLevelMultiple>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public ClassifyPost Classify(byte[] imageData = null, string imageDataName = null, string imageDataMimeType = null, string[] urls = null, string[] classifierIDs = null, string[] owners = null, float threshold = 0, string acceptLanguage = "en")
-        {
-            ClassifyPost result = null;
-
-            if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1} are required for 'Classify()'", "'imageData'", "'urls'"));
-
-            if (imageData != null)
-            {
-                if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentException(string.Format("{0} or {1} are required for 'Classify()'", "'imageDataName'", "'imageDataMimeType'"));
-            }
-
-            if (owners != null)
-                foreach (string owner in owners)
-                    if (owner.ToLower() != "ibm" && owner.ToLower() != "me")
-                        throw new ArgumentOutOfRangeException("Owners can only be a combination of IBM and me ('IBM', 'me', 'IBM,me').");
-
-            try
-            {
-                ClassifyParameters parametersObject = new ClassifyParameters();
-                parametersObject.ClassifierIds = classifierIDs != null ? classifierIDs : new string[] { "default" };
-                parametersObject.URLs = urls != null ? urls : new string[0];
-                parametersObject.Owners = owners != null ? owners : new string[0];
-                parametersObject.Threshold = threshold;
-
-                string parameters = JsonConvert.SerializeObject(parametersObject);
-
                 var formData = new MultipartFormDataContent();
 
-                if (imageData != null)
+                if (imagesFile != null)
                 {
-                    var imageContent = new ByteArrayContent(imageData);
-                    imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
-                    formData.Add(imageContent, "images_file", imageDataName);
+                    var imagesFileContent = new ByteArrayContent((imagesFile as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
+                    imagesFileContent.Headers.ContentType = contentType;
+                    formData.Add(imagesFileContent, "images_file", "filename");
                 }
 
-                if (!string.IsNullOrEmpty(parameters))
+                if (parameters != null)
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    parametersContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     formData.Add(parametersContent, "parameters");
                 }
 
-                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFY}")
-                    .WithHeader("Accept-Language", "en")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .As<ClassifyPost>()
-                    .Result;
+                result = this.Client.PostAsync($"{this.Endpoint}/v3/classify")
+                                .WithArgument("api_key", ApiKey)
+                                .WithArgument("version", VersionDate)
+                                .WithHeader("Accept-Language", acceptLanguage)
+                                .WithBodyContent(formData)
+                                .As<ClassifiedImages>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        #endregion
-
-        #region Detect Faces
-        public Faces DetectFaces(string url)
+        public DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string parameters = null, string imagesFileContentType = null)
         {
-            if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException("'url' is required for 'DetectFaces()'");
 
-            Faces result = null;
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+
+            DetectedFaces result = null;
 
             try
             {
-                result = this.Client.GetAsync($"{this.Endpoint}{PATH_DETECT_FACES}")
-                    .WithArgument("url", url)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .As<Faces>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public Faces DetectFaces(byte[] imageData = null, string imageDataName = null, string imageDataMimeType = null, string[] urls = null)
-        {
-            Faces result = null;
-
-            if (imageData == null && (urls == null || urls.Length < 1))
-                throw new ArgumentNullException(string.Format("{0} and {1} are required for 'DetectFaces()'", "'imageData'", "'urls'"));
-
-            if (imageData != null)
-            {
-                if (string.IsNullOrEmpty(imageDataName) || string.IsNullOrEmpty(imageDataMimeType))
-                    throw new ArgumentNullException(string.Format("{0} or {1} are required for 'DetectFaces()'", "'imageDataName'", "'imageDataMimeType'"));
-            }
-
-            try
-            {
-                string parameters = null;
-
-                if (urls != null && urls.Length > 0)
-                {
-                    DetectFacesParameters parametersObject = new DetectFacesParameters();
-                    parametersObject.URLs = urls != null ? urls : new string[0];
-
-                    parameters = JsonConvert.SerializeObject(parametersObject);
-                }
-
-
                 var formData = new MultipartFormDataContent();
 
-                if (imageData != null)
+                if (imagesFile != null)
                 {
-                    var imageContent = new ByteArrayContent(imageData);
-                    imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(imageDataMimeType);
-                    formData.Add(imageContent, imageDataName, imageDataName);
+                    var imagesFileContent = new ByteArrayContent((imagesFile as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
+                    imagesFileContent.Headers.ContentType = contentType;
+                    formData.Add(imagesFileContent, "images_file", "filename");
                 }
 
-                if (!string.IsNullOrEmpty(parameters))
+                if (parameters != null)
                 {
                     var parametersContent = new StringContent(parameters, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    parametersContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(parametersContent);
+                    parametersContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    formData.Add(parametersContent, "parameters");
                 }
 
-                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_DETECT_FACES}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .As<Faces>()
-                    .Result;
+                result = this.Client.PostAsync($"{this.Endpoint}/v3/detect_faces")
+                                .WithArgument("api_key", ApiKey)
+                                .WithArgument("version", VersionDate)
+                                .WithBodyContent(formData)
+                                .As<DetectedFaces>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        #endregion
+        //public Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null)
+        //{
+        //    if (string.IsNullOrEmpty(name))
+        //        throw new ArgumentNullException(nameof(name));
+        //    if (classnamePositiveExamples == null)
+        //        throw new ArgumentNullException(nameof(classnamePositiveExamples));
 
-        #region Classifiers
-        public GetClassifiersTopLevelBrief GetClassifiersBrief()
-        {
-            GetClassifiersTopLevelBrief result = null;
+        //    if(string.IsNullOrEmpty(VersionDate))
+        //        throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
 
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFIERS}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("verbose", false)
-                    .As<GetClassifiersTopLevelBrief>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
+        //    Classifier result = null;
 
-            return result;
-        }
+        //    try
+        //    {
+        //        var formData = new MultipartFormDataContent();
 
-        public GetClassifiersTopLevelVerbose GetClassifiersVerbose()
-        {
-            GetClassifiersTopLevelVerbose result = null;
+        //        if (name != null)
+        //        {
+        //            var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+        //            nameContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+        //            formData.Add(nameContent, "name");
+        //        }
 
-            try
-            {
-                result = this.Client.GetAsync($"{this.Endpoint}{PATH_CLASSIFIERS}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("verbose", true)
-                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                    .As<GetClassifiersTopLevelVerbose>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
+        //        if (classnamePositiveExamples != null)
+        //        {
+        //            var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
+        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+        //            classnamePositiveExamplesContent.Headers.ContentType = contentType;
+        //            formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
+        //        }
 
-            return result;
-        }
+        //        if (negativeExamples != null)
+        //        {
+        //            var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+        //            negativeExamplesContent.Headers.ContentType = contentType;
+        //            formData.Add(negativeExamplesContent, "negative_examples", "filename");
+        //        }
 
-        public GetClassifiersPerClassifierVerbose CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null)
-        {
-            GetClassifiersPerClassifierVerbose result = null;
+        //        result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers")
+        //                        .WithArgument("api_key", ApiKey)
+        //                        .WithArgument("version", VersionDate)
+        //                        .WithBodyContent(formData)
+        //                        .As<Classifier>()
+        //                        .Result;
+        //    }
+        //    catch(AggregateException ae)
+        //    {
+        //        throw ae.Flatten();
+        //    }
 
-            if (string.IsNullOrEmpty(classifierName))
-                throw new ArgumentNullException("'classifierName' is required for 'CreateClassifier()'");
-
-            if (positiveExamplesData == null)
-                throw new ArgumentNullException("'positiveExamplesData' is required for 'GetClassifier()'");
-
-            if (positiveExamplesData.Count < 2 && negativeExamplesData == null)
-                throw new ArgumentNullException("Training a Visual Recognition classifier requires at least two positive example files or one positive example and negative example file.");
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                foreach (var kvp in positiveExamplesData)
-                {
-                    var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
-                    positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(positiveExampleDataContent, string.Format("{0}_positive_examples", kvp.Key), string.Format("{0}_positive_examples.zip", kvp.Key));
-                }
-
-                if (negativeExamplesData != null)
-                {
-                    var negativeExamplesDataContent = new ByteArrayContent(negativeExamplesData);
-                    negativeExamplesDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(negativeExamplesDataContent, "negative_examples", "negative_examples.zip");
-                }
-
-                var nameDataContent = new StringContent(classifierName, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                nameDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                formData.Add(nameDataContent, "name");
-
-                result = this.Client.PostAsync($"{ this.Endpoint}{PATH_CLASSIFIERS}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                    .As<GetClassifiersPerClassifierVerbose>()
-                    .Result;
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
+        //    return result;
+        //}
 
         public object DeleteClassifier(string classifierId)
         {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+
             object result = null;
 
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for DeleteClassifier()");
-
             try
             {
-                result = this.Client.DeleteAsync($"{this.Endpoint}{PATH_CLASSIFIERS}/{classifierId}")
-                               .WithArgument("api_key", ApiKey)
-                               .WithArgument("version", VERSION_DATE_2016_05_20)
-                               .WithHeader("accept", HttpMediaType.TEXT_HTML)
-                               .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                               .As<object>()
-                               .Result;
+                result = this.Client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}")
+                                .WithArgument("api_key", ApiKey)
+                                .WithArgument("version", VersionDate)
+                                .As<object>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -381,22 +235,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public GetClassifiersPerClassifierVerbose GetClassifier(string classifierId)
+        public Classifier GetClassifier(string classifierId)
         {
             if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for 'GetClassifier()'");
+                throw new ArgumentNullException(nameof(classifierId));
 
-            GetClassifiersPerClassifierVerbose result = null;
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+
+            Classifier result = null;
 
             try
             {
-                result = this.Client.GetAsync($"{this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
-                    .WithArgument("api_key", ApiKey)
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .As<GetClassifiersPerClassifierVerbose>()
-                    .Result;
+                result = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}")
+                                .WithArgument("api_key", ApiKey)
+                                .WithArgument("version", VersionDate)
+                                .As<Classifier>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -404,72 +261,76 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, byte[]> positiveExamplesData = null, byte[] negativeExamplesData = null)
+        public Classifiers ListClassifiers(bool? verbose = null)
         {
-            GetClassifiersPerClassifierVerbose result = null;
 
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException("'classifierId' is required for 'UpdateClassifier()'");
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
 
-            if (positiveExamplesData == null && negativeExamplesData == null)
-                throw new ArgumentNullException("Positive example data and/or negative example data are required to update a classifier.");
+            Classifiers result = null;
 
             try
             {
-                var formData = new MultipartFormDataContent();
-
-                if (positiveExamplesData != null)
-                {
-                    foreach (var kvp in positiveExamplesData)
-                    {
-                        var positiveExampleDataContent = new ByteArrayContent(kvp.Value);
-                        positiveExampleDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                        formData.Add(positiveExampleDataContent, string.Format("{0}_positive_examples", kvp.Key), string.Format("{0}_positive_examples.zip", kvp.Key));
-                    }
-                }
-
-                if (negativeExamplesData != null)
-                {
-                    var negativeExamplesDataContent = new ByteArrayContent(negativeExamplesData);
-                    negativeExamplesDataContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
-                    formData.Add(negativeExamplesDataContent, "negative_examples", "negative_examples.zip");
-                }
-
-                result = this.Client.PostAsync($"{ this.Endpoint}{string.Format(PATH_CLASSIFIER, classifierId)}")
-                    .WithArgument("version", VERSION_DATE_2016_05_20)
-                    .WithArgument("api_key", ApiKey)
-                    .WithBodyContent(formData)
-                    .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                    .As<GetClassifiersPerClassifierVerbose>()
-                    .Result;
+                result = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers")
+                                .WithArgument("api_key", ApiKey)
+                                .WithArgument("version", VersionDate)
+                                .WithArgument("verbose", verbose)
+                                .As<Classifiers>()
+                                .Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        #endregion
 
-        #region Utils
-        private string GetImageMimeTypeFromFilename(string filename)
-        {
-            string imageMimeType = "";
-            if (!string.IsNullOrEmpty(filename))
-            {
-                string ext = Path.GetExtension(filename).ToLower();
+        //public Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
+        //{
+        //    if (string.IsNullOrEmpty(classifierId))
+        //        throw new ArgumentNullException(nameof(classifierId));
 
-                if (ext == ".jpg" || ext == ".jpeg")
-                    imageMimeType = "image/jpeg";
-                else if (ext == ".png")
-                    imageMimeType = "image/png";
-                else
-                    throw new ArgumentOutOfRangeException(nameof(imageMimeType), "Only jpg and png images are accepted.");
-            }
+        //    if(string.IsNullOrEmpty(VersionDate))
+        //        throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
 
-            return imageMimeType;
-        }
-        #endregion
+        //    Classifier result = null;
+
+        //    try
+        //    {
+        //        var formData = new MultipartFormDataContent();
+
+        //        if (classnamePositiveExamples != null)
+        //        {
+        //            var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
+        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+        //            classnamePositiveExamplesContent.Headers.ContentType = contentType;
+        //            formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
+        //        }
+
+        //        if (negativeExamples != null)
+        //        {
+        //            var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+        //            System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+        //            System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+        //            negativeExamplesContent.Headers.ContentType = contentType;
+        //            formData.Add(negativeExamplesContent, "negative_examples", "filename");
+        //        }
+
+        //        result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}")
+        //                        .WithArgument("api_key", ApiKey)
+        //                        .WithArgument("version", VersionDate)
+        //                        .WithBodyContent(formData)
+        //                        .As<Classifier>()
+        //                        .Result;
+        //    }
+        //    catch(AggregateException ae)
+        //    {
+        //        throw ae.Flatten();
+        //    }
+
+        //    return result;
+        //}
     }
 }

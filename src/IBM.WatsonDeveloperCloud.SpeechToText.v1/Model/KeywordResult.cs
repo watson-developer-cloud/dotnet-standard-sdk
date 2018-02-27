@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,32 +19,35 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// KeywordResult.
+    /// </summary>
     public class KeywordResult
     {
         /// <summary>
-        /// Gets or sets specified keyword normalized to the spoken phrase
-        /// that matched in the audio input.
+        /// A specified keyword normalized to the spoken phrase that matched in the audio input.
         /// </summary>
-        [JsonProperty("normalized_text")]
+        /// <value>A specified keyword normalized to the spoken phrase that matched in the audio input.</value>
+        [JsonProperty("normalized_text", NullValueHandling = NullValueHandling.Ignore)]
         public string NormalizedText { get; set; }
-
         /// <summary>
-        /// Gets or sets start time in seconds of the keyword match.
+        /// The start time in seconds of the keyword match.
         /// </summary>
-        [JsonProperty("start_time")]
-        public double StartTime { get; set; }
-
+        /// <value>The start time in seconds of the keyword match.</value>
+        [JsonProperty("start_time", NullValueHandling = NullValueHandling.Ignore)]
+        public double? StartTime { get; set; }
         /// <summary>
-        /// Gets or sets end time in seconds of the keyword match.
+        /// The end time in seconds of the keyword match.
         /// </summary>
-        [JsonProperty("end_time")]
-        public double Endtime { get; set; }
-
+        /// <value>The end time in seconds of the keyword match.</value>
+        [JsonProperty("end_time", NullValueHandling = NullValueHandling.Ignore)]
+        public double? EndTime { get; set; }
         /// <summary>
-        /// Gets or sets confidence score of the keyword match in the range of
-        /// 0 to 1.
+        /// A confidence score for the keyword match in the range of 0 to 1.
         /// </summary>
-        [JsonProperty("confidence")]
-        public double Confidence { get; set; }
+        /// <value>A confidence score for the keyword match in the range of 0 to 1.</value>
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public double? Confidence { get; set; }
     }
+
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,18 +15,22 @@
 *
 */
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// Corpora.
+    /// </summary>
     public class Corpora
     {
         /// <summary>
-        /// Gets or sets information about corpora of the custom model. The
-        /// array is empty if the custom model has no corpora.
+        /// Information about corpora of the custom model. The array is empty if the custom model has no corpora.
         /// </summary>
-        [JsonProperty(PropertyName = "corpora")]
-        public IList<Corpus> CorporaProperty { get; set; }
+        /// <value>Information about corpora of the custom model. The array is empty if the custom model has no corpora.</value>
+        [JsonProperty("corpora", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Corpus> _Corpora { get; set; }
     }
+
 }

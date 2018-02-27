@@ -15,29 +15,33 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// result of a class within a classifier
+    /// Result of a class within a classifier.
     /// </summary>
     public class ClassResult
     {
         /// <summary>
-        /// Gets or Sets _Class
+        /// The name of the class.
         /// </summary>
-        [JsonProperty("class")]
-        public string _Class { get; set; }
+        /// <value>The name of the class.</value>
+        [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
+        public string ClassName { get; set; }
         /// <summary>
-        /// Confidence score, on a scale of 0.0 to 1.0.
+        /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
         /// </summary>
-        [JsonProperty("score")]
-        public float Score { get; set; }
+        /// <value>Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.</value>
+        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Score { get; set; }
         /// <summary>
-        /// Type hierarchy, e.g. 'People/Leaders/Presidents/USA/Barack Obama'. Only included if found.
+        /// Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.
         /// </summary>
-        [JsonProperty("type_hierarchy")]
+        /// <value>Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.</value>
+        [JsonProperty("type_hierarchy", NullValueHandling = NullValueHandling.Ignore)]
         public string TypeHierarchy { get; set; }
     }
+
 }

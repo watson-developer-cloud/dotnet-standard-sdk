@@ -60,13 +60,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         [TestMethod]
         public void Constructor_Without_Arguments()
         {
-            ISpeechToTextService service = new SpeechToTextService();
+            ISpeechToTextServiceExtension service = new SpeechToTextService();
         }
 
         [TestMethod]
         public void Constructor_With_Credentials()
         {
-            ISpeechToTextService service = new SpeechToTextService("user_name", "password");
+            ISpeechToTextServiceExtension service = new SpeechToTextService("user_name", "password");
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.GetModels();
 
@@ -155,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
       #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.GetModels();
         }
@@ -194,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.GetModel("model_name");
 
@@ -208,7 +208,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.GetModel(string.Empty);
         }
@@ -234,7 +234,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.GetModel("model_name");
         }
@@ -273,7 +273,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.CreateSession("model_name");
 
@@ -312,7 +312,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.CreateSession(string.Empty);
 
@@ -342,7 +342,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var models = service.CreateSession(string.Empty);
         }
@@ -381,7 +381,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var sessionStatus = service.GetSessionStatus(new Session() { SessionId = "session_id" });
 
@@ -420,7 +420,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var sessionStatus = service.GetSessionStatus(string.Empty);
         }
@@ -457,7 +457,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var sessionStatus = service.GetSessionStatus("session_id");
         }
@@ -496,7 +496,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteSession(new Session() { SessionId = "session_id" });
 
@@ -533,7 +533,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteSession(string.Empty);
         }
@@ -567,7 +567,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteSession("session_id");
         }
@@ -663,7 +663,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
@@ -781,7 +781,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.RecognizeWithSession(sessionId: "sessionId",
@@ -813,7 +813,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.RecognizeWithSession(sessionId: string.Empty,
@@ -845,7 +845,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.RecognizeWithSession(sessionId: null,
@@ -877,7 +877,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.RecognizeWithSession(sessionId: "sessionId",
@@ -925,7 +925,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
@@ -984,7 +984,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.RecognizeWithSession(sessionId: "sessionId",
@@ -1025,7 +1025,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.RecognizeWithSession(sessionId: string.Empty,
@@ -1066,7 +1066,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.RecognizeWithSession(sessionId: null,
@@ -1107,7 +1107,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.RecognizeWithSession(sessionId: "sessionId",
@@ -1148,7 +1148,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                service.RecognizeWithSession(sessionId: "sessionId",
@@ -1189,7 +1189,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: null,
@@ -1221,7 +1221,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: "contentType",
@@ -1253,7 +1253,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: null,
@@ -1286,7 +1286,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: "contentType",
@@ -1319,7 +1319,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: "contentType",
@@ -1348,7 +1348,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.Recognize(contentType: HttpMediaType.AUDIO_WAV,
@@ -1388,7 +1388,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var recognitionEvent = service.ObserveResult("session_id", 1, true);
 
@@ -1421,7 +1421,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var recognitionEvent = service.ObserveResult(string.Empty);
         }
@@ -1449,7 +1449,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var recognitionEvent = service.ObserveResult("session_id");
         }
@@ -1481,7 +1481,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.CreateCustomModel(baseModelName: "base_model_name",
@@ -1520,7 +1520,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.CreateCustomModel(new CustomModel()
@@ -1562,7 +1562,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.CreateCustomModel(new CustomModel()
@@ -1600,7 +1600,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.CreateCustomModel(new CustomModel()
@@ -1637,7 +1637,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.CreateCustomModel(new CustomModel()
@@ -1690,7 +1690,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModels();
@@ -1724,7 +1724,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModels(null);
@@ -1751,7 +1751,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModels();
@@ -1793,7 +1793,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModel("custom_model_id");
@@ -1819,7 +1819,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModel(null);
@@ -1846,7 +1846,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomModel("custom_model_id");
@@ -1874,7 +1874,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.TrainCustomModel("custom_model_id");
 
@@ -1903,7 +1903,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.TrainCustomModel(null);
 
@@ -1931,7 +1931,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.TrainCustomModel("custom_model_id");
         }
@@ -1958,7 +1958,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ResetCustomModel("custom_model_id");
 
@@ -1987,7 +1987,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ResetCustomModel(null);
 
@@ -2015,7 +2015,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ResetCustomModel("custom_model_id");
         }
@@ -2042,7 +2042,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.UpgradeCustomModel("custom_model_id");
 
@@ -2071,7 +2071,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.UpgradeCustomModel(null);
         }
@@ -2097,7 +2097,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.UpgradeCustomModel("custom_model_id");
         }
@@ -2124,7 +2124,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomModel("custom_model_id");
 
@@ -2153,7 +2153,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomModel(null);
         }
@@ -2179,7 +2179,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
 
             #endregion
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomModel("custom_model_id");
         }
@@ -2204,7 +2204,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", "corpus_name", true, new FileStream("body", FileMode.Create));
 
@@ -2231,7 +2231,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus(null, "corpus_name", true, new FileStream("body_customizationId_null", FileMode.Create));
         }
@@ -2256,7 +2256,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", null, true, new FileStream("body_corpusName_null", FileMode.Create));
         }
@@ -2281,7 +2281,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", "user", true, new FileStream("body_corpus_name_is_user", FileMode.Create));
         }
@@ -2306,7 +2306,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", "corpus name with white spaces", true, new FileStream("body_corpus_name_whiteSpaces", FileMode.Create));
         }
@@ -2331,7 +2331,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", "corpus_name", true, null);
         }
@@ -2353,7 +2353,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                string.Empty));
                  });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCorpus("customization_id", "corpus_name", true, new FileStream("body_catch_exception", FileMode.Create));
         }
@@ -2389,7 +2389,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpora>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCorpora("customization_id");
@@ -2431,7 +2431,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpora>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCorpora(null);
@@ -2468,7 +2468,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpora>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCorpora(string.Empty);
@@ -2491,7 +2491,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCorpora("customization_id");
@@ -2522,7 +2522,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpus>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus("customization_id", "corpus_name");
@@ -2557,7 +2557,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpus>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus(null, "corpus_name");
@@ -2588,7 +2588,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpus>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus(string.Empty, "corpus_name");
@@ -2619,7 +2619,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpus>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus("customization_id", null);
@@ -2650,7 +2650,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.As<Corpus>()
                    .Returns(Task.FromResult(response));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus("customization_id", string.Empty);
@@ -2673,7 +2673,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.GetCorpus("customization_id", "corpus_name");
@@ -2694,7 +2694,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus("customization_id", "corpus_name");
 
@@ -2716,7 +2716,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                     .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus(null, "corpus_name");
         }
@@ -2736,7 +2736,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                     .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus(string.Empty, "corpus_name");
         }
@@ -2756,7 +2756,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                     .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus("customization_id", null);
         }
@@ -2776,7 +2776,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                     .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus("customization_id", string.Empty);
         }
@@ -2798,7 +2798,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCorpus("customization_id", "corpus_name");
         }
@@ -2821,7 +2821,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWords("customization_id",
                                   new Words()
@@ -2879,7 +2879,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWords(null,
                                   new Words()
@@ -2937,7 +2937,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWords(string.Empty,
                                   new Words()
@@ -2993,7 +2993,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWords("customization_id", null);
         }
@@ -3015,7 +3015,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWords("customization_id",
                                   new Words()
@@ -3071,7 +3071,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord("customization_id",
                                   "word_name",
@@ -3105,7 +3105,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord(null,
                                   "word_name",
@@ -3137,7 +3137,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord(string.Empty,
                                   "word_name",
@@ -3169,7 +3169,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord("customization_id",
                                   null,
@@ -3201,7 +3201,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord("customization_id",
                                   string.Empty,
@@ -3233,7 +3233,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord("customization_id",
                                  "word_name",
@@ -3257,7 +3257,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.AddCustomWord("customization_id",
                                   "word_name",
@@ -3316,7 +3316,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, null);
@@ -3372,7 +3372,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", WordType.All, null);
@@ -3428,7 +3428,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, Sort.AscendingAlphabetical);
@@ -3484,7 +3484,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, Sort.AscendingCount);
@@ -3540,7 +3540,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, Sort.DescendingAlphabetical);
@@ -3596,7 +3596,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        }
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, Sort.DescendingCount);
@@ -3612,7 +3612,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords(null, null, null);
@@ -3623,7 +3623,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords(string.Empty, null, null);
@@ -3646,7 +3646,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWords("customization_id", null, null);
@@ -3688,7 +3688,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                        Word = "word"
                    }));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             var result =
                 service.ListCustomWord("customization_id", "word_name");
@@ -3703,7 +3703,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ListCustomWord(null, "word_name");
         }
@@ -3713,7 +3713,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ListCustomWord(string.Empty, "word_name");
         }
@@ -3723,7 +3723,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ListCustomWord("customization_id", null);
         }
@@ -3733,7 +3733,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ListCustomWord("customization_id", string.Empty);
         }
@@ -3755,7 +3755,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.ListCustomWord("customization_id", "word_name");
         }
@@ -3775,7 +3775,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
             request.AsString()
                    .Returns(Task.FromResult("{}"));
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord("customization_id", "word_name");
 
@@ -3787,7 +3787,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord(null, "word_name");
         }
@@ -3797,7 +3797,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord(string.Empty, "word_name");
         }
@@ -3807,7 +3807,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord("customization_id", null);
         }
@@ -3817,7 +3817,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
         {
             IClient client = Substitute.For<IClient>();
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord("customization_id", string.Empty);
         }
@@ -3839,7 +3839,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.UnitTest
                                                                                 string.Empty));
                   });
 
-            ISpeechToTextService service = new SpeechToTextService(client);
+            ISpeechToTextServiceExtension service = new SpeechToTextService(client);
 
             service.DeleteCustomWord("customization_id", "corpus_name");
         }

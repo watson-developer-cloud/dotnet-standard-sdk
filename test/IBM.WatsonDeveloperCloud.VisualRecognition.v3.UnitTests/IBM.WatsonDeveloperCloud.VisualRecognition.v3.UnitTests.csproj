@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20170106-08" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.8-rc" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
@@ -33,7 +33,7 @@
     <PackageReference Include="OpenCover" Version="4.6.519" />
     <PackageReference Include="coveralls.net" Version="0.7.0" />
     <PackageReference Include="ReportGenerator" Version="2.4.5" />
-    <PackageReference Include="NSubstitute" Version="2.0.2" />
+    <PackageReference Include="NSubstitute" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>

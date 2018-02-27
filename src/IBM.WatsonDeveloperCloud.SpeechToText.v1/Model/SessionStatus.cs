@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,39 +19,17 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// SessionStatus.
+    /// </summary>
     public class SessionStatus
     {
         /// <summary>
-        /// Gets or sets state of the session. The state must be `initialized`
-        /// to perform a new recognition request on the session.
+        /// Information about the specified existing session.
         /// </summary>
-        [JsonProperty("state")]
-        public string State { get; set; }
-
-        /// <summary>
-        /// Gets or sets URI for information about the model that is used with
-        /// the session.
-        /// </summary>
-        [JsonProperty("model")]
-        public string Model { get; set; }
-
-        /// <summary>
-        /// Gets or sets URI for REST recognition requests.
-        /// </summary>
-        [JsonProperty("recognize")]
-        public string Recognize { get; set; }
-
-        /// <summary>
-        /// Gets or sets URI for REST results observers.
-        /// </summary>
-        [JsonProperty("observe_result")]
-        public string ObserveResult { get; set; }
-
-        /// <summary>
-        /// Gets or sets URI for WebSocket recognition requests. Needed only
-        /// for working with the WebSocket interface.
-        /// </summary>
-        [JsonProperty("recognizeWS")]
-        public string RecognizeWS { get; set; }
+        /// <value>Information about the specified existing session.</value>
+        [JsonProperty("session", NullValueHandling = NullValueHandling.Ignore)]
+        public SpeechSession Session { get; set; }
     }
+
 }

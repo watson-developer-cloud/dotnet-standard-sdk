@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,102 +16,48 @@
 */
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
-    public interface IVisualRecognitionService
+    public partial interface IVisualRecognitionService
     {
         /// <summary>
-        /// Classifies an image.
+        /// Classify images. Classify images with built-in or custom classifiers.
         /// </summary>
-        /// <param name="url">URL of an image (.jpg, .png). Redirects are followed, so you can use shortened URLs. The resolved URL is returned in the response. Maximum image size is 2 MB.</param>
-        /// <param name="classifierIDs">An array of classifier IDs to use. "default" is the ID of the system classifier.</param>
-        /// <param name="owners">Specifies which classifiers to run. The value must be 'IBM', 'me', or both.</param>
-        /// <param name="threshold">A floating value that specifies the minimum score a class must have to be displayed in the response.</param>
-        /// <param name="acceptLanguage">Specifies the language of the output class names. Can be 'en' (English), 'es' (Spanish), 'ar' (Arabic) or 'ja' (Japanese). Classes for which no translation is available are omitted.</param>
-        /// <returns>ClassifyTopLevelMultiple</returns>
-        ClassifyTopLevelMultiple Classify(string url, string[] classifierIDs = default(string[]), string[] owners = default(string[]), float threshold = 0f, string acceptLanguage = "en");
+        /// <param name="imagesFile">An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters. You can also include images with the `url` property in the **parameters** object. (optional)</param>
+        /// <param name="parameters">A JSON object that specifies additional request options. The parameter can be sent as a string or a file, and can include these inputs:  - **url**: A string with the image URL to analyze. Must be in .jpg, or .png format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. You can also include images in the **images_file** parameter. - **threshold**: A floating point value that specifies the minimum score a class must have to be displayed in the response. The default threshold for returning scores from a classifier is `0.5`. Set the threshold to `0.0` to ignore the classification score and return all values. - **owners**: An array of the categories of classifiers to apply. Use `IBM` to classify against the `default` general classifier, and use `me` to classify against your custom classifiers. To analyze the image against both classifier categories, set the value to both `IBM` and `me`. The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.      The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty. - **classifier_ids**: Specifies which classifiers to apply and overrides the **owners** parameter. You can specify both custom and built-in classifiers. The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.  The following built-in classifier IDs require no training: - `default`: Returns classes from thousands of general tags. - `food`: (Beta) Enhances specificity and accuracy for images of food items. - `explicit`: (Beta) Evaluates whether the image might be pornographic.  Example: `{"classifier_ids":["CarsvsTrucks_1479118188","explicit"],"threshold":0.6}`. (optional)</param>
+        /// <param name="acceptLanguage">Specifies the language of the output class names.  Can be `en` (English), `ar` (Arabic), `de` (German), `es` (Spanish), `it` (Italian), `ja` (Japanese), or `ko` (Korean).  Classes for which no translation is available are omitted.  The response might not be in the specified language under these conditions: - English is returned when the requested language is not supported. - Classes are not returned when there is no translation for them. - Custom classifiers returned with this method return tags in the language of the custom classifier. (optional, default to en)</param>
+        /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
+        /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
+        ClassifiedImages Classify(System.IO.Stream imagesFile = null, string parameters = null, string acceptLanguage = null, string imagesFileContentType = null);
         /// <summary>
-        /// Classifies an image.
+        /// Detect faces in images. Analyze and get data about faces in images. Responses can include estimated age and gender, and the service can identify celebrities. This feature uses a built-in classifier, so you do not train it on custom classifiers. The Detect faces method does not support general biometric facial recognition.
         /// </summary>
-        /// <param name="imageData">A byte[] of image data.</param>
-        /// <param name="imageName">The name for the image.</param>
-        /// <param name="imageMimeType">The image's mimetype.</param>
-        /// <param name="urls">An array of URLs to classify.</param>
-        /// <param name="classifierIDs">An array of classifier IDs to classify the images against.</param>
-        /// <param name="owners">An array with the value(s) "IBM" and/or "me" to specify which classifiers to run.</param>
-        /// <param name="threshold">A floating value that specifies the minimum score a class must have to be displayed in the response.</param>
-        /// <param name="acceptLanguage">Specifies the language of the output class names. Can be 'en' (English), 'es' (Spanish), 'ar' (Arabic) or 'ja' (Japanese). Classes for which no translation is available are omitted.</param>
-        /// <returns>ClassifyPost</returns>
-        ClassifyPost Classify(byte[] imageData, string imageName, string imageMimeType, string[] urls = null, string[] classifierIDs = default(string[]), string[] owners = default(string[]), float threshold = 0f, string acceptLanguage = "en");
+        /// <param name="imagesFile">An image file (.jpg, .png) or .zip file with images. Include no more than 15 images. You can also include images with the `url` property in the **parameters** object.  All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0. (optional)</param>
+        /// <param name="parameters">A JSON object that specifies a single image (.jpg, .png) to analyze by URL. The parameter can be sent as a string or a file.  Example: `{"url":"http://www.example.com/images/myimage.jpg"}`. (optional)</param>
+        /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
+        /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
+        DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string parameters = null, string imagesFileContentType = null);
+
         /// <summary>
-        /// Detects faces in a single URL.
+        /// Delete a classifier. 
         /// </summary>
-        /// <param name="url">URL of an image (.jpg, .png). Redirects are followed, so you can use shortened URLs. The resolved URL is returned in the response. Maximum image size is 2 MB.</param>
-        /// <returns>Faces</returns>
-        Faces DetectFaces(string url);
-        /// <summary>
-        /// Detectes faces in image(s).
-        /// </summary>
-        /// <param name="imageData">The image file (.jpg, .png) or compressed (.zip) file of images. The total number of images is limited to 20, with a max .zip size of 5 MB.</param>
-        /// <param name="imageDataName">The image file name.</param>
-        /// <param name="imageDataMimeType">The image file mimetype.</param>
-        /// <param name="urls">An array of image URLs to analyze.</param>
-        /// <returns>Faces</returns>
-        Faces DetectFaces(byte[] imageData = default(byte[]), string imageDataName = default(string), string imageDataMimeType = default(string), string[] urls = default(string[]));
-        /// <summary>
-        /// Retrieve a brief list of custom classifiers.
-        /// </summary>
-        /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersTopLevelBrief GetClassifiersBrief();
-        /// <summary>
-        /// Retrieve a verbose list of custom classifiers.
-        /// </summary>
-        /// <returns>GetClassifiersTopLevelVerbose</returns>
-        GetClassifiersTopLevelVerbose GetClassifiersVerbose();
-        ///// <summary>
-        ///// Trains a new classifier
-        ///// </summary>
-        ///// <param name="classifierName">The classifier's name.</param>
-        ///// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
-        ///// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        ///// <returns>GetClassifiersTopLevelBrief</returns>
-        //GetClassifiersTopLevelBrief CreateClassifier(string classifierName, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
-        /// <summary>
-        /// Trains a new classifier
-        /// </summary>
-        /// <param name="classifierName">The classifier's name.</param>
-        /// <param name="positiveExamplesData">A dictionary of class names and zip data of the class's positive examples. Must contain a minimum of 10 images.</param>
-        /// <param name="negativeExamplesData">A byte[] of a zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersPerClassifierVerbose CreateClassifier(string classifierName, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null);
-        /// <summary>
-        /// Deletes a custom classifier.
-        /// </summary>
-        /// <param name="classifierId">The unique identifier of the custom classifier.</param>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <returns><see cref="object" />object</returns>
         object DeleteClassifier(string classifierId);
+
         /// <summary>
-        /// Retrive information about a custom classifier.
+        /// Retrieve classifier details. Retrieve information about a custom classifier.
         /// </summary>
-        /// <param name="classifierId">The unique identifier of the custom classifier.</param>
-        /// <returns>GetClassifiersPerClassifierVerbose</returns>
-        GetClassifiersPerClassifierVerbose GetClassifier(string classifierId);
-        ///// <summary>
-        ///// Updates classifier
-        ///// </summary>
-        ///// <param name="classifierId">The classifier's unique identifier.</param>
-        ///// <param name="positiveExamples">A dictionary of class names and paths to a zip file of the class's positive examples. Must contain a minimum of 10 images.</param>
-        ///// <param name="negativeExamplesPath">A path to a compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        ///// <returns>GetClassifiersPerClassifierVerbose</returns>
-        //GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, string> positiveExamples, string negativeExamplesPath = default(string));
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        Classifier GetClassifier(string classifierId);
+
         /// <summary>
-        /// Updates classifier
+        /// Retrieve a list of custom classifiers. 
         /// </summary>
-        /// <param name="classifierId">The classifier's unique identifier.</param>
-        /// <param name="positiveExamplesData">A dictionary of class names and zip data of the class's positive examples. Must contain a minimum of 10 images.</param>
-        /// <param name="negativeExamplesData">A byte[] of a zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.</param>
-        /// <returns>GetClassifiersTopLevelBrief</returns>
-        GetClassifiersPerClassifierVerbose UpdateClassifier(string classifierId, Dictionary<string, byte[]> positiveExamplesData, byte[] negativeExamplesData = null);
+        /// <param name="verbose">Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers. (optional)</param>
+        /// <returns><see cref="Classifiers" />Classifiers</returns>
+        Classifiers ListClassifiers(bool? verbose = null);
     }
 }

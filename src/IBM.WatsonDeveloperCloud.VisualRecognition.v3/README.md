@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
 
 ### Visual Recognition
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and celebrity faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
@@ -14,12 +14,12 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.3.0"
+   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "1.3.1"
 }
 
 ```
 ### Usage
-The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from Bluemix is required for all calls.
+The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from IBM Cloud is required for all calls.
 
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and api key must be set.
@@ -182,6 +182,6 @@ var result = _visualRecognition.FindSimilar("<collection-id>", "<image-data>", "
 ```
 
 [visual-recognition]: https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
-[structure-of-the-training-data]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#structure
-[guidelines-for-good-training]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#guidelines-for-good-training
-[updating-custom-classifiers]: https://www.ibm.com/watson/developercloud/doc/visual-recognition/customizing.html#updating-custom-classifiers
+[structure-of-the-training-data]: https://console.bluemix.net/docs/services/visual-recognition/customizing.html#structure
+[guidelines-for-good-training]: https://console.bluemix.net/docs/services/visual-recognition/customizing.html#guidelines-for-good-training
+[updating-custom-classifiers]: https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers

@@ -16,7 +16,7 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 ## Before you begin
 Ensure you have the following prerequisites:
 
-* An IBM Bluemix account. If you don't have one, [sign up][bluemix_registration].
+* An IBM Cloud account. If you don't have one, [sign up][bluemix_registration].
 * Install [Visual Studio][visual-studio-download] for Windows or [Visual Studio Code][visual-studio-code-download] for OSX or Linux.
 * Install [.NET Core][dotnet-core-download].
 
@@ -53,7 +53,7 @@ This library is licensed under Apache 2.0. Full license text is available in [LI
 ## Contributing
 See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 
-[wdc]: http://www.ibm.com/watson/developercloud/
+[wdc]: https://www.ibm.com/watson/developer/
 [bluemix_registration]: http://bluemix.net/registration
 [ibm-github]: http://ibm.github.io/
 

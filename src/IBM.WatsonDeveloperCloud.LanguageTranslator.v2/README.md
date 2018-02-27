@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
 
 ### Language Translator
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.LanguageTranslator.v2": "1.2.0"
+   "IBM.WatsonDeveloperCloud.LanguageTranslator.v2": "1.3.1"
 }
 
 ```
@@ -79,4 +79,4 @@ Returns information, including training status, about a specified translation mo
 var result = _languageTranslator.GetModelDetails("<model-id>");
 ```
 
-[language_translator]: https://www.ibm.com/watson/developercloud/doc/language-translator/index.html
+[language_translator]: https://console.bluemix.net/docs/services/language-translator/getting-started.html

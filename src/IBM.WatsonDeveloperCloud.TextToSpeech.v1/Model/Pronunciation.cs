@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,22 +16,20 @@
 */
 
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
 {
-    public class CustomWordTranslation
+    /// <summary>
+    /// Pronunciation.
+    /// </summary>
+    public class Pronunciation
     {
-        [JsonProperty("word")]
-        public string Word { get; set; }
-
-        [JsonProperty("translation")]
-        public string Translation { get; set; }
+        /// <summary>
+        /// The pronunciation of the requested text in the specified voice and format.
+        /// </summary>
+        /// <value>The pronunciation of the requested text in the specified voice and format.</value>
+        [JsonProperty("pronunciation", NullValueHandling = NullValueHandling.Ignore)]
+        public string _Pronunciation { get; set; }
     }
 
-    internal class CustomWordTranslations
-    {
-        [JsonProperty("words")]
-        public List<CustomWordTranslation> Words { get; set; }
-    }
 }

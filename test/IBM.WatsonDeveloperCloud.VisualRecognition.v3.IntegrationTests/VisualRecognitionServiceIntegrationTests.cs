@@ -41,8 +41,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _localFaceFilePath = @"VisualRecognitionTestData/obama.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData/giraffe_positive_examples.zip";
         private string _giraffeClassname = "giraffe";
-        private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
-        private string _turtleClassname = "turtle";
+        //private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
+        //private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
         AutoResetEvent autoEvent = new AutoResetEvent(false);

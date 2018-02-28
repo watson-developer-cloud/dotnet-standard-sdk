@@ -33,10 +33,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private AutoResetEvent autoEvent = new AutoResetEvent(false);
         private static string credentials = string.Empty;
         private string EN_US = "en-US_BroadbandModel";
-        private string _customModelName = "dotnet-integration-test-custom-model";
-        private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
-        private string _corpusName = "The Jabberwocky";
-        private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
+        //private string _customModelName = "dotnet-integration-test-custom-model";
+        //private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
+        //private string _corpusName = "The Jabberwocky";
+        //private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
         private string _acousticModelName = "dotnet-integration-test-custom-acoustic-model";
         private string _acousticModelDescription = "A custom model to teset .NET SDK Speech to Text acoustic customization.";
         private string _acousticResourceUrl = "https://ia802302.us.archive.org/10/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit.mp3";

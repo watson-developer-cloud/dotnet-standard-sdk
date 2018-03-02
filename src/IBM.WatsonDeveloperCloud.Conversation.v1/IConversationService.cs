@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 
@@ -41,8 +42,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="WorkspaceExport" />WorkspaceExport</returns>
-        WorkspaceExport GetWorkspace(string workspaceId, bool? export = null);
+        WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null);
 
         /// <summary>
         /// List workspaces. List the workspaces associated with a Conversation service instance.
@@ -51,8 +53,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
-        WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update workspace. Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace.
@@ -67,8 +70,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="request">The user's input, with optional intents, entities, and other properties from the response. (optional)</param>
+        /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message. (optional, default to false)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        MessageResponse Message(string workspaceId, MessageRequest request = null);
+        MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null);
         /// <summary>
         /// Create intent. Create a new intent.
         /// </summary>
@@ -91,8 +95,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="IntentExport" />IntentExport</returns>
-        IntentExport GetIntent(string workspaceId, string intent, bool? export = null);
+        IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null);
 
         /// <summary>
         /// List intents. List the intents for a workspace.
@@ -103,8 +108,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="IntentCollection" />IntentCollection</returns>
-        IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update intent. Update an existing intent with new or modified data. You must provide data defining the content of the updated intent.
@@ -138,8 +144,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="intent">The intent name (for example, `pizza_order`).</param>
         /// <param name="text">The text of the user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="Example" />Example</returns>
-        Example GetExample(string workspaceId, string intent, string text);
+        Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null);
 
         /// <summary>
         /// List user input examples. List the user input examples for an intent.
@@ -150,8 +157,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="ExampleCollection" />ExampleCollection</returns>
-        ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update user input example. Update the text of a user input example.
@@ -184,8 +192,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="EntityExport" />EntityExport</returns>
-        EntityExport GetEntity(string workspaceId, string entity, bool? export = null);
+        EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null);
 
         /// <summary>
         /// List entities. List the entities for a workspace.
@@ -196,8 +205,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="EntityCollection" />EntityCollection</returns>
-        EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update entity. Update an existing entity with new or modified data.
@@ -212,9 +222,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
-        /// <param name="body">A CreateValue object defining the content of the new value for the entity.</param>
+        /// <param name="properties">A CreateValue object defining the content of the new value for the entity.</param>
         /// <returns><see cref="Value" />Value</returns>
-        Value CreateValue(string workspaceId, string entity, CreateValue body);
+        Value CreateValue(string workspaceId, string entity, CreateValue properties);
 
         /// <summary>
         /// Delete entity value. Delete a value for an entity.
@@ -232,8 +242,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="export">Whether to include all element content in the returned data. If export=`false`, the returned data includes only information about the element itself. If export=`true`, all content, including subelements, is included. The default value is `false`. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="ValueExport" />ValueExport</returns>
-        ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null);
+        ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null);
 
         /// <summary>
         /// List entity values. List the values for an entity.
@@ -245,8 +256,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="ValueCollection" />ValueCollection</returns>
-        ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update entity value. Update the content of a value for an entity.
@@ -254,9 +266,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="body">An UpdateValue object defining the new content for value for the entity.</param>
+        /// <param name="properties">An UpdateValue object defining the new content for value for the entity.</param>
         /// <returns><see cref="Value" />Value</returns>
-        Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body);
+        Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties);
         /// <summary>
         /// Add entity value synonym. Add a new synonym to an entity value.
         /// </summary>
@@ -284,8 +296,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        Synonym GetSynonym(string workspaceId, string entity, string value, string synonym);
+        Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null);
 
         /// <summary>
         /// List entity value synonyms. List the synonyms for an entity value.
@@ -297,8 +310,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="SynonymCollection" />SynonymCollection</returns>
-        SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update entity value synonym. Update the information about a synonym for an entity value.
@@ -331,8 +345,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        DialogNode GetDialogNode(string workspaceId, string dialogNode);
+        DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null);
 
         /// <summary>
         /// List dialog nodes. List the dialog nodes in the workspace.
@@ -342,8 +357,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
-        DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update dialog node. Update information for a dialog node.
@@ -394,8 +410,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// </summary>
         /// <param name="workspaceId">The workspace ID.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        Counterexample GetCounterexample(string workspaceId, string text);
+        Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null);
 
         /// <summary>
         /// List counterexamples. List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input.
@@ -405,8 +422,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional, default to false)</param>
         /// <param name="sort">Sorts the response according to the value of the specified property, in ascending or descending order. (optional)</param>
         /// <param name="cursor">A token identifying the last value from the previous page of results. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in the response. (optional, default to false)</param>
         /// <returns><see cref="CounterexampleCollection" />CounterexampleCollection</returns>
-        CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null);
+        CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
 
         /// <summary>
         /// Update counterexample. Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.

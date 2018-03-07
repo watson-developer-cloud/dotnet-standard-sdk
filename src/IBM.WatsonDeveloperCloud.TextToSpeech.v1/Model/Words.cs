@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// </summary>
         /// <value>An array of words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words.</value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Word> _Words { get; set; }
+        public List<Word> Words { get; set; }
     }
 
 }

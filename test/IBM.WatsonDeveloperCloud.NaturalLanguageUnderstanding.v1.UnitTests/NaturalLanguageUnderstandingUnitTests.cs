@@ -52,14 +52,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
         public void Constructor_UserName_Null()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService(null, "password", NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+                new NaturalLanguageUnderstandingService(null, "password", "2017-02-27");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Password_Null()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService("username", null, NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+                new NaturalLanguageUnderstandingService("username", null, "2017-02-27");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
         public void Constructor_With_UserName_Password()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService("username", "password", NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+                new NaturalLanguageUnderstandingService("username", "password", "2017-02-27");
 
             Assert.IsNotNull(service);
         }
@@ -125,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
+            service.VersionDate = "2017-02-27";
 
             service.Analyze(new Parameters());
         }
@@ -426,7 +426,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
+            service.VersionDate = "2017-02-27";
 
             service.DeleteModel("modelID");
         }
@@ -488,7 +488,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27;
+            service.VersionDate = "2017-02-27";
 
             service.ListModels();
         }

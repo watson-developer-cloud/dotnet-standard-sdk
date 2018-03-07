@@ -1,29 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Description>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1 wraps the Watson Developer Cloud Natural Language Understanding service (http://www.ibm.com/watson/developercloud/natural-language-understanding.html)</Description>
-    <AssemblyTitle>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</AssemblyTitle>
-    <VersionPrefix>1.3.0</VersionPrefix>
-    <Authors>Watson Developer Cloud</Authors>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</AssemblyName>
-    <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</PackageId>
-    <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
-    <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <Description>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1 wraps the Watson Developer Cloud Natural Language Understanding service (http://www.ibm.com/watson/developercloud/natural-language-understanding.html)</Description>
+        <AssemblyTitle>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</AssemblyTitle>
+        <VersionPrefix>1.4.0</VersionPrefix>
+        <Authors>Watson Developer Cloud</Authors>
+        <TargetFramework>netstandard1.3</TargetFramework>
+        <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</AssemblyName>
+        <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1</PackageId>
+        <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
+        <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
+        <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    </ItemGroup>
 
-  <Target Name="PostcompileScript" AfterTargets="Build">
-    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
-  </Target>
+    <Target Name="PostcompileScript" AfterTargets="Build">
+        <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
+    </Target>
 
 </Project>

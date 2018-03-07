@@ -84,5 +84,45 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
 
             Assert.IsNotNull(result);
         }
+
+        #region Generated
+        #region Profile
+        private Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        {
+            Console.WriteLine("\nAttempting to Profile()");
+            var result = service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+
+            if (result != null)
+            {
+                Console.WriteLine("Profile() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Profile()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ProfileCsv
+        private Profile ProfileCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        {
+            Console.WriteLine("\nAttempting to ProfileCsv()");
+            var result = service.ProfileCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+
+            if (result != null)
+            {
+                Console.WriteLine("ProfileCsv() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ProfileCsv()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

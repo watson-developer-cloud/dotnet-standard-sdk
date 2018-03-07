@@ -90,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 _password = vcapServices["discovery"]["password"].Value<string>();
             }
 
-            service = new DiscoveryService(_username, _password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
+            service = new DiscoveryService(_username, _password, "2017-11-07");
             service.Endpoint = _endpoint;
 
             //DeleteExistingEnvironment();
@@ -774,7 +774,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
         }
         #endregion
-        
+
+        #region Generated
         #region CreateEnvironment
         private Environment CreateEnvironment(CreateEnvironmentRequest body)
         {
@@ -833,10 +834,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region ListEnvironments
-        private ListEnvironmentsResponse ListEnvironments()
+        private ListEnvironmentsResponse ListEnvironments(string name = null)
         {
             Console.WriteLine("\nAttempting to ListEnvironments()");
-            var result = service.ListEnvironments();
+            var result = service.ListEnvironments(name: name);
 
             if (result != null)
             {
@@ -947,10 +948,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region ListConfigurations
-        private ListConfigurationsResponse ListConfigurations(string environmentId)
+        private ListConfigurationsResponse ListConfigurations(string environmentId, string name = null)
         {
             Console.WriteLine("\nAttempting to ListConfigurations()");
-            var result = service.ListConfigurations(environmentId: environmentId);
+            var result = service.ListConfigurations(environmentId: environmentId, name: name);
 
             if (result != null)
             {
@@ -985,10 +986,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region TestConfigurationInEnvironment
-        private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration, string step)
+        private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             Console.WriteLine("\nAttempting to TestConfigurationInEnvironment()");
-            var result = service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step);
+            var result = service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step, configurationId: configurationId, file: file, metadata: metadata, fileContentType: fileContentType);
 
             if (result != null)
             {
@@ -1022,6 +1023,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region CreateExpansions
+        private Expansions CreateExpansions(string environmentId, string collectionId, Expansions body)
+        {
+            Console.WriteLine("\nAttempting to CreateExpansions()");
+            var result = service.CreateExpansions(environmentId: environmentId, collectionId: collectionId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateExpansions() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateExpansions()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region DeleteCollection
         private DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
         {
@@ -1035,6 +1055,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to DeleteCollection()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteExpansions
+        private object DeleteExpansions(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to DeleteExpansions()");
+            var result = service.DeleteExpansions(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteExpansions() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteExpansions()");
             }
 
             return result;
@@ -1080,10 +1119,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region ListCollections
-        private ListCollectionsResponse ListCollections(string environmentId)
+        private ListCollectionsResponse ListCollections(string environmentId, string name = null)
         {
             Console.WriteLine("\nAttempting to ListCollections()");
-            var result = service.ListCollections(environmentId: environmentId);
+            var result = service.ListCollections(environmentId: environmentId, name: name);
 
             if (result != null)
             {
@@ -1098,8 +1137,27 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region ListExpansions
+        private Expansions ListExpansions(string environmentId, string collectionId)
+        {
+            Console.WriteLine("\nAttempting to ListExpansions()");
+            var result = service.ListExpansions(environmentId: environmentId, collectionId: collectionId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListExpansions() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListExpansions()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region UpdateCollection
-        private Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body)
+        private Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null)
         {
             Console.WriteLine("\nAttempting to UpdateCollection()");
             var result = service.UpdateCollection(environmentId: environmentId, collectionId: collectionId, body: body);
@@ -1118,10 +1176,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region AddDocument
-        private DocumentAccepted AddDocument(string environmentId, string collectionId, Stream fs, string metadata)
+        private DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             Console.WriteLine("\nAttempting to AddDocument()");
-            var result = service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: fs, metadata: metadata);
+            var result = service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: file, metadata: metadata, fileContentType: fileContentType);
 
             if (result != null)
             {
@@ -1175,10 +1233,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region UpdateDocument
-        private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, Stream file, string metadata)
+        private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
         {
             Console.WriteLine("\nAttempting to UpdateDocument()");
-            var result = service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata);
+            var result = service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata, fileContentType: fileContentType);
 
             if (result != null)
             {
@@ -1194,10 +1252,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region FederatedQuery
-        private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds)
+        private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             Console.WriteLine("\nAttempting to FederatedQuery()");
-            var result = service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds);
+            var result = service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
 
             if (result != null)
             {
@@ -1213,10 +1271,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region FederatedQueryNotices
-        private QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds)
+        private QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             Console.WriteLine("\nAttempting to FederatedQueryNotices()");
-            var result = service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds);
+            var result = service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
 
             if (result != null)
             {
@@ -1232,10 +1290,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Query
-        private QueryResponse Query(string environmentId, string collectionId, string filter, string query, string naturalLanguageQuery)
+        private QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             Console.WriteLine("\nAttempting to Query()");
-            var result = service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery);
+            var result = service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
 
             if (result != null)
             {
@@ -1270,10 +1328,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region QueryNotices
-        private QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter, string query, string naturalLanguageQuery, bool passages)
+        private QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             Console.WriteLine("\nAttempting to QueryNotices()");
-            var result = service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages);
+            var result = service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
 
             if (result != null)
             {
@@ -1495,6 +1553,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
+        #endregion
         #endregion
     }
 }

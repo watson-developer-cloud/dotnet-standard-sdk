@@ -17,19 +17,25 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
+namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// SessionStatus.
+    /// DialogNodeVisitedDetails.
     /// </summary>
-    public class SessionStatus
+    public class DialogNodeVisitedDetails
     {
         /// <summary>
-        /// Information about the specified existing session.
+        /// A dialog node that was triggered during processing of the input message.
         /// </summary>
-        /// <value>Information about the specified existing session.</value>
-        [JsonProperty("session", NullValueHandling = NullValueHandling.Ignore)]
-        public SpeechSession Session { get; set; }
+        /// <value>A dialog node that was triggered during processing of the input message.</value>
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
+        /// <summary>
+        /// The title of the dialog node.
+        /// </summary>
+        /// <value>The title of the dialog node.</value>
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
     }
 
 }

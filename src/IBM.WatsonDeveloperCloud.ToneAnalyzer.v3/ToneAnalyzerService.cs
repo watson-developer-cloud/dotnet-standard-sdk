@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 this.Endpoint = URL;
         }
 
+
         public ToneAnalyzerService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -51,6 +52,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+
             if(string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
@@ -79,17 +81,17 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/tone")
-                                .WithArgument("version", VersionDate)
-                                .WithHeader("Content-Type", contentType)
-                                .WithHeader("Content-Language", contentLanguage)
-                                .WithHeader("Accept-Language", acceptLanguage)
-                                .WithArgument("sentences", sentences)
-                                .WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null)
-                                .WithBody<ToneInput>(toneInput)
-                                .As<ToneAnalysis>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v3/tone");
+                request.WithArgument("version", VersionDate);
+                request.WithHeader("Content-Type", contentType);
+                request.WithHeader("Content-Language", contentLanguage);
+                request.WithHeader("Accept-Language", acceptLanguage);
+                if (sentences != null)
+                    request.WithArgument("sentences", sentences);
+                request.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
+                request.WithBody<ToneInput>(toneInput);
+                result = request.As<ToneAnalysis>().Result;
             }
             catch(AggregateException ae)
             {
@@ -111,13 +113,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/tone_chat")
-                                .WithArgument("version", VersionDate)
-                                .WithHeader("Accept-Language", acceptLanguage)
-                                .WithBody<ToneChatInput>(utterances)
-                                .As<UtteranceAnalyses>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v3/tone_chat");
+                request.WithArgument("version", VersionDate);
+                request.WithHeader("Accept-Language", acceptLanguage);
+                request.WithBody<ToneChatInput>(utterances);
+                result = request.As<UtteranceAnalyses>().Result;
             }
             catch(AggregateException ae)
             {

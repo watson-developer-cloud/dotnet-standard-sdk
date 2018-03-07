@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Delete model. Deletes a custom model.
         /// </summary>
-        /// <param name="modelId">modelId of the model to delete.</param>
+        /// <param name="modelId">model_id of the model to delete.</param>
         /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
         InlineResponse200 DeleteModel(string modelId);
 

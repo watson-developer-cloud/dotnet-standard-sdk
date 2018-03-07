@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         /// <value>An indication of whether the transcription results are final. If `true`, the results for this utterance are not updated further; no additional results are sent for a `result_index` once its results are indicated as final.</value>
         [JsonProperty("final", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Final { get; set; }
+        public bool? FinalResults { get; set; }
         /// <summary>
         /// An array of alternative transcripts. The `alternatives` array can include additional requested output such as word confidence or timestamps.
         /// </summary>
@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         /// <value>A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.</value>
         [JsonProperty("keywords_result", NullValueHandling = NullValueHandling.Ignore)]
-        public KeywordResults KeywordsResult { get; set; }
+        public Dictionary<string, List<KeywordResult>> KeywordsResult { get; set; }
         /// <summary>
         /// An array of alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is specified.
         /// </summary>

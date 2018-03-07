@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -68,21 +68,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// The ID of a classifier identified in the image.
+        /// ID of a classifier identified in the image.
         /// </summary>
-        /// <value>The ID of a classifier identified in the image.</value>
+        /// <value>ID of a classifier identified in the image.</value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
-        /// The name of the classifier.
+        /// Name of the classifier.
         /// </summary>
-        /// <value>The name of the classifier.</value>
+        /// <value>Name of the classifier.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// Unique ID of the account who owns the classifier.
+        /// Unique ID of the account who owns the classifier. Returned when verbose=`true`. Might not be returned by some requests.
         /// </summary>
-        /// <value>Unique ID of the account who owns the classifier.</value>
+        /// <value>Unique ID of the account who owns the classifier. Returned when verbose=`true`. Might not be returned by some requests.</value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
         /// <summary>
@@ -92,17 +92,23 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
         public string Explanation { get; set; }
         /// <summary>
-        /// The time and date when classifier was created.
+        /// Date and time in Coordinated Universal Time that the classifier was created.
         /// </summary>
-        /// <value>The time and date when classifier was created.</value>
+        /// <value>Date and time in Coordinated Universal Time that the classifier was created.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Created { get; set; }
         /// <summary>
-        /// An array of classes that define a classifier.
+        /// Array of classes that define a classifier.
         /// </summary>
-        /// <value>An array of classes that define a classifier.</value>
+        /// <value>Array of classes that define a classifier.</value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ModelClass> Classes { get; set; }
+        /// <summary>
+        /// Date and time in Coordinated Universal Time that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests.
+        /// </summary>
+        /// <value>Date and time in Coordinated Universal Time that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests.</value>
+        [JsonProperty("retrained", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Retrained { get; set; }
     }
 
 }

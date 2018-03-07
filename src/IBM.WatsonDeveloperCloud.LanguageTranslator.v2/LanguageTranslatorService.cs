@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 this.Endpoint = URL;
         }
 
+
         public LanguageTranslatorService(string userName, string password) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -45,6 +46,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+
         }
 
         public LanguageTranslatorService(IClient httpClient) : this()
@@ -55,19 +57,18 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.Client = httpClient;
         }
 
-        public TranslationResult Translate(TranslateRequest body)
+        public TranslationResult Translate(TranslateRequest request)
         {
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
             TranslationResult result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/translate")
-                                .WithBody<TranslateRequest>(body)
-                                .As<TranslationResult>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/translate");
+                request.WithBody<TranslateRequest>(request);
+                result = request.As<TranslationResult>().Result;
             }
             catch(AggregateException ae)
             {
@@ -84,11 +85,31 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/identify")
-                                .WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN))
-                                .As<IdentifiedLanguages>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/identify");
+                request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                result = request.As<IdentifiedLanguages>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        public IdentifiedLanguages IdentifyPlain(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentNullException(nameof(text));
+            IdentifiedLanguages result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/identify");
+                request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                result = request.As<IdentifiedLanguages>().Result;
             }
             catch(AggregateException ae)
             {
@@ -104,10 +125,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/identifiable_languages")
-                                .As<IdentifiableLanguages>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/identifiable_languages");
+                result = request.As<IdentifiableLanguages>().Result;
             }
             catch(AggregateException ae)
             {
@@ -153,13 +173,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
                 }
 
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/models")
-                                .WithArgument("base_model_id", baseModelId)
-                                .WithArgument("name", name)
-                                .WithBodyContent(formData)
-                                .As<TranslationModel>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v2/models");
+                if (!string.IsNullOrEmpty(baseModelId))
+                    request.WithArgument("base_model_id", baseModelId);
+                if (!string.IsNullOrEmpty(name))
+                    request.WithArgument("name", name);
+                request.WithBodyContent(formData);
+                result = request.As<TranslationModel>().Result;
             }
             catch(AggregateException ae)
             {
@@ -177,10 +198,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v2/models/{modelId}")
-                                .As<DeleteModelResult>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
+                result = request.As<DeleteModelResult>().Result;
             }
             catch(AggregateException ae)
             {
@@ -198,10 +218,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/models/{modelId}")
-                                .As<TranslationModel>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/models/{modelId}");
+                result = request.As<TranslationModel>().Result;
             }
             catch(AggregateException ae)
             {
@@ -217,13 +236,15 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/models")
-                                .WithArgument("source", source)
-                                .WithArgument("target", target)
-                                .WithArgument("default", defaultModels)
-                                .As<TranslationModels>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v2/models");
+                if (!string.IsNullOrEmpty(source))
+                    request.WithArgument("source", source);
+                if (!string.IsNullOrEmpty(target))
+                    request.WithArgument("target", target);
+                if (defaultModels != null)
+                    request.WithArgument("default", defaultModels);
+                result = request.As<TranslationModels>().Result;
             }
             catch(AggregateException ae)
             {

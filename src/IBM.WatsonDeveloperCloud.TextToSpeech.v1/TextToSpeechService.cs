@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
         public TextToSpeechService() : base(SERVICE_NAME, URL)
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
@@ -72,7 +72,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                     request.WithArgument("customization_id", customizationId);
                 result = request.As<Voice>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -90,23 +90,26 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .GetAsync($"{this.Endpoint}/v1/voices");
                 result = request.As<Voices>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        public System.IO.Stream Synthesize(Text text, string voice = null, string customizationId = null)
+        public System.IO.Stream Synthesize(Text text, string accept, string voice = null, string customizationId = null)
         {
             if (text == null)
                 throw new ArgumentNullException(nameof(text));
+            if (string.IsNullOrEmpty(accept))
+                throw new ArgumentNullException(nameof(accept));
             System.IO.Stream result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/synthesize");
+                request.WithHeader("Accept", accept);
                 if (!string.IsNullOrEmpty(voice))
                     request.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(customizationId))
@@ -114,7 +117,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request.WithBody<Text>(text);
                 result = new System.IO.MemoryStream(request.AsByteArray().Result);
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -141,7 +144,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                     request.WithArgument("customization_id", customizationId);
                 result = request.As<Pronunciation>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -161,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request.WithBody<CreateVoiceModel>(createVoiceModel);
                 result = request.As<VoiceModel>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -181,7 +184,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
                 result = request.As<object>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -201,7 +204,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
                 result = request.As<VoiceModel>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -221,7 +224,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                     request.WithArgument("language", language);
                 result = request.As<VoiceModels>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -244,7 +247,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request.WithBody<UpdateVoiceModel>(updateVoiceModel);
                 result = request.As<object>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -268,7 +271,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request.WithBody<Translation>(translation);
                 result = request.As<object>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -291,7 +294,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 request.WithBody<Words>(customWords);
                 result = request.As<object>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -313,7 +316,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
                 result = request.As<object>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -335,7 +338,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
                 result = request.As<Translation>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -355,7 +358,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                                 .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
                 result = request.As<Words>().Result;
             }
-            catch (AggregateException ae)
+            catch(AggregateException ae)
             {
                 throw ae.Flatten();
             }

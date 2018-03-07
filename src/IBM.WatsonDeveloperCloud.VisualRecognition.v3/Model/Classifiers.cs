@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// Gets or Sets Classifiers
         /// </summary>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Classifier> _Classifiers { get; set; }
+        public List<Classifier> Classifiers { get; set; }
     }
 
 }

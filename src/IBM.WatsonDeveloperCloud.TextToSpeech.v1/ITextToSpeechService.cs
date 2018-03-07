@@ -15,6 +15,8 @@
 *
 */
 
+using System.Runtime.Serialization;
+using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
@@ -38,10 +40,11 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Streaming speech synthesis of the text in the body parameter. Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. Identical to the `GET` method but passes longer text in the body of the request, not with the URL. Text size is limited to 5 KB. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.)   If a request includes invalid query parameters, the service returns a `Warnings` response header that provides messages about the invalid parameters. The warning includes a descriptive message and a list of invalid argument strings. For example, a message such as `"Unknown arguments:"` or `"Unknown url query arguments:"` followed by a list of the form `"invalid_arg_1, invalid_arg_2."` The request succeeds despite the warnings.   **Note about the Try It Out feature:** The `Try it out!` button is **not** supported for use with the the `POST /v1/synthesize` method. For examples of calls to the method, see the [Text to Speech API reference](http://www.ibm.com/watson/developercloud/text-to-speech/api/v1/).
         /// </summary>
         /// <param name="text">A `Text` object that provides the text to synthesize. Specify either plain text or a subset of SSML. Text size is limited to 5 KB.</param>
+        /// <param name="accept">The type of the response: audio/basic, audio/flac, audio/l16;rate=nnnn, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/mp3, audio/mpeg, audio/mulaw;rate=nnnn, audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
         /// <param name="voice">The voice to use for synthesis. Retrieve available voices with the `GET /v1/voices` method. (optional, default to en-US_MichaelVoice)</param>
         /// <param name="customizationId">The GUID of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</param>
         /// <returns><see cref="System.IO.Stream" />System.IO.Stream</returns>
-        System.IO.Stream Synthesize(Text text, string voice = null, string customizationId = null);
+        System.IO.Stream Synthesize(Text text, string accept, string voice = null, string customizationId = null);
         /// <summary>
         /// Gets the pronunciation for a word. Returns the phonetic pronunciation for the word specified by the `text` parameter. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.   **Note:** This method is currently a beta release.
         /// </summary>

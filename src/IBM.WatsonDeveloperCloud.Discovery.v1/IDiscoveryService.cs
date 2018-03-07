@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ListEnvironmentsResponse ListEnvironments(string name = null);
 
         /// <summary>
-        /// List fields in specified collecitons. Gets a list of the unique fields (and their types) stored in the indexes of the specified collecitons.
+        /// List fields in specified collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -126,12 +126,29 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         Collection CreateCollection(string environmentId, CreateCollectionRequest body);
 
         /// <summary>
+        /// Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="body">An object that defines the expansion list.</param>
+        /// <returns><see cref="Expansions" />Expansions</returns>
+        Expansions CreateExpansions(string environmentId, string collectionId, Expansions body);
+
+        /// <summary>
         /// Delete a collection. 
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <returns><see cref="DeleteCollectionResponse" />DeleteCollectionResponse</returns>
         DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId);
+
+        /// <summary>
+        /// Delete the expansions list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <returns><see cref="object" />object</returns>
+        object DeleteExpansions(string environmentId, string collectionId);
 
         /// <summary>
         /// Get collection details. 
@@ -156,6 +173,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="name">Find collections with the given name. (optional)</param>
         /// <returns><see cref="ListCollectionsResponse" />ListCollectionsResponse</returns>
         ListCollectionsResponse ListCollections(string environmentId, string name = null);
+
+        /// <summary>
+        /// List current expansions. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <returns><see cref="Expansions" />Expansions</returns>
+        Expansions ListExpansions(string environmentId, string collectionId);
 
         /// <summary>
         /// Update a collection. 
@@ -206,13 +231,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
         DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null);
         /// <summary>
-        /// Query documents in multiple collections. See the [Discovery service documentation](https://www.ibm.com/watson/developercloud/doc/discovery/using.html) for more details.
+        /// Query documents in multiple collections. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
         /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant search results. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `naturalLanguageQuery` and `query` at the same time. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an exact answer. Aggregations are useful for building applications, because you can use them to build lists, tables, and time series. For a full list of possible aggregrations, see the Query reference. (optional)</param>
         /// <param name="count">Number of documents to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return. (optional)</param>
@@ -221,17 +246,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="highlight">When true a highlight field is returned for each result which contains the fields that match the query with `<em></em>` tags around the matching query terms. Defaults to false. (optional)</param>
         /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results (based on the contents of the `title` field) are removed. Duplicate comparison is limited to the current query only, `offset` is not considered. Defaults to `false`. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed from the returned results. Duplicate comparison is limited to the current query only, `offset` is not considered. This parameter is currently Beta functionality. (optional)</param>
+        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null);
+        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null);
 
         /// <summary>
-        /// Query multiple collection system notices. Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated when ingesting documents and performing relevance training. See the [Discovery service documentation](https://www.ibm.com/watson/developercloud/doc/discovery/using.html) for more details on the query language.
+        /// Query multiple collection system notices. Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated when ingesting documents and performing relevance training. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
         /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant search results. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `naturalLanguageQuery` and `query` at the same time. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an exact answer. Aggregations are useful for building applications, because you can use them to build lists, tables, and time series. For a full list of possible aggregrations, see the Query reference. (optional)</param>
         /// <param name="count">Number of documents to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return. (optional)</param>
@@ -239,21 +267,24 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default sort direction if no prefix is specified. (optional)</param>
         /// <param name="highlight">When true a highlight field is returned for each result which contains the fields that match the query with `<em></em>` tags around the matching query terms. Defaults to false. (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed from the returned results. Duplicate comparison is limited to the current query only, `offset` is not considered. This parameter is currently Beta functionality. (optional)</param>
+        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null);
+        QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null);
 
         /// <summary>
-        /// Query documents. See the [Discovery service documentation](https://www.ibm.com/watson/developercloud/doc/discovery/using.html) for more details.
+        /// Query documents. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant search results. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `naturalLanguageQuery` and `query` at the same time. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
         /// <param name="passages">A passages query that returns the most relevant passages from the results. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an exact answer. Aggregations are useful for building applications, because you can use them to build lists, tables, and time series. For a full list of possible aggregrations, see the Query reference. (optional)</param>
         /// <param name="count">Number of documents to return. (optional, default to 10)</param>
-        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to returnFields. (optional)</param>
+        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return. (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
         /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default sort direction if no prefix is specified. (optional)</param>
         /// <param name="highlight">When true a highlight field is returned for each result which contains the fields that match the query with `<em></em>` tags around the matching query terms. Defaults to false. (optional)</param>
@@ -262,8 +293,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
         /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results (based on the contents of the `title` field) are removed. Duplicate comparison is limited to the current query only, `offset` is not considered. Defaults to `false`. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed from the returned results. Duplicate comparison is limited to the current query only, `offset` is not considered. This parameter is currently Beta functionality. (optional)</param>
+        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null);
+        QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null);
 
         /// <summary>
         /// Knowledge Graph entity query. See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
@@ -281,7 +315,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that don't mention the query content. Filter searches are better for metadata type searches and when you are trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant search results. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `naturalLanguageQuery` and `query` at the same time. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing training data and natural language understanding. You cannot use `natural_language_query` and `query` at the same time. (optional)</param>
         /// <param name="passages">A passages query that returns the most relevant passages from the results. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an exact answer. Aggregations are useful for building applications, because you can use them to build lists, tables, and time series. For a full list of possible aggregrations, see the Query reference. (optional)</param>
         /// <param name="count">Number of documents to return. (optional, default to 10)</param>
@@ -293,8 +327,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
         /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed from the returned results. Duplicate comparison is limited to the current query only, `offset` is not considered. This parameter is currently Beta functionality. (optional)</param>
+        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null);
+        QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null);
 
         /// <summary>
         /// Knowledge Graph relationship query. See the [Knowledge Graph documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
@@ -309,7 +346,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body"></param>
+        /// <param name="body">The body of the training-data query that is to be added to the collection's training data.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body);
 
@@ -319,7 +356,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
-        /// <param name="body"></param>
+        /// <param name="body">The body of the example that is to be added to the specified query.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
         TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body);
 
@@ -393,7 +430,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="exampleId">The ID of the document as it is indexed.</param>
-        /// <param name="body"></param>
+        /// <param name="body">The body of the example that is to be added to the specified query.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
         TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body);
     }

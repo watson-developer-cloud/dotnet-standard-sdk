@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,14 +36,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             set { _versionDate = value; }
         }
 
-        /** The Constant CONVERSATION_VERSION_DATE_2017_05_26. */
-        public static string CONVERSATION_VERSION_DATE_2017_05_26 = "2017-05-26";
-
         public ConversationService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
+
 
         public ConversationService(string userName, string password, string versionDate) : this()
         {
@@ -54,8 +52,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+
             if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
         }
@@ -72,18 +71,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         {
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Workspace result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateWorkspace>(properties)
-                                .As<Workspace>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateWorkspace>(properties);
+                result = request.As<Workspace>().Result;
             }
             catch(AggregateException ae)
             {
@@ -99,17 +97,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -119,24 +116,26 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null)
+        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             WorkspaceExport result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .As<WorkspaceExport>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<WorkspaceExport>().Result;
             }
             catch(AggregateException ae)
             {
@@ -146,25 +145,30 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             WorkspaceCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<WorkspaceCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces");
+                request.WithArgument("version", VersionDate);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<WorkspaceCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -180,19 +184,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Workspace result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("append", append)
-                                .WithBody<UpdateWorkspace>(properties)
-                                .As<Workspace>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+                request.WithArgument("version", VersionDate);
+                if (append != null)
+                    request.WithArgument("append", append);
+                request.WithBody<UpdateWorkspace>(properties);
+                result = request.As<Workspace>().Result;
             }
             catch(AggregateException ae)
             {
@@ -201,24 +205,25 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             return result;
         }
-        public MessageResponse Message(string workspaceId, MessageRequest request = null)
+        public MessageResponse Message(string workspaceId, MessageRequest messageRequest = null, bool? nodesVisitedDetails = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             MessageResponse result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<MessageRequest>(request)
-                                .As<MessageResponse>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
+                request.WithArgument("version", VersionDate);
+                if (nodesVisitedDetails != null)
+                    request.WithArgument("nodes_visited_details", nodesVisitedDetails);
+                request.WithBody<MessageRequest>(messageRequest);
+                result = request.As<MessageResponse>().Result;
             }
             catch(AggregateException ae)
             {
@@ -235,18 +240,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Intent result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateIntent>(body)
-                                .As<Intent>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateIntent>(body);
+                result = request.As<Intent>().Result;
             }
             catch(AggregateException ae)
             {
@@ -264,17 +268,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(intent));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -284,7 +287,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public IntentExport GetIntent(string workspaceId, string intent, bool? export = null)
+        public IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -292,18 +295,20 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(intent));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             IntentExport result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .As<IntentExport>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<IntentExport>().Result;
             }
             catch(AggregateException ae)
             {
@@ -313,28 +318,34 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             IntentCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<IntentCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<IntentCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -354,18 +365,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Intent result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateIntent>(body)
-                                .As<Intent>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateIntent>(body);
+                result = request.As<Intent>().Result;
             }
             catch(AggregateException ae)
             {
@@ -384,18 +394,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateExample>(body)
-                                .As<Example>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateExample>(body);
+                result = request.As<Example>().Result;
             }
             catch(AggregateException ae)
             {
@@ -415,17 +424,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(text));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -435,7 +443,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public Example GetExample(string workspaceId, string intent, string text)
+        public Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -445,17 +453,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(text));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .As<Example>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+                request.WithArgument("version", VersionDate);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<Example>().Result;
             }
             catch(AggregateException ae)
             {
@@ -465,7 +474,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -473,21 +482,26 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(intent));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             ExampleCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<ExampleCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+                request.WithArgument("version", VersionDate);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<ExampleCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -509,18 +523,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateExample>(body)
-                                .As<Example>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateExample>(body);
+                result = request.As<Example>().Result;
             }
             catch(AggregateException ae)
             {
@@ -537,18 +550,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Entity result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateEntity>(properties)
-                                .As<Entity>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateEntity>(properties);
+                result = request.As<Entity>().Result;
             }
             catch(AggregateException ae)
             {
@@ -566,17 +578,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(entity));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -586,7 +597,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public EntityExport GetEntity(string workspaceId, string entity, bool? export = null)
+        public EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -594,18 +605,20 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(entity));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             EntityExport result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .As<EntityExport>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<EntityExport>().Result;
             }
             catch(AggregateException ae)
             {
@@ -615,28 +628,34 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             EntityCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<EntityCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<EntityCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -656,18 +675,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Entity result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateEntity>(properties)
-                                .As<Entity>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateEntity>(properties);
+                result = request.As<Entity>().Result;
             }
             catch(AggregateException ae)
             {
@@ -676,28 +694,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             return result;
         }
-        public Value CreateValue(string workspaceId, string entity, CreateValue body)
+        public Value CreateValue(string workspaceId, string entity, CreateValue properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
             if (string.IsNullOrEmpty(entity))
                 throw new ArgumentNullException(nameof(entity));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+            if (properties == null)
+                throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Value result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateValue>(body)
-                                .As<Value>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateValue>(properties);
+                result = request.As<Value>().Result;
             }
             catch(AggregateException ae)
             {
@@ -717,17 +734,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(value));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -737,7 +753,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null)
+        public ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -747,18 +763,20 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(value));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             ValueExport result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .As<ValueExport>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<ValueExport>().Result;
             }
             catch(AggregateException ae)
             {
@@ -768,7 +786,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -776,22 +794,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(entity));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             ValueCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("export", export)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<ValueCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+                request.WithArgument("version", VersionDate);
+                if (export != null)
+                    request.WithArgument("export", export);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<ValueCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -801,7 +825,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
+        public Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -809,22 +833,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(entity));
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException(nameof(value));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+            if (properties == null)
+                throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Value result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateValue>(body)
-                                .As<Value>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateValue>(properties);
+                result = request.As<Value>().Result;
             }
             catch(AggregateException ae)
             {
@@ -845,18 +868,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateSynonym>(body)
-                                .As<Synonym>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateSynonym>(body);
+                result = request.As<Synonym>().Result;
             }
             catch(AggregateException ae)
             {
@@ -878,17 +900,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(synonym));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -898,7 +919,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public Synonym GetSynonym(string workspaceId, string entity, string value, string synonym)
+        public Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -910,17 +931,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(synonym));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
-                                .WithArgument("version", VersionDate)
-                                .As<Synonym>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                request.WithArgument("version", VersionDate);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<Synonym>().Result;
             }
             catch(AggregateException ae)
             {
@@ -930,7 +952,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -940,21 +962,26 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(value));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             SynonymCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<SynonymCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+                request.WithArgument("version", VersionDate);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<SynonymCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -978,18 +1005,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateSynonym>(body)
-                                .As<Synonym>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateSynonym>(body);
+                result = request.As<Synonym>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1006,18 +1032,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateDialogNode>(properties)
-                                .As<DialogNode>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateDialogNode>(properties);
+                result = request.As<DialogNode>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1035,17 +1060,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(dialogNode));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1055,7 +1079,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public DialogNode GetDialogNode(string workspaceId, string dialogNode)
+        public DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -1063,17 +1087,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(dialogNode));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
-                                .WithArgument("version", VersionDate)
-                                .As<DialogNode>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                request.WithArgument("version", VersionDate);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<DialogNode>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1083,27 +1108,32 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNodeCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<DialogNodeCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
+                request.WithArgument("version", VersionDate);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<DialogNodeCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1123,18 +1153,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(properties));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateDialogNode>(properties)
-                                .As<DialogNode>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateDialogNode>(properties);
+                result = request.As<DialogNode>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1149,21 +1178,24 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(filter));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             LogCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/logs")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("filter", filter)
-                                .WithArgument("sort", sort)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("cursor", cursor)
-                                .As<LogCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/logs");
+                request.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(filter))
+                    request.WithArgument("filter", filter);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                result = request.As<LogCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1179,21 +1211,24 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             LogCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("sort", sort)
-                                .WithArgument("filter", filter)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("cursor", cursor)
-                                .As<LogCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
+                request.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(filter))
+                    request.WithArgument("filter", filter);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                result = request.As<LogCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1210,18 +1245,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<CreateCounterexample>(body)
-                                .As<Counterexample>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<CreateCounterexample>(body);
+                result = request.As<Counterexample>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1239,17 +1273,16 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(text));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1259,7 +1292,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public Counterexample GetCounterexample(string workspaceId, string text)
+        public Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -1267,17 +1300,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(text));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .As<Counterexample>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+                request.WithArgument("version", VersionDate);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<Counterexample>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1287,27 +1321,32 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             return result;
         }
 
-        public CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null)
+        public CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             CounterexampleCollection result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples")
-                                .WithArgument("version", VersionDate)
-                                .WithArgument("page_limit", pageLimit)
-                                .WithArgument("include_count", includeCount)
-                                .WithArgument("sort", sort)
-                                .WithArgument("cursor", cursor)
-                                .As<CounterexampleCollection>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+                request.WithArgument("version", VersionDate);
+                if (pageLimit != null)
+                    request.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    request.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    request.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    request.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    request.WithArgument("include_audit", includeAudit);
+                result = request.As<CounterexampleCollection>().Result;
             }
             catch(AggregateException ae)
             {
@@ -1327,18 +1366,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 throw new ArgumentNullException(nameof(body));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'CONVERSATION_VERSION_DATE_2017_05_26'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<UpdateCounterexample>(body)
-                                .As<Counterexample>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateCounterexample>(body);
+                result = request.As<Counterexample>().Result;
             }
             catch(AggregateException ae)
             {

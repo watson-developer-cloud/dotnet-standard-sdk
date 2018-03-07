@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,54 +22,61 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
     public interface ILanguageTranslatorService
     {
         /// <summary>
-        /// Translates the input text from the source language to the target language. 
+        /// Translate. Translates the input text from the source language to the target language.
         /// </summary>
-        /// <param name="body">The translate request containing the text, with optional source, target, and model_id.</param>
+        /// <param name="request">The translate request containing the text, and either a model ID or source and target language pair.</param>
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
-        TranslationResult Translate(TranslateRequest body);
+        TranslationResult Translate(TranslateRequest request);
         /// <summary>
-        /// Identifies the language of the input text. 
+        /// Identify language. Identifies the language of the input text.
         /// </summary>
         /// <param name="text">Input text in UTF-8 format.</param>
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
         IdentifiedLanguages Identify(string text);
 
         /// <summary>
-        /// Lists all languages that can be identified by the API. Lists all languages that the service can identify. Returns the two-letter code (for example, `en` for English or `es` for Spanish) and name of each language.
+        /// Identify language. Identifies the language of the input text.
+        /// </summary>
+        /// <param name="text">Input text in UTF-8 format.</param>
+        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
+        IdentifiedLanguages IdentifyPlain(string text);
+
+        /// <summary>
+        /// List identifiable languages. Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es` for Spanish) and name of each language.
         /// </summary>
         /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
         IdentifiableLanguages ListIdentifiableLanguages();
         /// <summary>
-        /// Uploads a TMX glossary file on top of a domain to customize a translation model. 
+        /// Create model. Uploads a TMX glossary file on top of a domain to customize a translation model.  Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.
         /// </summary>
-        /// <param name="baseModelId">Specifies the domain model that is used as the base for the training. To see current supported domain models, use the GET /v2/models parameter.</param>
-        /// <param name="name">The model name. Valid characters are letters, numbers, -, and _. No spaces. (optional)</param>
-        /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely overwrite the domain data translation, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</param>
+        /// <param name="baseModelId">The model ID of the model to use as the base for customization. To see available models, use the `List models` method.</param>
+        /// <param name="name">An optional model name that you can use to identify the model. Valid characters are letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters. (optional)</param>
+        /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely overwrite the domain translaton data, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</param>
         /// <param name="parallelCorpus">A TMX file that contains entries that are treated as a parallel corpus instead of a glossary. (optional)</param>
         /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null);
 
         /// <summary>
-        /// Deletes a custom translation model. 
+        /// Delete model. Deletes a custom translation model.
         /// </summary>
-        /// <param name="modelId">The model identifier.</param>
+        /// <param name="modelId">Model ID of the model to delete.</param>
         /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
         DeleteModelResult DeleteModel(string modelId);
 
         /// <summary>
-        /// Get information about the given translation model, including training status. 
+        /// Get model details. Gets information about a translation model, including training status for custom models.
         /// </summary>
-        /// <param name="modelId">Model ID to use.</param>
+        /// <param name="modelId">Model ID of the model to get.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         TranslationModel GetModel(string modelId);
 
         /// <summary>
-        /// Lists available standard and custom models by source or target language. 
+        /// List models. Lists available translation models.
         /// </summary>
-        /// <param name="source">Filter models by source language. (optional)</param>
-        /// <param name="target">Filter models by target language. (optional)</param>
-        /// <param name="defaultModels">Valid values are leaving it unset, `true`, and `false`. When `true`, it filters models to return the defaultModels model or models. When `false`, it returns the non-defaultModels model or models. If not set, it returns all models, defaultModels and non-defaultModels. (optional)</param>
+        /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
+        /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
+        /// <param name="defaultModels">If the default parameter isn't specified, the service will return all models (default and non-default) for each language pair. To return only default models, set this to `true`. To return only non-default models, set this to `false`. (optional)</param>
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
         TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null);
     }

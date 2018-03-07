@@ -182,7 +182,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
 
             var createVoiceModelResult = CreateVoiceModel(createVoiceModel);
             var customizationId = createVoiceModelResult.CustomizationId;
-            
+
             var customWords = new Words
             {
                 _Words = new System.Collections.Generic.List<Word>()
@@ -241,6 +241,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         }
         #endregion
 
+        #region Generated
         #region GetVoice
         private Voice GetVoice(string voice, string customizationId = null)
         {
@@ -280,14 +281,14 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region Synthesize
-        private System.IO.Stream Synthesize(Text text, string voice = null, string customizationId = null)
+        private System.IO.Stream Synthesize(Text text, string accept, string voice = null, string customizationId = null)
         {
             Console.WriteLine("\nAttempting to Synthesize()");
-            var result = service.Synthesize(text: text, voice: voice, customizationId: customizationId);
+            var result = service.Synthesize(text: text, accept: accept, voice: voice, customizationId: customizationId);
 
             if (result != null)
             {
-                Console.WriteLine("Synthesize() succeeded!");
+                Console.WriteLine("Synthesize() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
@@ -506,6 +507,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
             return result;
         }
         #endregion
-
+        #endregion
     }
 }

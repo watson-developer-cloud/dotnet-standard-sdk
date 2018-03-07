@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
                 classifierId = listClassifiersResult.Classifiers[0].ClassifierId;
 
             Classification classifyResult = null;
-            if(!string.IsNullOrEmpty(classifierId))
+            if (!string.IsNullOrEmpty(classifierId))
             {
                 ClassifyInput classifyInput = new ClassifyInput
                 {
@@ -98,7 +98,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
 
             var getClassifierResult = GetClassifier(createdClassifierId);
 
-            if(!string.IsNullOrEmpty(classifierId) && !string.IsNullOrEmpty(createdClassifierId))
+            if (!string.IsNullOrEmpty(classifierId) && !string.IsNullOrEmpty(createdClassifierId))
             {
                 DeleteClassifier(createdClassifierId);
             }
@@ -207,5 +207,101 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         }
         #endregion
 
+        #region Generated
+        #region Classify
+        private Classification Classify(string classifierId, ClassifyInput body)
+        {
+            Console.WriteLine("\nAttempting to Classify()");
+            var result = service.Classify(classifierId: classifierId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("Classify() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Classify()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateClassifier
+        private Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
+        {
+            Console.WriteLine("\nAttempting to CreateClassifier()");
+            var result = service.CreateClassifier(metadata: metadata, trainingData: trainingData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteClassifier
+        private object DeleteClassifier(string classifierId)
+        {
+            Console.WriteLine("\nAttempting to DeleteClassifier()");
+            var result = service.DeleteClassifier(classifierId: classifierId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetClassifier
+        private Classifier GetClassifier(string classifierId)
+        {
+            Console.WriteLine("\nAttempting to GetClassifier()");
+            var result = service.GetClassifier(classifierId: classifierId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListClassifiers
+        private ClassifierList ListClassifiers()
+        {
+            Console.WriteLine("\nAttempting to ListClassifiers()");
+            var result = service.ListClassifiers();
+
+            if (result != null)
+            {
+                Console.WriteLine("ListClassifiers() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListClassifiers()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

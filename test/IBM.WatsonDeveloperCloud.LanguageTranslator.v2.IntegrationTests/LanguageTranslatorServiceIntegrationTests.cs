@@ -74,7 +74,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             languageTranslator =
                 new LanguageTranslatorService(_userName, _password);
             languageTranslator.Endpoint = _endpoint;
-            
+
             var results = languageTranslator.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
@@ -181,5 +181,159 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Status == "OK");
         }
+
+        #region Generated
+        #region Translate
+        private TranslationResult Translate(TranslateRequest request)
+        {
+            Console.WriteLine("\nAttempting to Translate()");
+            var result = service.Translate(request: request);
+
+            if (result != null)
+            {
+                Console.WriteLine("Translate() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Translate()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Identify
+        private IdentifiedLanguages Identify(string text)
+        {
+            Console.WriteLine("\nAttempting to Identify()");
+            var result = service.Identify(text: text);
+
+            if (result != null)
+            {
+                Console.WriteLine("Identify() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Identify()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region IdentifyPlain
+        private IdentifiedLanguages IdentifyPlain(string text)
+        {
+            Console.WriteLine("\nAttempting to IdentifyPlain()");
+            var result = service.IdentifyPlain(text: text);
+
+            if (result != null)
+            {
+                Console.WriteLine("IdentifyPlain() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to IdentifyPlain()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListIdentifiableLanguages
+        private IdentifiableLanguages ListIdentifiableLanguages()
+        {
+            Console.WriteLine("\nAttempting to ListIdentifiableLanguages()");
+            var result = service.ListIdentifiableLanguages();
+
+            if (result != null)
+            {
+                Console.WriteLine("ListIdentifiableLanguages() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListIdentifiableLanguages()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateModel
+        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
+        {
+            Console.WriteLine("\nAttempting to CreateModel()");
+            var result = service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteModel
+        private DeleteModelResult DeleteModel(string modelId)
+        {
+            Console.WriteLine("\nAttempting to DeleteModel()");
+            var result = service.DeleteModel(modelId: modelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetModel
+        private TranslationModel GetModel(string modelId)
+        {
+            Console.WriteLine("\nAttempting to GetModel()");
+            var result = service.GetModel(modelId: modelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListModels
+        private TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null)
+        {
+            Console.WriteLine("\nAttempting to ListModels()");
+            var result = service.ListModels(source: source, target: target, defaultModels: defaultModels);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListModels()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

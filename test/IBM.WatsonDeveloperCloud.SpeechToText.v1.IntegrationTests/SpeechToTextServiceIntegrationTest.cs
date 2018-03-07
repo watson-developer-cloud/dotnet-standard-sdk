@@ -317,6 +317,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region Generated
         #region GetModel
         private SpeechModel GetModel(string modelId)
         {
@@ -355,11 +356,144 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region RecognizeSessionless
+        private SpeechRecognitionResults RecognizeSessionless(string model = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, byte[] audio = null, string contentType = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
+        {
+            Console.WriteLine("\nAttempting to RecognizeSessionless()");
+            var result = service.RecognizeSessionless(model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, audio: audio, contentType: contentType, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
+
+            if (result != null)
+            {
+                Console.WriteLine("RecognizeSessionless() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to RecognizeSessionless()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CheckJob
+        private RecognitionJob CheckJob(string id)
+        {
+            Console.WriteLine("\nAttempting to CheckJob()");
+            var result = service.CheckJob(id: id);
+
+            if (result != null)
+            {
+                Console.WriteLine("CheckJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CheckJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CheckJobs
+        private RecognitionJobs CheckJobs()
+        {
+            Console.WriteLine("\nAttempting to CheckJobs()");
+            var result = service.CheckJobs();
+
+            if (result != null)
+            {
+                Console.WriteLine("CheckJobs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CheckJobs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateJob
+        private RecognitionJob CreateJob(byte[] audio, string contentType, string transferEncoding = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
+        {
+            Console.WriteLine("\nAttempting to CreateJob()");
+            var result = service.CreateJob(audio: audio, contentType: contentType, transferEncoding: transferEncoding, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteJob
+        private object DeleteJob(string id)
+        {
+            Console.WriteLine("\nAttempting to DeleteJob()");
+            var result = service.DeleteJob(id: id);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region RegisterCallback
+        private RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null)
+        {
+            Console.WriteLine("\nAttempting to RegisterCallback()");
+            var result = service.RegisterCallback(callbackUrl: callbackUrl, userSecret: userSecret);
+
+            if (result != null)
+            {
+                Console.WriteLine("RegisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to RegisterCallback()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UnregisterCallback
+        private object UnregisterCallback(string callbackUrl)
+        {
+            Console.WriteLine("\nAttempting to UnregisterCallback()");
+            var result = service.UnregisterCallback(callbackUrl: callbackUrl);
+
+            if (result != null)
+            {
+                Console.WriteLine("UnregisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UnregisterCallback()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region CreateLanguageModel
-        private LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
+        private LanguageModel CreateLanguageModel(CreateLanguageModel createLanguageModel)
         {
             Console.WriteLine("\nAttempting to CreateLanguageModel()");
-            var result = service.CreateLanguageModel(contentType: contentType, createLanguageModel: createLanguageModel);
+            var result = service.CreateLanguageModel(createLanguageModel: createLanguageModel);
 
             if (result != null)
             {
@@ -565,10 +699,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region AddWord
-        private object AddWord(string customizationId, string wordName, string contentType, CustomWord customWord)
+        private object AddWord(string customizationId, string wordName, CustomWord customWord)
         {
             Console.WriteLine("\nAttempting to AddWord()");
-            var result = service.AddWord(customizationId: customizationId, wordName: wordName, contentType: contentType, customWord: customWord);
+            var result = service.AddWord(customizationId: customizationId, wordName: wordName, customWord: customWord);
 
             if (result != null)
             {
@@ -584,10 +718,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region AddWords
-        private object AddWords(string customizationId, string contentType, CustomWords customWords)
+        private object AddWords(string customizationId, CustomWords customWords)
         {
             Console.WriteLine("\nAttempting to AddWords()");
-            var result = service.AddWords(customizationId: customizationId, contentType: contentType, customWords: customWords);
+            var result = service.AddWords(customizationId: customizationId, customWords: customWords);
 
             if (result != null)
             {
@@ -660,10 +794,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region CreateAcousticModel
-        private AcousticModel CreateAcousticModel(string contentType, CreateAcousticModel createAcousticModel)
+        private AcousticModel CreateAcousticModel(CreateAcousticModel createAcousticModel)
         {
             Console.WriteLine("\nAttempting to CreateAcousticModel()");
-            var result = service.CreateAcousticModel(contentType: contentType, createAcousticModel: createAcousticModel);
+            var result = service.CreateAcousticModel(createAcousticModel: createAcousticModel);
 
             if (result != null)
             {
@@ -867,7 +1001,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             return result;
         }
         #endregion
-        
+        #endregion
+
         private void CheckCustomizationStatus(string classifierId)
         {
             var getLangaugeModelResult = service.GetLanguageModel(classifierId);
@@ -892,7 +1027,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
 
-            if(getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
+            if (getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
             {
                 Task.Factory.StartNew(() =>
                 {
@@ -900,7 +1035,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                     CheckCorpusStatus(classifierId, corpusName);
                 });
             }
-            else if(getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
+            else if (getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
             {
                 throw new Exception("Corpus status is undetermined.");
             }

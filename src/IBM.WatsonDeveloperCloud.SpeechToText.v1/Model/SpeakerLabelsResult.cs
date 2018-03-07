@@ -53,7 +53,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         /// <value>An indication of whether the service might further change word and speaker-label results. A value of `true` means that the service guarantees not to send any further updates for the current or any preceding results; `false` means that the service might send further updates to the results.</value>
         [JsonProperty("final", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Final { get; set; }
+        public bool? FinalResults { get; set; }
     }
 
 }

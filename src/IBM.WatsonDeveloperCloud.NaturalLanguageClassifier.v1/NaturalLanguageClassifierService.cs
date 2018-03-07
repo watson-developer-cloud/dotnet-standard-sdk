@@ -17,10 +17,12 @@
 
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
@@ -66,11 +68,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify")
-                                .WithBody<ClassifyInput>(body)
-                                .As<Classification>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
+                request.WithBody<ClassifyInput>(body);
+                result = request.As<Classification>().Result;
             }
             catch(AggregateException ae)
             {
@@ -79,7 +80,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             return result;
         }
-
         public Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
         {
             if (metadata == null)
@@ -110,11 +110,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                     formData.Add(trainingDataContent, "training_data", "filename");
                 }
 
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/classifiers")
-                                .WithBodyContent(formData)
-                                .As<Classifier>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/classifiers");
+                request.WithBodyContent(formData);
+                result = request.As<Classifier>().Result;
             }
             catch(AggregateException ae)
             {
@@ -132,10 +131,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}")
-                                .As<object>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                result = request.As<object>().Result;
             }
             catch(AggregateException ae)
             {
@@ -153,10 +151,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}")
-                                .As<Classifier>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                result = request.As<Classifier>().Result;
             }
             catch(AggregateException ae)
             {
@@ -172,10 +169,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/classifiers")
-                                .As<ClassifierList>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/classifiers");
+                result = request.As<ClassifierList>().Result;
             }
             catch(AggregateException ae)
             {

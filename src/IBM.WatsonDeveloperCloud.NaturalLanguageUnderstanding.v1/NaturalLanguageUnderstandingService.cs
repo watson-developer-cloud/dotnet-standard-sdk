@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,14 +34,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             set { _versionDate = value; }
         }
 
-        /** The Constant NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27. */
-        public static string NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27 = "2017-02-27";
-
         public NaturalLanguageUnderstandingService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
+
 
         public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : this()
         {
@@ -52,8 +50,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+
             if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
         }
@@ -72,18 +71,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 throw new ArgumentNullException(nameof(parameters));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             AnalysisResults result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/analyze")
-                                .WithArgument("version", VersionDate)
-                                .WithBody<Parameters>(parameters)
-                                .As<AnalysisResults>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/analyze");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<Parameters>(parameters);
+                result = request.As<AnalysisResults>().Result;
             }
             catch(AggregateException ae)
             {
@@ -98,17 +96,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 throw new ArgumentNullException(nameof(modelId));
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             InlineResponse200 result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/models/{modelId}")
-                                .WithArgument("version", VersionDate)
-                                .As<InlineResponse200>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
+                request.WithArgument("version", VersionDate);
+                result = request.As<InlineResponse200>().Result;
             }
             catch(AggregateException ae)
             {
@@ -122,17 +119,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         {
 
             if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             ListModelsResults result = null;
 
             try
             {
-                result = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models")
-                                .WithArgument("version", VersionDate)
-                                .As<ListModelsResults>()
-                                .Result;
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/models");
+                request.WithArgument("version", VersionDate);
+                result = request.As<ListModelsResults>().Result;
             }
             catch(AggregateException ae)
             {

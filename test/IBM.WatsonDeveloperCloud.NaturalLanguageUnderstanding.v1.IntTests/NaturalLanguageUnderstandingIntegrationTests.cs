@@ -60,7 +60,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                 _password = vcapServices["natural_language_understanding"]["password"].Value<string>();
             }
 
-            naturalLanguageUnderstanding = new NaturalLanguageUnderstandingService(_username, _password, NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+            naturalLanguageUnderstanding = new NaturalLanguageUnderstandingService(_username, _password, "2017-02-27");
             naturalLanguageUnderstanding.Endpoint = _endpoint;
         }
 
@@ -99,5 +99,64 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         //{
 
         //}
+
+        #region Generated
+        #region Analyze
+        private AnalysisResults Analyze(Parameters parameters)
+        {
+            Console.WriteLine("\nAttempting to Analyze()");
+            var result = service.Analyze(parameters: parameters);
+
+            if (result != null)
+            {
+                Console.WriteLine("Analyze() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Analyze()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteModel
+        private InlineResponse200 DeleteModel(string modelId)
+        {
+            Console.WriteLine("\nAttempting to DeleteModel()");
+            var result = service.DeleteModel(modelId: modelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListModels
+        private ListModelsResults ListModels()
+        {
+            Console.WriteLine("\nAttempting to ListModels()");
+            var result = service.ListModels();
+
+            if (result != null)
+            {
+                Console.WriteLine("ListModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListModels()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

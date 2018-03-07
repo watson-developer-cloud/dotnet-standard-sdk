@@ -103,5 +103,45 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
             Assert.IsNotNull(result);
             Assert.IsTrue(result.UtterancesTone.Count > 0);
         }
+
+        #region Generated
+        #region Tone
+        private ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        {
+            Console.WriteLine("\nAttempting to Tone()");
+            var result = service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+
+            if (result != null)
+            {
+                Console.WriteLine("Tone() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Tone()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ToneChat
+        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string acceptLanguage = null)
+        {
+            Console.WriteLine("\nAttempting to ToneChat()");
+            var result = service.ToneChat(utterances: utterances, acceptLanguage: acceptLanguage);
+
+            if (result != null)
+            {
+                Console.WriteLine("ToneChat() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ToneChat()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

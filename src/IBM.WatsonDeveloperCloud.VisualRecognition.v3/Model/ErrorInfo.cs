@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,17 +25,23 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     public class ErrorInfo
     {
         /// <summary>
-        /// Codified error string. For example, `limit_exceeded`.
+        /// HTTP status code.
         /// </summary>
-        /// <value>Codified error string. For example, `limit_exceeded`.</value>
-        [JsonProperty("error_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ErrorId { get; set; }
+        /// <value>HTTP status code.</value>
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Code { get; set; }
         /// <summary>
         /// Human-readable error description. For example, `File size limit exceeded`.
         /// </summary>
         /// <value>Human-readable error description. For example, `File size limit exceeded`.</value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
+        /// <summary>
+        /// Codified error string. For example, `limit_exceeded`.
+        /// </summary>
+        /// <value>Codified error string. For example, `limit_exceeded`.</value>
+        [JsonProperty("error_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string ErrorId { get; set; }
     }
 
 }

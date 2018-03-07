@@ -27,7 +27,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
         #region Constructor
         public NaturalLanguageUnderstandingExample(string url, string username, string password)
         {
-            _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService(username, password, NaturalLanguageUnderstandingService.NATURAL_LANGUAGE_UNDERSTANDING_VERSION_DATE_2017_02_27);
+            _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService(username, password, "2017-02-27");
             _naturalLanguageUnderstandingService.Endpoint = url;
 
             Analyze();
@@ -287,7 +287,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
                 {
                     foreach(Model.Model model in result.Models)
                     {
-                        Console.WriteLine(string.Format("Model id: {0} | status: {1} | language: {3} | description: {4}", model.ModelId, model.Status, model.Language, model.Description));
+                        Console.WriteLine(string.Format("Model id: {0} | status: {1} | language: {2} | description: {3}", model.ModelId, model.Status, model.Language, model.Description));
                     }
                 }
                 else

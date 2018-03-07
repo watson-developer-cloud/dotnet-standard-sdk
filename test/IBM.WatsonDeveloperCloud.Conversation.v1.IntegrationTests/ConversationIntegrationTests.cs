@@ -79,7 +79,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
             }
 
-            service = new ConversationService(_username, _password, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26)
+            service = new ConversationService(_username, _password, "2018-02-16")
             {
                 Endpoint = _endpoint
             };
@@ -126,10 +126,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 try
                 {
                     var getWorkspaceResult = GetWorkspace(workspaceId);
-                    if(getWorkspaceResult != null)
+                    if (getWorkspaceResult != null)
                         DeleteWorkspace(workspaceId);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine("error: {0}", e.Message);
                 }
@@ -588,12 +588,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
+        #region Generated
         #region CreateWorkspace
-        private Workspace CreateWorkspace(CreateWorkspace workspace)
+        private Workspace CreateWorkspace(CreateWorkspace properties = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateWorkspace()");
-            var result = service.CreateWorkspace(workspace);
+            var result = service.CreateWorkspace(properties: properties);
 
             if (result != null)
             {
@@ -611,7 +611,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteWorkspace
         private object DeleteWorkspace(string workspaceId)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = service.DeleteWorkspace(workspaceId: workspaceId);
 
@@ -629,11 +628,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetWorkspace
-        private WorkspaceExport GetWorkspace(string workspaceId)
+        private WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetWorkspace()");
-            var result = service.GetWorkspace(workspaceId: workspaceId);
+            var result = service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -649,11 +647,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListWorkspaces
-        private WorkspaceCollection ListWorkspaces()
+        private WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListWorkspaces()");
-            var result = service.ListWorkspaces();
+            var result = service.ListWorkspaces(pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -669,11 +666,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateWorkspace
-        private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties)
+        private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateWorkspace()");
-            var result = service.UpdateWorkspace(workspaceId: workspaceId, properties: properties);
+            var result = service.UpdateWorkspace(workspaceId: workspaceId, properties: properties, append: append);
 
             if (result != null)
             {
@@ -689,11 +685,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Message
-        private MessageResponse Message(string workspaceId, MessageRequest request)
+        private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to Message()");
-            var result = service.Message(workspaceId: workspaceId, request: request);
+            var result = service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails);
 
             if (result != null)
             {
@@ -711,7 +706,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateIntent
         private Intent CreateIntent(string workspaceId, CreateIntent body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateIntent()");
             var result = service.CreateIntent(workspaceId: workspaceId, body: body);
 
@@ -731,7 +725,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteIntent
         private object DeleteIntent(string workspaceId, string intent)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent);
 
@@ -749,11 +742,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetIntent
-        private IntentExport GetIntent(string workspaceId, string intent)
+        private IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetIntent()");
-            var result = service.GetIntent(workspaceId: workspaceId, intent: intent);
+            var result = service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -769,11 +761,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListIntents
-        private IntentCollection ListIntents(string workspaceId)
+        private IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListIntents()");
-            var result = service.ListIntents(workspaceId: workspaceId);
+            var result = service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -791,7 +782,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateIntent
         private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateIntent()");
             var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body);
 
@@ -811,7 +801,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateExample
         private Example CreateExample(string workspaceId, string intent, CreateExample body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateExample()");
             var result = service.CreateExample(workspaceId: workspaceId, intent: intent, body: body);
 
@@ -831,7 +820,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteExample
         private object DeleteExample(string workspaceId, string intent, string text)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
 
@@ -849,11 +837,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetExample
-        private Example GetExample(string workspaceId, string intent, string text)
+        private Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetExample()");
-            var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text);
+            var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -869,11 +856,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListExamples
-        private ExampleCollection ListExamples(string workspaceId, string intent)
+        private ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListExamples()");
-            var result = service.ListExamples(workspaceId: workspaceId, intent: intent);
+            var result = service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -891,7 +877,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateExample
         private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateExample()");
             var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body);
 
@@ -911,7 +896,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateEntity
         private Entity CreateEntity(string workspaceId, CreateEntity properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateEntity()");
             var result = service.CreateEntity(workspaceId: workspaceId, properties: properties);
 
@@ -931,7 +915,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteEntity
         private object DeleteEntity(string workspaceId, string entity)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity);
 
@@ -949,11 +932,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetEntity
-        private EntityExport GetEntity(string workspaceId, string entity)
+        private EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetEntity()");
-            var result = service.GetEntity(workspaceId: workspaceId, entity: entity);
+            var result = service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -969,11 +951,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListEntities
-        private EntityCollection ListEntities(string workspaceId)
+        private EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListEntities()");
-            var result = service.ListEntities(workspaceId: workspaceId);
+            var result = service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -991,7 +972,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateEntity
         private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateEntity()");
             var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties);
 
@@ -1009,11 +989,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateValue
-        private Value CreateValue(string workspaceId, string entity, CreateValue body)
+        private Value CreateValue(string workspaceId, string entity, CreateValue properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateValue()");
-            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, body: body);
+            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, properties: properties);
 
             if (result != null)
             {
@@ -1031,7 +1010,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteValue
         private object DeleteValue(string workspaceId, string entity, string value)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
 
@@ -1049,11 +1027,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetValue
-        private ValueExport GetValue(string workspaceId, string entity, string value)
+        private ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetValue()");
-            var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value);
+            var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1069,11 +1046,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListValues
-        private ValueCollection ListValues(string workspaceId, string entity)
+        private ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListValues()");
-            var result = service.ListValues(workspaceId: workspaceId, entity: entity);
+            var result = service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1089,11 +1065,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateValue
-        private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue body)
+        private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateValue()");
-            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, body: body);
+            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, properties: properties);
 
             if (result != null)
             {
@@ -1111,7 +1086,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateSynonym
         private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateSynonym()");
             var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body);
 
@@ -1131,7 +1105,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteSynonym
         private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
@@ -1149,11 +1122,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetSynonym
-        private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym)
+        private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetSynonym()");
-            var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
+            var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1169,11 +1141,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListSynonyms
-        private SynonymCollection ListSynonyms(string workspaceId, string entity, string value)
+        private SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListSynonyms()");
-            var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value);
+            var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1191,7 +1162,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateSynonym
         private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateSynonym()");
             var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body);
 
@@ -1211,7 +1181,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateDialogNode
         private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateDialogNode()");
             var result = service.CreateDialogNode(workspaceId: workspaceId, properties: properties);
 
@@ -1231,7 +1200,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteDialogNode
         private object DeleteDialogNode(string workspaceId, string dialogNode)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
@@ -1249,11 +1217,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetDialogNode
-        private DialogNode GetDialogNode(string workspaceId, string dialogNode)
+        private DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetDialogNode()");
-            var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
+            var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1269,11 +1236,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListDialogNodes
-        private DialogNodeCollection ListDialogNodes(string workspaceId)
+        private DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListDialogNodes()");
-            var result = service.ListDialogNodes(workspaceId: workspaceId);
+            var result = service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1291,7 +1257,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateDialogNode
         private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateDialogNode()");
             var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties);
 
@@ -1309,11 +1274,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListAllLogs
-        private LogCollection ListAllLogs(string filter)
+        private LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListAllLogs()");
-            var result = service.ListAllLogs(filter: filter);
+            var result = service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor);
 
             if (result != null)
             {
@@ -1329,11 +1293,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListLogs
-        private LogCollection ListLogs(string workspaceId)
+        private LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListLogs()");
-            var result = service.ListLogs(workspaceId: workspaceId);
+            var result = service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor);
 
             if (result != null)
             {
@@ -1351,7 +1314,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region CreateCounterexample
         private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to CreateCounterexample()");
             var result = service.CreateCounterexample(workspaceId: workspaceId, body: body);
 
@@ -1371,7 +1333,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteCounterexample
         private object DeleteCounterexample(string workspaceId, string text)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text);
 
@@ -1389,11 +1350,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetCounterexample
-        private Counterexample GetCounterexample(string workspaceId, string text)
+        private Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to GetCounterexample()");
-            var result = service.GetCounterexample(workspaceId: workspaceId, text: text);
+            var result = service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1409,11 +1369,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListCounterexamples
-        private CounterexampleCollection ListCounterexamples(string workspaceId)
+        private CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to ListCounterexamples()");
-            var result = service.ListCounterexamples(workspaceId: workspaceId);
+            var result = service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
             if (result != null)
             {
@@ -1431,7 +1390,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region UpdateCounterexample
         private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
         {
-            Delay(_delayTimeInMilliseconds);
             Console.WriteLine("\nAttempting to UpdateCounterexample()");
             var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body);
 
@@ -1447,6 +1405,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             return result;
         }
         #endregion
+        #endregion
+#endregion
 
         #region Delay
         private void Delay(int delayTimeInMilliseconds)

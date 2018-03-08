@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -83,10 +83,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             KO,
             
             /// <summary>
-            /// Enum PT_BR for pt-br
+            /// Enum PT for pt
             /// </summary>
-            [EnumMember(Value = "pt-br")]
-            PT_BR
+            [EnumMember(Value = "pt")]
+            PT
         }
 
         /// <summary>

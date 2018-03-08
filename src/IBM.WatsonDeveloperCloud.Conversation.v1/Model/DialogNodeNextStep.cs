@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,18 +27,48 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     public class DialogNodeNextStep
     {
         /// <summary>
-        /// How the `next_step` reference is processed.
+        /// How the `next_step` reference is processed. If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.
         /// </summary>
-        /// <value>How the `next_step` reference is processed.</value>
+        /// <value>How the `next_step` reference is processed. If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BehaviorEnum
         {
             
             /// <summary>
+            /// Enum GET_USER_INPUT for get_user_input
+            /// </summary>
+            [EnumMember(Value = "get_user_input")]
+            GET_USER_INPUT,
+            
+            /// <summary>
+            /// Enum SKIP_USER_INPUT for skip_user_input
+            /// </summary>
+            [EnumMember(Value = "skip_user_input")]
+            SKIP_USER_INPUT,
+            
+            /// <summary>
             /// Enum JUMP_TO for jump_to
             /// </summary>
             [EnumMember(Value = "jump_to")]
-            JUMP_TO
+            JUMP_TO,
+            
+            /// <summary>
+            /// Enum REPROMPT for reprompt
+            /// </summary>
+            [EnumMember(Value = "reprompt")]
+            REPROMPT,
+            
+            /// <summary>
+            /// Enum SKIP_SLOT for skip_slot
+            /// </summary>
+            [EnumMember(Value = "skip_slot")]
+            SKIP_SLOT,
+            
+            /// <summary>
+            /// Enum SKIP_ALL_SLOTS for skip_all_slots
+            /// </summary>
+            [EnumMember(Value = "skip_all_slots")]
+            SKIP_ALL_SLOTS
         }
 
         /// <summary>
@@ -75,9 +105,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         }
 
         /// <summary>
-        /// How the `next_step` reference is processed.
+        /// How the `next_step` reference is processed. If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.
         /// </summary>
-        /// <value>How the `next_step` reference is processed.</value>
+        /// <value>How the `next_step` reference is processed. If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.</value>
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
         public BehaviorEnum? Behavior { get; set; }
         /// <summary>
@@ -87,9 +117,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("selector", NullValueHandling = NullValueHandling.Ignore)]
         public SelectorEnum? Selector { get; set; }
         /// <summary>
-        /// The ID of the dialog node to process next.
+        /// The ID of the dialog node to process next. This parameter is required if `behavior`=`jump_to`.
         /// </summary>
-        /// <value>The ID of the dialog node to process next.</value>
+        /// <value>The ID of the dialog node to process next. This parameter is required if `behavior`=`jump_to`.</value>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
         public string DialogNode { get; set; }
     }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -97,9 +97,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfigurationId { get; set; }
         /// <summary>
-        /// The language of the documents stored in the collection. Permitted values include `en_us` (U.S. English), `de` (German), and `es` (Spanish).
+        /// The language of the documents stored in the collection. Permitted values include `en` (English), `de` (German), and `es` (Spanish).
         /// </summary>
-        /// <value>The language of the documents stored in the collection. Permitted values include `en_us` (U.S. English), `de` (German), and `es` (Spanish).</value>
+        /// <value>The language of the documents stored in the collection. Permitted values include `en` (English), `de` (German), and `es` (Spanish).</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>

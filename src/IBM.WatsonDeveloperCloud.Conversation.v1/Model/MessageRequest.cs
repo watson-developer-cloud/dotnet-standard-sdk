@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         /// <value>State information for the conversation. Continue a conversation by including the context object from the previous response.</value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
         /// <summary>
         /// Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
         /// </summary>

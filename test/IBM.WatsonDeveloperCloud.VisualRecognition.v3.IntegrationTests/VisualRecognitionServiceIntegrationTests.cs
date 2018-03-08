@@ -41,8 +41,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _localFaceFilePath = @"VisualRecognitionTestData/obama.jpg";
         private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData/giraffe_positive_examples.zip";
         private string _giraffeClassname = "giraffe";
-        //private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
-        //private string _turtleClassname = "turtle";
+        private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
+        private string _turtleClassname = "turtle";
         private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
@@ -158,20 +158,20 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
             autoEvent.WaitOne();
 
-            //Classifier updateClassifierResult = null;
-            //using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
-            //{
-            //    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-            //    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-            //    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-            //    updateClassifierResult = UpdateClassifier(updateClassifier);
-            //}
+            Classifier updateClassifierResult = null;
+            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+            {
+                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+            }
 
             var deleteClassifierResult = DeleteClassifier(createdClassifierId);
 
             Assert.IsNotNull(deleteClassifierResult);
-            //Assert.IsNotNull(updateClassifierResult);
-            //Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
+            Assert.IsNotNull(updateClassifierResult);
+            Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(getClassifierResult);
             Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(createClassifierResult);
@@ -253,26 +253,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return result;
         }
         #endregion
-
-        #region CreateClassifier
-        private Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null)
-        {
-            Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(name: name, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: negativeExamples);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
-
+        
         #region DeleteClassifier
         private object DeleteClassifier(string classifierId)
         {
@@ -329,26 +310,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return result;
         }
         #endregion
-
-        #region UpdateClassifier
-        private Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
-        {
-            Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = _service.UpdateClassifier(classifierId: classifierId, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: negativeExamples);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
-
+        
         #endregion
     }
 }

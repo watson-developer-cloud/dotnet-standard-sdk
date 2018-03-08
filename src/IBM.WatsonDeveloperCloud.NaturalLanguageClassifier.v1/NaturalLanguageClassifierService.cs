@@ -58,6 +58,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             this.Client = httpClient;
         }
 
+        /// <summary>
+        /// Classify a phrase. Returns label information for the input. The status must be `Available` before you can use the classifier to classify text.
+        /// </summary>
+        /// <param name="classifierId">Classifier ID to use.</param>
+        /// <param name="body">Phrase to classify. The maximum length of the text phrase is 1024 characters.</param>
+        /// <returns><see cref="Classification" />Classification</returns>
         public Classification Classify(string classifierId, ClassifyInput body)
         {
             if (string.IsNullOrEmpty(classifierId))
@@ -80,6 +86,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             return result;
         }
+        /// <summary>
+        /// Create classifier. Sends data to create and train a classifier and returns information about the new classifier.
+        /// </summary>
+        /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier.</param>
+        /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see [Using your own data](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
         public Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
         {
             if (metadata == null)
@@ -123,6 +135,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             return result;
         }
 
+        /// <summary>
+        /// Delete classifier. 
+        /// </summary>
+        /// <param name="classifierId">Classifier ID to delete.</param>
+        /// <returns><see cref="object" />object</returns>
         public object DeleteClassifier(string classifierId)
         {
             if (string.IsNullOrEmpty(classifierId))
@@ -143,6 +160,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             return result;
         }
 
+        /// <summary>
+        /// Get information about a classifier. Returns status and other information about a classifier.
+        /// </summary>
+        /// <param name="classifierId">Classifier ID to query.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
         public Classifier GetClassifier(string classifierId)
         {
             if (string.IsNullOrEmpty(classifierId))
@@ -163,6 +185,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             return result;
         }
 
+        /// <summary>
+        /// List classifiers. Returns an empty array if no classifiers are available.
+        /// </summary>
+        /// <returns><see cref="ClassifierList" />ClassifierList</returns>
         public ClassifierList ListClassifiers()
         {
             ClassifierList result = null;

@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3 wraps the Watson Developer Cloud Tone Analyzer service (http://www.ibm.com/watson/developercloud/tone-analyzer.html)</Description>
         <AssemblyTitle>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyTitle>
-        <VersionPrefix>1.4.0</VersionPrefix>
+        <VersionPrefix>2.0.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
         <TargetFramework>netstandard1.3</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyName>

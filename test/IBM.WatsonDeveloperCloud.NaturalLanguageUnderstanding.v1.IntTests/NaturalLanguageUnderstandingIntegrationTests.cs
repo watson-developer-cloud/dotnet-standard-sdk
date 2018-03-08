@@ -158,6 +158,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
             return result;
         }
         #endregion
+
         #endregion
     }
 }

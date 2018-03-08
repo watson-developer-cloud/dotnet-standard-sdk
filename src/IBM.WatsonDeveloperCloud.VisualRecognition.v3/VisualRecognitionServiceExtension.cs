@@ -39,7 +39,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 throw new ArgumentException("At least one positive example and one negative example is required to train a classifier.");
 
             if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifier result = null;
 
@@ -100,7 +100,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 throw new ArgumentNullException(nameof(updateClassifier.ClassifierId));
 
             if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null. Use 'VISUAL_RECOGNITION_VERSION_DATE_2016_05_20'");
+                throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifier result = null;
 

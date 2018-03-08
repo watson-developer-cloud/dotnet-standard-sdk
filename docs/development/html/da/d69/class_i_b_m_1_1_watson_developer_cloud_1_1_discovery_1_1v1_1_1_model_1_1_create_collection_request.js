@@ -9,7 +9,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_cre
       [ "IT", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3acd32106bcb6de321930cf34574ea388c", null ],
       [ "JA", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a58806e006b14b04a535784a5462d09b0", null ],
       [ "KO", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a5fed318f9c859ad1b31120392472c25a", null ],
-      [ "PT_BR", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3af3ab957197753055c00e9ad90a6010aa", null ]
+      [ "PT", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#ab9f99e575c2461e3a1406408414edac3a35357b9c8fe4d3273d0237ecc8ff2e75", null ]
     ] ],
     [ "ConfigurationId", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#a736fed88129ffe22d4e89bd3976f5395", null ],
     [ "Description", "da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html#affec48603a03f42130e22ce50d8279a8", null ],

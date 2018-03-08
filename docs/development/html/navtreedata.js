@@ -2,11 +2,7 @@ var NAVTREE =
 [
   [ "Watson Developer Cloud .NET Standard SDK", "index.html", [
     [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
-      ] ]
+      [ "Namespace List", "namespaces.html", "namespaces" ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -33,15 +29,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html#adf65f5dd06b13a9229f48b225bac8296ac1cf985397bb495c06f92814f9f364ea",
-"d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a7675a406d0e005a1eb027cd843f012ee",
-"d5/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_definition.html#aec21eb802c5e619ceb1e93625e3b79a0",
-"d7/d92/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_input_data.html",
-"d9/d39/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options.html",
-"da/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_field.html#a38ca4bc6ed2c730d2a2e044884ea40d7",
-"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a65b933ab3957184c18ec36c65bdc448b",
-"dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html#ad1c357675e5629be77332d58189f4476",
-"df/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_consumption_preferences.html#abbfdc904bfffdfe2dc7f64b19d0b070c"
+"d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html#adf65f5dd06b13a9229f48b225bac8296a0c12e59ba7e96065fc19b2fc605d11af",
+"d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#afacc6e82a05995b6ee6bf83f0c1196e8",
+"d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#a0bd335f78acabfcb0fe1faa6474c46ac",
+"d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a4b0e4d1cf86da00fc7f529ab8a71b4cd",
+"d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html",
+"d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html#a75e81418077ae7aba62ea0d78bcd124e",
+"db/d90/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#a49bedbe650425380af90c07be712912e",
+"dd/d14/_query_relations_8cs.html",
+"de/db3/_entity_8cs.html",
+"dir_68267d1309a1af8e8297ef4c3efbcdba.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

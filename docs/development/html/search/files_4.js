@@ -16,7 +16,9 @@ var searchData=
   ['error_2ecs',['Error.cs',['../da/d8b/_error_8cs.html',1,'']]],
   ['errorconverter_2ecs',['ErrorConverter.cs',['../d0/d83/_error_converter_8cs.html',1,'']]],
   ['errorfilter_2ecs',['ErrorFilter.cs',['../d4/dc0/_error_filter_8cs.html',1,'']]],
-  ['errorinfonocode_2ecs',['ErrorInfoNoCode.cs',['../dc/d07/_error_info_no_code_8cs.html',1,'']]],
+  ['errorinfo_2ecs',['ErrorInfo.cs',['../d8/d4a/_error_info_8cs.html',1,'']]],
   ['example_2ecs',['Example.cs',['../d6/d38/_example_8cs.html',1,'']]],
-  ['examplecollection_2ecs',['ExampleCollection.cs',['../d3/df9/_example_collection_8cs.html',1,'']]]
+  ['examplecollection_2ecs',['ExampleCollection.cs',['../d3/df9/_example_collection_8cs.html',1,'']]],
+  ['expansion_2ecs',['Expansion.cs',['../d3/dd1/_expansion_8cs.html',1,'']]],
+  ['expansions_2ecs',['Expansions.cs',['../d3/d31/_expansions_8cs.html',1,'']]]
 ];

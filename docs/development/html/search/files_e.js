@@ -1,11 +1,21 @@
 var searchData=
 [
-  ['pagination_2ecs',['Pagination.cs',['../df/dc5/_pagination_8cs.html',1,'']]],
-  ['parameters_2ecs',['Parameters.cs',['../de/d9c/_parameters_8cs.html',1,'']]],
-  ['pdfheadingdetection_2ecs',['PdfHeadingDetection.cs',['../d6/d58/_pdf_heading_detection_8cs.html',1,'']]],
-  ['pdfsettings_2ecs',['PdfSettings.cs',['../d7/d5e/_pdf_settings_8cs.html',1,'']]],
-  ['personalityinsightsservice_2ecs',['PersonalityInsightsService.cs',['../da/d37/_personality_insights_service_8cs.html',1,'']]],
-  ['phoneme_2ecs',['Phoneme.cs',['../d6/d28/_phoneme_8cs.html',1,'']]],
-  ['profile_2ecs',['Profile.cs',['../d4/d13/_profile_8cs.html',1,'']]],
-  ['pronunciation_2ecs',['Pronunciation.cs',['../d9/d37/_pronunciation_8cs.html',1,'']]]
+  ['queryaggregation_2ecs',['QueryAggregation.cs',['../de/d5b/_query_aggregation_8cs.html',1,'']]],
+  ['queryentities_2ecs',['QueryEntities.cs',['../db/da1/_query_entities_8cs.html',1,'']]],
+  ['queryentitiescontext_2ecs',['QueryEntitiesContext.cs',['../d1/da7/_query_entities_context_8cs.html',1,'']]],
+  ['queryentitiesentity_2ecs',['QueryEntitiesEntity.cs',['../da/d89/_query_entities_entity_8cs.html',1,'']]],
+  ['queryentitiesresponse_2ecs',['QueryEntitiesResponse.cs',['../dd/d30/_query_entities_response_8cs.html',1,'']]],
+  ['queryfiltertype_2ecs',['QueryFilterType.cs',['../d4/d10/_query_filter_type_8cs.html',1,'']]],
+  ['querynoticesresponse_2ecs',['QueryNoticesResponse.cs',['../dd/d45/_query_notices_response_8cs.html',1,'']]],
+  ['querynoticesresult_2ecs',['QueryNoticesResult.cs',['../d3/d00/_query_notices_result_8cs.html',1,'']]],
+  ['querypassages_2ecs',['QueryPassages.cs',['../d2/d23/_query_passages_8cs.html',1,'']]],
+  ['queryrelations_2ecs',['QueryRelations.cs',['../dd/d14/_query_relations_8cs.html',1,'']]],
+  ['queryrelationsargument_2ecs',['QueryRelationsArgument.cs',['../d6/d64/_query_relations_argument_8cs.html',1,'']]],
+  ['queryrelationsentity_2ecs',['QueryRelationsEntity.cs',['../df/d47/_query_relations_entity_8cs.html',1,'']]],
+  ['queryrelationsfilter_2ecs',['QueryRelationsFilter.cs',['../d0/dce/_query_relations_filter_8cs.html',1,'']]],
+  ['queryrelationsrelationship_2ecs',['QueryRelationsRelationship.cs',['../dd/d01/_query_relations_relationship_8cs.html',1,'']]],
+  ['queryrelationsresponse_2ecs',['QueryRelationsResponse.cs',['../de/da9/_query_relations_response_8cs.html',1,'']]],
+  ['queryresponse_2ecs',['QueryResponse.cs',['../da/d51/_query_response_8cs.html',1,'']]],
+  ['queryresult_2ecs',['QueryResult.cs',['../dd/d99/_query_result_8cs.html',1,'']]],
+  ['queryresultresultmetadata_2ecs',['QueryResultResultMetadata.cs',['../da/dcf/_query_result_result_metadata_8cs.html',1,'']]]
 ];

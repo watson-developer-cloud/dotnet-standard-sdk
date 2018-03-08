@@ -95,8 +95,16 @@ $(document).ready(function(){initNavTree('d8/dbd/class_i_b_m_1_1_watson_develope
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab8e755c38d0be3bac7dcabec486118a0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0">BehaviorEnum</a> { <a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5">BehaviorEnum.JUMP_TO</a>
- }<tr class="memdesc:ab8e755c38d0be3bac7dcabec486118a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">How the <code>next_step</code> reference is processed.  <a href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0">More...</a><br /></td></tr>
+<tr class="memitem:ab8e755c38d0be3bac7dcabec486118a0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0">BehaviorEnum</a> { <br />
+&#160;&#160;<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a1125e265d49f5152a472b5dfbba1bdc1">BehaviorEnum.GET_USER_INPUT</a>, 
+<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a0fc4f9830d7176bcd3b9a6645a428aa0">BehaviorEnum.SKIP_USER_INPUT</a>, 
+<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5">BehaviorEnum.JUMP_TO</a>, 
+<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a79c376686d790c6bc1fbeee95f6d1507">BehaviorEnum.REPROMPT</a>, 
+<br />
+&#160;&#160;<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a6b4bc93826852a8fbb96a12f655dd244">BehaviorEnum.SKIP_SLOT</a>, 
+<a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0ac73e1221defefc09843d92c0abcc674a">BehaviorEnum.SKIP_ALL_SLOTS</a>
+<br />
+ }<tr class="memdesc:ab8e755c38d0be3bac7dcabec486118a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property.  <a href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:ab8e755c38d0be3bac7dcabec486118a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845eb0af89c609c3cc65f80a9c2e90c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a845eb0af89c609c3cc65f80a9c2e90c5">SelectorEnum</a> { <a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a845eb0af89c609c3cc65f80a9c2e90c5a9f768c0bb1c3e84ca086a85211e978ac">SelectorEnum.CONDITION</a>, 
@@ -110,13 +118,13 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aa9475396a42d755cf4692f3503b5a582"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0">BehaviorEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#aa9475396a42d755cf4692f3503b5a582">Behavior</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa9475396a42d755cf4692f3503b5a582"><td class="mdescLeft">&#160;</td><td class="mdescRight">How the <code>next_step</code> reference is processed.  <a href="#aa9475396a42d755cf4692f3503b5a582">More...</a><br /></td></tr>
+<tr class="memdesc:aa9475396a42d755cf4692f3503b5a582"><td class="mdescLeft">&#160;</td><td class="mdescRight">How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property.  <a href="#aa9475396a42d755cf4692f3503b5a582">More...</a><br /></td></tr>
 <tr class="separator:aa9475396a42d755cf4692f3503b5a582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b44699549684bcd7447e3c09e22a388"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a845eb0af89c609c3cc65f80a9c2e90c5">SelectorEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a7b44699549684bcd7447e3c09e22a388">Selector</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a7b44699549684bcd7447e3c09e22a388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which part of the dialog node to process next.  <a href="#a7b44699549684bcd7447e3c09e22a388">More...</a><br /></td></tr>
 <tr class="separator:a7b44699549684bcd7447e3c09e22a388"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9a23d99898c7b53e3c8559f0e2517a4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ad9a23d99898c7b53e3c8559f0e2517a4">DialogNode</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad9a23d99898c7b53e3c8559f0e2517a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of the dialog node to process next.  <a href="#ad9a23d99898c7b53e3c8559f0e2517a4">More...</a><br /></td></tr>
+<tr class="memdesc:ad9a23d99898c7b53e3c8559f0e2517a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of the dialog node to process next. This parameter is required if <code>behavior</code>=<code>jump_to</code>.  <a href="#ad9a23d99898c7b53e3c8559f0e2517a4">More...</a><br /></td></tr>
 <tr class="separator:ad9a23d99898c7b53e3c8559f0e2517a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -142,10 +150,20 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>How the <code>next_step</code> reference is processed. </p>
-<p>How the <code>next_step</code> reference is processed.</p>
+<p>How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property. </p>
+<p>How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property.</p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5"></a>JUMP_TO&#160;</td><td class="fielddoc"><p>Enum JUMP_TO for jump_to </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a1125e265d49f5152a472b5dfbba1bdc1"></a>GET_USER_INPUT&#160;</td><td class="fielddoc"><p>Enum GET_USER_INPUT for get_user_input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a0fc4f9830d7176bcd3b9a6645a428aa0"></a>SKIP_USER_INPUT&#160;</td><td class="fielddoc"><p>Enum SKIP_USER_INPUT for skip_user_input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5"></a>JUMP_TO&#160;</td><td class="fielddoc"><p>Enum JUMP_TO for jump_to </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a79c376686d790c6bc1fbeee95f6d1507"></a>REPROMPT&#160;</td><td class="fielddoc"><p>Enum REPROMPT for reprompt </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0a6b4bc93826852a8fbb96a12f655dd244"></a>SKIP_SLOT&#160;</td><td class="fielddoc"><p>Enum SKIP_SLOT for skip_slot </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ab8e755c38d0be3bac7dcabec486118a0ac73e1221defefc09843d92c0abcc674a"></a>SKIP_ALL_SLOTS&#160;</td><td class="fielddoc"><p>Enum SKIP_ALL_SLOTS for skip_all_slots </p>
 </td></tr>
 </table>
 
@@ -207,8 +225,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>How the <code>next_step</code> reference is processed. </p>
-<p>How the <code>next_step</code> reference is processed.</p>
+<p>How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property. </p>
+<p>How the <code>next_step</code> reference is processed. If you specify <code>jump_to</code>, then you must also specify a value for the <code>dialog_node</code> property.</p>
 
 </div>
 </div>
@@ -232,8 +250,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The ID of the dialog node to process next. </p>
-<p>The ID of the dialog node to process next.</p>
+<p>The ID of the dialog node to process next. This parameter is required if <code>behavior</code>=<code>jump_to</code>. </p>
+<p>The ID of the dialog node to process next. This parameter is required if <code>behavior</code>=<code>jump_to</code>.</p>
 
 </div>
 </div>

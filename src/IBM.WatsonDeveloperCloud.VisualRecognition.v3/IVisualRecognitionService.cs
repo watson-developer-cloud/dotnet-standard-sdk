@@ -24,14 +24,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     {
         ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null);
         DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null);
-        Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null);
 
         object DeleteClassifier(string classifierId);
 
         Classifier GetClassifier(string classifierId);
 
         Classifiers ListClassifiers(bool? verbose = null);
-
-        Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null);
     }
 }

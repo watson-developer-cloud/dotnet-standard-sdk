@@ -50,7 +50,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private string _acousticResourceUrl = "https://ia802302.us.archive.org/10/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit.mp3";
         private string _acousticResourceName = "firstOrbit";
         private string _acousticResourceMimeType = "audio/mpeg";
-        private SpeechToTextService service;
+        private SpeechToTextService _service;
 
         [TestInitialize]
         public void Setup()
@@ -78,8 +78,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 _password = vcapServices["speech_to_text"]["password"].Value<string>();
             }
 
-            service = new SpeechToTextService(_username, _password);
-            service.Endpoint = _endpoint;
+            _service = new SpeechToTextService(_username, _password);
+            _service.Endpoint = _endpoint;
         }
 
         #region Models
@@ -322,7 +322,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private SpeechModel GetModel(string modelId)
         {
             Console.WriteLine("\nAttempting to GetModel()");
-            var result = service.GetModel(modelId: modelId);
+            var result = _service.GetModel(modelId: modelId);
 
             if (result != null)
             {
@@ -341,7 +341,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private SpeechModels ListModels()
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = service.ListModels();
+            var result = _service.ListModels();
 
             if (result != null)
             {
@@ -360,7 +360,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private SpeechRecognitionResults RecognizeSessionless(string model = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, byte[] audio = null, string contentType = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
         {
             Console.WriteLine("\nAttempting to RecognizeSessionless()");
-            var result = service.RecognizeSessionless(model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, audio: audio, contentType: contentType, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
+            var result = _service.RecognizeSessionless(model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, audio: audio, contentType: contentType, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
 
             if (result != null)
             {
@@ -375,11 +375,125 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region CheckJob
+        private RecognitionJob CheckJob(string id)
+        {
+            Console.WriteLine("\nAttempting to CheckJob()");
+            var result = _service.CheckJob(id: id);
+
+            if (result != null)
+            {
+                Console.WriteLine("CheckJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CheckJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CheckJobs
+        private RecognitionJobs CheckJobs()
+        {
+            Console.WriteLine("\nAttempting to CheckJobs()");
+            var result = _service.CheckJobs();
+
+            if (result != null)
+            {
+                Console.WriteLine("CheckJobs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CheckJobs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateJob
+        private RecognitionJob CreateJob(byte[] audio, string contentType, string transferEncoding = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
+        {
+            Console.WriteLine("\nAttempting to CreateJob()");
+            var result = _service.CreateJob(audio: audio, contentType: contentType, transferEncoding: transferEncoding, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteJob
+        private object DeleteJob(string id)
+        {
+            Console.WriteLine("\nAttempting to DeleteJob()");
+            var result = _service.DeleteJob(id: id);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteJob()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region RegisterCallback
+        private RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null)
+        {
+            Console.WriteLine("\nAttempting to RegisterCallback()");
+            var result = _service.RegisterCallback(callbackUrl: callbackUrl, userSecret: userSecret);
+
+            if (result != null)
+            {
+                Console.WriteLine("RegisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to RegisterCallback()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UnregisterCallback
+        private object UnregisterCallback(string callbackUrl)
+        {
+            Console.WriteLine("\nAttempting to UnregisterCallback()");
+            var result = _service.UnregisterCallback(callbackUrl: callbackUrl);
+
+            if (result != null)
+            {
+                Console.WriteLine("UnregisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UnregisterCallback()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region CreateLanguageModel
         private LanguageModel CreateLanguageModel(CreateLanguageModel createLanguageModel)
         {
             Console.WriteLine("\nAttempting to CreateLanguageModel()");
-            var result = service.CreateLanguageModel(createLanguageModel: createLanguageModel);
+            var result = _service.CreateLanguageModel(createLanguageModel: createLanguageModel);
 
             if (result != null)
             {
@@ -398,7 +512,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object DeleteLanguageModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to DeleteLanguageModel()");
-            var result = service.DeleteLanguageModel(customizationId: customizationId);
+            var result = _service.DeleteLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -417,7 +531,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private LanguageModel GetLanguageModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to GetLanguageModel()");
-            var result = service.GetLanguageModel(customizationId: customizationId);
+            var result = _service.GetLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -436,7 +550,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private LanguageModels ListLanguageModels(string language = null)
         {
             Console.WriteLine("\nAttempting to ListLanguageModels()");
-            var result = service.ListLanguageModels(language: language);
+            var result = _service.ListLanguageModels(language: language);
 
             if (result != null)
             {
@@ -455,7 +569,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object ResetLanguageModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to ResetLanguageModel()");
-            var result = service.ResetLanguageModel(customizationId: customizationId);
+            var result = _service.ResetLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -474,7 +588,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
         {
             Console.WriteLine("\nAttempting to TrainLanguageModel()");
-            var result = service.TrainLanguageModel(customizationId: customizationId, wordTypeToAdd: wordTypeToAdd, customizationWeight: customizationWeight);
+            var result = _service.TrainLanguageModel(customizationId: customizationId, wordTypeToAdd: wordTypeToAdd, customizationWeight: customizationWeight);
 
             if (result != null)
             {
@@ -493,7 +607,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object UpgradeLanguageModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to UpgradeLanguageModel()");
-            var result = service.UpgradeLanguageModel(customizationId: customizationId);
+            var result = _service.UpgradeLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -512,7 +626,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
         {
             Console.WriteLine("\nAttempting to AddCorpus()");
-            var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType);
+            var result = _service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType);
 
             if (result != null)
             {
@@ -531,7 +645,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object DeleteCorpus(string customizationId, string corpusName)
         {
             Console.WriteLine("\nAttempting to DeleteCorpus()");
-            var result = service.DeleteCorpus(customizationId: customizationId, corpusName: corpusName);
+            var result = _service.DeleteCorpus(customizationId: customizationId, corpusName: corpusName);
 
             if (result != null)
             {
@@ -550,7 +664,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private Corpus GetCorpus(string customizationId, string corpusName)
         {
             Console.WriteLine("\nAttempting to GetCorpus()");
-            var result = service.GetCorpus(customizationId: customizationId, corpusName: corpusName);
+            var result = _service.GetCorpus(customizationId: customizationId, corpusName: corpusName);
 
             if (result != null)
             {
@@ -569,7 +683,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private Corpora ListCorpora(string customizationId)
         {
             Console.WriteLine("\nAttempting to ListCorpora()");
-            var result = service.ListCorpora(customizationId: customizationId);
+            var result = _service.ListCorpora(customizationId: customizationId);
 
             if (result != null)
             {
@@ -588,7 +702,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object AddWord(string customizationId, string wordName, CustomWord customWord)
         {
             Console.WriteLine("\nAttempting to AddWord()");
-            var result = service.AddWord(customizationId: customizationId, wordName: wordName, customWord: customWord);
+            var result = _service.AddWord(customizationId: customizationId, wordName: wordName, customWord: customWord);
 
             if (result != null)
             {
@@ -607,7 +721,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object AddWords(string customizationId, CustomWords customWords)
         {
             Console.WriteLine("\nAttempting to AddWords()");
-            var result = service.AddWords(customizationId: customizationId, customWords: customWords);
+            var result = _service.AddWords(customizationId: customizationId, customWords: customWords);
 
             if (result != null)
             {
@@ -626,7 +740,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object DeleteWord(string customizationId, string wordName)
         {
             Console.WriteLine("\nAttempting to DeleteWord()");
-            var result = service.DeleteWord(customizationId: customizationId, wordName: wordName);
+            var result = _service.DeleteWord(customizationId: customizationId, wordName: wordName);
 
             if (result != null)
             {
@@ -645,7 +759,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private Word GetWord(string customizationId, string wordName)
         {
             Console.WriteLine("\nAttempting to GetWord()");
-            var result = service.GetWord(customizationId: customizationId, wordName: wordName);
+            var result = _service.GetWord(customizationId: customizationId, wordName: wordName);
 
             if (result != null)
             {
@@ -664,7 +778,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private Words ListWords(string customizationId, string wordType = null, string sort = null)
         {
             Console.WriteLine("\nAttempting to ListWords()");
-            var result = service.ListWords(customizationId: customizationId, wordType: wordType, sort: sort);
+            var result = _service.ListWords(customizationId: customizationId, wordType: wordType, sort: sort);
 
             if (result != null)
             {
@@ -683,7 +797,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private AcousticModel CreateAcousticModel(CreateAcousticModel createAcousticModel)
         {
             Console.WriteLine("\nAttempting to CreateAcousticModel()");
-            var result = service.CreateAcousticModel(createAcousticModel: createAcousticModel);
+            var result = _service.CreateAcousticModel(createAcousticModel: createAcousticModel);
 
             if (result != null)
             {
@@ -702,7 +816,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object DeleteAcousticModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to DeleteAcousticModel()");
-            var result = service.DeleteAcousticModel(customizationId: customizationId);
+            var result = _service.DeleteAcousticModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -721,7 +835,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private AcousticModel GetAcousticModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to GetAcousticModel()");
-            var result = service.GetAcousticModel(customizationId: customizationId);
+            var result = _service.GetAcousticModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -740,7 +854,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private AcousticModels ListAcousticModels(string language = null)
         {
             Console.WriteLine("\nAttempting to ListAcousticModels()");
-            var result = service.ListAcousticModels(language: language);
+            var result = _service.ListAcousticModels(language: language);
 
             if (result != null)
             {
@@ -759,7 +873,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object ResetAcousticModel(string customizationId)
         {
             Console.WriteLine("\nAttempting to ResetAcousticModel()");
-            var result = service.ResetAcousticModel(customizationId: customizationId);
+            var result = _service.ResetAcousticModel(customizationId: customizationId);
 
             if (result != null)
             {
@@ -778,7 +892,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object TrainAcousticModel(string customizationId, string customLanguageModelId = null)
         {
             Console.WriteLine("\nAttempting to TrainAcousticModel()");
-            var result = service.TrainAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
+            var result = _service.TrainAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
 
             if (result != null)
             {
@@ -797,7 +911,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object UpgradeAcousticModel(string customizationId, string customLanguageModelId = null)
         {
             Console.WriteLine("\nAttempting to UpgradeAcousticModel()");
-            var result = service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
+            var result = _service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
 
             if (result != null)
             {
@@ -816,7 +930,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
         {
             Console.WriteLine("\nAttempting to AddAudio()");
-            var result = service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
+            var result = _service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
 
             if (result != null)
             {
@@ -835,7 +949,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private object DeleteAudio(string customizationId, string audioName)
         {
             Console.WriteLine("\nAttempting to DeleteAudio()");
-            var result = service.DeleteAudio(customizationId: customizationId, audioName: audioName);
+            var result = _service.DeleteAudio(customizationId: customizationId, audioName: audioName);
 
             if (result != null)
             {
@@ -854,7 +968,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private AudioListing GetAudio(string customizationId, string audioName)
         {
             Console.WriteLine("\nAttempting to GetAudio()");
-            var result = service.GetAudio(customizationId: customizationId, audioName: audioName);
+            var result = _service.GetAudio(customizationId: customizationId, audioName: audioName);
 
             if (result != null)
             {
@@ -873,7 +987,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private AudioResources ListAudio(string customizationId)
         {
             Console.WriteLine("\nAttempting to ListAudio()");
-            var result = service.ListAudio(customizationId: customizationId);
+            var result = _service.ListAudio(customizationId: customizationId);
 
             if (result != null)
             {
@@ -887,11 +1001,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             return result;
         }
         #endregion
+
         #endregion
 
         private void CheckCustomizationStatus(string classifierId)
         {
-            var getLangaugeModelResult = service.GetLanguageModel(classifierId);
+            var getLangaugeModelResult = _service.GetLanguageModel(classifierId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Status));
 
@@ -909,7 +1024,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
         private void CheckCorpusStatus(string classifierId, string corpusName)
         {
-            var getCorpusResult = service.GetCorpus(classifierId, corpusName);
+            var getCorpusResult = _service.GetCorpus(classifierId, corpusName);
 
             Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
 
@@ -933,7 +1048,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
         private void CheckAcousticCustomizationStatus(string classifierId)
         {
-            var getAcousticModelResult = service.GetAcousticModel(classifierId);
+            var getAcousticModelResult = _service.GetAcousticModel(classifierId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Status));
 
@@ -951,7 +1066,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
         private void CheckAudioStatus(string classifierId, string audioname)
         {
-            var getAudioResult = service.GetAudio(classifierId, audioname);
+            var getAudioResult = _service.GetAudio(classifierId, audioname);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Status));
 

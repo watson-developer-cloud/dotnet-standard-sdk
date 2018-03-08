@@ -106,24 +106,25 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         }
         #endregion
 
-        #region ProfileCsv
-        private Profile ProfileCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        #region ProfileAsCsv
+        private Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
-            Console.WriteLine("\nAttempting to ProfileCsv()");
-            var result = _service.ProfileCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+            Console.WriteLine("\nAttempting to ProfileAsCsv()");
+            var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
 
             if (result != null)
             {
-                Console.WriteLine("ProfileCsv() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+                Console.WriteLine("ProfileAsCsv() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Failed to ProfileCsv()");
+                Console.WriteLine("Failed to ProfileAsCsv()");
             }
 
             return result;
         }
         #endregion
+
         #endregion
     }
 }

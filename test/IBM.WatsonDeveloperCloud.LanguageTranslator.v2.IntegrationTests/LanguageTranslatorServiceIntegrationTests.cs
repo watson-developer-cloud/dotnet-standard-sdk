@@ -226,7 +226,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private IdentifiedLanguages IdentifyPlain(string text)
         {
             Console.WriteLine("\nAttempting to IdentifyPlain()");
-            var result = _service.IdentifyPlain(text: text);
+            var result = _service.IdentifyAsPlain(text: text);
 
             if (result != null)
             {

@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private NaturalLanguageClassifierService service;
+        private NaturalLanguageClassifierService _service;
         private static string credentials = string.Empty;
         private string _classifierDataFilePath = @"NLCTestData/weather-data.csv";
         private string _metadataDataFilePath = @"NLCTestData/metadata.json";
@@ -63,8 +63,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
                 _password = vcapServices["natural_language_classifier"]["password"].Value<string>();
             }
 
-            service = new NaturalLanguageClassifierService(_username, _password);
-            service.Endpoint = _endpoint;
+            _service = new NaturalLanguageClassifierService(_username, _password);
+            _service.Endpoint = _endpoint;
         }
 
         #region Classifiers
@@ -91,7 +91,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             Classifier createClassifierResult = null;
             using (FileStream classifierData = File.OpenRead(_classifierDataFilePath), metadata = File.OpenRead(_metadataDataFilePath))
             {
-                createClassifierResult = service.CreateClassifier(metadata, classifierData);
+                createClassifierResult = _service.CreateClassifier(metadata, classifierData);
             }
 
             var createdClassifierId = createClassifierResult.ClassifierId;
@@ -116,7 +116,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classification Classify(string classifierId, ClassifyInput body)
         {
             Console.WriteLine("\nAttempting to Classify()");
-            var result = service.Classify(classifierId: classifierId, body: body);
+            var result = _service.Classify(classifierId: classifierId, body: body);
 
             if (result != null)
             {
@@ -135,7 +135,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = service.CreateClassifier(metadata: metadata, trainingData: trainingData);
+            var result = _service.CreateClassifier(metadata: metadata, trainingData: trainingData);
 
             if (result != null)
             {
@@ -154,7 +154,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private object DeleteClassifier(string classifierId)
         {
             Console.WriteLine("\nAttempting to DeleteClassifier()");
-            var result = service.DeleteClassifier(classifierId: classifierId);
+            var result = _service.DeleteClassifier(classifierId: classifierId);
 
             if (result != null)
             {
@@ -173,7 +173,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classifier GetClassifier(string classifierId)
         {
             Console.WriteLine("\nAttempting to GetClassifier()");
-            var result = service.GetClassifier(classifierId: classifierId);
+            var result = _service.GetClassifier(classifierId: classifierId);
 
             if (result != null)
             {
@@ -192,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private ClassifierList ListClassifiers()
         {
             Console.WriteLine("\nAttempting to ListClassifiers()");
-            var result = service.ListClassifiers();
+            var result = _service.ListClassifiers();
 
             if (result != null)
             {

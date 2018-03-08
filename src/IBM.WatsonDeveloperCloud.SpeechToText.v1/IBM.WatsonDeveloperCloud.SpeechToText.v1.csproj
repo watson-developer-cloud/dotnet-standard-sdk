@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.WatsonDeveloperCloud.SpeechToText.v1 wraps the Watson Developer Cloud Speech To Text service (http://www.ibm.com/watson/developercloud/speech-to-text.html)</Description>
         <AssemblyTitle>IBM.WatsonDeveloperCloud.SpeechToText.v1</AssemblyTitle>
-        <VersionPrefix>1.4.0</VersionPrefix>
+        <VersionPrefix>2.0.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
         <TargetFramework>netstandard1.3</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.SpeechToText.v1</AssemblyName>

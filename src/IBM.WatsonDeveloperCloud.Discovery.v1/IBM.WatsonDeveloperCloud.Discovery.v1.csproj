@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.WatsonDeveloperCloud.Discovery.v1 wraps the Watson Developer Cloud Discovery service (http://www.ibm.com/watson/developercloud/discovery.html)</Description>
         <AssemblyTitle>IBM.WatsonDeveloperCloud.Discovery.v1</AssemblyTitle>
-        <VersionPrefix>1.4.0</VersionPrefix>
+        <VersionPrefix>2.0.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
         <TargetFramework>netstandard1.3</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.Discovery.v1</AssemblyName>

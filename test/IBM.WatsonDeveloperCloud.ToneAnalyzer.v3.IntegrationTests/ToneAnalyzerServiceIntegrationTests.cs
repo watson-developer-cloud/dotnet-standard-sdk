@@ -126,10 +126,10 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         #endregion
 
         #region ToneChat
-        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string acceptLanguage = null)
+        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null)
         {
             Console.WriteLine("\nAttempting to ToneChat()");
-            var result = _service.ToneChat(utterances: utterances, acceptLanguage: acceptLanguage);
+            var result = _service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
 
             if (result != null)
             {
@@ -143,6 +143,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
             return result;
         }
         #endregion
+
         #endregion
     }
 }

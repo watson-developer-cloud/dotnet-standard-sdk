@@ -4,6 +4,7 @@ var namespace_i_b_m_1_1_watson_developer_cloud =
     [ "Discovery", "dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery.html", "dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery" ],
     [ "Http", "d8/d5d/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http.html", "d8/d5d/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http" ],
     [ "LanguageTranslator", "dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator.html", "dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator" ],
+    [ "NaturalLanguageClassifier", "d9/d85/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier.html", "d9/d85/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier" ],
     [ "NaturalLanguageUnderstanding", "d1/d20/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding.html", "d1/d20/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding" ],
     [ "PersonalityInsights", "d3/d6f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights.html", "d3/d6f/namespace_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights" ],
     [ "Service", "da/d80/namespace_i_b_m_1_1_watson_developer_cloud_1_1_service.html", "da/d80/namespace_i_b_m_1_1_watson_developer_cloud_1_1_service" ],

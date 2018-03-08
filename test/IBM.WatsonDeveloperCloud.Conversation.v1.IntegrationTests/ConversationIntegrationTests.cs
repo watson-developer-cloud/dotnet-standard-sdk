@@ -51,7 +51,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string _createdExample = "example";
         private static string _dialogNodeName = "dialognode";
         private static string _dialogNodeDesc = ".NET SDK Integration test dialog node";
-        private int _delayTimeInMilliseconds = 500;
 
         [TestInitialize]
         public void Setup()

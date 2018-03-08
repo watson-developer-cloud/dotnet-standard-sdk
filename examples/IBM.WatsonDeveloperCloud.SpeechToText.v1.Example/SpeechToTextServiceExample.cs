@@ -277,7 +277,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
         {
             Console.WriteLine("\nAttempting to CreateLanguageModel()");
-            var result = service.CreateLanguageModel(contentType: contentType, createLanguageModel: createLanguageModel);
+            var result = service.CreateLanguageModel(createLanguageModel: createLanguageModel);
 
             if (result != null)
             {
@@ -486,7 +486,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private object AddWord(string customizationId, string wordName, string contentType, CustomWord customWord)
         {
             Console.WriteLine("\nAttempting to AddWord()");
-            var result = service.AddWord(customizationId: customizationId, wordName: wordName, contentType: contentType, customWord: customWord);
+            var result = service.AddWord(customizationId: customizationId, wordName: wordName, customWord: customWord);
 
             if (result != null)
             {
@@ -505,7 +505,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private object AddWords(string customizationId, string contentType, CustomWords customWords)
         {
             Console.WriteLine("\nAttempting to AddWords()");
-            var result = service.AddWords(customizationId: customizationId, contentType: contentType, customWords: customWords);
+            var result = service.AddWords(customizationId: customizationId, customWords: customWords);
 
             if (result != null)
             {
@@ -581,7 +581,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private AcousticModel CreateAcousticModel(string contentType, CreateAcousticModel createAcousticModel)
         {
             Console.WriteLine("\nAttempting to CreateAcousticModel()");
-            var result = service.CreateAcousticModel(contentType: contentType, createAcousticModel: createAcousticModel);
+            var result = service.CreateAcousticModel(createAcousticModel: createAcousticModel);
 
             if (result != null)
             {

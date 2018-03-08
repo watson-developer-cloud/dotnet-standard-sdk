@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// </summary>
         /// <value>The pronunciation of the requested text in the specified voice and format.</value>
         [JsonProperty("pronunciation", NullValueHandling = NullValueHandling.Ignore)]
-        public string Pronunciation { get; set; }
+        public string _Pronunciation { get; set; }
     }
 
 }

@@ -94,7 +94,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
                 _Text = _synthesizeText
             };
 
-            var synthesizeResult = Synthesize(synthesizeText);
+            var synthesizeResult = Synthesize(synthesizeText, "audio/wave");
 
             Assert.IsNotNull(synthesizeResult);
         }
@@ -288,7 +288,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
 
             if (result != null)
             {
-                Console.WriteLine("Synthesize() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+                Console.WriteLine("Synthesize() succeeded!");
             }
             else
             {

@@ -57,17 +57,17 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.Client = httpClient;
         }
 
-        public TranslationResult Translate(TranslateRequest request)
+        public TranslationResult Translate(TranslateRequest translateRequest)
         {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
+            if (translateRequest == null)
+                throw new ArgumentNullException(nameof(translateRequest));
             TranslationResult result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v2/translate");
-                request.WithBody<TranslateRequest>(request);
+                request.WithBody<TranslateRequest>(translateRequest);
                 result = request.As<TranslationResult>().Result;
             }
             catch(AggregateException ae)

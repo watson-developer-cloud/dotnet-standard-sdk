@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// Gets or Sets Classifiers
         /// </summary>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Classifier> Classifiers { get; set; }
+        public List<Classifier> _Classifiers { get; set; }
     }
 
 }

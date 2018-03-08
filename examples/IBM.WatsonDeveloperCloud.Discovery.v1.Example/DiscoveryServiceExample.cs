@@ -62,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Constructor
         public DiscoveryServiceExample(string url, string username, string password)
         {
-            _discovery = new DiscoveryService(username, password, DiscoveryService.DISCOVERY_VERSION_DATE_2017_11_07);
+            _discovery = new DiscoveryService(username, password, "2017-11-07");
             _discovery.Endpoint = url;
 
             GetEnvironments();

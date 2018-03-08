@@ -74,7 +74,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 _apikey = vcapServices["visual_recognition"]["api_key"].Value<string>();
             }
 
-            service = new VisualRecognitionService(_apikey, VisualRecognitionService.VISUAL_RECOGNITION_VERSION_DATE_2016_05_20);
+            service = new VisualRecognitionService(_apikey, "2016-05-20");
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
@@ -85,7 +85,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
-                var result = service.Classify(fs as Stream, null, null, "image/jpeg");
+                var result = service.Classify(fs as Stream, imagesFileContentType:"image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -96,10 +96,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void ClassifyURL_Success()
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["url"] = _imageUrl;
-
-            var result = service.Classify(null, JsonConvert.SerializeObject(parameters), null, "image/jpeg");
+            var result = service.Classify(url: _imageUrl);
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Images);
@@ -124,10 +121,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void DetectFacesURL_Success()
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["url"] = _faceUrl;
-
-            var result = service.DetectFaces(null, JsonConvert.SerializeObject(parameters), "image/jpeg");
+            var result = service.DetectFaces(url: _faceUrl);
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Images);
@@ -147,7 +141,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
                 positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
                 CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
-                createClassifierResult = CreateClassifier(createClassifier);
+                createClassifierResult = service.CreateClassifier(createClassifier);
             }
 
             string createdClassifierId = createClassifierResult.ClassifierId;
@@ -260,25 +254,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        #region CreateClassifier
-        private Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null)
-        {
-            Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = service.CreateClassifier(name: name, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: negativeExamples);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
-
         #region DeleteClassifier
         private object DeleteClassifier(string classifierId)
         {
@@ -330,25 +305,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListClassifiers()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UpdateClassifier
-        private Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
-        {
-            Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = service.UpdateClassifier(classifierId: classifierId, classnamePositiveExamples: classnamePositiveExamples, negativeExamples: negativeExamples);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateClassifier()");
             }
 
             return result;

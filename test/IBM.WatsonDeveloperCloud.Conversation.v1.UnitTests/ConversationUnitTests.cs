@@ -53,14 +53,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         public void Constructor_UserName_Null()
         {
             ConversationService service =
-                new ConversationService(null, "password", ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+                new ConversationService(null, "password", "2018-02-16");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Password_Null()
         {
             ConversationService service =
-                new ConversationService("username", null, ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+                new ConversationService("username", null, "2018-02-16");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -74,7 +74,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         public void Constructor_With_UserName_Password()
         {
             ConversationService service =
-                new ConversationService("username", "password", ConversationService.CONVERSATION_VERSION_DATE_2017_05_26);
+                new ConversationService("username", "password", "2018-02-16");
 
             Assert.IsNotNull(service);
         }
@@ -155,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Text = "text"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateCounterexample("workspaceId", example);
         }
@@ -244,7 +244,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteCounterexample("workspaceId", "example");
         }
@@ -315,7 +315,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetCounterexample("workspaceId", "text");
         }
 
@@ -382,7 +382,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListCounterexamples("workspaceId");
         }
 
@@ -504,7 +504,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Text = "text"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateCounterexample("workspaceId", "text", example);
         }
@@ -607,7 +607,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Description = "description"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateEntity("workspaceId", entity);
         }
@@ -694,7 +694,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteEntity("workspaceId", "entity");
         }
@@ -765,7 +765,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetEntity("workspaceId", "entity");
         }
 
@@ -836,7 +836,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListEntities("workspaceId");
         }
 
@@ -1060,7 +1060,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateEntity("workspaceId", "text", entity);
         }
@@ -1197,7 +1197,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Text = "text"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateExample("workspaceId", "intent", example);
         }
@@ -1289,7 +1289,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteExample("workspaceId", "intent", "example");
         }
@@ -1367,7 +1367,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetExample("workspaceId", "intent", "example");
         }
 
@@ -1441,7 +1441,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListExamples("workspaceId", "intent");
         }
 
@@ -1576,7 +1576,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Text = "text"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateExample("workspaceId", "intent", "text", example);
         }
@@ -1701,7 +1701,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateIntent("workspaceId", intent);
         }
@@ -1795,7 +1795,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteIntent("workspaceId", "intent");
         }
@@ -1866,7 +1866,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetIntent("workspaceId", "text");
         }
 
@@ -1953,7 +1953,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListIntents("workspaceId");
         }
 
@@ -2150,7 +2150,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateIntent("workspaceId", "text", intent);
         }
@@ -2244,7 +2244,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListLogs("workspaceId");
         }
 
@@ -2614,7 +2614,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             };
             #endregion
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.Message("workspaceId", message);
         }
@@ -2841,7 +2841,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Synonym = "synonym"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateSynonym("workspaceId", "entity", "value", synonym);
         }
@@ -2940,7 +2940,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -3025,7 +3025,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
 
@@ -3109,7 +3109,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListSynonyms("workspaceId", "entity", "value");
         }
 
@@ -3268,7 +3268,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Synonym = "synonym"
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", synonym);
         }
@@ -3400,7 +3400,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateValue("workspaceId", "entity", value);
         }
@@ -3506,7 +3506,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteValue("workspaceId", "entity", "example");
         }
@@ -3584,7 +3584,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetValue("workspaceId","entity", "value");
         }
 
@@ -3681,7 +3681,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListValues("workspaceId", "entity");
         }
 
@@ -3862,7 +3862,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateValue("workspaceId", "entity", "value", value);
         }
@@ -3970,7 +3970,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.CreateWorkspace(workspace);
         }
@@ -4070,7 +4070,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.DeleteWorkspace("workspaceId");
         }
@@ -4134,7 +4134,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.GetWorkspace("workspaceId");
         }
 
@@ -4334,7 +4334,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
 
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
             service.ListWorkspaces();
         }
 
@@ -4440,7 +4440,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                  });
             
             ConversationService service = new ConversationService(client);
-            service.VersionDate = ConversationService.CONVERSATION_VERSION_DATE_2017_05_26;
+            service.VersionDate = "2018-02-16";
 
             service.UpdateWorkspace("workspaceId");
         }

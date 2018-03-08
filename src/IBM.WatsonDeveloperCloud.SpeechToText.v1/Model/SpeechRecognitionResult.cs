@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,40 +18,37 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// SpeechRecognitionResult.
+    /// </summary>
     public class SpeechRecognitionResult
     {
         /// <summary>
-        /// Gets or sets if `true`, the result for this utterance is not updated further.
+        /// An indication of whether the transcription results are final. If `true`, the results for this utterance are not updated further; no additional results are sent for a `result_index` once its results are indicated as final.
         /// </summary>
-        [JsonProperty("final")]
-        public bool Final { get; set; }
-
+        /// <value>An indication of whether the transcription results are final. If `true`, the results for this utterance are not updated further; no additional results are sent for a `result_index` once its results are indicated as final.</value>
+        [JsonProperty("final", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? FinalResults { get; set; }
         /// <summary>
-        /// The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at 0 initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered.
+        /// An array of alternative transcripts. The `alternatives` array can include additional requested output such as word confidence or timestamps.
         /// </summary>
-        [JsonProperty("speaker")]
-        public int Speaker { get; set; }
-
-        /// <summary>
-        /// Gets or sets array of alternative transcripts.
-        /// </summary>
-        [JsonProperty("alternatives")]
+        /// <value>An array of alternative transcripts. The `alternatives` array can include additional requested output such as word confidence or timestamps.</value>
+        [JsonProperty("alternatives", NullValueHandling = NullValueHandling.Ignore)]
         public List<SpeechRecognitionAlternative> Alternatives { get; set; }
-
         /// <summary>
-        /// Gets or sets dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.
+        /// A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.
         /// </summary>
-        [JsonProperty("keywords_result")]
-        public KeywordResults KeywordResults { get; set; }
-
+        /// <value>A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.</value>
+        [JsonProperty("keywords_result", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, List<KeywordResult>> KeywordsResult { get; set; }
         /// <summary>
-        /// Gets or sets array of word alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is specified.
+        /// An array of alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is specified.
         /// </summary>
-        [JsonProperty("word_alternatives")]
-        public List<WordAlternativeResults> WordAlternativeResults { get; set; }
-
+        /// <value>An array of alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is specified.</value>
+        [JsonProperty("word_alternatives", NullValueHandling = NullValueHandling.Ignore)]
+        public List<WordAlternativeResults> WordAlternatives { get; set; }
     }
+
 }

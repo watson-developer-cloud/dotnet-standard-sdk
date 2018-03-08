@@ -137,6 +137,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
         }
 
+        #region Generated
         #region Message
         [TestMethod]
         public void Message_Success()
@@ -1406,7 +1407,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
         #endregion
-#endregion
+        #endregion
 
         #region Delay
         private void Delay(int delayTimeInMilliseconds)

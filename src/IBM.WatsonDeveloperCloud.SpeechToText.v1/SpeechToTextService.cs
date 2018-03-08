@@ -28,7 +28,7 @@ using System;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
-    public class SpeechToTextService : WatsonService, ISpeechToTextService
+    public partial class SpeechToTextService : WatsonService, ISpeechToTextService
     {
         const string SERVICE_NAME = "speech_to_text";
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
@@ -782,6 +782,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                 .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                     request.WithArgument("custom_language_model_id", customLanguageModelId);
+                request.WithArgument("force", true);
                 result = request.As<object>().Result;
             }
             catch(AggregateException ae)
@@ -813,40 +814,40 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             return result;
         }
-        public object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
-        {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(audioName))
-                throw new ArgumentNullException(nameof(audioName));
-            if (audioResource == null)
-                throw new ArgumentNullException(nameof(audioResource));
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
-            object result = null;
+        //public object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        //{
+        //    if (string.IsNullOrEmpty(customizationId))
+        //        throw new ArgumentNullException(nameof(customizationId));
+        //    if (string.IsNullOrEmpty(audioName))
+        //        throw new ArgumentNullException(nameof(audioName));
+        //    if (audioResource == null)
+        //        throw new ArgumentNullException(nameof(audioResource));
+        //    if (string.IsNullOrEmpty(contentType))
+        //        throw new ArgumentNullException(nameof(contentType));
+        //    object result = null;
 
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
-                request.WithHeader("Content-Type", contentType);
-                request.WithHeader("Contained-Content-Type", containedContentType);
-                if (allowOverwrite != null)
-                    request.WithArgument("allow_overwrite", allowOverwrite);
-                var audioResourceContent = new ByteArrayContent(audioResource);
-                System.Net.Http.Headers.MediaTypeHeaderValue audioResourceType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceType);
-                trainingDataContent.Headers.ContentType = audioResourceType;
-                request.WithBodyContent(trainingDataContent);
-                result = request.As<object>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
+        //    try
+        //    {
+        //        var request = this.Client.WithAuthentication(this.UserName, this.Password)
+        //                        .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+        //        request.WithHeader("Content-Type", contentType);
+        //        request.WithHeader("Contained-Content-Type", containedContentType);
+        //        if (allowOverwrite != null)
+        //            request.WithArgument("allow_overwrite", allowOverwrite);
+        //        var audioResourceContent = new ByteArrayContent(audioResource);
+        //        System.Net.Http.Headers.MediaTypeHeaderValue audioResourceType;
+        //        System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceType);
+        //        audioResourceContent.Headers.ContentType = audioResourceType;
+        //        request.WithBodyContent(audioResourceContent);
+        //        result = request.As<object>().Result;
+        //    }
+        //    catch(AggregateException ae)
+        //    {
+        //        throw ae.Flatten();
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public object DeleteAudio(string customizationId, string audioName)
         {

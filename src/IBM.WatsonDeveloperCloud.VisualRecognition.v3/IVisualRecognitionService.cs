@@ -16,10 +16,11 @@
 */
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
-    public interface IVisualRecognitionService
+    public partial interface IVisualRecognitionService
     {
         /// <summary>
         /// Classify images. Classify images with built-in or custom classifiers.
@@ -41,14 +42,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
         DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null);
-        /// <summary>
-        /// Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call.  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
-        /// </summary>
-        /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
-        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in the new classifier. You can include more than one positive example file in a call. Append `_positive_examples` to the form name. The prefix is used as the class name. For example, `goldenretriever_positive_examples` creates the class **goldenretriever**.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  Encode special characters in the file name in UTF-8.  The API explorer limits you to training only one class. To train more classes, use the API functionality.</param>
-        /// <param name="negativeExamples">A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.  Encode special characters in the file name in UTF-8. (optional)</param>
-        /// <returns><see cref="Classifier" />Classifier</returns>
-        Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null);
 
         /// <summary>
         /// Delete a classifier. 
@@ -70,14 +63,5 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="verbose">Specify `true` to return details about the classifiers. Omit this parameter to return a brief list of classifiers. (optional)</param>
         /// <returns><see cref="Classifiers" />Classifiers</returns>
         Classifiers ListClassifiers(bool? verbose = null);
-
-        /// <summary>
-        /// Update a classifier. Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see [Updating custom classifiers](https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers).  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.  **Important:** You can't update a custom classifier with an API key for a Lite plan. To update a custom classifer on a Lite plan, create another service instance on a Standard plan and re-create your custom classifier.  **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished.
-        /// </summary>
-        /// <param name="classifierId">The ID of the classifier.</param>
-        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in the classifier. The positive examples create or update classes in the classifier. You can include more than one positive example file in a call. Append `_positive_examples` to the form name. The prefix is used to name the class. For example, `goldenretriever_positive_examples` creates the class `goldenretriever`.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  Encode special characters in the file name in UTF-8. (optional)</param>
-        /// <param name="negativeExamples">A compressed (.zip) file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.  Encode special characters in the file name in UTF-8. (optional)</param>
-        /// <returns><see cref="Classifier" />Classifier</returns>
-        Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null);
     }
 }

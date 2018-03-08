@@ -22,6 +22,7 @@ using System.IO;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTests
 {
@@ -31,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private NaturalLanguageUnderstandingService naturalLanguageUnderstanding;
+        private NaturalLanguageUnderstandingService _service;
         private static string credentials = string.Empty;
         private string _nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
 
@@ -60,8 +61,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                 _password = vcapServices["natural_language_understanding"]["password"].Value<string>();
             }
 
-            naturalLanguageUnderstanding = new NaturalLanguageUnderstandingService(_username, _password, "2017-02-27");
-            naturalLanguageUnderstanding.Endpoint = _endpoint;
+            _service = new NaturalLanguageUnderstandingService(_username, _password, "2017-02-27");
+            _service.Endpoint = _endpoint;
         }
 
         [TestMethod]
@@ -81,7 +82,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                 }
             };
 
-            var result = naturalLanguageUnderstanding.Analyze(parameters);
+            var result = _service.Analyze(parameters);
 
             Assert.IsNotNull(result);
         }
@@ -89,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         [TestMethod]
         public void ListModels_Success()
         {
-            var result = naturalLanguageUnderstanding.ListModels();
+            var result = _service.ListModels();
 
             Assert.IsNotNull(result);
         }
@@ -105,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private AnalysisResults Analyze(Parameters parameters)
         {
             Console.WriteLine("\nAttempting to Analyze()");
-            var result = service.Analyze(parameters: parameters);
+            var result = _service.Analyze(parameters: parameters);
 
             if (result != null)
             {
@@ -124,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private InlineResponse200 DeleteModel(string modelId)
         {
             Console.WriteLine("\nAttempting to DeleteModel()");
-            var result = service.DeleteModel(modelId: modelId);
+            var result = _service.DeleteModel(modelId: modelId);
 
             if (result != null)
             {
@@ -143,7 +144,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private ListModelsResults ListModels()
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = service.ListModels();
+            var result = _service.ListModels();
 
             if (result != null)
             {

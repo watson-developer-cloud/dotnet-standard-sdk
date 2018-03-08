@@ -20,7 +20,7 @@ using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
-    public interface ISpeechToTextService
+    public partial interface ISpeechToTextService
     {
         /// <summary>
         /// Retrieves information about the model. Returns information about a single specified language model that is available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things.

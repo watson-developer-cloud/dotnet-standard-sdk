@@ -386,7 +386,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
                 {
                     new UtteranceAnalysis()
                     {
-                        UtteranceId = "utteranceID",
+                        UtteranceId = 100,
                         UtteranceText = "utteranceText",
                         Tones = new List<ToneChatScore>()
                         {

@@ -110,7 +110,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 Description = _customModelDescription
             };
 
-            var createLanguageModelResult = CreateLanguageModel("application/json", createLanguageModel);
+            var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
             string customizationId = createLanguageModelResult.CustomizationId;
 
             var getLanguageModelResult = GetLanguageModel(customizationId);
@@ -170,7 +170,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                             }
             };
 
-            var addCustomWordsResult = AddWords(customizationId, "application/json", customWords);
+            var addCustomWordsResult = AddWords(customizationId, customWords);
 
             CheckCustomizationStatus(customizationId);
             autoEvent.WaitOne();
@@ -192,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 Word = "dotnet"
             };
 
-            var addCustomWordResult = AddWord(customizationId, "dotnet", "application/json", customWord);
+            var addCustomWordResult = AddWord(customizationId, "dotnet", customWord);
 
             var getCustomWordResult = GetWord(customizationId, "dotnet");
 
@@ -265,7 +265,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                 Description = _acousticModelDescription
             };
 
-            var createAcousticModelResult = CreateAcousticModel("application/json", acousticModel);
+            var createAcousticModelResult = CreateAcousticModel(acousticModel);
             var acousticCustomizationId = createAcousticModelResult.CustomizationId;
 
             var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
@@ -369,120 +369,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to RecognizeSessionless()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CheckJob
-        private RecognitionJob CheckJob(string id)
-        {
-            Console.WriteLine("\nAttempting to CheckJob()");
-            var result = service.CheckJob(id: id);
-
-            if (result != null)
-            {
-                Console.WriteLine("CheckJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CheckJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CheckJobs
-        private RecognitionJobs CheckJobs()
-        {
-            Console.WriteLine("\nAttempting to CheckJobs()");
-            var result = service.CheckJobs();
-
-            if (result != null)
-            {
-                Console.WriteLine("CheckJobs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CheckJobs()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CreateJob
-        private RecognitionJob CreateJob(byte[] audio, string contentType, string transferEncoding = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string customizationId = null, string acousticCustomizationId = null, double? customizationWeight = null, string version = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null)
-        {
-            Console.WriteLine("\nAttempting to CreateJob()");
-            var result = service.CreateJob(audio: audio, contentType: contentType, transferEncoding: transferEncoding, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, customizationWeight: customizationWeight, version: version, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteJob
-        private object DeleteJob(string id)
-        {
-            Console.WriteLine("\nAttempting to DeleteJob()");
-            var result = service.DeleteJob(id: id);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteJob() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteJob()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region RegisterCallback
-        private RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null)
-        {
-            Console.WriteLine("\nAttempting to RegisterCallback()");
-            var result = service.RegisterCallback(callbackUrl: callbackUrl, userSecret: userSecret);
-
-            if (result != null)
-            {
-                Console.WriteLine("RegisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to RegisterCallback()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UnregisterCallback
-        private object UnregisterCallback(string callbackUrl)
-        {
-            Console.WriteLine("\nAttempting to UnregisterCallback()");
-            var result = service.UnregisterCallback(callbackUrl: callbackUrl);
-
-            if (result != null)
-            {
-                Console.WriteLine("UnregisterCallback() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UnregisterCallback()");
             }
 
             return result;

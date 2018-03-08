@@ -23,10 +23,11 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using System;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
-    public class VisualRecognitionService : WatsonService, IVisualRecognitionService
+    public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
@@ -39,22 +40,19 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public VisualRecognitionService() : base(SERVICE_NAME, URL)
         {
-            if(!string.IsNullOrEmpty(this.Endpoint))
+            if (!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
 
-        public VisualRecognitionService(string userName, string password, string versionDate) : this()
+        public VisualRecognitionService(string apikey, string versionDate) : this()
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
+            if (string.IsNullOrEmpty(apikey))
+                throw new ArgumentNullException(nameof(apikey));
 
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
+            this.SetCredential(apikey);
 
-            this.SetCredential(userName, password);
-
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -71,7 +69,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ClassifiedImages result = null;
@@ -98,30 +96,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
                 if (threshold != null)
                 {
-                    var thresholdContent = new StringContent(threshold, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var thresholdContent = new StringContent(threshold.ToString(), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     formData.Add(thresholdContent, "threshold");
                 }
 
                 if (owners != null)
                 {
-                    var ownersContent = new StringContent(owners, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var ownersContent = new StringContent(string.Join(",", owners.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     formData.Add(ownersContent, "owners");
                 }
 
                 if (classifierIds != null)
                 {
-                    var classifierIdsContent = new StringContent(classifierIds, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var classifierIdsContent = new StringContent(string.Join(",", classifierIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     formData.Add(classifierIdsContent, "classifier_ids");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/classify");
+                var request = this.Client.PostAsync($"{this.Endpoint}/v3/classify");
+                request.WithArgument("api_key", ApiKey);
                 request.WithArgument("version", VersionDate);
                 request.WithHeader("Accept-Language", acceptLanguage);
                 request.WithBodyContent(formData);
                 result = request.As<ClassifiedImages>().Result;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -131,7 +129,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DetectedFaces result = null;
@@ -152,71 +150,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (url != null)
                 {
                     var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("text/plain");
                     formData.Add(urlContent, "url");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/detect_faces");
+                var request = this.Client.PostAsync($"{this.Endpoint}/v3/detect_faces");
+                request.WithArgument("api_key", ApiKey);
                 request.WithArgument("version", VersionDate);
                 request.WithBodyContent(formData);
                 result = request.As<DetectedFaces>().Result;
             }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        public Classifier CreateClassifier(string name, System.IO.Stream classnamePositiveExamples, System.IO.Stream negativeExamples = null)
-        {
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException(nameof(name));
-            if (classnamePositiveExamples == null)
-                throw new ArgumentNullException(nameof(classnamePositiveExamples));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            Classifier result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (name != null)
-                {
-                    var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    nameContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    formData.Add(nameContent, "name");
-                }
-
-                if (classnamePositiveExamples != null)
-                {
-                    var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    classnamePositiveExamplesContent.Headers.ContentType = contentType;
-                    formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
-                }
-
-                if (negativeExamples != null)
-                {
-                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    negativeExamplesContent.Headers.ContentType = contentType;
-                    formData.Add(negativeExamplesContent, "negative_examples", "filename");
-                }
-
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/classifiers");
-                request.WithArgument("version", VersionDate);
-                request.WithBodyContent(formData);
-                result = request.As<Classifier>().Result;
-            }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -229,19 +173,19 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             object result = null;
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+                var request = this.Client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+                request.WithArgument("api_key", ApiKey);
                 request.WithArgument("version", VersionDate);
                 result = request.As<object>().Result;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -254,19 +198,19 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifier result = null;
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+                request.WithArgument("api_key", ApiKey);
                 request.WithArgument("version", VersionDate);
                 result = request.As<Classifier>().Result;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -277,67 +221,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public Classifiers ListClassifiers(bool? verbose = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifiers result = null;
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v3/classifiers");
+                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers");
+                request.WithArgument("api_key", ApiKey);
                 request.WithArgument("version", VersionDate);
                 if (verbose != null)
                     request.WithArgument("verbose", verbose);
                 result = request.As<Classifiers>().Result;
             }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        public Classifier UpdateClassifier(string classifierId, System.IO.Stream classnamePositiveExamples = null, System.IO.Stream negativeExamples = null)
-        {
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException(nameof(classifierId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            Classifier result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (classnamePositiveExamples != null)
-                {
-                    var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    classnamePositiveExamplesContent.Headers.ContentType = contentType;
-                    formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", "filename");
-                }
-
-                if (negativeExamples != null)
-                {
-                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    negativeExamplesContent.Headers.ContentType = contentType;
-                    formData.Add(negativeExamplesContent, "negative_examples", "filename");
-                }
-
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBodyContent(formData);
-                result = request.As<Classifier>().Result;
-            }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

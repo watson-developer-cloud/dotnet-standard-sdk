@@ -18,9 +18,11 @@
 using IBM.WatsonDeveloperCloud.SpeechToText.v1;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,692 +30,854 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
 {
     public class SpeechToTextServiceExample
     {
-        private SpeechToTextService _speechToText;
-        private string _path = "test-audio.wav";
-        private string _modelToGet = "en-US_BroadbandModel";
-        private string _createdCustomizationID;
-        private string _sessionID;
-        private string _wordName = "social";
-        private string _corpusName = "stt_integration";
-        string modelName = "en-US_BroadbandModel";
-        AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private AutoResetEvent autoEvent = new AutoResetEvent(false);
+        private static string credentials = string.Empty;
+        private string EN_US = "en-US_BroadbandModel";
+        //private string _customModelName = "dotnet-integration-test-custom-model";
+        //private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
+        //private string _corpusName = "The Jabberwocky";
+        //private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
+        private string _acousticModelName = "dotnet-integration-test-custom-acoustic-model";
+        private string _acousticModelDescription = "A custom model to teset .NET SDK Speech to Text acoustic customization.";
+        private string _acousticResourceUrl = "https://ia802302.us.archive.org/10/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit.mp3";
+        //private string _acousticResourcePath = @"SpeechToTextTestData/TheFirstAmericaninEarthOrbit.mp3";
+        private string _acousticResourceName = "firstOrbit";
+        private string _acousticResourceMimeType = "audio/mpeg";
+        private SpeechToTextService service;
 
         public SpeechToTextServiceExample(string url, string username, string password)
         {
-            _speechToText = new SpeechToTextService(username, password);
-            _speechToText.Endpoint = url;
+            service = new SpeechToTextService(username, password);
+            service.Endpoint = url;
 
-            GetModels();
-            GetModel(_modelToGet);
-            RecognizeBody();
-            RecognizeFormData();
+            //var listModelsResult = ListModels();
 
-            CreateSession();
-            GetSessionStatus();
-            RecognizeSessionBody();
-            RecognizeSessionFormData();
-            DeleteSession();
+            //var getModelResult = GetModel(EN_US);
 
-            CreateCustomModel();
-            ListCustomModels();
-            ListCustomModel();
+            //var listLanguageModelsResult = ListLanguageModels();
 
-            AddCustomCorpus();
-            TrainCustomModel();
+            //CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
+            //{
+            //    Name = _customModelName,
+            //    BaseModelName = EN_US,
+            //    Description = _customModelDescription
+            //};
+
+            //var createLanguageModelResult = CreateLanguageModel("application/json", createLanguageModel);
+            //string customizationId = createLanguageModelResult.CustomizationId;
+
+            //var getLanguageModelResult = GetLanguageModel(customizationId);
+
+            //var listCorporaResults = ListCorpora(customizationId);
+
+            //object addCorpusResults = null;
+            //using (FileStream corpusStream = File.OpenRead(_corpusPath))
+            //{
+            //    addCorpusResults = AddCorpus(customizationId, _corpusName, corpusStream);
+            //}
+
+            //var getCorpusResults = GetCorpus(customizationId, _corpusName);
+
+            //CheckCorpusStatus(customizationId, _corpusName);
+            //autoEvent.WaitOne();
+
+            //var trainLanguageModelResult = TrainLanguageModel(customizationId);
+            //CheckCustomizationStatus(customizationId);
+            //autoEvent.WaitOne();
+            //if (trainLanguageModelResult == null)
+            //    throw new Exception(string.Format("{0} is null.", nameof(trainLanguageModelResult)));
+            //trainLanguageModelResult = null;
+
+            //var listCustomWordsResult = ListWords(customizationId);
+
+            //var customWords = new CustomWords()
+            //{
+            //    Words = new List<CustomWord>()
+            //                {
+            //                    new CustomWord()
+            //                    {
+            //                        DisplayAs = "Watson",
+            //                        SoundsLike = new List<string>()
+            //                        {
+            //                            "wat son"
+            //                        },
+            //                        Word = "watson"
+            //                    },
+            //                    new CustomWord()
+            //                    {
+            //                        DisplayAs = "C#",
+            //                        SoundsLike = new List<string>()
+            //                        {
+            //                            "si sharp"
+            //                        },
+            //                        Word = "csharp"
+            //                    },
+            //                    new CustomWord()
+            //                    {
+            //                        DisplayAs = "SDK",
+            //                        SoundsLike = new List<string>()
+            //                        {
+            //                            "S.D.K."
+            //                        },
+            //                        Word = "sdk"
+            //                    }
+            //                }
+            //};
+
+            //var addCustomWordsResult = AddWords(customizationId, "application/json", customWords);
+
+            //CheckCustomizationStatus(customizationId);
+            //autoEvent.WaitOne();
+
+            //trainLanguageModelResult = TrainLanguageModel(customizationId);
+            //if (trainLanguageModelResult == null)
+            //    throw new Exception(string.Format("{0} is null.", nameof(trainLanguageModelResult)));
+            //trainLanguageModelResult = null;
+
+            //CheckCustomizationStatus(customizationId);
+            //autoEvent.WaitOne();
+
+            //var customWord = new CustomWord()
+            //{
+            //    DisplayAs = ".NET",
+            //    SoundsLike = new List<string>()
+            //    {
+            //        "dotnet"
+            //    },
+            //    Word = "dotnet"
+            //};
+
+            //var addCustomWordResult = AddWord(customizationId, "dotnet", "application/json", customWord);
+
+            //var getCustomWordResult = GetWord(customizationId, "dotnet");
+
+            //trainLanguageModelResult = TrainLanguageModel(customizationId);
+            //CheckCustomizationStatus(customizationId);
+            //autoEvent.WaitOne();
+            //if (trainLanguageModelResult == null)
+            //    throw new Exception(string.Format("{0} is null.", nameof(trainLanguageModelResult)));
+            //trainLanguageModelResult = null;
+
+            //CheckCorpusStatus(customizationId, _corpusName);
+            //autoEvent.WaitOne();
+
+            ////var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
+            ////if (upgradeLanguageModelResult == null)
+            ////    throw new Exception(string.Format("{0} is null.", nameof(upgradeLanguageModelResult)));
+
+            //var deleteCustomWordResults = DeleteWord(customizationId, "csharp");
+
+            //var deleteCorpusResults = DeleteCorpus(customizationId, _corpusName);
+
+            //var resetLanguageModelResult = ResetLanguageModel(customizationId);
+            //if (resetLanguageModelResult == null)
+            //    throw new Exception(string.Format("{0} is null.", nameof(resetLanguageModelResult)));
+
+            //var deleteLanguageModelResults = DeleteLanguageModel(customizationId);
+
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var listAcousticModelsResult = ListAcousticModels();
+
+            var acousticModel = new CreateAcousticModel
+            {
+                Name = _acousticModelName,
+                BaseModelName = EN_US,
+                Description = _acousticModelDescription
+            };
+
+            var createAcousticModelResult = CreateAcousticModel("application/json", acousticModel);
+            var acousticCustomizationId = createAcousticModelResult.CustomizationId;
+
+            var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
+
+            
+            var listAudioResult = ListAudio(acousticCustomizationId);
+            
+            object addAudioResult = null;
+
+            addAudioResult = AddAudio(acousticCustomizationId, _acousticResourceName, acousticResourceData, _acousticResourceMimeType, allowOverwrite: true);
+            
+            var getAudioResult = GetAudio(acousticCustomizationId, _acousticResourceName);
+
+            CheckAudioStatus(acousticCustomizationId, _acousticResourceName);
             autoEvent.WaitOne();
-            ListCustomCorpora();
-            GetCustomCorpus();
-            DeleteCustomCorpus();
-            TrainCustomModel();
+
+            CheckAcousticCustomizationStatus(acousticCustomizationId);
             autoEvent.WaitOne();
 
-            AddCustomWords();
-            TrainCustomModel();
-            autoEvent.WaitOne();
-            AddCustomWord();
-            TrainCustomModel();
-            autoEvent.WaitOne();
-            ListCustomWords();
-            ListCustomWord(_wordName);
-            DeleteCustomWord(_wordName);
-            TrainCustomModel();
+            var trainAcousticModelResult = TrainAcousticModel(acousticCustomizationId);
+
+            CheckAcousticCustomizationStatus(acousticCustomizationId);
             autoEvent.WaitOne();
 
-            ResetCustomModel();
-            UpgradeCustomModel();
-            DeleteCustomModel();
+            //var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
 
-            Console.WriteLine("\nexamples complete.");
+            //CheckAcousticCustomizationStatus(acousticCustomizationId);
+            //autoEvent.WaitOne();
+            
+            var deleteAudioResult = DeleteAudio(acousticCustomizationId, _acousticResourceName);
+
+            var resetAcousticModelResult = ResetAcousticModel(acousticCustomizationId);
+
+            var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
         }
 
-        #region Get Models
-        private void GetModels()
+
+        #region GetModel
+        private SpeechModel GetModel(string modelId)
         {
-            Console.WriteLine("\nCalling GetModels()...");
-            var modelSet = _speechToText.GetModels();
-
-            if (modelSet == null)
-            {
-                Console.WriteLine("modelSet is null.");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("ModelSet received...");
-            }
-
-            if (modelSet.Models != null && modelSet.Models.Count > 0)
-            {
-                Console.WriteLine("Models:");
-                foreach (SpeechModel model in modelSet.Models)
-                    Console.WriteLine(String.Format("Name: {0} | Rate: {1} | Language: {2} | Sessions: {3} | Description: {4} | URL: {5}",
-                        model.Name,
-                        model.Rate,
-                        model.Language,
-                        model.Sessions,
-                        model.Description,
-                        model.Url
-                        ));
-            }
-            else
-            {
-                Console.WriteLine("There are no models.");
-            }
-        }
-        #endregion
-
-        #region Get Model
-        private void GetModel(string modelName)
-        {
-            Console.WriteLine(string.Format("\nCalling GetModel({0})...", _modelToGet));
-            var model = _speechToText.GetModel(_modelToGet);
-
-            if (model == null)
-            {
-                Console.WriteLine("model is null.");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Model received...");
-                Console.WriteLine(string.Format("Name: {0} | Rate: {1} | Language: {2} | Sessions: {3} | Description: {4} | URL: {5}",
-                    model.Name,
-                    model.Rate,
-                    model.Language,
-                    model.Sessions,
-                    model.Description,
-                    model.Url
-                    ));
-            }
-
-        }
-        #endregion
-
-        #region Recognize Body
-        private void RecognizeBody()
-        {
-            using (FileStream fs = File.OpenRead(_path))
-            {
-                Console.WriteLine("\nCalling RecognizeBody...");
-                var speechEvent = _speechToText.Recognize(fs.GetMediaTypeFromFile(),
-                                                          fs);
-
-                Console.WriteLine("speechEvent received...");
-                if (speechEvent.Results != null || speechEvent.Results.Count > 0)
-                {
-                    foreach (SpeechRecognitionResult result in speechEvent.Results)
-                    {
-                        if (result.Alternatives != null && result.Alternatives.Count > 0)
-                        {
-                            foreach (SpeechRecognitionAlternative alternative in result.Alternatives)
-                            {
-                                Console.WriteLine(string.Format("{0}, {1}", alternative.Transcript, alternative.Confidence));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
-
-        #region Recognize Form Data
-        private void RecognizeFormData()
-        {
-            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
-            {
-                Console.WriteLine("\nCalling RecognizeFormData()...");
-                var speechEvent = _speechToText.Recognize(fs.GetMediaTypeFromFile(),
-                                  new Metadata()
-                                  {
-                                      PartContentType = fs.GetMediaTypeFromFile()
-                                  },
-                                  fs);
-
-                if (speechEvent != null)
-                {
-                    if (speechEvent.Results != null || speechEvent.Results.Count > 0)
-                    {
-                        foreach (SpeechRecognitionResult result in speechEvent.Results)
-                        {
-                            if (result.Alternatives != null && result.Alternatives.Count > 0)
-                            {
-                                foreach (SpeechRecognitionAlternative alternative in result.Alternatives)
-                                {
-                                    Console.WriteLine(string.Format("{0}, {1}", alternative.Transcript, alternative.Confidence));
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Result is null");
-                }
-            }
-        }
-        #endregion
-
-        #region Create Session
-        private void CreateSession()
-        {
-            Console.WriteLine(string.Format("\nCalling CreateSession({0})...", _modelToGet));
-            var result = _speechToText.CreateSession(_modelToGet);
+            Console.WriteLine("\nAttempting to GetModel()");
+            var result = service.GetModel(modelId: modelId);
 
             if (result != null)
             {
-                Console.WriteLine("Session received...");
-                Console.WriteLine("SessionId: {0} | NewSessionUri: {1} | Recognize: {2} | RecognizeWS: {3} | ObserveResult: {4}",
-                    result.SessionId,
-                    result.NewSessionUri,
-                    result.Recognize,
-                    result.RecognizeWS,
-                    result.ObserveResult);
-
-                _sessionID = result.SessionId;
+                Console.WriteLine("GetModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Session is null.");
+                Console.WriteLine("Failed to GetModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Get Session Status
-        private void GetSessionStatus()
+        #region ListModels
+        private SpeechModels ListModels()
         {
-            Console.WriteLine(string.Format("\nCalling GetSessionStatus({0})...", _sessionID));
-            var result = _speechToText.GetSessionStatus(_sessionID);
+            Console.WriteLine("\nAttempting to ListModels()");
+            var result = service.ListModels();
 
             if (result != null)
             {
-                Console.WriteLine("RecognizeStatus received...");
-                Console.WriteLine("State: {0} | Model: {1} | Recognize: {2} | RecognizeWS: {3} | ObserveResult: {4}",
-                    result.Session.State,
-                    result.Session.Model,
-                    result.Session.Recognize,
-                    result.Session.RecognizeWS,
-                    result.Session.ObserveResult);
+                Console.WriteLine("ListModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to ListModels()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Recognize Session Body
-        private void RecognizeSessionBody()
+        #region CreateLanguageModel
+        private LanguageModel CreateLanguageModel(string contentType, CreateLanguageModel createLanguageModel)
         {
-            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
-            {
-                Console.WriteLine("\nCalling RecognizeSessionBody()...");
-                var speechEvent = _speechToText.RecognizeWithSession(_sessionID, fs.GetMediaTypeFromFile(), fs);
-
-                if (speechEvent != null)
-                {
-                    if (speechEvent.Results != null || speechEvent.Results.Count > 0)
-                    {
-                        foreach (SpeechRecognitionResult result in speechEvent.Results)
-                        {
-                            if (result.Alternatives != null && result.Alternatives.Count > 0)
-                            {
-                                foreach (SpeechRecognitionAlternative alternative in result.Alternatives)
-                                {
-                                    Console.WriteLine(string.Format("{0}, {1}", alternative.Transcript, alternative.Confidence));
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Result is null");
-                }
-            }
-        }
-        #endregion
-
-        #region Recognize Session Form Data
-        private void RecognizeSessionFormData()
-        {
-            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-audio.wav"))
-            {
-                Console.WriteLine("\nCalling RecognizeSessionFormData()...");
-                var speechEvent = _speechToText.RecognizeWithSession(_sessionID,
-                                             fs.GetMediaTypeFromFile(),
-                                             new Metadata()
-                                             {
-                                                 PartContentType = fs.GetMediaTypeFromFile()
-                                             },
-                                             fs);
-
-                if (speechEvent != null)
-                {
-                    if (speechEvent.Results != null || speechEvent.Results.Count > 0)
-                    {
-                        foreach (SpeechRecognitionResult result in speechEvent.Results)
-                        {
-                            if (result.Alternatives != null && result.Alternatives.Count > 0)
-                            {
-                                foreach (SpeechRecognitionAlternative alternative in result.Alternatives)
-                                {
-                                    Console.WriteLine(string.Format("{0}, {1}", alternative.Transcript, alternative.Confidence));
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Result is null");
-                }
-            }
-        }
-        #endregion
-
-        #region Delete Session
-        private void DeleteSession()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteSession({0})...", _sessionID));
-            var result = _speechToText.DeleteSession(_sessionID);
+            Console.WriteLine("\nAttempting to CreateLanguageModel()");
+            var result = service.CreateLanguageModel(createLanguageModel: createLanguageModel);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Session {0} deleted.", _sessionID));
+                Console.WriteLine("CreateLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to CreateLanguageModel()");
             }
 
+            return result;
         }
         #endregion
 
-        #region Create Custom Model
-        private void CreateCustomModel()
+        #region DeleteLanguageModel
+        private object DeleteLanguageModel(string customizationId)
         {
-            Console.WriteLine("CreateCustomModel()...");
-            var result = _speechToText.CreateCustomModel("STT Custom Model", modelName, "A custom speech to text model created from the example.");
+            Console.WriteLine("\nAttempting to DeleteLanguageModel()");
+            var result = service.DeleteLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
-                if (!string.IsNullOrEmpty(result.CustomizationId))
-                {
-                    Console.WriteLine("Custom model created: {0}", result.CustomizationId);
-                    _createdCustomizationID = result.CustomizationId;
-                }
-                else
-                {
-                    Console.WriteLine("Customization id is empty.");
-                }
+                Console.WriteLine("DeleteLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to DeleteLanguageModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region List Custom Models
-        private void ListCustomModels()
+        #region GetLanguageModel
+        private LanguageModel GetLanguageModel(string customizationId)
         {
-            Console.WriteLine("\nCalling ListCustomModels()...");
-            var result = _speechToText.ListCustomModels();
+            Console.WriteLine("\nAttempting to GetLanguageModel()");
+            var result = service.GetLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
-                foreach (Customization customization in result.Customization)
-                {
-                    Console.WriteLine(string.Format("Customization: name: {0} | status: {1} | description: {2}", customization.Name, customization.Status, customization.Description));
-                }
+                Console.WriteLine("GetLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to GetLanguageModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region List Custom Model
-        private void ListCustomModel()
+        #region ListLanguageModels
+        private LanguageModels ListLanguageModels(string language = null)
         {
-            Console.WriteLine("\nCalling ListCustomModel()...");
-            var result = _speechToText.ListCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to ListLanguageModels()");
+            var result = service.ListLanguageModels(language: language);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Customization: name: {0} | status: {1} | description: {2}", result.Name, result.Status, result.Description));
+                Console.WriteLine("ListLanguageModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to ListLanguageModels()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Add Custom Corpus
-        private void AddCustomCorpus()
+        #region ResetLanguageModel
+        private object ResetLanguageModel(string customizationId)
         {
-            using (FileStream fs = File.OpenRead(@"SpeechToTextTestData\test-stt-corpus.txt"))
-            {
-                Console.WriteLine("\nCalling AddCustomModel()...");
-                object result = _speechToText.AddCorpus(_createdCustomizationID,
-                              _corpusName,
-                              false,
-                              fs);
-
-                if (result != null)
-                {
-                    Console.WriteLine("Corpus added.");
-                }
-                else
-                {
-                    Console.WriteLine("Result is null");
-                }
-            }
-        }
-        #endregion
-
-        #region List Custom Corpora
-        private void ListCustomCorpora()
-        {
-            Console.WriteLine("\nCalling ListCustomCorpora()...");
-            var result = _speechToText.ListCorpora(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to ResetLanguageModel()");
+            var result = service.ResetLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
-                if (result.CorporaProperty != null || result.CorporaProperty.Count > 0)
-                {
-                    foreach (Corpus corpus in result.CorporaProperty)
-                    {
-                        Console.WriteLine(string.Format("Corpus: name: {0} | status: {1} | totalWords: {2}", corpus.Name, corpus.Status, corpus.TotalWords));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("CorporaProperty is empty");
-                }
+                Console.WriteLine("ResetLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to ResetLanguageModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Get Custom Corpus
-        private void GetCustomCorpus()
+        #region TrainLanguageModel
+        private object TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
         {
-            Console.WriteLine("\nCalling GetCustomCorpus()...");
-            var result = _speechToText.GetCorpus(_createdCustomizationID, _corpusName);
+            Console.WriteLine("\nAttempting to TrainLanguageModel()");
+            var result = service.TrainLanguageModel(customizationId: customizationId, wordTypeToAdd: wordTypeToAdd, customizationWeight: customizationWeight);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Corpus: name: {0} | status: {1} | totalWords: {2}", result.Name, result.Status, result.TotalWords));
+                Console.WriteLine("TrainLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to TrainLanguageModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Delete Custom Corpus
-        private void DeleteCustomCorpus()
+        #region UpgradeLanguageModel
+        private object UpgradeLanguageModel(string customizationId)
         {
-            Console.WriteLine("\nCalling DeleteCustomCorpus()...");
-            var result = _speechToText.DeleteCorpus(_createdCustomizationID, _corpusName);
+            Console.WriteLine("\nAttempting to UpgradeLanguageModel()");
+            var result = service.UpgradeLanguageModel(customizationId: customizationId);
 
             if (result != null)
             {
-                Console.WriteLine("Corpus deleted.");
+                Console.WriteLine("UpgradeLanguageModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to UpgradeLanguageModel()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Add Custom Words
-        private void AddCustomWords()
+        #region AddCorpus
+        private object AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
         {
-            Console.WriteLine("\nCalling AddCustomWords()...");
-            object result = _speechToText.AddCustomWords(_createdCustomizationID,
-                                  new Words()
-                                  {
-                                      WordsProperty = new List<Word>()
-                                      {
-                                          new Word()
-                                          {
-                                             DisplayAs = "Watson",
-                                             SoundsLike = new List<string>()
-                                             {
-                                                 "wat son"
-                                             },
-                                             WordProperty = "watson"
-                                          },
-                                          new Word()
-                                          {
-                                             DisplayAs = "C#",
-                                             SoundsLike = new List<string>()
-                                             {
-                                                 "si sharp"
-                                             },
-                                             WordProperty = "csharp"
-                                          },
-                                           new Word()
-                                          {
-                                             DisplayAs = "SDK",
-                                             SoundsLike = new List<string>()
-                                             {
-                                                 "S.D.K."
-                                             },
-                                             WordProperty = "sdk"
-                                          }
-                                      }
-                                  });
+            Console.WriteLine("\nAttempting to AddCorpus()");
+            var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType);
 
             if (result != null)
             {
-                Console.WriteLine("Words added.");
+                Console.WriteLine("AddCorpus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to AddCorpus()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Add Custom Word
-        private void AddCustomWord()
+        #region DeleteCorpus
+        private object DeleteCorpus(string customizationId, string corpusName)
         {
-            Console.WriteLine("\nCalling DeleteCustomWord()...");
-            object result = _speechToText.AddCustomWord(_createdCustomizationID,
-                                  _wordName,
-                                  new WordDefinition()
-                                  {
-                                      DisplayAs = "Social",
-                                      SoundsLike = new List<string>()
-                                             {
-                                                 "so cial"
-                                             }
-                                  });
+            Console.WriteLine("\nAttempting to DeleteCorpus()");
+            var result = service.DeleteCorpus(customizationId: customizationId, corpusName: corpusName);
 
             if (result != null)
             {
-                Console.WriteLine("Word added.");
+                Console.WriteLine("DeleteCorpus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to DeleteCorpus()");
             }
+
+            return result;
         }
         #endregion
 
-        #region List Custom Words
-        private void ListCustomWords()
+        #region GetCorpus
+        private Corpus GetCorpus(string customizationId, string corpusName)
         {
-            Console.WriteLine("\nCalling ListCustomWords()...");
-            var result = _speechToText.ListCustomWords(_createdCustomizationID, null, null);
+            Console.WriteLine("\nAttempting to GetCorpus()");
+            var result = service.GetCorpus(customizationId: customizationId, corpusName: corpusName);
 
             if (result != null)
             {
-                foreach(WordData word in result.Words)
-                {
-                    Console.WriteLine(string.Format("Word: word: {0}, display as: {1} | sounds like: {2}", word.Word, word.DisplayAs, word.SoundsLike));
-                }
+                Console.WriteLine("GetCorpus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to GetCorpus()");
             }
+
+            return result;
         }
         #endregion
 
-        #region List Custom Word
-        private void ListCustomWord(string wordToList)
+        #region ListCorpora
+        private Corpora ListCorpora(string customizationId)
         {
-            Console.WriteLine("\nCalling ListCustomWords()...");
-            var result = _speechToText.ListCustomWord(_createdCustomizationID, wordToList);
+            Console.WriteLine("\nAttempting to ListCorpora()");
+            var result = service.ListCorpora(customizationId: customizationId);
 
             if (result != null)
             {
-                Console.WriteLine(string.Format("Word: word: {0}, display as: {1} | sounds like: {2}", result.Word, result.DisplayAs, result.SoundsLike));
+                Console.WriteLine("ListCorpora() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to ListCorpora()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Delete Custom Word
-        private void DeleteCustomWord(string wordToDelete)
+        #region AddWord
+        private object AddWord(string customizationId, string wordName, string contentType, CustomWord customWord)
         {
-            Console.WriteLine("\nCalling DeleteCustomWord()...");
-            object result = _speechToText.DeleteCustomWord(_createdCustomizationID, _wordName);
+            Console.WriteLine("\nAttempting to AddWord()");
+            var result = service.AddWord(customizationId: customizationId, wordName: wordName, customWord: customWord);
 
             if (result != null)
             {
-                Console.WriteLine("Custom word deleted.");
+                Console.WriteLine("AddWord() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to AddWord()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Reset Custom Model
-        private void ResetCustomModel()
+        #region AddWords
+        private object AddWords(string customizationId, string contentType, CustomWords customWords)
         {
-            Console.WriteLine("\nCalling ResetCustomModel()...");
-            var result = _speechToText.ResetCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to AddWords()");
+            var result = service.AddWords(customizationId: customizationId, customWords: customWords);
 
             if (result != null)
             {
-                Console.WriteLine("Custom model reset.");
+                Console.WriteLine("AddWords() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to AddWords()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Upgrade Custom Model
-        private void UpgradeCustomModel()
+        #region DeleteWord
+        private object DeleteWord(string customizationId, string wordName)
         {
-            Console.WriteLine("\nCalling UpgradeCustomModel()...");
-            var result = _speechToText.UpgradeCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to DeleteWord()");
+            var result = service.DeleteWord(customizationId: customizationId, wordName: wordName);
 
             if (result != null)
             {
-                Console.WriteLine("Custom model upgraded.");
+                Console.WriteLine("DeleteWord() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to DeleteWord()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Delete Custom Model
-        private void DeleteCustomModel()
+        #region GetWord
+        private Word GetWord(string customizationId, string wordName)
         {
-            Console.WriteLine("\nCalling DeleteCustomModel()...");
-            var result = _speechToText.DeleteCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to GetWord()");
+            var result = service.GetWord(customizationId: customizationId, wordName: wordName);
 
             if (result != null)
             {
-                Console.WriteLine("Custom model deleted.");
+                Console.WriteLine("GetWord() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to GetWord()");
             }
+
+            return result;
         }
         #endregion
 
-        #region Train Custom Model
-        private void TrainCustomModel()
+        #region ListWords
+        private Words ListWords(string customizationId, string wordType = null, string sort = null)
         {
-            Console.WriteLine("\nCalling TrainCustomModel()...");
-            var result = _speechToText.TrainCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to ListWords()");
+            var result = service.ListWords(customizationId: customizationId, wordType: wordType, sort: sort);
+
             if (result != null)
             {
-                Console.WriteLine("Training...");
+                Console.WriteLine("ListWords() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else
             {
-                Console.WriteLine("Result is null");
+                Console.WriteLine("Failed to ListWords()");
             }
 
-            IsTrainingComplete();
+            return result;
         }
         #endregion
 
-        #region Is Training Complete
-        private bool IsTrainingComplete()
+        #region CreateAcousticModel
+        private AcousticModel CreateAcousticModel(string contentType, CreateAcousticModel createAcousticModel)
         {
-            var result = _speechToText.ListCustomModel(_createdCustomizationID);
+            Console.WriteLine("\nAttempting to CreateAcousticModel()");
+            var result = service.CreateAcousticModel(createAcousticModel: createAcousticModel);
 
-            string status = result.Status.ToLower();
-            Console.WriteLine(string.Format("Classifier status is {0}", status));
+            if (result != null)
+            {
+                Console.WriteLine("CreateAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateAcousticModel()");
+            }
 
-            if (status == "ready" || status == "available")
+            return result;
+        }
+        #endregion
+
+        #region DeleteAcousticModel
+        private object DeleteAcousticModel(string customizationId)
+        {
+            Console.WriteLine("\nAttempting to DeleteAcousticModel()");
+            var result = service.DeleteAcousticModel(customizationId: customizationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteAcousticModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetAcousticModel
+        private AcousticModel GetAcousticModel(string customizationId)
+        {
+            Console.WriteLine("\nAttempting to GetAcousticModel()");
+            var result = service.GetAcousticModel(customizationId: customizationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetAcousticModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListAcousticModels
+        private AcousticModels ListAcousticModels(string language = null)
+        {
+            Console.WriteLine("\nAttempting to ListAcousticModels()");
+            var result = service.ListAcousticModels(language: language);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListAcousticModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListAcousticModels()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ResetAcousticModel
+        private object ResetAcousticModel(string customizationId)
+        {
+            Console.WriteLine("\nAttempting to ResetAcousticModel()");
+            var result = service.ResetAcousticModel(customizationId: customizationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ResetAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ResetAcousticModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region TrainAcousticModel
+        private object TrainAcousticModel(string customizationId, string customLanguageModelId = null)
+        {
+            Console.WriteLine("\nAttempting to TrainAcousticModel()");
+            var result = service.TrainAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("TrainAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to TrainAcousticModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpgradeAcousticModel
+        private object UpgradeAcousticModel(string customizationId, string customLanguageModelId = null)
+        {
+            Console.WriteLine("\nAttempting to UpgradeAcousticModel()");
+            var result = service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpgradeAcousticModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpgradeAcousticModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region AddAudio
+        private object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
+        {
+            Console.WriteLine("\nAttempting to AddAudio()");
+            var result = service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
+
+            if (result != null)
+            {
+                Console.WriteLine("AddAudio() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to AddAudio()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteAudio
+        private object DeleteAudio(string customizationId, string audioName)
+        {
+            Console.WriteLine("\nAttempting to DeleteAudio()");
+            var result = service.DeleteAudio(customizationId: customizationId, audioName: audioName);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteAudio() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteAudio()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetAudio
+        private AudioListing GetAudio(string customizationId, string audioName)
+        {
+            Console.WriteLine("\nAttempting to GetAudio()");
+            var result = service.GetAudio(customizationId: customizationId, audioName: audioName);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetAudio() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetAudio()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListAudio
+        private AudioResources ListAudio(string customizationId)
+        {
+            Console.WriteLine("\nAttempting to ListAudio()");
+            var result = service.ListAudio(customizationId: customizationId);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListAudio() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListAudio()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Helper Methods
+        private void CheckCustomizationStatus(string classifierId)
+        {
+            var getLangaugeModelResult = service.GetLanguageModel(classifierId);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Status));
+
+            if (getLangaugeModelResult.Status == LanguageModel.StatusEnum.READY || getLangaugeModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
                 autoEvent.Set();
             else
             {
                 Task.Factory.StartNew(() =>
                 {
                     System.Threading.Thread.Sleep(5000);
-                    IsTrainingComplete();
+                    CheckCustomizationStatus(classifierId);
                 });
             }
+        }
 
-            return result.Status.ToLower() == "ready";
+        private void CheckCorpusStatus(string classifierId, string corpusName)
+        {
+            var getCorpusResult = service.GetCorpus(classifierId, corpusName);
+
+            Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
+
+            if (getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckCorpusStatus(classifierId, corpusName);
+                });
+            }
+            else if (getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
+            {
+                throw new Exception("Corpus status is undetermined.");
+            }
+            else
+            {
+                autoEvent.Set();
+            }
+        }
+
+        private void CheckAcousticCustomizationStatus(string classifierId)
+        {
+            var getAcousticModelResult = service.GetAcousticModel(classifierId);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Status));
+
+            if (getAcousticModelResult.Status == AcousticModel.StatusEnum.AVAILABLE || getAcousticModelResult.Status == AcousticModel.StatusEnum.READY)
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        private void CheckAudioStatus(string classifierId, string audioname)
+        {
+            var getAudioResult = service.GetAudio(classifierId, audioname);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Status));
+
+            if (getAudioResult.Status == AudioListing.StatusEnum.OK)
+            {
+                autoEvent.Set();
+            }
+            else if (getAudioResult.Status == AudioListing.StatusEnum.INVALID)
+            {
+                throw new Exception("Adding audio failed");
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        public async Task<byte[]> DownloadAcousticResource(string acousticResourceUrl)
+        {
+            var client = new HttpClient();
+            var task = client.GetByteArrayAsync(acousticResourceUrl);
+            var msg = await task;
+
+            return msg;
         }
         #endregion
     }

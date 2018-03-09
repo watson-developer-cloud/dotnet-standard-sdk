@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     public class IdentifiableLanguage
     {
         /// <summary>
-        /// The code for an identifiable language.
+        /// The language code for an identifiable language.
         /// </summary>
-        /// <value>The code for an identifiable language.</value>
+        /// <value>The language code for an identifiable language.</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>

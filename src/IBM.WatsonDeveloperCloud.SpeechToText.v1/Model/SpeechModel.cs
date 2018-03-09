@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,48 +19,53 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
+    /// <summary>
+    /// SpeechModel.
+    /// </summary>
     public class SpeechModel
     {
         /// <summary>
-        /// Gets or sets name of the model for use as an identifier in calls to the service (for example, `en-US_BroadbandModel`).
+        /// The name of the model for use as an identifier in calls to the service (for example, `en-US_BroadbandModel`).
         /// </summary>
-        [JsonProperty("Name")]
+        /// <value>The name of the model for use as an identifier in calls to the service (for example, `en-US_BroadbandModel`).</value>
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-
         /// <summary>
-        /// Gets or sets language identifier for the model (for example, `en-US`).
+        /// The language identifier for the model (for example, `en-US`).
         /// </summary>
-        [JsonProperty("language")]
+        /// <value>The language identifier for the model (for example, `en-US`).</value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
-
         /// <summary>
-        /// Gets or sets sampling rate (minimum acceptable rate for audio) used by the model in Hertz.
+        /// The sampling rate (minimum acceptable rate for audio) used by the model in Hertz.
         /// </summary>
-        [JsonProperty("rate")]
-        public int Rate { get; set; }
-
+        /// <value>The sampling rate (minimum acceptable rate for audio) used by the model in Hertz.</value>
+        [JsonProperty("rate", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Rate { get; set; }
         /// <summary>
-        /// Gets or sets URI for the model.
+        /// The URI for the model.
         /// </summary>
-        [JsonProperty("url")]
+        /// <value>The URI for the model.</value>
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
-
         /// <summary>
-        /// Gets or sets describes the additional service features supported with the model.
+        /// Describes the additional service features supported with the model.
         /// </summary>
-        [JsonProperty("supported_features")]
+        /// <value>Describes the additional service features supported with the model.</value>
+        [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }
-
         /// <summary>
-        /// Gets or sets URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.)
+        /// Brief description of the model.
         /// </summary>
-        [JsonProperty("sessions")]
-        public string Sessions { get; set; }
-
-        /// <summary>
-        /// Gets or sets brief description of the model.
-        /// </summary>
-        [JsonProperty("description")]
+        /// <value>Brief description of the model.</value>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
+        /// <summary>
+        /// The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).
+        /// </summary>
+        /// <value>The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).</value>
+        [JsonProperty("sessions", NullValueHandling = NullValueHandling.Ignore)]
+        public string Sessions { get; set; }
     }
+
 }

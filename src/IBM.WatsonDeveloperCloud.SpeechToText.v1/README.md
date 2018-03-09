@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v1.3.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
 
 ### Speech to Text
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "1.3.1"
+   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "2.0.0"
 }
 
 ```
@@ -306,4 +306,4 @@ Removing a custom word does not affect the custom model until you train the mode
 object result = _speechToText.DeleteCustomWord("<customization-id>", "<word-name>");
 ```
 
-[speech-to-text]: https://www.ibm.com/watson/developercloud/doc/speech-to-text/index.html
+[speech-to-text]: https://console.bluemix.net/docs/services/speech-to-text/index.html

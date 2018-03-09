@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,20 +14,22 @@
 * limitations under the License.
 *
 */
+
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Classifiers
+    /// Verbose list of classifiers retrieved in the GET v2/classifiers call.
     /// </summary>
     public class Classifiers
     {
         /// <summary>
-        /// Classifiers
+        /// Gets or Sets Classifiers
         /// </summary>
-        [JsonProperty("classifiers")]
-        public List<ClassifyPerClassifier> _Classifiers { get; set; }
+        [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Classifier> _Classifiers { get; set; }
     }
+
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -43,6 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>An array of the nodes that were triggered to create the response.</value>
         [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic NodesVisited { get; set; }
+        /// <summary>
+        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during processing of the input message.
+        /// </summary>
+        /// <value>An array of objects containing detailed diagnostic information about the nodes that were triggered during processing of the input message.</value>
+        [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic NodesVisitedDetails { get; set; }
     }
 
 }

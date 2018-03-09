@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,341 +15,435 @@
 *
 */
 
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 {
     public class TextToSpeechService : WatsonService, ITextToSpeechService
     {
         const string SERVICE_NAME = "text_to_speech";
-
-        const string PATH_VOICES = "/v1/voices";
-        const string PATH_VOICE = PATH_VOICES + "/{0}";
-        const string PATH_SYNTHESIZE = "/v1/synthesize";
-        const string PATH_PRONUNCIATION = "/v1/pronunciation";
-        const string PATH_CUSTOMIZATIONS = "/v1/customizations";
-        const string PATH_CUSTOMIZATION = PATH_CUSTOMIZATIONS + "/{0}";
-        const string PATH_WORDS = PATH_CUSTOMIZATION + "/words";
-        const string PATH_WORD = PATH_WORDS + "/{1}";
-
         const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
-
-        public TextToSpeechService()
-            : base(SERVICE_NAME, URL)
+        public TextToSpeechService() : base(SERVICE_NAME, URL)
         {
-            if (!string.IsNullOrEmpty(this.Endpoint))
+            if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
-        public new IClient Client
-        {
-            get
-            {
-                if (base.Client == null)
-                    base.Client = new WatsonHttpClient(this.Endpoint, this.UserName, this.Password);
 
-                return base.Client;
-            }
-            set { base.Client = value; }
-        }
-
-        public TextToSpeechService(string userName, string password)
-            : this()
+        public TextToSpeechService(string userName, string password) : this()
         {
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentNullException(nameof(userName));
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
             this.SetCredential(userName, password);
+
         }
 
-        public TextToSpeechService(IClient httpClient)
-            : this()
+        public TextToSpeechService(IClient httpClient) : this()
         {
+            if (httpClient == null)
+                throw new ArgumentNullException(nameof(httpClient));
+
             this.Client = httpClient;
         }
 
-        public List<Voice> GetVoices()
+        /// <summary>
+        /// Retrieves a specific voice available for speech synthesis. Lists information about the voice specified with the `voice` path parameter. Specify the `customization_id` query parameter to obtain information for that custom voice model of the specified voice. Use the `GET /v1/voices` method to see a list of all available voices.
+        /// </summary>
+        /// <param name="voice">The voice for which information is to be returned. Retrieve available voices with the `GET /v1/voices` method.</param>
+        /// <param name="customizationId">The GUID of a custom voice model for which information is to be returned. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</param>
+        /// <returns><see cref="Voice" />Voice</returns>
+        public Voice GetVoice(string voice, string customizationId = null)
         {
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_VOICES)
-                          .As<Voices>()
-                          .Result.VoiceList;
+            if (string.IsNullOrEmpty(voice))
+                throw new ArgumentNullException(nameof(voice));
+            Voice result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/voices/{voice}");
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+                result = request.As<Voice>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
-        public Voice GetVoice(string voiceName)
+        /// <summary>
+        /// Retrieves all voices available for speech synthesis. Lists information about all available voices. To see information about a specific voice, use the `GET /v1/voices/{voice}` method.
+        /// </summary>
+        /// <returns><see cref="Voices" />Voices</returns>
+        public Voices ListVoices()
         {
-            if (string.IsNullOrEmpty(voiceName))
-                throw new ArgumentNullException("Parameter 'voiceName' must be provided");
+            Voices result = null;
 
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_VOICE, voiceName))
-                          .As<Voice>()
-                          .Result;
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/voices");
+                result = request.As<Voices>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
+            return result;
         }
-
-        public Pronunciation GetPronunciation(string text)
+        /// <summary>
+        /// Streaming speech synthesis of the text in the body parameter. Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. Identical to the `GET` method but passes longer text in the body of the request, not with the URL. Text size is limited to 5 KB. (For the `audio/l16` format, you can optionally specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.)   If a request includes invalid query parameters, the service returns a `Warnings` response header that provides messages about the invalid parameters. The warning includes a descriptive message and a list of invalid argument strings. For example, a message such as `"Unknown arguments:"` or `"Unknown url query arguments:"` followed by a list of the form `"invalid_arg_1, invalid_arg_2."` The request succeeds despite the warnings.   **Note about the Try It Out feature:** The `Try it out!` button is **not** supported for use with the the `POST /v1/synthesize` method. For examples of calls to the method, see the [Text to Speech API reference](http://www.ibm.com/watson/developercloud/text-to-speech/api/v1/).
+        /// </summary>
+        /// <param name="text">A `Text` object that provides the text to synthesize. Specify either plain text or a subset of SSML. Text size is limited to 5 KB.</param>
+        /// <param name="accept">The type of the response: audio/basic, audio/flac, audio/l16;rate=nnnn, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/mp3, audio/mpeg, audio/mulaw;rate=nnnn, audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis. (optional)</param>
+        /// <param name="voice">The voice to use for synthesis. Retrieve available voices with the `GET /v1/voices` method. (optional, default to en-US_MichaelVoice)</param>
+        /// <param name="customizationId">The GUID of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</param>
+        /// <returns><see cref="System.IO.Stream" />System.IO.Stream</returns>
+        public System.IO.Stream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null)
         {
-            return GetPronunciation(text, null, null);
-        }
+            if (text == null)
+                throw new ArgumentNullException(nameof(text));
+            System.IO.Stream result = null;
 
-        public Pronunciation GetPronunciation(string text, Voice voice)
-        {
-            return GetPronunciation(text, voice, null);
-        }
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/synthesize");
+                request.WithHeader("Accept", accept);
+                if (!string.IsNullOrEmpty(voice))
+                    request.WithArgument("voice", voice);
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+                request.WithBody<Text>(text);
+                result = new System.IO.MemoryStream(request.AsByteArray().Result);
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-        public Pronunciation GetPronunciation(string text, Voice voice = null, Phoneme phoneme = null)
-        {
-            return getPronunciation(text, voice, phoneme);
+            return result;
         }
-
-        private Pronunciation getPronunciation(string text, Voice voice, Phoneme phoneme)
+        /// <summary>
+        /// Gets the pronunciation for a word. Returns the phonetic pronunciation for the word specified by the `text` parameter. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="text">The word for which the pronunciation is requested.</param>
+        /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, `en-US`) return the same translation. Retrieve available voices with the `GET /v1/voices` method. (optional, default to en-US_MichaelVoice)</param>
+        /// <param name="format">The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</param>
+        /// <param name="customizationId">The GUID of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</param>
+        /// <returns><see cref="Pronunciation" />Pronunciation</returns>
+        public Pronunciation GetPronunciation(string text, string voice = null, string format = null, string customizationId = null)
         {
             if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("Parameter 'text' must be provided");
+                throw new ArgumentNullException(nameof(text));
+            Pronunciation result = null;
 
-            var builder =
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_PRONUNCIATION)
-                          .WithArgument("text", text);
-
-            if (voice != null)
-                builder.WithArgument("voice", voice.Name);
-
-            if (phoneme != null)
-                builder.WithArgument("format", phoneme.Value);
-
-            return builder.As<Pronunciation>().Result;
-        }
-
-        public Stream Synthesize(string text, Voice voice)
-        {
-            return synthesize(text, voice, AudioType.OGG);
-        }
-
-        public Stream Synthesize(string text, Voice voice, AudioType audioType)
-        {
-            return synthesize(text, voice, audioType);
-        }
-
-        private Stream synthesize(string text, Voice voice, AudioType audioType)
-        {
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException("Parameter 'text' must be provided");
-
-            if (voice == null)
-                throw new ArgumentNullException("Parameter 'voice' must be provided");
-
-            if (audioType == null)
-                throw new ArgumentNullException("Parameter 'audioType' must be provided");
-
-            var builder =
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_SYNTHESIZE)
-                          .WithArgument("text", text)
-                          .WithArgument("voice", voice.Name)
-                          .WithArgument("accept", audioType.Value);
-
-            return new MemoryStream(builder.AsByteArray().Result);
-        }
-
-        public List<CustomVoiceModel> GetCustomVoiceModels()
-        {
-            return this.GetCustomVoiceModels(null);
-        }
-
-        public List<CustomVoiceModel> GetCustomVoiceModels(string language)
-        {
-            var ret = Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + PATH_CUSTOMIZATIONS);
-
-            if (!string.IsNullOrEmpty(language))
-                ret.WithArgument("language", language);
-
-            return ret.As<CustomVoiceModels>()
-                          .Result.CustomVoiceList;
-        }
-
-        public CustomVoiceModel GetCustomVoiceModel(string modelId)
-        {
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException("ModelId must not be empty");
-
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelId))
-                          .As<CustomVoiceModel>()
-                          .Result;
-        }
-
-        public CustomVoiceModel SaveCustomVoiceModel(CustomVoiceModel model)
-        {
-            if (string.IsNullOrEmpty(model.Id))
-                return saveNewCustomVoiceModel(model);
-            else
-                return updateCustomVoiceModel(model);
-        }
-
-        public CustomVoiceModel updateCustomVoiceModel(CustomVoiceModel model)
-        {
-            string path = string.Format(PATH_CUSTOMIZATION, model.Id);
-
-            CustomVoiceModelUpdate updateModel = new CustomVoiceModelUpdate()
+            try
             {
-                Name = model.Name,
-                Description = model.Description,
-                Words = model.Words == null ? new List<CustomWordTranslation>() : model.Words
-            };
-
-            string s = JsonConvert.SerializeObject(updateModel);
-            var retorno =
-                Client.WithAuthentication(this.UserName, this.Password)
-                    .PostAsync(this.Endpoint + path, updateModel)
-                    .WithBody<CustomVoiceModelUpdate>(updateModel)
-                    .AsMessage();
-
-            return model;
-        }
-
-        private CustomVoiceModel saveNewCustomVoiceModel(CustomVoiceModel model)
-        {
-            string path = PATH_CUSTOMIZATIONS;
-
-            CustomVoiceModelCreate createModel = new CustomVoiceModelCreate()
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/pronunciation");
+                if (!string.IsNullOrEmpty(text))
+                    request.WithArgument("text", text);
+                if (!string.IsNullOrEmpty(voice))
+                    request.WithArgument("voice", voice);
+                if (!string.IsNullOrEmpty(format))
+                    request.WithArgument("format", format);
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+                result = request.As<Pronunciation>().Result;
+            }
+            catch(AggregateException ae)
             {
-                Name = model.Name,
-                Description = model.Description,
-                Language = model.Language
-            };
+                throw ae.Flatten();
+            }
 
-            var retorno =
-                Client.WithAuthentication(this.UserName, this.Password)
-                    .PostAsync(this.Endpoint + path)
-                    .WithBody<CustomVoiceModelCreate>(createModel)
-                    .As<CustomVoiceModel>()
-                    .Result;
-
-            model.Id = retorno.Id;
-
-            return model;
+            return result;
         }
-
-        public void DeleteCustomVoiceModel(CustomVoiceModel model)
+        /// <summary>
+        /// Creates a new custom voice model. Creates a new empty custom voice model. The model is owned by the instance of the service whose credentials are used to create it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="createVoiceModel">A `CreateVoiceModel` object that contains information about the new custom voice model.</param>
+        /// <returns><see cref="VoiceModel" />VoiceModel</returns>
+        public VoiceModel CreateVoiceModel(CreateVoiceModel createVoiceModel)
         {
-            if (string.IsNullOrEmpty(model.Id))
-                throw new ArgumentNullException("Model id must not be empty");
+            if (createVoiceModel == null)
+                throw new ArgumentNullException(nameof(createVoiceModel));
+            VoiceModel result = null;
 
-            DeleteCustomVoiceModel(model.Id);
-        }
-
-        public void DeleteCustomVoiceModel(string modelID)
-        {
-            if (string.IsNullOrEmpty(modelID))
-                throw new ArgumentNullException("Model id must not be empty");
-
-            Client.WithAuthentication(this.UserName, this.Password)
-                          .DeleteAsync(this.Endpoint + string.Format(PATH_CUSTOMIZATION, modelID))
-                          .AsMessage();
-        }
-
-        public List<CustomWordTranslation> GetWords(CustomVoiceModel model)
-        {
-            if (string.IsNullOrEmpty(model.Id))
-                throw new ArgumentNullException("Model id must not be empty");
-
-            return GetWords(model.Id);
-        }
-
-        public List<CustomWordTranslation> GetWords(string modelID)
-        {
-            if (string.IsNullOrEmpty(modelID))
-                throw new ArgumentNullException("Model id must not be empty");
-
-            return Client.WithAuthentication(this.UserName, this.Password)
-                          .GetAsync(this.Endpoint + string.Format(PATH_WORDS, modelID))
-                          .As<CustomWordTranslations>()
-                          .Result.Words;
-        }
-
-        public void SaveWords(CustomVoiceModel model, params CustomWordTranslation[] translations)
-        {
-            if (string.IsNullOrEmpty(model.Id))
-                throw new ArgumentNullException("Model id must not be empty");
-
-            if (translations.Length ==0)
-                throw new Exception("Must have at least one word to save");
-
-            SaveWords(model.Id, translations);
-        }
-
-        public void SaveWords(string modelID, params CustomWordTranslation[] translations)
-        {
-            if (string.IsNullOrEmpty(modelID))
-                throw new ArgumentNullException("Model id must not be empty");
-
-            if (translations.Length == 0)
-                throw new Exception("Must have at least one word to save");
-
-            CustomWordTranslations customWordTranslations = new CustomWordTranslations()
+            try
             {
-                Words = translations.ToList()
-            };
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations");
+                request.WithBody<CreateVoiceModel>(createVoiceModel);
+                result = request.As<VoiceModel>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-            var x = Client.WithAuthentication(this.UserName, this.Password)
-                      .PostAsync(this.Endpoint + string.Format(PATH_WORDS, modelID))
-                      .WithBody<CustomWordTranslations>(customWordTranslations)
-                      .AsMessage().Result;
+            return result;
         }
 
-        public void DeleteWord(CustomVoiceModel model, CustomWordTranslation translation)
+        /// <summary>
+        /// Deletes a custom voice model. Deletes the custom voice model with the specified `customization_id`. You must use credentials for the instance of the service that owns a model to delete it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be deleted. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <returns><see cref="object" />object</returns>
+        public object DeleteVoiceModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(model.Id))
-                throw new ArgumentNullException("Model id must not be empty");
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            object result = null;
 
-            if (string.IsNullOrEmpty(translation.Word))
-                throw new ArgumentNullException("Word must not be empty");
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                result = request.As<object>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-            DeleteWord(model.Id, translation.Word);
+            return result;
         }
 
-        public void DeleteWord(string modelID, CustomWordTranslation translation)
+        /// <summary>
+        /// Queries the contents of a custom voice model. Lists all information about the custom voice model with the specified `customization_id`. In addition to metadata such as the name and description of the voice model, the output includes the words in the model and their translations as defined in the model. To see just the metadata for a voice model, use the `GET /v1/customizations` method. You must use credentials for the instance of the service that owns a model to list information about it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be queried. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <returns><see cref="VoiceModel" />VoiceModel</returns>
+        public VoiceModel GetVoiceModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(modelID))
-                throw new ArgumentNullException("Model id must not be empty");
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            VoiceModel result = null;
 
-            if (string.IsNullOrEmpty(translation.Word))
-                throw new ArgumentNullException("Word must not be empty");
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                result = request.As<VoiceModel>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-            DeleteWord(modelID, translation.Word);
+            return result;
         }
 
-        public void DeleteWord(CustomVoiceModel model, string word)
+        /// <summary>
+        /// Lists all available custom voice models for a language or for all languages. Lists metadata such as the name and description for the custom voice models that you own. Use the `language` query parameter to list the voice models that you own for the specified language only. Omit the parameter to see all voice models that you own for all languages. To see the words in addition to the metadata for a specific voice model, use the `GET /v1/customizations/{customization_id}` method. You must use credentials for the instance of the service that owns a model to list information about it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="language">The language for which custom voice models that are owned by the requesting service credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the requester. (optional)</param>
+        /// <returns><see cref="VoiceModels" />VoiceModels</returns>
+        public VoiceModels ListVoiceModels(string language = null)
         {
-            if (string.IsNullOrEmpty(model.Id))
-                throw new ArgumentNullException("Model id must not be empty");
+            VoiceModels result = null;
 
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations");
+                if (!string.IsNullOrEmpty(language))
+                    request.WithArgument("language", language);
+                result = request.As<VoiceModels>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Updates information and words for a custom voice model. Updates information for the custom voice model with the specified `customization_id`. You can update the metadata such as the name and description of the voice model. You can also update the words in the model and their translations. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to update it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <param name="updateVoiceModel">An `UpdateVoiceModel` object that contains information that is to be updated for the custom voice model.</param>
+        /// <returns><see cref="object" />object</returns>
+        public object UpdateVoiceModel(string customizationId, UpdateVoiceModel updateVoiceModel)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (updateVoiceModel == null)
+                throw new ArgumentNullException(nameof(updateVoiceModel));
+            object result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                request.WithBody<UpdateVoiceModel>(updateVoiceModel);
+                result = request.As<object>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Adds a word to a custom voice model. Adds a single word and its translation to the custom voice model with the specified `customization_id`. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to add a word to it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <param name="word">The word that is to be added or updated for the custom voice model.</param>
+        /// <param name="translation">The translation for the word that is to be added or updated.</param>
+        /// <returns><see cref="object" />object</returns>
+        public object AddWord(string customizationId, string word, Translation translation)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
             if (string.IsNullOrEmpty(word))
-                throw new ArgumentNullException("Word must not be empty");
+                throw new ArgumentNullException(nameof(word));
+            if (translation == null)
+                throw new ArgumentNullException(nameof(translation));
+            object result = null;
 
-            DeleteWord(model.Id, word);
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+                request.WithBody<Translation>(translation);
+                result = request.As<object>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
-        public void DeleteWord(string modelID, string word)
+        /// <summary>
+        /// Adds one or more words to a custom voice model. Adds one or more words and their translations to the custom voice model with the specified `customization_id`. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to add words to it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be updated. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <param name="customWords">A `Words` object that contains the word or words that are to be added or updated for the custom voice model and the translation for each specified word.</param>
+        /// <returns><see cref="object" />object</returns>
+        public object AddWords(string customizationId, Words customWords)
         {
-            if (string.IsNullOrEmpty(modelID))
-                throw new ArgumentNullException("Model id must not be empty");
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (customWords == null)
+                throw new ArgumentNullException(nameof(customWords));
+            object result = null;
 
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                request.WithBody<Words>(customWords);
+                result = request.As<object>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Deletes a word from a custom voice model. Deletes a single word from the custom voice model with the specified `customization_id`. You must use credentials for the instance of the service that owns a model to delete it.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model from which to delete a word. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <param name="word">The word that is to be deleted from the custom voice model.</param>
+        /// <returns><see cref="object" />object</returns>
+        public object DeleteWord(string customizationId, string word)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
             if (string.IsNullOrEmpty(word))
-                throw new ArgumentNullException("Word must not be empty");
+                throw new ArgumentNullException(nameof(word));
+            object result = null;
 
-            var r = Client.WithAuthentication(this.UserName, this.Password)
-              .DeleteAsync(this.Endpoint + string.Format(PATH_WORD, modelID, word))
-              .AsMessage()
-              .Result;
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+                result = request.As<object>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Queries details about a word in a custom voice model. Returns the translation for a single word from the custom model with the specified `customization_id`. The output shows the translation as it is defined in the model. You must use credentials for the instance of the service that owns a model to query information about its words.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model from which to query a word. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <param name="word">The word that is to be queried from the custom voice model.</param>
+        /// <returns><see cref="Translation" />Translation</returns>
+        public Translation GetWord(string customizationId, string word)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            if (string.IsNullOrEmpty(word))
+                throw new ArgumentNullException(nameof(word));
+            Translation result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+                result = request.As<Translation>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Queries details about the words in a custom voice model. Lists all of the words and their translations for the custom voice model with the specified `customization_id`. The output shows the translations as they are defined in the model. You must use credentials for the instance of the service that owns a model to query information about its words.   **Note:** This method is currently a beta release.
+        /// </summary>
+        /// <param name="customizationId">The GUID of the custom voice model that is to be queried. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// <returns><see cref="Words" />Words</returns>
+        public Words ListWords(string customizationId)
+        {
+            if (string.IsNullOrEmpty(customizationId))
+                throw new ArgumentNullException(nameof(customizationId));
+            Words result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                result = request.As<Words>().Result;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
     }
 }

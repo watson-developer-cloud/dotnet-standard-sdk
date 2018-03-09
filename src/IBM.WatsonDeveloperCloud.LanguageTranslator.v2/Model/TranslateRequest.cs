@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,27 +26,27 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     public class TranslateRequest
     {
         /// <summary>
-        /// Input text in UTF-8 encoding. It is a list so that multiple paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.
+        /// Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.
         /// </summary>
-        /// <value>Input text in UTF-8 encoding. It is a list so that multiple paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.</value>
+        /// <value>Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.</value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Text { get; set; }
         /// <summary>
-        /// The unique model_id of the translation model being used to translate text. The model_id inherently specifies source language, target language, and domain. If the model_id is specified, there is no need for the source and target parameters and the values are ignored.
+        /// Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.
         /// </summary>
-        /// <value>The unique model_id of the translation model being used to translate text. The model_id inherently specifies source language, target language, and domain. If the model_id is specified, there is no need for the source and target parameters and the values are ignored.</value>
+        /// <value>Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.</value>
         [JsonProperty("model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ModelId { get; set; }
         /// <summary>
-        /// Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+        /// Language code of the source text language. Use with `target` as an alternative way to select a translation model. When `source` and `target` are set, and a model ID is not set, the system chooses a default model for the language pair (usually the model based on the news domain).
         /// </summary>
-        /// <value>Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).</value>
+        /// <value>Language code of the source text language. Use with `target` as an alternative way to select a translation model. When `source` and `target` are set, and a model ID is not set, the system chooses a default model for the language pair (usually the model based on the news domain).</value>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
-        /// Used in combination with source as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+        /// Language code of the translation target language. Use with source as an alternative way to select a translation model.
         /// </summary>
-        /// <value>Used in combination with source as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).</value>
+        /// <value>Language code of the translation target language. Use with source as an alternative way to select a translation model.</value>
         [JsonProperty("target", NullValueHandling = NullValueHandling.Ignore)]
         public string Target { get; set; }
     }

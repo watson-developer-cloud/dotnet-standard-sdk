@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -102,33 +102,33 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// A globally unique string that identifies the underlying model that is used for translation. This string contains all the information about source language, target language, domain, and various other related configurations.
+        /// A globally unique string that identifies the underlying model that is used for translation.
         /// </summary>
-        /// <value>A globally unique string that identifies the underlying model that is used for translation. This string contains all the information about source language, target language, domain, and various other related configurations.</value>
+        /// <value>A globally unique string that identifies the underlying model that is used for translation.</value>
         [JsonProperty("model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ModelId { get; set; }
         /// <summary>
-        /// If a model is trained by a user, there might be an optional “name” parameter attached during training to help the user identify the model.
+        /// Optional name that can be specified when the model is created.
         /// </summary>
-        /// <value>If a model is trained by a user, there might be an optional “name” parameter attached during training to help the user identify the model.</value>
+        /// <value>Optional name that can be specified when the model is created.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// Source language in two letter language code. Use the five letter code when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a two letter language code is used, but no suitable default is found, it returns an error.
+        /// Translation source language code.
         /// </summary>
-        /// <value>Source language in two letter language code. Use the five letter code when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a two letter language code is used, but no suitable default is found, it returns an error.</value>
+        /// <value>Translation source language code.</value>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
-        /// Target language in two letter language code.
+        /// Translation target language code.
         /// </summary>
-        /// <value>Target language in two letter language code.</value>
+        /// <value>Translation target language code.</value>
         [JsonProperty("target", NullValueHandling = NullValueHandling.Ignore)]
         public string Target { get; set; }
         /// <summary>
-        /// If this model is a custom model, this returns the base model that it is trained on. For a base model, this response value is empty.
+        /// Model ID of the base model that was used to customize the model. If the model is not a custom model, this will be an empty string.
         /// </summary>
-        /// <value>If this model is a custom model, this returns the base model that it is trained on. For a base model, this response value is empty.</value>
+        /// <value>Model ID of the base model that was used to customize the model. If the model is not a custom model, this will be an empty string.</value>
         [JsonProperty("base_model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string BaseModelId { get; set; }
         /// <summary>
@@ -138,21 +138,21 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         [JsonProperty("domain", NullValueHandling = NullValueHandling.Ignore)]
         public string Domain { get; set; }
         /// <summary>
-        /// Whether this model can be used as a base for customization. Customized models are not further customizable, and we don't allow the customization of certain base models.
+        /// Whether this model can be used as a base for customization. Customized models are not further customizable, and some base models are not customizable.
         /// </summary>
-        /// <value>Whether this model can be used as a base for customization. Customized models are not further customizable, and we don't allow the customization of certain base models.</value>
+        /// <value>Whether this model can be used as a base for customization. Customized models are not further customizable, and some base models are not customizable.</value>
         [JsonProperty("customizable", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Customizable { get; set; }
         /// <summary>
-        /// Whether this model is considered a default model and is used when the source and target languages are specified without the model_id.
+        /// Whether or not the model is a default model. A default model is the model for a given language pair that will be used when that language pair is specified in the source and target parameters.
         /// </summary>
-        /// <value>Whether this model is considered a default model and is used when the source and target languages are specified without the model_id.</value>
+        /// <value>Whether or not the model is a default model. A default model is the model for a given language pair that will be used when that language pair is specified in the source and target parameters.</value>
         [JsonProperty("default_model", NullValueHandling = NullValueHandling.Ignore)]
         public bool? DefaultModel { get; set; }
         /// <summary>
-        /// Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.
+        /// Either an empty string, indicating the model is not a custom model, or the ID of the service instance that created the model.
         /// </summary>
-        /// <value>Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.</value>
+        /// <value>Either an empty string, indicating the model is not a custom model, or the ID of the service instance that created the model.</value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
     }

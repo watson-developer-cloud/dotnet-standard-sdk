@@ -9,6 +9,7 @@ _2018-03-09_
 * New: Generate Speech to Text service.
 * New: Generate Text to Speech service.
 * New: Generate Natural Language Classifier service.
+* New: Generate Visual Recognition service.
 
 ## Version 1.3.1
 _2018-01-09_

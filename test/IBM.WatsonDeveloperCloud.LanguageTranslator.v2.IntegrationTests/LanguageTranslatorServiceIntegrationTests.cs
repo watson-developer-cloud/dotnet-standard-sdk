@@ -18,6 +18,7 @@
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private static string _userName;
         private static string _password;
         private static string _endpoint;
-        private LanguageTranslatorService languageTranslator;
+        private LanguageTranslatorService _service;
         private static string credentials = string.Empty;
 
         private static string _glossaryPath = "glossary.tmx";
@@ -71,11 +72,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
-            
-            var results = languageTranslator.ListIdentifiableLanguages();
+            _service.Endpoint = _endpoint;
+
+            var results = _service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -84,11 +85,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void Identify_Sucess()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
-            var results = languageTranslator.Identify(_text);
+            var results = _service.Identify(_text);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -97,9 +98,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void Translate_Sucess()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
             var translateRequest = new TranslateRequest()
             {
@@ -110,7 +111,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
                 ModelId = _baseModel
             };
 
-            var results = languageTranslator.Translate(translateRequest);
+            var results = _service.Translate(translateRequest);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Translations.Count > 0);
@@ -119,11 +120,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void LisListModels_Sucess()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
-            var results = languageTranslator.ListModels();
+            var results = _service.ListModels();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Models.Count > 0);
@@ -132,11 +133,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void GetModelDetails_Success()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
-            var results = languageTranslator.GetModel(_baseModel);
+            var results = _service.GetModel(_baseModel);
 
             Assert.IsNotNull(results);
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));
@@ -145,15 +146,15 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void CreateModel_Success()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
             TranslationModel result;
 
             using (FileStream fs = File.OpenRead(_glossaryPath))
             {
-                result = languageTranslator.CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
+                result = _service.CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
 
                 if (result != null)
                 {
@@ -172,14 +173,168 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestMethod]
         public void DeleteModel_Success()
         {
-            languageTranslator =
+            _service =
                 new LanguageTranslatorService(_userName, _password);
-            languageTranslator.Endpoint = _endpoint;
+            _service.Endpoint = _endpoint;
 
-            var result = languageTranslator.DeleteModel(_customModelID);
+            var result = _service.DeleteModel(_customModelID);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Status == "OK");
         }
+
+        #region Generated
+        #region Translate
+        private TranslationResult Translate(TranslateRequest request)
+        {
+            Console.WriteLine("\nAttempting to Translate()");
+            var result = _service.Translate(translateRequest: request);
+
+            if (result != null)
+            {
+                Console.WriteLine("Translate() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Translate()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Identify
+        private IdentifiedLanguages Identify(string text)
+        {
+            Console.WriteLine("\nAttempting to Identify()");
+            var result = _service.Identify(text: text);
+
+            if (result != null)
+            {
+                Console.WriteLine("Identify() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Identify()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region IdentifyPlain
+        private IdentifiedLanguages IdentifyPlain(string text)
+        {
+            Console.WriteLine("\nAttempting to IdentifyPlain()");
+            var result = _service.IdentifyAsPlain(text: text);
+
+            if (result != null)
+            {
+                Console.WriteLine("IdentifyPlain() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to IdentifyPlain()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListIdentifiableLanguages
+        private IdentifiableLanguages ListIdentifiableLanguages()
+        {
+            Console.WriteLine("\nAttempting to ListIdentifiableLanguages()");
+            var result = _service.ListIdentifiableLanguages();
+
+            if (result != null)
+            {
+                Console.WriteLine("ListIdentifiableLanguages() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListIdentifiableLanguages()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateModel
+        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
+        {
+            Console.WriteLine("\nAttempting to CreateModel()");
+            var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteModel
+        private DeleteModelResult DeleteModel(string modelId)
+        {
+            Console.WriteLine("\nAttempting to DeleteModel()");
+            var result = _service.DeleteModel(modelId: modelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetModel
+        private TranslationModel GetModel(string modelId)
+        {
+            Console.WriteLine("\nAttempting to GetModel()");
+            var result = _service.GetModel(modelId: modelId);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListModels
+        private TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null)
+        {
+            Console.WriteLine("\nAttempting to ListModels()");
+            var result = _service.ListModels(source: source, target: target, defaultModels: defaultModels);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListModels() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListModels()");
+            }
+
+            return result;
+        }
+        #endregion
+        #endregion
     }
 }

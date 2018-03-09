@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,21 +26,21 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     public class TranslationResult
     {
         /// <summary>
-        /// Number of words of the complete input text.
+        /// Number of words in the input text.
         /// </summary>
-        /// <value>Number of words of the complete input text.</value>
+        /// <value>Number of words in the input text.</value>
         [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? WordCount { get; set; }
         /// <summary>
-        /// Number of characters of the complete input text.
+        /// Number of characters in the input text.
         /// </summary>
-        /// <value>Number of characters of the complete input text.</value>
+        /// <value>Number of characters in the input text.</value>
         [JsonProperty("character_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? CharacterCount { get; set; }
         /// <summary>
-        /// List of translation output in UTF-8, corresponding to the list of input text.
+        /// List of translation output in UTF-8, corresponding to the input text entries.
         /// </summary>
-        /// <value>List of translation output in UTF-8, corresponding to the list of input text.</value>
+        /// <value>List of translation output in UTF-8, corresponding to the input text entries.</value>
         [JsonProperty("translations", NullValueHandling = NullValueHandling.Ignore)]
         public List<Translation> Translations { get; set; }
     }

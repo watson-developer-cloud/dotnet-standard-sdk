@@ -1,5 +1,5 @@
 /**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// </summary>
         /// <value>The unique identifier of the utterance. The first utterance has ID 0, and the ID of each subsequent utterance is incremented by one.</value>
         [JsonProperty("utterance_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string UtteranceId { get; set; }
+        public long? UtteranceId { get; set; }
         /// <summary>
         /// The text of the utterance.
         /// </summary>

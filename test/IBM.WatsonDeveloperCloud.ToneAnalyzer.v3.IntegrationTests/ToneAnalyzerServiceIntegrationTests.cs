@@ -18,6 +18,7 @@
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         private string chatUser = "testChatUser";
         private string versionDate = "2016-05-19";
         private static string credentials = string.Empty;
-        private ToneAnalyzerService _toneAnalyzer;
+        private ToneAnalyzerService _service;
 
         [TestInitialize]
         public void Setup()
@@ -68,14 +69,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         [TestMethod]
         public void PostTone_Success()
         {
-            _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
+            _service = new ToneAnalyzerService(_username, _password, versionDate);
 
             ToneInput toneInput = new ToneInput()
             {
                 Text = inputText
             };
 
-            var result = _toneAnalyzer.Tone(toneInput, "text/html", null);
+            var result = _service.Tone(toneInput, "text/html", null);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.DocumentTone.ToneCategories.Count >= 1);
@@ -85,7 +86,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         [TestMethod]
         public void ToneChat_Success()
         {
-            _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
+            _service = new ToneAnalyzerService(_username, _password, versionDate);
 
             ToneChatInput toneChatInput = new ToneChatInput()
             {
@@ -98,10 +99,51 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
                     }
                 }
             };
-            var result = _toneAnalyzer.ToneChat(toneChatInput);
+            var result = _service.ToneChat(toneChatInput);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.UtterancesTone.Count > 0);
         }
+
+        #region Generated
+        #region Tone
+        private ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        {
+            Console.WriteLine("\nAttempting to Tone()");
+            var result = _service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+
+            if (result != null)
+            {
+                Console.WriteLine("Tone() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Tone()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ToneChat
+        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null)
+        {
+            Console.WriteLine("\nAttempting to ToneChat()");
+            var result = _service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+
+            if (result != null)
+            {
+                Console.WriteLine("ToneChat() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ToneChat()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #endregion
     }
 }

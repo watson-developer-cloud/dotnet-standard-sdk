@@ -23,6 +23,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Util;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
 {
@@ -32,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         private static string _username;
         private static string _password;
         private static string _endpoint;
-        private PersonalityInsightsService _personalityInsights;
+        private PersonalityInsightsService _service;
         private static string credentials = string.Empty;
 
         [TestInitialize]
@@ -64,7 +65,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         [TestMethod]
         public void Profile_Success()
         {
-            _personalityInsights = new PersonalityInsightsService(_username.ToString(), _password.ToString(), "2016-10-20");
+            _service = new PersonalityInsightsService(_username.ToString(), _password.ToString(), "2016-10-20");
             string contentToProfile = "The IBM Watson™ Personality Insights service provides a Representational State Transfer (REST) Application Programming Interface (API) that enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can report consumption preferences based on the results of its analysis, and for JSON content that is timestamped, it can report temporal behavior.";
 
             Content content = new Content()
@@ -80,9 +81,50 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
-            var result = _personalityInsights.Profile(content, "text/plain", "application/json", rawScores: true, consumptionPreferences: true, csvHeaders: true);
+            var result = _service.Profile(content, "text/plain", "application/json", rawScores: true, consumptionPreferences: true, csvHeaders: true);
 
             Assert.IsNotNull(result);
         }
+
+        #region Generated
+        #region Profile
+        private Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        {
+            Console.WriteLine("\nAttempting to Profile()");
+            var result = _service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+
+            if (result != null)
+            {
+                Console.WriteLine("Profile() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Profile()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ProfileAsCsv
+        private Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        {
+            Console.WriteLine("\nAttempting to ProfileAsCsv()");
+            var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+
+            if (result != null)
+            {
+                Console.WriteLine("ProfileAsCsv() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ProfileAsCsv()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #endregion
     }
 }

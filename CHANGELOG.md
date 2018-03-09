@@ -1,6 +1,17 @@
 Change Log
 ==========
+## Version 2.0.0
+_2018-03-09_
+* Breaking Change: Migrate to Visual Studio 2017.
+* Breaking Change: Regenerate all services using latest code generator & templates.
+* New: Revised integration tests.
+* New: Added documentation about publishing a release.
+* New: Generate Speech to Text service.
+* New: Generate Text to Speech service.
+* New: Generate Natural Language Classifier service.
+
 ## Version 1.3.1
+_2018-01-09_
 * Fix: Change `Context` in `MessageRequest` to `dynamic`.
 
 ## Version 1.3.0

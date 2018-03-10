@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['languagetranslatorservice',['LanguageTranslatorService',['../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html',1,'IBM::WatsonDeveloperCloud::LanguageTranslator::v2']]],
-  ['listcollectionfieldsresponse',['ListCollectionFieldsResponse',['../de/dc4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_collection_fields_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['listcollectionsresponse',['ListCollectionsResponse',['../d9/d53/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_collections_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['listconfigurationsresponse',['ListConfigurationsResponse',['../dd/d49/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_configurations_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['listenvironmentsresponse',['ListEnvironmentsResponse',['../d6/db9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_environments_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['listmodelsresults',['ListModelsResults',['../d0/d16/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
-  ['logcollection',['LogCollection',['../db/dd0/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_collection.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['logexport',['LogExport',['../d6/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['logmessage',['LogMessage',['../dd/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_message.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['logpagination',['LogPagination',['../dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]]
+  ['mediatypeutils',['MediaTypeUtils',['../dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_util_1_1_media_type_utils.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Util']]],
+  ['memoryusage',['MemoryUsage',['../d6/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_memory_usage.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['messageinput',['MessageInput',['../dd/df9/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_input.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['messagerequest',['MessageRequest',['../d2/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_request.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['messageresponse',['MessageResponse',['../d1/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_message_response.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['metadata',['Metadata',['../d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1']]],
+  ['metadataoptions',['MetadataOptions',['../d8/d28/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
+  ['metadataresult',['MetadataResult',['../df/d16/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_result.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
+  ['model',['Model',['../df/d17/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
+  ['modelclass',['ModelClass',['../d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]]
 ];

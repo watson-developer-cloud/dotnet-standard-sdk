@@ -48,6 +48,9 @@ var dir_d0a50a7e8be24851f3ac0bf8ef1fed79 =
     [ "DialogNodeNextStep.cs", "d6/dfb/_dialog_node_next_step_8cs.html", [
       [ "DialogNodeNextStep", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step" ]
     ] ],
+    [ "DialogNodeVisitedDetails.cs", "de/d26/_dialog_node_visited_details_8cs.html", [
+      [ "DialogNodeVisitedDetails", "d9/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_visited_details.html", "d9/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_visited_details" ]
+    ] ],
     [ "Entity.cs", "de/db3/_entity_8cs.html", [
       [ "Entity", "df/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity.html", "df/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_entity" ]
     ] ],

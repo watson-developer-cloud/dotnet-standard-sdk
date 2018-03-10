@@ -1,11 +1,21 @@
 var searchData=
 [
-  ['pagination',['Pagination',['../dd/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
-  ['parameters',['Parameters',['../dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
-  ['pdfheadingdetection',['PdfHeadingDetection',['../d4/d7a/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_pdf_heading_detection.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['pdfsettings',['PdfSettings',['../d5/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_pdf_settings.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
-  ['personalityinsightsservice',['PersonalityInsightsService',['../db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3']]],
-  ['phoneme',['Phoneme',['../d3/d7d/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_phoneme.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]],
-  ['profile',['Profile',['../df/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html',1,'IBM::WatsonDeveloperCloud::PersonalityInsights::v3::Model']]],
-  ['pronunciation',['Pronunciation',['../d1/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]]
+  ['queryaggregation',['QueryAggregation',['../de/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_aggregation.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryentities',['QueryEntities',['../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryentitiescontext',['QueryEntitiesContext',['../d3/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_context.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryentitiesentity',['QueryEntitiesEntity',['../d1/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_entity.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryentitiesresponse',['QueryEntitiesResponse',['../d1/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryfiltertype',['QueryFilterType',['../d6/da4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_type.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['querynoticesresponse',['QueryNoticesResponse',['../dd/d53/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['querynoticesresult',['QueryNoticesResult',['../db/d7f/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['querypassages',['QueryPassages',['../d6/d10/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_passages.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelations',['QueryRelations',['../df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelationsargument',['QueryRelationsArgument',['../d5/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations_argument.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelationsentity',['QueryRelationsEntity',['../d4/dbf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations_entity.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelationsfilter',['QueryRelationsFilter',['../d4/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations_filter.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelationsrelationship',['QueryRelationsRelationship',['../d2/d62/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations_relationship.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryrelationsresponse',['QueryRelationsResponse',['../d9/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryresponse',['QueryResponse',['../df/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_response.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryresult',['QueryResult',['../d8/de4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['queryresultresultmetadata',['QueryResultResultMetadata',['../d0/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result_result_metadata.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]]
 ];

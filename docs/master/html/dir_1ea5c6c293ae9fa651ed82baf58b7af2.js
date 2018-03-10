@@ -18,7 +18,7 @@ var dir_1ea5c6c293ae9fa651ed82baf58b7af2 =
     [ "TranslateRequest.cs", "d8/d9d/_translate_request_8cs.html", [
       [ "TranslateRequest", "df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html", "df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request" ]
     ] ],
-    [ "Translation.cs", "df/d0d/_translation_8cs.html", [
+    [ "Translation.cs", "d1/db6/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_8cs.html", [
       [ "Translation", "d4/df1/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation.html", "d4/df1/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation" ]
     ] ],
     [ "TranslationModel.cs", "d2/d13/_translation_model_8cs.html", [

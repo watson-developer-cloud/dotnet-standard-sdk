@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['onefaceresult_2ecs',['OneFaceResult.cs',['../df/d2a/_one_face_result_8cs.html',1,'']]],
-  ['onefaceresultage_2ecs',['OneFaceResultAge.cs',['../df/d61/_one_face_result_age_8cs.html',1,'']]],
-  ['onefaceresultfacelocation_2ecs',['OneFaceResultFaceLocation.cs',['../dd/ded/_one_face_result_face_location_8cs.html',1,'']]],
-  ['onefaceresultgender_2ecs',['OneFaceResultGender.cs',['../dd/d95/_one_face_result_gender_8cs.html',1,'']]],
-  ['onefaceresultidentity_2ecs',['OneFaceResultIdentity.cs',['../de/db6/_one_face_result_identity_8cs.html',1,'']]],
-  ['outputdata_2ecs',['OutputData.cs',['../d7/da4/_output_data_8cs.html',1,'']]]
+  ['pagination_2ecs',['Pagination.cs',['../df/dc5/_pagination_8cs.html',1,'']]],
+  ['parameters_2ecs',['Parameters.cs',['../de/d9c/_parameters_8cs.html',1,'']]],
+  ['pdfheadingdetection_2ecs',['PdfHeadingDetection.cs',['../d6/d58/_pdf_heading_detection_8cs.html',1,'']]],
+  ['pdfsettings_2ecs',['PdfSettings.cs',['../d7/d5e/_pdf_settings_8cs.html',1,'']]],
+  ['personalityinsightsservice_2ecs',['PersonalityInsightsService.cs',['../da/d37/_personality_insights_service_8cs.html',1,'']]],
+  ['profile_2ecs',['Profile.cs',['../d4/d13/_profile_8cs.html',1,'']]],
+  ['pronunciation_2ecs',['Pronunciation.cs',['../d9/d37/_pronunciation_8cs.html',1,'']]]
 ];

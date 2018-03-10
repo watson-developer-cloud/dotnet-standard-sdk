@@ -66,6 +66,12 @@ var dir_bc8580e406844c78fd7d4676bf591a06 =
     [ "EnvironmentDocuments.cs", "d7/d1a/_environment_documents_8cs.html", [
       [ "EnvironmentDocuments", "d8/d2e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_environment_documents.html", "d8/d2e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_environment_documents" ]
     ] ],
+    [ "Expansion.cs", "d3/dd1/_expansion_8cs.html", [
+      [ "Expansion", "d7/d73/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansion.html", "d7/d73/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansion" ]
+    ] ],
+    [ "Expansions.cs", "d3/d31/_expansions_8cs.html", [
+      [ "Expansions", "d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html", "d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions" ]
+    ] ],
     [ "Field.cs", "d2/d6b/_field_8cs.html", [
       [ "Field", "da/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_field.html", "da/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_field" ]
     ] ],

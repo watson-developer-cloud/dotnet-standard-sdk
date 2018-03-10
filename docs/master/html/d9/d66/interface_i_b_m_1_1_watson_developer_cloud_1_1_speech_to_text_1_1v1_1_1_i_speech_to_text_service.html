@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">1.3.1</span>
+   &#160;<span id="projectnumber">2.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -95,102 +95,152 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextSe
   <img src="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.png" usemap="#IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService_map" alt=""/>
   <map id="IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService_map" name="IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService_map">
 <area href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html" alt="IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService" shape="rect" coords="0,56,404,80"/>
+<area href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html" alt="IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService" shape="rect" coords="414,56,818,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a92bd4e600ba797185b9cb3cb3e05417f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model_set.html">SpeechModelSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a92bd4e600ba797185b9cb3cb3e05417f">GetModels</a> ()</td></tr>
-<tr class="memdesc:a92bd4e600ba797185b9cb3cb3e05417f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a list of all models available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz.  <a href="#a92bd4e600ba797185b9cb3cb3e05417f">More...</a><br /></td></tr>
-<tr class="separator:a92bd4e600ba797185b9cb3cb3e05417f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29d7fe2fec487d01b4b7bc48a9519411"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html">SpeechModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a29d7fe2fec487d01b4b7bc48a9519411">GetModel</a> (string modelName)</td></tr>
-<tr class="memdesc:a29d7fe2fec487d01b4b7bc48a9519411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves information about a single specified model that is available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz.  <a href="#a29d7fe2fec487d01b4b7bc48a9519411">More...</a><br /></td></tr>
-<tr class="separator:a29d7fe2fec487d01b4b7bc48a9519411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43eb60c642f52461c22a59ab65a4c32f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a43eb60c642f52461c22a59ab65a4c32f">CreateSession</a> (string modelName)</td></tr>
-<tr class="memdesc:a43eb60c642f52461c22a59ab65a4c32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a session and locks recognition requests to that engine.You can use the session for multiple recognition requests so that each request is processed with the same engine. The session expires after 30 seconds of inactivity.Use getRecognizeStatus to prevent the session from expiring.  <a href="#a43eb60c642f52461c22a59ab65a4c32f">More...</a><br /></td></tr>
-<tr class="separator:a43eb60c642f52461c22a59ab65a4c32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a4410ddaf8ad772677835e93f6adeb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_status.html">RecognizeStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a2a4410ddaf8ad772677835e93f6adeb1">GetSessionStatus</a> (<a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a> session)</td></tr>
-<tr class="memdesc:a2a4410ddaf8ad772677835e93f6adeb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request.  <a href="#a2a4410ddaf8ad772677835e93f6adeb1">More...</a><br /></td></tr>
-<tr class="separator:a2a4410ddaf8ad772677835e93f6adeb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ec6d98a98b4123c757594b130681de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_status.html">RecognizeStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ac9ec6d98a98b4123c757594b130681de">GetSessionStatus</a> (string sessionId)</td></tr>
-<tr class="memdesc:ac9ec6d98a98b4123c757594b130681de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request.  <a href="#ac9ec6d98a98b4123c757594b130681de">More...</a><br /></td></tr>
-<tr class="separator:ac9ec6d98a98b4123c757594b130681de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a472995e18b2cd1e942a106dc0dcc9729"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a472995e18b2cd1e942a106dc0dcc9729">DeleteSession</a> (<a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a> session)</td></tr>
-<tr class="memdesc:a472995e18b2cd1e942a106dc0dcc9729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.  <a href="#a472995e18b2cd1e942a106dc0dcc9729">More...</a><br /></td></tr>
-<tr class="separator:a472995e18b2cd1e942a106dc0dcc9729"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a13e78dd17753ec6f19054cecb3d074"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1a13e78dd17753ec6f19054cecb3d074">DeleteSession</a> (string sessionId)</td></tr>
-<tr class="memdesc:a1a13e78dd17753ec6f19054cecb3d074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing session and its engine. You cannot send requests to a session after it is deleted.  <a href="#a1a13e78dd17753ec6f19054cecb3d074">More...</a><br /></td></tr>
-<tr class="separator:a1a13e78dd17753ec6f19054cecb3d074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0070c3263634bed42a3cbf8cbf133e88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a0070c3263634bed42a3cbf8cbf133e88">Recognize</a> (string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
-<tr class="memdesc:a0070c3263634bed42a3cbf8cbf133e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a0070c3263634bed42a3cbf8cbf133e88">More...</a><br /></td></tr>
-<tr class="separator:a0070c3263634bed42a3cbf8cbf133e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad4c97dbefc5f8ec2354fe21b0136adbf">Recognize</a> (string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;)</td></tr>
-<tr class="memdesc:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#ad4c97dbefc5f8ec2354fe21b0136adbf">More...</a><br /></td></tr>
-<tr class="separator:ad4c97dbefc5f8ec2354fe21b0136adbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182c02f952c33151cd4d1fbdb9735bcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a182c02f952c33151cd4d1fbdb9735bcd">RecognizeWithSession</a> (string sessionId, string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
-<tr class="memdesc:a182c02f952c33151cd4d1fbdb9735bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#a182c02f952c33151cd4d1fbdb9735bcd">More...</a><br /></td></tr>
-<tr class="separator:a182c02f952c33151cd4d1fbdb9735bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf66f72cefde5bbca618abaf52e1763e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#acf66f72cefde5bbca618abaf52e1763e">RecognizeWithSession</a> (string sessionId, string contentType, <a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding, string model, string customizationId)</td></tr>
-<tr class="memdesc:acf66f72cefde5bbca618abaf52e1763e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds.  <a href="#acf66f72cefde5bbca618abaf52e1763e">More...</a><br /></td></tr>
-<tr class="separator:acf66f72cefde5bbca618abaf52e1763e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7998e3af0a13c642c9cb5aba08851b4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aa7998e3af0a13c642c9cb5aba08851b4">ObserveResult</a> (string sessionId, int? sequenceId=(int?) null, bool interimResults=false)</td></tr>
-<tr class="memdesc:aa7998e3af0a13c642c9cb5aba08851b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a909364aeef9804f76e7f120d4aade95a" title="Creates a session and locks recognition requests to that engine.You can use the session for multiple ...">SpeechToTextService.CreateSession(string)</a> method. To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout. Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID.  <a href="#aa7998e3af0a13c642c9cb5aba08851b4">More...</a><br /></td></tr>
-<tr class="separator:aa7998e3af0a13c642c9cb5aba08851b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a022e5f21e6bafa79350ea8555135c785"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization_i_d.html">CustomizationID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a022e5f21e6bafa79350ea8555135c785">CreateCustomModel</a> (string model, string baseModelName, string description)</td></tr>
-<tr class="memdesc:a022e5f21e6bafa79350ea8555135c785"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.  <a href="#a022e5f21e6bafa79350ea8555135c785">More...</a><br /></td></tr>
-<tr class="separator:a022e5f21e6bafa79350ea8555135c785"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3623e12f2d0a7e10a20d6d44bd728520"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization_i_d.html">CustomizationID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3623e12f2d0a7e10a20d6d44bd728520">CreateCustomModel</a> (<a class="el" href="../../d2/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_model.html">CustomModel</a> options)</td></tr>
-<tr class="memdesc:a3623e12f2d0a7e10a20d6d44bd728520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it.  <a href="#a3623e12f2d0a7e10a20d6d44bd728520">More...</a><br /></td></tr>
-<tr class="separator:a3623e12f2d0a7e10a20d6d44bd728520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23b853f6f3655f7cb2e1d099adcb8c7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customizations.html">Customizations</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a23b853f6f3655f7cb2e1d099adcb8c7e">ListCustomModels</a> (string language=&quot;en-US&quot;)</td></tr>
-<tr class="memdesc:a23b853f6f3655f7cb2e1d099adcb8c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about all custom language models that are owned by the calling user. Use the language parameter to see all custom models for the specified language; omit the parameter to see the custom models for all languages.  <a href="#a23b853f6f3655f7cb2e1d099adcb8c7e">More...</a><br /></td></tr>
-<tr class="separator:a23b853f6f3655f7cb2e1d099adcb8c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e45fd9793f937f749b684173f67a33d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization.html">Customization</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5e45fd9793f937f749b684173f67a33d">ListCustomModel</a> (string customizationId)</td></tr>
-<tr class="memdesc:a5e45fd9793f937f749b684173f67a33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about a specified custom language model. Only the owner of a custom model can use this method to query information about the model.  <a href="#a5e45fd9793f937f749b684173f67a33d">More...</a><br /></td></tr>
-<tr class="separator:a5e45fd9793f937f749b684173f67a33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f3e43dd3551cef0645e225ccf9b4e41"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a6f3e43dd3551cef0645e225ccf9b4e41">TrainCustomModel</a> (string customizationId, string wordTypeToAdd=&quot;all&quot;)</td></tr>
-<tr class="memdesc:a6f3e43dd3551cef0645e225ccf9b4e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the training of a custom language model with new corpora, custom words, or both. After adding corpora or words to the custom model, use this method to begin the actual training of the model on the new data. You can specify whether the custom model is to be trained with all words from its words resources or only with words that were added or modified by the user. Only the owner of a custom model can use this method to train the model. This method is asynchronous and can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun. You can monitor the status of the training by using the List a custom model method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes status and progress fields. A status of available means that the custom model is trained and ready to use. If training is in progress, the progress field indicates the progress of the training as a percentage complete. The service cannot accept subsequent training requests, or requests to add new corpora or words, until the existing request completes.  <a href="#a6f3e43dd3551cef0645e225ccf9b4e41">More...</a><br /></td></tr>
-<tr class="separator:a6f3e43dd3551cef0645e225ccf9b4e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdef34e86951001c616a9119bc9894ea"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#abdef34e86951001c616a9119bc9894ea">ResetCustomModel</a> (string customizationId)</td></tr>
-<tr class="memdesc:abdef34e86951001c616a9119bc9894ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a custom language model by removing all corpora and words from the model. Resetting a custom model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved. Only the owner of a custom model can use this method to reset the model.  <a href="#abdef34e86951001c616a9119bc9894ea">More...</a><br /></td></tr>
-<tr class="separator:abdef34e86951001c616a9119bc9894ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5489eac25da595395ddd751ba609984e"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5489eac25da595395ddd751ba609984e">UpgradeCustomModel</a> (string customizationId)</td></tr>
-<tr class="memdesc:a5489eac25da595395ddd751ba609984e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the Train a custom model method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model.  <a href="#a5489eac25da595395ddd751ba609984e">More...</a><br /></td></tr>
-<tr class="separator:a5489eac25da595395ddd751ba609984e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d18213bb9e711384c8b44d2e6849ed0"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a9d18213bb9e711384c8b44d2e6849ed0">DeleteCustomModel</a> (string customizationId)</td></tr>
-<tr class="memdesc:a9d18213bb9e711384c8b44d2e6849ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. Only the owner of a custom model can use this method to delete the model.  <a href="#a9d18213bb9e711384c8b44d2e6849ed0">More...</a><br /></td></tr>
-<tr class="separator:a9d18213bb9e711384c8b44d2e6849ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb0c010df4b4154b0bbc99a89a75e449"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#adb0c010df4b4154b0bbc99a89a75e449">AddCorpus</a> (string customizationId, string corpusName, bool allowOverwrite, Stream body)</td></tr>
-<tr class="memdesc:adb0c010df4b4154b0bbc99a89a75e449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the Train a custom model method. Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see Preparing a corpus file. The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously pre-processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the List a corpus method to check the status of the analysis. The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the List custom words method to examine the words resource. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced. To add a corpus file that has the same name as an existing corpus, set the allow_overwrite parameter to true; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way by the user. The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand new custom words to a model; this includes words that the service extracts from corpora and words that you add directly.  <a href="#adb0c010df4b4154b0bbc99a89a75e449">More...</a><br /></td></tr>
-<tr class="separator:adb0c010df4b4154b0bbc99a89a75e449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d9b5c7370b5ee382f221338345368dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html">Corpora</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1d9b5c7370b5ee382f221338345368dd">ListCorpora</a> (string customizationId)</td></tr>
-<tr class="memdesc:a1d9b5c7370b5ee382f221338345368dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora.  <a href="#a1d9b5c7370b5ee382f221338345368dd">More...</a><br /></td></tr>
-<tr class="separator:a1d9b5c7370b5ee382f221338345368dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ccf5329fcbcb925bfc368616797631a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html">SpeechModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a7ccf5329fcbcb925bfc368616797631a">GetModel</a> (string modelId)</td></tr>
+<tr class="separator:a7ccf5329fcbcb925bfc368616797631a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a926ebc64ef5438bb3620ff84f48e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_models.html">SpeechModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae9a926ebc64ef5438bb3620ff84f48e0">ListModels</a> ()</td></tr>
+<tr class="separator:ae9a926ebc64ef5438bb3620ff84f48e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a863a79b89a1aca09bbf8bb26d5799862"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a863a79b89a1aca09bbf8bb26d5799862">RecognizeSessionless</a> (string model=null, string customizationId=null, string acousticCustomizationId=null, double? customizationWeight=null, string version=null, byte[] audio=null, string contentType=null, long? inactivityTimeout=null, List&lt; string &gt; keywords=null, float? keywordsThreshold=null, long? maxAlternatives=null, float? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool? profanityFilter=null, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="separator:a863a79b89a1aca09bbf8bb26d5799862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e7e2b3b3aa774acae26405032a950d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html">RecognitionJob</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aa6e7e2b3b3aa774acae26405032a950d">CheckJob</a> (string id)</td></tr>
+<tr class="separator:aa6e7e2b3b3aa774acae26405032a950d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84f8db036e0482e4364b4e021ae200f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d7b/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_jobs.html">RecognitionJobs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ac84f8db036e0482e4364b4e021ae200f">CheckJobs</a> ()</td></tr>
+<tr class="separator:ac84f8db036e0482e4364b4e021ae200f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79049a85e8a6144a0686b8903e934658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html">RecognitionJob</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a79049a85e8a6144a0686b8903e934658">CreateJob</a> (byte[] audio, string contentType, string model=null, string callbackUrl=null, string events=null, string userToken=null, long? resultsTtl=null, string customizationId=null, string acousticCustomizationId=null, double? customizationWeight=null, string version=null, long? inactivityTimeout=null, List&lt; string &gt; keywords=null, float? keywordsThreshold=null, long? maxAlternatives=null, float? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool? profanityFilter=null, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="separator:a79049a85e8a6144a0686b8903e934658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7a75fa41ee60a18cbe03a5a462bf2f"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1d7a75fa41ee60a18cbe03a5a462bf2f">DeleteJob</a> (string id)</td></tr>
+<tr class="separator:a1d7a75fa41ee60a18cbe03a5a462bf2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f844092688a8ee87a1e06151b6ac40d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_register_status.html">RegisterStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a7f844092688a8ee87a1e06151b6ac40d">RegisterCallback</a> (string callbackUrl, string userSecret=null)</td></tr>
+<tr class="separator:a7f844092688a8ee87a1e06151b6ac40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c433867ff960d66ceed59c210e3a9da"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5c433867ff960d66ceed59c210e3a9da">UnregisterCallback</a> (string callbackUrl)</td></tr>
+<tr class="separator:a5c433867ff960d66ceed59c210e3a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9502113458c18e20238c09fab11acf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html">LanguageModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5a9502113458c18e20238c09fab11acf">CreateLanguageModel</a> (<a class="el" href="../../d9/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_create_language_model.html">CreateLanguageModel</a> createLanguageModel)</td></tr>
+<tr class="separator:a5a9502113458c18e20238c09fab11acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1df51d048526fca8106d0da7fce4f00"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af1df51d048526fca8106d0da7fce4f00">DeleteLanguageModel</a> (string customizationId)</td></tr>
+<tr class="separator:af1df51d048526fca8106d0da7fce4f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af933bdf117fdd5f6d88f4330d8f72105"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html">LanguageModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af933bdf117fdd5f6d88f4330d8f72105">GetLanguageModel</a> (string customizationId)</td></tr>
+<tr class="separator:af933bdf117fdd5f6d88f4330d8f72105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e24ddf63490ca657ed74d6e8a29a02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_models.html">LanguageModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a35e24ddf63490ca657ed74d6e8a29a02">ListLanguageModels</a> (string language=null)</td></tr>
+<tr class="separator:a35e24ddf63490ca657ed74d6e8a29a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a728398fff306fb7df0acd45ba7d127a4"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a728398fff306fb7df0acd45ba7d127a4">ResetLanguageModel</a> (string customizationId)</td></tr>
+<tr class="separator:a728398fff306fb7df0acd45ba7d127a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3823ad0a72d605346d4b70b8b57f4fba"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3823ad0a72d605346d4b70b8b57f4fba">TrainLanguageModel</a> (string customizationId, string wordTypeToAdd=null, double? customizationWeight=null)</td></tr>
+<tr class="separator:a3823ad0a72d605346d4b70b8b57f4fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14ea04eb3d5b633ca582181ab8e2d62"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad14ea04eb3d5b633ca582181ab8e2d62">UpgradeLanguageModel</a> (string customizationId)</td></tr>
+<tr class="separator:ad14ea04eb3d5b633ca582181ab8e2d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e0d26f1f1ccc4a3c6c448b953ac0e21"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5e0d26f1f1ccc4a3c6c448b953ac0e21">AddCorpus</a> (string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite=null, string corpusFileContentType=null)</td></tr>
+<tr class="separator:a5e0d26f1f1ccc4a3c6c448b953ac0e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3e856972bccefeb1bdc6410b73131d2"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af3e856972bccefeb1bdc6410b73131d2">DeleteCorpus</a> (string customizationId, string corpusName)</td></tr>
+<tr class="separator:af3e856972bccefeb1bdc6410b73131d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c2f6ddc51dfa0a9c2a7f234f9351e0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html">Corpus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4c2f6ddc51dfa0a9c2a7f234f9351e0b">GetCorpus</a> (string customizationId, string corpusName)</td></tr>
-<tr class="memdesc:a4c2f6ddc51dfa0a9c2a7f234f9351e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about a specified corpus. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of the corpus. Only the owner of a custom model can use this method to list information about a corpus from the model.  <a href="#a4c2f6ddc51dfa0a9c2a7f234f9351e0b">More...</a><br /></td></tr>
 <tr class="separator:a4c2f6ddc51dfa0a9c2a7f234f9351e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a028cb77e668799115b090b90a5479705"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a028cb77e668799115b090b90a5479705">DeleteCorpus</a> (string customizationId, string name)</td></tr>
-<tr class="memdesc:a028cb77e668799115b090b90a5479705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the Add custom words or Add a custom word method. Removing a corpus does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a corpus from the model.  <a href="#a028cb77e668799115b090b90a5479705">More...</a><br /></td></tr>
-<tr class="separator:a028cb77e668799115b090b90a5479705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b623ede1ae1f7bfaab26741663111d2"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a7b623ede1ae1f7bfaab26741663111d2">AddCustomWords</a> (string customizationId, <a class="el" href="../../da/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html">Words</a> body)</td></tr>
-<tr class="memdesc:a7b623ede1ae1f7bfaab26741663111d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the Train a custom model method. You add custom words by providing a comma-separated list of Words objects, one per word. You must use the Word object's word parameter to identify the word that is to be added. You can also provide one or both of the following optional parameters for each word: If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource. The call succeeds if the input data is valid. The service then asynchronously pre-processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model. You can monitor the status of the request by using the "ListCustomModel(string)"List a custom modelmethod to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes a status field. A status of ready means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes. You can use the List custom words or List a custom word method to review the words that you add. Words with an invalid sounds_like field include an error field that describes the problem. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced.  <a href="#a7b623ede1ae1f7bfaab26741663111d2">More...</a><br /></td></tr>
-<tr class="separator:a7b623ede1ae1f7bfaab26741663111d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2ee11453c7c763ef931cac73f19bef8"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ac2ee11453c7c763ef931cac73f19bef8">AddCustomWord</a> (string customizationId, string wordname, <a class="el" href="../../d5/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_definition.html">WordDefinition</a> body)</td></tr>
-<tr class="memdesc:ac2ee11453c7c763ef931cac73f19bef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the Train a custom model method. Use the word_name path parameter to specify the custom word that is to be added or modified. Use the "WordDefinition" WordDefinition objectto provide one or both of the following optional parameters for the word: The display_as parameter provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word IBM(trademark) is to be displayed as IBM™. For more information, see Using the display_as field. The sounds_like parameter provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see Using the sounds_like field. If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the List a custom word method to review the word that you add.  <a href="#ac2ee11453c7c763ef931cac73f19bef8">More...</a><br /></td></tr>
-<tr class="separator:ac2ee11453c7c763ef931cac73f19bef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af25195d367c70df62b230ac7b6668415"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words_list.html">WordsList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af25195d367c70df62b230ac7b6668415">ListCustomWords</a> (string customizationId, <a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a43054f2bc01a3873cd69780c79f5c0b4">WordType</a>? wordType, <a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a6d76e8acfd115b6fa2ea8c87eb0fc45e">Sort</a>? sort)</td></tr>
-<tr class="memdesc:af25195d367c70df62b230ac7b6668415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or only OOV words that were extracted from corpora. You can also indicate the order in which the service is to return words; by default, words are listed in ascending alphabetical order. Only the owner of a custom model can use this method to query the words from the model.  <a href="#af25195d367c70df62b230ac7b6668415">More...</a><br /></td></tr>
-<tr class="separator:af25195d367c70df62b230ac7b6668415"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a156f2e18dd08c125e38e748690c5fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_data.html">WordData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a0a156f2e18dd08c125e38e748690c5fe">ListCustomWord</a> (string customizationId, string wordname)</td></tr>
-<tr class="memdesc:a0a156f2e18dd08c125e38e748690c5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists information about a custom word from a custom language model. Only the owner of a custom model can use this method to query a word from the model.  <a href="#a0a156f2e18dd08c125e38e748690c5fe">More...</a><br /></td></tr>
-<tr class="separator:a0a156f2e18dd08c125e38e748690c5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a010a4900087d23314d5ab3f32f8e9e"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4a010a4900087d23314d5ab3f32f8e9e">DeleteCustomWord</a> (string customizationId, string wordname)</td></tr>
-<tr class="memdesc:a4a010a4900087d23314d5ab3f32f8e9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a word from the model.  <a href="#a4a010a4900087d23314d5ab3f32f8e9e">More...</a><br /></td></tr>
-<tr class="separator:a4a010a4900087d23314d5ab3f32f8e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d9b5c7370b5ee382f221338345368dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html">Corpora</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1d9b5c7370b5ee382f221338345368dd">ListCorpora</a> (string customizationId)</td></tr>
+<tr class="separator:a1d9b5c7370b5ee382f221338345368dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37528519f7b254ba48f928ff514f7ef7"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a37528519f7b254ba48f928ff514f7ef7">AddWord</a> (string customizationId, string wordName, <a class="el" href="../../d6/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html">CustomWord</a> customWord)</td></tr>
+<tr class="separator:a37528519f7b254ba48f928ff514f7ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82fd40a959235570c50c56711f323a9"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ab82fd40a959235570c50c56711f323a9">AddWords</a> (string customizationId, <a class="el" href="../../d1/da7/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_words.html">CustomWords</a> customWords)</td></tr>
+<tr class="separator:ab82fd40a959235570c50c56711f323a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02eef0dfe0d1335121e094211daa70e0"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a02eef0dfe0d1335121e094211daa70e0">DeleteWord</a> (string customizationId, string wordName)</td></tr>
+<tr class="separator:a02eef0dfe0d1335121e094211daa70e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af22731bcb4417e71a15a9e0efa7b493b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word.html">Word</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af22731bcb4417e71a15a9e0efa7b493b">GetWord</a> (string customizationId, string wordName)</td></tr>
+<tr class="separator:af22731bcb4417e71a15a9e0efa7b493b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d42ab0d7d216af298a29d00a01e971b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html">Words</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3d42ab0d7d216af298a29d00a01e971b">ListWords</a> (string customizationId, string wordType=null, string sort=null)</td></tr>
+<tr class="separator:a3d42ab0d7d216af298a29d00a01e971b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac11ef74a1f04e3822109cce6f8c3cff0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html">AcousticModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ac11ef74a1f04e3822109cce6f8c3cff0">CreateAcousticModel</a> (<a class="el" href="../../d6/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_create_acoustic_model.html">CreateAcousticModel</a> createAcousticModel)</td></tr>
+<tr class="separator:ac11ef74a1f04e3822109cce6f8c3cff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd1c5bb54aacf9efb5f7892e1cdcd97d"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#acd1c5bb54aacf9efb5f7892e1cdcd97d">DeleteAcousticModel</a> (string customizationId)</td></tr>
+<tr class="separator:acd1c5bb54aacf9efb5f7892e1cdcd97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4787b53e65d3ea677c610699f5cacf8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html">AcousticModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4787b53e65d3ea677c610699f5cacf8d">GetAcousticModel</a> (string customizationId)</td></tr>
+<tr class="separator:a4787b53e65d3ea677c610699f5cacf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfd8139db8a274ee44b993940b4d0b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_models.html">AcousticModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aebfd8139db8a274ee44b993940b4d0b4">ListAcousticModels</a> (string language=null)</td></tr>
+<tr class="separator:aebfd8139db8a274ee44b993940b4d0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63019ad422ce893c64d26fa9965dc24"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af63019ad422ce893c64d26fa9965dc24">ResetAcousticModel</a> (string customizationId)</td></tr>
+<tr class="separator:af63019ad422ce893c64d26fa9965dc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec8e0fa670b7455356559a672feaf668"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aec8e0fa670b7455356559a672feaf668">TrainAcousticModel</a> (string customizationId, string customLanguageModelId=null)</td></tr>
+<tr class="separator:aec8e0fa670b7455356559a672feaf668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea83ccc95d118a2bad6c3c9ca18f35f7"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aea83ccc95d118a2bad6c3c9ca18f35f7">UpgradeAcousticModel</a> (string customizationId, string customLanguageModelId=null)</td></tr>
+<tr class="separator:aea83ccc95d118a2bad6c3c9ca18f35f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f4a2dc1c805d1de9655fb68c5c2b0cf"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1f4a2dc1c805d1de9655fb68c5c2b0cf">AddAudio</a> (string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType=null, bool? allowOverwrite=null)</td></tr>
+<tr class="separator:a1f4a2dc1c805d1de9655fb68c5c2b0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0385585785593f07c576cc0b81f9bbc"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad0385585785593f07c576cc0b81f9bbc">DeleteAudio</a> (string customizationId, string audioName)</td></tr>
+<tr class="separator:ad0385585785593f07c576cc0b81f9bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a50ad97be4e54b9201124f450d0274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing.html">AudioListing</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a34a50ad97be4e54b9201124f450d0274">GetAudio</a> (string customizationId, string audioName)</td></tr>
+<tr class="separator:a34a50ad97be4e54b9201124f450d0274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62eeef7289aae93f39810a6942430e94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d8b/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resources.html">AudioResources</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a62eeef7289aae93f39810a6942430e94">ListAudio</a> (string customizationId)</td></tr>
+<tr class="separator:a62eeef7289aae93f39810a6942430e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b8eacd83b55f2043eae3137f74de010"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4b8eacd83b55f2043eae3137f74de010">Recognize</a> (string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="separator:a4b8eacd83b55f2043eae3137f74de010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fd4758252d11331e631acf9d0cbc51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a33fd4758252d11331e631acf9d0cbc51">Recognize</a> (string contentType, <a class="el" href="../../d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;)</td></tr>
+<tr class="separator:a33fd4758252d11331e631acf9d0cbc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c5e096d903dafbead0870313cc54bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a51c5e096d903dafbead0870313cc54bc">RecognizeWithSession</a> (string sessionId, string contentType, Stream audio, string transferEncoding=&quot;&quot;, string model=&quot;en-US_BroadbandModel&quot;, string customizationId=&quot;&quot;, bool? continuous=null, int? inactivityTimeout=null, string[] keywords=null, double? keywordsThreshold=null, int? maxAlternatives=null, double? wordAlternativesThreshold=null, bool? wordConfidence=null, bool? timestamps=null, bool profanityFilter=false, bool? smartFormatting=null, bool? speakerLabels=null)</td></tr>
+<tr class="separator:a51c5e096d903dafbead0870313cc54bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad392471ad64109b066cd7b9bca53a1a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad392471ad64109b066cd7b9bca53a1a1">RecognizeWithSession</a> (string sessionId, string contentType, <a class="el" href="../../d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html">Metadata</a> metaData, Stream audio, string transferEncoding, string model, string customizationId)</td></tr>
+<tr class="separator:ad392471ad64109b066cd7b9bca53a1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2b6f26c971f751947ab92f42d2b156"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a6b2b6f26c971f751947ab92f42d2b156">ObserveResult</a> (string sessionId, int? sequenceId=(int?) null, bool interimResults=false)</td></tr>
+<tr class="separator:a6b2b6f26c971f751947ab92f42d2b156"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="adb0c010df4b4154b0bbc99a89a75e449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb0c010df4b4154b0bbc99a89a75e449">&#9670;&nbsp;</a></span>AddCorpus()</h2>
+<a id="a1f4a2dc1c805d1de9655fb68c5c2b0cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f4a2dc1c805d1de9655fb68c5c2b0cf">&#9670;&nbsp;</a></span>AddAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.AddAudio </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>audioName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte []&#160;</td>
+          <td class="paramname"><em>audioResource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>contentType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>containedContentType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>allowOverwrite</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a9b25cc2bbb6c202a74ecc612a814d63c">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a5e0d26f1f1ccc4a3c6c448b953ac0e21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e0d26f1f1ccc4a3c6c448b953ac0e21">&#9670;&nbsp;</a></span>AddCorpus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,14 +260,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>allowOverwrite</em>, </td>
+          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramname"><em>corpusFile</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Stream&#160;</td>
-          <td class="paramname"><em>body</em>&#160;</td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>allowOverwrite</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>corpusFileContentType</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -227,29 +283,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a single corpus text file of new training data to the custom language model. Use multiple requests to submit multiple corpus text files. Only the owner of a custom model can use this method to add a corpus to the model. Note that adding a corpus does not affect the custom model until you train the model for the new data by using the Train a custom model method. Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see Preparing a corpus file. The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously pre-processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the List a corpus method to check the status of the analysis. The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the List custom words method to examine the words resource. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced. To add a corpus file that has the same name as an existing corpus, set the allow_overwrite parameter to true; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way by the user. The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand new custom words to a model; this includes words that the service extracts from corpora and words that you add directly. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model to which a corpus is to be added. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">corpusName</td><td>The name of the corpus that is to be added. The name cannot contain spaces and cannot be the string user, which is reserved by the service to denote custom words added or modified by the user. Use a localized name that matches the language of the custom model.</td></tr>
-    <tr><td class="paramname">allowOverwrite</td><td>Indicates whether the specified corpus is to overwrite an existing corpus with the same name. If a corpus with the same name already exists, the request fails unless allow_overwrite is set to true; by default, the parameter is false. The parameter has no effect if a corpus with the same name does not already exist.</td></tr>
-    <tr><td class="paramname">body</td><td>A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters. With cURL, use the &ndash;data-binary option to upload the file for the request.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#adc67aef3b4c2c8165597a0a97e0e66d3">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a45f15511a32665d2393c1f123cc4cc7b">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="ac2ee11453c7c763ef931cac73f19bef8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2ee11453c7c763ef931cac73f19bef8">&#9670;&nbsp;</a></span>AddCustomWord()</h2>
+<a id="a37528519f7b254ba48f928ff514f7ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37528519f7b254ba48f928ff514f7ef7">&#9670;&nbsp;</a></span>AddWord()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.AddCustomWord </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.AddWord </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em>, </td>
@@ -258,13 +303,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>wordname</em>, </td>
+          <td class="paramname"><em>wordName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d5/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_definition.html">WordDefinition</a>&#160;</td>
-          <td class="paramname"><em>body</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d6/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html">CustomWord</a>&#160;</td>
+          <td class="paramname"><em>customWord</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -274,28 +319,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the Train a custom model method. Use the word_name path parameter to specify the custom word that is to be added or modified. Use the "WordDefinition" WordDefinition objectto provide one or both of the following optional parameters for the word: The display_as parameter provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word IBM(trademark) is to be displayed as IBM™. For more information, see Using the display_as field. The sounds_like parameter provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word IEEE can sound like I. triple E.. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see Using the sounds_like field. If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the List a custom word method to review the word that you add. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td></td></tr>
-    <tr><td class="paramname">wordname</td><td></td></tr>
-    <tr><td class="paramname">body</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7ba51052265aa0f4c10a9acacbdefa6e">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#af7cb8646a8d2b2e086fa9d6fac3af9b5">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a7b623ede1ae1f7bfaab26741663111d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b623ede1ae1f7bfaab26741663111d2">&#9670;&nbsp;</a></span>AddCustomWords()</h2>
+<a id="ab82fd40a959235570c50c56711f323a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82fd40a959235570c50c56711f323a9">&#9670;&nbsp;</a></span>AddWords()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.AddCustomWords </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.AddWords </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em>, </td>
@@ -303,8 +338,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../da/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html">Words</a>&#160;</td>
-          <td class="paramname"><em>body</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d1/da7/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_words.html">CustomWords</a>&#160;</td>
+          <td class="paramname"><em>customWords</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -314,42 +349,200 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. Only the owner of a custom model can use this method to add or modify custom words associated with the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the Train a custom model method. You add custom words by providing a comma-separated list of Words objects, one per word. You must use the Word object's word parameter to identify the word that is to be added. You can also provide one or both of the following optional parameters for each word: If you add a custom word that already exists in the words resource for the custom model, the new definition overrides the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource. The call succeeds if the input data is valid. The service then asynchronously pre-processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model. You can monitor the status of the request by using the "ListCustomModel(string)"List a custom modelmethod to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes a status field. A status of ready means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes. You can use the List custom words or List a custom word method to review the words that you add. Words with an invalid sounds_like field include an error field that describes the problem. If necessary, you can use the Add custom words or Add a custom word method to correct problems, eliminate typographical errors, and modify how words are pronounced. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model to which words are to be added. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">body</td><td>A comma-separated list of Words objects, each of which provides information about a custom word to be added.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a0c351967fcc145d012660140709d7369">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a772bd2b2fdcb871433808452976193e4">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a022e5f21e6bafa79350ea8555135c785"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a022e5f21e6bafa79350ea8555135c785">&#9670;&nbsp;</a></span>CreateCustomModel() <span class="overload">[1/2]</span></h2>
+<a id="aa6e7e2b3b3aa774acae26405032a950d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e7e2b3b3aa774acae26405032a950d">&#9670;&nbsp;</a></span>CheckJob()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization_i_d.html">CustomizationID</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateCustomModel </td>
+          <td class="memname"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html">RecognitionJob</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CheckJob </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a9531f309bd673f5438dc904f675b9fa1">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="ac84f8db036e0482e4364b4e021ae200f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84f8db036e0482e4364b4e021ae200f">&#9670;&nbsp;</a></span>CheckJobs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d7b/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_jobs.html">RecognitionJobs</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CheckJobs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acf014f6b0015f31b3deb0e26ab807cbe">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="ac11ef74a1f04e3822109cce6f8c3cff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac11ef74a1f04e3822109cce6f8c3cff0">&#9670;&nbsp;</a></span>CreateAcousticModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html">AcousticModel</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateAcousticModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_create_acoustic_model.html">CreateAcousticModel</a>&#160;</td>
+          <td class="paramname"><em>createAcousticModel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a03a8bf03c4359c8f1925951448eb795a">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a79049a85e8a6144a0686b8903e934658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79049a85e8a6144a0686b8903e934658">&#9670;&nbsp;</a></span>CreateJob()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html">RecognitionJob</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateJob </td>
+          <td>(</td>
+          <td class="paramtype">byte []&#160;</td>
+          <td class="paramname"><em>audio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>baseModelName</em>, </td>
+          <td class="paramname"><em>contentType</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>description</em>&#160;</td>
+          <td class="paramname"><em>model</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>callbackUrl</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>events</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>userToken</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>resultsTtl</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>acousticCustomizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>customizationWeight</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>version</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>inactivityTimeout</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>keywords</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float?&#160;</td>
+          <td class="paramname"><em>keywordsThreshold</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>maxAlternatives</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float?&#160;</td>
+          <td class="paramname"><em>wordAlternativesThreshold</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>wordConfidence</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>timestamps</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>profanityFilter</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>smartFormatting</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>speakerLabels</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -359,81 +552,82 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">model</td><td>The model name.</td></tr>
-    <tr><td class="paramname">baseModelName</td><td>The name of the base model to use.</td></tr>
-    <tr><td class="paramname">description</td><td>Description of the custom model.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6e01d0c0889106096471c299b963716f">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac504a6fd8e8ffe5559e687ee93bc8c72">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a3623e12f2d0a7e10a20d6d44bd728520"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3623e12f2d0a7e10a20d6d44bd728520">&#9670;&nbsp;</a></span>CreateCustomModel() <span class="overload">[2/2]</span></h2>
+<a id="a5a9502113458c18e20238c09fab11acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9502113458c18e20238c09fab11acf">&#9670;&nbsp;</a></span>CreateLanguageModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dd/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization_i_d.html">CustomizationID</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateCustomModel </td>
+          <td class="memname"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html">LanguageModel</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateLanguageModel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d2/d91/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_model.html">CustomModel</a>&#160;</td>
-          <td class="paramname"><em>options</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="../../d9/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_create_language_model.html">CreateLanguageModel</a>&#160;</td>
+          <td class="paramname"><em>createLanguageModel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new custom language model for a specified base language model. The custom language model can be used only with the base language model for which it is created. The new model is owned by the individual whose service credentials are used to create it. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">options</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7e976813b5c7308bb9547a9e7ee68d94">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#afcaa7f61713501358530613d7c44d0e2">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a43eb60c642f52461c22a59ab65a4c32f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43eb60c642f52461c22a59ab65a4c32f">&#9670;&nbsp;</a></span>CreateSession()</h2>
+<a id="acd1c5bb54aacf9efb5f7892e1cdcd97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd1c5bb54aacf9efb5f7892e1cdcd97d">&#9670;&nbsp;</a></span>DeleteAcousticModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.CreateSession </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteAcousticModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>modelName</em></td><td>)</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a session and locks recognition requests to that engine.You can use the session for multiple recognition requests so that each request is processed with the same engine. The session expires after 30 seconds of inactivity.Use getRecognizeStatus to prevent the session from expiring. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">modelName</td><td>The identifier of the model to be used by the new session</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a Session object that contains the information about the new session that is provided in a JSON Session object.</dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a909364aeef9804f76e7f120d4aade95a">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ada98cf199dcf5fa253068062448ea8bc">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a028cb77e668799115b090b90a5479705"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a028cb77e668799115b090b90a5479705">&#9670;&nbsp;</a></span>DeleteCorpus()</h2>
+<a id="ad0385585785593f07c576cc0b81f9bbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0385585785593f07c576cc0b81f9bbc">&#9670;&nbsp;</a></span>DeleteAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteAudio </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>audioName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#af8efad5d773c833c47f81c40fc02d751">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="af3e856972bccefeb1bdc6410b73131d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e856972bccefeb1bdc6410b73131d2">&#9670;&nbsp;</a></span>DeleteCorpus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -448,7 +642,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
+          <td class="paramname"><em>corpusName</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -458,27 +652,38 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the corpus from the custom model's words resource unless they were also added by another corpus or they have been modified in some way with the Add custom words or Add a custom word method. Removing a corpus does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a corpus from the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model from which a corpus is to be deleted. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">name</td><td>The name of the corpus that is to be deleted.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7e24b547caa7379340985dedd5eac970">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7c2efd6c2925cab9161373942c03f13a">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a9d18213bb9e711384c8b44d2e6849ed0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d18213bb9e711384c8b44d2e6849ed0">&#9670;&nbsp;</a></span>DeleteCustomModel()</h2>
+<a id="a1d7a75fa41ee60a18cbe03a5a462bf2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7a75fa41ee60a18cbe03a5a462bf2f">&#9670;&nbsp;</a></span>DeleteJob()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteCustomModel </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteJob </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acef081c03de7945e33b25f3e13a34c94">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="af1df51d048526fca8106d0da7fce4f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1df51d048526fca8106d0da7fce4f00">&#9670;&nbsp;</a></span>DeleteLanguageModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteLanguageModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em></td><td>)</td>
@@ -487,26 +692,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus to the model, is currently being processed. Only the owner of a custom model can use this method to delete the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model that is to be deleted. You must make the request with the service credentials of the model's owner.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acfd84a61d3027b29e58c68f4fcc83d63">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a0ad333a449df91f7306a60217520d9aa">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a4a010a4900087d23314d5ab3f32f8e9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a010a4900087d23314d5ab3f32f8e9e">&#9670;&nbsp;</a></span>DeleteCustomWord()</h2>
+<a id="a02eef0dfe0d1335121e094211daa70e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02eef0dfe0d1335121e094211daa70e0">&#9670;&nbsp;</a></span>DeleteWord()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteCustomWord </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteWord </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em>, </td>
@@ -515,7 +712,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>wordname</em>&#160;</td>
+          <td class="paramname"><em>wordName</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -525,72 +722,57 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the Train a custom model method. Only the owner of a custom model can use this method to delete a word from the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model from which a word is to be deleted. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">wordname</td><td>The custom word that is to be deleted from the custom model.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abfc1fb768efe398c93a75d07a8ef442b">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a151fcd07925b77ff434b691f6d2c7d57">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a472995e18b2cd1e942a106dc0dcc9729"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a472995e18b2cd1e942a106dc0dcc9729">&#9670;&nbsp;</a></span>DeleteSession() <span class="overload">[1/2]</span></h2>
+<a id="a4787b53e65d3ea677c610699f5cacf8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4787b53e65d3ea677c610699f5cacf8d">&#9670;&nbsp;</a></span>GetAcousticModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteSession </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a>&#160;</td>
-          <td class="paramname"><em>session</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Deletes an existing session and its engine. You cannot send requests to a session after it is deleted. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">session</td><td>A Session object that identifies the session to be deleted</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6eec18c583caf3bb1642e2941da143e8">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
-
-</div>
-</div>
-<a id="a1a13e78dd17753ec6f19054cecb3d074"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a13e78dd17753ec6f19054cecb3d074">&#9670;&nbsp;</a></span>DeleteSession() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.DeleteSession </td>
+          <td class="memname"><a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html">AcousticModel</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetAcousticModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sessionId</em></td><td>)</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes an existing session and its engine. You cannot send requests to a session after it is deleted. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sessionId</td><td>A Session Id that identifies the session to be deleted</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a5adab4b8846e4fdb374d4b850aba366a">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a22b35829fba346537d4ddb1dff7f138d">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+</div>
+</div>
+<a id="a34a50ad97be4e54b9201124f450d0274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a50ad97be4e54b9201124f450d0274">&#9670;&nbsp;</a></span>GetAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d8a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing.html">AudioListing</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetAudio </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>audioName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a1036de655334bee9f60dfc215837554b">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
@@ -620,22 +802,32 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists information about a specified corpus. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of the corpus. Only the owner of a custom model can use this method to list information about a corpus from the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model for which a corpus is be listed. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">corpusName</td><td>The name of the corpus about which information is to be listed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a single instance of a Corpus object that provides information about the specified corpus. </dd></dl>
-
 <p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac802667c6dffb6a9d101ef1a6917a674">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a29d7fe2fec487d01b4b7bc48a9519411"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29d7fe2fec487d01b4b7bc48a9519411">&#9670;&nbsp;</a></span>GetModel()</h2>
+<a id="af933bdf117fdd5f6d88f4330d8f72105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af933bdf117fdd5f6d88f4330d8f72105">&#9670;&nbsp;</a></span>GetLanguageModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html">LanguageModel</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetLanguageModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a823d53f00a9b9c07fe1cd18753179aa7">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a7ccf5329fcbcb925bfc368616797631a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccf5329fcbcb925bfc368616797631a">&#9670;&nbsp;</a></span>GetModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -644,102 +836,83 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="../../d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html">SpeechModel</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>modelName</em></td><td>)</td>
+          <td class="paramname"><em>modelId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieves information about a single specified model that is available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">modelName</td><td>The identifier of the desired model</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html">Model</a> object that contains the information about the specified model that is provided in a JSON <a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html">Model</a> object</dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a71df0c166cdb963c43b8b87e12b30494">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6d4d25672988b4702fec302d55df9672">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a92bd4e600ba797185b9cb3cb3e05417f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92bd4e600ba797185b9cb3cb3e05417f">&#9670;&nbsp;</a></span>GetModels()</h2>
+<a id="af22731bcb4417e71a15a9e0efa7b493b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af22731bcb4417e71a15a9e0efa7b493b">&#9670;&nbsp;</a></span>GetWord()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d5/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model_set.html">SpeechModelSet</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetModels </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retrieves a list of all models available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a ModelSet object that contains the information about an available model that is provided in a JSON <a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html">Model</a> object.</dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a64e8f48d8c5370ebbf8652d787495607">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
-
-</div>
-</div>
-<a id="a2a4410ddaf8ad772677835e93f6adeb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a4410ddaf8ad772677835e93f6adeb1">&#9670;&nbsp;</a></span>GetSessionStatus() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../de/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_status.html">RecognizeStatus</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetSessionStatus </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_session.html">Session</a>&#160;</td>
-          <td class="paramname"><em>session</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">session</td><td>A Session object that identifies the session whose status is to be checked.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns RecognizeStatus object that contains the information about the session that is provided in a JSON SessionStatusobject.</dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aea75be6276301c72fe5a9d77c161e63d">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
-
-</div>
-</div>
-<a id="ac9ec6d98a98b4123c757594b130681de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9ec6d98a98b4123c757594b130681de">&#9670;&nbsp;</a></span>GetSessionStatus() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../de/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognize_status.html">RecognizeStatus</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetSessionStatus </td>
+          <td class="memname"><a class="el" href="../../dc/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word.html">Word</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.GetWord </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sessionId</em></td><td>)</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>wordName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#af3e754b5ed5a40a8574eea7814f6808c">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="aebfd8139db8a274ee44b993940b4d0b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebfd8139db8a274ee44b993940b4d0b4">&#9670;&nbsp;</a></span>ListAcousticModels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_models.html">AcousticModels</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListAcousticModels </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>language</em> = <code>null</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Provides a way to check whether the specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The returned state must be initialized to indicate that you can send another recognition request. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sessionId</td><td>The identifier for the session.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns RecognizeStatus object that contains the information about the session that is provided in a JSON SessionStatus object.</dd></dl>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa83cf1c1a9dc007b1d114f1cad04eebb">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3e80f1b3ee90badcc2ad89ff6f11ed4e">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+</div>
+</div>
+<a id="a62eeef7289aae93f39810a6942430e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62eeef7289aae93f39810a6942430e94">&#9670;&nbsp;</a></span>ListAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d8b/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resources.html">AudioResources</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListAudio </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ab1aeeb2ec08d7880a1804395d3851f22">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
@@ -759,85 +932,57 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists information about all corpora that have been added to the specified custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. Only the owner of a custom model can use this method to list the model's corpora. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model for which corpora are to be listed. You must make the request with the service credentials of the model's owner.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
 <p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a2af57a843e2cfdbe2a13b5cad11d4763">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a5e45fd9793f937f749b684173f67a33d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e45fd9793f937f749b684173f67a33d">&#9670;&nbsp;</a></span>ListCustomModel()</h2>
+<a id="a35e24ddf63490ca657ed74d6e8a29a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e24ddf63490ca657ed74d6e8a29a02">&#9670;&nbsp;</a></span>ListLanguageModels()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d8/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customization.html">Customization</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListCustomModel </td>
+          <td class="memname"><a class="el" href="../../d3/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_models.html">LanguageModels</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListLanguageModels </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em></td><td>)</td>
+          <td class="paramname"><em>language</em> = <code>null</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists information about a specified custom language model. Only the owner of a custom model can use this method to query information about the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model for which information is to be returned. You must make the request with the service credentials of the model's owner.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The method returns a single instance of a Customization object that provides information about the specified model. </dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3f01dba079631627bfb52787e73d3f6c">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a31dbf64bb14e080cf180fb07803a80ff">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a23b853f6f3655f7cb2e1d099adcb8c7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23b853f6f3655f7cb2e1d099adcb8c7e">&#9670;&nbsp;</a></span>ListCustomModels()</h2>
+<a id="ae9a926ebc64ef5438bb3620ff84f48e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9a926ebc64ef5438bb3620ff84f48e0">&#9670;&nbsp;</a></span>ListModels()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_customizations.html">Customizations</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListCustomModels </td>
+          <td class="memname"><a class="el" href="../../dc/d57/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_models.html">SpeechModels</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListModels </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>language</em> = <code>&quot;en-US&quot;</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists information about all custom language models that are owned by the calling user. Use the language parameter to see all custom models for the specified language; omit the parameter to see the custom models for all languages. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">language</td><td>The language for which custom models are to be returned: en-US, ja-JP </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4eac56405d7e9b154606e35903a45fc5">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a8e254c4fe024895552a2af94b2de8e98">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a0a156f2e18dd08c125e38e748690c5fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a156f2e18dd08c125e38e748690c5fe">&#9670;&nbsp;</a></span>ListCustomWord()</h2>
+<a id="a3d42ab0d7d216af298a29d00a01e971b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d42ab0d7d216af298a29d00a01e971b">&#9670;&nbsp;</a></span>ListWords()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dd/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_data.html">WordData</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListCustomWord </td>
+          <td class="memname"><a class="el" href="../../da/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html">Words</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListWords </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em>, </td>
@@ -846,7 +991,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>wordname</em>&#160;</td>
+          <td class="paramname"><em>wordType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sort</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -856,75 +1007,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists information about a custom word from a custom language model. Only the owner of a custom model can use this method to query a word from the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model from which a word is to be queried. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">wordname</td><td>The custom word that is to be queried from the custom model.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a single instance of a WordData object that provides information about the specified word. </dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a497fd52fecd525a53e324b5585074ae7">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a1ec684430408d0c333f6ae98c26162fb">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="af25195d367c70df62b230ac7b6668415"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af25195d367c70df62b230ac7b6668415">&#9670;&nbsp;</a></span>ListCustomWords()</h2>
+<a id="a6b2b6f26c971f751947ab92f42d2b156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b2b6f26c971f751947ab92f42d2b156">&#9670;&nbsp;</a></span>ObserveResult()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d6/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_words_list.html">WordsList</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ListCustomWords </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a43054f2bc01a3873cd69780c79f5c0b4">WordType</a>?&#160;</td>
-          <td class="paramname"><em>wordType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d0/d61/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model.html#a6d76e8acfd115b6fa2ea8c87eb0fc45e">Sort</a>?&#160;</td>
-          <td class="paramname"><em>sort</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or only OOV words that were extracted from corpora. You can also indicate the order in which the service is to return words; by default, words are listed in ascending alphabetical order. Only the owner of a custom model can use this method to query the words from the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model from which words are to be queried. You must make the request with the service credentials of the model's owner.</td></tr>
-    <tr><td class="paramname">wordType</td><td>The type of words to be listed from the custom language model's words resource: For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are not ordered. With cURL, URL encode the + symbol as %2B. </td></tr>
-    <tr><td class="paramname">sort</td><td>How to sort the results.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a0135144e3665f28e05e523edd54590f2">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
-
-</div>
-</div>
-<a id="aa7998e3af0a13c642c9cb5aba08851b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7998e3af0a13c642c9cb5aba08851b4">&#9670;&nbsp;</a></span>ObserveResult()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt;<a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a>&gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ObserveResult </td>
+          <td class="memname">List&lt;<a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a>&gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ObserveResult </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sessionId</em>, </td>
@@ -949,29 +1043,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a909364aeef9804f76e7f120d4aade95a" title="Creates a session and locks recognition requests to that engine.You can use the session for multiple ...">SpeechToTextService.CreateSession(string)</a> method. To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout. Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sessionId</td><td>The identifier of the session whose results you want to observe.</td></tr>
-    <tr><td class="paramname">sequenceId</td><td>The sequence ID of the recognition task whose results you want to observe. Omit the parameter to obtain results either for an ongoing recognition, if any, or for the next recognition task regardless of whether it specifies a sequence ID.</td></tr>
-    <tr><td class="paramname">interimResults</td><td>Indicates whether the service is to return interim results. If true, interim results are returned as a stream of JSON objects; each object represents a single SpeechRecognitionEvent. If false, the response is a single SpeechRecognitionEvent with final results only.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#adc1e9ac7d5db335099fd3cda4bdee5cf">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abc40f8b84755f6d95609b97ce3cc16e0">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a0070c3263634bed42a3cbf8cbf133e88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0070c3263634bed42a3cbf8cbf133e88">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[1/2]</span></h2>
+<a id="a4b8eacd83b55f2043eae3137f74de010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b8eacd83b55f2043eae3137f74de010">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.Recognize </td>
+          <td class="memname"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.Recognize </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>contentType</em>, </td>
@@ -1074,42 +1157,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">contentType</td><td></td></tr>
-    <tr><td class="paramname">transferEncoding</td><td></td></tr>
-    <tr><td class="paramname">audio</td><td></td></tr>
-    <tr><td class="paramname">model</td><td></td></tr>
-    <tr><td class="paramname">customizationId</td><td></td></tr>
-    <tr><td class="paramname">continuous</td><td></td></tr>
-    <tr><td class="paramname">inactivityTimeout</td><td></td></tr>
-    <tr><td class="paramname">keywords</td><td></td></tr>
-    <tr><td class="paramname">keywordsThreshold</td><td></td></tr>
-    <tr><td class="paramname">maxAlternatives</td><td></td></tr>
-    <tr><td class="paramname">wordAlternativesThreshold</td><td></td></tr>
-    <tr><td class="paramname">wordConfidence</td><td></td></tr>
-    <tr><td class="paramname">timestamps</td><td></td></tr>
-    <tr><td class="paramname">profanityFilter</td><td></td></tr>
-    <tr><td class="paramname">smartFormatting</td><td></td></tr>
-    <tr><td class="paramname">speakerLabels</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6d70b335475d7a749c7371f4b46bd8d5">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a97fc5143ff76176873e935cc68a913a2">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="ad4c97dbefc5f8ec2354fe21b0136adbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4c97dbefc5f8ec2354fe21b0136adbf">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[2/2]</span></h2>
+<a id="a33fd4758252d11331e631acf9d0cbc51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33fd4758252d11331e631acf9d0cbc51">&#9670;&nbsp;</a></span>Recognize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.Recognize </td>
+          <td class="memname"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.Recognize </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>contentType</em>, </td>
@@ -1117,7 +1176,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html">Metadata</a>&#160;</td>
           <td class="paramname"><em>metaData</em>, </td>
         </tr>
         <tr>
@@ -1152,32 +1211,138 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">contentType</td><td></td></tr>
-    <tr><td class="paramname">transferEncoding</td><td></td></tr>
-    <tr><td class="paramname">model</td><td></td></tr>
-    <tr><td class="paramname">customizationId</td><td></td></tr>
-    <tr><td class="paramname">metaData</td><td></td></tr>
-    <tr><td class="paramname">audio</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#afc33b647d24af3044481ed062b30dfa1">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a60083e0fe3f964e7e457293386db4cc0">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a182c02f952c33151cd4d1fbdb9735bcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a182c02f952c33151cd4d1fbdb9735bcd">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[1/2]</span></h2>
+<a id="a863a79b89a1aca09bbf8bb26d5799862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a863a79b89a1aca09bbf8bb26d5799862">&#9670;&nbsp;</a></span>RecognizeSessionless()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RecognizeWithSession </td>
+          <td class="memname"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RecognizeSessionless </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>model</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>acousticCustomizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>customizationWeight</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>version</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte []&#160;</td>
+          <td class="paramname"><em>audio</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>contentType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>inactivityTimeout</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>keywords</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float?&#160;</td>
+          <td class="paramname"><em>keywordsThreshold</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>maxAlternatives</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float?&#160;</td>
+          <td class="paramname"><em>wordAlternativesThreshold</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>wordConfidence</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>timestamps</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>profanityFilter</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>smartFormatting</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>speakerLabels</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a30f2d6d58a7a27e181d851c84aaf55b4">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a51c5e096d903dafbead0870313cc54bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c5e096d903dafbead0870313cc54bc">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RecognizeWithSession </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sessionId</em>, </td>
@@ -1286,43 +1451,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sessionId</td><td></td></tr>
-    <tr><td class="paramname">contentType</td><td></td></tr>
-    <tr><td class="paramname">transferEncoding</td><td></td></tr>
-    <tr><td class="paramname">audio</td><td></td></tr>
-    <tr><td class="paramname">model</td><td></td></tr>
-    <tr><td class="paramname">customizationId</td><td></td></tr>
-    <tr><td class="paramname">continuous</td><td></td></tr>
-    <tr><td class="paramname">inactivityTimeout</td><td></td></tr>
-    <tr><td class="paramname">keywords</td><td></td></tr>
-    <tr><td class="paramname">keywordsThreshold</td><td></td></tr>
-    <tr><td class="paramname">maxAlternatives</td><td></td></tr>
-    <tr><td class="paramname">wordAlternativesThreshold</td><td></td></tr>
-    <tr><td class="paramname">wordConfidence</td><td></td></tr>
-    <tr><td class="paramname">timestamps</td><td></td></tr>
-    <tr><td class="paramname">profanityFilter</td><td></td></tr>
-    <tr><td class="paramname">smartFormatting</td><td></td></tr>
-    <tr><td class="paramname">speakerLabels</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ab6f36de6579f3ff7bd5a024f9ffff105">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4df57c2f8c61ddf1d2df93c479e8efc8">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="acf66f72cefde5bbca618abaf52e1763e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf66f72cefde5bbca618abaf52e1763e">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[2/2]</span></h2>
+<a id="ad392471ad64109b066cd7b9bca53a1a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad392471ad64109b066cd7b9bca53a1a1">&#9670;&nbsp;</a></span>RecognizeWithSession() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_event.html">SpeechRecognitionEvent</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RecognizeWithSession </td>
+          <td class="memname"><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RecognizeWithSession </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sessionId</em>, </td>
@@ -1336,7 +1476,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d5/d4f/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_metadata.html">Metadata</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html">Metadata</a>&#160;</td>
           <td class="paramname"><em>metaData</em>, </td>
         </tr>
         <tr>
@@ -1371,70 +1511,27 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request. For requests to transcribe live audio as it becomes available, you must set the Transfer-Encoding header to chunked to use streaming mode. In streaming mode, the server closes the connection (response code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (response code 400) if no speech is detected for inactivity_timeout seconds of audio (not processing time); use the inactivity_timeout parameter to change the default of 30 seconds. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sessionId</td><td></td></tr>
-    <tr><td class="paramname">contentType</td><td></td></tr>
-    <tr><td class="paramname">transferEncoding</td><td></td></tr>
-    <tr><td class="paramname">model</td><td></td></tr>
-    <tr><td class="paramname">customizationId</td><td></td></tr>
-    <tr><td class="paramname">metaData</td><td></td></tr>
-    <tr><td class="paramname">audio</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ae8efecf1f9a0d829e8226d00bf290a11">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a71af0357446eea60235a3c669f5b3a1b">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="abdef34e86951001c616a9119bc9894ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdef34e86951001c616a9119bc9894ea">&#9670;&nbsp;</a></span>ResetCustomModel()</h2>
+<a id="a7f844092688a8ee87a1e06151b6ac40d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f844092688a8ee87a1e06151b6ac40d">&#9670;&nbsp;</a></span>RegisterCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ResetCustomModel </td>
+          <td class="memname"><a class="el" href="../../df/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_register_status.html">RegisterStatus</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.RegisterCallback </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Resets a custom language model by removing all corpora and words from the model. Resetting a custom model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved. Only the owner of a custom model can use this method to reset the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model that is to be reset. You must make the request with the service credentials of the model's owner.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7aa03c9d33eb8d830edee9f641a1d198">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
-
-</div>
-</div>
-<a id="a6f3e43dd3551cef0645e225ccf9b4e41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f3e43dd3551cef0645e225ccf9b4e41">&#9670;&nbsp;</a></span>TrainCustomModel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.TrainCustomModel </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em>, </td>
+          <td class="paramname"><em>callbackUrl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>wordTypeToAdd</em> = <code>&quot;all&quot;</code>&#160;</td>
+          <td class="paramname"><em>userSecret</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1444,20 +1541,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initiates the training of a custom language model with new corpora, custom words, or both. After adding corpora or words to the custom model, use this method to begin the actual training of the model on the new data. You can specify whether the custom model is to be trained with all words from its words resources or only with words that were added or modified by the user. Only the owner of a custom model can use this method to train the model. This method is asynchronous and can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun. You can monitor the status of the training by using the List a custom model method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a Customization object that includes status and progress fields. A status of available means that the custom model is trained and ready to use. If training is in progress, the progress field indicates the progress of the training as a percentage complete. The service cannot accept subsequent training requests, or requests to add new corpora or words, until the existing request completes. </p>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ae18f64d50a590c7c2f10d5518aa0c511">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3fb34828694c6804c140f18bea4c26d3">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<a id="a5489eac25da595395ddd751ba609984e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5489eac25da595395ddd751ba609984e">&#9670;&nbsp;</a></span>UpgradeCustomModel()</h2>
+<a id="af63019ad422ce893c64d26fa9965dc24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63019ad422ce893c64d26fa9965dc24">&#9670;&nbsp;</a></span>ResetAcousticModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.UpgradeCustomModel </td>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ResetAcousticModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>customizationId</em></td><td>)</td>
@@ -1466,20 +1561,169 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Upgrades a custom language model to the latest release level of the Speech to Text service. The method bases the upgrade on the latest trained data stored for the custom model. If the corpora or words for the model have changed since the model was last trained, you must use the Train a custom model method to train the model on the new data. Only the owner of a custom model can use this method to upgrade the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom language model that is to be upgraded. You must make the request with the service credentials of the model's owner.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ae2f3bb1d3db81187f036125f141fb6ab">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a83a50fa3523b4b938ab02a5332a9b55f">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
+<a id="a728398fff306fb7df0acd45ba7d127a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728398fff306fb7df0acd45ba7d127a4">&#9670;&nbsp;</a></span>ResetLanguageModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.ResetLanguageModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a23c03ea726ccd58784b400c5aa00fc6b">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="aec8e0fa670b7455356559a672feaf668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec8e0fa670b7455356559a672feaf668">&#9670;&nbsp;</a></span>TrainAcousticModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.TrainAcousticModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customLanguageModelId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a925784795f601cfb68907b7eeeb4a5dc">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a3823ad0a72d605346d4b70b8b57f4fba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3823ad0a72d605346d4b70b8b57f4fba">&#9670;&nbsp;</a></span>TrainLanguageModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.TrainLanguageModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>wordTypeToAdd</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>customizationWeight</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a5f0bcf58ba176ba23064b64877d2f064">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a5c433867ff960d66ceed59c210e3a9da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c433867ff960d66ceed59c210e3a9da">&#9670;&nbsp;</a></span>UnregisterCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.UnregisterCallback </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>callbackUrl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3c4134b3b62234192a9e21ef25d9e5d0">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="aea83ccc95d118a2bad6c3c9ca18f35f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea83ccc95d118a2bad6c3c9ca18f35f7">&#9670;&nbsp;</a></span>UpgradeAcousticModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.UpgradeAcousticModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customLanguageModelId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ad3b0f7831cc8d6e0bb1ef9b197ff0770">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="ad14ea04eb3d5b633ca582181ab8e2d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14ea04eb3d5b633ca582181ab8e2d62">&#9670;&nbsp;</a></span>UpgradeLanguageModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService.UpgradeLanguageModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4233fad6f8b8879dd337c8c0be9a5910">IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following files:<ul>
 <li>src/IBM.WatsonDeveloperCloud.SpeechToText.v1/<a class="el" href="../../d5/d2a/_i_speech_to_text_service_8cs.html">ISpeechToTextService.cs</a></li>
+<li>src/IBM.WatsonDeveloperCloud.SpeechToText.v1/<a class="el" href="../../df/df9/_i_speech_to_text_service_extension_8cs.html">ISpeechToTextServiceExtension.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

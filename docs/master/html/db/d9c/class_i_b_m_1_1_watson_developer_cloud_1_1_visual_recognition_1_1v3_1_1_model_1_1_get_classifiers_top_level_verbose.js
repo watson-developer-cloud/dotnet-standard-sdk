@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_get_classifiers_top_level_verbose =
-[
-    [ "Classifiers", "db/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_get_classifiers_top_level_verbose.html#acae3760ac6d65e83a925e6f0d8990b99", null ]
-];

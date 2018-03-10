@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj" />
+    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
   </ItemGroup>
 
   <ItemGroup>

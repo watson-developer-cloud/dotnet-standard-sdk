@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">1.3.1</span>
+   &#160;<span id="projectnumber">2.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -88,26 +88,28 @@ $(document).ready(function(){initNavTree('d4/df8/class_i_b_m_1_1_watson_develope
 <div class="title">IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html" title="SpeechRecognitionResult. ">SpeechRecognitionResult</a>.  
+ <a href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a21eeea2e582674bf33c7bda529dd7375"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a21eeea2e582674bf33c7bda529dd7375">Final</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a21eeea2e582674bf33c7bda529dd7375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if <code>true</code>, the result for this utterance is not updated further.  <a href="#a21eeea2e582674bf33c7bda529dd7375">More...</a><br /></td></tr>
-<tr class="separator:a21eeea2e582674bf33c7bda529dd7375"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd402202d9413f4bdf5190c5f504d104"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#afd402202d9413f4bdf5190c5f504d104">Speaker</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afd402202d9413f4bdf5190c5f504d104"><td class="mdescLeft">&#160;</td><td class="mdescRight">The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at 0 initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered.  <a href="#afd402202d9413f4bdf5190c5f504d104">More...</a><br /></td></tr>
-<tr class="separator:afd402202d9413f4bdf5190c5f504d104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b3e002460fdd37aa2c58ac71cbf5b88"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a1b3e002460fdd37aa2c58ac71cbf5b88">FinalResults</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1b3e002460fdd37aa2c58ac71cbf5b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final.  <a href="#a1b3e002460fdd37aa2c58ac71cbf5b88">More...</a><br /></td></tr>
+<tr class="separator:a1b3e002460fdd37aa2c58ac71cbf5b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ee954538cf780f9fbcda0358ff98498"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d6/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html">SpeechRecognitionAlternative</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a0ee954538cf780f9fbcda0358ff98498">Alternatives</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a0ee954538cf780f9fbcda0358ff98498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets array of alternative transcripts.  <a href="#a0ee954538cf780f9fbcda0358ff98498">More...</a><br /></td></tr>
+<tr class="memdesc:a0ee954538cf780f9fbcda0358ff98498"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of alternative transcripts. The <code>alternatives</code> array can include additional requested output such as word confidence or timestamps.  <a href="#a0ee954538cf780f9fbcda0358ff98498">More...</a><br /></td></tr>
 <tr class="separator:a0ee954538cf780f9fbcda0358ff98498"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77b06857dccf39a482dd716072c0585d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dba/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_results.html">KeywordResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a77b06857dccf39a482dd716072c0585d">KeywordResults</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a77b06857dccf39a482dd716072c0585d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets dictionary (or associative array) whose keys are the strings specified for <code>keywords</code> if both that parameter and <code>keywords_threshold</code> are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.  <a href="#a77b06857dccf39a482dd716072c0585d">More...</a><br /></td></tr>
-<tr class="separator:a77b06857dccf39a482dd716072c0585d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4d48a759474e18758e32e6ed2cde952"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d4/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html">WordAlternativeResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#aa4d48a759474e18758e32e6ed2cde952">WordAlternativeResults</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa4d48a759474e18758e32e6ed2cde952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets array of word alternative hypotheses found for words of the input audio if a <code>word_alternatives_threshold</code> is specified.  <a href="#aa4d48a759474e18758e32e6ed2cde952">More...</a><br /></td></tr>
-<tr class="separator:aa4d48a759474e18758e32e6ed2cde952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad5b55666e7e6f1768a0545908e1c968"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, List&lt; <a class="el" href="../../d1/db4/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html">KeywordResult</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#aad5b55666e7e6f1768a0545908e1c968">KeywordsResult</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aad5b55666e7e6f1768a0545908e1c968"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dictionary (or associative array) whose keys are the strings specified for <code>keywords</code> if both that parameter and <code>keywords_threshold</code> are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.  <a href="#aad5b55666e7e6f1768a0545908e1c968">More...</a><br /></td></tr>
+<tr class="separator:aad5b55666e7e6f1768a0545908e1c968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8138d5a812be5000fa6b7d53194ee89c"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d4/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html">WordAlternativeResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a8138d5a812be5000fa6b7d53194ee89c">WordAlternatives</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8138d5a812be5000fa6b7d53194ee89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of alternative hypotheses found for words of the input audio if a <code>word_alternatives_threshold</code> is specified.  <a href="#a8138d5a812be5000fa6b7d53194ee89c">More...</a><br /></td></tr>
+<tr class="separator:a8138d5a812be5000fa6b7d53194ee89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Property Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="../../d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html" title="SpeechRecognitionResult. ">SpeechRecognitionResult</a>. </p>
+</div><h2 class="groupheader">Property Documentation</h2>
 <a id="a0ee954538cf780f9fbcda0358ff98498"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ee954538cf780f9fbcda0358ff98498">&#9670;&nbsp;</a></span>Alternatives</h2>
 
@@ -128,12 +130,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets array of alternative transcripts. </p>
+<p>An array of alternative transcripts. The <code>alternatives</code> array can include additional requested output such as word confidence or timestamps. </p>
+<p>An array of alternative transcripts. The <code>alternatives</code> array can include additional requested output such as word confidence or timestamps.</p>
 
 </div>
 </div>
-<a id="a21eeea2e582674bf33c7bda529dd7375"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21eeea2e582674bf33c7bda529dd7375">&#9670;&nbsp;</a></span>Final</h2>
+<a id="a1b3e002460fdd37aa2c58ac71cbf5b88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3e002460fdd37aa2c58ac71cbf5b88">&#9670;&nbsp;</a></span>FinalResults</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +145,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.Final</td>
+          <td class="memname">bool IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.FinalResults</td>
         </tr>
       </table>
   </td>
@@ -152,12 +155,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets if <code>true</code>, the result for this utterance is not updated further. </p>
+<p>An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final. </p>
+<p>An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final.</p>
 
 </div>
 </div>
-<a id="a77b06857dccf39a482dd716072c0585d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77b06857dccf39a482dd716072c0585d">&#9670;&nbsp;</a></span>KeywordResults</h2>
+<a id="aad5b55666e7e6f1768a0545908e1c968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad5b55666e7e6f1768a0545908e1c968">&#9670;&nbsp;</a></span>KeywordsResult</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +170,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d1/dba/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_results.html">KeywordResults</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.KeywordResults</td>
+          <td class="memname">Dictionary&lt;string, List&lt;<a class="el" href="../../d1/db4/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html">KeywordResult</a>&gt; &gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.KeywordsResult</td>
         </tr>
       </table>
   </td>
@@ -176,12 +180,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets dictionary (or associative array) whose keys are the strings specified for <code>keywords</code> if both that parameter and <code>keywords_threshold</code> are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found. </p>
+<p>A dictionary (or associative array) whose keys are the strings specified for <code>keywords</code> if both that parameter and <code>keywords_threshold</code> are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found. </p>
+<p>A dictionary (or associative array) whose keys are the strings specified for <code>keywords</code> if both that parameter and <code>keywords_threshold</code> are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.</p>
 
 </div>
 </div>
-<a id="afd402202d9413f4bdf5190c5f504d104"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd402202d9413f4bdf5190c5f504d104">&#9670;&nbsp;</a></span>Speaker</h2>
+<a id="a8138d5a812be5000fa6b7d53194ee89c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8138d5a812be5000fa6b7d53194ee89c">&#9670;&nbsp;</a></span>WordAlternatives</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +195,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.Speaker</td>
+          <td class="memname">List&lt;<a class="el" href="../../d4/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html">WordAlternativeResults</a>&gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.WordAlternatives</td>
         </tr>
       </table>
   </td>
@@ -200,31 +205,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at 0 initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered. </p>
-
-</div>
-</div>
-<a id="aa4d48a759474e18758e32e6ed2cde952"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4d48a759474e18758e32e6ed2cde952">&#9670;&nbsp;</a></span>WordAlternativeResults</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt;<a class="el" href="../../d4/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html">WordAlternativeResults</a>&gt; IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult.WordAlternativeResults</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets or sets array of word alternative hypotheses found for words of the input audio if a <code>word_alternatives_threshold</code> is specified. </p>
+<p>An array of alternative hypotheses found for words of the input audio if a <code>word_alternatives_threshold</code> is specified. </p>
+<p>An array of alternative hypotheses found for words of the input audio if a <code>word_alternatives_threshold</code> is specified.</p>
 
 </div>
 </div>

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">1.3.1</span>
+   &#160;<span id="projectnumber">2.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -101,11 +101,9 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IToneAnalyzerSe
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6cea7dac858bdfb33271c12a3dfae87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html">ToneAnalysis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#aa6cea7dac858bdfb33271c12a3dfae87">Tone</a> (<a class="el" href="../../dd/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_input.html">ToneInput</a> toneInput, string contentType, bool? sentences=null, List&lt; string &gt; tones=null, string contentLanguage=null, string acceptLanguage=null)</td></tr>
-<tr class="memdesc:aa6cea7dac858bdfb33271c12a3dfae87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyze general purpose tone. Uses the general purpose endpoint to analyze the tone of your input content. The service analyzes the content for emotional and language tones. The method always analyzes the tone of the full document; by default, it also analyzes the tone of each individual sentence of the content. You can submit no more than 128 KB of total input content and no more than 1000 individual sentences in JSON, plain text, or HTML format. The service analyzes the first 1000 sentences for document-level analysis and only the first 100 sentences for sentence-level analysis. Use the <code>POST</code> request method to analyze larger amounts of content in any of the available formats. Use the <code>GET</code> request method to analyze smaller quantities of plain text content. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set). When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example: <code>Content-Type: text/plain;charset=utf-8</code>. For <code>text/html</code>, the service removes HTML tags and analyzes only the textual content.  <a href="#aa6cea7dac858bdfb33271c12a3dfae87">More...</a><br /></td></tr>
 <tr class="separator:aa6cea7dac858bdfb33271c12a3dfae87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f221268b9f04bfcf077c98a2c535b2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analyses.html">UtteranceAnalyses</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a4f221268b9f04bfcf077c98a2c535b2f">ToneChat</a> (<a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html">ToneChatInput</a> utterances, string acceptLanguage=null)</td></tr>
-<tr class="memdesc:a4f221268b9f04bfcf077c98a2c535b2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyze customer engagement tone. Use the customer engagement endpoint to analyze the tone of customer service and customer support conversations. For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic. If you submit more than 50 utterances, the service returns a warning for the overall content and analyzes only the first 50 utterances. If you submit a single utterance that contains more than 500 characters, the service returns an error for that utterance and does not analyze the utterance. The request fails if all utterances have more than 500 characters. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.  <a href="#a4f221268b9f04bfcf077c98a2c535b2f">More...</a><br /></td></tr>
-<tr class="separator:a4f221268b9f04bfcf077c98a2c535b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b8bd8f97656482b185cad1b8b39438c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d3f/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance_analyses.html">UtteranceAnalyses</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html#a5b8bd8f97656482b185cad1b8b39438c">ToneChat</a> (<a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html">ToneChatInput</a> utterances, string contentLanguage=null, string acceptLanguage=null)</td></tr>
+<tr class="separator:a5b8bd8f97656482b185cad1b8b39438c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa6cea7dac858bdfb33271c12a3dfae87"></a>
@@ -158,26 +156,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Analyze general purpose tone. Uses the general purpose endpoint to analyze the tone of your input content. The service analyzes the content for emotional and language tones. The method always analyzes the tone of the full document; by default, it also analyzes the tone of each individual sentence of the content. You can submit no more than 128 KB of total input content and no more than 1000 individual sentences in JSON, plain text, or HTML format. The service analyzes the first 1000 sentences for document-level analysis and only the first 100 sentences for sentence-level analysis. Use the <code>POST</code> request method to analyze larger amounts of content in any of the available formats. Use the <code>GET</code> request method to analyze smaller quantities of plain text content. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set). When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example: <code>Content-Type: text/plain;charset=utf-8</code>. For <code>text/html</code>, the service removes HTML tags and analyzes only the textual content. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">toneInput</td><td>JSON, plain text, or HTML input that contains the content to be analyzed. For JSON input, provide an object of type <code>ToneInput</code>.</td></tr>
-    <tr><td class="paramname">contentType</td><td>The type of the input: application/json, text/plain, or text/html. A character encoding can be specified by including a <code>charset</code> parameter. For example, 'text/plain;charset=utf-8'.</td></tr>
-    <tr><td class="paramname">sentences</td><td>Indicates whether the service is to return an analysis of each individual sentence in addition to its analysis of the full document. If <code>true</code> (the default), the service returns results for each sentence. (optional, default to true)</td></tr>
-    <tr><td class="paramname">tones</td><td>**<code>2017-09-21</code>:** Deprecated. The service continues to accept the parameter for backward-compatibility, but the parameter no longer affects the response. **<code>2016-05-19</code>:** A comma-separated list of tones for which the service is to return its analysis of the input; the indicated tones apply both to the full document and to individual sentences of the document. You can specify one or more of the valid values. Omit the parameter to request results for all three tones. (optional)</td></tr>
-    <tr><td class="paramname">contentLanguage</td><td>The language of the input text for the request: English or French. Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. The input content must match the specified language. Do not submit content that contains both languages. You can specify any combination of languages for <code>contentLanguage</code> and <code>Accept-Language</code>. * **<code>2017-09-21</code>:** Accepts <code>en</code> or <code>fr</code>. * **<code>2016-05-19</code>:** Accepts only <code>en</code>. (optional, default to en)</td></tr>
-    <tr><td class="paramname">acceptLanguage</td><td>The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. You can specify any combination of languages for <code>Content-Language</code> and <code>acceptLanguage</code>. (optional, default to en)</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>ToneAnalysisToneAnalysis</dd></dl>
-
 <p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#ab59c76b66f29273871cc6ebfaf666b40">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
 
 </div>
 </div>
-<a id="a4f221268b9f04bfcf077c98a2c535b2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f221268b9f04bfcf077c98a2c535b2f">&#9670;&nbsp;</a></span>ToneChat()</h2>
+<a id="a5b8bd8f97656482b185cad1b8b39438c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b8bd8f97656482b185cad1b8b39438c">&#9670;&nbsp;</a></span>ToneChat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,6 +171,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html">ToneChatInput</a>&#160;</td>
           <td class="paramname"><em>utterances</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>contentLanguage</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -202,17 +192,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Analyze customer engagement tone. Use the customer engagement endpoint to analyze the tone of customer service and customer support conversations. For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic. If you submit more than 50 utterances, the service returns a warning for the overall content and analyzes only the first 50 utterances. If you submit a single utterance that contains more than 500 characters, the service returns an error for that utterance and does not analyze the utterance. The request fails if all utterances have more than 500 characters. Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">utterances</td><td>A JSON object that contains the content to be analyzed.</td></tr>
-    <tr><td class="paramname">acceptLanguage</td><td>The desired language of the response. For two-character arguments, regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. (optional, default to en)</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>UtteranceAnalysesUtteranceAnalyses</dd></dl>
-
-<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a844c6f2f972cf1cf6339cdbb71f13f49">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
+<p>Implemented in <a class="el" href="../../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a084aafe6f92140b82e72d4c900abd6de">IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.ToneAnalyzerService</a>.</p>
 
 </div>
 </div>

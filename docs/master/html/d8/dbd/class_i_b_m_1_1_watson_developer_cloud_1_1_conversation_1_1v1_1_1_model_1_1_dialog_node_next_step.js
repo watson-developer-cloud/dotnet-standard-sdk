@@ -1,7 +1,12 @@
 var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step =
 [
     [ "BehaviorEnum", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0", [
-      [ "JUMP_TO", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5", null ]
+      [ "GET_USER_INPUT", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a1125e265d49f5152a472b5dfbba1bdc1", null ],
+      [ "SKIP_USER_INPUT", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a0fc4f9830d7176bcd3b9a6645a428aa0", null ],
+      [ "JUMP_TO", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a562c6e4a600b59e1135e2c5351cb04f5", null ],
+      [ "REPROMPT", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a79c376686d790c6bc1fbeee95f6d1507", null ],
+      [ "SKIP_SLOT", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0a6b4bc93826852a8fbb96a12f655dd244", null ],
+      [ "SKIP_ALL_SLOTS", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#ab8e755c38d0be3bac7dcabec486118a0ac73e1221defefc09843d92c0abcc674a", null ]
     ] ],
     [ "SelectorEnum", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a845eb0af89c609c3cc65f80a9c2e90c5", [
       [ "CONDITION", "d8/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_dialog_node_next_step.html#a845eb0af89c609c3cc65f80a9c2e90c5a9f768c0bb1c3e84ca086a85211e978ac", null ],

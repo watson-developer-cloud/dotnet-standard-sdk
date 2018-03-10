@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['faces',['Faces',['../d8/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_faces.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
-  ['facestoplevelsingle',['FacesTopLevelSingle',['../d7/df4/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_faces_top_level_single.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['face',['Face',['../d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['faceage',['FaceAge',['../de/d98/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_age.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['facegender',['FaceGender',['../d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['faceidentity',['FaceIdentity',['../dd/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_identity.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
+  ['facelocation',['FaceLocation',['../d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
   ['features',['Features',['../d0/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
   ['featuresentimentresults',['FeatureSentimentResults',['../dc/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feature_sentiment_results.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
   ['feed',['Feed',['../de/df4/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feed.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],

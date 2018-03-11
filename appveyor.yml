@@ -39,8 +39,6 @@ install:
 
 - ps: >-
     dotnet restore
-
-    dotnet pack
 build:
   project: IBM.WatsonDeveloperCloud.sln
   verbosity: minimal

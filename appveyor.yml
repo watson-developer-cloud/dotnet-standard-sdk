@@ -3,6 +3,7 @@ branches:
   except:
   - gh-pages
 configuration: Release
+image: Visual Studio 2017
 platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
 environment:

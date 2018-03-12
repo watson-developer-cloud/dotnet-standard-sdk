@@ -60,7 +60,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
                 _password = vcapServices["assistant"]["password"].Value<string>();
             }
 
-            service = new AssistantService(_username, _password, AssistantService.ASSISTANT_);
+            service = new AssistantService(_username, _password, "2018-02-16");
             service.Endpoint = _endpoint;
         }
 

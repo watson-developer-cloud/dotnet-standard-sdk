@@ -125,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/synthesize");
-                request.WithHeader("Accept", accept);
+                request.WithArgument("accept", accept);
                 if (!string.IsNullOrEmpty(voice))
                     request.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(customizationId))

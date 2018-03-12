@@ -67,7 +67,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             this.Client = httpClient;
         }
 
-        public MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
+        public MessageResponse Message(string workspaceId, MessageRequest messageRequest = null, bool? nodesVisitedDetails = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -84,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 request.WithArgument("version", VersionDate);
                 if (nodesVisitedDetails != null)
                     request.WithArgument("nodes_visited_details", nodesVisitedDetails);
-                request.WithBody<MessageRequest>(request);
+                request.WithBody<MessageRequest>(messageRequest);
                 result = request.As<MessageResponse>().Result;
             }
             catch(AggregateException ae)

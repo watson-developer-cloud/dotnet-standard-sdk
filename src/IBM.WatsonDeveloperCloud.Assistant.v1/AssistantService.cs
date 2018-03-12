@@ -1215,7 +1215,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
                 request.WithArgument("version", VersionDate);
                 result = request.As<object>().Result;
             }
@@ -1242,7 +1242,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
                 request.WithArgument("version", VersionDate);
                 if (includeAudit != null)
                     request.WithArgument("include_audit", includeAudit);
@@ -1308,7 +1308,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<UpdateDialogNode>(properties);
                 result = request.As<DialogNode>().Result;

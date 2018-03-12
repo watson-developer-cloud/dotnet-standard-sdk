@@ -68,7 +68,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
         {
             Console.WriteLine("\nAttempting to Message()");
-            var result = service.Message(workspaceId:workspaceId, request:request, nodesVisitedDetails:nodesVisitedDetails);
+            var result = service.Message(workspaceId:workspaceId, messageRequest: request, nodesVisitedDetails:nodesVisitedDetails);
 
             if(result != null)
             {

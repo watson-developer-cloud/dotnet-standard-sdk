@@ -37,8 +37,7 @@ install:
 
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
-- ps: >-
-    dotnet restore
+- ps: dotnet restore
 build:
   project: IBM.WatsonDeveloperCloud.sln
   verbosity: minimal

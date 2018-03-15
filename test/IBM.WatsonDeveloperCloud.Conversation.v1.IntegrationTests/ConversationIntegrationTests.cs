@@ -613,7 +613,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteWorkspace
         private object DeleteWorkspace(string workspaceId)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = _service.DeleteWorkspace(workspaceId: workspaceId);
 
@@ -733,7 +733,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteIntent
         private object DeleteIntent(string workspaceId, string intent)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent);
 
@@ -833,7 +833,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteExample
         private object DeleteExample(string workspaceId, string intent, string text)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
 
@@ -933,7 +933,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteEntity
         private object DeleteEntity(string workspaceId, string entity)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity);
 
@@ -1033,7 +1033,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteValue
         private object DeleteValue(string workspaceId, string entity, string value)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
 
@@ -1133,7 +1133,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteSynonym
         private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
@@ -1233,7 +1233,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteDialogNode
         private object DeleteDialogNode(string workspaceId, string dialogNode)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
@@ -1373,7 +1373,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #region DeleteCounterexample
         private object DeleteCounterexample(string workspaceId, string text)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text);
 

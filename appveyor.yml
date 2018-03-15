@@ -4,6 +4,7 @@ branches:
   - gh-pages
 configuration: Release
 image: Visual Studio 2017
+# platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
 environment:
   COVERALLS_REPO_TOKEN:
@@ -102,30 +103,32 @@ test_script:
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud
-- path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Conversation.v1
-- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
-- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
-- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.SpeechToText.v1
-- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.TextToSpeech.v1
-- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
-- path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.VisualRecognition.v3
-- path: '\src\IBM.WatsonDeveloperCloud.Discovery.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Discovery.v1
-- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
-- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
-deploy:
-- provider: NuGet
-  api_key:
-    secure: jVMsvYb86JW+UMN2Gb2m1JazRkouGMzd58NHWxWVAY1BsQbehIU+YTxdsAeMo1qy
+- path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.Assistant.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.Conversation.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
+# - path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
+# - path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.SpeechToText.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.TextToSpeech.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
+# - path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.VisualRecognition.v3
+# - path: '\src\IBM.WatsonDeveloperCloud.Discovery.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.Discovery.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
+# - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
+#   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
+# deploy:
+# - provider: NuGet
+#   api_key:
+#     secure: jVMsvYb86JW+UMN2Gb2m1JazRkouGMzd58NHWxWVAY1BsQbehIU+YTxdsAeMo1qy
   on:
     branch: master
     APPVEYOR_REPO_TAG: true

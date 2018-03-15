@@ -40,7 +40,7 @@ install:
 - ps: dotnet restore
 build:
   project: IBM.WatsonDeveloperCloud.sln
-  verbosity: minimal
+  verbosity: diagnostic
 after_build:
 - ps: >-
     if(!$env:APPVEYOR_REPO_TAG_NAME)

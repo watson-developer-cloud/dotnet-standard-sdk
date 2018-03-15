@@ -38,9 +38,6 @@ install:
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
 - ps: dotnet restore
-build:
-  project: IBM.WatsonDeveloperCloud.sln
-  verbosity: minimal
 after_build:
 - ps: >-
     if(!$env:APPVEYOR_REPO_TAG_NAME)

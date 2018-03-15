@@ -94,7 +94,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
                 _Text = _synthesizeText
             };
 
-            var synthesizeResult = Synthesize(synthesizeText, "audio/wave");
+            var synthesizeResult = Synthesize(synthesizeText, "audio/wav");
 
             Assert.IsNotNull(synthesizeResult);
         }

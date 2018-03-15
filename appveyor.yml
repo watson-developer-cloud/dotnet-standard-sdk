@@ -3,7 +3,6 @@ branches:
   except:
   - gh-pages
 configuration: Release
-image: Visual Studio 2017
 platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
 environment:
@@ -40,7 +39,7 @@ install:
 - ps: dotnet restore
 build:
   project: IBM.WatsonDeveloperCloud.sln
-  verbosity: diagnostic
+  verbosity: minimal
 after_build:
 - ps: >-
     if(!$env:APPVEYOR_REPO_TAG_NAME)

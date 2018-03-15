@@ -23,7 +23,6 @@ using IBM.WatsonDeveloperCloud.Util;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 {
@@ -544,7 +543,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region Message
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to Message()");
             var result = _service.Message(workspaceId:workspaceId, messageRequest: request, nodesVisitedDetails:nodesVisitedDetails);
 
@@ -564,7 +562,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateWorkspace
         private Workspace CreateWorkspace(CreateWorkspace properties = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateWorkspace()");
             var result = _service.CreateWorkspace(properties:properties);
 
@@ -584,7 +581,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteWorkspace
         private object DeleteWorkspace(string workspaceId)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = _service.DeleteWorkspace(workspaceId:workspaceId);
 
@@ -604,7 +600,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetWorkspace
         private WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetWorkspace()");
             var result = _service.GetWorkspace(workspaceId:workspaceId, export:export, includeAudit:includeAudit);
 
@@ -624,7 +619,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListWorkspaces
         private WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListWorkspaces()");
             var result = _service.ListWorkspaces(pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -644,7 +638,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateWorkspace
         private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateWorkspace()");
             var result = _service.UpdateWorkspace(workspaceId:workspaceId, properties:properties, append:append);
 
@@ -664,7 +657,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateIntent
         private Intent CreateIntent(string workspaceId, CreateIntent body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateIntent()");
             var result = _service.CreateIntent(workspaceId:workspaceId, body:body);
 
@@ -684,7 +676,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteIntent
         private object DeleteIntent(string workspaceId, string intent)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = _service.DeleteIntent(workspaceId:workspaceId, intent:intent);
 
@@ -704,7 +695,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetIntent
         private IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetIntent()");
             var result = _service.GetIntent(workspaceId:workspaceId, intent:intent, export:export, includeAudit:includeAudit);
 
@@ -724,7 +714,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListIntents
         private IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListIntents()");
             var result = _service.ListIntents(workspaceId:workspaceId, export:export, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -744,7 +733,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateIntent
         private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateIntent()");
             var result = _service.UpdateIntent(workspaceId:workspaceId, intent:intent, body:body);
 
@@ -764,7 +752,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateExample
         private Example CreateExample(string workspaceId, string intent, CreateExample body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateExample()");
             var result = _service.CreateExample(workspaceId:workspaceId, intent:intent, body:body);
 
@@ -784,7 +771,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteExample
         private object DeleteExample(string workspaceId, string intent, string text)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = _service.DeleteExample(workspaceId:workspaceId, intent:intent, text:text);
 
@@ -804,7 +790,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetExample
         private Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetExample()");
             var result = _service.GetExample(workspaceId:workspaceId, intent:intent, text:text, includeAudit:includeAudit);
 
@@ -824,7 +809,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListExamples
         private ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListExamples()");
             var result = _service.ListExamples(workspaceId:workspaceId, intent:intent, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -844,7 +828,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateExample
         private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateExample()");
             var result = _service.UpdateExample(workspaceId:workspaceId, intent:intent, text:text, body:body);
 
@@ -864,7 +847,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateCounterexample
         private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateCounterexample()");
             var result = _service.CreateCounterexample(workspaceId:workspaceId, body:body);
 
@@ -884,7 +866,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteCounterexample
         private object DeleteCounterexample(string workspaceId, string text)
         {
-            Thread.Sleep(10000);
+            
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = _service.DeleteCounterexample(workspaceId:workspaceId, text:text);
 
@@ -904,7 +886,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetCounterexample
         private Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetCounterexample()");
             var result = _service.GetCounterexample(workspaceId:workspaceId, text:text, includeAudit:includeAudit);
 
@@ -924,7 +905,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListCounterexamples
         private CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListCounterexamples()");
             var result = _service.ListCounterexamples(workspaceId:workspaceId, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -944,7 +924,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateCounterexample
         private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateCounterexample()");
             var result = _service.UpdateCounterexample(workspaceId:workspaceId, text:text, body:body);
 
@@ -964,7 +943,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateEntity
         private Entity CreateEntity(string workspaceId, CreateEntity properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateEntity()");
             var result = _service.CreateEntity(workspaceId:workspaceId, properties:properties);
 
@@ -984,7 +962,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteEntity
         private object DeleteEntity(string workspaceId, string entity)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = _service.DeleteEntity(workspaceId:workspaceId, entity:entity);
 
@@ -1004,7 +981,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetEntity
         private EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetEntity()");
             var result = _service.GetEntity(workspaceId:workspaceId, entity:entity, export:export, includeAudit:includeAudit);
 
@@ -1024,7 +1000,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListEntities
         private EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListEntities()");
             var result = _service.ListEntities(workspaceId:workspaceId, export:export, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -1044,7 +1019,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateEntity
         private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateEntity()");
             var result = _service.UpdateEntity(workspaceId:workspaceId, entity:entity, properties:properties);
 
@@ -1064,7 +1038,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateValue
         private Value CreateValue(string workspaceId, string entity, CreateValue properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateValue()");
             var result = _service.CreateValue(workspaceId:workspaceId, entity:entity, properties:properties);
 
@@ -1084,7 +1057,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteValue
         private object DeleteValue(string workspaceId, string entity, string value)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = _service.DeleteValue(workspaceId:workspaceId, entity:entity, value:value);
 
@@ -1104,7 +1076,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetValue
         private ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetValue()");
             var result = _service.GetValue(workspaceId:workspaceId, entity:entity, value:value, export:export, includeAudit:includeAudit);
 
@@ -1124,7 +1095,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListValues
         private ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListValues()");
             var result = _service.ListValues(workspaceId:workspaceId, entity:entity, export:export, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -1144,7 +1114,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateValue
         private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateValue()");
             var result = _service.UpdateValue(workspaceId:workspaceId, entity:entity, value:value, properties:properties);
 
@@ -1164,7 +1133,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateSynonym
         private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateSynonym()");
             var result = _service.CreateSynonym(workspaceId:workspaceId, entity:entity, value:value, body:body);
 
@@ -1184,7 +1152,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteSynonym
         private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = _service.DeleteSynonym(workspaceId:workspaceId, entity:entity, value:value, synonym:synonym);
 
@@ -1204,7 +1171,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetSynonym
         private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetSynonym()");
             var result = _service.GetSynonym(workspaceId:workspaceId, entity:entity, value:value, synonym:synonym, includeAudit:includeAudit);
 
@@ -1224,7 +1190,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListSynonyms
         private SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListSynonyms()");
             var result = _service.ListSynonyms(workspaceId:workspaceId, entity:entity, value:value, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -1244,7 +1209,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateSynonym
         private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateSynonym()");
             var result = _service.UpdateSynonym(workspaceId:workspaceId, entity:entity, value:value, synonym:synonym, body:body);
 
@@ -1264,7 +1228,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region CreateDialogNode
         private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to CreateDialogNode()");
             var result = _service.CreateDialogNode(workspaceId:workspaceId, properties:properties);
 
@@ -1284,7 +1247,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region DeleteDialogNode
         private object DeleteDialogNode(string workspaceId, string dialogNode)
         {
-            Thread.Sleep(10000);
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = _service.DeleteDialogNode(workspaceId:workspaceId, dialogNode:dialogNode);
 
@@ -1304,7 +1266,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region GetDialogNode
         private DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to GetDialogNode()");
             var result = _service.GetDialogNode(workspaceId:workspaceId, dialogNode:dialogNode, includeAudit:includeAudit);
 
@@ -1324,7 +1285,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListDialogNodes
         private DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListDialogNodes()");
             var result = _service.ListDialogNodes(workspaceId:workspaceId, pageLimit:pageLimit, includeCount:includeCount, sort:sort, cursor:cursor, includeAudit:includeAudit);
 
@@ -1344,7 +1304,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region UpdateDialogNode
         private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to UpdateDialogNode()");
             var result = _service.UpdateDialogNode(workspaceId:workspaceId, dialogNode:dialogNode, properties:properties);
 
@@ -1364,7 +1323,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListAllLogs
         private LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListAllLogs()");
             var result = _service.ListAllLogs(filter:filter, sort:sort, pageLimit:pageLimit, cursor:cursor);
 
@@ -1384,7 +1342,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #region ListLogs
         private LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
         {
-            Thread.Sleep(1000);
             Console.WriteLine("\nAttempting to ListLogs()");
             var result = _service.ListLogs(workspaceId:workspaceId, sort:sort, filter:filter, pageLimit:pageLimit, cursor:cursor);
 

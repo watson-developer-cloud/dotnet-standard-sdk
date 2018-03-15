@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj" />
-    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,5 +35,9 @@
     <PackageReference Include="OpenCover" Version="4.6.519" />
     <PackageReference Include="coveralls.net" Version="0.7.0" />
     <PackageReference Include="ReportGenerator" Version="2.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 </Project>

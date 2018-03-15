@@ -1,4 +1,4 @@
-version: 1.4.{build}
+version: 2.1.{build}
 branches:
   except:
   - gh-pages
@@ -36,7 +36,6 @@ install:
 
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
-before_build:
 - ps: dotnet restore
 build:
   project: IBM.WatsonDeveloperCloud.sln

@@ -3,7 +3,7 @@ branches:
   except:
   - gh-pages
 configuration: Release
-platform: Any CPU
+image: Visual Studio 2017
 clone_folder: C:\projects\dotnet-standard-sdk
 environment:
   COVERALLS_REPO_TOKEN:

@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
 
 ### Speech to Text
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "2.0.0"
+   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "2.1.0"
 }
 
 ```

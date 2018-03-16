@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
-    [TestClass]
+    //[TestClass]
     public class ConversationIntegrationTests
     {
         private static string _username;
@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string _dialogNodeName = "dialognode";
         private static string _dialogNodeDesc = ".NET SDK Integration test dialog node";
 
-        [TestInitialize]
+        //[TestInitialize]
         public void Setup()
         {
             if (string.IsNullOrEmpty(credentials))
@@ -108,7 +108,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
         }
 
-        [TestCleanup]
+        //[TestCleanup]
         public void Teardown()
         {
             var workspaces = _service.ListWorkspaces();
@@ -136,9 +136,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
         }
 
-        #region Generated
+        
         #region Message
-        [TestMethod]
+        //[TestMethod]
         public void Message_Success()
         {
             MessageRequest messageRequest = new MessageRequest()
@@ -156,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Workspaces
-        [TestMethod]
+        //[TestMethod]
         public void TestWorkspaces_Success()
         {
             var ListWorkspacesResult = ListWorkspaces();
@@ -197,7 +197,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Counter Examples
-        [TestMethod]
+        //[TestMethod]
         public void TestCounterExamples_Success()
         {
             CreateWorkspace createWorkspace = new CreateWorkspace()
@@ -244,7 +244,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Entities
-        [TestMethod]
+        //[TestMethod]
         public void TestEntities_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -294,7 +294,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Values
-        [TestMethod]
+        //[TestMethod]
         public void TestValues_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -349,7 +349,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Synonyms
-        [TestMethod]
+        //[TestMethod]
         public void TestSynonyms_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -409,7 +409,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Intents
-        [TestMethod]
+        //[TestMethod]
         public void TestIntents_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -457,7 +457,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Examples
-        [TestMethod]
+        //[TestMethod]
         public void TestExamples_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -510,7 +510,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Dialog Nodes
-        [TestMethod]
+        //[TestMethod]
         public void TestDialogNodes_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -560,7 +560,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Logs
-        [TestMethod]
+        //[TestMethod]
         public void ListLogs_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -579,7 +579,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listLogsResult);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void ListAllLogs_Success()
         {
             var filter = "(language::en,request.context.metadata.deployment::deployment_1)";
@@ -1406,7 +1406,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #endregion
         #endregion
 
         #region Delay

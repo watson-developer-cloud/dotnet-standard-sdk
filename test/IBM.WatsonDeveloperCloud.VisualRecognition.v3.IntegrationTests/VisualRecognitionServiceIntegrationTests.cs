@@ -154,18 +154,52 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
             catch (Exception e)
             {
-                Assert.Fail(e.Message);
+                Console.WriteLine("Failed to get classifier...");
             }
             autoEvent.WaitOne();
 
             Classifier updateClassifierResult = null;
-            using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+            var retrainRetries = 0;
+            try
             {
-                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-                UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+                {
+                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                    updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                }
             }
+            catch (Exception e)
+            {
+                retrainRetries++;
+
+                if (retrainRetries < 3)
+                {
+                    Console.WriteLine("Retraining failed. Retrying...");
+                    using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+                    {
+                        Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                        positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                        UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                        updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Retraining failed. Out of retries...");
+                }
+            }
+
+            try
+            {
+                IsClassifierReady(createdClassifierId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...");
+            }
+            autoEvent.WaitOne();
 
             var deleteClassifierResult = DeleteClassifier(createdClassifierId);
 
@@ -200,7 +234,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             {
                 Task.Factory.StartNew(() =>
                 {
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(10000);
                     try
                     {
                         IsClassifierReady(classifierId);

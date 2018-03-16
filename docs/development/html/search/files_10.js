@@ -23,7 +23,7 @@ var searchData=
   ['speechtotextserviceextension_2ecs',['SpeechToTextServiceExtension.cs',['../d0/d59/_speech_to_text_service_extension_8cs.html',1,'']]],
   ['streamextension_2ecs',['StreamExtension.cs',['../df/d85/_stream_extension_8cs.html',1,'']]],
   ['supportedfeatures_2ecs',['SupportedFeatures.cs',['../d5/d32/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_supported_features_8cs.html',1,'(Global Namespace)'],['../d8/d6f/_i_b_m_8_watson_developer_cloud_8_text_to_speech_8v1_2_model_2_supported_features_8cs.html',1,'(Global Namespace)']]],
-  ['synonym_2ecs',['Synonym.cs',['../d3/d42/_synonym_8cs.html',1,'']]],
-  ['synonymcollection_2ecs',['SynonymCollection.cs',['../d5/d32/_synonym_collection_8cs.html',1,'']]],
-  ['systemresponse_2ecs',['SystemResponse.cs',['../d2/d27/_system_response_8cs.html',1,'']]]
+  ['synonym_2ecs',['Synonym.cs',['../d1/d93/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_synonym_8cs.html',1,'(Global Namespace)'],['../d2/d9e/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_synonym_8cs.html',1,'(Global Namespace)']]],
+  ['synonymcollection_2ecs',['SynonymCollection.cs',['../dc/de4/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_synonym_collection_8cs.html',1,'(Global Namespace)'],['../d1/dac/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_synonym_collection_8cs.html',1,'(Global Namespace)']]],
+  ['systemresponse_2ecs',['SystemResponse.cs',['../d4/d9d/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_system_response_8cs.html',1,'(Global Namespace)'],['../d0/dd9/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_system_response_8cs.html',1,'(Global Namespace)']]]
 ];

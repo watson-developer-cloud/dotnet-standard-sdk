@@ -1,6 +1,7 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "IBM.WatsonDeveloperCloud", "dir_51dcc57f8ae09ce326c7113b79cb0f64.html", "dir_51dcc57f8ae09ce326c7113b79cb0f64" ],
+    [ "IBM.WatsonDeveloperCloud.Assistant.v1", "dir_8321b8fbb90d0c6e4257bcfc83eb4d8b.html", "dir_8321b8fbb90d0c6e4257bcfc83eb4d8b" ],
     [ "IBM.WatsonDeveloperCloud.Conversation.v1", "dir_49e9d926fddbc9342d44177d81b844d3.html", "dir_49e9d926fddbc9342d44177d81b844d3" ],
     [ "IBM.WatsonDeveloperCloud.Discovery.v1", "dir_537575690342d21410774426388ac650.html", "dir_537575690342d21410774426388ac650" ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2", "dir_5c32ac1527e59c5762afa92f0484de37.html", "dir_5c32ac1527e59c5762afa92f0484de37" ],

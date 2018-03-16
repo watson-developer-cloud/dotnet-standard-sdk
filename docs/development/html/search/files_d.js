@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pagination_2ecs',['Pagination.cs',['../df/dc5/_pagination_8cs.html',1,'']]],
+  ['pagination_2ecs',['Pagination.cs',['../d3/d3a/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_pagination_8cs.html',1,'(Global Namespace)'],['../d6/d1f/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_pagination_8cs.html',1,'(Global Namespace)']]],
   ['parameters_2ecs',['Parameters.cs',['../de/d9c/_parameters_8cs.html',1,'']]],
   ['pdfheadingdetection_2ecs',['PdfHeadingDetection.cs',['../d6/d58/_pdf_heading_detection_8cs.html',1,'']]],
   ['pdfsettings_2ecs',['PdfSettings.cs',['../d7/d5e/_pdf_settings_8cs.html',1,'']]],

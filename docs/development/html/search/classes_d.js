@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pagination',['Pagination',['../dd/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1::Model']]],
+  ['pagination',['Pagination',['../dd/d76/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_pagination.html',1,'IBM.WatsonDeveloperCloud.Conversation.v1.Model.Pagination'],['../d5/d0a/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_pagination.html',1,'IBM.WatsonDeveloperCloud.Assistant.v1.Model.Pagination']]],
   ['parameters',['Parameters',['../dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1::Model']]],
   ['pdfheadingdetection',['PdfHeadingDetection',['../d4/d7a/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_pdf_heading_detection.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
   ['pdfsettings',['PdfSettings',['../d5/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_pdf_settings.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],

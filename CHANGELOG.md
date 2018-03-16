@@ -1,5 +1,9 @@
 Change Log
 ==========
+## Version 2.1.0
+_2018-03-16_
+* New: Generate Watson Assistant.
+
 ## Version 2.0.0
 _2018-03-09_
 * Breaking Change: Migrate to Visual Studio 2017.

@@ -1,5 +1,6 @@
 var namespace_i_b_m_1_1_watson_developer_cloud =
 [
+    [ "Assistant", "d7/dae/namespace_i_b_m_1_1_watson_developer_cloud_1_1_assistant.html", "d7/dae/namespace_i_b_m_1_1_watson_developer_cloud_1_1_assistant" ],
     [ "Conversation", "d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html", "d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation" ],
     [ "Discovery", "dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery.html", "dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery" ],
     [ "Http", "d8/d5d/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http.html", "d8/d5d/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http" ],

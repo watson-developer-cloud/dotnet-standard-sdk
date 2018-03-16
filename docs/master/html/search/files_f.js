@@ -8,6 +8,6 @@ var searchData=
   ['relationsoptions_2ecs',['RelationsOptions.cs',['../d1/dd5/_relations_options_8cs.html',1,'']]],
   ['relationsresult_2ecs',['RelationsResult.cs',['../dc/dad/_relations_result_8cs.html',1,'']]],
   ['request_2ecs',['Request.cs',['../d1/d08/_request_8cs.html',1,'']]],
-  ['runtimeentity_2ecs',['RuntimeEntity.cs',['../d5/d71/_runtime_entity_8cs.html',1,'']]],
-  ['runtimeintent_2ecs',['RuntimeIntent.cs',['../df/dd6/_runtime_intent_8cs.html',1,'']]]
+  ['runtimeentity_2ecs',['RuntimeEntity.cs',['../db/dbd/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)'],['../d3/d2e/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)']]],
+  ['runtimeintent_2ecs',['RuntimeIntent.cs',['../dc/dd6/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)'],['../de/dcb/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)']]]
 ];

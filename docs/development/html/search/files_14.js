@@ -13,7 +13,7 @@ var searchData=
   ['words_2ecs',['Words.cs',['../d5/d09/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_words_8cs.html',1,'(Global Namespace)'],['../df/def/_i_b_m_8_watson_developer_cloud_8_text_to_speech_8v1_2_model_2_words_8cs.html',1,'(Global Namespace)']]],
   ['wordsettings_2ecs',['WordSettings.cs',['../dc/d56/_word_settings_8cs.html',1,'']]],
   ['wordstyle_2ecs',['WordStyle.cs',['../d6/d94/_word_style_8cs.html',1,'']]],
-  ['workspace_2ecs',['Workspace.cs',['../dc/da1/_workspace_8cs.html',1,'']]],
-  ['workspacecollection_2ecs',['WorkspaceCollection.cs',['../d0/dc3/_workspace_collection_8cs.html',1,'']]],
-  ['workspaceexport_2ecs',['WorkspaceExport.cs',['../de/def/_workspace_export_8cs.html',1,'']]]
+  ['workspace_2ecs',['Workspace.cs',['../d2/dd5/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_workspace_8cs.html',1,'(Global Namespace)'],['../dd/db5/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_workspace_8cs.html',1,'(Global Namespace)']]],
+  ['workspacecollection_2ecs',['WorkspaceCollection.cs',['../db/d97/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_workspace_collection_8cs.html',1,'(Global Namespace)'],['../d7/d0d/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_workspace_collection_8cs.html',1,'(Global Namespace)']]],
+  ['workspaceexport_2ecs',['WorkspaceExport.cs',['../da/d25/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_workspace_export_8cs.html',1,'(Global Namespace)'],['../de/d3c/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_workspace_export_8cs.html',1,'(Global Namespace)']]]
 ];

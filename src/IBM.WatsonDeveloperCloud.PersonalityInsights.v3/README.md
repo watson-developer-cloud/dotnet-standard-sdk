@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
 
 ### Personality Insights
 
@@ -19,7 +19,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 ```JSON
 
 "dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "2.0.0"
+   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "2.1.0"
 }
 
 ```

@@ -36,7 +36,7 @@ AssistantService _assistant = new AssistantService();
 _assistant.SetCredential(<username>, <password>);
 
 // set the versionDate
-_assistant.VersionDate = "2018-02-16";
+_assistant.VersionDate = "<version-date>";
 ```
 
 #### List workspaces

@@ -29,6 +29,9 @@ DiscoveryService _discovery = new DiscoveryService();
 
 // set the credentials
 _discovery.SetCredential("<username>", "<password>");
+
+// set the versionDate
+_discovery.VersionDate = "<version-date>";
 ```
 
 #### Create an environment

@@ -29,6 +29,9 @@ VisualRecognitionService _visualRecognition = new VisualRecognitionService();
 
 // set the credentials
 _visualRecognition.SetCredential("<apikey>");
+
+// set the VersionDate
+_visualRecognition.VersionDate = "version-date";
 ```
 
 #### Classify an image

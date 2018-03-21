@@ -34,6 +34,9 @@ ConversationService _conversation = new ConversationService();
 
 // set the credentials
 _conversation.SetCredential(<username>, <password>);
+
+// set the versionDate
+_conversation.VersionDate = "<version-date>";
 ```
 
 #### List workspaces

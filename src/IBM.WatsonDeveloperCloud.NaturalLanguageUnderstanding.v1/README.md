@@ -32,7 +32,7 @@ NaturalLanguageUnderstandingService _naturalLanguageUnderstandingService = new N
 // set the credentials
 _naturalLanguageUnderstandingService.SetCredential("<username>", "<password>");
 
-//  set the versionDate
+//  set the VersionDate
 _naturalLanguageUnderstandingService.VersionDate = "2017-02-27";
 ```
 

@@ -35,7 +35,7 @@ AssistantService _assistant = new AssistantService();
 // set the credentials
 _assistant.SetCredential(<username>, <password>);
 
-// set the versionDate
+// set the VersionDate
 _assistant.VersionDate = "<version-date>";
 ```
 

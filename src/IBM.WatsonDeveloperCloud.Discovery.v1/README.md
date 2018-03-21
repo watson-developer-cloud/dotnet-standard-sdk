@@ -30,7 +30,7 @@ DiscoveryService _discovery = new DiscoveryService();
 // set the credentials
 _discovery.SetCredential("<username>", "<password>");
 
-// set the versionDate
+// set the VersionDate
 _discovery.VersionDate = "<version-date>";
 ```
 

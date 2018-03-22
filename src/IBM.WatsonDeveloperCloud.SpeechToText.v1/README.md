@@ -11,12 +11,12 @@ The IBM® [Speech to Text][speech-to-text] service provides an API that enables 
 PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.SpeechToText.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

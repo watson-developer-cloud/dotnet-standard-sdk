@@ -11,11 +11,11 @@ This is the core package for the Watson Developer Cloud .NET Standard SDK. All s
 PM > Install-Package IBM.WatsonDeveloperCloud
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud" Version="2.1.0" />
+</ItemGroup>
 
 ```

@@ -11,12 +11,12 @@ With the IBM Watson™ [Conversation][conversation] service, you can create an a
 PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.Conversation.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

@@ -11,12 +11,12 @@
 PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.LanguageTranslator.v2": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

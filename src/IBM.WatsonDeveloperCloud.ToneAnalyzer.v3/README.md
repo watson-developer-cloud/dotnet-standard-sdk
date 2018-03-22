@@ -11,12 +11,12 @@ The IBM Watson™ [Tone Analyzer Service][tone-analyzer] uses linguistic analysi
 PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.ToneAnalyzer.v3" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

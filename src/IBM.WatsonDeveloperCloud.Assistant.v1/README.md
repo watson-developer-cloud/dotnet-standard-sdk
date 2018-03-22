@@ -2,7 +2,7 @@
 
 ### Assistant
 
-With the IBM Watson™ [Assistant][assistant] service, you can create an application that understands natural-language input and uses machine learning to respond to customers in a way that simulates a assistant between humans.
+With the IBM Watson™ [Assistant][assistant] service, you can build an AI assistant for a variety of channels, including mobile devices, messaging platforms, and even robots.
 
 ### Installation
 #### Nuget
@@ -11,12 +11,12 @@ With the IBM Watson™ [Assistant][assistant] service, you can create an applica
 PM > Install-Package IBM.WatsonDeveloperCloud.Assistant.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.Assistant.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -29,7 +29,7 @@ You complete these steps to implement your application:
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and credentials must be set.
 ```cs
-// create a Assistant Service instance
+// create an Assistant Service instance
 AssistantService _assistant = new AssistantService();
 
 // set the credentials
@@ -98,7 +98,7 @@ MessageRequest messageRequest0 = new MessageRequest()
 //  send a message to the assistant instance
 var result0 = _assistant.Message(<workspace-id>, messageRequest0);
 
-//  reference the message context to continue a assistant
+//  reference the message context to continue a conversation
 messageRequest messageRequest1 = new MessageRequest()
 {
   Input = new InputData()

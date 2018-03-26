@@ -1,21 +1,21 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v1/)
 
-### Conversation
+### Assistant
 
-With the IBM Watson™ [Conversation][conversation] service, you can create an application that understands natural-language input and uses machine learning to respond to customers in a way that simulates a conversation between humans.
+With the IBM Watson™ [Assistant][assistant] service, you can build an AI assistant for a variety of channels, including mobile devices, messaging platforms, and even robots.
 
 ### Installation
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
+PM > Install-Package IBM.WatsonDeveloperCloud.Assistant.v1
 
 ```
 #### .csproj
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.1.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v1" Version="2.1.0" />
 </ItemGroup>
 
 ```
@@ -24,25 +24,25 @@ You complete these steps to implement your application:
 
 * Configure a workspace. With the easy-to-use graphical environment, you set up the dialog flow and training data for your application.
 
-* Develop your application. You code your application to connect to the Conversation workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
+* Develop your application. You code your application to connect to the Assistant workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
 
 #### Instantiating and authenticating the service
 Before you can send requests to the service it must be instantiated and credentials must be set.
 ```cs
-// create a Conversation Service instance
-ConversationService _conversation = new ConversationService();
+// create an Assistant Service instance
+AssistantService _assistant = new AssistantService();
 
 // set the credentials
-_conversation.SetCredential(<username>, <password>);
+_assistant.SetCredential(<username>, <password>);
 
 // set the VersionDate
-_conversation.VersionDate = "<version-date>";
+_assistant.VersionDate = "<version-date>";
 ```
 
 #### List workspaces
 List existing workspaces for the service instance.
 ```cs
-var result = _conversation.ListWorkspaces();
+var result = _assistant.ListWorkspaces();
 ```
 
 #### Create workspace
@@ -55,19 +55,19 @@ CreateWorkspace workspace = new CreateWorkspace()
     Language = <workspace-language>
 };
 
-var result = _conversation.CreateWorkspace(workspace);
+var result = _assistant.CreateWorkspace(workspace);
 ```
 
 #### Delete workspace
 Delete an existing workspace.
 ```cs
-var result = _conversation.DeleteWorkspace(<workspace-id>);
+var result = _assistant.DeleteWorkspace(<workspace-id>);
 ```
 
 #### Get workspace details
 Get detailed information about a specific workspace.
 ```cs
-var result = _conversation.GetWorkspace(<workspace-id>);
+var result = _assistant.GetWorkspace(<workspace-id>);
 ```
 
 #### Update workspace details
@@ -80,7 +80,7 @@ UpdateWorkspace updatedWorkspace = new UpdateWorkspace()
     Language = <updated-workspace-language>
 };
 
-var result = _conversation.UpdateWorkspace(<workspace-id>, updatedWorkspace);
+var result = _assistant.UpdateWorkspace(<workspace-id>, updatedWorkspace);
 ```
 
 #### Message
@@ -95,8 +95,8 @@ MessageRequest messageRequest0 = new MessageRequest()
   }
 };
 
-//  send a message to the conversation instance
-var result0 = _conversation.Message(<workspace-id>, messageRequest0);
+//  send a message to the assistant instance
+var result0 = _assistant.Message(<workspace-id>, messageRequest0);
 
 //  reference the message context to continue a conversation
 messageRequest messageRequest1 = new MessageRequest()
@@ -109,13 +109,13 @@ messageRequest messageRequest1 = new MessageRequest()
 };
 
 //  Send another message including message context.
-result1 = _conversation.Message(<workspace-id>, messageRequest1);
+result1 = _assistant.Message(<workspace-id>, messageRequest1);
 ```
 
 #### List Counterexamples
 List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.ListCounterexamples(<workspaceId>);
+var result = _assistant.ListCounterexamples(<workspaceId>);
 ```
 
 #### Create Counterexamples
@@ -126,19 +126,19 @@ CreateExample example = new CreateExample()
     Text = <counterExample>
 };
 
-var result = _conversation.CreateCounterexample(<workspaceId>, example);
+var result = _assistant.CreateCounterexample(<workspaceId>, example);
 ```
 
 #### Delete Counterexample
 Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.DeleteCounterexample(<workspaceId>, <counterExample>);
+var result = _assistant.DeleteCounterexample(<workspaceId>, <counterExample>);
 ```
 
 #### Get Counterexample
 Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input.
 ```cs
-var result = _conversation.GetCounterexample(<workspaceId>, <counterExample>);
+var result = _assistant.GetCounterexample(<workspaceId>, <counterExample>);
 ```
 
 #### Update Counterexample
@@ -149,13 +149,13 @@ UpdateExample updatedExample = new UpdateExample()
     Text = <updatedCounterExample>
 };
 
-var result = _conversation.UpdateCounterexample(<workspaceId>, <counterExample>, updatedExample);
+var result = _assistant.UpdateCounterexample(<workspaceId>, <counterExample>, updatedExample);
 ```
 
 #### List Entities
 List the entities for a workspace.
 ```cs
-var result = _conversation.ListEntities(<workspaceId>);
+var result = _assistant.ListEntities(<workspaceId>);
 ```
 
 #### Create Entity
@@ -167,19 +167,19 @@ CreateEntity entity = new CreateEntity()
     Description = <entity-description>
 };
 
-var result = _conversation.CreateEntity(<workspaceId>, entity);
+var result = _assistant.CreateEntity(<workspaceId>, entity);
 ```
 
 #### Delete Entity
 Delete an entity from a workspace.
 ```cs
-var result = _conversation.DeleteEntity(<workspaceId>, <entity>);
+var result = _assistant.DeleteEntity(<workspaceId>, <entity>);
 ```
 
 #### Get Entity
 Get information about an entity, optionally including all entity content.
 ```cs
-var result = _conversation.GetEntity(<workspaceId>, <entity>);
+var result = _assistant.GetEntity(<workspaceId>, <entity>);
 ```
 
 #### Update Entity
@@ -193,13 +193,13 @@ UpdateEntity updatedEntity = new UpdateEntity()
     Description = updatedEntityDescription
 };
 
-var result = _conversation.UpdateEntity(<workspaceId>, <entity>, updatedEntity);
+var result = _assistant.UpdateEntity(<workspaceId>, <entity>, updatedEntity);
 ```
 
 #### List Entity Values
 List the values for an entity.
 ```cs
-var result = _conversation.ListValues(<workspaceId>, <entity>);
+var result = _assistant.ListValues(<workspaceId>, <entity>);
 ```
 
 #### Add Entity Value
@@ -210,19 +210,19 @@ CreateValue value = new CreateValue()
     Value = <value>
 };
 
-var result = _conversation.CreateValue(<workspaceId>, <entity>, value);
+var result = _assistant.CreateValue(<workspaceId>, <entity>, value);
 ```
 
 #### Delete Entity Value
 Delete a value from an entity.
 ```cs
-var result = _conversation.DeleteValue(<workspaceId>, <entity>, <value>);
+var result = _assistant.DeleteValue(<workspaceId>, <entity>, <value>);
 ```
 
 #### Get Entity Value
 Get information about an entity value.
 ```cs
-var result = _conversation.GetValue(<workspaceId>, <entity>, <value>);
+var result = _assistant.GetValue(<workspaceId>, <entity>, <value>);
 ```
 
 #### Update Entity Value
@@ -235,13 +235,13 @@ UpdateValue updatedValue = new UpdateValue()
     Value = <updatedValue>
 };
 
-var result = _conversation.UpdateValue(<workspaceId>, <entity>, <value>, updatedValue);
+var result = _assistant.UpdateValue(<workspaceId>, <entity>, <value>, updatedValue);
 ```
 
 #### List Synonyms
 List the synonyms for an entity value.
 ```cs
-var result = _conversation.ListSynonyms(<workspaceId>, <entity>, <value>);
+var result = _assistant.ListSynonyms(<workspaceId>, <entity>, <value>);
 ```
 
 #### Add Synonym
@@ -252,19 +252,19 @@ CreateSynonym synonym = new CreateSynonym()
     Synonym = <synonym>
 };
 
-var result = _conversation.CreateSynonym(<workspaceId>, <entity>, <value>, synonym);
+var result = _assistant.CreateSynonym(<workspaceId>, <entity>, <value>, synonym);
 ```
 
 #### Delete Synonym
 Delete a synonym from an entity value.
 ```cs
-var result = _conversation.DeleteSynonym(<workspaceId>, <entity>, <value>, <synonym>);
+var result = _assistant.DeleteSynonym(<workspaceId>, <entity>, <value>, <synonym>);
 ```
 
 #### Get Synonym
 Get information about a synonym of an entity value.
 ```cs
-var result = _conversation.GetSynonym(<workspaceId>, <entity>, <value>, <synonym>);
+var result = _assistant.GetSynonym(<workspaceId>, <entity>, <value>, <synonym>);
 ```
 
 #### Update Synonym
@@ -275,13 +275,13 @@ UpdateSynonym updatedSynonym = new UpdateSynonym()
     Synonym = <synonym>
 };
 
-var result = _conversation.UpdateSynonym(<workspaceId>, <entity>, <value>, <synonym>, updatedSynonym);
+var result = _assistant.UpdateSynonym(<workspaceId>, <entity>, <value>, <synonym>, updatedSynonym);
 ```
 
 #### List Intents
 List the intents for a workspace.
 ```cs
-var result = _conversation.ListIntents(<workspaceId>);
+var result = _assistant.ListIntents(<workspaceId>);
 ```
 
 #### Create Intent
@@ -293,19 +293,19 @@ CreateIntent intent = new CreateIntent()
     Description = <intent-description>
 };
 
-var result = _conversation.CreateIntent(<workspaceId>, intent);
+var result = _assistant.CreateIntent(<workspaceId>, intent);
 ```
 
 #### Delete Intent
 Delete an intent from a workspace.
 ```cs
-var result = _conversation.DeleteIntent(<workspaceId>, <intent>);
+var result = _assistant.DeleteIntent(<workspaceId>, <intent>);
 ```
 
 #### Get Intent
 Get information about an intent, optionally including all intent content.
 ```cs
-var result = _conversation.GetIntent(<workspaceId>, <intent>);
+var result = _assistant.GetIntent(<workspaceId>, <intent>);
 ```
 
 #### Update Intent
@@ -319,13 +319,13 @@ UpdateIntent intent = new UpdateIntent()
     Description = <intent-description>
 };
 
-var result = _conversation.UpdateIntent(<workspaceId>, <intent>, intent);
+var result = _assistant.UpdateIntent(<workspaceId>, <intent>, intent);
 ```
 
 #### List Examples
 List the user input examples for an intent.
 ```cs
-var result = _conversation.ListExamples(<workspaceId>, <intent>);
+var result = _assistant.ListExamples(<workspaceId>, <intent>);
 ```
 
 #### Create Example
@@ -336,19 +336,19 @@ CreateExample example = new CreateExample()
     Text = <example>
 };
 
-var result = _conversation.CreateExample(<workspaceId>, <intent>, example);
+var result = _assistant.CreateExample(<workspaceId>, <intent>, example);
 ```
 
 #### Delete Example
 Delete a user input example from an intent.
 ```cs
-var result = _conversation.DeleteExample(<workspaceId>, <intent>, <example>);
+var result = _assistant.DeleteExample(<workspaceId>, <intent>, <example>);
 ```
 
 #### Get Example
 Get information about a user input example.
 ```cs
-var result = _conversation.GetExample(<workspaceId>, <intent>, <example>);
+var result = _assistant.GetExample(<workspaceId>, <intent>, <example>);
 ```
 
 #### Update Example
@@ -359,13 +359,13 @@ UpdateExample updatedExample = new UpdateExample()
     Text = <example>
 };
 
-var result = _conversation.UpdateExample(<workspaceId>, <intent>, <example>, updatedExample);
+var result = _assistant.UpdateExample(<workspaceId>, <intent>, <example>, updatedExample);
 ```
 
 #### List Log Events
 List the events from the log of a workspace.
 ```cs
-var result = _conversation.ListLogs(<workspaceId>);
+var result = _assistant.ListLogs(<workspaceId>);
 ```
 
-[conversation]:https://console.bluemix.net/docs/services/conversation/index.html#about
+[assistant]:https://console.bluemix.net/docs/services/assistant/index.html#about

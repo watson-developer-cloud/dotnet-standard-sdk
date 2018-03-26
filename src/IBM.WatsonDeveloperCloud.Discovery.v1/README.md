@@ -10,12 +10,12 @@ The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly bu
 PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Discovery.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -29,6 +29,9 @@ DiscoveryService _discovery = new DiscoveryService();
 
 // set the credentials
 _discovery.SetCredential("<username>", "<password>");
+
+// set the VersionDate
+_discovery.VersionDate = "<version-date>";
 ```
 
 #### Create an environment

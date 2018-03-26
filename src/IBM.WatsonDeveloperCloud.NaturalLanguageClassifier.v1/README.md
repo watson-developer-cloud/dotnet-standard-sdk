@@ -10,12 +10,12 @@ IBM Watson™ [Natural Language Classifier][natural_language_classifier] uses ma
 PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLangaugeClassifier.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

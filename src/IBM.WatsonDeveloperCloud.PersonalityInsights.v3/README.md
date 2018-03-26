@@ -15,12 +15,12 @@ For information about the meaning of the models that the service uses to describ
 PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.PersonalityInsights.v3" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage

@@ -10,12 +10,12 @@ With [Natural Language Understanding][natural_language_understanding] developers
 PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -31,6 +31,9 @@ NaturalLanguageUnderstandingService _naturalLanguageUnderstandingService = new N
 
 // set the credentials
 _naturalLanguageUnderstandingService.SetCredential("<username>", "<password>");
+
+//  set the VersionDate
+_naturalLanguageUnderstandingService.VersionDate = "2017-02-27";
 ```
 
 #### Analyze

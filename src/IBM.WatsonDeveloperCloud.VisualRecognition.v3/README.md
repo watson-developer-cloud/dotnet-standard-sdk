@@ -10,12 +10,12 @@ The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep lea
 PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.VisualRecognition.v3" Version="2.1.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -29,6 +29,9 @@ VisualRecognitionService _visualRecognition = new VisualRecognitionService();
 
 // set the credentials
 _visualRecognition.SetCredential("<apikey>");
+
+// set the VersionDate
+_visualRecognition.VersionDate = "version-date";
 ```
 
 #### Classify an image

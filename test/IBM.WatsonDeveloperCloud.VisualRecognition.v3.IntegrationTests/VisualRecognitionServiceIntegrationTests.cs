@@ -47,6 +47,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
+        private static int _trainRetries = 3;
+        private static int _retrainRetries = 3;
+        private static int _listClassifiersRetries = 10;
+
         #region Setup
         [TestInitialize]
         public void Setup()
@@ -129,19 +133,35 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        [TestMethod]
+        public void ListClassifiersSuccess()
+        {
+            Classifiers listClassifiersResult = null;
+
+            try
+            {
+                listClassifiersResult = ListClassifiers();
+            }
+            catch
+            {
+                Assert.Fail("Failed to list classifier - out of retries!");
+            }
+
+            Assert.IsNotNull(listClassifiersResult);
+        }
+
         #region Custom
         [TestMethod]
         public void TestClassifiers_Success()
         {
-            var listClassifiersResult = ListClassifiers();
-
             Classifier createClassifierResult = null;
-            using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
+            try
             {
-                Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
-                CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
-                createClassifierResult = _service.CreateClassifier(createClassifier);
+                createClassifierResult = CreateClassifier();
+            }
+            catch
+            {
+                Assert.Fail("Failed to train classifier - out of retries!");
             }
 
             string createdClassifierId = createClassifierResult.ClassifierId;
@@ -154,50 +174,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to get classifier...");
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
             }
             autoEvent.WaitOne();
 
             Classifier updateClassifierResult = null;
-            var retrainRetries = 0;
             try
             {
-                using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
-                {
-                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-                    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                    updateClassifierResult = _service.UpdateClassifier(updateClassifier);
-                }
+                updateClassifierResult = UpdateClassifier(createdClassifierId);
             }
-            catch (Exception e)
+            catch
             {
-                retrainRetries++;
-
-                if (retrainRetries < 3)
-                {
-                    Console.WriteLine("Retraining failed. Retrying...");
-                    using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
-                    {
-                        Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                        positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-                        UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                        updateClassifierResult = _service.UpdateClassifier(updateClassifier);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Retraining failed. Out of retries...");
-                }
+                Assert.Fail("Failed to retrain classifier - out of retries!");
             }
-
+            
             try
             {
                 IsClassifierReady(createdClassifierId);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to get classifier...");
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
             }
             autoEvent.WaitOne();
 
@@ -210,7 +207,102 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(createClassifierResult);
             Assert.IsTrue(createClassifierResult.Name == _createdClassifierName);
-            Assert.IsNotNull(listClassifiersResult);
+        }
+        #endregion
+
+        #region Create and Update Classifier with retries.
+        private Classifier CreateClassifier()
+        {
+            Classifier classifier = null;
+
+            try
+            {
+                using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
+                {
+                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                    positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
+                    CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
+                    classifier = _service.CreateClassifier(createClassifier);
+                }
+            }
+            catch(Exception e)
+            {
+                if (_trainRetries > 0)
+                {
+                    _trainRetries--;
+                    CreateClassifier();
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+
+            return classifier;
+        }
+
+        private Classifier UpdateClassifier(string createdClassifierId)
+        {
+            Classifier updateClassifierResult = null;
+
+            try
+            {
+                using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+                {
+                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                    updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                }
+            }
+            catch(Exception e)
+            {
+                if(_retrainRetries > 0)
+                {
+                    _retrainRetries--;
+                    UpdateClassifier(createdClassifierId);
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+
+            return updateClassifierResult;
+        }
+
+        private Classifiers ListClassifiers(bool? verbose = null)
+        {
+            Console.WriteLine("\nAttempting to ListClassifiers()");
+
+            Classifiers result = null;
+            try
+            {
+                result = _service.ListClassifiers(verbose: verbose);
+            }
+            catch(Exception e)
+            {
+                if (_listClassifiersRetries > 0)
+                {
+                    _listClassifiersRetries--;
+                    ListClassifiers(verbose);
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+
+            if (result != null)
+            {
+                Console.WriteLine("ListClassifiers() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListClassifiers()");
+            }
+
+            return result;
         }
         #endregion
 
@@ -325,26 +417,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return result;
         }
         #endregion
-
-        #region ListClassifiers
-        private Classifiers ListClassifiers(bool? verbose = null)
-        {
-            Console.WriteLine("\nAttempting to ListClassifiers()");
-            var result = _service.ListClassifiers(verbose: verbose);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListClassifiers() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListClassifiers()");
-            }
-
-            return result;
-        }
-        #endregion
-        
         #endregion
     }
 }

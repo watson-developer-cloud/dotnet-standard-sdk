@@ -16,21 +16,21 @@
 */
 
 using System.Collections.Generic;
-using IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model;
+using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
+namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
 {
-    public interface INaturalLanguageClassifierService
+    /// <summary>
+    /// Request payload to classify.
+    /// </summary>
+    public class ClassifyCollectionInput
     {
-        Classification Classify(string classifierId, ClassifyInput body);
-
-        ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body);
-        Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData);
-
-        object DeleteClassifier(string classifierId);
-
-        Classifier GetClassifier(string classifierId);
-
-        ClassifierList ListClassifiers();
+        /// <summary>
+        /// The submitted phrases.
+        /// </summary>
+        /// <value>The submitted phrases.</value>
+        [JsonProperty("collection", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ClassifyInput> Collection { get; set; }
     }
+
 }

@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -36,7 +37,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private static string credentials = string.Empty;
         private string _classifierDataFilePath = @"NLCTestData/weather-data.csv";
         private string _metadataDataFilePath = @"NLCTestData/metadata.json";
-        private string _textToClassify = "Is it raining?";
+        private string _textToClassify0 = "Is it raining?";
+        private string _textToClassify1 = "Will it be hot today?";
 
         [TestInitialize]
         public void Setup()
@@ -82,10 +84,31 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             {
                 ClassifyInput classifyInput = new ClassifyInput
                 {
-                    Text = _textToClassify
+                    Text = _textToClassify1
                 };
 
                 classifyResult = Classify(classifierId, classifyInput);
+            }
+
+            ClassificationCollection classifyCollectionResult = null;
+            if(!string.IsNullOrEmpty(classifierId))
+            {
+                ClassifyCollectionInput classifyCollectionInput = new ClassifyCollectionInput
+                {
+                    Collection = new List<ClassifyInput>()
+                    {
+                        new ClassifyInput()
+                        {
+                            Text = _textToClassify0
+                        },
+                        new ClassifyInput()
+                        {
+                            Text = _textToClassify1
+                        }
+                    }
+                };
+
+                classifyCollectionResult = ClassifyCollection(classifierId, classifyCollectionInput);
             }
 
             Classifier createClassifierResult = null;
@@ -104,7 +127,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             }
 
             if (!string.IsNullOrEmpty(classifierId))
+            {
                 Assert.IsNotNull(classifyResult);
+                Assert.IsNotNull(classifyCollectionResult);
+            }
             Assert.IsNotNull(getClassifierResult);
             Assert.IsTrue(createdClassifierId == getClassifierResult.ClassifierId);
             Assert.IsNotNull(createClassifierResult);
@@ -125,6 +151,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to Classify()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ClassifyCollection
+        private ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body)
+        {
+            Console.WriteLine("\nAttempting to ClassifyCollection()");
+            var result = _service.ClassifyCollection(classifierId: classifierId, body: body);
+
+            if (result != null)
+            {
+                Console.WriteLine("ClassifyCollection() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ClassifyCollection()");
             }
 
             return result;

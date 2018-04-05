@@ -39,11 +39,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         [JsonProperty("face_location", NullValueHandling = NullValueHandling.Ignore)]
         public FaceLocation FaceLocation { get; set; }
-        /// <summary>
-        /// Gets or Sets Identity
-        /// </summary>
-        [JsonProperty("identity", NullValueHandling = NullValueHandling.Ignore)]
-        public FaceIdentity Identity { get; set; }
     }
 
 }

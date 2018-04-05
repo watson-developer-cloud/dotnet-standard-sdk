@@ -154,8 +154,31 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-    }
 
+        public Stream GetCoreMlModel(string classifierId)
+        {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            Stream result = null;
+
+            try
+            {
+                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}/core_ml_model");
+                request.WithArgument("api_key", ApiKey);
+                request.WithArgument("version", VersionDate);
+                request.WithArgument("classifier_id", classifierId);
+                result = request.As<Stream>().Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+    }
+    
     /// <summary>
     /// Object to create a classifier
     /// </summary>

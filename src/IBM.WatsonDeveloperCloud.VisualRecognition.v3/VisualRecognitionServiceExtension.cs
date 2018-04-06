@@ -196,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             var data = GetCoreMlModel(classifierId);
 
-            using (Stream file = File.Create(string.Format("{0}{1}.mlmodel", filePath, classifierId)))
+            using (Stream file = File.Create(string.Format("{0}\\{1}.mlmodel", filePath, classifierId)))
             {
                 Utility.CopyStream(data.Result, file);
             }

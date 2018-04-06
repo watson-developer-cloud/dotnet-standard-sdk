@@ -105,8 +105,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests.csproj", "{8616701B-F226-4462-9949-DE1F2C88B194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.VisualRecogntion.v3.Example", "GetCoreMLModelExample\IBM.WatsonDeveloperCloud.VisualRecogntion.v3.Example.csproj", "{C57D4E65-87CF-4D93-BB3E-7473056C4D49}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -257,10 +255,6 @@ Global
 		{8616701B-F226-4462-9949-DE1F2C88B194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8616701B-F226-4462-9949-DE1F2C88B194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8616701B-F226-4462-9949-DE1F2C88B194}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C57D4E65-87CF-4D93-BB3E-7473056C4D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C57D4E65-87CF-4D93-BB3E-7473056C4D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C57D4E65-87CF-4D93-BB3E-7473056C4D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C57D4E65-87CF-4D93-BB3E-7473056C4D49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -315,7 +309,6 @@ Global
 		{E3D238D7-7A09-4447-B836-8D6ABF4BFF80} = {28E61676-E9FF-4DA9-99CC-5E0D16F02380}
 		{60793E3F-EF8D-4FF8-9C69-33D1ADBC3C39} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{8616701B-F226-4462-9949-DE1F2C88B194} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
-		{C57D4E65-87CF-4D93-BB3E-7473056C4D49} = {A1BC3262-1837-40D9-A530-DCFE679927C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

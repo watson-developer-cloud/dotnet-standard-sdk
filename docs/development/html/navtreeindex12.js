@@ -1,6 +1,5 @@
 var NAVTREEINDEX12 =
 {
-"df/deb/_classifier_result_8cs.html":[2,0,0,11,0,3],
 "df/def/_i_b_m_8_watson_developer_cloud_8_text_to_speech_8v1_2_model_2_words_8cs.html":[2,0,0,9,0,11],
 "df/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_response.html":[1,0,0,0,3,6],
 "df/df2/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_response.html#a0a67b8ac2a6622235890fd25c00e60be":[1,0,0,0,3,6,0],
@@ -142,8 +141,8 @@ var NAVTREEINDEX12 =
 "functions_n.html":[1,3,0,14],
 "functions_o.html":[1,3,0,15],
 "functions_p.html":[1,3,0,16],
-"functions_prop.html":[1,3,4,0],
 "functions_prop.html":[1,3,4],
+"functions_prop.html":[1,3,4,0],
 "functions_prop_a.html":[1,3,4,1],
 "functions_prop_b.html":[1,3,4,2],
 "functions_prop_c.html":[1,3,4,3],

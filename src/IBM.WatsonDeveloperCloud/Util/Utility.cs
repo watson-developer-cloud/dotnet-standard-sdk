@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 /**
@@ -49,6 +50,21 @@ namespace IBM.WatsonDeveloperCloud.Util
             var msg = await stringTask;
 
             return msg;
+        }
+
+        /// <summary>
+        /// Copies an input stream to an output stream.
+        /// </summary>
+        /// <param name="input">The input stream to copy.</param>
+        /// <param name="output">The output stream to copy to.</param>
+        public static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[8 * 1024];
+            int len;
+            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, len);
+            }
         }
     }
 }

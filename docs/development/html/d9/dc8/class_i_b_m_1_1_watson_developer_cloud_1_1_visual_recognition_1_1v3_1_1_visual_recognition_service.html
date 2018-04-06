@@ -108,15 +108,15 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualReco
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad205928028eb77a39d0fd409d9dd74ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ad205928028eb77a39d0fd409d9dd74ff">VisualRecognitionService</a> ()</td></tr>
 <tr class="separator:ad205928028eb77a39d0fd409d9dd74ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a699e5e0655884fe6595ed053e88bf962"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a699e5e0655884fe6595ed053e88bf962">VisualRecognitionService</a> (string apiKey, string versionDate)</td></tr>
-<tr class="separator:a699e5e0655884fe6595ed053e88bf962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157426b653e1c6c7401662919341026f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a157426b653e1c6c7401662919341026f">VisualRecognitionService</a> (string apikey, string versionDate)</td></tr>
+<tr class="separator:a157426b653e1c6c7401662919341026f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ec316b288fe4a7e528fa37716ae6845"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a9ec316b288fe4a7e528fa37716ae6845">VisualRecognitionService</a> (<a class="el" href="../../d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client.html">IClient</a> httpClient)</td></tr>
 <tr class="separator:a9ec316b288fe4a7e528fa37716ae6845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06ce731c9676320ff50b91080efa8074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d0d/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classified_images.html">ClassifiedImages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a06ce731c9676320ff50b91080efa8074">Classify</a> (System.IO.Stream imagesFile=null, string acceptLanguage=null, string url=null, float? threshold=null, List&lt; string &gt; owners=null, List&lt; string &gt; classifierIds=null, string imagesFileContentType=null)</td></tr>
 <tr class="memdesc:a06ce731c9676320ff50b91080efa8074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify images. Classify images with built-in or custom classifiers.  <a href="#a06ce731c9676320ff50b91080efa8074">More...</a><br /></td></tr>
 <tr class="separator:a06ce731c9676320ff50b91080efa8074"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac67e99bb159260de48586d2a2a48dc66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_detected_faces.html">DetectedFaces</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ac67e99bb159260de48586d2a2a48dc66">DetectFaces</a> (System.IO.Stream imagesFile=null, string url=null, string imagesFileContentType=null)</td></tr>
-<tr class="memdesc:ac67e99bb159260de48586d2a2a48dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect faces in images. Analyze and get data about faces in images. Responses can include estimated age and gender, and the service can identify celebrities. This feature uses a built-in classifier, so you do not train it on custom classifiers. The Detect faces method does not support general biometric facial recognition.  <a href="#ac67e99bb159260de48586d2a2a48dc66">More...</a><br /></td></tr>
+<tr class="memdesc:ac67e99bb159260de48586d2a2a48dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect faces in images. <b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018">Release notes</a>. Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition. Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch.  <a href="#ac67e99bb159260de48586d2a2a48dc66">More...</a><br /></td></tr>
 <tr class="separator:ac67e99bb159260de48586d2a2a48dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d789c4a7c80df5ec8633ff7c09781a5"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a1d789c4a7c80df5ec8633ff7c09781a5">DeleteClassifier</a> (string classifierId)</td></tr>
 <tr class="memdesc:a1d789c4a7c80df5ec8633ff7c09781a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a classifier.  <a href="#a1d789c4a7c80df5ec8633ff7c09781a5">More...</a><br /></td></tr>
@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae56b264aef93e517f8702d3204653b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve classifier details. Retrieve information about a custom classifier.  <a href="#ae56b264aef93e517f8702d3204653b35">More...</a><br /></td></tr>
 <tr class="separator:ae56b264aef93e517f8702d3204653b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87440f88e114aa446b7e63d7eb44f9cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html">Classifiers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a87440f88e114aa446b7e63d7eb44f9cb">ListClassifiers</a> (bool? verbose=null)</td></tr>
-<tr class="memdesc:a87440f88e114aa446b7e63d7eb44f9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a list of custom classifiers.  <a href="#a87440f88e114aa446b7e63d7eb44f9cb">More...</a><br /></td></tr>
+<tr class="memdesc:a87440f88e114aa446b7e63d7eb44f9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a list of classifiers.  <a href="#a87440f88e114aa446b7e63d7eb44f9cb">More...</a><br /></td></tr>
 <tr class="separator:a87440f88e114aa446b7e63d7eb44f9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b200bcb20db4e1f39879b77ed79e052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a9b200bcb20db4e1f39879b77ed79e052">CreateClassifier</a> (<a class="el" href="../../d8/d59/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_create_classifier.html">CreateClassifier</a> createClassifier)</td></tr>
 <tr class="memdesc:a9b200bcb20db4e1f39879b77ed79e052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.  <a href="#a9b200bcb20db4e1f39879b77ed79e052">More...</a><br /></td></tr>
@@ -133,6 +133,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3792365a832083ac98a4e8fb4b5bd872"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a3792365a832083ac98a4e8fb4b5bd872">UpdateClassifier</a> (<a class="el" href="../../d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html">UpdateClassifier</a> updateClassifier)</td></tr>
 <tr class="memdesc:a3792365a832083ac98a4e8fb4b5bd872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a classifier. Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see <a href="https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers">Updating custom classifiers</a>. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters. <b>Important:</b> You can't update a custom classifier with an API key for a Lite plan. To update a custom classifer on a Lite plan, create another service instance on a Standard plan and re-create your custom classifier. <b>Tip:</b> Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished.  <a href="#a3792365a832083ac98a4e8fb4b5bd872">More...</a><br /></td></tr>
 <tr class="separator:a3792365a832083ac98a4e8fb4b5bd872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a515bf1beeba36699adce181252756057"><td class="memItemLeft" align="right" valign="top">Task&lt; Stream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a515bf1beeba36699adce181252756057">GetCoreMlModel</a> (string classifierId)</td></tr>
+<tr class="memdesc:a515bf1beeba36699adce181252756057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stream of a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details.  <a href="#a515bf1beeba36699adce181252756057">More...</a><br /></td></tr>
+<tr class="separator:a515bf1beeba36699adce181252756057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ec56e4117baf511a5294ec54480909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ad7ec56e4117baf511a5294ec54480909">DownloadCoreMlModel</a> (string classifierId, string filePath)</td></tr>
+<tr class="memdesc:ad7ec56e4117baf511a5294ec54480909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Downloads a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details. The name of the retreived Core ML model will be [classifierId].mlmodel.  <a href="#ad7ec56e4117baf511a5294ec54480909">More...</a><br /></td></tr>
+<tr class="separator:ad7ec56e4117baf511a5294ec54480909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html">IBM.WatsonDeveloperCloud.Service.WatsonService</a></td></tr>
 <tr class="memitem:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#afc75e0313e276d4c1aca9755aac2af17">SetCredential</a> (string userName, string password)</td></tr>
 <tr class="separator:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,8 +212,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a699e5e0655884fe6595ed053e88bf962"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a699e5e0655884fe6595ed053e88bf962">&#9670;&nbsp;</a></span>VisualRecognitionService() <span class="overload">[2/3]</span></h2>
+<a id="a157426b653e1c6c7401662919341026f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a157426b653e1c6c7401662919341026f">&#9670;&nbsp;</a></span>VisualRecognitionService() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.VisualRecognitionService </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>apiKey</em>, </td>
+          <td class="paramname"><em>apikey</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -336,17 +342,17 @@ Additional Inherited Members</h2></td></tr>
 <p>Classify images. Classify images with built-in or custom classifiers. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">imagesFile</td><td>An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters. You can also include images with the <code>url</code> property in the <b>parameters</b> object. (optional)</td></tr>
-    <tr><td class="paramname">acceptLanguage</td><td>Specifies the language of the output class names. Can be <code>en</code> (English), <code>ar</code> (Arabic), <code>de</code> (German), <code>es</code> (Spanish), <code>it</code> (Italian), <code>ja</code> (Japanese), or <code>ko</code> (Korean). Classes for which no translation is available are omitted. The response might not be in the specified language under these conditions: - English is returned when the requested language is not supported. - Classes are not returned when there is no translation for them. - Custom classifiers returned with this method return tags in the language of the custom classifier. (optional, default to en)</td></tr>
-    <tr><td class="paramname">url</td><td>A string with the image URL to analyze. Must be in .jpg, or .png format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. You can also include images in the <b>images_file</b> parameter. (optional)</td></tr>
-    <tr><td class="paramname">threshold</td><td>A floating point value that specifies the minimum score a class must have to be displayed in the response. The default threshold for returning scores from a classifier is <code>0.5</code>. Set the threshold to <code>0.0</code> to ignore the classification score and return all values. (optional)</td></tr>
-    <tr><td class="paramname">owners</td><td>An array of the categories of classifiers to apply. Use <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> to classify against the <code>default</code> general classifier, and use <code>me</code> to classify against your custom classifiers. To analyze the image against both classifier categories, set the value to both <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> and <code>me</code>. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The <b>classifier_ids</b> parameter overrides <b>owners</b>, so make sure that <b>classifier_ids</b> is empty. (optional)</td></tr>
-    <tr><td class="paramname">classifierIds</td><td>The <b>classifier_ids</b> parameter overrides <b>owners</b>, so make sure that <b>classifier_ids</b> is empty. - <b>classifier_ids</b>: Specifies which classifiers to apply and overrides the <b>owners</b> parameter. You can specify both custom and built-in classifiers. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The following built-in classifier IDs require no training: - <code>default</code>: Returns classes from thousands of general tags. - <code>food</code>: (Beta) Enhances specificity and accuracy for images of food items. - <code>explicit</code>: (Beta) Evaluates whether the image might be pornographic. Example: <code>"classifier_ids="CarsvsTrucks_1479118188","explicit"&lt;/tt&gt;. (optional)&lt;/param&gt;
-&lt;param name="imagesFileContentType"&gt;The content type of imagesFile. (optional)&lt;/param&gt;
-&lt;returns&gt;&lt;see cref="ClassifiedImages" /&gt;ClassifiedImages</code><code> </code></td></tr>
+    <tr><td class="paramname">imagesFile</td><td>An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters. You can also include an image with the <b>url</b> parameter. (optional)</td></tr>
+    <tr><td class="paramname">acceptLanguage</td><td>The language of the output class names. The full set of languages is supported only for the built-in <code>default</code> classifier ID. The class names of custom classifiers are not translated. The response might not be in the specified language when the requested language is not supported or when there is no translation for the class name. (optional, default to en)</td></tr>
+    <tr><td class="paramname">url</td><td>The URL of an image to analyze. Must be in .jpg, or .png format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. You can also include images with the <b>images_file</b> parameter. (optional)</td></tr>
+    <tr><td class="paramname">threshold</td><td>The minimum score a class must have to be displayed in the response. Set the threshold to <code>0.0</code> to ignore the classification score and return all values. (optional, default to 0.5)</td></tr>
+    <tr><td class="paramname">owners</td><td>The categories of classifiers to apply. Use <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> to classify against the <code>default</code> general classifier, and use <code>me</code> to classify against your custom classifiers. To analyze the image against both classifier categories, set the value to both <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> and <code>me</code>. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The <b>classifier_ids</b> parameter overrides <b>owners</b>, so make sure that <b>classifier_ids</b> is empty. (optional)</td></tr>
+    <tr><td class="paramname">classifierIds</td><td>Which classifiers to apply. Overrides the <b>owners</b> parameter. You can specify both custom and built-in classifier IDs. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The following built-in classifier IDs require no training: - <code>default</code>: Returns classes from thousands of general tags. - <code>food</code>: (Beta) Enhances specificity and accuracy for images of food items. - <code>explicit</code>: (Beta) Evaluates whether the image might be pornographic. (optional)</td></tr>
+    <tr><td class="paramname">imagesFileContentType</td><td>The content type of imagesFile. (optional)</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>ClassifiedImagesClassifiedImages</dd></dl>
 
 <p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a70e63150e115aa454b980a1e23d0cea3">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
@@ -466,11 +472,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Detect faces in images. Analyze and get data about faces in images. Responses can include estimated age and gender, and the service can identify celebrities. This feature uses a built-in classifier, so you do not train it on custom classifiers. The Detect faces method does not support general biometric facial recognition. </p>
+<p>Detect faces in images. <b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018">Release notes</a>. Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition. Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">imagesFile</td><td>An image file (.jpg, .png) or .zip file with images. Include no more than 15 images. You can also include an image with the**url** parameter. All faces are detected, but if there are more than 10 faces in an image, age and gender confidence scores might return scores of 0. (optional)</td></tr>
-    <tr><td class="paramname">url</td><td>A string with the image URL to analyze. (optional)</td></tr>
+    <tr><td class="paramname">imagesFile</td><td>An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip file to 100 MB. You can include a maximum of 15 images in a request. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters. You can also include an image with the <b>url</b> parameter. (optional)</td></tr>
+    <tr><td class="paramname">url</td><td>The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. Redirects are followed, so you can use a shortened URL. You can also include images with the <b>images_file</b> parameter. (optional)</td></tr>
     <tr><td class="paramname">imagesFileContentType</td><td>The content type of imagesFile. (optional)</td></tr>
   </table>
   </dd>
@@ -478,6 +484,51 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>DetectedFacesDetectedFaces</dd></dl>
 
 <p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a5e13b641aee4e2e3e809b0d407bb1d1c">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+
+</div>
+</div>
+<a id="ad7ec56e4117baf511a5294ec54480909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ec56e4117baf511a5294ec54480909">&#9670;&nbsp;</a></span>DownloadCoreMlModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.DownloadCoreMlModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filePath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Downloads a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details. The name of the retreived Core ML model will be [classifierId].mlmodel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classifierId</td><td>The requested Core ML model's classifier ID</td></tr>
+    <tr><td class="paramname">filePath</td><td>The file path (without the filename) to download the Core ML model.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -518,6 +569,41 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a515bf1beeba36699adce181252756057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515bf1beeba36699adce181252756057">&#9670;&nbsp;</a></span>GetCoreMlModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt;Stream&gt; IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.GetCoreMlModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the stream of a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classifierId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Core ML model of the requested classifier.</dd></dl>
+
+</div>
+</div>
 <a id="a87440f88e114aa446b7e63d7eb44f9cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a87440f88e114aa446b7e63d7eb44f9cb">&#9670;&nbsp;</a></span>ListClassifiers()</h2>
 
@@ -542,7 +628,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retrieve a list of custom classifiers. </p>
+<p>Retrieve a list of classifiers. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbose</td><td>Specify <code>true</code> to return details about the classifiers. Omit this parameter to return a brief list of classifiers. (optional)</td></tr>

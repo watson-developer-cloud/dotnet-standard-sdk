@@ -6,8 +6,6 @@ var searchData=
   ['faceage_2ecs',['FaceAge.cs',['../d2/d7c/_face_age_8cs.html',1,'']]],
   ['facegender',['FaceGender',['../d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
   ['facegender_2ecs',['FaceGender.cs',['../d0/d25/_face_gender_8cs.html',1,'']]],
-  ['faceidentity',['FaceIdentity',['../dd/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_identity.html',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model']]],
-  ['faceidentity_2ecs',['FaceIdentity.cs',['../dc/dcd/_face_identity_8cs.html',1,'']]],
   ['facelocation',['FaceLocation',['../d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location.html',1,'IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.FaceLocation'],['../d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html#a79ff1830ae5bda0b15d0ed32e435981d',1,'IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.Face.FaceLocation()']]],
   ['facelocation_2ecs',['FaceLocation.cs',['../da/df6/_face_location_8cs.html',1,'']]],
   ['faces',['Faces',['../df/d84/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces.html#ab8dc48689e9a3c256ce1332b769a21e7',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model::ImageWithFaces']]],

@@ -1,6 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a9b1c9bf76ad5b7f87fe3931c41810c39":[1,0,0,0,0,0,0,19,4],
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#ab9682bac6a191844d108c3f7e50d055d":[1,0,0,0,0,0,0,19,3],
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#ae82e595e1b371a89275528fbc8cd095f":[1,0,0,0,0,0,0,19,5],
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#af833bfff4939e3c67dcad635219fb953":[1,0,0,0,0,0,0,19,6],
@@ -249,5 +248,6 @@ var NAVTREEINDEX5 =
 "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a925784795f601cfb68907b7eeeb4a5dc":[1,0,0,0,10,0,4,39],
 "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a9531f309bd673f5438dc904f675b9fa1":[1,0,0,0,10,0,4,7],
 "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a97fc5143ff76176873e935cc68a913a2":[1,0,0,0,10,0,4,31],
-"d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a9b25cc2bbb6c202a74ecc612a814d63c":[1,0,0,0,10,0,4,3]
+"d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a9b25cc2bbb6c202a74ecc612a814d63c":[1,0,0,0,10,0,4,3],
+"d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa83cf1c1a9dc007b1d114f1cad04eebb":[1,0,0,0,10,0,4,24]
 };

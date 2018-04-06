@@ -103,6 +103,8 @@ var searchData=
   ['conversions',['Conversions',['../db/db3/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_conversions.html',1,'IBM.WatsonDeveloperCloud.Discovery.v1.Model.Conversions'],['../df/d08/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_configuration.html#a9cbf776007e73db5cf00ebd43eee0173',1,'IBM.WatsonDeveloperCloud.Discovery.v1.Model.Configuration.Conversions()']]],
   ['conversions_2ecs',['Conversions.cs',['../d8/de3/_conversions_8cs.html',1,'']]],
   ['copy',['COPY',['../df/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_normalization_operation.html#a478e8c286c6ef789ae4df5b43544dea7ae8606d021da140a92c7eba8d9b8af84f',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::NormalizationOperation']]],
+  ['copystream',['CopyStream',['../df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html#adafc7da235018de7c241b5a01259e4fa',1,'IBM::WatsonDeveloperCloud::Util::Utility']]],
+  ['coremlenabled',['CoreMlEnabled',['../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#a6a89e7930ab90f9a5fa6013647baf746',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model::Classifier']]],
   ['corpora',['Corpora',['../dc/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpora.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],
   ['corpora_2ecs',['Corpora.cs',['../d7/da8/_corpora_8cs.html',1,'']]],
   ['corpus',['Corpus',['../dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::Model']]],

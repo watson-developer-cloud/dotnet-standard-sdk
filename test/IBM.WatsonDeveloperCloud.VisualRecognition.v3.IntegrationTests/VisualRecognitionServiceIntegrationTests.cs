@@ -137,7 +137,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         [TestMethod]
-        public void ListClassifiersSuccess()
+        public void ListClassifiers_Success()
         {
             Classifiers listClassifiersResult = null;
 
@@ -201,7 +201,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             }
             autoEvent.WaitOne();
 
-            Stream getCoreMlModelResult = null;
+            Task<Stream> getCoreMlModelResult = null;
             try
             {
                 getCoreMlModelResult = GetCoreMlModel(createdClassifierId);
@@ -321,9 +321,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region Get Core ML Model
-        private Stream GetCoreMlModel(string createdClassifierId)
+        private Task<Stream> GetCoreMlModel(string createdClassifierId)
         {
-            Stream getCoreMlModelResult = null;
+            Task<Stream> getCoreMlModelResult = null;
 
             try
             {

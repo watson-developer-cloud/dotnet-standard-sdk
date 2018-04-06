@@ -18,6 +18,7 @@
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -155,7 +157,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
-        public System.Threading.Tasks.Task<Stream> GetCoreMlModel(string classifierId)
+        /// <summary>
+        /// Gets the stream of a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details.
+        /// </summary>
+        /// <param name="classifierId"></param>
+        /// <returns>The Core ML model of the requested classifier.</returns>
+        public Task<Stream> GetCoreMlModel(string classifierId)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
@@ -177,6 +184,22 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Downloads a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details.
+        /// The name of the retreived Core ML model will be [classifierId].mlmodel.
+        /// </summary>
+        /// <param name="classifierId">The requested Core ML model's classifier ID</param>
+        /// <param name="filePath">The file path (without the filename) to download the Core ML model.</param>
+        public void DownloadCoreMlModel(string classifierId, string filePath)
+        {
+            var data = GetCoreMlModel(classifierId);
+
+            using (Stream file = File.Create(string.Format("{0}{1}.mlmodel", filePath, classifierId)))
+            {
+                Utility.CopyStream(data.Result, file);
+            }
         }
     }
     

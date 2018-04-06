@@ -103,7 +103,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssistantV1", "AssistantV1"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v1", "src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj", "{60793E3F-EF8D-4FF8-9C69-33D1ADBC3C39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests.csproj", "{8616701B-F226-4462-9949-DE1F2C88B194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests.csproj", "{8616701B-F226-4462-9949-DE1F2C88B194}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

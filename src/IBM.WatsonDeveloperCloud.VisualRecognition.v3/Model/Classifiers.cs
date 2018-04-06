@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Verbose list of classifiers retrieved in the GET v2/classifiers call.
+    /// List of classifiers.
     /// </summary>
     public class Classifiers
     {

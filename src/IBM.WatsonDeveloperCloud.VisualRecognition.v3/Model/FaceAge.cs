@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Provides age information about a face. If there are more than 10 faces in an image, the response might return the confidence score `0g.
+    /// Provides age information about a face.
     /// </summary>
     public class FaceAge
     {
@@ -37,9 +37,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("max", NullValueHandling = NullValueHandling.Ignore)]
         public long? Max { get; set; }
         /// <summary>
-        /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
+        /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value for the property.
         /// </summary>
-        /// <value>Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.</value>
+        /// <value>Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value for the property.</value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

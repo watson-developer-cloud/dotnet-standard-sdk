@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
 
 ### Visual Recognition
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and celebrity faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
@@ -10,12 +10,12 @@ The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep lea
 PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.VisualRecognition.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.VisualRecognition.v3" Version="2.2.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -29,6 +29,9 @@ VisualRecognitionService _visualRecognition = new VisualRecognitionService();
 
 // set the credentials
 _visualRecognition.SetCredential("<apikey>");
+
+// set the VersionDate
+_visualRecognition.VersionDate = "version-date";
 ```
 
 #### Classify an image

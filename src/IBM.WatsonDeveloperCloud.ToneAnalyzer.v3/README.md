@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3/)
 
 ### Tone Analyzer
 
@@ -11,12 +11,12 @@ The IBM Watson™ [Tone Analyzer Service][tone-analyzer] uses linguistic analysi
 PM > Install-Package IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.ToneAnalyzer.v3" Version="2.2.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -30,6 +30,9 @@ ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService();
 
 // set the credentials
 _toneAnalyzer.SetCredential("<username>", "<password>");
+
+// set the VersionDate
+_toneAnalyzer.VersionDate = "<version-date>";
 ```
 
 

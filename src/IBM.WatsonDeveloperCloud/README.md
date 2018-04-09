@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
 
 ### Watson Developer Cloud
 
@@ -11,11 +11,11 @@ This is the core package for the Watson Developer Cloud .NET Standard SDK. All s
 PM > Install-Package IBM.WatsonDeveloperCloud
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud" Version="2.2.0" />
+</ItemGroup>
 
 ```

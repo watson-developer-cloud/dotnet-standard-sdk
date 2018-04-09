@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
 
 ### Discovery
 The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data - including your own proprietary data, as well as public and third-party data.
@@ -10,12 +10,12 @@ The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly bu
 PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.Discovery.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Discovery.v1" Version="2.2.0" />
+</ItemGroup>
 
 ```
 ### Usage
@@ -29,6 +29,9 @@ DiscoveryService _discovery = new DiscoveryService();
 
 // set the credentials
 _discovery.SetCredential("<username>", "<password>");
+
+// set the VersionDate
+_discovery.VersionDate = "<version-date>";
 ```
 
 #### Create an environment

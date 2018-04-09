@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.PersonalityInsights.v3/)
 
 ### Personality Insights
 
@@ -15,12 +15,12 @@ For information about the meaning of the models that the service uses to describ
 PM > Install-Package IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.PersonalityInsights.v3": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.PersonalityInsights.v3" Version="2.2.0" />
+</ItemGroup>
 
 ```
 ### Usage

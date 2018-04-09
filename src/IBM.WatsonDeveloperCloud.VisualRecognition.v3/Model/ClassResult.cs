@@ -37,9 +37,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
         /// <summary>
-        /// Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.
+        /// Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only if identified.
         /// </summary>
-        /// <value>Knowledge graph of the property. For example, `People/Leaders/Presidents/USA/Barack Obama`. Included only if identified.</value>
+        /// <value>Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only if identified.</value>
         [JsonProperty("type_hierarchy", NullValueHandling = NullValueHandling.Ignore)]
         public string TypeHierarchy { get; set; }
     }

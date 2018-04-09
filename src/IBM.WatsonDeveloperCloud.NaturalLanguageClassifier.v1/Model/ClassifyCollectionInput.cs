@@ -1,5 +1,5 @@
-﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+/**
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,22 @@
 *
 */
 
-namespace IBM.WatsonDeveloperCloud
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
 {
     /// <summary>
-    /// This class holds constant values for the SDK.
+    /// Request payload to classify.
     /// </summary>
-    public class Constants
+    public class ClassifyCollectionInput
     {
         /// <summary>
-        /// The version number for this SDK build. Added to the header in 
-        /// each request as `User-Agent`.
+        /// The submitted phrases.
         /// </summary>
-        public const string SDK_VERSION = "watson-apis-dotnet-sdk/2.2.0";
+        /// <value>The submitted phrases.</value>
+        [JsonProperty("collection", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ClassifyInput> Collection { get; set; }
     }
+
 }

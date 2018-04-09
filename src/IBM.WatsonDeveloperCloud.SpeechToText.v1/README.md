@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.2.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
 
 ### Speech to Text
 
@@ -11,12 +11,12 @@ The IBM® [Speech to Text][speech-to-text] service provides an API that enables 
 PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 
 ```
-#### Project.json
-```JSON
+#### .csproj
+```xml
 
-"dependencies": {
-   "IBM.WatsonDeveloperCloud.SpeechToText.v1": "2.1.0"
-}
+<ItemGroup>
+    <PackageReference Include="IBM.WatsonDeveloperCloud.SpeechToText.v1" Version="2.2.0" />
+</ItemGroup>
 
 ```
 ### Usage

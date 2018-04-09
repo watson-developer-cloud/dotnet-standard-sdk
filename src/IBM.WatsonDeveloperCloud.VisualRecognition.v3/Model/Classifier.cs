@@ -86,15 +86,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
         /// <summary>
+        /// Whether the classifier can be downloaded as a Core ML model after the training status is `ready`.
+        /// </summary>
+        /// <value>Whether the classifier can be downloaded as a Core ML model after the training status is `ready`.</value>
+        [JsonProperty("core_ml_enabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? CoreMlEnabled { get; set; }
+        /// <summary>
         /// If classifier training has failed, this field may explain why.
         /// </summary>
         /// <value>If classifier training has failed, this field may explain why.</value>
         [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
         public string Explanation { get; set; }
         /// <summary>
-        /// Date and time in Coordinated Universal Time that the classifier was created.
+        /// Date and time in Coordinated Universal Time (UTC) that the classifier was created.
         /// </summary>
-        /// <value>Date and time in Coordinated Universal Time that the classifier was created.</value>
+        /// <value>Date and time in Coordinated Universal Time (UTC) that the classifier was created.</value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Created { get; set; }
         /// <summary>
@@ -104,11 +110,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ModelClass> Classes { get; set; }
         /// <summary>
-        /// Date and time in Coordinated Universal Time that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests.
+        /// Date and time in Coordinated Universal Time (UTC) that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests. Identical to `updated` and retained for backward compatibility.
         /// </summary>
-        /// <value>Date and time in Coordinated Universal Time that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests.</value>
+        /// <value>Date and time in Coordinated Universal Time (UTC) that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests. Identical to `updated` and retained for backward compatibility.</value>
         [JsonProperty("retrained", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Retrained { get; set; }
+        /// <summary>
+        /// Date and time in Coordinated Universal Time (UTC) that the classifier was most recently updated. The field matches either `retrained` or `created`.  Returned when verbose=`true`. Might not be returned by some requests.
+        /// </summary>
+        /// <value>Date and time in Coordinated Universal Time (UTC) that the classifier was most recently updated. The field matches either `retrained` or `created`.  Returned when verbose=`true`. Might not be returned by some requests.</value>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime Updated { get; set; }
     }
 
 }

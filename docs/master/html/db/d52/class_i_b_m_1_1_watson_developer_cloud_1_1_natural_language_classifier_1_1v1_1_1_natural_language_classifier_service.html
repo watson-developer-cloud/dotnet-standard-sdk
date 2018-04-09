@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.2.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -111,6 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a455a6e390353f3f434e1d52a2c6cbb4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification.html">Classification</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html#a455a6e390353f3f434e1d52a2c6cbb4e">Classify</a> (string classifierId, <a class="el" href="../../d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html">ClassifyInput</a> body)</td></tr>
 <tr class="memdesc:a455a6e390353f3f434e1d52a2c6cbb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify a phrase. Returns label information for the input. The status must be <code>Available</code> before you can use the classifier to classify text.  <a href="#a455a6e390353f3f434e1d52a2c6cbb4e">More...</a><br /></td></tr>
 <tr class="separator:a455a6e390353f3f434e1d52a2c6cbb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb7cc48c07553390ff0675b1d13a5b09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification_collection.html">ClassificationCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html#afb7cc48c07553390ff0675b1d13a5b09">ClassifyCollection</a> (string classifierId, <a class="el" href="../../d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html">ClassifyCollectionInput</a> body)</td></tr>
+<tr class="memdesc:afb7cc48c07553390ff0675b1d13a5b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify multiple phrases. Returns label information for multiple phrases. The status must be <code>Available</code> before you can use the classifier to classify text. Note that classifying Japanese texts is a beta feature.  <a href="#afb7cc48c07553390ff0675b1d13a5b09">More...</a><br /></td></tr>
+<tr class="separator:afb7cc48c07553390ff0675b1d13a5b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02ca706232c1a264b39569623b8cd40c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/ddf/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html#a02ca706232c1a264b39569623b8cd40c">CreateClassifier</a> (System.IO.Stream metadata, System.IO.Stream trainingData)</td></tr>
 <tr class="memdesc:a02ca706232c1a264b39569623b8cd40c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create classifier. Sends data to create and train a classifier and returns information about the new classifier.  <a href="#a02ca706232c1a264b39569623b8cd40c">More...</a><br /></td></tr>
 <tr class="separator:a02ca706232c1a264b39569623b8cd40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,6 +305,54 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="afb7cc48c07553390ff0675b1d13a5b09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb7cc48c07553390ff0675b1d13a5b09">&#9670;&nbsp;</a></span>ClassifyCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification_collection.html">ClassificationCollection</a> IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.NaturalLanguageClassifierService.ClassifyCollection </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html">ClassifyCollectionInput</a>&#160;</td>
+          <td class="paramname"><em>body</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Classify multiple phrases. Returns label information for multiple phrases. The status must be <code>Available</code> before you can use the classifier to classify text. Note that classifying Japanese texts is a beta feature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classifierId</td><td>Classifier ID to use.</td></tr>
+    <tr><td class="paramname">body</td><td>Phrase to classify. The maximum length of the text phrase is 1024 characters. You can submit up to 30 text phrases in a request.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ClassificationCollectionClassificationCollection</dd></dl>
+
+<p>Implements <a class="el" href="../../d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#aa85bef016c7eb84f44aa9563f976c464">IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.INaturalLanguageClassifierService</a>.</p>
+
+</div>
+</div>
 <a id="a02ca706232c1a264b39569623b8cd40c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a02ca706232c1a264b39569623b8cd40c">&#9670;&nbsp;</a></span>CreateClassifier()</h2>
 
@@ -339,8 +390,8 @@ Additional Inherited Members</h2></td></tr>
 <p>Create classifier. Sends data to create and train a classifier and returns information about the new classifier. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">metadata</td><td>Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier.</td></tr>
-    <tr><td class="paramname">trainingData</td><td>Training data in CSV format. Each text value must have at least one class. The data can include up to 15,000 records. For details, see <a href="https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html">Using your own data</a>.</td></tr>
+    <tr><td class="paramname">metadata</td><td>Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. Specify the language with the 2-letter primary language code as assigned in ISO standard 639. Supported languages are English (<code>en</code>), Arabic (<code>ar</code>), French (<code>fr</code>), German, (<code>de</code>), Italian (<code>it</code>), Japanese (<code>ja</code>), Korean (<code>ko</code>), Brazilian Portuguese (<code>pt</code>), and Spanish (<code>es</code>).</td></tr>
+    <tr><td class="paramname">trainingData</td><td>Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see <a href="https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html">Data preparation</a>.</td></tr>
   </table>
   </dd>
 </dl>

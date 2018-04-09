@@ -1,5 +1,11 @@
 Change Log
 ==========
+## Version 2.2.0
+_2018-04-09_
+* New: Updated Visual Recognition with Core ML support ([4181](https://zenhub.innovate.ibm.com/app/workspace/o/watson/developer-experience/issues/4181), [201](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/201)).
+* New: Added Classify Collection to the Natural Language Classifier ([4224](https://zenhub.innovate.ibm.com/app/workspace/o/watson/developer-experience/issues/4224), [199](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/199)).
+* Fixed: Added Readme for Assistant, revised service readme files to add VersionDate when instantiating and revise service readme to use .csproj instead of project.json. ([194](https://github.com/watson-developer-cloud/dotnet-standard-sdk/issues/194), [195](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/195)).
+
 ## Version 2.1.0
 _2018-03-16_
 * New: Generate Watson Assistant.

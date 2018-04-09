@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html":[1,0,0,0,5,0,0,5],
+"d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html#a6308ea7a0a55dfcd1287126addb5617d":[1,0,0,0,5,0,0,5,0],
 "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html":[1,0,0,0,14,0,0,10],
 "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html#a6f79a05e41248af6d82a73819648615f":[1,0,0,0,14,0,0,10,0],
 "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html#ad8413af1114456eb7b5671bfe0dec3c7":[1,0,0,0,14,0,0,10,1],
@@ -19,8 +21,8 @@ var NAVTREEINDEX1 =
 "d1/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait.html#a7255be5f35bb1a4cba28ee4edcc70ab5":[1,0,0,0,7,0,0,6,1],
 "d1/d96/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_trait.html#aeff677d030f65449fcd32fa1e3593951":[1,0,0,0,7,0,0,6,2],
 "d1/d98/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_create_synonym_8cs.html":[2,0,0,1,0,9],
-"d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html":[1,0,0,0,14,0,0,14],
-"d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html#a5463d1c86316a53fd0768c37ed395247":[1,0,0,0,14,0,0,14,0],
+"d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html":[1,0,0,0,14,0,0,13],
+"d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html#a5463d1c86316a53fd0768c37ed395247":[1,0,0,0,14,0,0,13,0],
 "d1/d9a/_utterance_8cs.html":[2,0,0,10,0,8],
 "d1/d9d/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_create_workspace_8cs.html":[2,0,0,2,0,11],
 "d1/d9e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_intent.html":[1,0,0,0,0,0,0,8],
@@ -135,8 +137,8 @@ var NAVTREEINDEX1 =
 "d2/d13/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_word.html#afbcece3cee5811f56d07d8812305057bae1e3a0c58d9310ed03a36748759e1619":[1,0,0,0,11,0,0,10,0,16],
 "d2/d13/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_word.html#afbcece3cee5811f56d07d8812305057baf0fb7886787ed20b1ddc048cb4712cc8":[1,0,0,0,11,0,0,10,0,15],
 "d2/d15/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_dialog_node_8cs.html":[2,0,0,2,0,12],
-"d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html":[1,0,0,0,5,0,0,4],
-"d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html#ab1899580c12bd1615f5ca8130ae1d7d6":[1,0,0,0,5,0,0,4,0],
+"d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html":[1,0,0,0,5,0,0,6],
+"d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html#ab1899580c12bd1615f5ca8130ae1d7d6":[1,0,0,0,5,0,0,6,0],
 "d2/d23/_query_passages_8cs.html":[2,0,0,3,0,55],
 "d2/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_entity.html":[1,0,0,0,0,0,0,42],
 "d2/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_entity.html#a1d6952516071d16d9e8f896be7af0f94":[1,0,0,0,0,0,0,42,1],
@@ -158,7 +160,6 @@ var NAVTREEINDEX1 =
 "d2/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_histogram.html#ab79d7cd445151b7bd988909a34ba5d81":[1,0,0,0,2,0,0,26,0],
 "d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html":[1,0,0,0,14,0,0,8],
 "d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html#a79ff1830ae5bda0b15d0ed32e435981d":[1,0,0,0,14,0,0,8,1],
-"d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html#a9622ee9a1f0f8896b2224b09e7022d68":[1,0,0,0,14,0,0,8,3],
 "d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html#abf74e3f488f3348d62d745f33ade6bea":[1,0,0,0,14,0,0,8,0],
 "d2/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face.html#afe526c741ffb4f9540eb82bb7d2a7099":[1,0,0,0,14,0,0,8,2],
 "d2/d45/namespace_i_b_m_1_1_watson_developer_cloud_1_1_conversation.html":[1,0,0,0,1],
@@ -194,7 +195,7 @@ var NAVTREEINDEX1 =
 "d2/d75/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_counterexample.html#a9b519ef1e86439151363b68c4c7e2b98":[1,0,0,0,0,0,0,40,0],
 "d2/d7c/_face_age_8cs.html":[2,0,0,11,0,9],
 "d2/d80/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_intent_export_8cs.html":[2,0,0,2,0,25],
-"d2/d82/_classified_class_8cs.html":[2,0,0,5,0,1],
+"d2/d82/_classified_class_8cs.html":[2,0,0,5,0,2],
 "d2/d85/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_update_example_8cs.html":[2,0,0,2,0,43],
 "d2/d87/_inline_response200_8cs.html":[2,0,0,6,0,18],
 "d2/d88/_delete_configuration_response_8cs.html":[2,0,0,3,0,10],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "d2/df4/_visual_recognition_service_8cs.html":[2,0,0,11,4],
 "d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html":[1,0,0,0,0,0,0,2],
 "d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html#a5de3e7186f0901a00957dc7adc77dd00":[1,0,0,0,0,0,0,2,2],
-"d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html#aa56ef97e0f3ed48813679ad9f0195c66":[1,0,0,0,0,0,0,2,1],
-"d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html#abd4acdcad7eb21889a7af0e7d132ee06":[1,0,0,0,0,0,0,2,0]
+"d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html#aa56ef97e0f3ed48813679ad9f0195c66":[1,0,0,0,0,0,0,2,1]
 };

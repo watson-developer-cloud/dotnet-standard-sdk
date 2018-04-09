@@ -33,9 +33,6 @@ var dir_5256ff93b4e9e06f445ec8585da2fc27 =
     [ "FaceGender.cs", "d0/d25/_face_gender_8cs.html", [
       [ "FaceGender", "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html", "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender" ]
     ] ],
-    [ "FaceIdentity.cs", "dc/dcd/_face_identity_8cs.html", [
-      [ "FaceIdentity", "dd/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_identity.html", "dd/dda/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_identity" ]
-    ] ],
     [ "FaceLocation.cs", "da/df6/_face_location_8cs.html", [
       [ "FaceLocation", "d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location.html", "d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location" ]
     ] ],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"d2/df7/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_counterexample.html#abd4acdcad7eb21889a7af0e7d132ee06":[1,0,0,0,0,0,0,2,0],
 "d2/dfa/_discovery_service_8cs.html":[2,0,0,3,2],
 "d2/dfa/_discovery_service_8cs.html#a694cc789ae89f6996d1e98d77e45d6b7":[2,0,0,3,2,1],
 "d3/d00/_query_notices_result_8cs.html":[2,0,0,3,0,54],
@@ -111,6 +112,7 @@ var NAVTREEINDEX2 =
 "d3/de1/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_behavior.html#a7177eb42f8a8422142ba7f041209852c":[1,0,0,0,7,0,0,0,3],
 "d3/de1/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_behavior.html#abee74bd386b76e673ac91398d2183897":[1,0,0,0,7,0,0,0,0],
 "d3/de4/_corpus_8cs.html":[2,0,0,8,0,7],
+"d3/dee/_collection_item_8cs.html":[2,0,0,5,0,7],
 "d3/dfd/_i_visual_recognition_service_8cs.html":[2,0,0,11,2],
 "d3/dfe/_audio_details_8cs.html":[2,0,0,8,0,2],
 "d4/d01/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_dialog_node_collection_8cs.html":[2,0,0,2,0,14],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a723230d8696332d035bb46f50819b4a9":[1,0,0,0,2,0,2,40],
 "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a77dee9febb4f4e13c23cfb3e50622e24":[1,0,0,0,2,0,2,31],
 "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a7d81c639b934ad693b3573cbf8adcf77":[1,0,0,0,2,0,2,16],
-"d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a80f6088bad7aeb90fb674fcf6612b1e5":[1,0,0,0,2,0,2,14],
-"d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a954cfdebee34096f10ae89d10764c41a":[1,0,0,0,2,0,2,18],
-"d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a96a44ac77029c5b00ed5109704207b50":[1,0,0,0,2,0,2,34]
+"d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a80f6088bad7aeb90fb674fcf6612b1e5":[1,0,0,0,2,0,2,14]
 };

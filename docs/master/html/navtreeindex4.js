@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"d5/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_attributes_1_1_description_attribute.html#a09fa42002ce9fcbcb2dd64c0e499c017":[1,0,0,0,13,0,0,1],
+"d5/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_attributes_1_1_description_attribute.html#ab25d2b0b3f6d0b9ed3b531b1facf3f23":[1,0,0,0,13,0,0,0],
+"d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection.html":[1,0,0,0,1,0,0,52],
 "d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection.html#a5ca1fb10bd065476cfcce77d30914161":[1,0,0,0,1,0,0,52,1],
 "d5/db1/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_collection.html#aaf4cca8c9e18a1ea6874199ab4f0e01d":[1,0,0,0,1,0,0,52,0],
 "d5/db5/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_log_message_8cs.html":[2,0,0,1,0,28],
@@ -130,8 +133,8 @@ var NAVTREEINDEX4 =
 "d6/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export.html#ac0cca1c8836738cb92fbc08e6ee50774":[1,0,0,0,1,0,0,27,4],
 "d6/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_export.html#ac158f7eccceffbda3fa1122bf41e674a":[1,0,0,0,1,0,0,27,0],
 "d6/d94/_word_style_8cs.html":[2,0,0,3,0,77],
-"d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html":[0,0,0,0,10],
 "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html":[1,0,0,0,10],
+"d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html":[0,0,0,0,10],
 "d6/da0/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_update_value_8cs.html":[2,0,0,2,0,46],
 "d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html":[1,0,0,0,0,0,0,16],
 "d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html#a5ba1c9d750db711729428125bd60c860":[1,0,0,0,0,0,0,16,1],
@@ -183,9 +186,9 @@ var NAVTREEINDEX4 =
 "d6/dde/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1.html":[0,0,0,0,5,0],
 "d6/dde/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1.html":[1,0,0,0,5,0],
 "d6/ded/_visual_recognition_service_extension_8cs.html":[2,0,0,11,5],
-"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html":[1,0,0,0,5,0,0,1],
-"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html#a7a391fb5ec4096e3821eb019a2c8ec8d":[1,0,0,0,5,0,0,1,0],
-"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html#aff6485a33f1984eb055348747391a181":[1,0,0,0,5,0,0,1,1],
+"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html":[1,0,0,0,5,0,0,2],
+"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html#a7a391fb5ec4096e3821eb019a2c8ec8d":[1,0,0,0,5,0,0,2,0],
+"d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html#aff6485a33f1984eb055348747391a181":[1,0,0,0,5,0,0,2,1],
 "d6/df5/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html":[1,0,0,0,11,0,0,11],
 "d6/df5/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html#a44fa2efa4a43663641f250b92b46d0bd":[1,0,0,0,11,0,0,11,0],
 "d6/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_workspace_export.html":[1,0,0,0,1,0,0,53],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a28f71863fcb2bcc49991c3b6651d2e91":[1,0,0,0,0,0,0,19,1],
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a2b7fe14629d32e9a57489c7cb3c117ec":[1,0,0,0,0,0,0,19,2],
 "d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a37fab0e22ea1c7a05c7037d2b2754196":[1,0,0,0,0,0,0,19,0],
-"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a9b1c9bf76ad5b7f87fe3931c41810c39":[1,0,0,0,0,0,0,19,4],
-"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#ab9682bac6a191844d108c3f7e50d055d":[1,0,0,0,0,0,0,19,3],
-"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#ae82e595e1b371a89275528fbc8cd095f":[1,0,0,0,0,0,0,19,5],
-"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#af833bfff4939e3c67dcad635219fb953":[1,0,0,0,0,0,0,19,6]
+"d7/d23/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_entity_export.html#a9b1c9bf76ad5b7f87fe3931c41810c39":[1,0,0,0,0,0,0,19,4]
 };

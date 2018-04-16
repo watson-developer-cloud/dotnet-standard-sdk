@@ -23,7 +23,7 @@ using System;
 
 namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 {
-    public class PersonalityInsightsService : WatsonService, IPersonalityInsightsService
+    public partial class PersonalityInsightsService : WatsonService, IPersonalityInsightsService
     {
         const string SERVICE_NAME = "personality_insights";
         const string URL = "https://gateway.watsonplatform.net/personality-insights/api";

@@ -139,9 +139,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("progress", NullValueHandling = NullValueHandling.Ignore)]
         public long? Progress { get; set; }
         /// <summary>
-        /// If the request included unknown query parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.
+        /// If the request included unknown parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.
         /// </summary>
-        /// <value>If the request included unknown query parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.</value>
+        /// <value>If the request included unknown parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.</value>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public string Warnings { get; set; }
     }

@@ -61,9 +61,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).
+        /// The URI for the model for use with the **Create a session** method. (Returned only for requests for a single model with the **Get a model** method.).
         /// </summary>
-        /// <value>The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).</value>
+        /// <value>The URI for the model for use with the **Create a session** method. (Returned only for requests for a single model with the **Get a model** method.).</value>
         [JsonProperty("sessions", NullValueHandling = NullValueHandling.Ignore)]
         public string Sessions { get; set; }
     }

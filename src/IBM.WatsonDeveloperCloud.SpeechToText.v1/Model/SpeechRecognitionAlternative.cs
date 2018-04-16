@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         /// <value>Time alignments for each word from the transcript as a list of lists. Each inner list consists of three elements: the word followed by its start and end time in seconds. Example: `[["hello",0.0,1.2],["world",1.2,2.5]]`. Available only for the best alternative.</value>
         [JsonProperty("timestamps", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Timestamps { get; set; }
+        public List<List<string>> Timestamps { get; set; }
         /// <summary>
         /// A confidence score for each word of the transcript as a list of lists. Each inner list consists of two elements: the word and its confidence score in the range of 0 to 1. Example: `[["hello",0.95],["world",0.866]]`. Available only for the best alternative and only in results marked as final.
         /// </summary>
@@ -50,5 +50,4 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("word_confidence", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> WordConfidence { get; set; }
     }
-
 }

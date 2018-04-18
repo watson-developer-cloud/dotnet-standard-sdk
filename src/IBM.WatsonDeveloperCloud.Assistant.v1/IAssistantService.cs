@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="request">The message to be sent. This includes the user's input, along with optional intents, entities, and context from the last response. (optional)</param>
         /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message. (optional, default to false)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null);
+        MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Create workspace. Create a workspace based on component objects. You must provide workspace components defining the content of the new workspace.    This operation is limited to 30 requests per 30 minutes. For more information, see [**Rate limiting**](https://www.ibm.com/watson/developercloud/assistant/api/v1/#rate-limiting).
         /// </summary>

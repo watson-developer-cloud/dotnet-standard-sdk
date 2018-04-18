@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
@@ -42,6 +43,8 @@ namespace IBM.WatsonDeveloperCloud.Http
         IRequest WithCustom(Action<HttpRequestMessage> request);
 
         IRequest WithFormatter(MediaTypeHeaderValue contentType);
+
+        IRequest WithCustomData(Dictionary<string, object> customData);
 
         TaskAwaiter<IResponse> GetAwaiter();
     }

@@ -28,6 +28,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Http.Filters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.Http
 {
@@ -142,6 +144,11 @@ namespace IBM.WatsonDeveloperCloud.Http
             HttpResponseMessage message = await this.AsMessage().ConfigureAwait(false);
             ProcessResponseHeaders(message);
             var result = message.Content.ReadAsStringAsync().Result;
+
+            Dictionary<string, object> customData = CustomData;
+            customData.Add(Constants.JSON, JValue.Parse(result).ToString(Formatting.Indented));
+            CustomData = customData;
+
             return await message.Content.ReadAsAsync<T>(this.Formatters).ConfigureAwait(false);
         }
 

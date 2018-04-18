@@ -88,6 +88,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     request.WithCustomData(customData);
                 request.WithBody<MessageRequest>(messageRequest);
                 result = request.As<MessageResponse>().Result;
+
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {

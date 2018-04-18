@@ -37,5 +37,10 @@ namespace IBM.WatsonDeveloperCloud
         /// customData object.
         /// </summary>
         public const string RESPONSE_HEADERS = "response_headers";
+        /// <summary>
+        /// A constnat used to access response json in the dynamic customData
+        /// object.
+        /// </summary>
+        public const string JSON = "json";
     }
 }

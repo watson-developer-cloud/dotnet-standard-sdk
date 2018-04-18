@@ -15,6 +15,9 @@
 *
 */
 
+//  Uncomment to delete dotnet workspaces before running tests.
+//#define DELETE_DOTNET_WORKSPACES
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
@@ -83,6 +86,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
                 Endpoint = _endpoint
             };
 
+#if DELETE_DOTNET_WORKSPACES
             var workspaces = _service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
@@ -104,8 +108,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
                 {
                     Console.WriteLine("error: {0}", e.Message);
                 }
-
             }
+#endif
         }
 
         [TestCleanup]

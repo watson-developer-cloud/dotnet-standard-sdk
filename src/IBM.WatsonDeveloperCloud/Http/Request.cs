@@ -48,13 +48,6 @@ namespace IBM.WatsonDeveloperCloud.Http
             set
             {
                 _customData = value;
-                if (CustomData.ContainsKey(Constants.CUSTOM_REQUEST_HEADERS))
-                {
-                    foreach (KeyValuePair<string, string> kvp in CustomData[Constants.CUSTOM_REQUEST_HEADERS] as Dictionary<string, string>)
-                    {
-                        this.WithHeader(kvp.Key, kvp.Value);
-                    }
-                }
             }
         }
 
@@ -116,7 +109,16 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public IRequest WithCustomData(Dictionary<string, object> customData)
         {
-            this.CustomData = CustomData;
+            this.CustomData = customData;
+
+            if (CustomData.ContainsKey(Constants.CUSTOM_REQUEST_HEADERS))
+            {
+                foreach (KeyValuePair<string, string> kvp in CustomData[Constants.CUSTOM_REQUEST_HEADERS] as Dictionary<string, string>)
+                {
+                    this.WithHeader(kvp.Key, kvp.Value);
+                }
+            }
+
             return this;
         }
 

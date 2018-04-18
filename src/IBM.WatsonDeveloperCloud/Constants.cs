@@ -27,5 +27,15 @@ namespace IBM.WatsonDeveloperCloud
         /// each request as `User-Agent`.
         /// </summary>
         public const string SDK_VERSION = "watson-apis-dotnet-sdk/2.2.0";
+        /// <summary>
+        /// A constant used to access custom request headers in the dynamic
+        /// customData object.
+        /// </summary>
+        public const string CUSTOM_REQUEST_HEADERS = "custom_request_headers";
+        /// <summary>
+        /// A constant used to access response headers in the dynamic
+        /// customData object.
+        /// </summary>
+        public const string RESPONSE_HEADERS = "response_headers";
     }
 }

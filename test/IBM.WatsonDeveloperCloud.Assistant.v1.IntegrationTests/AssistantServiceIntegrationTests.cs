@@ -180,9 +180,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.CustomData);
-            Assert.IsNotNull(results.CustomData[Constants.CUSTOM_REQUEST_HEADERS]);
-            Assert.IsNotNull(results.CustomData[Constants.RESPONSE_HEADERS]);
-            Assert.IsNotNull(results.CustomData[Constants.JSON]);
+            Assert.IsNotNull(results.CustomRequestHeaders);
+            Assert.IsNotNull(results.ResponseHeaders);
+            Assert.IsNotNull(results.ResponseJson);
         }
         #endregion
 

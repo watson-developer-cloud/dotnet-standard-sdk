@@ -41,14 +41,14 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public MediaTypeFormatterCollection Formatters { get; }
 
-        private Dictionary<string, object> _CustomData = null;
+        private Dictionary<string, object> _customData = null;
         public Dictionary<string, object> CustomData
         {
-            get { return _CustomData; }
+            get { return _customData == null ? new Dictionary<string, object>() : _customData; }
             set
             {
-                _CustomData = value;
-                if (CustomData[Constants.CUSTOM_REQUEST_HEADERS] != null)
+                _customData = value;
+                if (CustomData.ContainsKey(Constants.CUSTOM_REQUEST_HEADERS))
                 {
                     foreach (KeyValuePair<string, string> kvp in CustomData[Constants.CUSTOM_REQUEST_HEADERS] as Dictionary<string, string>)
                     {

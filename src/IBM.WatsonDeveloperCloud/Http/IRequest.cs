@@ -28,6 +28,8 @@ namespace IBM.WatsonDeveloperCloud.Http
     {
         HttpRequestMessage Message { get; }
 
+        Dictionary<string, object> CustomData { get; set; }
+
         IRequest WithBody<T>(T body, MediaTypeHeaderValue contentType = null);
 
         IRequest WithBody<T>(T body, MediaTypeFormatter formatter, string mediaType = null);

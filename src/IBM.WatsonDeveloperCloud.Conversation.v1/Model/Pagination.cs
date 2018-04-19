@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// The pagination data for the returned objects.
     /// </summary>
-    public class Pagination
+    public class Pagination : BaseModel
     {
         /// <summary>
         /// The URL that will return the same page of results.
@@ -48,6 +48,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>Reserved for future use.</value>
         [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
         public long? Matched { get; set; }
+        /// <summary>
+        /// A token identifying the current page of results.
+        /// </summary>
+        /// <value>A token identifying the current page of results.</value>
+        [JsonProperty("refresh_cursor", NullValueHandling = NullValueHandling.Ignore)]
+        public string RefreshCursor { get; set; }
+        /// <summary>
+        /// A token identifying the next page of results.
+        /// </summary>
+        /// <value>A token identifying the next page of results.</value>
+        [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
+        public string NextCursor { get; set; }
     }
 
 }

@@ -94,16 +94,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 _password = vcapServices["discovery"]["password"].Value<string>();
             }
 
-            _service = new DiscoveryService(_username, _password, "2017-11-07");
+            _service = new DiscoveryService(_username, _password, version);
             _service.Endpoint = _endpoint;
 
-            //DeleteExistingEnvironment();
+#if !SHORT_TEST
+            DeleteExistingEnvironment();
+#endif
         }
 
         [TestCleanup]
         public void Teardown()
         {
-            //DeleteExistingEnvironment();
+#if !SHORT_TEST
+            DeleteExistingEnvironment();
+#endif
         }
 
         private void DeleteExistingEnvironment()

@@ -94,6 +94,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<MessageResponse>().Result;
+                if(result == null)
+                    result = new MessageResponse();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -126,6 +128,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Workspace>().Result;
+                if(result == null)
+                    result = new Workspace();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -160,6 +164,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -200,6 +206,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<WorkspaceExport>().Result;
+                if(result == null)
+                    result = new WorkspaceExport();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -246,6 +254,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<WorkspaceCollection>().Result;
+                if(result == null)
+                    result = new WorkspaceCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -285,6 +295,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Workspace>().Result;
+                if(result == null)
+                    result = new Workspace();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -322,6 +334,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Intent>().Result;
+                if(result == null)
+                    result = new Intent();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -359,6 +373,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -402,6 +418,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<IntentExport>().Result;
+                if(result == null)
+                    result = new IntentExport();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -454,6 +472,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<IntentCollection>().Result;
+                if(result == null)
+                    result = new IntentCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -495,6 +515,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Intent>().Result;
+                if(result == null)
+                    result = new Intent();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -535,6 +557,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Example>().Result;
+                if(result == null)
+                    result = new Example();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -575,6 +599,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -618,6 +644,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Example>().Result;
+                if(result == null)
+                    result = new Example();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -670,6 +698,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<ExampleCollection>().Result;
+                if(result == null)
+                    result = new ExampleCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -714,6 +744,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Example>().Result;
+                if(result == null)
+                    result = new Example();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -751,6 +783,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Counterexample>().Result;
+                if(result == null)
+                    result = new Counterexample();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -788,6 +822,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -828,6 +864,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Counterexample>().Result;
+                if(result == null)
+                    result = new Counterexample();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -877,6 +915,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<CounterexampleCollection>().Result;
+                if(result == null)
+                    result = new CounterexampleCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -918,6 +958,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Counterexample>().Result;
+                if(result == null)
+                    result = new Counterexample();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -955,6 +997,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Entity>().Result;
+                if(result == null)
+                    result = new Entity();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -992,6 +1036,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1035,6 +1081,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<EntityExport>().Result;
+                if(result == null)
+                    result = new EntityExport();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1087,6 +1135,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<EntityCollection>().Result;
+                if(result == null)
+                    result = new EntityCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1128,6 +1178,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Entity>().Result;
+                if(result == null)
+                    result = new Entity();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1168,6 +1220,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Value>().Result;
+                if(result == null)
+                    result = new Value();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1208,6 +1262,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1254,6 +1310,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<ValueExport>().Result;
+                if(result == null)
+                    result = new ValueExport();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1309,6 +1367,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<ValueCollection>().Result;
+                if(result == null)
+                    result = new ValueCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1353,6 +1413,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Value>().Result;
+                if(result == null)
+                    result = new Value();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1396,6 +1458,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Synonym>().Result;
+                if(result == null)
+                    result = new Synonym();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1439,6 +1503,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1485,6 +1551,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Synonym>().Result;
+                if(result == null)
+                    result = new Synonym();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1540,6 +1608,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<SynonymCollection>().Result;
+                if(result == null)
+                    result = new SynonymCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1587,6 +1657,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<Synonym>().Result;
+                if(result == null)
+                    result = new Synonym();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1624,6 +1696,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<DialogNode>().Result;
+                if(result == null)
+                    result = new DialogNode();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1661,6 +1735,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1701,6 +1777,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<DialogNode>().Result;
+                if(result == null)
+                    result = new DialogNode();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1750,6 +1828,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<DialogNodeCollection>().Result;
+                if(result == null)
+                    result = new DialogNodeCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1791,6 +1871,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<DialogNode>().Result;
+                if(result == null)
+                    result = new DialogNode();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1835,6 +1917,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<LogCollection>().Result;
+                if(result == null)
+                    result = new LogCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
@@ -1881,6 +1965,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 if (customData != null)
                     request.WithCustomData(customData);
                 result = request.As<LogCollection>().Result;
+                if(result == null)
+                    result = new LogCollection();
                 result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)

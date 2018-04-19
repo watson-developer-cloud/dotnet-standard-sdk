@@ -22,12 +22,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryEntities.
     /// </summary>
-    public class QueryEntities
+    public class QueryEntities : BaseModel
     {
         /// <summary>
-        /// The entity query feature to perform. Must be `disambiguate`.
+        /// The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.
         /// </summary>
-        /// <value>The entity query feature to perform. Must be `disambiguate`.</value>
+        /// <value>The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.</value>
         [JsonProperty("feature", NullValueHandling = NullValueHandling.Ignore)]
         public string Feature { get; set; }
         /// <summary>
@@ -48,6 +48,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>The number of results to return. The default is `10`. The maximum is `1000`.</value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
+        /// <summary>
+        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
+        /// </summary>
+        /// <value>The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.</value>
+        [JsonProperty("evidence_count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? EvidenceCount { get; set; }
     }
 
 }

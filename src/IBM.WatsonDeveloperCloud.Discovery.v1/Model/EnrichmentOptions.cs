@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Options which are specific to a particular enrichment.
     /// </summary>
-    public class EnrichmentOptions
+    public class EnrichmentOptions : BaseModel
     {
         /// <summary>
         /// An object representing the enrichment features that will be applied to the specified field.

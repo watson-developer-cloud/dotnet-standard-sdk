@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DocumentAccepted.
     /// </summary>
-    public class DocumentAccepted
+    public class DocumentAccepted : BaseModel
     {
         /// <summary>
         /// Status of the document in the ingestion process.

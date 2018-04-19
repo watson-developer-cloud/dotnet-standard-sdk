@@ -21,16 +21,21 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// ListConfigurationsResponse.
+    /// TopHits.
     /// </summary>
-    public class ListConfigurationsResponse : BaseModel
+    public class TopHits : BaseModel
     {
         /// <summary>
-        /// An array of Configurations that are available for the service instance.
+        /// Number of top hits returned by the aggregation.
         /// </summary>
-        /// <value>An array of Configurations that are available for the service instance.</value>
-        [JsonProperty("configurations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Configuration> Configurations { get; set; }
+        /// <value>Number of top hits returned by the aggregation.</value>
+        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Size { get; set; }
+        /// <summary>
+        /// Gets or Sets Hits
+        /// </summary>
+        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
+        public TopHitsResults Hits { get; set; }
     }
 
 }

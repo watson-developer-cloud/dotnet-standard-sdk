@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// PdfHeadingDetection.
     /// </summary>
-    public class PdfHeadingDetection
+    public class PdfHeadingDetection : BaseModel
     {
         /// <summary>
         /// Gets or Sets Fonts

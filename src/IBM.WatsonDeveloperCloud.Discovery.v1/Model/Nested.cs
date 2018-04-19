@@ -21,16 +21,16 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// ListConfigurationsResponse.
+    /// Nested.
     /// </summary>
-    public class ListConfigurationsResponse : BaseModel
+    public class Nested : BaseModel
     {
         /// <summary>
-        /// An array of Configurations that are available for the service instance.
+        /// The area of the results the aggregation was restricted to.
         /// </summary>
-        /// <value>An array of Configurations that are available for the service instance.</value>
-        [JsonProperty("configurations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Configuration> Configurations { get; set; }
+        /// <value>The area of the results the aggregation was restricted to.</value>
+        [JsonProperty("path", NullValueHandling = NullValueHandling.Ignore)]
+        public string Path { get; set; }
     }
 
 }

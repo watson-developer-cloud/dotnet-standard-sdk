@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryRelationsEntity.
     /// </summary>
-    public class QueryRelationsEntity
+    public class QueryRelationsEntity : BaseModel
     {
         /// <summary>
         /// Entity text content.
@@ -37,9 +37,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// If false, implicit disambiguation is performed. The default is `false`.
+        /// If false, implicit querying is performed. The default is `false`.
         /// </summary>
-        /// <value>If false, implicit disambiguation is performed. The default is `false`.</value>
+        /// <value>If false, implicit querying is performed. The default is `false`.</value>
         [JsonProperty("exact", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Exact { get; set; }
     }

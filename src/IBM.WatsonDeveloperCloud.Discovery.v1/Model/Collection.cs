@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A collection for storing documents.
     /// </summary>
-    public class Collection
+    public class Collection : BaseModel
     {
         /// <summary>
         /// The status of the collection.

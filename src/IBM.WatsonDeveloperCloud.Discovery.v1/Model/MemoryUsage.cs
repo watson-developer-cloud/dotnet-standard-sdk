@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// **Deprecated**: Summary of the memory usage statistics for this environment.
     /// </summary>
-    public class MemoryUsage
+    public class MemoryUsage : BaseModel
     {
         /// <summary>
         /// **Deprecated**: Number of bytes used in the environment's memory capacity.

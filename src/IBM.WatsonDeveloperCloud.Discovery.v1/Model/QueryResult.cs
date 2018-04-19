@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryResult.
     /// </summary>
-    public class QueryResult
+    public class QueryResult : BaseModel
     {
         /// <summary>
         /// The unique identifier of the document.
@@ -49,8 +49,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic CollectionId { get; set; }
         /// <summary>
-        /// Gets or Sets ResultMetadata
+        /// Metadata of the query result.
         /// </summary>
+        /// <value>Metadata of the query result.</value>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic ResultMetadata { get; set; }
     }

@@ -23,18 +23,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// UpdateWorkspace.
     /// </summary>
-    public class UpdateWorkspace
+    public class UpdateWorkspace : BaseModel
     {
         /// <summary>
-        /// The name of the workspace.
+        /// The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 64 characters.
         /// </summary>
-        /// <value>The name of the workspace.</value>
+        /// <value>The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 64 characters.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// The description of the workspace.
+        /// The description of the workspace. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
         /// </summary>
-        /// <value>The description of the workspace.</value>
+        /// <value>The description of the workspace. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.</value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>

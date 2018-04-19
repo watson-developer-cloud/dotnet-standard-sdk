@@ -15,6 +15,8 @@
 *
 */
 
+#define DELETE_DOTNET_WORKSPACES
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
@@ -26,7 +28,7 @@ using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
-    //[TestClass]
+    [TestClass]
     public class ConversationIntegrationTests
     {
         private static string _username;
@@ -36,7 +38,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string credentials = string.Empty;
 
         private static string _workspaceID;
-        private string _inputString = "Turn on the winshield wipers";
+        private string _inputString = "Hello";
+        private string _conversationString0 = "unlock the door";
+        private string _conversationString1 = "turn on the ac";
+        private string _conversationString2 = "turn down the radio";
 
         private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
         private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script. Please delete this.";
@@ -52,7 +57,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private static string _dialogNodeName = "dialognode";
         private static string _dialogNodeDesc = ".NET SDK Integration test dialog node";
 
-        //[TestInitialize]
+        [TestInitialize]
         public void Setup()
         {
             if (string.IsNullOrEmpty(credentials))
@@ -83,6 +88,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 Endpoint = _endpoint
             };
 
+#if DELETE_DOTNET_WORKSPACES
             var workspaces = _service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
@@ -104,11 +110,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 {
                     Console.WriteLine("error: {0}", e.Message);
                 }
-
             }
+#endif
         }
 
-        //[TestCleanup]
+        [TestCleanup]
         public void Teardown()
         {
             var workspaces = _service.ListWorkspaces();
@@ -136,10 +142,99 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
         }
 
-        
         #region Message
-        //[TestMethod]
+        [TestMethod]
         public void Message_Success()
+        {
+            dynamic context;
+
+            List<string> intents = new List<string>();
+            MessageRequest messageRequest0 = new MessageRequest()
+            {
+                Input = new InputData()
+                {
+                    Text = _inputString
+                }
+            };
+
+            var results0 = Message(_workspaceID, messageRequest0);
+            context = results0.Context;
+            intents.Add(GetIntent(results0));
+
+            MessageRequest messageRequest1 = new MessageRequest()
+            {
+                Input = new InputData()
+                {
+                    Text = _conversationString0
+                },
+                Context = context
+            };
+
+            var results1 = Message(_workspaceID, messageRequest1);
+            context = results1.Context;
+            intents.Add(GetIntent(results1));
+
+            MessageRequest messageRequest2 = new MessageRequest()
+            {
+                Input = new InputData()
+                {
+                    Text = _conversationString1
+                },
+                Context = context
+            };
+
+            var results2 = Message(_workspaceID, messageRequest2);
+            context = results2.Context;
+            intents.Add(GetIntent(results2));
+
+            MessageRequest messageRequest3 = new MessageRequest()
+            {
+                Input = new InputData()
+                {
+                    Text = _conversationString2
+                },
+                Context = context
+            };
+
+            var results3 = Message(_workspaceID, messageRequest3);
+            context = results3.Context;
+            intents.Add(GetIntent(results3));
+
+            Assert.IsNotNull(results0);
+            Assert.IsNotNull(results1);
+            Assert.IsNotNull(results2);
+            Assert.IsNotNull(results3);
+            foreach (string intent in intents)
+            {
+                Assert.IsTrue(IsUniqueInList(intent, intents));
+            }
+        }
+        #endregion
+
+        private bool IsUniqueInList(string value, List<string> list)
+        {
+            List<string> duplicates = new List<string>();
+            foreach (string item in list)
+            {
+                duplicates = list.FindAll(x => x == item);
+            }
+
+            if (duplicates.Count > 1)
+                return false;
+            else
+                return true;
+        }
+
+        #region Get Intent
+        private string GetIntent(MessageResponse messageResponse)
+        {
+            return messageResponse.Intents[0]["intent"].ToString(); ;
+        }
+        #endregion
+
+        #region Custom Headers
+        [TestMethod]
+        public void SendCustomHeaders_Success()
         {
             MessageRequest messageRequest = new MessageRequest()
             {
@@ -150,13 +245,23 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 AlternateIntents = true
             };
 
-            var results = Message(_workspaceID, messageRequest);
+            Dictionary<string, object> customData = new Dictionary<string, object>();
+            Dictionary<string, string> customHeaders = new Dictionary<string, string>();
+            customHeaders.Add("X-Watson-Metadata", "customer_id=some-conversation-customer-id");
+            customData.Add(Constants.CUSTOM_REQUEST_HEADERS, customHeaders);
+
+            var results = Message(_workspaceID, messageRequest, customData: customData);
+
             Assert.IsNotNull(results);
+            Assert.IsNotNull(results.CustomData);
+            Assert.IsNotNull(results.CustomRequestHeaders);
+            Assert.IsNotNull(results.ResponseHeaders);
+            Assert.IsNotNull(results.ResponseJson);
         }
         #endregion
 
         #region Workspaces
-        //[TestMethod]
+        [TestMethod]
         public void TestWorkspaces_Success()
         {
             var ListWorkspacesResult = ListWorkspaces();
@@ -197,7 +302,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Counter Examples
-        //[TestMethod]
+        [TestMethod]
         public void TestCounterExamples_Success()
         {
             CreateWorkspace createWorkspace = new CreateWorkspace()
@@ -244,7 +349,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Entities
-        //[TestMethod]
+        [TestMethod]
         public void TestEntities_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -294,7 +399,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Values
-        //[TestMethod]
+        [TestMethod]
         public void TestValues_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -349,7 +454,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Synonyms
-        //[TestMethod]
+        [TestMethod]
         public void TestSynonyms_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -409,7 +514,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Intents
-        //[TestMethod]
+        [TestMethod]
         public void TestIntents_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -457,7 +562,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Examples
-        //[TestMethod]
+        [TestMethod]
         public void TestExamples_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -510,7 +615,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Dialog Nodes
-        //[TestMethod]
+        [TestMethod]
         public void TestDialogNodes_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -560,7 +665,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Logs
-        //[TestMethod]
+        [TestMethod]
         public void ListLogs_Success()
         {
             CreateWorkspace workspace = new CreateWorkspace()
@@ -579,7 +684,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             Assert.IsNotNull(listLogsResult);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void ListAllLogs_Success()
         {
             var filter = "(language::en,request.context.metadata.deployment::deployment_1)";
@@ -589,11 +694,30 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region Generated
+        #region Message
+        private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to Message()");
+            var result = _service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("Message() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to Message()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region CreateWorkspace
-        private Workspace CreateWorkspace(CreateWorkspace properties = null)
+        private Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateWorkspace()");
-            var result = _service.CreateWorkspace(properties: properties);
+            var result = _service.CreateWorkspace(properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -609,10 +733,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteWorkspace
-        private object DeleteWorkspace(string workspaceId)
+        private BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
-            var result = _service.DeleteWorkspace(workspaceId: workspaceId);
+            var result = _service.DeleteWorkspace(workspaceId: workspaceId, customData: customData);
 
             if (result != null)
             {
@@ -628,10 +752,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetWorkspace
-        private WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null)
+        private WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetWorkspace()");
-            var result = _service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit);
+            var result = _service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -647,10 +771,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListWorkspaces
-        private WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        private WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListWorkspaces()");
-            var result = _service.ListWorkspaces(pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = _service.ListWorkspaces(pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -666,10 +790,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateWorkspace
-        private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null)
+        private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateWorkspace()");
-            var result = _service.UpdateWorkspace(workspaceId: workspaceId, properties: properties, append: append);
+            var result = _service.UpdateWorkspace(workspaceId: workspaceId, properties: properties, append: append, customData: customData);
 
             if (result != null)
             {
@@ -684,30 +808,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #region Message
-        private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null)
-        {
-            Console.WriteLine("\nAttempting to Message()");
-            var result = _service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails);
-
-            if (result != null)
-            {
-                Console.WriteLine("Message() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to Message()");
-            }
-
-            return result;
-        }
-        #endregion
-
         #region CreateIntent
-        private Intent CreateIntent(string workspaceId, CreateIntent body)
+        private Intent CreateIntent(string workspaceId, CreateIntent body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateIntent()");
-            var result = _service.CreateIntent(workspaceId: workspaceId, body: body);
+            var result = _service.CreateIntent(workspaceId: workspaceId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -723,10 +828,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteIntent
-        private object DeleteIntent(string workspaceId, string intent)
+        private BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteIntent()");
-            var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent);
+            var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent, customData: customData);
 
             if (result != null)
             {
@@ -742,10 +847,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetIntent
-        private IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
+        private IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetIntent()");
-            var result = _service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit);
+            var result = _service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -761,10 +866,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListIntents
-        private IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        private IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListIntents()");
-            var result = _service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = _service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -780,10 +885,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateIntent
-        private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body)
+        private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateIntent()");
-            var result = _service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body);
+            var result = _service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
 
             if (result != null)
             {
@@ -799,10 +904,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region CreateExample
-        private Example CreateExample(string workspaceId, string intent, CreateExample body)
+        private Example CreateExample(string workspaceId, string intent, CreateExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateExample()");
-            var result = _service.CreateExample(workspaceId: workspaceId, intent: intent, body: body);
+            var result = _service.CreateExample(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
 
             if (result != null)
             {
@@ -818,10 +923,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteExample
-        private object DeleteExample(string workspaceId, string intent, string text)
+        private BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExample()");
-            var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
+            var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text, customData: customData);
 
             if (result != null)
             {
@@ -837,10 +942,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetExample
-        private Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
+        private Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetExample()");
-            var result = _service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit);
+            var result = _service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -856,10 +961,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListExamples
-        private ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        private ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListExamples()");
-            var result = _service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = _service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -875,10 +980,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateExample
-        private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body)
+        private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateExample()");
-            var result = _service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body);
+            var result = _service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body, customData: customData);
 
             if (result != null)
             {
@@ -893,429 +998,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #region CreateEntity
-        private Entity CreateEntity(string workspaceId, CreateEntity properties)
-        {
-            Console.WriteLine("\nAttempting to CreateEntity()");
-            var result = _service.CreateEntity(workspaceId: workspaceId, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateEntity()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteEntity
-        private object DeleteEntity(string workspaceId, string entity)
-        {
-            Console.WriteLine("\nAttempting to DeleteEntity()");
-            var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteEntity()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetEntity
-        private EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to GetEntity()");
-            var result = _service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("GetEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to GetEntity()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListEntities
-        private EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to ListEntities()");
-            var result = _service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListEntities() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListEntities()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UpdateEntity
-        private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties)
-        {
-            Console.WriteLine("\nAttempting to UpdateEntity()");
-            var result = _service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateEntity()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CreateValue
-        private Value CreateValue(string workspaceId, string entity, CreateValue properties)
-        {
-            Console.WriteLine("\nAttempting to CreateValue()");
-            var result = _service.CreateValue(workspaceId: workspaceId, entity: entity, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateValue()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteValue
-        private object DeleteValue(string workspaceId, string entity, string value)
-        {
-            Console.WriteLine("\nAttempting to DeleteValue()");
-            var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteValue()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetValue
-        private ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to GetValue()");
-            var result = _service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("GetValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to GetValue()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListValues
-        private ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to ListValues()");
-            var result = _service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListValues() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListValues()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UpdateValue
-        private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties)
-        {
-            Console.WriteLine("\nAttempting to UpdateValue()");
-            var result = _service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateValue()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CreateSynonym
-        private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body)
-        {
-            Console.WriteLine("\nAttempting to CreateSynonym()");
-            var result = _service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateSynonym()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteSynonym
-        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym)
-        {
-            Console.WriteLine("\nAttempting to DeleteSynonym()");
-            var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteSynonym()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetSynonym
-        private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to GetSynonym()");
-            var result = _service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("GetSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to GetSynonym()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListSynonyms
-        private SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to ListSynonyms()");
-            var result = _service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListSynonyms() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListSynonyms()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UpdateSynonym
-        private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body)
-        {
-            Console.WriteLine("\nAttempting to UpdateSynonym()");
-            var result = _service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateSynonym()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region CreateDialogNode
-        private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties)
-        {
-            Console.WriteLine("\nAttempting to CreateDialogNode()");
-            var result = _service.CreateDialogNode(workspaceId: workspaceId, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateDialogNode()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region DeleteDialogNode
-        private object DeleteDialogNode(string workspaceId, string dialogNode)
-        {
-            Console.WriteLine("\nAttempting to DeleteDialogNode()");
-            var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
-
-            if (result != null)
-            {
-                Console.WriteLine("DeleteDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to DeleteDialogNode()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region GetDialogNode
-        private DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to GetDialogNode()");
-            var result = _service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("GetDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to GetDialogNode()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListDialogNodes
-        private DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-            Console.WriteLine("\nAttempting to ListDialogNodes()");
-            var result = _service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListDialogNodes() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListDialogNodes()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region UpdateDialogNode
-        private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties)
-        {
-            Console.WriteLine("\nAttempting to UpdateDialogNode()");
-            var result = _service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateDialogNode()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListAllLogs
-        private LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
-        {
-            Console.WriteLine("\nAttempting to ListAllLogs()");
-            var result = _service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListAllLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListAllLogs()");
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region ListLogs
-        private LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
-        {
-            Console.WriteLine("\nAttempting to ListLogs()");
-            var result = _service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor);
-
-            if (result != null)
-            {
-                Console.WriteLine("ListLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to ListLogs()");
-            }
-
-            return result;
-        }
-        #endregion
-
         #region CreateCounterexample
-        private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body)
+        private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateCounterexample()");
-            var result = _service.CreateCounterexample(workspaceId: workspaceId, body: body);
+            var result = _service.CreateCounterexample(workspaceId: workspaceId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1331,10 +1018,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region DeleteCounterexample
-        private object DeleteCounterexample(string workspaceId, string text)
+        private BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
-            var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text);
+            var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text, customData: customData);
 
             if (result != null)
             {
@@ -1350,10 +1037,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region GetCounterexample
-        private Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
+        private Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetCounterexample()");
-            var result = _service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit);
+            var result = _service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1369,10 +1056,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region ListCounterexamples
-        private CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        private CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCounterexamples()");
-            var result = _service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = _service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1388,10 +1075,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         #endregion
 
         #region UpdateCounterexample
-        private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body)
+        private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateCounterexample()");
-            var result = _service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body);
+            var result = _service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1400,6 +1087,424 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             else
             {
                 Console.WriteLine("Failed to UpdateCounterexample()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateEntity
+        private Entity CreateEntity(string workspaceId, CreateEntity properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateEntity()");
+            var result = _service.CreateEntity(workspaceId: workspaceId, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteEntity
+        private BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteEntity()");
+            var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetEntity
+        private EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetEntity()");
+            var result = _service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListEntities
+        private EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListEntities()");
+            var result = _service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListEntities() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListEntities()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateEntity
+        private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateEntity()");
+            var result = _service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateEntity() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateValue
+        private Value CreateValue(string workspaceId, string entity, CreateValue properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateValue()");
+            var result = _service.CreateValue(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteValue
+        private BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteValue()");
+            var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetValue
+        private ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetValue()");
+            var result = _service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListValues
+        private ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListValues()");
+            var result = _service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListValues() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListValues()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateValue
+        private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateValue()");
+            var result = _service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateValue() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateValue()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateSynonym
+        private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateSynonym()");
+            var result = _service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteSynonym
+        private BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteSynonym()");
+            var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetSynonym
+        private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetSynonym()");
+            var result = _service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListSynonyms
+        private SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListSynonyms()");
+            var result = _service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListSynonyms() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListSynonyms()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateSynonym
+        private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateSynonym()");
+            var result = _service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateSynonym() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateSynonym()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateDialogNode
+        private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateDialogNode()");
+            var result = _service.CreateDialogNode(workspaceId: workspaceId, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteDialogNode
+        private BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteDialogNode()");
+            var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetDialogNode
+        private DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetDialogNode()");
+            var result = _service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListDialogNodes
+        private DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListDialogNodes()");
+            var result = _service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListDialogNodes() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListDialogNodes()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateDialogNode
+        private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateDialogNode()");
+            var result = _service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateDialogNode() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateDialogNode()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListAllLogs
+        private LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListAllLogs()");
+            var result = _service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListAllLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListAllLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListLogs
+        private LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListLogs()");
+            var result = _service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListLogs() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListLogs()");
             }
 
             return result;

@@ -23,12 +23,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// Example.
     /// </summary>
-    public class Example
+    public class Example : BaseModel
     {
         /// <summary>
-        /// The text of the example.
+        /// The text of the user input example.
         /// </summary>
-        /// <value>The text of the example.</value>
+        /// <value>The text of the user input example.</value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string ExampleText { get; set; }
         /// <summary>

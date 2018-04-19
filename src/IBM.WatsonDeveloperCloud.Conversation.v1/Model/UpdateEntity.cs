@@ -23,18 +23,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// UpdateEntity.
     /// </summary>
-    public class UpdateEntity
+    public class UpdateEntity : BaseModel
     {
         /// <summary>
-        /// The name of the entity.
+        /// The name of the entity. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, and hyphen characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>The name of the entity.</value>
+        /// <value>The name of the entity. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, and hyphen characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 64 characters.</value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public string Entity { get; set; }
         /// <summary>
-        /// The description of the entity.
+        /// The description of the entity. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
         /// </summary>
-        /// <value>The description of the entity.</value>
+        /// <value>The description of the entity. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.</value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>

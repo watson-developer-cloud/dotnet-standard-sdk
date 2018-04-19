@@ -233,6 +233,53 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         }
         #endregion
 
+        #region Counter Examples
+        [TestMethod]
+        public void TestCounterExamples_Success()
+        {
+            CreateWorkspace createWorkspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage
+            };
+
+            var createWorkspaceResult = CreateWorkspace(createWorkspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+            var listCounterExamplesResult = ListCounterexamples(workspaceId);
+
+            CreateCounterexample example = new CreateCounterexample()
+            {
+                Text = _createdCounterExampleText
+            };
+
+            var createCounterexampleResult = CreateCounterexample(workspaceId, example);
+
+            var getCounterexampleResult = GetCounterexample(workspaceId, example.Text);
+
+            string updatedCounterExampleText = _createdCounterExampleText + "-updated";
+            UpdateCounterexample updateCounterExample = new UpdateCounterexample()
+            {
+                Text = updatedCounterExampleText
+            };
+
+            var updateCounterexampleResult = UpdateCounterexample(workspaceId, example.Text, updateCounterExample);
+
+            var deleteCounterexampleResult = DeleteCounterexample(workspaceId, updateCounterExample.Text);
+            var deleteWorkspaceResult = DeleteWorkspace(workspaceId);
+
+            Assert.IsNotNull(listCounterExamplesResult);
+            Assert.IsNotNull(listCounterExamplesResult.Counterexamples);
+            Assert.IsNotNull(createCounterexampleResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createCounterexampleResult.Text));
+            Assert.IsNotNull(getCounterexampleResult);
+            Assert.IsFalse(string.IsNullOrEmpty(getCounterexampleResult.Text));
+            Assert.IsNotNull(updateCounterexampleResult);
+            Assert.IsTrue(updateCounterexampleResult.Text == updateCounterExample.Text);
+            Assert.IsNotNull(deleteCounterexampleResult);
+        }
+        #endregion
+
         #region Custom Headers
         [TestMethod]
         public void SendCustomHeaders_Success()

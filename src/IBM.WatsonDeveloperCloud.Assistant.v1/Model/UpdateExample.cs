@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// UpdateExample.
     /// </summary>
-    public class UpdateExample
+    public class UpdateExample : BaseModel
     {
         /// <summary>
         /// The text of the user input example. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 1024 characters.

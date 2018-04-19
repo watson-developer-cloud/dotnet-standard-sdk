@@ -146,7 +146,8 @@ namespace IBM.WatsonDeveloperCloud.Http
             var result = message.Content.ReadAsStringAsync().Result;
 
             Dictionary<string, object> customData = CustomData;
-            customData.Add(Constants.JSON, JValue.Parse(result).ToString(Formatting.Indented));
+            if(!string.IsNullOrEmpty(result))
+                customData.Add(Constants.JSON, JValue.Parse(result).ToString(Formatting.Indented));
             CustomData = customData;
 
             return await message.Content.ReadAsAsync<T>(this.Formatters).ConfigureAwait(false);

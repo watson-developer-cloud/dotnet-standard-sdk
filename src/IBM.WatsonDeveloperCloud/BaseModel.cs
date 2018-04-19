@@ -15,6 +15,7 @@
 *
 */
 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud
@@ -24,6 +25,7 @@ namespace IBM.WatsonDeveloperCloud
         /// <summary>
         /// Custom data object including custom request headers, response headers and response json.
         /// </summary>
+        [JsonIgnore]
         public Dictionary<string, object> CustomData {
             get
             {
@@ -38,6 +40,7 @@ namespace IBM.WatsonDeveloperCloud
         /// <summary>
         /// Gets custom request headers.
         /// </summary>
+        [JsonIgnore]
         public Dictionary<string, string> CustomRequestHeaders
         {
             get
@@ -49,6 +52,7 @@ namespace IBM.WatsonDeveloperCloud
         /// <summary>
         /// Gets response headers.
         /// </summary>
+        [JsonIgnore]
         public Dictionary<string, string> ResponseHeaders
         {
             get
@@ -60,6 +64,7 @@ namespace IBM.WatsonDeveloperCloud
         /// <summary>
         /// Gets the response json.
         /// </summary>
+        [JsonIgnore]
         public string ResponseJson
         {
             get

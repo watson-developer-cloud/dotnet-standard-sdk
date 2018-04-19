@@ -20,31 +20,31 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Linq;
 using IBM.WatsonDeveloperCloud.Http;
-using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
+using IBM.WatsonDeveloperCloud.Assistant.v1.Model;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
+namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
 {
     [TestClass]
-    public class ConversationUnitTests
+    public class AssistantUnitTests
     {
         #region Constructor
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_HttpClient_Null()
         {
-            ConversationService service =
-                new ConversationService(null);
+            AssistantService service =
+                new AssistantService(null);
         }
 
         [TestMethod]
         public void Constructor_HttpClient()
         {
-            ConversationService service =
-                new ConversationService(CreateClient());
+            AssistantService service =
+                new AssistantService(CreateClient());
 
             Assert.IsNotNull(service);
         }
@@ -52,29 +52,29 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_UserName_Null()
         {
-            ConversationService service =
-                new ConversationService(null, "password", "2018-02-16");
+            AssistantService service =
+                new AssistantService(null, "password", "2018-02-16");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Password_Null()
         {
-            ConversationService service =
-                new ConversationService("username", null, "2018-02-16");
+            AssistantService service =
+                new AssistantService("username", null, "2018-02-16");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Version_Null()
         {
-            ConversationService service =
-                new ConversationService("username", "password", null);
+            AssistantService service =
+                new AssistantService("username", "password", null);
         }
 
         [TestMethod]
         public void Constructor_With_UserName_Password()
         {
-            ConversationService service =
-                new ConversationService("username", "password", "2018-02-16");
+            AssistantService service =
+                new AssistantService("username", "password", "2018-02-16");
 
             Assert.IsNotNull(service);
         }
@@ -82,8 +82,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod]
         public void Constructor()
         {
-            ConversationService service =
-                new ConversationService();
+            AssistantService service =
+                new AssistantService();
 
             Assert.IsNotNull(service);
         }
@@ -106,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateCounterexample example = new CreateCounterexample()
             {
                 Text = "text"
@@ -118,14 +118,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.CreateCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateCounterexample example = new CreateCounterexample()
@@ -154,7 +154,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Text = "text"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateCounterexample("workspaceId", example);
@@ -195,7 +195,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Counterexample>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateCounterexample("workspaceId", example);
@@ -210,21 +210,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteCounterexample(null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteCounterexample("workspaceId", "example");
         }
@@ -243,7 +243,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteCounterexample("workspaceId", "example");
@@ -267,7 +267,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteCounterexample("workspaceId", "example");
@@ -281,21 +281,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetCounterexample(null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetCounterexample("workspaceId", "text");
         }
@@ -314,7 +314,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetCounterexample("workspaceId", "text");
         }
@@ -340,7 +340,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Counterexample>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetCounterexample("workspaceId", "text");
@@ -355,14 +355,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListCounterExamples_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListCounterexamples(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListCounterExamples_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListCounterexamples("workspaceId");
         }
@@ -381,7 +381,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListCounterexamples("workspaceId");
         }
@@ -423,7 +423,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<CounterexampleCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListCounterexamples("workspaceId");
@@ -443,7 +443,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateCounterexample example = new UpdateCounterexample()
             {
                 Text = "text"
@@ -455,7 +455,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_Text()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateCounterexample example = new UpdateCounterexample()
             {
                 Text = "text"
@@ -467,14 +467,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateCounterexample("workspaceId", "text", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateCounterexample example = new UpdateCounterexample()
@@ -503,7 +503,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Text = "text"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateCounterexample("workspaceId", "text", example);
@@ -537,7 +537,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Counterexample>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateCounterexample("workspaceId", "text", example);
@@ -554,7 +554,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateEntity entity = new CreateEntity()
             {
                 Entity = "entity",
@@ -567,7 +567,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
 
             service.CreateEntity("workspaceId", null);
         }
@@ -575,7 +575,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateEntity entity = new CreateEntity()
@@ -606,7 +606,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 Entity = "entity",
                 Description = "description"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateEntity("workspaceId", entity);
@@ -642,7 +642,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Entity>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateEntity("workspaceId", entity);
@@ -660,21 +660,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteEntity(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteEntity("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteEntity("workspaceId", "entity");
         }
@@ -693,7 +693,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteEntity("workspaceId", "entity");
@@ -717,7 +717,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteEntity("workspaceId", "entity");
@@ -731,21 +731,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetEntity(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetEntity("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetEntity("workspaceId", "entity");
         }
@@ -764,7 +764,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetEntity("workspaceId", "entity");
         }
@@ -791,7 +791,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<EntityExport>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetEntity("workspaceId", "entity");
@@ -809,14 +809,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListEntities_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListEntities(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListEntities_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListEntities("workspaceId");
         }
@@ -835,7 +835,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListEntities("workspaceId");
         }
@@ -901,7 +901,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<EntityCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListEntities("workspaceId");
@@ -939,7 +939,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateEntity entity = new UpdateEntity()
             {
                 Entity = "entity",
@@ -966,7 +966,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_Text()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateEntity entity = new UpdateEntity()
             {
                 Entity = "entity",
@@ -993,14 +993,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateEntity("workspaceId", "text", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateEntity entity = new UpdateEntity()
@@ -1059,7 +1059,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     }
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateEntity("workspaceId", "text", entity);
@@ -1112,7 +1112,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Entity>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateEntity("workspaceId", "text", entity);
@@ -1136,7 +1136,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateExample example = new CreateExample()
             {
                 Text = "text"
@@ -1148,7 +1148,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateExample example = new CreateExample()
             {
                 Text = "text"
@@ -1160,14 +1160,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.CreateExample("workspaceId", "intent", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateExample example = new CreateExample()
@@ -1196,7 +1196,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Text = "text"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateExample("workspaceId", "intent", example);
@@ -1230,7 +1230,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Example>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateExample("workspaceId", "intent", example);
@@ -1247,21 +1247,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteExample(null, "intent", "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteExample("workspaceId", null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
 
             service.DeleteExample("workspaceId", "intent", null);
         }
@@ -1269,7 +1269,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteExample("workspaceId", "intent", "example");
         }
@@ -1288,7 +1288,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteExample("workspaceId", "intent", "example");
@@ -1312,7 +1312,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteExample("workspaceId", "intent", "example");
@@ -1326,28 +1326,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetExample(null, "intent", "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetExample("workspaceId", null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_Example()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetExample("workspaceId", "intent", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetExample("workspaceId", "intent", "example");
         }
@@ -1366,7 +1366,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetExample("workspaceId", "intent", "example");
         }
@@ -1392,7 +1392,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Example>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetExample("workspaceId", "intent", "example");
@@ -1407,21 +1407,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListExamples(null, "intent");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListExamples("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListExamples("workspaceId", "intent");
         }
@@ -1440,7 +1440,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListExamples("workspaceId", "intent");
         }
@@ -1482,7 +1482,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<ExampleCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListExamples("workspaceId", "intent");
@@ -1502,7 +1502,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateExample example = new UpdateExample()
             {
                 Text = "text"
@@ -1514,7 +1514,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateExample example = new UpdateExample()
             {
                 Text = "text"
@@ -1526,7 +1526,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_Text()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateExample example = new UpdateExample()
             {
                 Text = "text"
@@ -1538,7 +1538,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
 
             service.UpdateExample("workspaceId", "intent", "text", null);
         }
@@ -1546,7 +1546,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateExample example = new UpdateExample()
@@ -1575,7 +1575,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Text = "text"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateExample("workspaceId", "intent", "text", example);
@@ -1609,7 +1609,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Example>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateExample("workspaceId", "intent", "text", example);
@@ -1628,7 +1628,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateIntent intent = new CreateIntent()
             {
                 Intent = "intent",
@@ -1648,14 +1648,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.CreateIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateIntent intent = new CreateIntent()
@@ -1700,7 +1700,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     }
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateIntent("workspaceId", intent);
@@ -1743,7 +1743,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Intent>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateIntent("workspaceId", Intent);
@@ -1761,21 +1761,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteIntent(null, "intent");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteIntent("workspaceId", "intent");
         }
@@ -1794,7 +1794,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteIntent("workspaceId", "intent");
@@ -1818,7 +1818,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteIntent("workspaceId", "intent");
@@ -1832,21 +1832,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetIntent(null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_Intent()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetIntent("workspaceId", "text");
         }
@@ -1865,7 +1865,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetIntent("workspaceId", "text");
         }
@@ -1903,7 +1903,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<IntentExport>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetIntent("workspaceId", "text");
@@ -1926,14 +1926,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListIntents_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListIntents(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListIntents_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListIntents("workspaceId");
         }
@@ -1952,7 +1952,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListIntents("workspaceId");
         }
@@ -2030,7 +2030,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<IntentCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListIntents("workspaceId");
@@ -2057,7 +2057,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateIntent intent = new UpdateIntent()
             {
                 Intent = "intent",
@@ -2077,7 +2077,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_Text()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateIntent intent = new UpdateIntent()
             {
                 Intent = "intent",
@@ -2097,14 +2097,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateIntent("workspaceId", "text", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateIntent intent = new UpdateIntent()
@@ -2149,7 +2149,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     }
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateIntent("workspaceId", "text", intent);
@@ -2200,7 +2200,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Intent>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateIntent("workspaceId", "text", intent);
@@ -2217,14 +2217,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListLogs_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListLogs(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListLogs_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListLogs("workspaceId");
         }
@@ -2243,7 +2243,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListLogs("workspaceId");
         }
@@ -2396,7 +2396,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<LogCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListLogs("workspaceId");
@@ -2418,7 +2418,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
 
             #region MessageRequest
             MessageRequest message = new MessageRequest()
@@ -2482,7 +2482,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             #region MessageRequest
@@ -2613,7 +2613,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 }
             };
             #endregion
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.Message("workspaceId", message);
@@ -2747,7 +2747,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<MessageResponse>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.Message("workspaceId", message);
@@ -2768,7 +2768,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateSynonym synonym = new CreateSynonym()
             {
                 Synonym = "synonym"
@@ -2780,7 +2780,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateSynonym synonym = new CreateSynonym()
             {
                 Synonym = "synonym"
@@ -2792,7 +2792,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateSynonym synonym = new CreateSynonym()
             {
                 Synonym = "synonym"
@@ -2804,14 +2804,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.CreateSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateSynonym synonym = new CreateSynonym()
@@ -2840,7 +2840,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Synonym = "synonym"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateSynonym("workspaceId", "entity", "value", synonym);
@@ -2874,7 +2874,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Synonym>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateSynonym("workspaceId", "entity", "value", synonym);
@@ -2892,35 +2892,35 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Synonym()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2939,7 +2939,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
@@ -2963,7 +2963,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
@@ -2977,35 +2977,35 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Synonym()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -3024,7 +3024,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -3050,7 +3050,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Synonym>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetSynonym("workspaceId", "entity", "value", "synonym");
@@ -3068,28 +3068,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListSynonyms(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListSynonyms("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListSynonyms("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListSynonyms("workspaceId", "entity", "value");
         }
@@ -3108,7 +3108,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListSynonyms("workspaceId", "entity", "value");
         }
@@ -3159,7 +3159,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<SynonymCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListSynonyms("workspaceId", "entity", "value");
@@ -3183,7 +3183,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateSynonym synonym = new UpdateSynonym()
             {
                 Synonym = "synonym"
@@ -3195,7 +3195,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateSynonym synonym = new UpdateSynonym()
             {
                 Synonym = "synonym"
@@ -3207,7 +3207,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateSynonym synonym = new UpdateSynonym()
             {
                 Synonym = "synonym"
@@ -3219,7 +3219,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Synonym()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateSynonym synonym = new UpdateSynonym()
             {
                 Synonym = "synonym"
@@ -3231,14 +3231,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Body()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateSynonym synonym = new UpdateSynonym()
@@ -3267,7 +3267,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             {
                 Synonym = "synonym"
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", synonym);
@@ -3301,7 +3301,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Synonym>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateSynonym("workspaceId", "entity", "value", "synonym", synonym);
@@ -3320,7 +3320,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateValue value = new CreateValue()
             {
                 Value = "value",
@@ -3337,7 +3337,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             CreateValue value = new CreateValue()
             {
                 Value = "value",
@@ -3353,14 +3353,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_Bpdu()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.CreateValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateValue value = new CreateValue()
@@ -3399,7 +3399,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     "synonym"
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateValue("workspaceId", "entity", value);
@@ -3447,7 +3447,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Value>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateValue("workspaceId", "entity", value);
@@ -3465,28 +3465,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteValue("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteValue("workspaceId", "entity", "value");
         }
@@ -3505,7 +3505,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteValue("workspaceId", "entity", "example");
@@ -3529,7 +3529,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteValue("workspaceId", "entity", "example");
@@ -3543,28 +3543,28 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetValue("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetValue("workspaceId", "entity", "value");
         }
@@ -3583,7 +3583,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetValue("workspaceId","entity", "value");
         }
@@ -3626,7 +3626,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<ValueExport>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetValue("workspaceId", "entity", "value");
@@ -3647,21 +3647,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListValues(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.ListValues("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListValues("workspaceId", "entity");
         }
@@ -3680,7 +3680,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListValues("workspaceId", "entity");
         }
@@ -3737,7 +3737,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<ValueCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListValues("workspaceId", "entity");
@@ -3764,7 +3764,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateValue value = new UpdateValue()
             {
                 Value = "value",
@@ -3781,7 +3781,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_Entity()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateValue value = new UpdateValue()
             {
                 Value = "value",
@@ -3798,7 +3798,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_Value()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             UpdateValue value = new UpdateValue()
             {
                 Value = "value",
@@ -3815,14 +3815,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_UpdateValue()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateValue("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             UpdateValue value = new UpdateValue()
@@ -3861,7 +3861,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     "synonym"
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateValue("workspaceId", "entity", "value", value);
@@ -3909,7 +3909,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Value>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateValue("workspaceId", "entity", "value", value);
@@ -3930,7 +3930,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateWorkspace_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             CreateWorkspace workspace = new CreateWorkspace()
@@ -3969,7 +3969,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                     new CreateDialogNode() { }
                 }
             };
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.CreateWorkspace(workspace);
@@ -4021,7 +4021,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Workspace>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.CreateWorkspace(workspace);
@@ -4043,14 +4043,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteWorkspace_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.DeleteWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteWorkspace_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.DeleteWorkspace("workspaceId");
         }
@@ -4069,7 +4069,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.DeleteWorkspace("workspaceId");
@@ -4093,7 +4093,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.DeleteWorkspace("workspaceId");
@@ -4107,14 +4107,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetWorkspace_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.GetWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetWorkspace_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.GetWorkspace("workspaceId");
         }
@@ -4133,7 +4133,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.GetWorkspace("workspaceId");
         }
@@ -4292,7 +4292,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<WorkspaceExport>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.GetWorkspace("workspaceId");
@@ -4314,7 +4314,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListWorkspaces_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
             service.ListWorkspaces();
         }
@@ -4333,7 +4333,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
             service.ListWorkspaces();
         }
@@ -4386,7 +4386,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<WorkspaceCollection>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.ListWorkspaces();
@@ -4412,14 +4412,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateWorkspace_No_WorkspaceId()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.UpdateWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateWorkspace_No_VersionDate()
         {
-            ConversationService service = new ConversationService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("username", "password", "versionDate");
             service.VersionDate = null;
 
             service.UpdateWorkspace("workspaceId");
@@ -4439,7 +4439,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                                                                                string.Empty));
                  });
             
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "2018-02-16";
 
             service.UpdateWorkspace("workspaceId");
@@ -4528,7 +4528,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             request.As<Workspace>()
                 .Returns(Task.FromResult(response));
 
-            ConversationService service = new ConversationService(client);
+            AssistantService service = new AssistantService(client);
             service.VersionDate = "versionDate";
 
             var result = service.UpdateWorkspace("workspaceId", workspace);

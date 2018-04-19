@@ -15,22 +15,21 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// ListConfigurationsResponse.
+    /// Metadata of a query result.
     /// </summary>
-    public class ListConfigurationsResponse : BaseModel
+    public class QueryResultResultMetadata : BaseModel
     {
         /// <summary>
-        /// An array of Configurations that are available for the service instance.
+        /// The confidence score of the result's analysis. A higher score indicating greater confidence.
         /// </summary>
-        /// <value>An array of Configurations that are available for the service instance.</value>
-        [JsonProperty("configurations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Configuration> Configurations { get; set; }
+        /// <value>The confidence score of the result's analysis. A higher score indicating greater confidence.</value>
+        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
+        public double? Score { get; set; }
     }
 
 }

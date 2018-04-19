@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A list of PDF conversion settings.
     /// </summary>
-    public class PdfSettings
+    public class PdfSettings : BaseModel
     {
         /// <summary>
         /// Gets or Sets Heading

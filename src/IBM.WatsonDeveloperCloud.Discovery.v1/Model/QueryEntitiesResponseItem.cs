@@ -21,28 +21,28 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// AggregationResult.
+    /// Object containing Entity query response information.
     /// </summary>
-    public class AggregationResult : BaseModel
+    public class QueryEntitiesResponseItem : BaseModel
     {
         /// <summary>
-        /// Key that matched the aggregation type.
+        /// Entity text content.
         /// </summary>
-        /// <value>Key that matched the aggregation type.</value>
-        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
-        public string Key { get; set; }
+        /// <value>Entity text content.</value>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
         /// <summary>
-        /// Number of matching results.
+        /// The type of the result entity.
         /// </summary>
-        /// <value>Number of matching results.</value>
-        [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
-        public long? MatchingResults { get; set; }
+        /// <value>The type of the result entity.</value>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
         /// <summary>
-        /// Aggregations returned in the case of chained aggregations.
+        /// List of different evidentiary items to support the result.
         /// </summary>
-        /// <value>Aggregations returned in the case of chained aggregations.</value>
-        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryAggregation> Aggregations { get; set; }
+        /// <value>List of different evidentiary items to support the result.</value>
+        [JsonProperty("evidence", NullValueHandling = NullValueHandling.Ignore)]
+        public List<QueryEvidence> Evidence { get; set; }
     }
 
 }

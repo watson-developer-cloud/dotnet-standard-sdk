@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An aggregation produced by the Discovery service to analyze the input provided.
     /// </summary>
-    public class QueryAggregation
+    public class QueryAggregation : BaseModel
     {
         /// <summary>
         /// The type of aggregation command used. For example: term, filter, max, min, etc.
@@ -32,22 +32,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// The field where the aggregation is located in the document.
-        /// </summary>
-        /// <value>The field where the aggregation is located in the document.</value>
-        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
-        public string Field { get; set; }
-        /// <summary>
         /// Gets or Sets Results
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<AggregationResult> Results { get; set; }
-        /// <summary>
-        /// The match the aggregated results queried for.
-        /// </summary>
-        /// <value>The match the aggregated results queried for.</value>
-        [JsonProperty("match", NullValueHandling = NullValueHandling.Ignore)]
-        public string Match { get; set; }
         /// <summary>
         /// Number of matching results.
         /// </summary>

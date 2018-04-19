@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingExamplePatch.
     /// </summary>
-    public class TrainingExamplePatch
+    public class TrainingExamplePatch : BaseModel
     {
         /// <summary>
         /// Gets or Sets CrossReference

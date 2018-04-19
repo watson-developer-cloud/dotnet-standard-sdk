@@ -21,16 +21,10 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// AggregationResult.
+    /// TopHitsResults.
     /// </summary>
-    public class AggregationResult : BaseModel
+    public class TopHitsResults : BaseModel
     {
-        /// <summary>
-        /// Key that matched the aggregation type.
-        /// </summary>
-        /// <value>Key that matched the aggregation type.</value>
-        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
-        public string Key { get; set; }
         /// <summary>
         /// Number of matching results.
         /// </summary>
@@ -38,11 +32,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
-        /// Aggregations returned in the case of chained aggregations.
+        /// Top results returned by the aggregation.
         /// </summary>
-        /// <value>Aggregations returned in the case of chained aggregations.</value>
-        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryAggregation> Aggregations { get; set; }
+        /// <value>Top results returned by the aggregation.</value>
+        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
+        public List<QueryResult> Hits { get; set; }
     }
 
 }

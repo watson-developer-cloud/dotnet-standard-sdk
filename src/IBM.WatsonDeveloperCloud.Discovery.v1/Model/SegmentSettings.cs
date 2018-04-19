@@ -21,16 +21,22 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// ListConfigurationsResponse.
+    /// A list of Document Segmentation settings.
     /// </summary>
-    public class ListConfigurationsResponse : BaseModel
+    public class SegmentSettings : BaseModel
     {
         /// <summary>
-        /// An array of Configurations that are available for the service instance.
+        /// Enables/disables the Document Segmentation feature.
         /// </summary>
-        /// <value>An array of Configurations that are available for the service instance.</value>
-        [JsonProperty("configurations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Configuration> Configurations { get; set; }
+        /// <value>Enables/disables the Document Segmentation feature.</value>
+        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Enabled { get; set; }
+        /// <summary>
+        /// Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6.
+        /// </summary>
+        /// <value>Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6.</value>
+        [JsonProperty("selector_tags", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> SelectorTags { get; set; }
     }
 
 }

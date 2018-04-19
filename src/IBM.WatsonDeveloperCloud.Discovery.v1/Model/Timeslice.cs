@@ -21,9 +21,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Histogram.
+    /// Timeslice.
     /// </summary>
-    public class Histogram : BaseModel
+    public class Timeslice : BaseModel
     {
         /// <summary>
         /// The field where the aggregation is located in the document.
@@ -32,11 +32,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
-        /// Interval of the aggregation. (For 'histogram' type).
+        /// Interval of the aggregation. Valid date interval values are second/seconds minute/minutes, hour/hours, day/days, week/weeks, month/months, and year/years.
         /// </summary>
-        /// <value>Interval of the aggregation. (For 'histogram' type).</value>
+        /// <value>Interval of the aggregation. Valid date interval values are second/seconds minute/minutes, hour/hours, day/days, week/weeks, month/months, and year/years.</value>
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Interval { get; set; }
+        public string Interval { get; set; }
+        /// <summary>
+        /// Used to inducate that anomaly detection should be performed. Anomaly detection is used to locate unusual datapoints within a time series.
+        /// </summary>
+        /// <value>Used to inducate that anomaly detection should be performed. Anomaly detection is used to locate unusual datapoints within a time series.</value>
+        [JsonProperty("anomaly", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Anomaly { get; set; }
     }
 
 }

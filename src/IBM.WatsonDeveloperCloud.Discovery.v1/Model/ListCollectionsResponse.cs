@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// ListCollectionsResponse.
     /// </summary>
-    public class ListCollectionsResponse
+    public class ListCollectionsResponse : BaseModel
     {
         /// <summary>
         /// An array containing information about each collection in the environment.

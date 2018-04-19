@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// EntityExport.
     /// </summary>
-    public class EntityExport
+    public class EntityExport : BaseModel
     {
         /// <summary>
         /// The name of the entity.

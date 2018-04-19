@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// State information for the conversation. To maintain state, include the context from the previous response.
     /// </summary>
-    public class Context
+    public class Context : BaseModel
     {
         /// <summary>
         /// The unique identifier of the conversation.

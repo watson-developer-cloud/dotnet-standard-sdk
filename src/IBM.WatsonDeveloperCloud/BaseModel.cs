@@ -24,8 +24,17 @@ namespace IBM.WatsonDeveloperCloud
         /// <summary>
         /// Custom data object including custom request headers, response headers and response json.
         /// </summary>
-        public Dictionary<string, object> CustomData { get; set; }
-
+        public Dictionary<string, object> CustomData {
+            get
+            {
+                return _customData == null ? new Dictionary<string, object>() : _customData;
+            }
+            set
+            {
+                _customData = value;
+            }
+        }
+        private Dictionary<string, object> _customData;
         /// <summary>
         /// Gets custom request headers.
         /// </summary>

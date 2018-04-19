@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Entity.
     /// </summary>
-    public class Entity
+    public class Entity : BaseModel
     {
         /// <summary>
         /// The name of the entity.

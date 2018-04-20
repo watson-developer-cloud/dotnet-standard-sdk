@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// DetectedFaces.
     /// </summary>
-    public class DetectedFaces
+    public class DetectedFaces : BaseModel
     {
         /// <summary>
         /// Number of images processed for the API call.

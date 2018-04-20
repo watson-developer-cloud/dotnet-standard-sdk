@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An option indicating whether or not important keywords from the analyzed content should be returned.
     /// </summary>
-    public class KeywordsOptions
+    public class KeywordsOptions : BaseModel
     {
         /// <summary>
         /// Maximum number of keywords to return.

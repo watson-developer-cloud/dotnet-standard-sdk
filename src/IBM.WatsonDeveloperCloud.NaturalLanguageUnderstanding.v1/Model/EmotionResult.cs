@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can be returned for detected entities, keywords, or user-specified target phrases found in the text.
     /// </summary>
-    public class EmotionResult
+    public class EmotionResult : BaseModel
     {
         /// <summary>
         /// The returned emotion results across the document.

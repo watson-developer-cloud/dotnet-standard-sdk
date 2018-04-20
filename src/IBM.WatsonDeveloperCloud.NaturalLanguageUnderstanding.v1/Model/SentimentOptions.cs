@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An option specifying if sentiment of detected entities, keywords, or phrases should be returned.
     /// </summary>
-    public class SentimentOptions
+    public class SentimentOptions : BaseModel
     {
         /// <summary>
         /// Set this to false to hide document-level sentiment results.

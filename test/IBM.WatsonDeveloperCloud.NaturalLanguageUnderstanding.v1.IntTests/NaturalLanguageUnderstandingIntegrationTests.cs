@@ -23,6 +23,7 @@ using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTests
 {
@@ -103,10 +104,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
 
         #region Generated
         #region Analyze
-        private AnalysisResults Analyze(Parameters parameters)
+        private AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Analyze()");
-            var result = _service.Analyze(parameters: parameters);
+            var result = _service.Analyze(parameters: parameters, customData: customData);
 
             if (result != null)
             {
@@ -122,10 +123,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         #endregion
 
         #region DeleteModel
-        private InlineResponse200 DeleteModel(string modelId)
+        private InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteModel()");
-            var result = _service.DeleteModel(modelId: modelId);
+            var result = _service.DeleteModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -141,10 +142,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         #endregion
 
         #region ListModels
-        private ListModelsResults ListModels()
+        private ListModelsResults ListModels(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = _service.ListModels();
+            var result = _service.ListModels(customData: customData);
 
             if (result != null)
             {

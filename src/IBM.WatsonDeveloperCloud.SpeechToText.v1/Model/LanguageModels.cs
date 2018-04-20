@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// LanguageModels.
     /// </summary>
-    public class LanguageModels
+    public class LanguageModels : BaseModel
     {
         /// <summary>
         /// An array of objects that provides information about each available custom language model. The array is empty if the requesting service credentials own no custom language models (if no language is specified) or own no custom language models for the specified language.

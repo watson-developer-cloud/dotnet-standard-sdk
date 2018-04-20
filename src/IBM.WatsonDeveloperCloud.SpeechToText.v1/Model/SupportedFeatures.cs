@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SupportedFeatures.
     /// </summary>
-    public class SupportedFeatures
+    public class SupportedFeatures : BaseModel
     {
         /// <summary>
         /// Indicates whether the customization interface can be used to create a custom language model based on the language model.
@@ -31,9 +31,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("custom_language_model", NullValueHandling = NullValueHandling.Ignore)]
         public bool? CustomLanguageModel { get; set; }
         /// <summary>
-        /// Indicates whether the `speaker_labels` parameter can be used with the language model.
+        /// Indicates whether the **speaker_labels** parameter can be used with the language model.
         /// </summary>
-        /// <value>Indicates whether the `speaker_labels` parameter can be used with the language model.</value>
+        /// <value>Indicates whether the **speaker_labels** parameter can be used with the language model.</value>
         [JsonProperty("speaker_labels", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SpeakerLabels { get; set; }
     }

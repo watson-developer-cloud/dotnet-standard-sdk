@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// WordAlternativeResult.
     /// </summary>
-    public class WordAlternativeResult
+    public class WordAlternativeResult : BaseModel
     {
         /// <summary>
         /// A confidence score for the word alternative hypothesis in the range of 0 to 1.

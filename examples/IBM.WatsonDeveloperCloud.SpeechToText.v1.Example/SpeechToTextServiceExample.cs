@@ -193,7 +193,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
             var acousticModel = new CreateAcousticModel
             {
                 Name = _acousticModelName,
-                BaseModelName = EN_US,
+                BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.EN_US_BROADBANDMODEL,
                 Description = _acousticModelDescription
             };
 

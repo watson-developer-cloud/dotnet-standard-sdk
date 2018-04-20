@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// Response payload for models.
     /// </summary>
-    public class TranslationModel
+    public class TranslationModel : BaseModel
     {
         /// <summary>
         /// Availability of a model.

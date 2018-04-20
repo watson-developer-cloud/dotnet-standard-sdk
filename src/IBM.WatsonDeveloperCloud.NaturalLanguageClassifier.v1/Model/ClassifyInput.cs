@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// Request payload to classify.
     /// </summary>
-    public class ClassifyInput
+    public class ClassifyInput : BaseModel
     {
         /// <summary>
         /// The submitted phrase.

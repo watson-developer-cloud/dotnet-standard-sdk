@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Provides information about the gender of the face.
     /// </summary>
-    public class FaceGender
+    public class FaceGender : BaseModel
     {
         /// <summary>
         /// Gender identified by the face. For example, `MALE` or `FEMALE`.

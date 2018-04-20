@@ -28,7 +28,7 @@ using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
-    [TestClass]
+    //[TestClass]
     public class ConversationIntegrationTests
     {
         private static string _username;
@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 _endpoint = vcapServices["conversation"]["url"].Value<string>();
-                _username = "4f25be3c-32af-4bd6-84d8-663724bfbb45";
+                _username = vcapServices["conversation"]["username"].Value<string>();
                 _password = vcapServices["conversation"]["password"].Value<string>();
                 _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
             }

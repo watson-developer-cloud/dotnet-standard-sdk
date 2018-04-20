@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// Pronunciation.
     /// </summary>
-    public class Pronunciation
+    public class Pronunciation : BaseModel
     {
         /// <summary>
         /// The pronunciation of the requested text in the specified voice and format.

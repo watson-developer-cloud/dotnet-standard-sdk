@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// IdentifiedLanguages.
     /// </summary>
-    public class IdentifiedLanguages
+    public class IdentifiedLanguages : BaseModel
     {
         /// <summary>
         /// A ranking of identified languages with confidence scores.

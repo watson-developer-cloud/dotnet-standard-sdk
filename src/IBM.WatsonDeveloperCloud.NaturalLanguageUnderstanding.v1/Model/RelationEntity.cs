@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An entity that corresponds with an argument in a relation.
     /// </summary>
-    public class RelationEntity
+    public class RelationEntity : BaseModel
     {
         /// <summary>
         /// Text that corresponds to the entity.

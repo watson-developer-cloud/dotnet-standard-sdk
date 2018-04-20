@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Whether or not to analyze content for general concepts that are referenced or alluded to.
     /// </summary>
-    public class ConceptsOptions
+    public class ConceptsOptions : BaseModel
     {
         /// <summary>
         /// Maximum number of concepts to return.

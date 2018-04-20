@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechModel.
     /// </summary>
-    public class SpeechModel
+    public class SpeechModel : BaseModel
     {
         /// <summary>
         /// The name of the model for use as an identifier in calls to the service (for example, `en-US_BroadbandModel`).
@@ -31,9 +31,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// The language identifier for the model (for example, `en-US`).
+        /// The language identifier of the model (for example, `en-US`).
         /// </summary>
-        /// <value>The language identifier for the model (for example, `en-US`).</value>
+        /// <value>The language identifier of the model (for example, `en-US`).</value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
@@ -61,9 +61,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).
+        /// The URI for the model for use with the **Create a session** method. (Returned only for requests for a single model with the **Get a model** method.).
         /// </summary>
-        /// <value>The URI for the model for use with the `POST /v1/sessions` method. (Returned only for requests for a single model with the `GET /v1/models/{model_id}` method.).</value>
+        /// <value>The URI for the model for use with the **Create a session** method. (Returned only for requests for a single model with the **Get a model** method.).</value>
         [JsonProperty("sessions", NullValueHandling = NullValueHandling.Ignore)]
         public string Sessions { get; set; }
     }

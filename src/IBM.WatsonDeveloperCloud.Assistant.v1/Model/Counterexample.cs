@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Counterexample.
     /// </summary>
-    public class Counterexample
+    public class Counterexample : BaseModel
     {
         /// <summary>
         /// The text of the counterexample.

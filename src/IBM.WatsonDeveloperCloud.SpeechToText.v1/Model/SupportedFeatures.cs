@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SupportedFeatures.
     /// </summary>
-    public class SupportedFeatures
+    public class SupportedFeatures : BaseModel
     {
         /// <summary>
         /// Indicates whether the customization interface can be used to create a custom language model based on the language model.

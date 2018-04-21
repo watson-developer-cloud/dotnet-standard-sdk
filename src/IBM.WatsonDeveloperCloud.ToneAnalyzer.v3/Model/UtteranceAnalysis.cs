@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// UtteranceAnalysis.
     /// </summary>
-    public class UtteranceAnalysis
+    public class UtteranceAnalysis : BaseModel
     {
         /// <summary>
         /// The unique identifier of the utterance. The first utterance has ID 0, and the ID of each subsequent utterance is incremented by one.

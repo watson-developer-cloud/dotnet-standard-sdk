@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="createClassifier">Object used to define options for creating a classifier.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier CreateClassifier(CreateClassifier createClassifier)
+        public Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
         {
             if (createClassifier == null)
                 throw new ArgumentNullException(nameof(createClassifier));
@@ -103,7 +103,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="updateClassifier">Object used to define options for updating a classifier.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier UpdateClassifier(UpdateClassifier updateClassifier)
+        public Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
         {
             if (updateClassifier == null)
                 throw new ArgumentNullException(nameof(updateClassifier));
@@ -162,7 +162,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="classifierId"></param>
         /// <returns>The Core ML model of the requested classifier.</returns>
-        public Task<Stream> GetCoreMlModel(string classifierId)
+        public Task<Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
@@ -192,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// </summary>
         /// <param name="classifierId">The requested Core ML model's classifier ID</param>
         /// <param name="filePath">The file path (without the filename) to download the Core ML model.</param>
-        public void DownloadCoreMlModel(string classifierId, string filePath)
+        public void DownloadCoreMlModel(string classifierId, string filePath, Dictionary<string, object> customData = null)
         {
             var data = GetCoreMlModel(classifierId);
 
@@ -206,7 +206,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     /// <summary>
     /// Object to create a classifier
     /// </summary>
-    public class CreateClassifier
+    public class CreateClassifier : BaseModel
     {
         /// <summary>
         /// The name of the new classifier. Encode special characters in UTF-8.
@@ -261,7 +261,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     /// <summary>
     /// Object to update a classifier
     /// </summary>
-    public class UpdateClassifier
+    public class UpdateClassifier : BaseModel
     {
         /// <summary>
         /// The ID of the classifier.

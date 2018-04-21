@@ -138,11 +138,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         }
         #endregion
 
+        #region Generated
         #region Classify
-        private Classification Classify(string classifierId, ClassifyInput body)
+        private Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
-            var result = _service.Classify(classifierId: classifierId, body: body);
+            var result = _service.Classify(classifierId: classifierId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -158,10 +159,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region ClassifyCollection
-        private ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body)
+        private ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ClassifyCollection()");
-            var result = _service.ClassifyCollection(classifierId: classifierId, body: body);
+            var result = _service.ClassifyCollection(classifierId: classifierId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -177,10 +178,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region CreateClassifier
-        private Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
+        private Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(metadata: metadata, trainingData: trainingData);
+            var result = _service.CreateClassifier(metadata: metadata, trainingData: trainingData, customData: customData);
 
             if (result != null)
             {
@@ -196,10 +197,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region DeleteClassifier
-        private object DeleteClassifier(string classifierId)
+        private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteClassifier()");
-            var result = _service.DeleteClassifier(classifierId: classifierId);
+            var result = _service.DeleteClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -215,10 +216,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region GetClassifier
-        private Classifier GetClassifier(string classifierId)
+        private Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetClassifier()");
-            var result = _service.GetClassifier(classifierId: classifierId);
+            var result = _service.GetClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -234,10 +235,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region ListClassifiers
-        private ClassifierList ListClassifiers()
+        private ClassifierList ListClassifiers(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListClassifiers()");
-            var result = _service.ListClassifiers();
+            var result = _service.ListClassifiers(customData: customData);
 
             if (result != null)
             {
@@ -250,6 +251,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
 
             return result;
         }
+        #endregion
+
         #endregion
     }
 }

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object specifying the sentiment extraction enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentSentiment
+    public class NluEnrichmentSentiment : BaseModel
     {
         /// <summary>
         /// When `true`, sentiment analysis is performed on the entire field.

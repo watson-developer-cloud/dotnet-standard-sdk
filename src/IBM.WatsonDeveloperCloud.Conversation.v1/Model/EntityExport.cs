@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// EntityExport.
     /// </summary>
-    public class EntityExport
+    public class EntityExport : BaseModel
     {
         /// <summary>
         /// The name of the entity.
@@ -63,9 +63,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("fuzzy_match", NullValueHandling = NullValueHandling.Ignore)]
         public bool? FuzzyMatch { get; set; }
         /// <summary>
-        /// An array of entity values.
+        /// An array objects describing the entity values.
         /// </summary>
-        /// <value>An array of entity values.</value>
+        /// <value>An array objects describing the entity values.</value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValueExport> Values { get; set; }
     }

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// CreateEntity.
     /// </summary>
-    public class CreateEntity
+    public class CreateEntity : BaseModel
     {
         /// <summary>
         /// The name of the entity. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, and hyphen characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 64 characters.

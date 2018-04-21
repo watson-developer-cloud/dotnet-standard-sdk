@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// TargetedSentimentResults.
     /// </summary>
-    public class TargetedSentimentResults
+    public class TargetedSentimentResults : BaseModel
     {
         /// <summary>
         /// Targeted text.

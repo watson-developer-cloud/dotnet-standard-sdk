@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A list of HTML conversion settings.
     /// </summary>
-    public class HtmlSettings
+    public class HtmlSettings : BaseModel
     {
         /// <summary>
         /// Gets or Sets ExcludeTagsCompletely

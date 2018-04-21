@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// DocumentAnalysis.
     /// </summary>
-    public class DocumentAnalysis
+    public class DocumentAnalysis : BaseModel
     {
         /// <summary>
         /// **`2017-09-21`:** An array of `ToneScore` objects that provides the results of the analysis for each qualifying tone of the document. The array includes results for any tone whose score is at least 0.5. The array is empty if no tone has a score that meets this threshold. **`2016-05-19`:** Not returned.

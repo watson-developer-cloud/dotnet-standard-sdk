@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DeleteEnvironmentResponse.
     /// </summary>
-    public class DeleteEnvironmentResponse
+    public class DeleteEnvironmentResponse : BaseModel
     {
         /// <summary>
         /// Status of the environment.

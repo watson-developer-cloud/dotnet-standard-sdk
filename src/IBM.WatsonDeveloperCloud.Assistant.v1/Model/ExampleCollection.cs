@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// ExampleCollection.
     /// </summary>
-    public class ExampleCollection
+    public class ExampleCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the examples defined for the intent.

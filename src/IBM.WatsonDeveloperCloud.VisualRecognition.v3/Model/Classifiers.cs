@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// List of classifiers.
     /// </summary>
-    public class Classifiers
+    public class Classifiers : BaseModel
     {
         /// <summary>
         /// Gets or Sets Classifiers

@@ -16,13 +16,17 @@
 */
 
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
     public partial interface IVisualRecognitionService
     {
-        Classifier CreateClassifier(CreateClassifier createClassifier);
+        Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null);
         
-        Classifier UpdateClassifier(UpdateClassifier updateClassifier);
+        Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null);
+
+        Task<System.IO.Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
     }
 }

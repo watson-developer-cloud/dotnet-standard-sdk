@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The Authors, Publication Date, and Title of the document. Supports URL and HTML input types.
     /// </summary>
-    public class MetadataResult
+    public class MetadataResult : BaseModel
     {
         /// <summary>
         /// The authors of the document.

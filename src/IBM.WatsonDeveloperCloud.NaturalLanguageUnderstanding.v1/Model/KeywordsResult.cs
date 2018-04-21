@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The most important keywords in the content, organized by relevance.
     /// </summary>
-    public class KeywordsResult
+    public class KeywordsResult : BaseModel
     {
         /// <summary>
         /// Relevance score from 0 to 1. Higher values indicate greater relevance.

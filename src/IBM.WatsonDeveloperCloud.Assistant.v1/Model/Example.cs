@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Example.
     /// </summary>
-    public class Example
+    public class Example : BaseModel
     {
         /// <summary>
         /// The text of the user input example.

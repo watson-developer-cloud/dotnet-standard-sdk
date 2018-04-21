@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// UpdateEnvironmentRequest.
     /// </summary>
-    public class UpdateEnvironmentRequest
+    public class UpdateEnvironmentRequest : BaseModel
     {
         /// <summary>
         /// Name that identifies the environment.

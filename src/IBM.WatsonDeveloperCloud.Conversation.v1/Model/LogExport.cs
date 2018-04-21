@@ -22,24 +22,24 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// LogExport.
     /// </summary>
-    public class LogExport
+    public class LogExport : BaseModel
     {
         /// <summary>
-        /// A request formatted for the Conversation service.
+        /// A request received by the workspace, including the user input and context.
         /// </summary>
-        /// <value>A request formatted for the Conversation service.</value>
+        /// <value>A request received by the workspace, including the user input and context.</value>
         [JsonProperty("request", NullValueHandling = NullValueHandling.Ignore)]
         public MessageRequest Request { get; set; }
         /// <summary>
-        /// A response from the Conversation service.
+        /// The response sent by the workspace, including the output text, detected intents and entities, and context.
         /// </summary>
-        /// <value>A response from the Conversation service.</value>
+        /// <value>The response sent by the workspace, including the output text, detected intents and entities, and context.</value>
         [JsonProperty("response", NullValueHandling = NullValueHandling.Ignore)]
         public MessageResponse Response { get; set; }
         /// <summary>
-        /// A unique identifier for the logged message.
+        /// A unique identifier for the logged event.
         /// </summary>
-        /// <value>A unique identifier for the logged message.</value>
+        /// <value>A unique identifier for the logged event.</value>
         [JsonProperty("log_id", NullValueHandling = NullValueHandling.Ignore)]
         public string LogId { get; set; }
         /// <summary>
@@ -55,9 +55,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("response_timestamp", NullValueHandling = NullValueHandling.Ignore)]
         public string ResponseTimestamp { get; set; }
         /// <summary>
-        /// The workspace ID.
+        /// The unique identifier of the workspace where the request was made.
         /// </summary>
-        /// <value>The workspace ID.</value>
+        /// <value>The unique identifier of the workspace where the request was made.</value>
         [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public string WorkspaceId { get; set; }
         /// <summary>

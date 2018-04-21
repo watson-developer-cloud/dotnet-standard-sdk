@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// IntentExport.
     /// </summary>
-    public class IntentExport
+    public class IntentExport : BaseModel
     {
         /// <summary>
         /// The name of the intent.
@@ -51,9 +51,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// An array of user input examples.
+        /// An array of objects describing the user input examples for the intent.
         /// </summary>
-        /// <value>An array of user input examples.</value>
+        /// <value>An array of objects describing the user input examples for the intent.</value>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<Example> Examples { get; set; }
     }

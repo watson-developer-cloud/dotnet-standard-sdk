@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// AudioDetails.
     /// </summary>
-    public class AudioDetails
+    public class AudioDetails : BaseModel
     {
         /// <summary>
         /// The type of the audio resource: * `audio` for an individual audio file * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files.

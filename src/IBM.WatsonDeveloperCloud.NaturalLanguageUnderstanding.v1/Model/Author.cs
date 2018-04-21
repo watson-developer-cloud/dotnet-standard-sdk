@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The author of the analyzed content.
     /// </summary>
-    public class Author
+    public class Author : BaseModel
     {
         /// <summary>
         /// Name of the author.

@@ -20,10 +20,11 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
 using System;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 {
-    public class NaturalLanguageUnderstandingService : WatsonService, INaturalLanguageUnderstandingService
+    public partial class NaturalLanguageUnderstandingService : WatsonService, INaturalLanguageUnderstandingService
     {
         const string SERVICE_NAME = "natural_language_understanding";
         const string URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
@@ -40,7 +41,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 this.Endpoint = URL;
         }
 
-
         public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -50,7 +50,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-
             if(string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
@@ -66,11 +65,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         }
 
         /// <summary>
-        /// Analyze text, HTML, or a public webpage. Analyzes text, HTML, or a public webpage with one or more text analysis features.
+        /// Analyze text, HTML, or a public webpage. Analyzes text, HTML, or a public webpage with one or more text analysis features.  ### Concepts Identify general concepts that are referenced or alluded to in your content. Concepts that are detected typically have an associated link to a DBpedia resource.  ### Emotion Detect anger, disgust, fear, joy, or sadness that is conveyed by your content. Emotion information can be returned for detected entities, keywords, or user-specified target phrases found in the text.  ### Entities Detect important people, places, geopolitical entities and other types of entities in your content. Entity detection recognizes consecutive coreferences of each entity. For example, analysis of the following text would count "Barack Obama" and "He" as the same entity:  "Barack Obama was the 44th President of the United States. He took office in January 2009."  ### Keywords Determine the most important keywords in your content. Keyword phrases are organized by relevance in the results.  ### Metadata Get author information, publication date, and the title of your text/HTML content.  ### Relations Recognize when two entities are related, and identify the type of relation.  For example, you can identify an "awardedTo" relation between an award and its recipient.  ### Semantic Roles Parse sentences into subject-action-object form, and identify entities and keywords that are subjects or objects of an action.  ### Sentiment Determine whether your content conveys postive or negative sentiment. Sentiment information can be returned for detected entities, keywords, or user-specified target phrases found in the text.   ### Categories Categorize your content into a hierarchical 5-level taxonomy. For example, "Leonardo DiCaprio won an Oscar" returns "/art and entertainment/movies and tv/movies" as the most confident classification.
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the `text`, `html`, or `url` attributes are required.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
-        public AnalysisResults Analyze(Parameters parameters)
+        public AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null)
         {
             if (parameters == null)
                 throw new ArgumentNullException(nameof(parameters));
@@ -86,7 +86,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                                 .PostAsync($"{this.Endpoint}/v1/analyze");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<Parameters>(parameters);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<AnalysisResults>().Result;
+                if(result == null)
+                    result = new AnalysisResults();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -99,8 +104,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// Delete model. Deletes a custom model.
         /// </summary>
         /// <param name="modelId">model_id of the model to delete.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
-        public InlineResponse200 DeleteModel(string modelId)
+        public InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
@@ -115,7 +121,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<InlineResponse200>().Result;
+                if(result == null)
+                    result = new InlineResponse200();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -128,8 +139,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// List models. Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models that you have created and linked to your Natural Language Understanding service.
         /// </summary>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
-        public ListModelsResults ListModels()
+        public ListModelsResults ListModels(Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -142,7 +154,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/models");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ListModelsResults>().Result;
+                if(result == null)
+                    result = new ListModelsResults();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {

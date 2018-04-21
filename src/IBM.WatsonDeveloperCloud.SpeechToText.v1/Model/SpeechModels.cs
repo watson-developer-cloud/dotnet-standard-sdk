@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechModels.
     /// </summary>
-    public class SpeechModels
+    public class SpeechModels : BaseModel
     {
         /// <summary>
         /// Information about each available model.

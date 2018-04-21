@@ -23,10 +23,11 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using IBM.WatsonDeveloperCloud.Service;
 using System;
+using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {
-    public class LanguageTranslatorService : WatsonService, ILanguageTranslatorService
+    public partial class LanguageTranslatorService : WatsonService, ILanguageTranslatorService
     {
         const string SERVICE_NAME = "language_translator";
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
@@ -35,7 +36,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
-
 
         public LanguageTranslatorService(string userName, string password) : this()
         {
@@ -46,7 +46,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-
         }
 
         public LanguageTranslatorService(IClient httpClient) : this()
@@ -61,8 +60,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Translate. Translates the input text from the source language to the target language.
         /// </summary>
         /// <param name="request">The translate request containing the text, and either a model ID or source and target language pair.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
-        public TranslationResult Translate(TranslateRequest translateRequest)
+        public TranslationResult Translate(TranslateRequest translateRequest, Dictionary<string, object> customData = null)
         {
             if (translateRequest == null)
                 throw new ArgumentNullException(nameof(translateRequest));
@@ -73,7 +73,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v2/translate");
                 request.WithBody<TranslateRequest>(translateRequest);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TranslationResult>().Result;
+                if(result == null)
+                    result = new TranslationResult();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -86,8 +91,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Identify language. Identifies the language of the input text.
         /// </summary>
         /// <param name="text">Input text in UTF-8 format.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
-        public IdentifiedLanguages Identify(string text)
+        public IdentifiedLanguages Identify(string text, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
@@ -98,7 +104,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v2/identify");
                 request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<IdentifiedLanguages>().Result;
+                if(result == null)
+                    result = new IdentifiedLanguages();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -109,11 +120,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         }
 
         /// <summary>
-        /// Identify language. Identifies the language of the input text.
+        /// Identify language. as plain Identifies the language of the input text.
         /// </summary>
         /// <param name="text">Input text in UTF-8 format.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
-        public IdentifiedLanguages IdentifyAsPlain(string text)
+        public IdentifiedLanguages IdentifyAsPlain(string text, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
@@ -124,7 +136,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v2/identify");
                 request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<IdentifiedLanguages>().Result;
+                if(result == null)
+                    result = new IdentifiedLanguages();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -137,8 +154,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// List identifiable languages. Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es` for Spanish) and name of each language.
         /// </summary>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
-        public IdentifiableLanguages ListIdentifiableLanguages()
+        public IdentifiableLanguages ListIdentifiableLanguages(Dictionary<string, object> customData = null)
         {
             IdentifiableLanguages result = null;
 
@@ -146,7 +164,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v2/identifiable_languages");
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<IdentifiableLanguages>().Result;
+                if(result == null)
+                    result = new IdentifiableLanguages();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -163,8 +186,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely overwrite the domain translaton data, including high frequency or high confidence phrase translations. You can upload only one glossary with a file size less than 10 MB per call. (optional)</param>
         /// <param name="parallelCorpus">A TMX file that contains entries that are treated as a parallel corpus instead of a glossary. (optional)</param>
         /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
+        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(baseModelId))
                 throw new ArgumentNullException(nameof(baseModelId));
@@ -208,7 +232,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 if (!string.IsNullOrEmpty(name))
                     request.WithArgument("name", name);
                 request.WithBodyContent(formData);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TranslationModel>().Result;
+                if(result == null)
+                    result = new TranslationModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -222,8 +251,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Delete model. Deletes a custom translation model.
         /// </summary>
         /// <param name="modelId">Model ID of the model to delete.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
-        public DeleteModelResult DeleteModel(string modelId)
+        public DeleteModelResult DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
@@ -233,7 +263,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DeleteModelResult>().Result;
+                if(result == null)
+                    result = new DeleteModelResult();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -247,8 +282,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// Get model details. Gets information about a translation model, including training status for custom models.
         /// </summary>
         /// <param name="modelId">Model ID of the model to get.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        public TranslationModel GetModel(string modelId)
+        public TranslationModel GetModel(string modelId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
@@ -258,7 +294,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v2/models/{modelId}");
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TranslationModel>().Result;
+                if(result == null)
+                    result = new TranslationModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -274,8 +315,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
         /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
         /// <param name="defaultModels">If the default parameter isn't specified, the service will return all models (default and non-default) for each language pair. To return only default models, set this to `true`. To return only non-default models, set this to `false`. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
-        public TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null)
+        public TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null, Dictionary<string, object> customData = null)
         {
             TranslationModels result = null;
 
@@ -289,7 +331,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     request.WithArgument("target", target);
                 if (defaultModels != null)
                     request.WithArgument("default", defaultModels);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TranslationModels>().Result;
+                if(result == null)
+                    result = new TranslationModels();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {

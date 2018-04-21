@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// ToneCategory.
     /// </summary>
-    public class ToneCategory
+    public class ToneCategory : BaseModel
     {
         /// <summary>
         /// An array of `ToneScore` objects that provides the results for the tones of the category.

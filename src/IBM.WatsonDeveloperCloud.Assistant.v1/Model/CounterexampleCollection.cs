@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// CounterexampleCollection.
     /// </summary>
-    public class CounterexampleCollection
+    public class CounterexampleCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the examples marked as irrelevant input.

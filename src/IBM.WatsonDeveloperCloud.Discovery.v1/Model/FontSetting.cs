@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// FontSetting.
     /// </summary>
-    public class FontSetting
+    public class FontSetting : BaseModel
     {
         /// <summary>
         /// Gets or Sets Level

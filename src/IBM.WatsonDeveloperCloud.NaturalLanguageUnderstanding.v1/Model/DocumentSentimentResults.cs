@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// DocumentSentimentResults.
     /// </summary>
-    public class DocumentSentimentResults
+    public class DocumentSentimentResults : BaseModel
     {
         /// <summary>
         /// Indicates whether the sentiment is positive, neutral, or negative.

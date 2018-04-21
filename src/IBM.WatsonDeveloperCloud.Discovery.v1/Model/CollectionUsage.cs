@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Summary of the collection usage in the environment.
     /// </summary>
-    public class CollectionUsage
+    public class CollectionUsage : BaseModel
     {
         /// <summary>
         /// Number of active collections in the environment.

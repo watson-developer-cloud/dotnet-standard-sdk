@@ -21,9 +21,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// A request formatted for the Assistant service.
+    /// A request formatted for the Watson Assistant service.
     /// </summary>
-    public class MessageRequest
+    public class MessageRequest : BaseModel
     {
         /// <summary>
         /// An input object that includes the input text.

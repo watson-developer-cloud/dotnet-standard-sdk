@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// LogExport.
     /// </summary>
-    public class LogExport
+    public class LogExport : BaseModel
     {
         /// <summary>
         /// A request received by the workspace, including the user input and context.

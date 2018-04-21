@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// TranslationResult.
     /// </summary>
-    public class TranslationResult
+    public class TranslationResult : BaseModel
     {
         /// <summary>
         /// Number of words in the input text.

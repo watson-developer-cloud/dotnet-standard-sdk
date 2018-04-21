@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// Corpora.
     /// </summary>
-    public class Corpora
+    public class Corpora : BaseModel
     {
         /// <summary>
         /// Information about corpora of the custom model. The array is empty if the custom model has no corpora.

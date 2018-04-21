@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// A response from the Conversation service.
     /// </summary>
-    public class MessageResponse
+    public class MessageResponse : BaseModel
     {
         /// <summary>
         /// The user input from the request.
@@ -44,9 +44,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Entities { get; set; }
         /// <summary>
-        /// Whether to return more than one intent. `true` indicates that all matching intents are returned.
+        /// Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.
         /// </summary>
-        /// <value>Whether to return more than one intent. `true` indicates that all matching intents are returned.</value>
+        /// <value>Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.</value>
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic AlternateIntents { get; set; }
         /// <summary>

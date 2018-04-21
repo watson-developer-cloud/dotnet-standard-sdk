@@ -22,18 +22,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     /// <summary>
     /// ConsumptionPreferences.
     /// </summary>
-    public class ConsumptionPreferences
+    public class ConsumptionPreferences : BaseModel
     {
         /// <summary>
-        /// The unique identifier of the consumption preference to which the results pertain. IDs have the form `consumption_preferences_{preference}`.
+        /// The unique, non-localized identifier of the consumption preference to which the results pertain. IDs have the form `consumption_preferences_{preference}`.
         /// </summary>
-        /// <value>The unique identifier of the consumption preference to which the results pertain. IDs have the form `consumption_preferences_{preference}`.</value>
+        /// <value>The unique, non-localized identifier of the consumption preference to which the results pertain. IDs have the form `consumption_preferences_{preference}`.</value>
         [JsonProperty("consumption_preference_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConsumptionPreferenceId { get; set; }
         /// <summary>
-        /// The user-visible name of the consumption preference.
+        /// The user-visible, localized name of the consumption preference.
         /// </summary>
-        /// <value>The user-visible name of the consumption preference.</value>
+        /// <value>The user-visible, localized name of the consumption preference.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>

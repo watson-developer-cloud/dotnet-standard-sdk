@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Value.
     /// </summary>
-    public class Value
+    public class Value : BaseModel
     {
         /// <summary>
         /// Specifies the type of value.

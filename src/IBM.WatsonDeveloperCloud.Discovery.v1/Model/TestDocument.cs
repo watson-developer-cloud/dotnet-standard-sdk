@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TestDocument.
     /// </summary>
-    public class TestDocument
+    public class TestDocument : BaseModel
     {
         /// <summary>
         /// The unique identifier for the configuration.

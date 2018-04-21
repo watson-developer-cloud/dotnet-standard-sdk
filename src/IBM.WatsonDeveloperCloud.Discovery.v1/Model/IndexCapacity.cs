@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Details about the resource usage and capacity of the environment.
     /// </summary>
-    public class IndexCapacity
+    public class IndexCapacity : BaseModel
     {
         /// <summary>
         /// Summary of the document usage statistics for the environment.

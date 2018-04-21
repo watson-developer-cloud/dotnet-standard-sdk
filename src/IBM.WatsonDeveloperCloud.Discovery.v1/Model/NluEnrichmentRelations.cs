@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object specifying the relations enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentRelations
+    public class NluEnrichmentRelations : BaseModel
     {
         /// <summary>
         /// *For use with `natural_language_understanding` enrichments only.* The enrichement model to use with relationship extraction. May be a custom model provided by Watson Knowledge Studio, the public model for use with Knowledge Graph `en-news`, the default is`en-news`.

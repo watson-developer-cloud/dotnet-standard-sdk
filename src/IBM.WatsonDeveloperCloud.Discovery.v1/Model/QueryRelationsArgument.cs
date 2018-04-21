@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryRelationsArgument.
     /// </summary>
-    public class QueryRelationsArgument
+    public class QueryRelationsArgument : BaseModel
     {
         /// <summary>
         /// Gets or Sets Entities

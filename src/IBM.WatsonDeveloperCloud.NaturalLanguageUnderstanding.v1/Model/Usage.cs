@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Usage information.
     /// </summary>
-    public class Usage
+    public class Usage : BaseModel
     {
         /// <summary>
         /// Number of features used in the API call.

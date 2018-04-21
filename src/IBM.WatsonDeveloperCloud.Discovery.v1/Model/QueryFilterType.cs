@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryFilterType.
     /// </summary>
-    public class QueryFilterType
+    public class QueryFilterType : BaseModel
     {
         /// <summary>
         /// A comma-separated list of types to exclude.

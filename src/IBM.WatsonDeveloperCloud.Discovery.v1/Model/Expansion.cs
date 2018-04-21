@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An expansion definition. Each object respresents one set of expandable strings. For example, you could have expansions for the word `hot` in one object, and expansions for the word `cold` in another.
     /// </summary>
-    public class Expansion
+    public class Expansion : BaseModel
     {
         /// <summary>
         /// A list of terms that will be expanded for this expansion. If specified, only the items in this list are expanded.

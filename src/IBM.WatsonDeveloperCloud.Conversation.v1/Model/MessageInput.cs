@@ -20,9 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// An input object that includes the input text.
+    /// The text of the user input.
     /// </summary>
-    public class MessageInput
+    public class MessageInput : BaseModel
     {
         /// <summary>
         /// The user's input.

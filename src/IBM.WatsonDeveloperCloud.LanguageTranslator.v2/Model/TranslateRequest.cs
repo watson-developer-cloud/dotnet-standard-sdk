@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// TranslateRequest.
     /// </summary>
-    public class TranslateRequest
+    public class TranslateRequest : BaseModel
     {
         /// <summary>
         /// Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.
@@ -32,9 +32,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Text { get; set; }
         /// <summary>
-        /// Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.
+        /// Model ID of the translation model to use. If this is specified, the **source** and **target** parameters will be ignored. The method requires either a model ID or both the **source** and **target** parameters.
         /// </summary>
-        /// <value>Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.</value>
+        /// <value>Model ID of the translation model to use. If this is specified, the **source** and **target** parameters will be ignored. The method requires either a model ID or both the **source** and **target** parameters.</value>
         [JsonProperty("model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ModelId { get; set; }
         /// <summary>

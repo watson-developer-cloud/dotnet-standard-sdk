@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// WorkspaceExport.
     /// </summary>
-    public class WorkspaceExport
+    public class WorkspaceExport : BaseModel
     {
         /// <summary>
         /// The current status of the workspace.

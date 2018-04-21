@@ -29,7 +29,7 @@ using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {
-    public class DiscoveryService : WatsonService, IDiscoveryService
+    public partial class DiscoveryService : WatsonService, IDiscoveryService
     {
         const string SERVICE_NAME = "discovery";
         const string URL = "https://gateway.watsonplatform.net/discovery/api";
@@ -46,7 +46,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 this.Endpoint = URL;
         }
 
-
         public DiscoveryService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -56,7 +55,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-
             if(string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
@@ -75,8 +73,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Add an environment. Creates a new environment.  You can create only one environment per service instance. An attempt to create another environment results in an error.
         /// </summary>
         /// <param name="body">An object that defines an environment name and optional description.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Environment" />Environment</returns>
-        public Environment CreateEnvironment(CreateEnvironmentRequest body)
+        public Environment CreateEnvironment(CreateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
@@ -92,7 +91,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<CreateEnvironmentRequest>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Environment>().Result;
+                if(result == null)
+                    result = new Environment();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -106,8 +110,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Delete environment. 
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DeleteEnvironmentResponse" />DeleteEnvironmentResponse</returns>
-        public DeleteEnvironmentResponse DeleteEnvironment(string environmentId)
+        public DeleteEnvironmentResponse DeleteEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -122,7 +127,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DeleteEnvironmentResponse>().Result;
+                if(result == null)
+                    result = new DeleteEnvironmentResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -136,8 +146,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Get environment info. 
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Environment" />Environment</returns>
-        public Environment GetEnvironment(string environmentId)
+        public Environment GetEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -152,7 +163,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Environment>().Result;
+                if(result == null)
+                    result = new Environment();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -166,8 +182,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// List environments. List existing environments for the service instance.
         /// </summary>
         /// <param name="name">Show only the environment with the given name. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListEnvironmentsResponse" />ListEnvironmentsResponse</returns>
-        public ListEnvironmentsResponse ListEnvironments(string name = null)
+        public ListEnvironmentsResponse ListEnvironments(string name = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -182,7 +199,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 request.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
                     request.WithArgument("name", name);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ListEnvironmentsResponse>().Result;
+                if(result == null)
+                    result = new ListEnvironmentsResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -197,8 +219,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListCollectionFieldsResponse" />ListCollectionFieldsResponse</returns>
-        public ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds)
+        public ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -216,7 +239,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
                 request.WithArgument("version", VersionDate);
                 request.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ListCollectionFieldsResponse>().Result;
+                if(result == null)
+                    result = new ListCollectionFieldsResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -231,8 +259,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="body">An object that defines the environment's name and, optionally, description.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Environment" />Environment</returns>
-        public Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body)
+        public Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -250,7 +279,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<UpdateEnvironmentRequest>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Environment>().Result;
+                if(result == null)
+                    result = new Environment();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -264,8 +298,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configuration">Input an object that enables you to customize how your content is ingested and what enrichments are added to your data.   `name` is required and must be unique within the current `environment`. All other properties are optional.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they will be ignored and overridden by the system (an error is not returned so that the overridden fields do not need to be removed when copying a configuration).   The configuration can contain unrecognized JSON fields. Any such fields will be ignored and will not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Configuration" />Configuration</returns>
-        public Configuration CreateConfiguration(string environmentId, Configuration configuration)
+        public Configuration CreateConfiguration(string environmentId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -283,7 +318,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<Configuration>(configuration);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Configuration>().Result;
+                if(result == null)
+                    result = new Configuration();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -298,8 +338,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DeleteConfigurationResponse" />DeleteConfigurationResponse</returns>
-        public DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId)
+        public DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -316,7 +357,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DeleteConfigurationResponse>().Result;
+                if(result == null)
+                    result = new DeleteConfigurationResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -331,8 +377,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Configuration" />Configuration</returns>
-        public Configuration GetConfiguration(string environmentId, string configurationId)
+        public Configuration GetConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -349,7 +396,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Configuration>().Result;
+                if(result == null)
+                    result = new Configuration();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -364,8 +416,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="name">Find configurations with the given name. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListConfigurationsResponse" />ListConfigurationsResponse</returns>
-        public ListConfigurationsResponse ListConfigurations(string environmentId, string name = null)
+        public ListConfigurationsResponse ListConfigurations(string environmentId, string name = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -382,7 +435,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 request.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
                     request.WithArgument("name", name);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ListConfigurationsResponse>().Result;
+                if(result == null)
+                    result = new ListConfigurationsResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -398,8 +456,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
         /// <param name="configuration">Input an object that enables you to update and customize how your data is ingested and what enrichments are added to your data.  The `name` parameter is required and must be unique within the current `environment`. All other properties are optional, but if they are omitted  the default values replace the current value of each omitted property.  If the input configuration contains the `configuration_id`, `created`, or `updated` properties, they are ignored and overridden by the system, and an error is not returned so that the overridden fields do not need to be removed when updating a configuration.   The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an error. This makes it easier to use newer configuration files with older versions of the API and the service. It also makes it possible for the tooling to add additional metadata and information to the configuration.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Configuration" />Configuration</returns>
-        public Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration)
+        public Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -419,7 +478,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<Configuration>(configuration);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Configuration>().Result;
+                if(result == null)
+                    result = new Configuration();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -438,8 +502,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TestDocument" />TestDocument</returns>
-        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
+        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -484,7 +549,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (!string.IsNullOrEmpty(configurationId))
                     request.WithArgument("configuration_id", configurationId);
                 request.WithBodyContent(formData);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TestDocument>().Result;
+                if(result == null)
+                    result = new TestDocument();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -498,8 +568,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="body">Input an object that allows you to add a collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public Collection CreateCollection(string environmentId, CreateCollectionRequest body)
+        public Collection CreateCollection(string environmentId, CreateCollectionRequest body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -517,7 +588,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<CreateCollectionRequest>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Collection>().Result;
+                if(result == null)
+                    result = new Collection();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -528,13 +604,210 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
+        /// Delete a collection. 
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="DeleteCollectionResponse" />DeleteCollectionResponse</returns>
+        public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DeleteCollectionResponse result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+                request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<DeleteCollectionResponse>().Result;
+                if(result == null)
+                    result = new DeleteCollectionResponse();
+                result.CustomData = request.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get collection details. 
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Collection" />Collection</returns>
+        public Collection GetCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Collection result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+                request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<Collection>().Result;
+                if(result == null)
+                    result = new Collection();
+                result.CustomData = request.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List unique fields. Gets a list of the unique fields (and their types) stored in the index.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="ListCollectionFieldsResponse" />ListCollectionFieldsResponse</returns>
+        public ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            ListCollectionFieldsResponse result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
+                request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<ListCollectionFieldsResponse>().Result;
+                if(result == null)
+                    result = new ListCollectionFieldsResponse();
+                result.CustomData = request.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List collections. Lists existing collections for the service instance.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="name">Find collections with the given name. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="ListCollectionsResponse" />ListCollectionsResponse</returns>
+        public ListCollectionsResponse ListCollections(string environmentId, string name = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            ListCollectionsResponse result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
+                request.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(name))
+                    request.WithArgument("name", name);
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<ListCollectionsResponse>().Result;
+                if(result == null)
+                    result = new ListCollectionsResponse();
+                result.CustomData = request.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update a collection. 
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="body">Input an object that allows you to update a collection. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Collection" />Collection</returns>
+        public Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Collection result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+                request.WithArgument("version", VersionDate);
+                request.WithBody<UpdateCollectionRequest>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<Collection>().Result;
+                if(result == null)
+                    result = new Collection();
+                result.CustomData = request.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
         /// Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="body">An object that defines the expansion list.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Expansions" />Expansions</returns>
-        public Expansions CreateExpansions(string environmentId, string collectionId, Expansions body)
+        public Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -554,40 +827,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<Expansions>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Expansions>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete a collection. 
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <returns><see cref="DeleteCollectionResponse" />DeleteCollectionResponse</returns>
-        public DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DeleteCollectionResponse result = null;
-
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
-                result = request.As<DeleteCollectionResponse>().Result;
+                if(result == null)
+                    result = new Expansions();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -602,8 +847,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <returns><see cref="object" />object</returns>
-        public object DeleteExpansions(string environmentId, string collectionId)
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -613,113 +859,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            object result = null;
+            BaseModel result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
                 request.WithArgument("version", VersionDate);
-                result = request.As<object>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get collection details. 
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <returns><see cref="Collection" />Collection</returns>
-        public Collection GetCollection(string environmentId, string collectionId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            Collection result = null;
-
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
-                result = request.As<Collection>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List unique fields. Gets a list of the unique fields (and their types) stored in the index.
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <returns><see cref="ListCollectionFieldsResponse" />ListCollectionFieldsResponse</returns>
-        public ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            ListCollectionFieldsResponse result = null;
-
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
-                request.WithArgument("version", VersionDate);
-                result = request.As<ListCollectionFieldsResponse>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List collections. Lists existing collections for the service instance.
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="name">Find collections with the given name. (optional)</param>
-        /// <returns><see cref="ListCollectionsResponse" />ListCollectionsResponse</returns>
-        public ListCollectionsResponse ListCollections(string environmentId, string name = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            ListCollectionsResponse result = null;
-
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
-                request.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(name))
-                    request.WithArgument("name", name);
-                result = request.As<ListCollectionsResponse>().Result;
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -734,8 +886,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Expansions" />Expansions</returns>
-        public Expansions ListExpansions(string environmentId, string collectionId)
+        public Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -752,42 +905,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Expansions>().Result;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Update a collection. 
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body">Input an object that allows you to update a collection. (optional)</param>
-        /// <returns><see cref="Collection" />Collection</returns>
-        public Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-                throw new ArgumentNullException(nameof(environmentId));
-            if (string.IsNullOrEmpty(collectionId))
-                throw new ArgumentNullException(nameof(collectionId));
-
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            Collection result = null;
-
-            try
-            {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateCollectionRequest>(body);
-                result = request.As<Collection>().Result;
+                if(result == null)
+                    result = new Expansions();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -804,8 +927,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
+        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -841,7 +965,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
                 request.WithArgument("version", VersionDate);
                 request.WithBodyContent(formData);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DocumentAccepted>().Result;
+                if(result == null)
+                    result = new DocumentAccepted();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -857,8 +986,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="documentId">The ID of the document.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DeleteDocumentResponse" />DeleteDocumentResponse</returns>
-        public DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId)
+        public DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -877,7 +1007,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DeleteDocumentResponse>().Result;
+                if(result == null)
+                    result = new DeleteDocumentResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -893,8 +1028,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="documentId">The ID of the document.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
-        public DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId)
+        public DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -913,7 +1049,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DocumentStatus>().Result;
+                if(result == null)
+                    result = new DocumentStatus();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -932,8 +1073,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes. Files larger than 50 megabytes is rejected. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example:  ``` {   "Creator": "Johnny Appleseed",   "Subject": "Apples" } ```. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null)
+        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -971,7 +1113,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
                 request.WithArgument("version", VersionDate);
                 request.WithBodyContent(formData);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<DocumentAccepted>().Result;
+                if(result == null)
+                    result = new DocumentAccepted();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -999,8 +1146,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1042,7 +1190,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     request.WithArgument("similar", similar);
                 request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
                 request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryResponse>().Result;
+                if(result == null)
+                    result = new QueryResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1070,8 +1223,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        public QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1111,7 +1265,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     request.WithArgument("similar", similar);
                 request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
                 request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryNoticesResponse>().Result;
+                if(result == null)
+                    result = new QueryNoticesResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1144,8 +1303,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1193,7 +1353,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     request.WithArgument("similar", similar);
                 request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
                 request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryResponse>().Result;
+                if(result == null)
+                    result = new QueryResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1209,8 +1374,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="entityQuery">An object specifying the entities to query, which functions to perform, and any additional constraints.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryEntitiesResponse" />QueryEntitiesResponse</returns>
-        public QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery)
+        public QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1230,7 +1396,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<QueryEntities>(entityQuery);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryEntitiesResponse>().Result;
+                if(result == null)
+                    result = new QueryEntitiesResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1262,8 +1433,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar documents.   **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope of the document similarity search to include the natural language query. Other query parameters, such as `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for comparison to identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1309,7 +1481,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     request.WithArgument("similar", similar);
                 request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
                 request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryNoticesResponse>().Result;
+                if(result == null)
+                    result = new QueryNoticesResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1325,8 +1502,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="relationshipQuery">An object that describes the relationships to be queried and any query constraints (such as filters).</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryRelationsResponse" />QueryRelationsResponse</returns>
-        public QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery)
+        public QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1346,7 +1524,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<QueryRelations>(relationshipQuery);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<QueryRelationsResponse>().Result;
+                if(result == null)
+                    result = new QueryRelationsResponse();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1361,8 +1544,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="body">The body of the training-data query that is to be added to the collection's training data.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
-        public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body)
+        public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1382,7 +1566,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<NewTrainingQuery>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingQuery>().Result;
+                if(result == null)
+                    result = new TrainingQuery();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1399,8 +1588,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="body">The body of the example that is to be added to the specified query.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
-        public TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body)
+        public TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1422,7 +1612,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<TrainingExample>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingExample>().Result;
+                if(result == null)
+                    result = new TrainingExample();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1437,8 +1632,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <returns><see cref="object" />object</returns>
-        public object DeleteAllTrainingData(string environmentId, string collectionId)
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteAllTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1448,14 +1644,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            object result = null;
+            BaseModel result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
                 request.WithArgument("version", VersionDate);
-                result = request.As<object>().Result;
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1471,8 +1672,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
-        /// <returns><see cref="object" />object</returns>
-        public object DeleteTrainingData(string environmentId, string collectionId, string queryId)
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1484,14 +1686,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            object result = null;
+            BaseModel result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
                 request.WithArgument("version", VersionDate);
-                result = request.As<object>().Result;
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1508,8 +1715,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="exampleId">The ID of the document as it is indexed.</param>
-        /// <returns><see cref="object" />object</returns>
-        public object DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1523,14 +1731,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            object result = null;
+            BaseModel result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
                 request.WithArgument("version", VersionDate);
-                result = request.As<object>().Result;
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1546,8 +1759,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
-        public TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId)
+        public TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1566,7 +1780,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingQuery>().Result;
+                if(result == null)
+                    result = new TrainingQuery();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1583,8 +1802,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="exampleId">The ID of the document as it is indexed.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
-        public TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId)
+        public TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1605,7 +1825,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingExample>().Result;
+                if(result == null)
+                    result = new TrainingExample();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1620,8 +1845,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingDataSet" />TrainingDataSet</returns>
-        public TrainingDataSet ListTrainingData(string environmentId, string collectionId)
+        public TrainingDataSet ListTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1638,7 +1864,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingDataSet>().Result;
+                if(result == null)
+                    result = new TrainingDataSet();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1654,8 +1885,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingExampleList" />TrainingExampleList</returns>
-        public TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId)
+        public TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1674,7 +1906,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
                 request.WithArgument("version", VersionDate);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingExampleList>().Result;
+                if(result == null)
+                    result = new TrainingExampleList();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1692,8 +1929,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="exampleId">The ID of the document as it is indexed.</param>
         /// <param name="body">The body of the example that is to be added to the specified query.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
-        public TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body)
+        public TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1717,7 +1955,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                                 .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
                 request.WithArgument("version", VersionDate);
                 request.WithBody<TrainingExamplePatch>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<TrainingExample>().Result;
+                if(result == null)
+                    result = new TrainingExample();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {

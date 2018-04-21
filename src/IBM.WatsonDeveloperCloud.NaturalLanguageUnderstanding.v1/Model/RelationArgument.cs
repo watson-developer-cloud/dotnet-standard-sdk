@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// RelationArgument.
     /// </summary>
-    public class RelationArgument
+    public class RelationArgument : BaseModel
     {
         /// <summary>
         /// Gets or Sets Entities

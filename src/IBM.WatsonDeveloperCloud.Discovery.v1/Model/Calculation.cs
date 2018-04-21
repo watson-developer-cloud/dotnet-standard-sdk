@@ -23,14 +23,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Calculation.
     /// </summary>
-    public class Calculation
+    public class Calculation : BaseModel
     {
         /// <summary>
-        /// Value of the aggregation. (For 'max' and 'min' type).
+        /// The field where the aggregation is located in the document.
         /// </summary>
-        /// <value>Value of the aggregation. (For 'max' and 'min' type).</value>
+        /// <value>The field where the aggregation is located in the document.</value>
+        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
+        public string Field { get; set; }
+        /// <summary>
+        /// Value of the aggregation.
+        /// </summary>
+        /// <value>Value of the aggregation.</value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual double? Value { get; private set; }
+        public double? Value { get; set; }
     }
 
 }

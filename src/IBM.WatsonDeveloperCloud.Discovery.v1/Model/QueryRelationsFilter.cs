@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryRelationsFilter.
     /// </summary>
-    public class QueryRelationsFilter
+    public class QueryRelationsFilter : BaseModel
     {
         /// <summary>
         /// A list of relation types to include or exclude from the query.

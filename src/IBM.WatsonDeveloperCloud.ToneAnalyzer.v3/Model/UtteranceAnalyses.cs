@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// UtteranceAnalyses.
     /// </summary>
-    public class UtteranceAnalyses
+    public class UtteranceAnalyses : BaseModel
     {
         /// <summary>
         /// An array of `UtteranceAnalysis` objects that provides the results for each utterance of the input.

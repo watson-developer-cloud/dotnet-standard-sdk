@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     /// <summary>
     /// Trait.
     /// </summary>
-    public class Trait
+    public class Trait : BaseModel
     {
         /// <summary>
         /// The category of the characteristic: * `personality` for Big Five personality characteristics * `needs` for Needs * `values` for Values.
@@ -61,15 +61,15 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         [JsonProperty("category", NullValueHandling = NullValueHandling.Ignore)]
         public CategoryEnum? Category { get; set; }
         /// <summary>
-        /// The unique identifier of the characteristic to which the results pertain. IDs have the form `big5_{characteristic}` for Big Five personality characteristics, `need_{characteristic}` for Needs, or `value_{characteristic}` for Values.
+        /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form * `big5_{characteristic}` for Big Five personality dimensions * `facet_{characteristic}` for Big Five personality facets * `need_{characteristic}` for Needs  *`value_{characteristic}` for Values.
         /// </summary>
-        /// <value>The unique identifier of the characteristic to which the results pertain. IDs have the form `big5_{characteristic}` for Big Five personality characteristics, `need_{characteristic}` for Needs, or `value_{characteristic}` for Values.</value>
+        /// <value>The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form * `big5_{characteristic}` for Big Five personality dimensions * `facet_{characteristic}` for Big Five personality facets * `need_{characteristic}` for Needs  *`value_{characteristic}` for Values.</value>
         [JsonProperty("trait_id", NullValueHandling = NullValueHandling.Ignore)]
         public string TraitId { get; set; }
         /// <summary>
-        /// The user-visible name of the characteristic.
+        /// The user-visible, localized name of the characteristic.
         /// </summary>
-        /// <value>The user-visible name of the characteristic.</value>
+        /// <value>The user-visible, localized name of the characteristic.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
@@ -79,9 +79,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         [JsonProperty("percentile", NullValueHandling = NullValueHandling.Ignore)]
         public double? Percentile { get; set; }
         /// <summary>
-        /// The raw score for the characteristic. The range is 0 to 1. A higher score generally indicates a greater likelihood that the author has that characteristic, but raw scores must be considered in aggregate: The range of values in practice might be much smaller than 0 to 1, so an individual score must be considered in the context of the overall scores and their range. The raw score is computed based on the input and the service model; it is not normalized or compared with a sample population. The raw score enables comparison of the results against a different sampling population and with a custom normalization approach.
+        /// The raw score for the characteristic. The range is 0 to 1. A higher score generally indicates a greater likelihood that the author has that characteristic, but raw scores must be considered in aggregate: The range of values in practice might be much smaller than 0 to 1, so an individual score must be considered in the context of the overall scores and their range.   The raw score is computed based on the input and the service model; it is not normalized or compared with a sample population. The raw score enables comparison of the results against a different sampling population and with a custom normalization approach.
         /// </summary>
-        /// <value>The raw score for the characteristic. The range is 0 to 1. A higher score generally indicates a greater likelihood that the author has that characteristic, but raw scores must be considered in aggregate: The range of values in practice might be much smaller than 0 to 1, so an individual score must be considered in the context of the overall scores and their range. The raw score is computed based on the input and the service model; it is not normalized or compared with a sample population. The raw score enables comparison of the results against a different sampling population and with a custom normalization approach.</value>
+        /// <value>The raw score for the characteristic. The range is 0 to 1. A higher score generally indicates a greater likelihood that the author has that characteristic, but raw scores must be considered in aggregate: The range of values in practice might be much smaller than 0 to 1, so an individual score must be considered in the context of the overall scores and their range.   The raw score is computed based on the input and the service model; it is not normalized or compared with a sample population. The raw score enables comparison of the results against a different sampling population and with a custom normalization approach.</value>
         [JsonProperty("raw_score", NullValueHandling = NullValueHandling.Ignore)]
         public double? RawScore { get; set; }
         /// <summary>

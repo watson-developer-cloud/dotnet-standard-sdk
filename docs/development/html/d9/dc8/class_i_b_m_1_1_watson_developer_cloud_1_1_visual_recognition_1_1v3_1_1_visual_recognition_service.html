@@ -112,33 +112,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a157426b653e1c6c7401662919341026f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ec316b288fe4a7e528fa37716ae6845"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a9ec316b288fe4a7e528fa37716ae6845">VisualRecognitionService</a> (<a class="el" href="../../d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client.html">IClient</a> httpClient)</td></tr>
 <tr class="separator:a9ec316b288fe4a7e528fa37716ae6845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06ce731c9676320ff50b91080efa8074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d0d/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classified_images.html">ClassifiedImages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a06ce731c9676320ff50b91080efa8074">Classify</a> (System.IO.Stream imagesFile=null, string acceptLanguage=null, string url=null, float? threshold=null, List&lt; string &gt; owners=null, List&lt; string &gt; classifierIds=null, string imagesFileContentType=null)</td></tr>
-<tr class="memdesc:a06ce731c9676320ff50b91080efa8074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify images. Classify images with built-in or custom classifiers.  <a href="#a06ce731c9676320ff50b91080efa8074">More...</a><br /></td></tr>
-<tr class="separator:a06ce731c9676320ff50b91080efa8074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac67e99bb159260de48586d2a2a48dc66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_detected_faces.html">DetectedFaces</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ac67e99bb159260de48586d2a2a48dc66">DetectFaces</a> (System.IO.Stream imagesFile=null, string url=null, string imagesFileContentType=null)</td></tr>
-<tr class="memdesc:ac67e99bb159260de48586d2a2a48dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect faces in images. <b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018">Release notes</a>. Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition. Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch.  <a href="#ac67e99bb159260de48586d2a2a48dc66">More...</a><br /></td></tr>
-<tr class="separator:ac67e99bb159260de48586d2a2a48dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d789c4a7c80df5ec8633ff7c09781a5"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a1d789c4a7c80df5ec8633ff7c09781a5">DeleteClassifier</a> (string classifierId)</td></tr>
-<tr class="memdesc:a1d789c4a7c80df5ec8633ff7c09781a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a classifier.  <a href="#a1d789c4a7c80df5ec8633ff7c09781a5">More...</a><br /></td></tr>
-<tr class="separator:a1d789c4a7c80df5ec8633ff7c09781a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae56b264aef93e517f8702d3204653b35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ae56b264aef93e517f8702d3204653b35">GetClassifier</a> (string classifierId)</td></tr>
-<tr class="memdesc:ae56b264aef93e517f8702d3204653b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve classifier details. Retrieve information about a custom classifier.  <a href="#ae56b264aef93e517f8702d3204653b35">More...</a><br /></td></tr>
-<tr class="separator:ae56b264aef93e517f8702d3204653b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87440f88e114aa446b7e63d7eb44f9cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html">Classifiers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a87440f88e114aa446b7e63d7eb44f9cb">ListClassifiers</a> (bool? verbose=null)</td></tr>
-<tr class="memdesc:a87440f88e114aa446b7e63d7eb44f9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a list of classifiers.  <a href="#a87440f88e114aa446b7e63d7eb44f9cb">More...</a><br /></td></tr>
-<tr class="separator:a87440f88e114aa446b7e63d7eb44f9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b200bcb20db4e1f39879b77ed79e052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a9b200bcb20db4e1f39879b77ed79e052">CreateClassifier</a> (<a class="el" href="../../d8/d59/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_create_classifier.html">CreateClassifier</a> createClassifier)</td></tr>
-<tr class="memdesc:a9b200bcb20db4e1f39879b77ed79e052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.  <a href="#a9b200bcb20db4e1f39879b77ed79e052">More...</a><br /></td></tr>
-<tr class="separator:a9b200bcb20db4e1f39879b77ed79e052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3792365a832083ac98a4e8fb4b5bd872"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a3792365a832083ac98a4e8fb4b5bd872">UpdateClassifier</a> (<a class="el" href="../../d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html">UpdateClassifier</a> updateClassifier)</td></tr>
-<tr class="memdesc:a3792365a832083ac98a4e8fb4b5bd872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a classifier. Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see <a href="https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers">Updating custom classifiers</a>. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters. <b>Important:</b> You can't update a custom classifier with an API key for a Lite plan. To update a custom classifer on a Lite plan, create another service instance on a Standard plan and re-create your custom classifier. <b>Tip:</b> Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished.  <a href="#a3792365a832083ac98a4e8fb4b5bd872">More...</a><br /></td></tr>
-<tr class="separator:a3792365a832083ac98a4e8fb4b5bd872"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a515bf1beeba36699adce181252756057"><td class="memItemLeft" align="right" valign="top">Task&lt; Stream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a515bf1beeba36699adce181252756057">GetCoreMlModel</a> (string classifierId)</td></tr>
-<tr class="memdesc:a515bf1beeba36699adce181252756057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stream of a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details.  <a href="#a515bf1beeba36699adce181252756057">More...</a><br /></td></tr>
-<tr class="separator:a515bf1beeba36699adce181252756057"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ec56e4117baf511a5294ec54480909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ad7ec56e4117baf511a5294ec54480909">DownloadCoreMlModel</a> (string classifierId, string filePath)</td></tr>
-<tr class="memdesc:ad7ec56e4117baf511a5294ec54480909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Downloads a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details. The name of the retreived Core ML model will be [classifierId].mlmodel.  <a href="#ad7ec56e4117baf511a5294ec54480909">More...</a><br /></td></tr>
-<tr class="separator:ad7ec56e4117baf511a5294ec54480909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40fdc82a749619a9a062160f1adadfe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d0d/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classified_images.html">ClassifiedImages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a40fdc82a749619a9a062160f1adadfe9">Classify</a> (System.IO.Stream imagesFile=null, string acceptLanguage=null, string url=null, float? threshold=null, List&lt; string &gt; owners=null, List&lt; string &gt; classifierIds=null, string imagesFileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a40fdc82a749619a9a062160f1adadfe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify images. Classify images with built-in or custom classifiers.  <a href="#a40fdc82a749619a9a062160f1adadfe9">More...</a><br /></td></tr>
+<tr class="separator:a40fdc82a749619a9a062160f1adadfe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd22f1be070ed7fc28e2680c4269c99f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d80/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_detected_faces.html">DetectedFaces</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#afd22f1be070ed7fc28e2680c4269c99f">DetectFaces</a> (System.IO.Stream imagesFile=null, string url=null, string imagesFileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:afd22f1be070ed7fc28e2680c4269c99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect faces in images. <b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018">Release notes</a>. Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition. Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch.  <a href="#afd22f1be070ed7fc28e2680c4269c99f">More...</a><br /></td></tr>
+<tr class="separator:afd22f1be070ed7fc28e2680c4269c99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1319b4805c5c6107c892bb28ab8e4ff2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a1319b4805c5c6107c892bb28ab8e4ff2">DeleteClassifier</a> (string classifierId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a1319b4805c5c6107c892bb28ab8e4ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a classifier.  <a href="#a1319b4805c5c6107c892bb28ab8e4ff2">More...</a><br /></td></tr>
+<tr class="separator:a1319b4805c5c6107c892bb28ab8e4ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b52f9ebe87ce81172bfb33ae9809af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a24b52f9ebe87ce81172bfb33ae9809af">GetClassifier</a> (string classifierId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a24b52f9ebe87ce81172bfb33ae9809af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve classifier details. Retrieve information about a custom classifier.  <a href="#a24b52f9ebe87ce81172bfb33ae9809af">More...</a><br /></td></tr>
+<tr class="separator:a24b52f9ebe87ce81172bfb33ae9809af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520714a80e75d01074d4a268c5273f3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html">Classifiers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a520714a80e75d01074d4a268c5273f3f">ListClassifiers</a> (bool? verbose=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a520714a80e75d01074d4a268c5273f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a list of classifiers.  <a href="#a520714a80e75d01074d4a268c5273f3f">More...</a><br /></td></tr>
+<tr class="separator:a520714a80e75d01074d4a268c5273f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae248b34cb37d4998c8354699e5e3748f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ae248b34cb37d4998c8354699e5e3748f">CreateClassifier</a> (<a class="el" href="../../d8/d59/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_create_classifier.html">CreateClassifier</a> createClassifier, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:ae248b34cb37d4998c8354699e5e3748f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.  <a href="#ae248b34cb37d4998c8354699e5e3748f">More...</a><br /></td></tr>
+<tr class="separator:ae248b34cb37d4998c8354699e5e3748f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aab3372a3cac7fc20290570d3d4a99f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a3aab3372a3cac7fc20290570d3d4a99f">UpdateClassifier</a> (<a class="el" href="../../d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html">UpdateClassifier</a> updateClassifier, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a3aab3372a3cac7fc20290570d3d4a99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a classifier. Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see <a href="https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers">Updating custom classifiers</a>. Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters. <b>Important:</b> You can't update a custom classifier with an API key for a Lite plan. To update a custom classifer on a Lite plan, create another service instance on a Standard plan and re-create your custom classifier. <b>Tip:</b> Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished.  <a href="#a3aab3372a3cac7fc20290570d3d4a99f">More...</a><br /></td></tr>
+<tr class="separator:a3aab3372a3cac7fc20290570d3d4a99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d684df5b8180a60f775b78470daa57"><td class="memItemLeft" align="right" valign="top">Task&lt; Stream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a95d684df5b8180a60f775b78470daa57">GetCoreMlModel</a> (string classifierId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a95d684df5b8180a60f775b78470daa57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stream of a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details.  <a href="#a95d684df5b8180a60f775b78470daa57">More...</a><br /></td></tr>
+<tr class="separator:a95d684df5b8180a60f775b78470daa57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e3cf92b10552e79bfa6daf198fe0cb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a5e3cf92b10552e79bfa6daf198fe0cb3">DownloadCoreMlModel</a> (string classifierId, string filePath, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a5e3cf92b10552e79bfa6daf198fe0cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Downloads a Core ML model file (.mlmodel) of a custom classifier that returns "core_ml_enabled": true in the classifier details. The name of the retreived Core ML model will be [classifierId].mlmodel.  <a href="#a5e3cf92b10552e79bfa6daf198fe0cb3">More...</a><br /></td></tr>
+<tr class="separator:a5e3cf92b10552e79bfa6daf198fe0cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html">IBM.WatsonDeveloperCloud.Service.WatsonService</a></td></tr>
 <tr class="memitem:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#afc75e0313e276d4c1aca9755aac2af17">SetCredential</a> (string userName, string password)</td></tr>
 <tr class="separator:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,8 +275,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a06ce731c9676320ff50b91080efa8074"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06ce731c9676320ff50b91080efa8074">&#9670;&nbsp;</a></span>Classify()</h2>
+<a id="a40fdc82a749619a9a062160f1adadfe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40fdc82a749619a9a062160f1adadfe9">&#9670;&nbsp;</a></span>Classify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +324,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>imagesFileContentType</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>imagesFileContentType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -349,17 +355,18 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">owners</td><td>The categories of classifiers to apply. Use <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> to classify against the <code>default</code> general classifier, and use <code>me</code> to classify against your custom classifiers. To analyze the image against both classifier categories, set the value to both <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> and <code>me</code>. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The <b>classifier_ids</b> parameter overrides <b>owners</b>, so make sure that <b>classifier_ids</b> is empty. (optional)</td></tr>
     <tr><td class="paramname">classifierIds</td><td>Which classifiers to apply. Overrides the <b>owners</b> parameter. You can specify both custom and built-in classifier IDs. The built-in <code>default</code> classifier is used if both <b>classifier_ids</b> and <b>owners</b> parameters are empty. The following built-in classifier IDs require no training: - <code>default</code>: Returns classes from thousands of general tags. - <code>food</code>: (Beta) Enhances specificity and accuracy for images of food items. - <code>explicit</code>: (Beta) Evaluates whether the image might be pornographic. (optional)</td></tr>
     <tr><td class="paramname">imagesFileContentType</td><td>The content type of imagesFile. (optional)</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ClassifiedImagesClassifiedImages</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a70e63150e115aa454b980a1e23d0cea3">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a56a61903c622a9960cd928de22499905">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="a9b200bcb20db4e1f39879b77ed79e052"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b200bcb20db4e1f39879b77ed79e052">&#9670;&nbsp;</a></span>CreateClassifier()</h2>
+<a id="ae248b34cb37d4998c8354699e5e3748f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae248b34cb37d4998c8354699e5e3748f">&#9670;&nbsp;</a></span>CreateClassifier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,8 +378,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a> IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.CreateClassifier </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d8/d59/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_create_classifier.html">CreateClassifier</a>&#160;</td>
-          <td class="paramname"><em>createClassifier</em></td><td>)</td>
+          <td class="paramname"><em>createClassifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -391,12 +408,12 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ClassifierClassifier</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a7fb7b059d469647934a2ff80fc60674f">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aa504dcbcc0162322982c63c14b441e40">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="a1d789c4a7c80df5ec8633ff7c09781a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d789c4a7c80df5ec8633ff7c09781a5">&#9670;&nbsp;</a></span>DeleteClassifier()</h2>
+<a id="a1319b4805c5c6107c892bb28ab8e4ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1319b4805c5c6107c892bb28ab8e4ff2">&#9670;&nbsp;</a></span>DeleteClassifier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -405,11 +422,21 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">object IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.DeleteClassifier </td>
+          <td class="memname"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a> IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.DeleteClassifier </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>classifierId</em></td><td>)</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -423,17 +450,18 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">classifierId</td><td>The ID of the classifier.</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>objectobject</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a37ff7199db1891f469e853a09dc62cf1">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aa5e11d7631b4375cd05270f373a2a41b">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="ac67e99bb159260de48586d2a2a48dc66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac67e99bb159260de48586d2a2a48dc66">&#9670;&nbsp;</a></span>DetectFaces()</h2>
+<a id="afd22f1be070ed7fc28e2680c4269c99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd22f1be070ed7fc28e2680c4269c99f">&#9670;&nbsp;</a></span>DetectFaces()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,7 +485,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>imagesFileContentType</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>imagesFileContentType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -478,17 +512,18 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">imagesFile</td><td>An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip file to 100 MB. You can include a maximum of 15 images in a request. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters. You can also include an image with the <b>url</b> parameter. (optional)</td></tr>
     <tr><td class="paramname">url</td><td>The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. Redirects are followed, so you can use a shortened URL. You can also include images with the <b>images_file</b> parameter. (optional)</td></tr>
     <tr><td class="paramname">imagesFileContentType</td><td>The content type of imagesFile. (optional)</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DetectedFacesDetectedFaces</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a5e13b641aee4e2e3e809b0d407bb1d1c">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#afe1831474d08aa5891e6ce998a6a5c52">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="ad7ec56e4117baf511a5294ec54480909"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7ec56e4117baf511a5294ec54480909">&#9670;&nbsp;</a></span>DownloadCoreMlModel()</h2>
+<a id="a5e3cf92b10552e79bfa6daf198fe0cb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3cf92b10552e79bfa6daf198fe0cb3">&#9670;&nbsp;</a></span>DownloadCoreMlModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -506,7 +541,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>filePath</em>&#160;</td>
+          <td class="paramname"><em>filePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -532,8 +573,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae56b264aef93e517f8702d3204653b35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae56b264aef93e517f8702d3204653b35">&#9670;&nbsp;</a></span>GetClassifier()</h2>
+<a id="a24b52f9ebe87ce81172bfb33ae9809af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24b52f9ebe87ce81172bfb33ae9809af">&#9670;&nbsp;</a></span>GetClassifier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -545,8 +586,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a> IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.GetClassifier </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>classifierId</em></td><td>)</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -560,17 +611,18 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">classifierId</td><td>The ID of the classifier.</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ClassifierClassifier</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a113684e2c3e286d90133ba41d9102384">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a634bf31f8a07c52d98f4a9240087a6d5">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="a515bf1beeba36699adce181252756057"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a515bf1beeba36699adce181252756057">&#9670;&nbsp;</a></span>GetCoreMlModel()</h2>
+<a id="a95d684df5b8180a60f775b78470daa57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d684df5b8180a60f775b78470daa57">&#9670;&nbsp;</a></span>GetCoreMlModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -582,8 +634,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">Task&lt;Stream&gt; IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.GetCoreMlModel </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>classifierId</em></td><td>)</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -602,10 +664,12 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Core ML model of the requested classifier.</dd></dl>
 
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a907ce2ad3acd738d557c7a8c22e76961">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+
 </div>
 </div>
-<a id="a87440f88e114aa446b7e63d7eb44f9cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87440f88e114aa446b7e63d7eb44f9cb">&#9670;&nbsp;</a></span>ListClassifiers()</h2>
+<a id="a520714a80e75d01074d4a268c5273f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520714a80e75d01074d4a268c5273f3f">&#9670;&nbsp;</a></span>ListClassifiers()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -617,8 +681,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="../../d6/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html">Classifiers</a> IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.ListClassifiers </td>
           <td>(</td>
           <td class="paramtype">bool?&#160;</td>
-          <td class="paramname"><em>verbose</em> = <code>null</code></td><td>)</td>
+          <td class="paramname"><em>verbose</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -632,17 +706,18 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verbose</td><td>Specify <code>true</code> to return details about the classifiers. Omit this parameter to return a brief list of classifiers. (optional)</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ClassifiersClassifiers</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#ad85a07f5b30b6321679e77f52d680d30">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aec8c85cbcdef1dba35a05c6773cc0cd6">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>
-<a id="a3792365a832083ac98a4e8fb4b5bd872"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3792365a832083ac98a4e8fb4b5bd872">&#9670;&nbsp;</a></span>UpdateClassifier()</h2>
+<a id="a3aab3372a3cac7fc20290570d3d4a99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aab3372a3cac7fc20290570d3d4a99f">&#9670;&nbsp;</a></span>UpdateClassifier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -654,8 +729,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="../../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a> IBM.WatsonDeveloperCloud.VisualRecognition.v3.VisualRecognitionService.UpdateClassifier </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html">UpdateClassifier</a>&#160;</td>
-          <td class="paramname"><em>updateClassifier</em></td><td>)</td>
+          <td class="paramname"><em>updateClassifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -674,7 +759,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ClassifierClassifier</dd></dl>
 
-<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#aae47920fe60ca350c706a45724a23f14">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
+<p>Implements <a class="el" href="../../de/d3d/interface_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a550f19c0f6585b619798d85327fa4caf">IBM.WatsonDeveloperCloud.VisualRecognition.v3.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>

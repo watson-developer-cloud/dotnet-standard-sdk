@@ -92,6 +92,15 @@ $(document).ready(function(){initNavTree('dd/d87/class_i_b_m_1_1_watson_develope
 
 <p><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html" title="DialogNode. ">DialogNode</a>.  
  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.png" usemap="#IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode_map" alt=""/>
+  <map id="IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode_map" name="IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode_map">
+<area href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html" alt="IBM.WatsonDeveloperCloud.BaseModel" shape="rect" coords="0,0,352,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -101,7 +110,8 @@ Public Types</h2></td></tr>
 <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbeac57e921596445b99ab85558984966184">NodeTypeEnum.FRAME</a>, 
 <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbea0b688c5f3d542268089da39994214ab8">NodeTypeEnum.SLOT</a>, 
 <br />
-&#160;&#160;<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbea1eb155cd9cfcdc0c5e6ddc04bc3e684d">NodeTypeEnum.RESPONSE_CONDITION</a>
+&#160;&#160;<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbea1eb155cd9cfcdc0c5e6ddc04bc3e684d">NodeTypeEnum.RESPONSE_CONDITION</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbea80dc13242b57656668e67c9ca779ccb3">NodeTypeEnum.FOLDER</a>
 <br />
  }<tr class="memdesc:aa844b0539e78969765fc896643230cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">How the dialog node is processed.  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aa844b0539e78969765fc896643230cbe">More...</a><br /></td></tr>
 </td></tr>
@@ -120,6 +130,24 @@ Public Types</h2></td></tr>
  }<tr class="memdesc:ab6271ce3184e6efc15565601761aed9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">How an <code>event_handler</code> node is processed.  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#ab6271ce3184e6efc15565601761aed9e">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:ab6271ce3184e6efc15565601761aed9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bfccb9817c0ddf7463c091184ad00b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4">DigressInEnum</a> { <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4ad07995fa8f4a3a019d134fcbfca4669a">DigressInEnum.NOT_AVAILABLE</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4a091280e09b59c5e573d93732ae96f8ea">DigressInEnum.RETURNS</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4a371f09368282f5f09dc9fd3a435e6191">DigressInEnum.DOES_NOT_RETURN</a>
+ }<tr class="memdesc:a1bfccb9817c0ddf7463c091184ad00b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this top-level dialog node can be digressed into.  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:a1bfccb9817c0ddf7463c091184ad00b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4fca144e6f1313bb4529462e0af925"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925">DigressOutEnum</a> { <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925a64bc62c1aeb4fe9e994bd00cb316c2c6">DigressOutEnum.ALLOW_RETURNING</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925af1bf44bac4da849c95f05665ec8af5ab">DigressOutEnum.ALLOW_ALL</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925aed9ad67a47d5b825c3347c775d216a69">DigressOutEnum.ALLOW_ALL_NEVER_RETURN</a>
+ }<tr class="memdesc:a0f4fca144e6f1313bb4529462e0af925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this dialog node can be returned to after a digression.  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:a0f4fca144e6f1313bb4529462e0af925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62826525c1d4fecb2068195f3136aae9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9">DigressOutSlotsEnum</a> { <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9a4596302bc1e8ce6e62188e769aac94cf">DigressOutSlotsEnum.NOT_ALLOWED</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9a64bc62c1aeb4fe9e994bd00cb316c2c6">DigressOutSlotsEnum.ALLOW_RETURNING</a>, 
+<a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9af1bf44bac4da849c95f05665ec8af5ab">DigressOutSlotsEnum.ALLOW_ALL</a>
+ }<tr class="memdesc:a62826525c1d4fecb2068195f3136aae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the user can digress to top-level nodes while filling out slots.  <a href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:a62826525c1d4fecb2068195f3136aae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -129,6 +157,15 @@ Properties</h2></td></tr>
 <tr class="memitem:a0fc3d1470f465e974adcba863d0e07d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#ab6271ce3184e6efc15565601761aed9e">EventNameEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0fc3d1470f465e974adcba863d0e07d7">EventName</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a0fc3d1470f465e974adcba863d0e07d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">How an <code>event_handler</code> node is processed.  <a href="#a0fc3d1470f465e974adcba863d0e07d7">More...</a><br /></td></tr>
 <tr class="separator:a0fc3d1470f465e974adcba863d0e07d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e15177761587864162d938bdb0b90a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4">DigressInEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#ac7e15177761587864162d938bdb0b90a">DigressIn</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac7e15177761587864162d938bdb0b90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this top-level dialog node can be digressed into.  <a href="#ac7e15177761587864162d938bdb0b90a">More...</a><br /></td></tr>
+<tr class="separator:ac7e15177761587864162d938bdb0b90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36424d8cf2a4f71dbb1f119a24cdbe2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925">DigressOutEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#ad36424d8cf2a4f71dbb1f119a24cdbe2">DigressOut</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad36424d8cf2a4f71dbb1f119a24cdbe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this dialog node can be returned to after a digression.  <a href="#ad36424d8cf2a4f71dbb1f119a24cdbe2">More...</a><br /></td></tr>
+<tr class="separator:ad36424d8cf2a4f71dbb1f119a24cdbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91cdc860d49732b07afe77e0d58e8933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9">DigressOutSlotsEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a91cdc860d49732b07afe77e0d58e8933">DigressOutSlots</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a91cdc860d49732b07afe77e0d58e8933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the user can digress to top-level nodes while filling out slots.  <a href="#a91cdc860d49732b07afe77e0d58e8933">More...</a><br /></td></tr>
+<tr class="separator:a91cdc860d49732b07afe77e0d58e8933"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99ffdb238187fb6b66b8bd22405cca3e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a99ffdb238187fb6b66b8bd22405cca3e">DialogNodeId</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a99ffdb238187fb6b66b8bd22405cca3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dialog node ID.  <a href="#a99ffdb238187fb6b66b8bd22405cca3e">More...</a><br /></td></tr>
 <tr class="separator:a99ffdb238187fb6b66b8bd22405cca3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,10 +208,122 @@ Properties</h2></td></tr>
 <tr class="memitem:a1785eeebb1cfc3511eafd51ea70dd70f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1785eeebb1cfc3511eafd51ea70dd70f">Variable</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1785eeebb1cfc3511eafd51ea70dd70f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The location in the dialog context where output is stored.  <a href="#a1785eeebb1cfc3511eafd51ea70dd70f">More...</a><br /></td></tr>
 <tr class="separator:a1785eeebb1cfc3511eafd51ea70dd70f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td colspan="2" onclick="javascript:toggleInherit('properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model')"><img src="../../closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">IBM.WatsonDeveloperCloud.BaseModel</a></td></tr>
+<tr class="memitem:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">CustomData</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom data object including custom request headers, response headers and response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">More...</a><br /></td></tr>
+<tr class="separator:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">CustomRequestHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets custom request headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">More...</a><br /></td></tr>
+<tr class="separator:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">ResponseHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets response headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">More...</a><br /></td></tr>
+<tr class="separator:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">ResponseJson</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">More...</a><br /></td></tr>
+<tr class="separator:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html" title="DialogNode. ">DialogNode</a>. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a1bfccb9817c0ddf7463c091184ad00b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfccb9817c0ddf7463c091184ad00b4">&#9670;&nbsp;</a></span>DigressInEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4">IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressInEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this top-level dialog node can be digressed into. </p>
+<p>Whether this top-level dialog node can be digressed into.</p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1bfccb9817c0ddf7463c091184ad00b4ad07995fa8f4a3a019d134fcbfca4669a"></a>NOT_AVAILABLE&#160;</td><td class="fielddoc"><p>Enum NOT_AVAILABLE for not_available </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1bfccb9817c0ddf7463c091184ad00b4a091280e09b59c5e573d93732ae96f8ea"></a>RETURNS&#160;</td><td class="fielddoc"><p>Enum RETURNS for returns </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1bfccb9817c0ddf7463c091184ad00b4a371f09368282f5f09dc9fd3a435e6191"></a>DOES_NOT_RETURN&#160;</td><td class="fielddoc"><p>Enum DOES_NOT_RETURN for does_not_return </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0f4fca144e6f1313bb4529462e0af925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4fca144e6f1313bb4529462e0af925">&#9670;&nbsp;</a></span>DigressOutEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925">IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressOutEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this dialog node can be returned to after a digression. </p>
+<p>Whether this dialog node can be returned to after a digression.</p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0f4fca144e6f1313bb4529462e0af925a64bc62c1aeb4fe9e994bd00cb316c2c6"></a>ALLOW_RETURNING&#160;</td><td class="fielddoc"><p>Enum ALLOW_RETURNING for allow_returning </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0f4fca144e6f1313bb4529462e0af925af1bf44bac4da849c95f05665ec8af5ab"></a>ALLOW_ALL&#160;</td><td class="fielddoc"><p>Enum ALLOW_ALL for allow_all </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0f4fca144e6f1313bb4529462e0af925aed9ad67a47d5b825c3347c775d216a69"></a>ALLOW_ALL_NEVER_RETURN&#160;</td><td class="fielddoc"><p>Enum ALLOW_ALL_NEVER_RETURN for allow_all_never_return </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a62826525c1d4fecb2068195f3136aae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62826525c1d4fecb2068195f3136aae9">&#9670;&nbsp;</a></span>DigressOutSlotsEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9">IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressOutSlotsEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the user can digress to top-level nodes while filling out slots. </p>
+<p>Whether the user can digress to top-level nodes while filling out slots.</p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a62826525c1d4fecb2068195f3136aae9a4596302bc1e8ce6e62188e769aac94cf"></a>NOT_ALLOWED&#160;</td><td class="fielddoc"><p>Enum NOT_ALLOWED for not_allowed </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a62826525c1d4fecb2068195f3136aae9a64bc62c1aeb4fe9e994bd00cb316c2c6"></a>ALLOW_RETURNING&#160;</td><td class="fielddoc"><p>Enum ALLOW_RETURNING for allow_returning </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a62826525c1d4fecb2068195f3136aae9af1bf44bac4da849c95f05665ec8af5ab"></a>ALLOW_ALL&#160;</td><td class="fielddoc"><p>Enum ALLOW_ALL for allow_all </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="ab6271ce3184e6efc15565601761aed9e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab6271ce3184e6efc15565601761aed9e">&#9670;&nbsp;</a></span>EventNameEnum</h2>
 
@@ -250,6 +399,8 @@ Properties</h2></td></tr>
 <tr><td class="fieldname"><a id="aa844b0539e78969765fc896643230cbea0b688c5f3d542268089da39994214ab8"></a>SLOT&#160;</td><td class="fielddoc"><p>Enum SLOT for slot </p>
 </td></tr>
 <tr><td class="fieldname"><a id="aa844b0539e78969765fc896643230cbea1eb155cd9cfcdc0c5e6ddc04bc3e684d"></a>RESPONSE_CONDITION&#160;</td><td class="fielddoc"><p>Enum RESPONSE_CONDITION for response_condition </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa844b0539e78969765fc896643230cbea80dc13242b57656668e67c9ca779ccb3"></a>FOLDER&#160;</td><td class="fielddoc"><p>Enum FOLDER for folder </p>
 </td></tr>
 </table>
 
@@ -403,6 +554,81 @@ Properties</h2></td></tr>
 
 <p>The dialog node ID. </p>
 <p>The dialog node ID.</p>
+
+</div>
+</div>
+<a id="ac7e15177761587864162d938bdb0b90a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e15177761587864162d938bdb0b90a">&#9670;&nbsp;</a></span>DigressIn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a1bfccb9817c0ddf7463c091184ad00b4">DigressInEnum</a> IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressIn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this top-level dialog node can be digressed into. </p>
+<p>Whether this top-level dialog node can be digressed into.</p>
+
+</div>
+</div>
+<a id="ad36424d8cf2a4f71dbb1f119a24cdbe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad36424d8cf2a4f71dbb1f119a24cdbe2">&#9670;&nbsp;</a></span>DigressOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a0f4fca144e6f1313bb4529462e0af925">DigressOutEnum</a> IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this dialog node can be returned to after a digression. </p>
+<p>Whether this dialog node can be returned to after a digression.</p>
+
+</div>
+</div>
+<a id="a91cdc860d49732b07afe77e0d58e8933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91cdc860d49732b07afe77e0d58e8933">&#9670;&nbsp;</a></span>DigressOutSlots</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d87/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a62826525c1d4fecb2068195f3136aae9">DigressOutSlotsEnum</a> IBM.WatsonDeveloperCloud.Assistant.v1.Model.DialogNode.DigressOutSlots</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the user can digress to top-level nodes while filling out slots. </p>
+<p>Whether the user can digress to top-level nodes while filling out slots.</p>
 
 </div>
 </div>

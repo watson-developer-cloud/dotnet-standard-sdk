@@ -5,6 +5,9 @@ var searchData=
   ['queryentitiescontext_2ecs',['QueryEntitiesContext.cs',['../d1/da7/_query_entities_context_8cs.html',1,'']]],
   ['queryentitiesentity_2ecs',['QueryEntitiesEntity.cs',['../da/d89/_query_entities_entity_8cs.html',1,'']]],
   ['queryentitiesresponse_2ecs',['QueryEntitiesResponse.cs',['../dd/d30/_query_entities_response_8cs.html',1,'']]],
+  ['queryentitiesresponseitem_2ecs',['QueryEntitiesResponseItem.cs',['../d2/d1e/_query_entities_response_item_8cs.html',1,'']]],
+  ['queryevidence_2ecs',['QueryEvidence.cs',['../d5/dd4/_query_evidence_8cs.html',1,'']]],
+  ['queryevidenceentity_2ecs',['QueryEvidenceEntity.cs',['../db/d0b/_query_evidence_entity_8cs.html',1,'']]],
   ['queryfiltertype_2ecs',['QueryFilterType.cs',['../d4/d10/_query_filter_type_8cs.html',1,'']]],
   ['querynoticesresponse_2ecs',['QueryNoticesResponse.cs',['../dd/d45/_query_notices_response_8cs.html',1,'']]],
   ['querynoticesresult_2ecs',['QueryNoticesResult.cs',['../d3/d00/_query_notices_result_8cs.html',1,'']]],
@@ -17,5 +20,5 @@ var searchData=
   ['queryrelationsresponse_2ecs',['QueryRelationsResponse.cs',['../de/da9/_query_relations_response_8cs.html',1,'']]],
   ['queryresponse_2ecs',['QueryResponse.cs',['../da/d51/_query_response_8cs.html',1,'']]],
   ['queryresult_2ecs',['QueryResult.cs',['../dd/d99/_query_result_8cs.html',1,'']]],
-  ['queryresultresultmetadata_2ecs',['QueryResultResultMetadata.cs',['../da/dcf/_query_result_result_metadata_8cs.html',1,'']]]
+  ['queryresultmetadata_2ecs',['QueryResultMetadata.cs',['../d8/dfa/_query_result_metadata_8cs.html',1,'']]]
 ];

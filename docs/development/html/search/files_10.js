@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['segmentsettings_2ecs',['SegmentSettings.cs',['../da/d1d/_segment_settings_8cs.html',1,'']]],
   ['semanticrolesaction_2ecs',['SemanticRolesAction.cs',['../da/da4/_semantic_roles_action_8cs.html',1,'']]],
   ['semanticrolesentity_2ecs',['SemanticRolesEntity.cs',['../d1/d75/_semantic_roles_entity_8cs.html',1,'']]],
   ['semanticroleskeyword_2ecs',['SemanticRolesKeyword.cs',['../d9/d17/_semantic_roles_keyword_8cs.html',1,'']]],
@@ -19,6 +20,7 @@ var searchData=
   ['speechrecognitionalternative_2ecs',['SpeechRecognitionAlternative.cs',['../db/d22/_speech_recognition_alternative_8cs.html',1,'']]],
   ['speechrecognitionresult_2ecs',['SpeechRecognitionResult.cs',['../d9/db8/_speech_recognition_result_8cs.html',1,'']]],
   ['speechrecognitionresults_2ecs',['SpeechRecognitionResults.cs',['../dc/dec/_speech_recognition_results_8cs.html',1,'']]],
+  ['speechsession_2ecs',['SpeechSession.cs',['../d6/d7c/_speech_session_8cs.html',1,'']]],
   ['speechtotextservice_2ecs',['SpeechToTextService.cs',['../db/d33/_speech_to_text_service_8cs.html',1,'']]],
   ['speechtotextserviceextension_2ecs',['SpeechToTextServiceExtension.cs',['../d0/d59/_speech_to_text_service_extension_8cs.html',1,'']]],
   ['streamextension_2ecs',['StreamExtension.cs',['../df/d85/_stream_extension_8cs.html',1,'']]],

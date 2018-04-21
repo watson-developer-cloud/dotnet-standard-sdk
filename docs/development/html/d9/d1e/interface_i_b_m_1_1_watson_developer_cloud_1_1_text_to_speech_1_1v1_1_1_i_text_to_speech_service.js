@@ -1,17 +1,17 @@
 var interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service =
 [
-    [ "AddWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a4bddcab72a131192b5464e1b487617df", null ],
-    [ "AddWords", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#aae8f509332300f3c6888c397e05ccd16", null ],
-    [ "CreateVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#afb32f8441d750bf4e6bd8571026c9799", null ],
-    [ "DeleteVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a4599b4264a66352e8360704861b9f541", null ],
-    [ "DeleteWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a26add2e051bc0048c4220446f6d268d9", null ],
-    [ "GetPronunciation", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a55725f846b0618fa87502d4d5dbfab80", null ],
-    [ "GetVoice", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a65f25d0a2efb7ef1ad18b331a8372984", null ],
-    [ "GetVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#abe09f2d26d803e2b9bbdd8acc998baa0", null ],
-    [ "GetWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#af54b68c409e6dcaa8fb75fc143f2e6d3", null ],
-    [ "ListVoiceModels", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#af0b3f8415c86dd84522d9d28d3418d01", null ],
-    [ "ListVoices", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#aff11949025896682c5d203e61a12fb24", null ],
-    [ "ListWords", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a4b1f84ad383638dbf0d9d358ca376121", null ],
-    [ "Synthesize", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#af111b79688b03937cb74d0d4e80d5888", null ],
-    [ "UpdateVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ab396a05e0abb0ace43993e1ca936a6b8", null ]
+    [ "AddWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ab36d02cbf89dd1ef45bac902c54648a8", null ],
+    [ "AddWords", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#afa5f16516d891f993e4f03dde4e736e4", null ],
+    [ "CreateVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a1e74d73990101bf09b2124fb9f075de8", null ],
+    [ "DeleteVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a3519a45d2f6fed5ef48f32f6bcc0a778", null ],
+    [ "DeleteWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#aaef39e37127fe9f3af65b24be60ff928", null ],
+    [ "GetPronunciation", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ad92302601c6a4c07a928469752f803cc", null ],
+    [ "GetVoice", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ab25930f0940391a9d0629720a7b708c6", null ],
+    [ "GetVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a15c51e5da6bfe5af78febfb5fc152ce8", null ],
+    [ "GetWord", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ad28c98d00c754489975458db1505488f", null ],
+    [ "ListVoiceModels", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#aecbed7a9fe904a20b155736aad505e4f", null ],
+    [ "ListVoices", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ac5bb7091f410073389092b9178da0e66", null ],
+    [ "ListWords", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a57ec69aba27491231099e666d9b18ada", null ],
+    [ "Synthesize", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#af89fd4d3610b840e0ba9133d6d562374", null ],
+    [ "UpdateVoiceModel", "d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a0dbda7ff6618836280eb4cd15f877b19", null ]
 ];

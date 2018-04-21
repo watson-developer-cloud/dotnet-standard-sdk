@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// The pagination data for the returned objects.
     /// </summary>
-    public class LogPagination
+    public class LogPagination : BaseModel
     {
         /// <summary>
         /// The URL that will return the next page of results, if any.
@@ -36,6 +36,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <value>Reserved for future use.</value>
         [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
         public long? Matched { get; set; }
+        /// <summary>
+        /// A token identifying the next page of results.
+        /// </summary>
+        /// <value>A token identifying the next page of results.</value>
+        [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
+        public string NextCursor { get; set; }
     }
 
 }

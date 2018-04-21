@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A custom configuration for the environment.
     /// </summary>
-    public class Configuration
+    public class Configuration : BaseModel
     {
         /// <summary>
         /// The unique identifier of the configuration.

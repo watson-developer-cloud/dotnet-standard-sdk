@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Whether or not to return important people, places, geopolitical, and other entities detected in the analyzed content.
     /// </summary>
-    public class EntitiesOptions
+    public class EntitiesOptions : BaseModel
     {
         /// <summary>
         /// Maximum number of entities to return.

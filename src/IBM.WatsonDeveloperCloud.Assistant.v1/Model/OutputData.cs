@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// An output object that includes the response to the user, the nodes that were hit, and messages from the log.
     /// </summary>
-    public class OutputData
+    public class OutputData : BaseModel
     {
         /// <summary>
         /// An array of up to 50 messages logged with the request.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// RSS or ATOM feed found on the webpage.
     /// </summary>
-    public class Feed
+    public class Feed : BaseModel
     {
         /// <summary>
         /// URL of the RSS or ATOM feed.

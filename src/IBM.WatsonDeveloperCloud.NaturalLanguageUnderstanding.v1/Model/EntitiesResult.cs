@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The important people, places, geopolitical entities and other types of entities in your content.
     /// </summary>
-    public class EntitiesResult
+    public class EntitiesResult : BaseModel
     {
         /// <summary>
         /// Entity type.

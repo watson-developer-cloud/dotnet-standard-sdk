@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// WorkspaceCollection.
     /// </summary>
-    public class WorkspaceCollection
+    public class WorkspaceCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the workspaces associated with the service instance.

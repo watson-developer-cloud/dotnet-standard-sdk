@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// SemanticRolesSubject.
     /// </summary>
-    public class SemanticRolesSubject
+    public class SemanticRolesSubject : BaseModel
     {
         /// <summary>
         /// Text that corresponds to the subject role.

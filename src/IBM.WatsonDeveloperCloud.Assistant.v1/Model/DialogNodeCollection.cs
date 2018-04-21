@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// An array of dialog nodes.
     /// </summary>
-    public class DialogNodeCollection
+    public class DialogNodeCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the dialog nodes defined for the workspace.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechSession.
     /// </summary>
-    public class SpeechSession
+    public class SpeechSession : BaseModel
     {
         /// <summary>
         /// URI for HTTP REST recognition requests.
@@ -31,9 +31,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("recognize", NullValueHandling = NullValueHandling.Ignore)]
         public string Recognize { get; set; }
         /// <summary>
-        /// URI for WebSocket recognition requests. Needed only for working with the WebSocket interface.
+        /// URI for WebSocket recognition requests. **Note:** This field is needed only for working with the WebSocket interface.
         /// </summary>
-        /// <value>URI for WebSocket recognition requests. Needed only for working with the WebSocket interface.</value>
+        /// <value>URI for WebSocket recognition requests. **Note:** This field is needed only for working with the WebSocket interface.</value>
         [JsonProperty("recognizeWS", NullValueHandling = NullValueHandling.Ignore)]
         public string RecognizeWS { get; set; }
         /// <summary>

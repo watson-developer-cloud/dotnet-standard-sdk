@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DocumentCounts.
     /// </summary>
-    public class DocumentCounts
+    public class DocumentCounts : BaseModel
     {
         /// <summary>
         /// The total number of available documents in the collection.

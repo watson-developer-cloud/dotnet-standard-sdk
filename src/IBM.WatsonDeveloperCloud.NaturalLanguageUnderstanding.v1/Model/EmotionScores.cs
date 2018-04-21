@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// EmotionScores.
     /// </summary>
-    public class EmotionScores
+    public class EmotionScores : BaseModel
     {
         /// <summary>
         /// Anger score from 0 to 1. A higher score means that the text is more likely to convey anger.

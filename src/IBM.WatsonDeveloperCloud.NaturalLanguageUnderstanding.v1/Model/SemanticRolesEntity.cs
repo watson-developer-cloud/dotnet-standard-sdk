@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// SemanticRolesEntity.
     /// </summary>
-    public class SemanticRolesEntity
+    public class SemanticRolesEntity : BaseModel
     {
         /// <summary>
         /// Entity type.

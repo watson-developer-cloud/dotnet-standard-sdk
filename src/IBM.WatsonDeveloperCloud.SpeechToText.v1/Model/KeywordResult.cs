@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// KeywordResult.
     /// </summary>
-    public class KeywordResult
+    public class KeywordResult : BaseModel
     {
         /// <summary>
         /// A specified keyword normalized to the spoken phrase that matched in the audio input.

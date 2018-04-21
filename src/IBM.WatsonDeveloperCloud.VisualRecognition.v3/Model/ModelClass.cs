@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// A category within a classifier.
     /// </summary>
-    public class ModelClass
+    public class ModelClass : BaseModel
     {
         /// <summary>
         /// The name of the class.

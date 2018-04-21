@@ -22,12 +22,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// UpdateSynonym.
     /// </summary>
-    public class UpdateSynonym
+    public class UpdateSynonym : BaseModel
     {
         /// <summary>
-        /// The text of the synonym.
+        /// The text of the synonym. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>The text of the synonym.</value>
+        /// <value>The text of the synonym. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 64 characters.</value>
         [JsonProperty("synonym", NullValueHandling = NullValueHandling.Ignore)]
         public string Synonym { get; set; }
     }

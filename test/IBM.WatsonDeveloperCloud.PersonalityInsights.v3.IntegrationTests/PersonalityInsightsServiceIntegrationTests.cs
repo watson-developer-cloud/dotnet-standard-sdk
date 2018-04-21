@@ -88,10 +88,10 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
 
         #region Generated
         #region Profile
-        private Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        private Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? consumptionPreferences = null, bool? csvHeaders = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Profile()");
-            var result = _service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+            var result = _service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, consumptionPreferences: consumptionPreferences, csvHeaders: csvHeaders, customData: customData);
 
             if (result != null)
             {
@@ -107,10 +107,10 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         #endregion
 
         #region ProfileAsCsv
-        private Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        private Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? consumptionPreferences = null, bool? csvHeaders = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ProfileAsCsv()");
-            var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+            var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, consumptionPreferences: consumptionPreferences, csvHeaders: csvHeaders, customData: customData);
 
             if (result != null)
             {

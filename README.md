@@ -37,6 +37,39 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 
 Or manually [here][latest_release].
 
+## Custom Request Headers
+You can send custom request headers by adding them to the `customData` object.
+```cs
+void Example()
+{
+    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+
+    //  Create customData object
+    Dictionary<string, object> customData = new Dictionary<string, object>();
+    //  Create a dictionary of custom headers
+    Dictionary<string, string> customHeaders = new Dictionary<string, string>();
+    //  Add to the header dictionary
+    customHeaders.Add("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
+    //  Add the header dictionary to the custom data object
+    customData.Add(Constants.String.CUSTOM_REQUEST_HEADERS, customHeaders);
+
+    var results = assistant.Message("<workspace-id>", "<message-request>", customData: customData);
+}
+```
+
+## Response Headers
+You can get the response headers and the raw json response in the result object.
+```cs
+void Example()
+{
+    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    var results = assistant.Message("<workspace-id>", "<message-request>");
+    
+    var responseHeaders = results.ResponseHeaders;  //  The response headers
+    var responseJson = results.ResponseJson;        //  The raw response json
+}
+```
+
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 

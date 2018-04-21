@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryNoticesResponse.
     /// </summary>
-    public class QueryNoticesResponse
+    public class QueryNoticesResponse : BaseModel
     {
         /// <summary>
         /// Gets or Sets MatchingResults

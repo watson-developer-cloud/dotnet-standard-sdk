@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Provides age information about a face.
     /// </summary>
-    public class FaceAge
+    public class FaceAge : BaseModel
     {
         /// <summary>
         /// Estimated minimum age.

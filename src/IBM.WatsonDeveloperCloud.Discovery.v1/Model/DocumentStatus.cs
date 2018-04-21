@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Status information about a submitted document.
     /// </summary>
-    public class DocumentStatus
+    public class DocumentStatus : BaseModel
     {
         /// <summary>
         /// Status of the document in the ingestion process.

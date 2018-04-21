@@ -2692,7 +2692,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     new QueryAggregation()
                     {
                         Type = "type",
-                        Field = "field",
                         Results = new List<AggregationResult>()
                         {
                             new AggregationResult()
@@ -2708,7 +2707,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                 }
                             }
                         },
-                        Match = "match",
                         MatchingResults = 1,
                         Aggregations = new List<QueryAggregation>()
                         {
@@ -2834,7 +2832,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                     new QueryAggregation()
                     {
                         Type = "type",
-                        Field = "field",
                         Results = new List<AggregationResult>()
                         {
                             new AggregationResult()
@@ -2850,7 +2847,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
                                 }
                             }
                         },
-                        Match = "match",
                         MatchingResults = 1,
                         Aggregations = new List<QueryAggregation>()
                         {

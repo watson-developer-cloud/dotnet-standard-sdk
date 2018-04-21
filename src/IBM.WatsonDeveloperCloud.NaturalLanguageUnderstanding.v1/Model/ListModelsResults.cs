@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Models available for Relations and Entities features.
     /// </summary>
-    public class ListModelsResults
+    public class ListModelsResults : BaseModel
     {
         /// <summary>
         /// Gets or Sets Models

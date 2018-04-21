@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// CreateVoiceModel.
     /// </summary>
-    public class CreateVoiceModel
+    public class CreateVoiceModel : BaseModel
     {
         /// <summary>
         /// The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.

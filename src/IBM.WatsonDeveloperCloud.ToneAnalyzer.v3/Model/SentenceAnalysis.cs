@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// SentenceAnalysis.
     /// </summary>
-    public class SentenceAnalysis
+    public class SentenceAnalysis : BaseModel
     {
         /// <summary>
         /// The unique identifier of a sentence of the input content. The first sentence has ID 0, and the ID of each subsequent sentence is incremented by one.

@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     /// <summary>
     /// Warning.
     /// </summary>
-    public class Warning
+    public class Warning : BaseModel
     {
         /// <summary>
         /// The identifier of the warning message.

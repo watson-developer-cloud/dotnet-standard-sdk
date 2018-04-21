@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Information about a classifier.
     /// </summary>
-    public class Classifier
+    public class Classifier : BaseModel
     {
         /// <summary>
         /// The training status of classifier.

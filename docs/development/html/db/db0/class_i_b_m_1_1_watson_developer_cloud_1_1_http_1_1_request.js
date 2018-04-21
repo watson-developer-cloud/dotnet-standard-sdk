@@ -14,8 +14,10 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request =
     [ "WithBody< T >", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a3315444e5b60758af36042b36cc4a785", null ],
     [ "WithBodyContent", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#accb881438ba7152380f32ed5dd8c4b99", null ],
     [ "WithCustom", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a578a4221501ca24d81a694e93b8926a6", null ],
+    [ "WithCustomData", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#af9dea938e6c0d0f497315542aab39ab9", null ],
     [ "WithFormatter", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a3278fae56b8adb9d00fd1b6b7aca47a7", null ],
     [ "WithHeader", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a7b6b9317821d2a3957ff611c08bb286b", null ],
+    [ "CustomData", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a3c8bd610ceafa3fc628da4a34d009e7f", null ],
     [ "Formatters", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#abb46f090725ce845b1e97b4e0457ceac", null ],
     [ "Message", "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a27aac82e188c81c44f896108a2c394fc", null ]
 ];

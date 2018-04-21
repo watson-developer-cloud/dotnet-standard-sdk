@@ -2,6 +2,7 @@ var searchData=
 [
   ['naturallanguageclassifierservice_2ecs',['NaturalLanguageClassifierService.cs',['../df/dab/_natural_language_classifier_service_8cs.html',1,'']]],
   ['naturallanguageunderstandingservice_2ecs',['NaturalLanguageUnderstandingService.cs',['../da/d30/_natural_language_understanding_service_8cs.html',1,'']]],
+  ['nested_2ecs',['Nested.cs',['../d4/d99/_nested_8cs.html',1,'']]],
   ['newtrainingquery_2ecs',['NewTrainingQuery.cs',['../db/d31/_new_training_query_8cs.html',1,'']]],
   ['nluenrichmentcategories_2ecs',['NluEnrichmentCategories.cs',['../da/d8d/_nlu_enrichment_categories_8cs.html',1,'']]],
   ['nluenrichmentemotion_2ecs',['NluEnrichmentEmotion.cs',['../d7/d2d/_nlu_enrichment_emotion_8cs.html',1,'']]],

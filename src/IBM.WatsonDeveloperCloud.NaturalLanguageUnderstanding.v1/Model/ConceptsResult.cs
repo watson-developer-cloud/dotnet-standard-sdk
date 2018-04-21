@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The general concepts referenced or alluded to in the specified content.
     /// </summary>
-    public class ConceptsResult
+    public class ConceptsResult : BaseModel
     {
         /// <summary>
         /// Name of the concept.

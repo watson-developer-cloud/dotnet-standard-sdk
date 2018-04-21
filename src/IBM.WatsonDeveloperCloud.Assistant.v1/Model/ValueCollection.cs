@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// ValueCollection.
     /// </summary>
-    public class ValueCollection
+    public class ValueCollection : BaseModel
     {
         /// <summary>
         /// An array of entity values.

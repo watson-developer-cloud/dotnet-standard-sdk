@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An object containing request parameters.
     /// </summary>
-    public class Parameters
+    public class Parameters : BaseModel
     {
         /// <summary>
         /// The plain text to analyze.

@@ -23,14 +23,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Histogram.
     /// </summary>
-    public class Histogram
+    public class Histogram : BaseModel
     {
+        /// <summary>
+        /// The field where the aggregation is located in the document.
+        /// </summary>
+        /// <value>The field where the aggregation is located in the document.</value>
+        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
+        public string Field { get; set; }
         /// <summary>
         /// Interval of the aggregation. (For 'histogram' type).
         /// </summary>
         /// <value>Interval of the aggregation. (For 'histogram' type).</value>
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? Interval { get; private set; }
+        public long? Interval { get; set; }
     }
 
 }

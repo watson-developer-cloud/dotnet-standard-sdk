@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingQuery.
     /// </summary>
-    public class TrainingQuery
+    public class TrainingQuery : BaseModel
     {
         /// <summary>
         /// Gets or Sets QueryId

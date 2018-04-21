@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// Response from the classifier for a phrase in a collection.
     /// </summary>
-    public class CollectionItem
+    public class CollectionItem : BaseModel
     {
         /// <summary>
         /// The submitted phrase.

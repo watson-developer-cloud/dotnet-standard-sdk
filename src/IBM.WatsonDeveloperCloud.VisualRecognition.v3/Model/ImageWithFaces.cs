@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// ImageWithFaces.
     /// </summary>
-    public class ImageWithFaces
+    public class ImageWithFaces : BaseModel
     {
         /// <summary>
         /// An array of the faces detected in the images.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Result of a class within a classifier.
     /// </summary>
-    public class ClassResult
+    public class ClassResult : BaseModel
     {
         /// <summary>
         /// The name of the class.

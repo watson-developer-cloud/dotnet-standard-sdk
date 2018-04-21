@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// XPathPatterns.
     /// </summary>
-    public class XPathPatterns
+    public class XPathPatterns : BaseModel
     {
         /// <summary>
         /// Gets or Sets Xpaths

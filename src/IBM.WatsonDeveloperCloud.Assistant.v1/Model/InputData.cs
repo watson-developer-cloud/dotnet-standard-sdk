@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// The user input.
     /// </summary>
-    public class InputData
+    public class InputData : BaseModel
     {
         /// <summary>
         /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.

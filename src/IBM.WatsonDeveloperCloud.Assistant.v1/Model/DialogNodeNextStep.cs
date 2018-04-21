@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// The next step to execute following this dialog node.
     /// </summary>
-    public class DialogNodeNextStep
+    public class DialogNodeNextStep : BaseModel
     {
         /// <summary>
         /// What happens after the dialog node completes. The valid values depend on the node type:  - The following values are valid for any node:    - `get_user_input`    - `skip_user_input`    - `jump_to`  - If the node is of type `event_handler` and its parent node is of type `slot` or `frame`, additional values are also valid:    - if **event_name**=`filled` and the type of the parent node is `slot`:      - `reprompt`      - `skip_all_slots`  - if **event_name**=`nomatch` and the type of the parent node is `slot`:      - `reprompt`      - `skip_slot`      - `skip_all_slots`  - if **event_name**=`generic` and the type of the parent node is `frame`:      - `reprompt`      - `skip_slot`      - `skip_all_slots`        If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.

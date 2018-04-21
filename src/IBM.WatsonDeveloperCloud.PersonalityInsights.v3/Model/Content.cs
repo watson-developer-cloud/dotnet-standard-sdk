@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     /// <summary>
     /// Content.
     /// </summary>
-    public class Content
+    public class Content : BaseModel
     {
         /// <summary>
         /// An array of `ContentItem` objects that provides the text that is to be analyzed.

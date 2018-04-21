@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// CreateCollectionRequest.
     /// </summary>
-    public class CreateCollectionRequest
+    public class CreateCollectionRequest : BaseModel
     {
         /// <summary>
         /// The language of the documents stored in the collection, in the form of an ISO 639-1 language code.

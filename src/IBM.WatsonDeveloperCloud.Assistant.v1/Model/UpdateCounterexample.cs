@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// UpdateCounterexample.
     /// </summary>
-    public class UpdateCounterexample
+    public class UpdateCounterexample : BaseModel
     {
         /// <summary>
         /// The text of a user input counterexample.

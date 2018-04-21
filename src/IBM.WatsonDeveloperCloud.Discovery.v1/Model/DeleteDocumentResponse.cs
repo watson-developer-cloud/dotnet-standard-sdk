@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DeleteDocumentResponse.
     /// </summary>
-    public class DeleteDocumentResponse
+    public class DeleteDocumentResponse : BaseModel
     {
         /// <summary>
         /// Status of the document. A deleted document has the status deleted.

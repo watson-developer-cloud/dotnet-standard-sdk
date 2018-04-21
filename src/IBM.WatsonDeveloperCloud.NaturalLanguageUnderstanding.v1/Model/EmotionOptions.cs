@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Whether or not to return emotion analysis of the content.
     /// </summary>
-    public class EmotionOptions
+    public class EmotionOptions : BaseModel
     {
         /// <summary>
         /// Set this to false to hide document-level emotion results.

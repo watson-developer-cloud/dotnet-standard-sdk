@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// Synonym.
     /// </summary>
-    public class Synonym
+    public class Synonym : BaseModel
     {
         /// <summary>
         /// The text of the synonym.

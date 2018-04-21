@@ -23,13 +23,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An array of entities resulting from the query.
     /// </summary>
-    public class QueryEntitiesResponse
+    public class QueryEntitiesResponse : BaseModel
     {
         /// <summary>
         /// Gets or Sets Entities
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryEntitiesEntity> Entities { get; set; }
+        public List<QueryEntitiesResponseItem> Entities { get; set; }
     }
 
 }

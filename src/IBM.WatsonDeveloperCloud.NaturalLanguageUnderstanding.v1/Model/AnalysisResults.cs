@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Results of the analysis, organized by feature.
     /// </summary>
-    public class AnalysisResults
+    public class AnalysisResults : BaseModel
     {
         /// <summary>
         /// Language used to analyze the text.

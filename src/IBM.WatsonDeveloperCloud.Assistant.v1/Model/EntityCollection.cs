@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// An array of entities.
     /// </summary>
-    public class EntityCollection
+    public class EntityCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the entities defined for the workspace.

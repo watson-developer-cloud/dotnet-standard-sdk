@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A respresentation of a relationship query.
     /// </summary>
-    public class QueryRelations
+    public class QueryRelations : BaseModel
     {
         /// <summary>
         /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique times each entity is identified. The default is `score`.
@@ -78,6 +78,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>The number of results to return. The default is `10`. The maximum is `1000`.</value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
+        /// <summary>
+        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
+        /// </summary>
+        /// <value>The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.</value>
+        [JsonProperty("evidence_count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? EvidenceCount { get; set; }
     }
 
 }

@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DeleteConfigurationResponse.
     /// </summary>
-    public class DeleteConfigurationResponse
+    public class DeleteConfigurationResponse : BaseModel
     {
         /// <summary>
         /// Status of the configuration. A deleted configuration has the status deleted.

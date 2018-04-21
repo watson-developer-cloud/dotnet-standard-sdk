@@ -83,6 +83,36 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        #region Teardown
+        [TestCleanup]
+        public void Teardown()
+        {
+            var classifiers = _service.ListClassifiers();
+            List<string> dotnet_classifiers = new List<string>();
+
+            foreach (Classifier classifier in classifiers._Classifiers)
+            {
+                if (classifier.Name == _createdClassifierName)
+                    dotnet_classifiers.Add(classifier.ClassifierId);
+            }
+
+            foreach (string classifierId in dotnet_classifiers)
+            {
+                try
+                {
+                    var getClassifierResult = GetClassifier(classifierId);
+                    if (getClassifierResult != null)
+                        DeleteClassifier(classifierId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("error: {0}", e.Message);
+                }
+
+            }
+        }
+        #endregion
+
         #region General
         [TestMethod]
         public void Classify_Success()

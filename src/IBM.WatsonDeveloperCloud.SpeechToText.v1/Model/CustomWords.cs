@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// CustomWords.
     /// </summary>
-    public class CustomWords
+    public class CustomWords : BaseModel
     {
         /// <summary>
         /// An array of objects that provides information about each custom word that is to be added to or updated in the custom language model.

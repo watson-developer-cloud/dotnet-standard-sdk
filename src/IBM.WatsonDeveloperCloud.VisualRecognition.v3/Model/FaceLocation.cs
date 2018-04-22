@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Defines the location of the bounding box around the face.
     /// </summary>
-    public class FaceLocation
+    public class FaceLocation : BaseModel
     {
         /// <summary>
         /// Width in pixels of face region.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// IntentCollection.
     /// </summary>
-    public class IntentCollection
+    public class IntentCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the intents defined for the workspace.

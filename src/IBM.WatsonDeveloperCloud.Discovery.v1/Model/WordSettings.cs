@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A list of Word conversion settings.
     /// </summary>
-    public class WordSettings
+    public class WordSettings : BaseModel
     {
         /// <summary>
         /// Gets or Sets Heading

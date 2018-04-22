@@ -20,7 +20,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// For internal use only.
     /// </summary>
-    public class SystemResponse
+    public class SystemResponse : BaseModel
     {
     }
 

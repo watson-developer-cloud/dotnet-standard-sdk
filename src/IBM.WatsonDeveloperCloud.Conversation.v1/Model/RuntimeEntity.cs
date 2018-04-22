@@ -23,24 +23,24 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// A term from the request that was identified as an entity.
     /// </summary>
-    public class RuntimeEntity
+    public class RuntimeEntity : BaseModel
     {
         /// <summary>
-        /// The recognized entity from a term in the input.
+        /// An entity detected in the input.
         /// </summary>
-        /// <value>The recognized entity from a term in the input.</value>
+        /// <value>An entity detected in the input.</value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Entity { get; set; }
         /// <summary>
-        /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
+        /// An array of zero-based character offsets that indicate where the detected entity values begin and end in the input text.
         /// </summary>
-        /// <value>Zero-based character offsets that indicate where the entity value begins and ends in the input text.</value>
+        /// <value>An array of zero-based character offsets that indicate where the detected entity values begin and end in the input text.</value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Location { get; set; }
         /// <summary>
-        /// The term in the input text that was recognized.
+        /// The term in the input text that was recognized as an entity value.
         /// </summary>
-        /// <value>The term in the input text that was recognized.</value>
+        /// <value>The term in the input text that was recognized as an entity value.</value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Value { get; set; }
         /// <summary>
@@ -50,9 +50,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Confidence { get; set; }
         /// <summary>
-        /// The metadata for the entity.
+        /// Any metadata for the entity.
         /// </summary>
-        /// <value>The metadata for the entity.</value>
+        /// <value>Any metadata for the entity.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Metadata { get; set; }
         /// <summary>

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The object containing the actions and the objects the actions act upon.
     /// </summary>
-    public class SemanticRolesResult
+    public class SemanticRolesResult : BaseModel
     {
         /// <summary>
         /// Sentence from the source that contains the subject, action, and object.

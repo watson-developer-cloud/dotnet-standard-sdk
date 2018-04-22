@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// An intent identified in the user input.
     /// </summary>
-    public class RuntimeIntent
+    public class RuntimeIntent : BaseModel
     {
         /// <summary>
         /// The name of the recognized intent.

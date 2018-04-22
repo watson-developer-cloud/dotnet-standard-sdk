@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Enrichment.
     /// </summary>
-    public class Enrichment
+    public class Enrichment : BaseModel
     {
         /// <summary>
         /// Describes what the enrichment step does.

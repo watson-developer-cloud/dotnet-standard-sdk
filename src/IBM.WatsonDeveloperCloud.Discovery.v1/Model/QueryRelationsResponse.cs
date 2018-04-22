@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryRelationsResponse.
     /// </summary>
-    public class QueryRelationsResponse
+    public class QueryRelationsResponse : BaseModel
     {
         /// <summary>
         /// Gets or Sets Relations

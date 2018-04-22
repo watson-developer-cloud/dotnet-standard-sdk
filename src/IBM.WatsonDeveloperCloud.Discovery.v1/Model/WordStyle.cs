@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// WordStyle.
     /// </summary>
-    public class WordStyle
+    public class WordStyle : BaseModel
     {
         /// <summary>
         /// Gets or Sets Level

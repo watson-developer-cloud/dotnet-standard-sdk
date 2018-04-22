@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// ToneChatScore.
     /// </summary>
-    public class ToneChatScore
+    public class ToneChatScore : BaseModel
     {
         /// <summary>
         /// The score for the tone in the range of 0.5 to 1. A score greater than 0.75 indicates a high likelihood that the tone is perceived in the utterance.

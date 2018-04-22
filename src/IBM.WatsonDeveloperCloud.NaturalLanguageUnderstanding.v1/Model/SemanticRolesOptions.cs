@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An option specifying whether or not to identify the subjects, actions, and verbs in the analyzed content.
     /// </summary>
-    public class SemanticRolesOptions
+    public class SemanticRolesOptions : BaseModel
     {
         /// <summary>
         /// Maximum number of semantic_roles results to return.

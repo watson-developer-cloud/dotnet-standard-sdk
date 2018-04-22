@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// A request formatted for the Conversation service.
     /// </summary>
-    public class MessageRequest
+    public class MessageRequest : BaseModel
     {
         /// <summary>
         /// An input object that includes the input text.
@@ -44,21 +44,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Context { get; set; }
         /// <summary>
-        /// Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.
+        /// Entities to use when evaluating the message. Include entities from the previous response to continue using those entities rather than detecting entities in the new input.
         /// </summary>
-        /// <value>Include the entities from the previous response when they do not need to change and to prevent Watson from trying to identify them.</value>
+        /// <value>Entities to use when evaluating the message. Include entities from the previous response to continue using those entities rather than detecting entities in the new input.</value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<RuntimeEntity> Entities { get; set; }
         /// <summary>
-        /// An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.
+        /// Intents to use when evaluating the user input. Include intents from the previous response to continue using those intents rather than trying to recognize intents in the new input.
         /// </summary>
-        /// <value>An array of name-confidence pairs for the user input. Include the intents from the previous response when they do not need to change and to prevent Watson from trying to identify them.</value>
+        /// <value>Intents to use when evaluating the user input. Include intents from the previous response to continue using those intents rather than trying to recognize intents in the new input.</value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<RuntimeIntent> Intents { get; set; }
         /// <summary>
-        /// System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.
+        /// System output. Include the output from the previous response to maintain intermediate information over multiple requests.
         /// </summary>
-        /// <value>System output. Include the output from the request when you have several requests within the same Dialog turn to pass back in the intermediate information.</value>
+        /// <value>System output. Include the output from the previous response to maintain intermediate information over multiple requests.</value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public OutputData Output { get; set; }
     }

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// SemanticRolesAction.
     /// </summary>
-    public class SemanticRolesAction
+    public class SemanticRolesAction : BaseModel
     {
         /// <summary>
         /// Analyzed text that corresponds to the action.

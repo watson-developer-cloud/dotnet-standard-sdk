@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// The text of the user input.
     /// </summary>
-    public class MessageInput
+    public class MessageInput : BaseModel
     {
         /// <summary>
         /// The user's input.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// List of available classifiers.
     /// </summary>
-    public class ClassifierList
+    public class ClassifierList : BaseModel
     {
         /// <summary>
         /// The classifiers available to the user. Returns an empty array if no classifiers are available.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object specifying the Keyword enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentKeywords
+    public class NluEnrichmentKeywords : BaseModel
     {
         /// <summary>
         /// When `true`, sentiment analysis of keywords will be performed on the specified field.

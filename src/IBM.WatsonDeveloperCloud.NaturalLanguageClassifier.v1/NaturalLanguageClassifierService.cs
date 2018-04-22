@@ -15,17 +15,20 @@
 *
 */
 
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 {
-    public class NaturalLanguageClassifierService : WatsonService, INaturalLanguageClassifierService
+    public partial class NaturalLanguageClassifierService : WatsonService, INaturalLanguageClassifierService
     {
         const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
@@ -34,7 +37,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
-
 
         public NaturalLanguageClassifierService(string userName, string password) : this()
         {
@@ -45,7 +47,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-
         }
 
         public NaturalLanguageClassifierService(IClient httpClient) : this()
@@ -61,8 +62,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify. The maximum length of the text phrase is 1024 characters.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classification" />Classification</returns>
-        public Classification Classify(string classifierId, ClassifyInput body)
+        public Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
@@ -75,7 +77,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
                 request.WithBody<ClassifyInput>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Classification>().Result;
+                if(result == null)
+                    result = new Classification();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -90,8 +97,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify.  The maximum length of the text phrase is 1024 characters. You can submit up to 30 text phrases in a request.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
-        public ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body)
+        public ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
@@ -104,7 +112,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
                 request.WithBody<ClassifyCollectionInput>(body);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ClassificationCollection>().Result;
+                if(result == null)
+                    result = new ClassificationCollection();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -118,8 +131,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// </summary>
         /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. Specify the language with the 2-letter primary language code as assigned in ISO standard 639.  Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).</param>
         /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see [Data preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData)
+        public Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData, Dictionary<string, object> customData = null)
         {
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
@@ -152,7 +166,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .PostAsync($"{this.Endpoint}/v1/classifiers");
                 request.WithBodyContent(formData);
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -166,18 +185,24 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Delete classifier. 
         /// </summary>
         /// <param name="classifierId">Classifier ID to delete.</param>
-        /// <returns><see cref="object" />object</returns>
-        public object DeleteClassifier(string classifierId)
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
-            object result = null;
+            BaseModel result = null;
 
             try
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
-                result = request.As<object>().Result;
+                if (customData != null)
+                    request.WithCustomData(customData);
+                result = request.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -191,8 +216,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Get information about a classifier. Returns status and other information about a classifier.
         /// </summary>
         /// <param name="classifierId">Classifier ID to query.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier GetClassifier(string classifierId)
+        public Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
@@ -202,7 +228,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -215,8 +246,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// <summary>
         /// List classifiers. Returns an empty array if no classifiers are available.
         /// </summary>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifierList" />ClassifierList</returns>
-        public ClassifierList ListClassifiers()
+        public ClassifierList ListClassifiers(Dictionary<string, object> customData = null)
         {
             ClassifierList result = null;
 
@@ -224,7 +256,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             {
                 var request = this.Client.WithAuthentication(this.UserName, this.Password)
                                 .GetAsync($"{this.Endpoint}/v1/classifiers");
+                if (customData != null)
+                    request.WithCustomData(customData);
                 result = request.As<ClassifierList>().Result;
+                if(result == null)
+                    result = new ClassifierList();
+                result.CustomData = request.CustomData;
             }
             catch(AggregateException ae)
             {

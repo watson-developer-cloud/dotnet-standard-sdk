@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// SynonymCollection.
     /// </summary>
-    public class SynonymCollection
+    public class SynonymCollection : BaseModel
     {
         /// <summary>
         /// An array of synonyms.
@@ -32,9 +32,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<Synonym> Synonyms { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>An object defining the pagination data for the returned objects.</value>
+        /// <value>The pagination data for the returned objects.</value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

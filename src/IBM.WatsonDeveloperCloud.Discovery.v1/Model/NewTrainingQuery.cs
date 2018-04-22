@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// NewTrainingQuery.
     /// </summary>
-    public class NewTrainingQuery
+    public class NewTrainingQuery : BaseModel
     {
         /// <summary>
         /// Gets or Sets NaturalLanguageQuery

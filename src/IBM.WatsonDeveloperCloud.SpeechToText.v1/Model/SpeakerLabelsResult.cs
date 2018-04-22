@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeakerLabelsResult.
     /// </summary>
-    public class SpeakerLabelsResult
+    public class SpeakerLabelsResult : BaseModel
     {
         /// <summary>
         /// The start time of a word from the transcript. The value matches the start time of a word from the `timestamps` array.

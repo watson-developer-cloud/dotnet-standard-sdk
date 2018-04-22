@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryRelationsRelationship.
     /// </summary>
-    public class QueryRelationsRelationship
+    public class QueryRelationsRelationship : BaseModel
     {
         /// <summary>
         /// The identified relationship type.
@@ -43,6 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>Information about the relationship.</value>
         [JsonProperty("arguments", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryRelationsArgument> Arguments { get; set; }
+        /// <summary>
+        /// List of different evidentiary items to support the result.
+        /// </summary>
+        /// <value>List of different evidentiary items to support the result.</value>
+        [JsonProperty("evidence", NullValueHandling = NullValueHandling.Ignore)]
+        public List<QueryEvidence> Evidence { get; set; }
     }
 
 }

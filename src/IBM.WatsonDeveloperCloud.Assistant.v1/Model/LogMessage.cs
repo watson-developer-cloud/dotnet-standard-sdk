@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Log message details.
     /// </summary>
-    public class LogMessage
+    public class LogMessage : BaseModel
     {
         /// <summary>
         /// The severity of the log message.

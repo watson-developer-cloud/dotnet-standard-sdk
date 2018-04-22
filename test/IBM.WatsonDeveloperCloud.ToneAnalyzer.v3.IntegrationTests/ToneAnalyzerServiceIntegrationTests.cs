@@ -107,10 +107,10 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
 
         #region Generated
         #region Tone
-        private ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        private ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Tone()");
-            var result = _service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+            var result = _service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
 
             if (result != null)
             {
@@ -126,10 +126,10 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         #endregion
 
         #region ToneChat
-        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null)
+        private UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ToneChat()");
-            var result = _service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+            var result = _service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
 
             if (result != null)
             {

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Classify results for multiple images.
     /// </summary>
-    public class ClassifiedImages
+    public class ClassifiedImages : BaseModel
     {
         /// <summary>
         /// The number of custom classes identified in the images.

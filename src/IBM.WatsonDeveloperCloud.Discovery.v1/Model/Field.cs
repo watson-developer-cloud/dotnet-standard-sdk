@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Field.
     /// </summary>
-    public class Field
+    public class Field : BaseModel
     {
         /// <summary>
         /// The type of the field.

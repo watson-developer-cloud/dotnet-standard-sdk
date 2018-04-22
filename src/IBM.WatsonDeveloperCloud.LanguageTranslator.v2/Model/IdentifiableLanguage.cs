@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// IdentifiableLanguage.
     /// </summary>
-    public class IdentifiableLanguage
+    public class IdentifiableLanguage : BaseModel
     {
         /// <summary>
         /// The language code for an identifiable language.

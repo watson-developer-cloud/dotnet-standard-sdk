@@ -20,7 +20,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// For internal use only.
     /// </summary>
-    public class SystemResponse
+    public class SystemResponse : BaseModel
     {
     }
 

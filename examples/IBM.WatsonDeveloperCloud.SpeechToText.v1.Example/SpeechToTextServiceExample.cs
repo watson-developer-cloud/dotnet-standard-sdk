@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
     {
         private AutoResetEvent autoEvent = new AutoResetEvent(false);
         private static string credentials = string.Empty;
-        private string EN_US = "en-US_BroadbandModel";
+        //private string EN_US = "en-US_BroadbandModel";
         //private string _customModelName = "dotnet-integration-test-custom-model";
         //private string _customModelDescription = "A custom model to test .NET SDK Speech to Text customization.";
         //private string _corpusName = "The Jabberwocky";
@@ -193,7 +193,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
             var acousticModel = new CreateAcousticModel
             {
                 Name = _acousticModelName,
-                BaseModelName = EN_US,
+                BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.EN_US_BROADBANDMODEL,
                 Description = _acousticModelDescription
             };
 

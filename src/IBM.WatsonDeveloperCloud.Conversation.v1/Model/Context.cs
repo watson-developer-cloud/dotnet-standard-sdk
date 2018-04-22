@@ -20,9 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// Context information for the message. Include the context from the previous response to maintain state for the conversation.
+    /// State information for the conversation. To maintain state, include the context from the previous response.
     /// </summary>
-    public class Context
+    public class Context : BaseModel
     {
         /// <summary>
         /// The unique identifier of the conversation.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// Workspace.
     /// </summary>
-    public class Workspace
+    public class Workspace : BaseModel
     {
         /// <summary>
         /// The name of the workspace.
@@ -62,15 +62,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// Any metadata that is required by the workspace.
+        /// Any metadata related to the workspace.
         /// </summary>
-        /// <value>Any metadata that is required by the workspace.</value>
+        /// <value>Any metadata related to the workspace.</value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// Whether training data from the workspace (including artifacts such as intents and entities) can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
         /// </summary>
-        /// <value>Whether training data from the workspace can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
+        /// <value>Whether training data from the workspace (including artifacts such as intents and entities) can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
         [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
         public bool? LearningOptOut { get; set; }
     }

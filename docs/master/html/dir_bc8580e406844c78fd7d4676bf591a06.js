@@ -75,6 +75,9 @@ var dir_bc8580e406844c78fd7d4676bf591a06 =
     [ "Field.cs", "d2/d6b/_field_8cs.html", [
       [ "Field", "da/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_field.html", "da/dfa/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_field" ]
     ] ],
+    [ "Filter.cs", "df/d29/_filter_8cs.html", [
+      [ "Filter", "d5/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_filter.html", "d5/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_filter" ]
+    ] ],
     [ "FontSetting.cs", "d1/de4/_font_setting_8cs.html", [
       [ "FontSetting", "d0/df9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_font_setting.html", "d0/df9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_font_setting" ]
     ] ],
@@ -101,6 +104,9 @@ var dir_bc8580e406844c78fd7d4676bf591a06 =
     ] ],
     [ "MemoryUsage.cs", "d8/d2f/_memory_usage_8cs.html", [
       [ "MemoryUsage", "d6/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_memory_usage.html", "d6/dd9/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_memory_usage" ]
+    ] ],
+    [ "Nested.cs", "d4/d99/_nested_8cs.html", [
+      [ "Nested", "dd/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nested.html", "dd/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nested" ]
     ] ],
     [ "NewTrainingQuery.cs", "db/d31/_new_training_query_8cs.html", [
       [ "NewTrainingQuery", "de/d62/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_new_training_query.html", "de/d62/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_new_training_query" ]
@@ -156,6 +162,15 @@ var dir_bc8580e406844c78fd7d4676bf591a06 =
     [ "QueryEntitiesResponse.cs", "dd/d30/_query_entities_response_8cs.html", [
       [ "QueryEntitiesResponse", "d1/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response.html", "d1/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response" ]
     ] ],
+    [ "QueryEntitiesResponseItem.cs", "d2/d1e/_query_entities_response_item_8cs.html", [
+      [ "QueryEntitiesResponseItem", "d4/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response_item.html", "d4/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response_item" ]
+    ] ],
+    [ "QueryEvidence.cs", "d5/dd4/_query_evidence_8cs.html", [
+      [ "QueryEvidence", "d7/d81/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_evidence.html", "d7/d81/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_evidence" ]
+    ] ],
+    [ "QueryEvidenceEntity.cs", "db/d0b/_query_evidence_entity_8cs.html", [
+      [ "QueryEvidenceEntity", "d1/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_evidence_entity.html", "d1/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_evidence_entity" ]
+    ] ],
     [ "QueryFilterType.cs", "d4/d10/_query_filter_type_8cs.html", [
       [ "QueryFilterType", "d6/da4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_type.html", "d6/da4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_type" ]
     ] ],
@@ -192,14 +207,26 @@ var dir_bc8580e406844c78fd7d4676bf591a06 =
     [ "QueryResult.cs", "dd/d99/_query_result_8cs.html", [
       [ "QueryResult", "d8/de4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result.html", "d8/de4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result" ]
     ] ],
-    [ "QueryResultResultMetadata.cs", "da/dcf/_query_result_result_metadata_8cs.html", [
+    [ "QueryResultMetadata.cs", "d8/dfa/_query_result_metadata_8cs.html", [
       [ "QueryResultResultMetadata", "d0/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result_result_metadata.html", "d0/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_result_result_metadata" ]
+    ] ],
+    [ "SegmentSettings.cs", "da/d1d/_segment_settings_8cs.html", [
+      [ "SegmentSettings", "db/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_segment_settings.html", "db/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_segment_settings" ]
     ] ],
     [ "Term.cs", "db/df3/_term_8cs.html", [
       [ "Term", "dd/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_term.html", "dd/d93/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_term" ]
     ] ],
     [ "TestDocument.cs", "da/d72/_test_document_8cs.html", [
       [ "TestDocument", "d8/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_test_document.html", "d8/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_test_document" ]
+    ] ],
+    [ "Timeslice.cs", "d7/d29/_timeslice_8cs.html", [
+      [ "Timeslice", "d5/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_timeslice.html", "d5/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_timeslice" ]
+    ] ],
+    [ "TopHits.cs", "dc/d2e/_top_hits_8cs.html", [
+      [ "TopHits", "dc/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits.html", "dc/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits" ]
+    ] ],
+    [ "TopHitsResults.cs", "d5/d20/_top_hits_results_8cs.html", [
+      [ "TopHitsResults", "dd/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html", "dd/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results" ]
     ] ],
     [ "TrainingDataSet.cs", "de/d8e/_training_data_set_8cs.html", [
       [ "TrainingDataSet", "d6/dcb/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_data_set.html", "d6/dcb/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_data_set" ]

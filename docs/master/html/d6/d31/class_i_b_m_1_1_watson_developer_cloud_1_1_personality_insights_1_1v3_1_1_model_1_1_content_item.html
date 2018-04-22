@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.2.0</span>
+   &#160;<span id="projectnumber">2.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -92,12 +92,21 @@ $(document).ready(function(){initNavTree('d6/d31/class_i_b_m_1_1_watson_develope
 
 <p><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html" title="ContentItem. ">ContentItem</a>.  
  <a href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ContentItem:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.png" usemap="#IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ContentItem_map" alt=""/>
+  <map id="IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ContentItem_map" name="IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model.ContentItem_map">
+<area href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html" alt="IBM.WatsonDeveloperCloud.BaseModel" shape="rect" coords="0,0,406,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a340889a49ccb7c95c0b564138f78b6a7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7">ContenttypeEnum</a> { <a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7adb753a1d6359f7107a09b10033937504">ContenttypeEnum.TEXT_PLAIN</a>, 
 <a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7a5b2fa2c280f4876b5ac9c982597f7f4e">ContenttypeEnum.TEXT_HTML</a>
- }<tr class="memdesc:a340889a49ccb7c95c0b564138f78b6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.  <a href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7">More...</a><br /></td></tr>
+ }<tr class="memdesc:a340889a49ccb7c95c0b564138f78b6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.  <a href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a340889a49ccb7c95c0b564138f78b6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4973893bd42e77e685bb2670f3d61606"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606">LanguageEnum</a> { <br />
@@ -108,32 +117,32 @@ Public Types</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606a5fed318f9c859ad1b31120392472c25a">LanguageEnum.KO</a>
 <br />
- }<tr class="memdesc:a4973893bd42e77e685bb2670f3d61606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.  <a href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606">More...</a><br /></td></tr>
+ }<tr class="memdesc:a4973893bd42e77e685bb2670f3d61606"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.  <a href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a4973893bd42e77e685bb2670f3d61606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a6f2b02ef60acd02a705f37df7b6584a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a340889a49ccb7c95c0b564138f78b6a7">ContenttypeEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a6f2b02ef60acd02a705f37df7b6584a4">Contenttype</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a6f2b02ef60acd02a705f37df7b6584a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.  <a href="#a6f2b02ef60acd02a705f37df7b6584a4">More...</a><br /></td></tr>
+<tr class="memdesc:a6f2b02ef60acd02a705f37df7b6584a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.  <a href="#a6f2b02ef60acd02a705f37df7b6584a4">More...</a><br /></td></tr>
 <tr class="separator:a6f2b02ef60acd02a705f37df7b6584a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5a937353d4e3c6ef9e2409ee2485b8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a4973893bd42e77e685bb2670f3d61606">LanguageEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#ad5a937353d4e3c6ef9e2409ee2485b8e">Language</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad5a937353d4e3c6ef9e2409ee2485b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.  <a href="#ad5a937353d4e3c6ef9e2409ee2485b8e">More...</a><br /></td></tr>
+<tr class="memdesc:ad5a937353d4e3c6ef9e2409ee2485b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.  <a href="#ad5a937353d4e3c6ef9e2409ee2485b8e">More...</a><br /></td></tr>
 <tr class="separator:ad5a937353d4e3c6ef9e2409ee2485b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26725d0862c17bcbf5f3e5bf061dc7e9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a26725d0862c17bcbf5f3e5bf061dc7e9">Content</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a26725d0862c17bcbf5f3e5bf061dc7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../db/d67/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content.html" title="Content. ">Content</a> that is to be analyzed. The service supports up to 20 MB of content for all items combined.  <a href="#a26725d0862c17bcbf5f3e5bf061dc7e9">More...</a><br /></td></tr>
+<tr class="memdesc:a26725d0862c17bcbf5f3e5bf061dc7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The content that is to be analyzed. The service supports up to 20 MB of content for all <code><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html" title="ContentItem. ">ContentItem</a></code> objects combined.  <a href="#a26725d0862c17bcbf5f3e5bf061dc7e9">More...</a><br /></td></tr>
 <tr class="separator:a26725d0862c17bcbf5f3e5bf061dc7e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f112a0bb6c7f07699bbb5a183ec6f4f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a2f112a0bb6c7f07699bbb5a183ec6f4f">Id</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a2f112a0bb6c7f07699bbb5a183ec6f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this content item.  <a href="#a2f112a0bb6c7f07699bbb5a183ec6f4f">More...</a><br /></td></tr>
+<tr class="memdesc:a2f112a0bb6c7f07699bbb5a183ec6f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique identifier for this content item.  <a href="#a2f112a0bb6c7f07699bbb5a183ec6f4f">More...</a><br /></td></tr>
 <tr class="separator:a2f112a0bb6c7f07699bbb5a183ec6f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c4234d01cc3eb1c603fb5ee26e1c8ac"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a0c4234d01cc3eb1c603fb5ee26e1c8ac">Created</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a0c4234d01cc3eb1c603fb5ee26e1c8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.  <a href="#a0c4234d01cc3eb1c603fb5ee26e1c8ac">More...</a><br /></td></tr>
+<tr class="memdesc:a0c4234d01cc3eb1c603fb5ee26e1c8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">A timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.  <a href="#a0c4234d01cc3eb1c603fb5ee26e1c8ac">More...</a><br /></td></tr>
 <tr class="separator:a0c4234d01cc3eb1c603fb5ee26e1c8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ea991e0b4e1d5ed1a7bb456b0b1cea9"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a1ea991e0b4e1d5ed1a7bb456b0b1cea9">Updated</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a1ea991e0b4e1d5ed1a7bb456b0b1cea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.  <a href="#a1ea991e0b4e1d5ed1a7bb456b0b1cea9">More...</a><br /></td></tr>
+<tr class="memdesc:a1ea991e0b4e1d5ed1a7bb456b0b1cea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.  <a href="#a1ea991e0b4e1d5ed1a7bb456b0b1cea9">More...</a><br /></td></tr>
 <tr class="separator:a1ea991e0b4e1d5ed1a7bb456b0b1cea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23febb2c49341ae53be4c635d0afc4dd"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a23febb2c49341ae53be4c635d0afc4dd">Parentid</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a23febb2c49341ae53be4c635d0afc4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on.  <a href="#a23febb2c49341ae53be4c635d0afc4dd">More...</a><br /></td></tr>
+<tr class="memdesc:a23febb2c49341ae53be4c635d0afc4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on.  <a href="#a23febb2c49341ae53be4c635d0afc4dd">More...</a><br /></td></tr>
 <tr class="separator:a23febb2c49341ae53be4c635d0afc4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68e3271e5c76475e9424e663a76c27ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a68e3271e5c76475e9424e663a76c27ef">Reply</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a68e3271e5c76475e9424e663a76c27ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether this content item is a reply to another content item.  <a href="#a68e3271e5c76475e9424e663a76c27ef">More...</a><br /></td></tr>
@@ -141,6 +150,19 @@ Properties</h2></td></tr>
 <tr class="memitem:a6028a660a389a5738d75f85e6207ac4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a6028a660a389a5738d75f85e6207ac4b">Forward</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a6028a660a389a5738d75f85e6207ac4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether this content item is a forwarded/copied version of another content item.  <a href="#a6028a660a389a5738d75f85e6207ac4b">More...</a><br /></td></tr>
 <tr class="separator:a6028a660a389a5738d75f85e6207ac4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td colspan="2" onclick="javascript:toggleInherit('properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model')"><img src="../../closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">IBM.WatsonDeveloperCloud.BaseModel</a></td></tr>
+<tr class="memitem:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">CustomData</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom data object including custom request headers, response headers and response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">More...</a><br /></td></tr>
+<tr class="separator:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">CustomRequestHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets custom request headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">More...</a><br /></td></tr>
+<tr class="separator:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">ResponseHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets response headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">More...</a><br /></td></tr>
+<tr class="separator:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">ResponseJson</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">More...</a><br /></td></tr>
+<tr class="separator:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html" title="ContentItem. ">ContentItem</a>. </p>
@@ -165,8 +187,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted. </p>
-<p>MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.</p>
+<p>The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted. </p>
+<p>The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.</p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a340889a49ccb7c95c0b564138f78b6a7adb753a1d6359f7107a09b10033937504"></a>TEXT_PLAIN&#160;</td><td class="fielddoc"><p>Enum TEXT_PLAIN for text/plain </p>
 </td></tr>
@@ -196,8 +218,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content. </p>
-<p>Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.</p>
+<p>The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content. </p>
+<p>The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.</p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4973893bd42e77e685bb2670f3d61606a5b61a1b298a0d06efa6933a97e68d763"></a>AR&#160;</td><td class="fielddoc"><p>Enum AR for ar </p>
 </td></tr>
@@ -234,8 +256,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="../../db/d67/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content.html" title="Content. ">Content</a> that is to be analyzed. The service supports up to 20 MB of content for all items combined. </p>
-<p><a class="el" href="../../db/d67/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content.html" title="Content. ">Content</a> that is to be analyzed. The service supports up to 20 MB of content for all items combined.</p>
+<p>The content that is to be analyzed. The service supports up to 20 MB of content for all <code><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html" title="ContentItem. ">ContentItem</a></code> objects combined. </p>
+<p>The content that is to be analyzed. The service supports up to 20 MB of content for all <code><a class="el" href="../../d6/d31/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html" title="ContentItem. ">ContentItem</a></code> objects combined.</p>
 
 </div>
 </div>
@@ -259,8 +281,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted. </p>
-<p>MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.</p>
+<p>The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted. </p>
+<p>The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it is analyzed; plain text is processed as submitted.</p>
 
 </div>
 </div>
@@ -284,8 +306,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data. </p>
-<p>Timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.</p>
+<p>A timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data. </p>
+<p>A timestamp that identifies when this content was created. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.</p>
 
 </div>
 </div>
@@ -334,8 +356,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for this content item. </p>
-<p>Unique identifier for this content item.</p>
+<p>A unique identifier for this content item. </p>
+<p>A unique identifier for this content item.</p>
 
 </div>
 </div>
@@ -359,8 +381,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content. </p>
-<p>Language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <code>Content-Type</code> header overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <code>Content-Type</code> header to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.</p>
+<p>The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content. </p>
+<p>The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default is <code>en</code> (English). Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>. A language specified with the <b>Content-Type</b> parameter overrides the value of this parameter; any content items that specify a different language are ignored. Omit the <b>Content-Type</b> parameter to base the language on the most prevalent specification among the content items; again, content items that specify a different language are ignored. You can specify any combination of languages for the input and response content.</p>
 
 </div>
 </div>
@@ -384,8 +406,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on. </p>
-<p>Unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on.</p>
+<p>The unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on. </p>
+<p>The unique ID of the parent content item for this item. Used to identify hierarchical relationships between posts/replies, messages/replies, and so on.</p>
 
 </div>
 </div>
@@ -434,8 +456,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data. </p>
-<p>Timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.</p>
+<p>A timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data. </p>
+<p>A timestamp that identifies when this content was last updated. Specify a value in milliseconds since the UNIX Epoch (January 1, 1970, at 0:00 UTC). Required only for results that include temporal behavior data.</p>
 
 </div>
 </div>

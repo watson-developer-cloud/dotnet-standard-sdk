@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.2.0</span>
+   &#160;<span id="projectnumber">2.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -91,11 +91,20 @@ $(document).ready(function(){initNavTree('d9/d97/class_i_b_m_1_1_watson_develope
 
 <p><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html" title="QueryEntities. ">QueryEntities</a>.  
  <a href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for IBM.WatsonDeveloperCloud.Discovery.v1.Model.QueryEntities:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.png" usemap="#IBM.WatsonDeveloperCloud.Discovery.v1.Model.QueryEntities_map" alt=""/>
+  <map id="IBM.WatsonDeveloperCloud.Discovery.v1.Model.QueryEntities_map" name="IBM.WatsonDeveloperCloud.Discovery.v1.Model.QueryEntities_map">
+<area href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html" alt="IBM.WatsonDeveloperCloud.BaseModel" shape="rect" coords="0,0,370,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aa556acbd8a46d910f5c0f713c18b0d78"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html#aa556acbd8a46d910f5c0f713c18b0d78">Feature</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa556acbd8a46d910f5c0f713c18b0d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The entity query feature to perform. Must be <code>disambiguate</code>.  <a href="#aa556acbd8a46d910f5c0f713c18b0d78">More...</a><br /></td></tr>
+<tr class="memdesc:aa556acbd8a46d910f5c0f713c18b0d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The entity query feature to perform. Supported features are <code>disambiguate</code> and <code>similar_entities</code>.  <a href="#aa556acbd8a46d910f5c0f713c18b0d78">More...</a><br /></td></tr>
 <tr class="separator:aa556acbd8a46d910f5c0f713c18b0d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a777e2d4ef1cc69ee86cfb840d3fc43af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_entity.html">QueryEntitiesEntity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html#a777e2d4ef1cc69ee86cfb840d3fc43af">Entity</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a777e2d4ef1cc69ee86cfb840d3fc43af"><td class="mdescLeft">&#160;</td><td class="mdescRight">A text string that appears within the entity text field.  <a href="#a777e2d4ef1cc69ee86cfb840d3fc43af">More...</a><br /></td></tr>
@@ -106,6 +115,22 @@ Properties</h2></td></tr>
 <tr class="memitem:ae9b1fc0dfc2b2d866456ce929216b792"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html#ae9b1fc0dfc2b2d866456ce929216b792">Count</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae9b1fc0dfc2b2d866456ce929216b792"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of results to return. The default is <code>10</code>. The maximum is <code>1000</code>.  <a href="#ae9b1fc0dfc2b2d866456ce929216b792">More...</a><br /></td></tr>
 <tr class="separator:ae9b1fc0dfc2b2d866456ce929216b792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae20a67fb24ebf88c964eb533c93f1720"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html#ae20a67fb24ebf88c964eb533c93f1720">EvidenceCount</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae20a67fb24ebf88c964eb533c93f1720"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of evidence items to return for each result. The default is <code>0</code>. The maximum number of evidence items per query is 10,000.  <a href="#ae20a67fb24ebf88c964eb533c93f1720">More...</a><br /></td></tr>
+<tr class="separator:ae20a67fb24ebf88c964eb533c93f1720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td colspan="2" onclick="javascript:toggleInherit('properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model')"><img src="../../closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">IBM.WatsonDeveloperCloud.BaseModel</a></td></tr>
+<tr class="memitem:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">CustomData</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom data object including custom request headers, response headers and response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">More...</a><br /></td></tr>
+<tr class="separator:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">CustomRequestHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets custom request headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#aaa62fcc192f41752eee036f82785971e">More...</a><br /></td></tr>
+<tr class="separator:aaa62fcc192f41752eee036f82785971e inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">ResponseHeaders</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets response headers.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a2bd6f54aa6b25d18756a6556e40550c0">More...</a><br /></td></tr>
+<tr class="separator:a2bd6f54aa6b25d18756a6556e40550c0 inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">ResponseJson</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the response json.  <a href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a8509439a3a42025e15e0318983f97d9c">More...</a><br /></td></tr>
+<tr class="separator:a8509439a3a42025e15e0318983f97d9c inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html" title="QueryEntities. ">QueryEntities</a>. </p>
@@ -185,6 +210,31 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="ae20a67fb24ebf88c964eb533c93f1720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20a67fb24ebf88c964eb533c93f1720">&#9670;&nbsp;</a></span>EvidenceCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long IBM.WatsonDeveloperCloud.Discovery.v1.Model.QueryEntities.EvidenceCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of evidence items to return for each result. The default is <code>0</code>. The maximum number of evidence items per query is 10,000. </p>
+<p>The number of evidence items to return for each result. The default is <code>0</code>. The maximum number of evidence items per query is 10,000.</p>
+
+</div>
+</div>
 <a id="aa556acbd8a46d910f5c0f713c18b0d78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa556acbd8a46d910f5c0f713c18b0d78">&#9670;&nbsp;</a></span>Feature</h2>
 
@@ -205,8 +255,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The entity query feature to perform. Must be <code>disambiguate</code>. </p>
-<p>The entity query feature to perform. Must be <code>disambiguate</code>.</p>
+<p>The entity query feature to perform. Supported features are <code>disambiguate</code> and <code>similar_entities</code>. </p>
+<p>The entity query feature to perform. Supported features are <code>disambiguate</code> and <code>similar_entities</code>.</p>
 
 </div>
 </div>

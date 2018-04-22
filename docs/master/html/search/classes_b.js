@@ -2,6 +2,7 @@ var searchData=
 [
   ['naturallanguageclassifierservice',['NaturalLanguageClassifierService',['../db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageClassifier::v1']]],
   ['naturallanguageunderstandingservice',['NaturalLanguageUnderstandingService',['../d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html',1,'IBM::WatsonDeveloperCloud::NaturalLanguageUnderstanding::v1']]],
+  ['nested',['Nested',['../dd/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nested.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
   ['newtrainingquery',['NewTrainingQuery',['../de/d62/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_new_training_query.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
   ['nluenrichmentcategories',['NluEnrichmentCategories',['../d6/d43/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_categories.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
   ['nluenrichmentemotion',['NluEnrichmentEmotion',['../d7/de0/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_emotion.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],

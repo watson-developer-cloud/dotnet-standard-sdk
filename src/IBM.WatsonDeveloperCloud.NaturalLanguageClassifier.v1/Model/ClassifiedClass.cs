@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// Class and confidence.
     /// </summary>
-    public class ClassifiedClass
+    public class ClassifiedClass : BaseModel
     {
         /// <summary>
         /// A decimal percentage that represents the confidence that Watson has in this class. Higher values represent higher confidences.

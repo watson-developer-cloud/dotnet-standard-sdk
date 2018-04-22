@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// ToneInput.
     /// </summary>
-    public class ToneInput
+    public class ToneInput : BaseModel
     {
         /// <summary>
         /// The input content that the service is to analyze.

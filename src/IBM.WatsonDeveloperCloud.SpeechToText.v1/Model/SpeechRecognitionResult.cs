@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechRecognitionResult.
     /// </summary>
-    public class SpeechRecognitionResult
+    public class SpeechRecognitionResult : BaseModel
     {
         /// <summary>
         /// An indication of whether the transcription results are final. If `true`, the results for this utterance are not updated further; no additional results are sent for a `result_index` once its results are indicated as final.
@@ -38,9 +38,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("alternatives", NullValueHandling = NullValueHandling.Ignore)]
         public List<SpeechRecognitionAlternative> Alternatives { get; set; }
         /// <summary>
-        /// A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.
+        /// A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. You can spot a maximum of 1000 keywords. The array is omitted if no keywords are found.
         /// </summary>
-        /// <value>A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. The array is omitted if no keywords are found.</value>
+        /// <value>A dictionary (or associative array) whose keys are the strings specified for `keywords` if both that parameter and `keywords_threshold` are specified. A keyword for which no matches are found is omitted from the array. You can spot a maximum of 1000 keywords. The array is omitted if no keywords are found.</value>
         [JsonProperty("keywords_result", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, List<KeywordResult>> KeywordsResult { get; set; }
         /// <summary>

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A response containing the documents and aggregations for the query.
     /// </summary>
-    public class QueryResponse
+    public class QueryResponse : BaseModel
     {
         /// <summary>
         /// Gets or Sets MatchingResults

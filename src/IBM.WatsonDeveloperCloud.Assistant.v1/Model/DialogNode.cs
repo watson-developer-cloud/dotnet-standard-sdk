@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// DialogNode.
     /// </summary>
-    public class DialogNode
+    public class DialogNode : BaseModel
     {
         /// <summary>
         /// How the dialog node is processed.
@@ -64,7 +64,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
             /// Enum RESPONSE_CONDITION for response_condition
             /// </summary>
             [EnumMember(Value = "response_condition")]
-            RESPONSE_CONDITION
+            RESPONSE_CONDITION,
+            
+            /// <summary>
+            /// Enum FOLDER for folder
+            /// </summary>
+            [EnumMember(Value = "folder")]
+            FOLDER
         }
 
         /// <summary>
@@ -125,6 +131,87 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         }
 
         /// <summary>
+        /// Whether this top-level dialog node can be digressed into.
+        /// </summary>
+        /// <value>Whether this top-level dialog node can be digressed into.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressInEnum
+        {
+            
+            /// <summary>
+            /// Enum NOT_AVAILABLE for not_available
+            /// </summary>
+            [EnumMember(Value = "not_available")]
+            NOT_AVAILABLE,
+            
+            /// <summary>
+            /// Enum RETURNS for returns
+            /// </summary>
+            [EnumMember(Value = "returns")]
+            RETURNS,
+            
+            /// <summary>
+            /// Enum DOES_NOT_RETURN for does_not_return
+            /// </summary>
+            [EnumMember(Value = "does_not_return")]
+            DOES_NOT_RETURN
+        }
+
+        /// <summary>
+        /// Whether this dialog node can be returned to after a digression.
+        /// </summary>
+        /// <value>Whether this dialog node can be returned to after a digression.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressOutEnum
+        {
+            
+            /// <summary>
+            /// Enum ALLOW_RETURNING for allow_returning
+            /// </summary>
+            [EnumMember(Value = "allow_returning")]
+            ALLOW_RETURNING,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL for allow_all
+            /// </summary>
+            [EnumMember(Value = "allow_all")]
+            ALLOW_ALL,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL_NEVER_RETURN for allow_all_never_return
+            /// </summary>
+            [EnumMember(Value = "allow_all_never_return")]
+            ALLOW_ALL_NEVER_RETURN
+        }
+
+        /// <summary>
+        /// Whether the user can digress to top-level nodes while filling out slots.
+        /// </summary>
+        /// <value>Whether the user can digress to top-level nodes while filling out slots.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressOutSlotsEnum
+        {
+            
+            /// <summary>
+            /// Enum NOT_ALLOWED for not_allowed
+            /// </summary>
+            [EnumMember(Value = "not_allowed")]
+            NOT_ALLOWED,
+            
+            /// <summary>
+            /// Enum ALLOW_RETURNING for allow_returning
+            /// </summary>
+            [EnumMember(Value = "allow_returning")]
+            ALLOW_RETURNING,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL for allow_all
+            /// </summary>
+            [EnumMember(Value = "allow_all")]
+            ALLOW_ALL
+        }
+
+        /// <summary>
         /// How the dialog node is processed.
         /// </summary>
         /// <value>How the dialog node is processed.</value>
@@ -136,6 +223,24 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <value>How an `event_handler` node is processed.</value>
         [JsonProperty("event_name", NullValueHandling = NullValueHandling.Ignore)]
         public EventNameEnum? EventName { get; set; }
+        /// <summary>
+        /// Whether this top-level dialog node can be digressed into.
+        /// </summary>
+        /// <value>Whether this top-level dialog node can be digressed into.</value>
+        [JsonProperty("digress_in", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressInEnum? DigressIn { get; set; }
+        /// <summary>
+        /// Whether this dialog node can be returned to after a digression.
+        /// </summary>
+        /// <value>Whether this dialog node can be returned to after a digression.</value>
+        [JsonProperty("digress_out", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressOutEnum? DigressOut { get; set; }
+        /// <summary>
+        /// Whether the user can digress to top-level nodes while filling out slots.
+        /// </summary>
+        /// <value>Whether the user can digress to top-level nodes while filling out slots.</value>
+        [JsonProperty("digress_out_slots", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressOutSlotsEnum? DigressOutSlots { get; set; }
         /// <summary>
         /// The dialog node ID.
         /// </summary>

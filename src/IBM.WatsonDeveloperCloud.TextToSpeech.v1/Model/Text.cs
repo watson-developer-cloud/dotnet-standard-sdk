@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// Text.
     /// </summary>
-    public class Text
+    public class Text : BaseModel
     {
         /// <summary>
         /// The text to synthesize.

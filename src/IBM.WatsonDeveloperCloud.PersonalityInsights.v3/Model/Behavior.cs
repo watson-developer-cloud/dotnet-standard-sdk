@@ -22,18 +22,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     /// <summary>
     /// Behavior.
     /// </summary>
-    public class Behavior
+    public class Behavior : BaseModel
     {
         /// <summary>
-        /// The unique identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.
+        /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.
         /// </summary>
-        /// <value>The unique identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.</value>
+        /// <value>The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.</value>
         [JsonProperty("trait_id", NullValueHandling = NullValueHandling.Ignore)]
         public string TraitId { get; set; }
         /// <summary>
-        /// The user-visible name of the characteristic.
+        /// The user-visible, localized name of the characteristic.
         /// </summary>
-        /// <value>The user-visible name of the characteristic.</value>
+        /// <value>The user-visible, localized name of the characteristic.</value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>

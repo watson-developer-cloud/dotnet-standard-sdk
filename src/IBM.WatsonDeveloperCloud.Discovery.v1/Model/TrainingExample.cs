@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingExample.
     /// </summary>
-    public class TrainingExample
+    public class TrainingExample : BaseModel
     {
         /// <summary>
         /// Gets or Sets DocumentId

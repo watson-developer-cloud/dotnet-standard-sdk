@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// InlineResponse200.
     /// </summary>
-    public class InlineResponse200
+    public class InlineResponse200 : BaseModel
     {
         /// <summary>
         /// model_id of the deleted model.

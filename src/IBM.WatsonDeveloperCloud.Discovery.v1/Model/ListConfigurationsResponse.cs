@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// ListConfigurationsResponse.
     /// </summary>
-    public class ListConfigurationsResponse
+    public class ListConfigurationsResponse : BaseModel
     {
         /// <summary>
         /// An array of Configurations that are available for the service instance.

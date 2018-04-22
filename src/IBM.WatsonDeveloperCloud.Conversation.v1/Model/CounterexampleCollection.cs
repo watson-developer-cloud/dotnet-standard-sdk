@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// CounterexampleCollection.
     /// </summary>
-    public class CounterexampleCollection
+    public class CounterexampleCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing the examples marked as irrelevant input.
@@ -32,9 +32,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
         public List<Counterexample> Counterexamples { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>An object defining the pagination data for the returned objects.</value>
+        /// <value>The pagination data for the returned objects.</value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

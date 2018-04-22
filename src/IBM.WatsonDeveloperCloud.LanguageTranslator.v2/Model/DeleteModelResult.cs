@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// DeleteModelResult.
     /// </summary>
-    public class DeleteModelResult
+    public class DeleteModelResult : BaseModel
     {
         /// <summary>
         /// "OK" indicates that the model was successfully deleted.

@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// IntentExport.
     /// </summary>
-    public class IntentExport
+    public class IntentExport : BaseModel
     {
         /// <summary>
         /// The name of the intent.

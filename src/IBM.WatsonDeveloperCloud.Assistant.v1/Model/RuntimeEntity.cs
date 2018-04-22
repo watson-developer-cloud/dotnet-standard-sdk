@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// A term from the request that was identified as an entity.
     /// </summary>
-    public class RuntimeEntity
+    public class RuntimeEntity : BaseModel
     {
         /// <summary>
         /// An entity detected in the input.

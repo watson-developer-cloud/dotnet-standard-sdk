@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// Translation.
     /// </summary>
-    public class Translation
+    public class Translation : BaseModel
     {
         /// <summary>
         /// Translation output in UTF-8.

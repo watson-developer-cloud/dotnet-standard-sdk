@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// UpdateValue.
     /// </summary>
-    public class UpdateValue
+    public class UpdateValue : BaseModel
     {
         /// <summary>
         /// Specifies the type of value.

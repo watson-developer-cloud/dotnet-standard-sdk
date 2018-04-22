@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// ToneAnalysis.
     /// </summary>
-    public class ToneAnalysis
+    public class ToneAnalysis : BaseModel
     {
         /// <summary>
         /// An object of type `DocumentAnalysis` that provides the results of the analysis for the full input document.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Analysis features and options.
     /// </summary>
-    public class Features
+    public class Features : BaseModel
     {
         /// <summary>
         /// Whether or not to return the concepts that are mentioned in the analyzed text.

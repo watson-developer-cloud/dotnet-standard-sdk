@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// AudioResources.
     /// </summary>
-    public class AudioResources
+    public class AudioResources : BaseModel
     {
         /// <summary>
         /// The total minutes of accumulated audio summed over all of the valid audio resources for the custom acoustic model. You can use this value to determine whether the custom model has too little or too much audio to begin training.

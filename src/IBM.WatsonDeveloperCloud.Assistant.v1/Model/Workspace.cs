@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// Workspace.
     /// </summary>
-    public class Workspace
+    public class Workspace : BaseModel
     {
         /// <summary>
         /// The name of the workspace.

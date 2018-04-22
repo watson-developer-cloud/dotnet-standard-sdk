@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// DialogNodeVisitedDetails.
     /// </summary>
-    public class DialogNodeVisitedDetails
+    public class DialogNodeVisitedDetails : BaseModel
     {
         /// <summary>
         /// A dialog node that was triggered during processing of the input message.
@@ -36,6 +36,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <value>The title of the dialog node.</value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
+        /// <summary>
+        /// The conditions that trigger the dialog node.
+        /// </summary>
+        /// <value>The conditions that trigger the dialog node.</value>
+        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
+        public string Conditions { get; set; }
     }
 
 }

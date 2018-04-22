@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
     /// </summary>
-    public class ErrorInfo
+    public class ErrorInfo : BaseModel
     {
         /// <summary>
         /// HTTP status code.

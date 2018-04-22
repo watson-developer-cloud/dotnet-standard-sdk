@@ -24,12 +24,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// Log message details.
     /// </summary>
-    public class LogMessage
+    public class LogMessage : BaseModel
     {
         /// <summary>
-        /// The severity of the message.
+        /// The severity of the log message.
         /// </summary>
-        /// <value>The severity of the message.</value>
+        /// <value>The severity of the log message.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LevelEnum
         {
@@ -54,15 +54,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         }
 
         /// <summary>
-        /// The severity of the message.
+        /// The severity of the log message.
         /// </summary>
-        /// <value>The severity of the message.</value>
+        /// <value>The severity of the log message.</value>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
         public LevelEnum? Level { get; set; }
         /// <summary>
-        /// The text of the message.
+        /// The text of the log message.
         /// </summary>
-        /// <value>The text of the message.</value>
+        /// <value>The text of the log message.</value>
         [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Msg { get; set; }
     }

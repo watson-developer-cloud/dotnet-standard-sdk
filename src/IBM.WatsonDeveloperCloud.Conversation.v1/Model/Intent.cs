@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// Intent.
     /// </summary>
-    public class Intent
+    public class Intent : BaseModel
     {
         /// <summary>
         /// The name of the intent.

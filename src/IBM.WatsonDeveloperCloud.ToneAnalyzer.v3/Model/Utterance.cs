@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// Utterance.
     /// </summary>
-    public class Utterance
+    public class Utterance : BaseModel
     {
         /// <summary>
         /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain multiple sentences.

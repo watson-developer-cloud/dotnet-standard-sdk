@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// SupportedFeatures.
     /// </summary>
-    public class SupportedFeatures
+    public class SupportedFeatures : BaseModel
     {
         /// <summary>
         /// If `true`, the voice can be customized; if `false`, the voice cannot be customized. (Same as `customizable`.).

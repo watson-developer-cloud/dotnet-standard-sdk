@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// FeatureSentimentResults.
     /// </summary>
-    public class FeatureSentimentResults
+    public class FeatureSentimentResults : BaseModel
     {
         /// <summary>
         /// Sentiment score from -1 (negative) to 1 (positive).

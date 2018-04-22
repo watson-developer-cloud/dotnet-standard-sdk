@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
     /// <summary>
     /// The response type for listing existing translation models.
     /// </summary>
-    public class TranslationModels
+    public class TranslationModels : BaseModel
     {
         /// <summary>
         /// An array of available models.

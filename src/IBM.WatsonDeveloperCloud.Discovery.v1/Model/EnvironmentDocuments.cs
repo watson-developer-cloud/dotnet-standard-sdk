@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Summary of the document usage statistics for the environment.
     /// </summary>
-    public class EnvironmentDocuments
+    public class EnvironmentDocuments : BaseModel
     {
         /// <summary>
         /// Number of documents indexed for the environment.

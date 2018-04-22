@@ -1,0 +1,11 @@
+var namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model =
+[
+    [ "Classification", "d5/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification.html", "d5/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification" ],
+    [ "ClassificationCollection", "de/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification_collection.html", "de/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification_collection" ],
+    [ "ClassifiedClass", "d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html", "d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class" ],
+    [ "Classifier", "d4/ddf/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classifier.html", "d4/ddf/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classifier" ],
+    [ "ClassifierList", "de/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classifier_list.html", "de/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classifier_list" ],
+    [ "ClassifyCollectionInput", "d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html", "d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input" ],
+    [ "ClassifyInput", "d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input.html", "d2/d21/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_input" ],
+    [ "CollectionItem", "d7/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_collection_item.html", "d7/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_collection_item" ]
+];

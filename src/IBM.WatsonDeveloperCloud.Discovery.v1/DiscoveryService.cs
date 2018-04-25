@@ -26,6 +26,7 @@ using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json;
 using System;
 using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {
@@ -33,6 +34,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
     {
         const string SERVICE_NAME = "discovery";
         const string URL = "https://gateway.watsonplatform.net/discovery/api";
+        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -57,6 +59,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             this.SetCredential(userName, password);
             if(string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+        }
+
+        public DiscoveryService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            if (string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException(nameof(versionDate));
+
+            _tokenManager = new TokenManager(options);
 
             VersionDate = versionDate;
         }
@@ -194,8 +209,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments");
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var request = client.GetAsync($"{this.Endpoint}/v1/environments");
                 request.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
                     request.WithArgument("name", name);

@@ -54,34 +54,31 @@ namespace IBM.WatsonDeveloperCloud.Util
         /// 4. If this class is managing tokens and has a valid token stored, send it
         /// </summary>
         /// <returns>An IamTokenData object containing the IAM token.</returns>
-        public IamTokenData GetToken()
+        public string GetToken()
         {
             if (!string.IsNullOrEmpty(_userAccessToken))
             {
                 // 1. use user-managed token
-                return new IamTokenData()
-                {
-                    AccessToken = _userAccessToken
-                };
+                return _userAccessToken;
             }
             else if (!string.IsNullOrEmpty(_tokenInfo.AccessToken) || IsRefreshTokenExpired())
             {
                 // 2. request an initial token
                 var tokenInfo = RequestToken();
                 SaveTokenInfo(tokenInfo);
-                return _tokenInfo;
+                return _tokenInfo.AccessToken;
             }
             else if (this.IsTokenExpired())
             {
                 // 3. refresh a token
                 var tokenInfo = RefreshToken();
                 SaveTokenInfo(tokenInfo);
-                return _tokenInfo;
+                return _tokenInfo.AccessToken;
             }
             else
             {
                 // 4. use valid managed token
-                return _tokenInfo;
+                return _tokenInfo.AccessToken;
             }
         }
 

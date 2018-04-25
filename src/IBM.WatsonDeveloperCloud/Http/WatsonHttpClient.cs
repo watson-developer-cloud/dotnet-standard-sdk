@@ -83,6 +83,16 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
+        public IClient WithAuthentication(string apikey)
+        {
+            if(!string.IsNullOrEmpty(apikey))
+            {
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
+            }
+
+            return this;
+        }
+
         public IRequest DeleteAsync(string resource)
         {
             return this.SendAsync(HttpMethod.Delete, resource);

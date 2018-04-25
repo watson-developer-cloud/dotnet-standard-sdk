@@ -15,6 +15,8 @@
 *
 */
 
+using IBM.WatsonDeveloperCloud.Assistant.v1;
+using IBM.WatsonDeveloperCloud.Discovery.v1;
 using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using System;
@@ -24,6 +26,10 @@ namespace IBM.WatsonDeveloperCloud.Example
     class IamTokenExample
     {
         private TokenManager _iamAssistantTokenManager;
+        private AssistantService _assistant;
+        private string _assistantVersionDate = "2018-02-16";
+        private DiscoveryService _discovery;
+        private string _discoveryVersionDate = "2018-03-05";
         private string _assistantApikey;
         private string _assistantUrl;
         private string _discoveryApikey;
@@ -44,6 +50,26 @@ namespace IBM.WatsonDeveloperCloud.Example
             var getTokenResult = _iamAssistantTokenManager.GetToken();
 
             Console.WriteLine(JsonConvert.SerializeObject(getTokenResult, Formatting.Indented));
+
+            //  Call Assistant
+            _assistant = new AssistantService(iamAssistantTokenOptions, _assistantVersionDate);
+
+            var _assistantListWorkspacesResponse = _assistant.ListWorkspaces();
+
+            Console.WriteLine(JsonConvert.SerializeObject(_assistantListWorkspacesResponse, Formatting.Indented));
+
+            //  Call Discovery
+            TokenOptions iamDiscoveryTokenOptions = new TokenOptions()
+            {
+                IamApiKey = _discoveryApikey,
+                IamUrl = _iamUrl
+            };
+
+            _discovery = new DiscoveryService(iamDiscoveryTokenOptions, _discoveryVersionDate);
+
+            var _discoveryListEnvironmentsResponse = _discovery.ListEnvironments();
+
+            Console.WriteLine(JsonConvert.SerializeObject(_discoveryListEnvironmentsResponse, Formatting.Indented));
         }
     }
 }

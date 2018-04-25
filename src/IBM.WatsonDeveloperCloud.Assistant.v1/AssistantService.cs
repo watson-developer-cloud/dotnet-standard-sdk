@@ -22,6 +22,7 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using Newtonsoft.Json;
 using System;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Assistant.v1
 {
@@ -29,6 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
     {
         const string SERVICE_NAME = "assistant";
         const string URL = "https://gateway.watsonplatform.net/assistant/api";
+        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -53,6 +55,19 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             this.SetCredential(userName, password);
             if(string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+        }
+
+        public AssistantService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            if (string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException(nameof(versionDate));
+
+            _tokenManager = new TokenManager(options);
 
             VersionDate = versionDate;
         }
@@ -85,8 +100,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var request = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
                 request.WithArgument("version", VersionDate);
                 if (nodesVisitedDetails != null)
                     request.WithArgument("nodes_visited_details", nodesVisitedDetails);
@@ -238,8 +262,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces");
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var request = client.GetAsync($"{this.Endpoint}/v1/workspaces");
                 request.WithArgument("version", VersionDate);
                 if (pageLimit != null)
                     request.WithArgument("page_limit", pageLimit);

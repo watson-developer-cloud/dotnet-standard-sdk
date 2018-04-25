@@ -136,7 +136,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        [TestMethod]
+        //[TestMethod]
         public void ListClassifiers_Success()
         {
             Classifiers listClassifiersResult = null;

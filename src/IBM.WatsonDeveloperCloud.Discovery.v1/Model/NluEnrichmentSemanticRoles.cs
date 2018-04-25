@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object specifiying the semantic roles enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentSemanticRoles
+    public class NluEnrichmentSemanticRoles : BaseModel
     {
         /// <summary>
         /// When `true` entities are extracted from the identified sentence parts.

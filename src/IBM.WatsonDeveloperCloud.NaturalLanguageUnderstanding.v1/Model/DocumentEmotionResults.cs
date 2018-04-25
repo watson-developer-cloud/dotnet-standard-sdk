@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An object containing the emotion results of a document.
     /// </summary>
-    public class DocumentEmotionResults
+    public class DocumentEmotionResults : BaseModel
     {
         /// <summary>
         /// An object containing the emotion results for the document.

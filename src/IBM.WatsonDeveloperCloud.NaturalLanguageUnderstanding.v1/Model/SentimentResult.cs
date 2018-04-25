@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The sentiment of the content.
     /// </summary>
-    public class SentimentResult
+    public class SentimentResult : BaseModel
     {
         /// <summary>
         /// The document level sentiment.

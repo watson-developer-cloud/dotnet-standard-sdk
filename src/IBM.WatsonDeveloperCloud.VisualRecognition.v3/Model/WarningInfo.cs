@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Information about something that went wrong.
     /// </summary>
-    public class WarningInfo
+    public class WarningInfo : BaseModel
     {
         /// <summary>
         /// Codified warning string, such as `limit_reached`.

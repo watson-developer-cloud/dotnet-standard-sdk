@@ -23,12 +23,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// WorkspaceCollection.
     /// </summary>
-    public class WorkspaceCollection
+    public class WorkspaceCollection : BaseModel
     {
         /// <summary>
-        /// An array of workspaces.
+        /// An array of objects describing the workspaces associated with the service instance.
         /// </summary>
-        /// <value>An array of workspaces.</value>
+        /// <value>An array of objects describing the workspaces associated with the service instance.</value>
         [JsonProperty("workspaces", NullValueHandling = NullValueHandling.Ignore)]
         public List<Workspace> Workspaces { get; set; }
         /// <summary>

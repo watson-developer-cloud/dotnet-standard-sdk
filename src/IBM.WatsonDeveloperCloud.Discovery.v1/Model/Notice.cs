@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A notice produced for the collection.
     /// </summary>
-    public class Notice
+    public class Notice : BaseModel
     {
         /// <summary>
         /// Severity level of the notice.

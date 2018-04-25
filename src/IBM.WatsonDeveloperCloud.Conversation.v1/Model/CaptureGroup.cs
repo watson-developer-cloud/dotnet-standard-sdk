@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// CaptureGroup.
     /// </summary>
-    public class CaptureGroup
+    public class CaptureGroup : BaseModel
     {
         /// <summary>
         /// A recognized capture group for the entity.

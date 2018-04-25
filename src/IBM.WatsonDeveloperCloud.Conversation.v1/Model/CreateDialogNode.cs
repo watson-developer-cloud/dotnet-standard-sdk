@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// CreateDialogNode.
     /// </summary>
-    public class CreateDialogNode
+    public class CreateDialogNode : BaseModel
     {
         /// <summary>
         /// How the dialog node is processed.
@@ -63,7 +63,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
             /// Enum RESPONSE_CONDITION for response_condition
             /// </summary>
             [EnumMember(Value = "response_condition")]
-            RESPONSE_CONDITION
+            RESPONSE_CONDITION,
+            
+            /// <summary>
+            /// Enum FOLDER for folder
+            /// </summary>
+            [EnumMember(Value = "folder")]
+            FOLDER
         }
 
         /// <summary>
@@ -124,6 +130,87 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         }
 
         /// <summary>
+        /// Whether this top-level dialog node can be digressed into.
+        /// </summary>
+        /// <value>Whether this top-level dialog node can be digressed into.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressInEnum
+        {
+            
+            /// <summary>
+            /// Enum NOT_AVAILABLE for not_available
+            /// </summary>
+            [EnumMember(Value = "not_available")]
+            NOT_AVAILABLE,
+            
+            /// <summary>
+            /// Enum RETURNS for returns
+            /// </summary>
+            [EnumMember(Value = "returns")]
+            RETURNS,
+            
+            /// <summary>
+            /// Enum DOES_NOT_RETURN for does_not_return
+            /// </summary>
+            [EnumMember(Value = "does_not_return")]
+            DOES_NOT_RETURN
+        }
+
+        /// <summary>
+        /// Whether this dialog node can be returned to after a digression.
+        /// </summary>
+        /// <value>Whether this dialog node can be returned to after a digression.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressOutEnum
+        {
+            
+            /// <summary>
+            /// Enum ALLOW_RETURNING for allow_returning
+            /// </summary>
+            [EnumMember(Value = "allow_returning")]
+            ALLOW_RETURNING,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL for allow_all
+            /// </summary>
+            [EnumMember(Value = "allow_all")]
+            ALLOW_ALL,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL_NEVER_RETURN for allow_all_never_return
+            /// </summary>
+            [EnumMember(Value = "allow_all_never_return")]
+            ALLOW_ALL_NEVER_RETURN
+        }
+
+        /// <summary>
+        /// Whether the user can digress to top-level nodes while filling out slots.
+        /// </summary>
+        /// <value>Whether the user can digress to top-level nodes while filling out slots.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DigressOutSlotsEnum
+        {
+            
+            /// <summary>
+            /// Enum NOT_ALLOWED for not_allowed
+            /// </summary>
+            [EnumMember(Value = "not_allowed")]
+            NOT_ALLOWED,
+            
+            /// <summary>
+            /// Enum ALLOW_RETURNING for allow_returning
+            /// </summary>
+            [EnumMember(Value = "allow_returning")]
+            ALLOW_RETURNING,
+            
+            /// <summary>
+            /// Enum ALLOW_ALL for allow_all
+            /// </summary>
+            [EnumMember(Value = "allow_all")]
+            ALLOW_ALL
+        }
+
+        /// <summary>
         /// How the dialog node is processed.
         /// </summary>
         /// <value>How the dialog node is processed.</value>
@@ -136,39 +223,57 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("event_name", NullValueHandling = NullValueHandling.Ignore)]
         public EventNameEnum? EventName { get; set; }
         /// <summary>
-        /// The dialog node ID.
+        /// Whether this top-level dialog node can be digressed into.
         /// </summary>
-        /// <value>The dialog node ID.</value>
+        /// <value>Whether this top-level dialog node can be digressed into.</value>
+        [JsonProperty("digress_in", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressInEnum? DigressIn { get; set; }
+        /// <summary>
+        /// Whether this dialog node can be returned to after a digression.
+        /// </summary>
+        /// <value>Whether this dialog node can be returned to after a digression.</value>
+        [JsonProperty("digress_out", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressOutEnum? DigressOut { get; set; }
+        /// <summary>
+        /// Whether the user can digress to top-level nodes while filling out slots.
+        /// </summary>
+        /// <value>Whether the user can digress to top-level nodes while filling out slots.</value>
+        [JsonProperty("digress_out_slots", NullValueHandling = NullValueHandling.Ignore)]
+        public DigressOutSlotsEnum? DigressOutSlots { get; set; }
+        /// <summary>
+        /// The dialog node ID. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 1024 characters.
+        /// </summary>
+        /// <value>The dialog node ID. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 1024 characters.</value>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
         public string DialogNode { get; set; }
         /// <summary>
-        /// The description of the dialog node.
+        /// The description of the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.
         /// </summary>
-        /// <value>The description of the dialog node.</value>
+        /// <value>The description of the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 128 characters.</value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The condition that will trigger the dialog node.
+        /// The condition that will trigger the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
         /// </summary>
-        /// <value>The condition that will trigger the dialog node.</value>
+        /// <value>The condition that will trigger the dialog node. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.</value>
         [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Conditions { get; set; }
         /// <summary>
-        /// The ID of the parent dialog node (if any).
+        /// The ID of the parent dialog node.
         /// </summary>
-        /// <value>The ID of the parent dialog node (if any).</value>
+        /// <value>The ID of the parent dialog node.</value>
         [JsonProperty("parent", NullValueHandling = NullValueHandling.Ignore)]
         public string Parent { get; set; }
         /// <summary>
-        /// The previous dialog node.
+        /// The ID of the previous dialog node.
         /// </summary>
-        /// <value>The previous dialog node.</value>
+        /// <value>The ID of the previous dialog node.</value>
         [JsonProperty("previous_sibling", NullValueHandling = NullValueHandling.Ignore)]
         public string PreviousSibling { get; set; }
         /// <summary>
-        /// The output of the dialog node.
+        /// The output of the dialog node. For more information about how to specify dialog node output, see the [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </summary>
-        /// <value>The output of the dialog node.</value>
+        /// <value>The output of the dialog node. For more information about how to specify dialog node output, see the [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).</value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public object Output { get; set; }
         /// <summary>
@@ -184,21 +289,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// The next step to execute following this dialog node.
+        /// The next step to be executed in dialog processing.
         /// </summary>
-        /// <value>The next step to execute following this dialog node.</value>
+        /// <value>The next step to be executed in dialog processing.</value>
         [JsonProperty("next_step", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeNextStep NextStep { get; set; }
         /// <summary>
-        /// The actions for the dialog node.
+        /// An array of objects describing any actions to be invoked by the dialog node.
         /// </summary>
-        /// <value>The actions for the dialog node.</value>
+        /// <value>An array of objects describing any actions to be invoked by the dialog node.</value>
         [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeAction> Actions { get; set; }
         /// <summary>
-        /// The alias used to identify the dialog node.
+        /// The alias used to identify the dialog node. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>The alias used to identify the dialog node.</value>
+        /// <value>The alias used to identify the dialog node. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.  - It must be no longer than 64 characters.</value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>

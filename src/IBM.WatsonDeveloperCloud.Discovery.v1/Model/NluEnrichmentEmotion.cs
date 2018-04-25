@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object specifying the emotion detection enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentEmotion
+    public class NluEnrichmentEmotion : BaseModel
     {
         /// <summary>
         /// When `true`, emotion detection is performed on the entire field.

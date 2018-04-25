@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// EntityMention.
     /// </summary>
-    public class EntityMention
+    public class EntityMention : BaseModel
     {
         /// <summary>
         /// Entity mention text.

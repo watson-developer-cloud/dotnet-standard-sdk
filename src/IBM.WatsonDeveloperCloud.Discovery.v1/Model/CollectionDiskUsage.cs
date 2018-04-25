@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Summary of the disk usage statistics for this collection.
     /// </summary>
-    public class CollectionDiskUsage
+    public class CollectionDiskUsage : BaseModel
     {
         /// <summary>
         /// Number of bytes used by the collection.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// An object speficying the Entities enrichment and related parameters.
     /// </summary>
-    public class NluEnrichmentEntities
+    public class NluEnrichmentEntities : BaseModel
     {
         /// <summary>
         /// When `true`, sentiment analysis of entities will be performed on the specified field.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     /// <summary>
     /// Classifier results for one image.
     /// </summary>
-    public class ClassifiedImage
+    public class ClassifiedImage : BaseModel
     {
         /// <summary>
         /// Source of the image before any redirects. Not returned when the image is uploaded.

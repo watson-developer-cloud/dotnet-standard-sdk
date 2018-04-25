@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// UpdateWorkspace.
     /// </summary>
-    public class UpdateWorkspace
+    public class UpdateWorkspace : BaseModel
     {
         /// <summary>
         /// The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 64 characters.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingDataSet.
     /// </summary>
-    public class TrainingDataSet
+    public class TrainingDataSet : BaseModel
     {
         /// <summary>
         /// Gets or Sets EnvironmentId

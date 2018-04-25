@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingExampleList.
     /// </summary>
-    public class TrainingExampleList
+    public class TrainingExampleList : BaseModel
     {
         /// <summary>
         /// Gets or Sets Examples

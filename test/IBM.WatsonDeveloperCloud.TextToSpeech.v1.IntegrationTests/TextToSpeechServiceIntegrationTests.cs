@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
@@ -243,10 +244,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
 
         #region Generated
         #region GetVoice
-        private Voice GetVoice(string voice, string customizationId = null)
+        private Voice GetVoice(string voice, string customizationId = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetVoice()");
-            var result = _service.GetVoice(voice: voice, customizationId: customizationId);
+            var result = _service.GetVoice(voice: voice, customizationId: customizationId, customData: customData);
 
             if (result != null)
             {
@@ -262,10 +263,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region ListVoices
-        private Voices ListVoices()
+        private Voices ListVoices(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListVoices()");
-            var result = _service.ListVoices();
+            var result = _service.ListVoices(customData: customData);
 
             if (result != null)
             {
@@ -281,10 +282,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region Synthesize
-        private System.IO.Stream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null)
+        private System.IO.Stream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Synthesize()");
-            var result = _service.Synthesize(text: text, accept: accept, voice: voice, customizationId: customizationId);
+            var result = _service.Synthesize(text: text, accept: accept, voice: voice, customizationId: customizationId, customData: customData);
 
             if (result != null)
             {
@@ -300,10 +301,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region GetPronunciation
-        private Pronunciation GetPronunciation(string text, string voice = null, string format = null, string customizationId = null)
+        private Pronunciation GetPronunciation(string text, string voice = null, string format = null, string customizationId = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetPronunciation()");
-            var result = _service.GetPronunciation(text: text, voice: voice, format: format, customizationId: customizationId);
+            var result = _service.GetPronunciation(text: text, voice: voice, format: format, customizationId: customizationId, customData: customData);
 
             if (result != null)
             {
@@ -319,10 +320,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region CreateVoiceModel
-        private VoiceModel CreateVoiceModel(CreateVoiceModel createVoiceModel)
+        private VoiceModel CreateVoiceModel(CreateVoiceModel createVoiceModel, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateVoiceModel()");
-            var result = _service.CreateVoiceModel(createVoiceModel: createVoiceModel);
+            var result = _service.CreateVoiceModel(createVoiceModel: createVoiceModel, customData: customData);
 
             if (result != null)
             {
@@ -338,10 +339,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region DeleteVoiceModel
-        private object DeleteVoiceModel(string customizationId)
+        private BaseModel DeleteVoiceModel(string customizationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteVoiceModel()");
-            var result = _service.DeleteVoiceModel(customizationId: customizationId);
+            var result = _service.DeleteVoiceModel(customizationId: customizationId, customData: customData);
 
             if (result != null)
             {
@@ -357,10 +358,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region GetVoiceModel
-        private VoiceModel GetVoiceModel(string customizationId)
+        private VoiceModel GetVoiceModel(string customizationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetVoiceModel()");
-            var result = _service.GetVoiceModel(customizationId: customizationId);
+            var result = _service.GetVoiceModel(customizationId: customizationId, customData: customData);
 
             if (result != null)
             {
@@ -376,10 +377,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region ListVoiceModels
-        private VoiceModels ListVoiceModels(string language = null)
+        private VoiceModels ListVoiceModels(string language = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListVoiceModels()");
-            var result = _service.ListVoiceModels(language: language);
+            var result = _service.ListVoiceModels(language: language, customData: customData);
 
             if (result != null)
             {
@@ -395,10 +396,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region UpdateVoiceModel
-        private object UpdateVoiceModel(string customizationId, UpdateVoiceModel updateVoiceModel)
+        private BaseModel UpdateVoiceModel(string customizationId, UpdateVoiceModel updateVoiceModel, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateVoiceModel()");
-            var result = _service.UpdateVoiceModel(customizationId: customizationId, updateVoiceModel: updateVoiceModel);
+            var result = _service.UpdateVoiceModel(customizationId: customizationId, updateVoiceModel: updateVoiceModel, customData: customData);
 
             if (result != null)
             {
@@ -414,10 +415,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region AddWord
-        private object AddWord(string customizationId, string word, Translation translation)
+        private BaseModel AddWord(string customizationId, string word, Translation translation, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddWord()");
-            var result = _service.AddWord(customizationId: customizationId, word: word, translation: translation);
+            var result = _service.AddWord(customizationId: customizationId, word: word, translation: translation, customData: customData);
 
             if (result != null)
             {
@@ -433,10 +434,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region AddWords
-        private object AddWords(string customizationId, Words customWords)
+        private BaseModel AddWords(string customizationId, Words customWords, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddWords()");
-            var result = _service.AddWords(customizationId: customizationId, customWords: customWords);
+            var result = _service.AddWords(customizationId: customizationId, customWords: customWords, customData: customData);
 
             if (result != null)
             {
@@ -452,10 +453,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region DeleteWord
-        private object DeleteWord(string customizationId, string word)
+        private BaseModel DeleteWord(string customizationId, string word, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteWord()");
-            var result = _service.DeleteWord(customizationId: customizationId, word: word);
+            var result = _service.DeleteWord(customizationId: customizationId, word: word, customData: customData);
 
             if (result != null)
             {
@@ -471,10 +472,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region GetWord
-        private Translation GetWord(string customizationId, string word)
+        private Translation GetWord(string customizationId, string word, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetWord()");
-            var result = _service.GetWord(customizationId: customizationId, word: word);
+            var result = _service.GetWord(customizationId: customizationId, word: word, customData: customData);
 
             if (result != null)
             {
@@ -490,10 +491,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region ListWords
-        private Words ListWords(string customizationId)
+        private Words ListWords(string customizationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListWords()");
-            var result = _service.ListWords(customizationId: customizationId);
+            var result = _service.ListWords(customizationId: customizationId, customData: customData);
 
             if (result != null)
             {

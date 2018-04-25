@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechRecognitionResult.
     /// </summary>
-    public class SpeechRecognitionResult
+    public class SpeechRecognitionResult : BaseModel
     {
         /// <summary>
         /// An indication of whether the transcription results are final. If `true`, the results for this utterance are not updated further; no additional results are sent for a `result_index` once its results are indicated as final.

@@ -15,21 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// QueryResultResultMetadata.
+    /// Filter.
     /// </summary>
-    public class QueryResultResultMetadata
+    public class Filter : BaseModel
     {
         /// <summary>
-        /// The confidence score of the result's analysis. A higher score indicating greater confidence.
+        /// The match the aggregated results queried for.
         /// </summary>
-        /// <value>The confidence score of the result's analysis. A higher score indicating greater confidence.</value>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        /// <value>The match the aggregated results queried for.</value>
+        [JsonProperty("match", NullValueHandling = NullValueHandling.Ignore)]
+        public string Match { get; set; }
     }
 
 }

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// ListEnvironmentsResponse.
     /// </summary>
-    public class ListEnvironmentsResponse
+    public class ListEnvironmentsResponse : BaseModel
     {
         /// <summary>
         /// An array of [environments] that are available for the service instance.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// Voice.
     /// </summary>
-    public class Voice
+    public class Voice : BaseModel
     {
         /// <summary>
         /// The URI of the voice.

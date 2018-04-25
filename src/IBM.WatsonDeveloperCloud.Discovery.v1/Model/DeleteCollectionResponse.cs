@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DeleteCollectionResponse.
     /// </summary>
-    public class DeleteCollectionResponse
+    public class DeleteCollectionResponse : BaseModel
     {
         /// <summary>
         /// The status of the collection. The status of a successful deletion operation is `deleted`.

@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// RegisterStatus.
     /// </summary>
-    public class RegisterStatus
+    public class RegisterStatus : BaseModel
     {
         /// <summary>
         /// The current status of the job: * `created` if the callback URL was successfully white-listed as a result of the call. * `already created` if the URL was already white-listed.

@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// DocumentSnapshot.
     /// </summary>
-    public class DocumentSnapshot
+    public class DocumentSnapshot : BaseModel
     {
         /// <summary>
         /// Gets or Sets Step

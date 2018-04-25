@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// Words.
     /// </summary>
-    public class Words
+    public class Words : BaseModel
     {
         /// <summary>
         /// Information about each word in the custom model's words resource. The array is empty if the custom model has no words.

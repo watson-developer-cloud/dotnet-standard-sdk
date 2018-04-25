@@ -23,18 +23,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// IntentCollection.
     /// </summary>
-    public class IntentCollection
+    public class IntentCollection : BaseModel
     {
         /// <summary>
-        /// An array of intents.
+        /// An array of objects describing the intents defined for the workspace.
         /// </summary>
-        /// <value>An array of intents.</value>
+        /// <value>An array of objects describing the intents defined for the workspace.</value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<IntentExport> Intents { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>An object defining the pagination data for the returned objects.</value>
+        /// <value>The pagination data for the returned objects.</value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

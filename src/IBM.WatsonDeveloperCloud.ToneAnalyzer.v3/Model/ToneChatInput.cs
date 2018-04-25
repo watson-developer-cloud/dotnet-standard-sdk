@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     /// <summary>
     /// ToneChatInput.
     /// </summary>
-    public class ToneChatInput
+    public class ToneChatInput : BaseModel
     {
         /// <summary>
         /// An array of `Utterance` objects that provides the input content that the service is to analyze.

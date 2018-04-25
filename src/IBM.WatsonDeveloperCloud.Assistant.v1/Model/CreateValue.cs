@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// CreateValue.
     /// </summary>
-    public class CreateValue
+    public class CreateValue : BaseModel
     {
         /// <summary>
         /// Specifies the type of value.

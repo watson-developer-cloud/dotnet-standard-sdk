@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// WordHeadingDetection.
     /// </summary>
-    public class WordHeadingDetection
+    public class WordHeadingDetection : BaseModel
     {
         /// <summary>
         /// Gets or Sets Fonts

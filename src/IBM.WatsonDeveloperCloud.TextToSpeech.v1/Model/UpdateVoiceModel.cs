@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// UpdateVoiceModel.
     /// </summary>
-    public class UpdateVoiceModel
+    public class UpdateVoiceModel : BaseModel
     {
         /// <summary>
         /// A new name for the custom voice model.
@@ -38,9 +38,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// An array of words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
+        /// An array of `Word` objects that provides the words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.
         /// </summary>
-        /// <value>An array of words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.</value>
+        /// <value>An array of `Word` objects that provides the words and their translations that are to be added or updated for the custom voice model. Pass an empty array to make no additions or updates.</value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
         public List<Word> Words { get; set; }
     }

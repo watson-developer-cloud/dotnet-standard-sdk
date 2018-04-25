@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// LogCollection.
     /// </summary>
-    public class LogCollection
+    public class LogCollection : BaseModel
     {
         /// <summary>
         /// An array of objects describing log events.

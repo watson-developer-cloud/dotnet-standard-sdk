@@ -23,13 +23,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Term.
     /// </summary>
-    public class Term
+    public class Term : BaseModel
     {
+        /// <summary>
+        /// The field where the aggregation is located in the document.
+        /// </summary>
+        /// <value>The field where the aggregation is located in the document.</value>
+        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
+        public string Field { get; set; }
         /// <summary>
         /// Gets or Sets Count
         /// </summary>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? Count { get; private set; }
+        public long? Count { get; set; }
     }
 
 }

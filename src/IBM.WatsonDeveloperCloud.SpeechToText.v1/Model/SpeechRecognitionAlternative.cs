@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// SpeechRecognitionAlternative.
     /// </summary>
-    public class SpeechRecognitionAlternative
+    public class SpeechRecognitionAlternative : BaseModel
     {
         /// <summary>
         /// A transcription of the audio.

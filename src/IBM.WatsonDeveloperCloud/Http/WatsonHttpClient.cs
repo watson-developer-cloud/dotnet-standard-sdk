@@ -37,6 +37,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri)
         {
+            this.BaseClient = new HttpClient();
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);

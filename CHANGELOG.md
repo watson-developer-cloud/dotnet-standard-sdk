@@ -1,5 +1,9 @@
 Change Log
 ==========
+## Version 2.2.1
+_2018-04-21_
+* New: Support for custom request and response headers ([#4311](https://github.ibm.com/Watson/developer-experience/issues/4311), [#206](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/206)).
+
 ## Version 2.2.0
 _2018-04-09_
 * New: Updated Visual Recognition with Core ML support ([4181](https://zenhub.innovate.ibm.com/app/workspace/o/watson/developer-experience/issues/4181), [201](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/201)).

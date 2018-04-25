@@ -18,15 +18,16 @@
 using IBM.WatsonDeveloperCloud.Http;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
 namespace IBM.WatsonDeveloperCloud.Util
 {
-    class TokenManager
+    public class TokenManager
     {
         public IClient Client { get; set; }
-        
+
         private string _iamUrl;
         private IamTokenData _tokenInfo;
         private string _iamApikey;
@@ -40,6 +41,8 @@ namespace IBM.WatsonDeveloperCloud.Util
                 _iamApikey = options.IamApiKey;
             if (!string.IsNullOrEmpty(options.IamAccessToken))
                 _userAccessToken = options.IamAccessToken;
+
+            this.Client = new WatsonHttpClient(this._iamUrl);
         }
 
         /// <summary>
@@ -107,18 +110,19 @@ namespace IBM.WatsonDeveloperCloud.Util
 
             try
             {
-                var request = this.Client.WithAuthentication(_iamApikey)
-                                .PostAsync(_iamUrl);
+                var request = this.Client.PostAsync(_iamUrl);
                 request.WithHeader("Content-type", "application/x-www-form-urlencoded");
                 request.WithHeader("Authorization", "Basic Yng6Yng=");
 
-                var formData = new MultipartFormDataContent();
-                var grantType = new StringContent("urn:ibm:params:oauth:grant-type:apikey", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                var responseType = new StringContent("cloud_iam", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                var apikey = new StringContent(_iamApikey, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                formData.Add(grantType, "grant_type");
-                formData.Add(responseType, "response_type");
-                formData.Add(apikey, "apikey");
+                List<KeyValuePair<string, string>> content = new List<KeyValuePair<string, string>>();
+                KeyValuePair<string, string> grantType = new KeyValuePair<string, string>("grant_type", "urn:ibm:params:oauth:grant-type:apikey");
+                KeyValuePair<string, string> responseType = new KeyValuePair<string, string>("response_type", "cloud_iam");
+                KeyValuePair<string, string> apikey = new KeyValuePair<string, string>("apikey", _iamApikey);
+                content.Add(grantType);
+                content.Add(responseType);
+                content.Add(apikey);
+
+                var formData = new FormUrlEncodedContent(content);
 
                 request.WithBodyContent(formData);
 
@@ -144,17 +148,18 @@ namespace IBM.WatsonDeveloperCloud.Util
 
             try
             {
-                var request = this.Client.WithAuthentication(_iamApikey)
-                                .PostAsync(_iamUrl);
+                var request = this.Client.PostAsync(_iamUrl);
                 request.WithHeader("Content-type", "application/x-www-form-urlencoded");
                 request.WithHeader("Authorization", "Basic Yng6Yng=");
 
-                var formData = new MultipartFormDataContent();
-                var grantType = new StringContent("refresh_token", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                var refreshToken = new StringContent("this.tokenInfo.refresh_token", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                formData.Add(grantType, "grant_type");
-                formData.Add(refreshToken, "refresh_token");
-
+                List<KeyValuePair<string, string>> content = new List<KeyValuePair<string, string>>();
+                KeyValuePair<string, string> grantType = new KeyValuePair<string, string>("grant_type", "refresh_token");
+                KeyValuePair<string, string> refreshToken = new KeyValuePair<string, string>("refresh_token", _tokenInfo.RefreshToken);
+                content.Add(grantType);
+                content.Add(refreshToken);
+                
+                var formData = new FormUrlEncodedContent(content);
+                
                 request.WithBodyContent(formData);
 
                 result = request.As<IamTokenData>().Result;

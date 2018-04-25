@@ -56,7 +56,6 @@ namespace IBM.WatsonDeveloperCloud.IntegrationTests
             var result = _iamAssistantTokenManager.GetToken();
 
             Assert.IsNotNull(result);
-            Assert.IsNotNull(result.AccessToken);
         }
     }
 }

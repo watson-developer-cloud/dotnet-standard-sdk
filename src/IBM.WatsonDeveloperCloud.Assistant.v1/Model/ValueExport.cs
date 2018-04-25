@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// ValueExport.
     /// </summary>
-    public class ValueExport
+    public class ValueExport : BaseModel
     {
         /// <summary>
         /// Specifies the type of value.

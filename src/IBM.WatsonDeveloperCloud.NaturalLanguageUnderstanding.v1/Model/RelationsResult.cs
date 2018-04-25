@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The relations between entities found in the content.
     /// </summary>
-    public class RelationsResult
+    public class RelationsResult : BaseModel
     {
         /// <summary>
         /// Confidence score for the relation. Higher values indicate greater confidence.

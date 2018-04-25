@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// SemanticRolesVerb.
     /// </summary>
-    public class SemanticRolesVerb
+    public class SemanticRolesVerb : BaseModel
     {
         /// <summary>
         /// The keyword text.

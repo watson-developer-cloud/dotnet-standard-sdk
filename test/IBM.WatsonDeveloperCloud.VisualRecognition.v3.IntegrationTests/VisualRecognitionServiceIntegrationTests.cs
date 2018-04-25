@@ -83,6 +83,36 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        #region Teardown
+        [TestCleanup]
+        public void Teardown()
+        {
+            var classifiers = _service.ListClassifiers();
+            List<string> dotnet_classifiers = new List<string>();
+
+            foreach (Classifier classifier in classifiers._Classifiers)
+            {
+                if (classifier.Name == _createdClassifierName)
+                    dotnet_classifiers.Add(classifier.ClassifierId);
+            }
+
+            foreach (string classifierId in dotnet_classifiers)
+            {
+                try
+                {
+                    var getClassifierResult = GetClassifier(classifierId);
+                    if (getClassifierResult != null)
+                        DeleteClassifier(classifierId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("error: {0}", e.Message);
+                }
+
+            }
+        }
+        #endregion
+
         #region General
         [TestMethod]
         public void Classify_Success()
@@ -127,7 +157,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
-                var result = _service.DetectFaces(url: _faceUrl, imagesFile:fs, imagesFileContentType:"image/jpg");
+                var result = _service.DetectFaces(url: _faceUrl, imagesFile: fs, imagesFileContentType: "image/jpg");
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
                 Assert.IsTrue(result.Images.Count > 0);
@@ -143,7 +173,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             try
             {
-                listClassifiersResult = ListClassifiers();
+                listClassifiersResult = _service.ListClassifiers();
             }
             catch
             {
@@ -375,10 +405,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Generated
         #region Classify
-        private ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null)
+        private ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
-            var result = _service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType);
+            var result = _service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType, customData: customData);
 
             if (result != null)
             {
@@ -394,10 +424,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region DetectFaces
-        private DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null)
+        private DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DetectFaces()");
-            var result = _service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType);
+            var result = _service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType, customData: customData);
 
             if (result != null)
             {
@@ -412,11 +442,30 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        #region CreateClassifier
+        private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateClassifier()");
+            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region DeleteClassifier
-        private object DeleteClassifier(string classifierId)
+        private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteClassifier()");
-            var result = _service.DeleteClassifier(classifierId: classifierId);
+            var result = _service.DeleteClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -432,10 +481,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region GetClassifier
-        private Classifier GetClassifier(string classifierId)
+        private Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetClassifier()");
-            var result = _service.GetClassifier(classifierId: classifierId);
+            var result = _service.GetClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -444,6 +493,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to GetClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateClassifier
+        private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateClassifier()");
+            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateClassifier()");
             }
 
             return result;

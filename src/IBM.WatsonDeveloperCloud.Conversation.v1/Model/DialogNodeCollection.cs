@@ -21,19 +21,20 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// DialogNodeCollection.
+    /// An array of dialog nodes.
     /// </summary>
-    public class DialogNodeCollection
+    public class DialogNodeCollection : BaseModel
     {
         /// <summary>
-        /// Gets or Sets DialogNodes
+        /// An array of objects describing the dialog nodes defined for the workspace.
         /// </summary>
+        /// <value>An array of objects describing the dialog nodes defined for the workspace.</value>
         [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNode> DialogNodes { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>An object defining the pagination data for the returned objects.</value>
+        /// <value>The pagination data for the returned objects.</value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

@@ -20,7 +20,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The hierarchical 5-level taxonomy the content is categorized into.
     /// </summary>
-    public class CategoriesOptions
+    public class CategoriesOptions : BaseModel
     {
     }
 

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// SynonymCollection.
     /// </summary>
-    public class SynonymCollection
+    public class SynonymCollection : BaseModel
     {
         /// <summary>
         /// An array of synonyms.

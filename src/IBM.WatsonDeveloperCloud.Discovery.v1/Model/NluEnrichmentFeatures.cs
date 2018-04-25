@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// NluEnrichmentFeatures.
     /// </summary>
-    public class NluEnrichmentFeatures
+    public class NluEnrichmentFeatures : BaseModel
     {
         /// <summary>
         /// An object specifying the Keyword enrichment and related parameters.

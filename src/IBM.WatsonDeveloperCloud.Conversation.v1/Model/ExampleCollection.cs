@@ -23,18 +23,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     /// <summary>
     /// ExampleCollection.
     /// </summary>
-    public class ExampleCollection
+    public class ExampleCollection : BaseModel
     {
         /// <summary>
-        /// An array of Example objects describing the examples defined for the intent.
+        /// An array of objects describing the examples defined for the intent.
         /// </summary>
-        /// <value>An array of Example objects describing the examples defined for the intent.</value>
+        /// <value>An array of objects describing the examples defined for the intent.</value>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<Example> Examples { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>An object defining the pagination data for the returned objects.</value>
+        /// <value>The pagination data for the returned objects.</value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

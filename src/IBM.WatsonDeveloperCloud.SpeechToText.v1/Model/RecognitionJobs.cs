@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// RecognitionJobs.
     /// </summary>
-    public class RecognitionJobs
+    public class RecognitionJobs : BaseModel
     {
         /// <summary>
         /// An array of objects that provides the status for each of the user's current jobs. The array is empty if the user has no current jobs.

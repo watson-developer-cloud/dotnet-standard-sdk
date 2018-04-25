@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// A text string that appears within the entity text field.
     /// </summary>
-    public class QueryEntitiesEntity
+    public class QueryEntitiesEntity : BaseModel
     {
         /// <summary>
         /// Entity text content.

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// AggregationResult.
     /// </summary>
-    public class AggregationResult
+    public class AggregationResult : BaseModel
     {
         /// <summary>
         /// Key that matched the aggregation type.

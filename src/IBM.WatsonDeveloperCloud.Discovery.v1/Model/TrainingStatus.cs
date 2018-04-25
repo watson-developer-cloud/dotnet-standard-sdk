@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// TrainingStatus.
     /// </summary>
-    public class TrainingStatus
+    public class TrainingStatus : BaseModel
     {
         /// <summary>
         /// Gets or Sets TotalExamples

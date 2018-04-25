@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Disambiguation information for the entity.
     /// </summary>
-    public class DisambiguationResult
+    public class DisambiguationResult : BaseModel
     {
         /// <summary>
         /// Common entity name.

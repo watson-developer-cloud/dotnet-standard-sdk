@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// An option specifying if the relationships found between entities in the analyzed content should be returned.
     /// </summary>
-    public class RelationsOptions
+    public class RelationsOptions : BaseModel
     {
         /// <summary>
         /// Enter a custom model ID to override the default model.

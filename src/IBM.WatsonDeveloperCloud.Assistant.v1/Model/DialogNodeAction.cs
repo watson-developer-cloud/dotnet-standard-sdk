@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     /// <summary>
     /// DialogNodeAction.
     /// </summary>
-    public class DialogNodeAction
+    public class DialogNodeAction : BaseModel
     {
         /// <summary>
         /// The type of action to invoke.

@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// UpdateCollectionRequest.
     /// </summary>
-    public class UpdateCollectionRequest
+    public class UpdateCollectionRequest : BaseModel
     {
         /// <summary>
         /// The name of the collection.

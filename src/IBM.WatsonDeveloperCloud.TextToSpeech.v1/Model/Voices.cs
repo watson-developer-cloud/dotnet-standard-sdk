@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     /// <summary>
     /// Voices.
     /// </summary>
-    public class Voices
+    public class Voices : BaseModel
     {
         /// <summary>
         /// A list of available voices.

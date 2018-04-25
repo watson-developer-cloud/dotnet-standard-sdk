@@ -100,35 +100,35 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\glossary.tmx C:\projects\dotnet-standard-sdk\glossary.tmx
 test_script:
 - ps: "if((Test-Path -Path coverage))\n{\n  rm coverage -r -force\n}\nNew-Item -path . -name coverage -itemtype directory\nForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) { \n  if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)\n    {\n      Write-Output \"No pull request number. Executing tests\"\n      dotnet test $folder.FullName\n      if($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode )  }\n      echo \"Test passed: $?\"\n      echo \"LastExitCode: $LastExitCode\"\n      $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    \n      $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'\n      $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'\n      & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'\n    }\n    else\n    {\n        Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping tests.\"\n    }\n }\n\nC:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error\n\nif($env:COVERALLS_REPO_TOKEN)\n{\n  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths\n}\nelse\n{\n  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"\n}"
-# artifacts:
-# - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud
-# - path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.Assistant.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.Conversation.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
-# - path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
-# - path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.SpeechToText.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.TextToSpeech.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
-# - path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.VisualRecognition.v3
-# - path: '\src\IBM.WatsonDeveloperCloud.Discovery.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.Discovery.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
-# - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
-#   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
-# deploy:
-# - provider: NuGet
-#   api_key:
-#     secure: jVMsvYb86JW+UMN2Gb2m1JazRkouGMzd58NHWxWVAY1BsQbehIU+YTxdsAeMo1qy
-#   on:
-#     branch: master
-#     APPVEYOR_REPO_TAG: true
+artifacts:
+- path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud
+- path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.Assistant.v1
+- path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.Conversation.v1
+- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
+- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
+- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.SpeechToText.v1
+- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.TextToSpeech.v1
+- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
+- path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.VisualRecognition.v3
+- path: '\src\IBM.WatsonDeveloperCloud.Discovery.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.Discovery.v1
+- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
+- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
+deploy:
+- provider: NuGet
+  api_key:
+    secure: jVMsvYb86JW+UMN2Gb2m1JazRkouGMzd58NHWxWVAY1BsQbehIU+YTxdsAeMo1qy
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true

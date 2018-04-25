@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     /// <summary>
     /// Word.
     /// </summary>
-    public class Word
+    public class Word : BaseModel
     {
         /// <summary>
         /// A word from the custom model's words resource. The spelling of the word is used to train the model.

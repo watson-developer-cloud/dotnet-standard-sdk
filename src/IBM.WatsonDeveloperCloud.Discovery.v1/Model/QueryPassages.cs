@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// QueryPassages.
     /// </summary>
-    public class QueryPassages
+    public class QueryPassages : BaseModel
     {
         /// <summary>
         /// The unique identifier of the document from which the passage has been extracted.

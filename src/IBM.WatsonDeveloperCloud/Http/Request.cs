@@ -28,6 +28,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Http.Filters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.WatsonDeveloperCloud.Http
 {
@@ -40,6 +42,16 @@ namespace IBM.WatsonDeveloperCloud.Http
         public HttpRequestMessage Message { get; }
 
         public MediaTypeFormatterCollection Formatters { get; }
+
+        private Dictionary<string, object> _customData = null;
+        public Dictionary<string, object> CustomData
+        {
+            get { return _customData == null ? new Dictionary<string, object>() : _customData; }
+            set
+            {
+                _customData = value;
+            }
+        }
 
         public Request(HttpRequestMessage message, MediaTypeFormatterCollection formatters, Func<IRequest, Task<HttpResponseMessage>> dispatcher, IHttpFilter[] filters)
         {
@@ -97,6 +109,21 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
+        public IRequest WithCustomData(Dictionary<string, object> customData)
+        {
+            this.CustomData = customData;
+
+            if (CustomData.ContainsKey(Constants.CUSTOM_REQUEST_HEADERS))
+            {
+                foreach (KeyValuePair<string, string> kvp in CustomData[Constants.CUSTOM_REQUEST_HEADERS] as Dictionary<string, string>)
+                {
+                    this.WithHeader(kvp.Key, kvp.Value);
+                }
+            }
+
+            return this;
+        }
+
         public TaskAwaiter<IResponse> GetAwaiter()
         {
             Func<Task<IResponse>> waiter = async () =>
@@ -115,8 +142,31 @@ namespace IBM.WatsonDeveloperCloud.Http
         public async Task<T> As<T>()
         {
             HttpResponseMessage message = await this.AsMessage().ConfigureAwait(false);
+            ProcessResponseHeaders(message);
             var result = message.Content.ReadAsStringAsync().Result;
+
+            Dictionary<string, object> customData = CustomData;
+            if(!string.IsNullOrEmpty(result))
+                customData.Add(Constants.JSON, JValue.Parse(result).ToString(Formatting.Indented));
+            CustomData = customData;
+
             return await message.Content.ReadAsAsync<T>(this.Formatters).ConfigureAwait(false);
+        }
+
+        private void ProcessResponseHeaders(HttpResponseMessage message)
+        {
+            Dictionary<string, object> customData = CustomData;
+            if (message.Headers != null)
+            {
+                Dictionary<string, string> responseHeaders = new Dictionary<string, string>();
+                
+                foreach (var header in message.Headers)
+                    responseHeaders.Add(header.Key, string.Join(",", header.Value));
+
+                customData.Add(Constants.RESPONSE_HEADERS, responseHeaders);
+            }
+
+            CustomData = customData;
         }
 
         public Task<List<T>> AsList<T>()

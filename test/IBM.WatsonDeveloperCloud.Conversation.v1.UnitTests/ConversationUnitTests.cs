@@ -259,12 +259,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -709,12 +709,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -1304,12 +1304,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -1810,12 +1810,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -2955,12 +2955,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -3521,12 +3521,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);
@@ -4085,12 +4085,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
                 .Returns(request);
 
             #region Response
-            object response = new object() { };
+            BaseModel response = new BaseModel();
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.As<object>()
+            request.As<BaseModel>()
                 .Returns(Task.FromResult(response));
 
             ConversationService service = new ConversationService(client);

@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// <summary>
     /// Document conversion settings.
     /// </summary>
-    public class Conversions
+    public class Conversions : BaseModel
     {
         /// <summary>
         /// A list of PDF conversion settings.
@@ -43,6 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>A list of HTML conversion settings.</value>
         [JsonProperty("html", NullValueHandling = NullValueHandling.Ignore)]
         public HtmlSettings Html { get; set; }
+        /// <summary>
+        /// A list of Document Segmentation settings.
+        /// </summary>
+        /// <value>A list of Document Segmentation settings.</value>
+        [JsonProperty("segment", NullValueHandling = NullValueHandling.Ignore)]
+        public SegmentSettings Segment { get; set; }
         /// <summary>
         /// Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
         /// </summary>

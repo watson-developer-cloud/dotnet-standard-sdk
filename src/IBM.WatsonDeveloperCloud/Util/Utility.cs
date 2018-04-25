@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-/**
+﻿/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +14,12 @@ using System.Threading.Tasks;
 * limitations under the License.
 *
 */
+
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 namespace IBM.WatsonDeveloperCloud.Util
 {
     /// <summary>

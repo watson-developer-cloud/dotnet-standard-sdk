@@ -15,15 +15,18 @@
 *
 */
 
+using IBM.WatsonDeveloperCloud.Http;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace IBM.WatsonDeveloperCloud.Util
 {
     class TokenManager
     {
+        public IClient Client { get; set; }
+        
         private string _iamUrl;
         private IamTokenData _tokenInfo;
         private string _iamApikey;
@@ -47,27 +50,35 @@ namespace IBM.WatsonDeveloperCloud.Util
         /// 3. If this class is managing tokens and the token has expired, refresh it
         /// 4. If this class is managing tokens and has a valid token stored, send it
         /// </summary>
-        public void GetToken()
+        /// <returns>An IamTokenData object containing the IAM token.</returns>
+        public IamTokenData GetToken()
         {
             if (!string.IsNullOrEmpty(_userAccessToken))
             {
                 // 1. use user-managed token
-                throw new NotImplementedException();
+                return new IamTokenData()
+                {
+                    AccessToken = _userAccessToken
+                };
             }
             else if (!string.IsNullOrEmpty(_tokenInfo.AccessToken) || IsRefreshTokenExpired())
             {
                 // 2. request an initial token
-                throw new NotImplementedException();
+                var tokenInfo = RequestToken();
+                SaveTokenInfo(tokenInfo);
+                return _tokenInfo;
             }
             else if (this.IsTokenExpired())
             {
                 // 3. refresh a token
-                throw new NotImplementedException();
+                var tokenInfo = RefreshToken();
+                SaveTokenInfo(tokenInfo);
+                return _tokenInfo;
             }
             else
             {
                 // 4. use valid managed token
-                throw new NotImplementedException();
+                return _tokenInfo;
             }
         }
 
@@ -89,17 +100,74 @@ namespace IBM.WatsonDeveloperCloud.Util
         /// <summary>
         /// Request an IAM token using an API key.
         /// </summary>
-        private void RequestToken()
+        /// <returns>An IamTokenData object containing the IAM token.</returns>
+        private IamTokenData RequestToken()
         {
-            throw new NotImplementedException();
+            IamTokenData result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(_iamApikey)
+                                .PostAsync(_iamUrl);
+                request.WithHeader("Content-type", "application/x-www-form-urlencoded");
+                request.WithHeader("Authorization", "Basic Yng6Yng=");
+
+                var formData = new MultipartFormDataContent();
+                var grantType = new StringContent("urn:ibm:params:oauth:grant-type:apikey", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                var responseType = new StringContent("cloud_iam", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                var apikey = new StringContent(_iamApikey, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                formData.Add(grantType, "grant_type");
+                formData.Add(responseType, "response_type");
+                formData.Add(apikey, "apikey");
+
+                request.WithBodyContent(formData);
+
+                result = request.As<IamTokenData>().Result;
+
+                if (result == null)
+                    result = new IamTokenData();
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         /// <summary>
         /// Refresh an IAM token using a refresh token.
         /// </summary>
-        private void RefreshToken()
+        private IamTokenData RefreshToken()
         {
-            throw new NotImplementedException();
+            IamTokenData result = null;
+
+            try
+            {
+                var request = this.Client.WithAuthentication(_iamApikey)
+                                .PostAsync(_iamUrl);
+                request.WithHeader("Content-type", "application/x-www-form-urlencoded");
+                request.WithHeader("Authorization", "Basic Yng6Yng=");
+
+                var formData = new MultipartFormDataContent();
+                var grantType = new StringContent("refresh_token", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                var refreshToken = new StringContent("this.tokenInfo.refresh_token", Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                formData.Add(grantType, "grant_type");
+                formData.Add(refreshToken, "refresh_token");
+
+                request.WithBodyContent(formData);
+
+                result = request.As<IamTokenData>().Result;
+
+                if (result == null)
+                    result = new IamTokenData();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
         }
 
         /// <summary>

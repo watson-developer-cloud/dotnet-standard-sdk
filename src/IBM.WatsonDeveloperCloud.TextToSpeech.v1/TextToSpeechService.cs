@@ -21,6 +21,7 @@ using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -31,6 +32,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
     {
         const string SERVICE_NAME = "text_to_speech";
         const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
+        private TokenManager _tokenManager = null;
         public TextToSpeechService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
@@ -46,6 +48,14 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+        }
+
+        public TextToSpeechService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
         }
 
         public TextToSpeechService(IClient httpClient) : this()
@@ -71,16 +81,26 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/voices/{voice}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/voices/{voice}");
+
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
+                    restRequest.WithArgument("customization_id", customizationId);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Voice>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Voice>().Result;
                 if(result == null)
                     result = new Voice();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -101,14 +121,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/voices");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/voices");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Voices>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Voices>().Result;
                 if(result == null)
                     result = new Voices();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -134,17 +164,27 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/synthesize");
-                request.WithArgument("accept", accept);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
+
+                restRequest.WithArgument("accept", accept);
                 if (!string.IsNullOrEmpty(voice))
-                    request.WithArgument("voice", voice);
+                    restRequest.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
-                request.WithBody<Text>(text);
+                    restRequest.WithArgument("customization_id", customizationId);
+                restRequest.WithBody<Text>(text);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = new System.IO.MemoryStream(request.AsByteArray().Result);
+                    restRequest.WithCustomData(customData);
+                result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
             catch(AggregateException ae)
             {
@@ -170,22 +210,32 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/pronunciation");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/pronunciation");
+
                 if (!string.IsNullOrEmpty(text))
-                    request.WithArgument("text", text);
+                    restRequest.WithArgument("text", text);
                 if (!string.IsNullOrEmpty(voice))
-                    request.WithArgument("voice", voice);
+                    restRequest.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(format))
-                    request.WithArgument("format", format);
+                    restRequest.WithArgument("format", format);
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
+                    restRequest.WithArgument("customization_id", customizationId);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Pronunciation>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Pronunciation>().Result;
                 if(result == null)
                     result = new Pronunciation();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -208,15 +258,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations");
-                request.WithBody<CreateVoiceModel>(createVoiceModel);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
+
+                restRequest.WithBody<CreateVoiceModel>(createVoiceModel);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<VoiceModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<VoiceModel>().Result;
                 if(result == null)
                     result = new VoiceModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -240,14 +300,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -271,14 +341,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<VoiceModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<VoiceModel>().Result;
                 if(result == null)
                     result = new VoiceModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -300,16 +380,26 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
+
                 if (!string.IsNullOrEmpty(language))
-                    request.WithArgument("language", language);
+                    restRequest.WithArgument("language", language);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<VoiceModels>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<VoiceModels>().Result;
                 if(result == null)
                     result = new VoiceModels();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -336,15 +426,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
-                request.WithBody<UpdateVoiceModel>(updateVoiceModel);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+
+                restRequest.WithBody<UpdateVoiceModel>(updateVoiceModel);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -373,15 +473,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
-                request.WithBody<Translation>(translation);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+
+                restRequest.WithBody<Translation>(translation);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -408,15 +518,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
-                request.WithBody<Words>(customWords);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+
+                restRequest.WithBody<Words>(customWords);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -443,14 +563,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -477,14 +607,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Translation>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Translation>().Result;
                 if(result == null)
                     result = new Translation();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -508,14 +648,24 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Words>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Words>().Result;
                 if(result == null)
                     result = new Words();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

@@ -23,6 +23,7 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using System;
 
@@ -32,6 +33,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
     {
         const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+        private TokenManager _tokenManager = null;
         public NaturalLanguageClassifierService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
@@ -47,6 +49,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+        }
+
+        public NaturalLanguageClassifierService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
         }
 
         public NaturalLanguageClassifierService(IClient httpClient) : this()
@@ -74,15 +84,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
-                request.WithBody<ClassifyInput>(body);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
+
+                restRequest.WithBody<ClassifyInput>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Classification>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classification>().Result;
                 if(result == null)
                     result = new Classification();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -109,15 +129,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
-                request.WithBody<ClassifyCollectionInput>(body);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
+
+                restRequest.WithBody<ClassifyCollectionInput>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ClassificationCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ClassificationCollection>().Result;
                 if(result == null)
                     result = new ClassificationCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -163,15 +193,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                     formData.Add(trainingDataContent, "training_data", "filename");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/classifiers");
-                request.WithBodyContent(formData);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
+
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Classifier>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
                 if(result == null)
                     result = new Classifier();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -195,14 +235,24 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -226,14 +276,24 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Classifier>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
                 if(result == null)
                     result = new Classifier();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -254,14 +314,24 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/classifiers");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ClassifierList>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ClassifierList>().Result;
                 if(result == null)
                     result = new ClassifierList();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

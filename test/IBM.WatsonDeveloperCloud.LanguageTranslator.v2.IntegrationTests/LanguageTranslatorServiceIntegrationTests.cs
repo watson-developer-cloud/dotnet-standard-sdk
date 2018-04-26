@@ -188,7 +188,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private TranslationResult Translate(TranslateRequest request)
         {
             Console.WriteLine("\nAttempting to Translate()");
-            var result = _service.Translate(translateRequest: request);
+            var result = _service.Translate(request: request);
 
             if (result != null)
             {

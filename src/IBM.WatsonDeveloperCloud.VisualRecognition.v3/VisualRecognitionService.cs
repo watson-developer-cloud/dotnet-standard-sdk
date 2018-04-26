@@ -15,15 +15,16 @@
 *
 */
 
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using System;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
@@ -31,6 +32,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     {
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -54,6 +56,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
+        }
+
+        public VisualRecognitionService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+
+            _tokenManager = new TokenManager(options);
         }
 
         public VisualRecognitionService(IClient httpClient) : this()
@@ -122,17 +136,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(classifierIdsContent, "classifier_ids");
                 }
 
-                var request = this.Client.PostAsync($"{this.Endpoint}/v3/classify");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
-                request.WithHeader("Accept-Language", acceptLanguage);
-                request.WithBodyContent(formData);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ClassifiedImages>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ClassifiedImages>().Result;
                 if(result == null)
                     result = new ClassifiedImages();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -177,16 +202,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(urlContent, "url");
                 }
 
-                var request = this.Client.PostAsync($"{this.Endpoint}/v3/detect_faces");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
-                request.WithBodyContent(formData);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DetectedFaces>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DetectedFaces>().Result;
                 if(result == null)
                     result = new DetectedFaces();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -214,15 +250,26 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                var request = this.Client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -250,15 +297,26 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Classifier>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
                 if(result == null)
                     result = new Classifier();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -284,17 +342,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
                 if (verbose != null)
-                    request.WithArgument("verbose", verbose);
+                    restRequest.WithArgument("verbose", verbose);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Classifiers>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifiers>().Result;
                 if(result == null)
                     result = new Classifiers();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

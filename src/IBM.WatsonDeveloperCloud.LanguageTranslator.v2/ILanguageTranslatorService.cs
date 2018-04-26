@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {

@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 {

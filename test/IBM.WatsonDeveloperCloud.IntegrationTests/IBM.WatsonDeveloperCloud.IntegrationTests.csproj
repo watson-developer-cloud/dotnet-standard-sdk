@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj" />
+    <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj" />
     <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj" />
   </ItemGroup>
 

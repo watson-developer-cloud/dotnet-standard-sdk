@@ -17,13 +17,20 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IBM.WatsonDeveloperCloud.Util;
+using IBM.WatsonDeveloperCloud.Discovery.v1;
+using IBM.WatsonDeveloperCloud.Assistant.v1;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.IntegrationTests
 {
     [TestClass]
-    class TokenManagerIntegrationTests
+    public class TokenManagerIntegrationTests
     {
         private TokenManager _iamAssistantTokenManager;
+        private AssistantService _assistant;
+        private string _assistantVersionDate = "2018-02-16";
+        private DiscoveryService _discovery;
+        private string _discoveryVersionDate = "2018-03-05";
         private string _assistantApikey;
         private string _assistantUrl;
         private string _discoveryApikey;
@@ -34,7 +41,6 @@ namespace IBM.WatsonDeveloperCloud.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            
         }
 
         [TestCleanup]
@@ -51,11 +57,56 @@ namespace IBM.WatsonDeveloperCloud.IntegrationTests
                 IamApiKey = _assistantApikey,
                 IamUrl = _iamUrl
             };
+
             _iamAssistantTokenManager = new TokenManager(iamAssistantTokenOptions);
+            string getTokenResult = null;
+            try
+            {
+                getTokenResult = _iamAssistantTokenManager.GetToken();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error getting token: {0}", e.Message);
+            }
 
-            var result = _iamAssistantTokenManager.GetToken();
+            Assert.IsNotNull(getTokenResult);
+        }
 
-            Assert.IsNotNull(result);
+        [TestMethod]
+        public void TestDiscovery()
+        {
+            TokenOptions iamDiscoveryTokenOptions = new TokenOptions()
+            {
+                IamApiKey = _discoveryApikey,
+                IamUrl = _iamUrl
+            };
+
+            _discovery = new DiscoveryService(iamDiscoveryTokenOptions, _discoveryVersionDate);
+            _discovery.Endpoint = _discoveryUrl;
+            
+            var _discoveryListEnvironmentsResponse = _discovery.ListEnvironments();
+
+            Assert.IsNotNull(_discoveryListEnvironmentsResponse);
+            Assert.IsNotNull(_discoveryListEnvironmentsResponse.ResponseJson);
+            Assert.IsTrue(_discoveryListEnvironmentsResponse.Environments.Count > 0);
+        }
+
+        [TestMethod]
+        public void TestAssistant()
+        {
+            TokenOptions iamAssistantTokenOptions = new TokenOptions()
+            {
+                IamApiKey = _assistantApikey,
+                IamUrl = _iamUrl
+            };
+
+            _assistant = new AssistantService(iamAssistantTokenOptions, _assistantVersionDate);
+            _assistant.Endpoint = _assistantUrl;
+
+            var _assistantListWorkspacesResponse = _assistant.ListWorkspaces();
+
+            Assert.IsNotNull(_assistantListWorkspacesResponse);
+            Assert.IsNotNull(_assistantListWorkspacesResponse.ResponseJson);
         }
     }
 }

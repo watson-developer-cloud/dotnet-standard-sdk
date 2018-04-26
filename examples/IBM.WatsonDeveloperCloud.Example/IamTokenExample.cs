@@ -47,16 +47,26 @@ namespace IBM.WatsonDeveloperCloud.Example
             };
             _iamAssistantTokenManager = new TokenManager(iamAssistantTokenOptions);
 
-            var getTokenResult = _iamAssistantTokenManager.GetToken();
+            //  Get token
+            string getTokenResult = null;
+            try
+            {
+                getTokenResult = _iamAssistantTokenManager.GetToken();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error getting token: {0}", e.Message);
+            }
 
-            Console.WriteLine(JsonConvert.SerializeObject(getTokenResult, Formatting.Indented));
+            Console.WriteLine("GetToken() response: \n{0}", JsonConvert.SerializeObject(getTokenResult, Formatting.Indented));
 
             //  Call Assistant
             _assistant = new AssistantService(iamAssistantTokenOptions, _assistantVersionDate);
+            _assistant.Endpoint = _assistantUrl;
 
             var _assistantListWorkspacesResponse = _assistant.ListWorkspaces();
 
-            Console.WriteLine(JsonConvert.SerializeObject(_assistantListWorkspacesResponse, Formatting.Indented));
+            Console.WriteLine("ListWorkspaces() response: \n{0}", JsonConvert.SerializeObject(_assistantListWorkspacesResponse, Formatting.Indented));
 
             //  Call Discovery
             TokenOptions iamDiscoveryTokenOptions = new TokenOptions()
@@ -66,10 +76,11 @@ namespace IBM.WatsonDeveloperCloud.Example
             };
 
             _discovery = new DiscoveryService(iamDiscoveryTokenOptions, _discoveryVersionDate);
+            _discovery.Endpoint = _discoveryUrl;
 
             var _discoveryListEnvironmentsResponse = _discovery.ListEnvironments();
 
-            Console.WriteLine(JsonConvert.SerializeObject(_discoveryListEnvironmentsResponse, Formatting.Indented));
+            Console.WriteLine("ListEnvironments() response: \n{0}", JsonConvert.SerializeObject(_discoveryListEnvironmentsResponse, Formatting.Indented));
         }
     }
 }

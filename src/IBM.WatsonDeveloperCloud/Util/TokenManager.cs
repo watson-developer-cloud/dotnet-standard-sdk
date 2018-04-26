@@ -107,6 +107,9 @@ namespace IBM.WatsonDeveloperCloud.Util
 
             try
             {
+                if (string.IsNullOrEmpty(_iamApikey))
+                    throw new ArgumentNullException(nameof(_iamApikey));
+
                 var request = this.Client.PostAsync(_iamUrl);
                 request.WithHeader("Content-type", "application/x-www-form-urlencoded");
                 request.WithHeader("Authorization", "Basic Yng6Yng=");
@@ -145,6 +148,9 @@ namespace IBM.WatsonDeveloperCloud.Util
 
             try
             {
+                if (string.IsNullOrEmpty(_tokenInfo.RefreshToken))
+                    throw new ArgumentNullException(nameof(_tokenInfo.RefreshToken));
+
                 var request = this.Client.PostAsync(_iamUrl);
                 request.WithHeader("Content-type", "application/x-www-form-urlencoded");
                 request.WithHeader("Authorization", "Basic Yng6Yng=");

@@ -23,7 +23,7 @@ using System;
 
 namespace IBM.WatsonDeveloperCloud.IntegrationTests
 {
-    [TestClass]
+    //[TestClass]
     public class TokenManagerIntegrationTests
     {
         private TokenManager _iamAssistantTokenManager;

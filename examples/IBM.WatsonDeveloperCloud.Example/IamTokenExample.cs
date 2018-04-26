@@ -23,7 +23,7 @@ using System;
 
 namespace IBM.WatsonDeveloperCloud.Example
 {
-    class IamTokenExample
+    public class IamTokenExample
     {
         private TokenManager _iamAssistantTokenManager;
         private AssistantService _assistant;
@@ -39,7 +39,6 @@ namespace IBM.WatsonDeveloperCloud.Example
 
         public IamTokenExample()
         {
-            //  Get token
             TokenOptions iamAssistantTokenOptions = new TokenOptions()
             {
                 IamApiKey = _assistantApikey,

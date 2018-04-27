@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -22,8 +23,8 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using System;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 {
@@ -31,6 +32,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
     {
         const string SERVICE_NAME = "language_translator";
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
+        private TokenManager _tokenManager = null;
         public LanguageTranslatorService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
@@ -48,6 +50,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.SetCredential(userName, password);
         }
 
+        public LanguageTranslatorService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
+        }
+
         public LanguageTranslatorService(IClient httpClient) : this()
         {
             if (httpClient == null)
@@ -62,23 +72,33 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="request">The translate request containing the text, and either a model ID or source and target language pair.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
-        public TranslationResult Translate(TranslateRequest translateRequest, Dictionary<string, object> customData = null)
+        public TranslationResult Translate(TranslateRequest request, Dictionary<string, object> customData = null)
         {
-            if (translateRequest == null)
-                throw new ArgumentNullException(nameof(translateRequest));
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
             TranslationResult result = null;
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/translate");
-                request.WithBody<TranslateRequest>(translateRequest);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/translate");
+
+                restRequest.WithBody<TranslateRequest>(request);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TranslationResult>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TranslationResult>().Result;
                 if(result == null)
                     result = new TranslationResult();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -101,15 +121,25 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/identify");
-                request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/identify");
+
+                restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<IdentifiedLanguages>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<IdentifiedLanguages>().Result;
                 if(result == null)
                     result = new IdentifiedLanguages();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -133,15 +163,25 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/identify");
-                request.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/identify");
+
+                restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<IdentifiedLanguages>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<IdentifiedLanguages>().Result;
                 if(result == null)
                     result = new IdentifiedLanguages();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -162,14 +202,24 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/identifiable_languages");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/identifiable_languages");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<IdentifiableLanguages>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<IdentifiableLanguages>().Result;
                 if(result == null)
                     result = new IdentifiableLanguages();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -225,19 +275,29 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v2/models");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/models");
+
                 if (!string.IsNullOrEmpty(baseModelId))
-                    request.WithArgument("base_model_id", baseModelId);
+                    restRequest.WithArgument("base_model_id", baseModelId);
                 if (!string.IsNullOrEmpty(name))
-                    request.WithArgument("name", name);
-                request.WithBodyContent(formData);
+                    restRequest.WithArgument("name", name);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TranslationModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TranslationModel>().Result;
                 if(result == null)
                     result = new TranslationModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -261,14 +321,24 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DeleteModelResult>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DeleteModelResult>().Result;
                 if(result == null)
                     result = new DeleteModelResult();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -292,14 +362,24 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/models/{modelId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/models/{modelId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TranslationModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TranslationModel>().Result;
                 if(result == null)
                     result = new TranslationModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -323,20 +403,30 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v2/models");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/models");
+
                 if (!string.IsNullOrEmpty(source))
-                    request.WithArgument("source", source);
+                    restRequest.WithArgument("source", source);
                 if (!string.IsNullOrEmpty(target))
-                    request.WithArgument("target", target);
+                    restRequest.WithArgument("target", target);
                 if (defaultModels != null)
-                    request.WithArgument("default", defaultModels);
+                    restRequest.WithArgument("default", defaultModels);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TranslationModels>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TranslationModels>().Result;
                 if(result == null)
                     result = new TranslationModels();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

@@ -699,7 +699,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Message()");
-            var result = _service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
+            var result = _service.Message(workspaceId: workspaceId, request: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
 
             if (result != null)
             {

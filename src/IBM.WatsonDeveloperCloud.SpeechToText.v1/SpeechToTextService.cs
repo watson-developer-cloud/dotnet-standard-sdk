@@ -24,6 +24,7 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -34,6 +35,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
     {
         const string SERVICE_NAME = "speech_to_text";
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
+        private TokenManager _tokenManager = null;
         public SpeechToTextService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
@@ -49,6 +51,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
+        }
+
+        public SpeechToTextService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
         }
 
         public SpeechToTextService(IClient httpClient) : this()
@@ -73,14 +83,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models/{modelId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models/{modelId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<SpeechModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<SpeechModel>().Result;
                 if(result == null)
                     result = new SpeechModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -101,14 +121,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<SpeechModels>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<SpeechModels>().Result;
                 if(result == null)
                     result = new SpeechModels();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -118,72 +148,86 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
         /// <summary>
-        /// Sends audio for speech recognition in sessionless mode. Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use session-based requests or the WebSocket API. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)   ###Streaming mode   For requests to transcribe live audio as it becomes available or to transcribe multiple audio files with multipart requests, you must set the `Transfer-Encoding` header to `chunked` to use streaming mode. In streaming mode, the server closes the connection (status code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (status code 400) if no speech is detected for `inactivity_timeout` seconds of audio (not processing time); use the `inactivity_timeout` parameter to change the default of 30 seconds.   ###Non-multipart requests   For non-multipart requests, you specify all parameters of the request as a collection of request headers and query parameters, and you provide the audio as the body of the request. This is the recommended means of submitting a recognition request. Use the following parameters: * **Required:** `Content-Type` and `audio` * **Optional:** `Transfer-Encoding`, `model`, `customization_id`, `acoustic_customization_id`, `base_model_version`, `customization_weight`, `inactivity_timeout`, `keywords`, `keywords_threshold`, `max_alternatives`, `word_alternatives_threshold`, `word_confidence`, `timestamps`, `profanity_filter`, `smart_formatting`, and `speaker_labels`     ###Multipart requests   For multipart requests, you specify a few parameters of the request as request headers and query parameters, but you specify most parameters as multipart form data in the form of JSON metadata, in which only `part_content_type` is required. You then specify the audio files for the request as subsequent parts of the form data. Use this approach with browsers that do not support JavaScript or when the parameters of the request are greater than the 8 KB limit imposed by most HTTP servers and proxies. Use the following parameters: * **Required:** `Content-Type`, `metadata`, and `upload` * **Optional:** `Transfer-Encoding`, `model`, `customization_id`, `acoustic_customization_id`, and `base_model_version`   An example of the multipart metadata for a pair of FLAC files follows. This first part of the request is sent as JSON; the remaining parts are the audio files for the request.  `metadata="{\\"part_content_type\\":\\"audio/flac\\",\\"data_parts_count\\":2,\\"inactivity_timeout\\"=-1}"`     ###Audio formats (content types)   The service accepts audio in the following formats (MIME types): * `audio/basic` (Use only with narrowband models.) * `audio/flac` * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness (`endianness`) of the audio.) * `audio/mp3` * `audio/mpeg` * `audio/mulaw` (Specify the sampling rate (`rate`) of the audio.) * `audio/ogg` (The service automatically detects the codec of the input audio.) * `audio/ogg;codecs=opus` * `audio/ogg;codecs=vorbis` * `audio/wav` (Provide audio with a maximum of nine channels.) * `audio/webm` (The service automatically detects the codec of the input audio.) * `audio/webm;codecs=opus` * `audio/webm;codecs=vorbis`   For information about the supported audio formats, including specifying the sampling rate, channels, and endianness for the indicated formats, see [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html). * **For non-multipart requests,** use the `Content-Type` parameter to specify the audio format. * **For multipart requests,** use the `Content-Type` parameter to indicate the content type of the payload, `multipart/form-data`, and specify the audio format with the `part_content_type` field of the JSON metadata. Do not use `multipart/form-data` for non-multipart requests.   **Note about the Try It Out feature:** The `Try it out!` button is **not** supported for use with the the `POST /v1/recognize` method. For examples of calls to the method, see the [Speech to Text API reference](http://www.ibm.com/watson/developercloud/speech-to-text/api/v1/).
+        /// Sends audio for speech recognition in sessionless mode. Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use session-based requests or the WebSocket API. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)   ###Streaming mode   For requests to transcribe live audio as it becomes available, you must set the `Transfer-Encoding` header to `chunked` to use streaming mode. In streaming mode, the server closes the connection (status code 408) if the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds. The server also closes the connection (status code 400) if no speech is detected for `inactivity_timeout` seconds of audio (not processing time); use the `inactivity_timeout` parameter to change the default of 30 seconds.   ###Audio formats (content types)   Use the `Content-Type` header to specify the audio format (MIME type) of the audio. The service accepts the following formats: * `audio/basic` (Use only with narrowband models.) * `audio/flac` * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness (`endianness`) of the audio.) * `audio/mp3` * `audio/mpeg` * `audio/mulaw` (Specify the sampling rate (`rate`) of the audio.) * `audio/ogg` (The service automatically detects the codec of the input audio.) * `audio/ogg;codecs=opus` * `audio/ogg;codecs=vorbis` * `audio/wav` (Provide audio with a maximum of nine channels.) * `audio/webm` (The service automatically detects the codec of the input audio.) * `audio/webm;codecs=opus` * `audio/webm;codecs=vorbis`   For information about the supported audio formats, including specifying the sampling rate, channels, and endianness for the indicated formats, see [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).   ###Multipart speech recognition   The method also supports multipart recognition requests. With multipart requests, you pass all audio data as multipart form data. You specify some parameters as request headers and query parameters, but you pass JSON metadata as form data to control most aspects of the transcription.   The multipart approach is intended for use with browsers for which JavaScript is disabled or when the parameters used with the request are greater than the 8 KB limit imposed by most HTTP servers and proxies. You can encounter this limit, for example, if you want to spot a very large number of keywords.   For information about submitting a multipart request, see [Submitting multipart requests as form data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
         /// </summary>
+        /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
+        /// <param name="contentType">The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg, audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
         /// <param name="model">The identifier of the model that is to be used for the recognition request or, for the **Create a session** method, with the new session. (optional, default to en-US_BroadbandModel)</param>
         /// <param name="customizationId">The GUID of a custom language model that is to be used with the recognition request or, for the **Create a session** method, with the new session. The base model of the specified custom language model must match the model specified with the `model` parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom language model is used. (optional)</param>
         /// <param name="acousticCustomizationId">The GUID of a custom acoustic model that is to be used with the recognition request or, for the **Create a session** method, with the new session. The base model of the specified custom acoustic model must match the model specified with the `model` parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom acoustic model is used. (optional)</param>
         /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition request or, for the **Create a session** method, with the new session. Multiple versions of a base model can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The default value depends on whether the parameter is used with or without a custom model. For more information, see [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version). (optional)</param>
-        /// <param name="customizationWeight">If you specify the GUID of a custom language model with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells the service how much weight to give to words from the custom language model compared to those from the base model for the current request.   Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was specified when the custom model was trained.   The default value yields the best performance in general. Assign a higher value if your audio makes frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain phrases.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.   **Required for NON-MULTIPART recognition requests. Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="contentType">The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg, audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm, audio/webm;codecs=opus, audio/webm;codecs=vorbis, or multipart/form-data. (optional)</param>
-        /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live microphone when a user simply walks away. Use `-1` for infinity.   **Do not use with MULTIPART recognition requests.**. (optional, default to 30)</param>
-        /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the parameter or specify an empty array if you do not need to spot keywords.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a threshold, you must also specify one or more keywords.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a single transcription is returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to 1)</param>
-        /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No alternative words are computed if you omit the parameter.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only.   **Do not use with MULTIPART recognition requests.**. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels).   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
+        /// <param name="customizationWeight">If you specify the GUID of a custom language model with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells the service how much weight to give to words from the custom language model compared to those from the base model for the current request.   Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was specified when the custom model was trained.   The default value yields the best performance in general. Assign a higher value if your audio makes frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain phrases. (optional)</param>
+        /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default to 30)</param>
+        /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
+        /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a threshold, you must also specify one or more keywords. (optional)</param>
+        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a single transcription is returned. (optional, default to 1)</param>
+        /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No alternative words are computed if you omit the parameter. (optional)</param>
+        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
+        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned. (optional, default to false)</param>
+        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
+        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only. (optional, default to false)</param>
+        /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels). (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public SpeechRecognitionResults RecognizeSessionless(string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, byte[] audio = null, string contentType = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
+        public SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
         {
+            if (audio == null)
+                throw new ArgumentNullException(nameof(audio));
+            if (string.IsNullOrEmpty(contentType))
+                throw new ArgumentNullException(nameof(contentType));
             SpeechRecognitionResults result = null;
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/recognize");
-                request.WithHeader("Content-Type", contentType);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
+
+                restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
-                    request.WithArgument("model", model);
+                    restRequest.WithArgument("model", model);
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
+                    restRequest.WithArgument("customization_id", customizationId);
                 if (!string.IsNullOrEmpty(acousticCustomizationId))
-                    request.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                    restRequest.WithArgument("acoustic_customization_id", acousticCustomizationId);
                 if (!string.IsNullOrEmpty(baseModelVersion))
-                    request.WithArgument("base_model_version", baseModelVersion);
+                    restRequest.WithArgument("base_model_version", baseModelVersion);
                 if (customizationWeight != null)
-                    request.WithArgument("customization_weight", customizationWeight);
+                    restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
-                    request.WithArgument("inactivity_timeout", inactivityTimeout);
-                request.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                    restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
+                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
-                    request.WithArgument("keywords_threshold", keywordsThreshold);
+                    restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
-                    request.WithArgument("max_alternatives", maxAlternatives);
+                    restRequest.WithArgument("max_alternatives", maxAlternatives);
                 if (wordAlternativesThreshold != null)
-                    request.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
+                    restRequest.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
                 if (wordConfidence != null)
-                    request.WithArgument("word_confidence", wordConfidence);
+                    restRequest.WithArgument("word_confidence", wordConfidence);
                 if (timestamps != null)
-                    request.WithArgument("timestamps", timestamps);
+                    restRequest.WithArgument("timestamps", timestamps);
                 if (profanityFilter != null)
-                    request.WithArgument("profanity_filter", profanityFilter);
+                    restRequest.WithArgument("profanity_filter", profanityFilter);
                 if (smartFormatting != null)
-                    request.WithArgument("smart_formatting", smartFormatting);
+                    restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
-                    request.WithArgument("speaker_labels", speakerLabels);
-                request.WithBody<byte[]>(audio);
+                    restRequest.WithArgument("speaker_labels", speakerLabels);
+                restRequest.WithBody<byte[]>(audio);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<SpeechRecognitionResults>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<SpeechRecognitionResults>().Result;
                 if(result == null)
                     result = new SpeechRecognitionResults();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -206,14 +250,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/recognitions/{id}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions/{id}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<RecognitionJob>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<RecognitionJob>().Result;
                 if(result == null)
                     result = new RecognitionJob();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -234,14 +288,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/recognitions");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<RecognitionJobs>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<RecognitionJobs>().Result;
                 if(result == null)
                     result = new RecognitionJobs();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -264,17 +328,17 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="customizationId">The GUID of a custom language model that is to be used with the recognition request or, for the **Create a session** method, with the new session. The base model of the specified custom language model must match the model specified with the `model` parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom language model is used. (optional)</param>
         /// <param name="acousticCustomizationId">The GUID of a custom acoustic model that is to be used with the recognition request or, for the **Create a session** method, with the new session. The base model of the specified custom acoustic model must match the model specified with the `model` parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom acoustic model is used. (optional)</param>
         /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition request or, for the **Create a session** method, with the new session. Multiple versions of a base model can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The default value depends on whether the parameter is used with or without a custom model. For more information, see [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version). (optional)</param>
-        /// <param name="customizationWeight">If you specify the GUID of a custom language model with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells the service how much weight to give to words from the custom language model compared to those from the base model for the current request.   Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was specified when the custom model was trained.   The default value yields the best performance in general. Assign a higher value if your audio makes frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain phrases.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live microphone when a user simply walks away. Use `-1` for infinity.   **Do not use with MULTIPART recognition requests.**. (optional, default to 30)</param>
-        /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the parameter or specify an empty array if you do not need to spot keywords.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a threshold, you must also specify one or more keywords.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a single transcription is returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to 1)</param>
-        /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No alternative words are computed if you omit the parameter.   **Do not use with MULTIPART recognition requests.**. (optional)</param>
-        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only.   **Do not use with MULTIPART recognition requests.**. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only.   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
-        /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels).   **Do not use with MULTIPART recognition requests.**. (optional, default to false)</param>
+        /// <param name="customizationWeight">If you specify the GUID of a custom language model with the recognition request or, for sessions, with the **Create a session** method, the customization weight tells the service how much weight to give to words from the custom language model compared to those from the base model for the current request.   Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom model when it was trained, the default value is 0.3. A customization weight that you specify overrides a weight that was specified when the custom model was trained.   The default value yields the best performance in general. Assign a higher value if your audio makes frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain phrases. (optional)</param>
+        /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default to 30)</param>
+        /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
+        /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you specify a threshold, you must also specify one or more keywords. (optional)</param>
+        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a single transcription is returned. (optional, default to 1)</param>
+        /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and 1 inclusive. No alternative words are computed if you omit the parameter. (optional)</param>
+        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
+        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned. (optional, default to false)</param>
+        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
+        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only. (optional, default to false)</param>
+        /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels). (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
         public RecognitionJob CreateJob(byte[] audio, string contentType, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
@@ -287,53 +351,63 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/recognitions");
-                request.WithHeader("Content-Type", contentType);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
+
+                restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
-                    request.WithArgument("model", model);
+                    restRequest.WithArgument("model", model);
                 if (!string.IsNullOrEmpty(callbackUrl))
-                    request.WithArgument("callback_url", callbackUrl);
+                    restRequest.WithArgument("callback_url", callbackUrl);
                 if (!string.IsNullOrEmpty(events))
-                    request.WithArgument("events", events);
+                    restRequest.WithArgument("events", events);
                 if (!string.IsNullOrEmpty(userToken))
-                    request.WithArgument("user_token", userToken);
+                    restRequest.WithArgument("user_token", userToken);
                 if (resultsTtl != null)
-                    request.WithArgument("results_ttl", resultsTtl);
+                    restRequest.WithArgument("results_ttl", resultsTtl);
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
+                    restRequest.WithArgument("customization_id", customizationId);
                 if (!string.IsNullOrEmpty(acousticCustomizationId))
-                    request.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                    restRequest.WithArgument("acoustic_customization_id", acousticCustomizationId);
                 if (!string.IsNullOrEmpty(baseModelVersion))
-                    request.WithArgument("base_model_version", baseModelVersion);
+                    restRequest.WithArgument("base_model_version", baseModelVersion);
                 if (customizationWeight != null)
-                    request.WithArgument("customization_weight", customizationWeight);
+                    restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
-                    request.WithArgument("inactivity_timeout", inactivityTimeout);
-                request.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                    restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
+                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
-                    request.WithArgument("keywords_threshold", keywordsThreshold);
+                    restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
-                    request.WithArgument("max_alternatives", maxAlternatives);
+                    restRequest.WithArgument("max_alternatives", maxAlternatives);
                 if (wordAlternativesThreshold != null)
-                    request.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
+                    restRequest.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
                 if (wordConfidence != null)
-                    request.WithArgument("word_confidence", wordConfidence);
+                    restRequest.WithArgument("word_confidence", wordConfidence);
                 if (timestamps != null)
-                    request.WithArgument("timestamps", timestamps);
+                    restRequest.WithArgument("timestamps", timestamps);
                 if (profanityFilter != null)
-                    request.WithArgument("profanity_filter", profanityFilter);
+                    restRequest.WithArgument("profanity_filter", profanityFilter);
                 if (smartFormatting != null)
-                    request.WithArgument("smart_formatting", smartFormatting);
+                    restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
-                    request.WithArgument("speaker_labels", speakerLabels);
-                request.WithBody<byte[]>(audio);
+                    restRequest.WithArgument("speaker_labels", speakerLabels);
+                restRequest.WithBody<byte[]>(audio);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<RecognitionJob>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<RecognitionJob>().Result;
                 if(result == null)
                     result = new RecognitionJob();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -357,14 +431,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -389,18 +473,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/register_callback");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/register_callback");
+
                 if (!string.IsNullOrEmpty(callbackUrl))
-                    request.WithArgument("callback_url", callbackUrl);
+                    restRequest.WithArgument("callback_url", callbackUrl);
                 if (!string.IsNullOrEmpty(userSecret))
-                    request.WithArgument("user_secret", userSecret);
+                    restRequest.WithArgument("user_secret", userSecret);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<RegisterStatus>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<RegisterStatus>().Result;
                 if(result == null)
                     result = new RegisterStatus();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -424,16 +518,26 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/unregister_callback");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/unregister_callback");
+
                 if (!string.IsNullOrEmpty(callbackUrl))
-                    request.WithArgument("callback_url", callbackUrl);
+                    restRequest.WithArgument("callback_url", callbackUrl);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -456,15 +560,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations");
-                request.WithBody<CreateLanguageModel>(createLanguageModel);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
+
+                restRequest.WithBody<CreateLanguageModel>(createLanguageModel);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<LanguageModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LanguageModel>().Result;
                 if(result == null)
                     result = new LanguageModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -488,14 +602,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -519,14 +643,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<LanguageModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LanguageModel>().Result;
                 if(result == null)
                     result = new LanguageModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -548,16 +682,26 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
+
                 if (!string.IsNullOrEmpty(language))
-                    request.WithArgument("language", language);
+                    restRequest.WithArgument("language", language);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<LanguageModels>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LanguageModels>().Result;
                 if(result == null)
                     result = new LanguageModels();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -581,14 +725,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -614,18 +768,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
+
                 if (!string.IsNullOrEmpty(wordTypeToAdd))
-                    request.WithArgument("word_type_to_add", wordTypeToAdd);
+                    restRequest.WithArgument("word_type_to_add", wordTypeToAdd);
                 if (customizationWeight != null)
-                    request.WithArgument("customization_weight", customizationWeight);
+                    restRequest.WithArgument("customization_weight", customizationWeight);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -649,14 +813,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -666,7 +840,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
         /// <summary>
-        /// Add a corpus. Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Note that adding a corpus does not affect the custom language model until you train the model for the new data by using the **Train a custom language model** method.   Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see [Preparing a corpus text file](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#prepareCorpus).   The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the **List a corpus** method to check the status of the analysis.   The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the **List custom words** method to examine the words resource, using other words method to eliminate typos and modify how words are pronounced as needed.   To add a corpus file that has the same name as an existing corpus, set the `allow_overwrite` parameter to `true`; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word** method.   The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand new custom words to a model; this includes words that the service extracts from corpora and words that you add directly.
+        /// Add a corpus. Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Note that adding a corpus does not affect the custom language model until you train the model for the new data by using the **Train a custom language model** method.   Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see [Preparing a corpus text file](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#prepareCorpus).   The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the **List a corpus** method to check the status of the analysis.   The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the **List custom words** method to examine the words resource, using other words method to eliminate typos and modify how words are pronounced as needed.   To add a corpus file that has the same name as an existing corpus, set the `allow_overwrite` parameter to `true`; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word** method.   The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand custom (OOV) words to a model; this includes words that the service extracts from corpora and words that you add directly.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
         /// <param name="corpusName">The name of the corpus for the custom language model. When adding a corpus, do not include spaces in the name; use a localized name that matches the language of the custom model; and do not use the name `user`, which is reserved by the service to denote custom words added or modified by the user.</param>
@@ -698,17 +872,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     formData.Add(corpusFileContent, "corpus_file", "filename");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+
                 if (allowOverwrite != null)
-                    request.WithArgument("allow_overwrite", allowOverwrite);
-                request.WithBodyContent(formData);
+                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -735,14 +919,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -769,14 +963,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Corpus>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Corpus>().Result;
                 if(result == null)
                     result = new Corpus();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -800,14 +1004,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Corpora>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Corpora>().Result;
                 if(result == null)
                     result = new Corpora();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -817,7 +1031,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
         /// <summary>
-        /// Add a custom word. Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. You must use credentials for the instance of the service that owns a model to add or modify a custom word for the model. You must pass a value of `application/json` with the `Content-Type` header. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the **Train a custom language model** method.   Use the `word_name` parameter to specify the custom word that is to be added or modified. Use the `CustomWord` object to provide one or both of the optional `sounds_like` and `display_as` fields for the word. * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike). * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM`. For more information, see [Using the display_as field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).    If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the **List a custom word** method to review the word that you add.
+        /// Add a custom word. Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add a word or to modify an existing word in the words resource. The words resource for a model can contain a maximum of 30 thousand custom (OOV) words, including words that the service extracts from corpora and words that you add directly.   You must use credentials for the instance of the service that owns a model to add or modify a custom word for the model. You must pass a value of `application/json` with the `Content-Type` header. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the **Train a custom language model** method.   Use the `word_name` parameter to specify the custom word that is to be added or modified. Use the `CustomWord` object to provide one or both of the optional `sounds_like` and `display_as` fields for the word. * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike). * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM`. For more information, see [Using the display_as field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).    If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the **List a custom word** method to review the word that you add.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
         /// <param name="wordName">The custom word for the custom language model. When adding or updating a custom word, do not include spaces in the word; use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
@@ -836,15 +1050,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
-                request.WithBody<CustomWord>(customWord);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+
+                restRequest.WithBody<CustomWord>(customWord);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -855,7 +1079,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         }
 
         /// <summary>
-        /// Add custom words. Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. You must use credentials for the instance of the service that owns a model to add or modify custom words for the model. You must pass a value of `application/json` with the `Content-Type` header. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the **Train a custom language model** method.   You add custom words by providing a `Words` object, which is an array of `Word` objects, one per word. You must use the object's word parameter to identify the word that is to be added. You can also provide one or both of the optional `sounds_like` and `display_as` fields for each word. * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike). * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM`. For more information, see [Using the display_as field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).    If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource.   The call returns an HTTP 201 response code if the input data is valid. It then asynchronously processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model.   You can monitor the status of the request by using the **List a custom language model** method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a `Customization` object that includes a `status` field. A status of `ready` means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes.   You can use the **List custom words** or **List a custom word** method to review the words that you add. Words with an invalid `sounds_like` field include an `error` field that describes the problem. You can use other words-related methods to correct errors, eliminate typos, and modify how words are pronounced as needed.
+        /// Add custom words. Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add additional words or to modify existing words in the words resource. The words resource for a model can contain a maximum of 30 thousand custom (OOV) words, including words that the service extracts from corpora and words that you add directly.   You must use credentials for the instance of the service that owns a model to add or modify custom words for the model. You must pass a value of `application/json` with the `Content-Type` header. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the **Train a custom language model** method.   You add custom words by providing a `Words` object, which is an array of `Word` objects, one per word. You must use the object's word parameter to identify the word that is to be added. You can also provide one or both of the optional `sounds_like` and `display_as` fields for each word. * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike). * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM`. For more information, see [Using the display_as field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).    If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource.   The call returns an HTTP 201 response code if the input data is valid. It then asynchronously processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or training a model.   You can monitor the status of the request by using the **List a custom language model** method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a `Customization` object that includes a `status` field. A status of `ready` means that the words have been added to the custom model. The service cannot accept requests to add new corpora or words or to train the model until the existing request completes.   You can use the **List custom words** or **List a custom word** method to review the words that you add. Words with an invalid `sounds_like` field include an `error` field that describes the problem. You can use other words-related methods to correct errors, eliminate typos, and modify how words are pronounced as needed.
         /// </summary>
         /// <param name="customizationId">The GUID of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
         /// <param name="customWords">A `CustomWords` object that provides information about one or more custom words that are to be added to or updated in the custom language model.</param>
@@ -871,15 +1095,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
-                request.WithBody<CustomWords>(customWords);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+
+                restRequest.WithBody<CustomWords>(customWords);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -906,14 +1140,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -940,14 +1184,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Word>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Word>().Result;
                 if(result == null)
                     result = new Word();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -973,18 +1227,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
+
                 if (!string.IsNullOrEmpty(wordType))
-                    request.WithArgument("word_type", wordType);
+                    restRequest.WithArgument("word_type", wordType);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Words>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Words>().Result;
                 if(result == null)
                     result = new Words();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1007,15 +1271,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
-                request.WithBody<CreateAcousticModel>(createAcousticModel);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
+
+                restRequest.WithBody<CreateAcousticModel>(createAcousticModel);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AcousticModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AcousticModel>().Result;
                 if(result == null)
                     result = new AcousticModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1039,14 +1313,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1070,14 +1354,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AcousticModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AcousticModel>().Result;
                 if(result == null)
                     result = new AcousticModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1099,16 +1393,26 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
+
                 if (!string.IsNullOrEmpty(language))
-                    request.WithArgument("language", language);
+                    restRequest.WithArgument("language", language);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AcousticModels>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AcousticModels>().Result;
                 if(result == null)
                     result = new AcousticModels();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1132,14 +1436,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1164,17 +1478,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
+
                 if (!string.IsNullOrEmpty(customLanguageModelId))
-                    request.WithArgument("custom_language_model_id", customLanguageModelId);
-                request.WithArgument("force", true);
+                    restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                restRequest.WithArgument("force", true);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1199,16 +1523,26 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
+
                 if (!string.IsNullOrEmpty(customLanguageModelId))
-                    request.WithArgument("custom_language_model_id", customLanguageModelId);
+                    restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1242,23 +1576,33 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
-                request.WithHeader("Content-Type", contentType);
-                request.WithHeader("Contained-Content-Type", containedContentType);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+
+                restRequest.WithHeader("Content-Type", contentType);
+                restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
-                    request.WithArgument("allow_overwrite", allowOverwrite);
+                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 var audioResourceContent = new ByteArrayContent(audioResource);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioResourceType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceType);
                 audioResourceContent.Headers.ContentType = audioResourceType;
-                request.WithBodyContent(audioResourceContent);
+                restRequest.WithBodyContent(audioResourceContent);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1285,14 +1629,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1319,14 +1673,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AudioListing>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AudioListing>().Result;
                 if(result == null)
                     result = new AudioListing();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1350,14 +1714,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
+
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AudioResources>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AudioResources>().Result;
                 if(result == null)
                     result = new AudioResources();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

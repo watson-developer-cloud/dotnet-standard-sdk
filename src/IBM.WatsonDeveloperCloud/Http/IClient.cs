@@ -33,6 +33,8 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         IClient WithAuthentication(string userName, string password);
 
+        IClient WithAuthentication(string apikey);
+
         IRequest DeleteAsync(string resource);
 
         IRequest GetAsync(string resource);

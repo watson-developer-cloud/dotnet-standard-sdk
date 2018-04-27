@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_ser
 [
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a3192e40f945bb04826d4a0aaaa8abbce", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a2baea09220b31df2981e9edb3e812870", null ],
+    [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a8b0f84cd15747b5b23efa9b6c9b05886", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a48c921c3963c90822cf45b2a481c6e7d", null ],
     [ "CreateCounterexample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#adc1adff520710fc3a6246c86336f3922", null ],
     [ "CreateDialogNode", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ac4acfc34d72020d698199af98506531d", null ],
@@ -37,7 +38,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_ser
     [ "ListSynonyms", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a938c3b3f69a3f0434dffb14063e3ee1d", null ],
     [ "ListValues", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ad854691eb404327723a32cd0b5aba412", null ],
     [ "ListWorkspaces", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a9f5a5414055f862fbe6c23bc017327e6", null ],
-    [ "Message", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a9106697eacb343722561233b05e4ad43", null ],
+    [ "Message", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a31d94fc82e288e945c3cb3088d3aa51b", null ],
     [ "UpdateCounterexample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#af12d0865f3ea38f3d93977fa7a52fb42", null ],
     [ "UpdateDialogNode", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a1440207da2ee55e7bed94fe78b10009c", null ],
     [ "UpdateEntity", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a7f3ad830b65676d0f3bd96e0bab00820", null ],

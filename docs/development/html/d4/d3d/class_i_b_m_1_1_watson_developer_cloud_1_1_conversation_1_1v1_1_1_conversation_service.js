@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversati
 [
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a274ba546275ba0bad8a94452b48313aa", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a7f917effc20d3931c289d495feae21f0", null ],
+    [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aa12d55ed38aaa3c26195ce31ee0352a7", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ac8754b868de97f7d64bbfd3610560672", null ],
     [ "CreateCounterexample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#adf4e15ca49af4cb1bdbf30abe01d7419", null ],
     [ "CreateDialogNode", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#acab07021db8bbc642600130dfb6ae6da", null ],
@@ -37,7 +38,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversati
     [ "ListSynonyms", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a5c20e0082775c4105bdf67363ccb2e3f", null ],
     [ "ListValues", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a3a86ca5e256061dd4a31fc946912a3d9", null ],
     [ "ListWorkspaces", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aac30bf3f01836a1fbe512d15680452cb", null ],
-    [ "Message", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a53f626512fd22b72966791110f7d9eff", null ],
+    [ "Message", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ae303ee8df4a97f68481271f5de7c7ffa", null ],
     [ "UpdateCounterexample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a1c276a6a07ca3908e684eacf388a0004", null ],
     [ "UpdateDialogNode", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a48194583333034257c6152f749dd28cc", null ],
     [ "UpdateEntity", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#af217ebf72122e35217180ce9935d16f1", null ],

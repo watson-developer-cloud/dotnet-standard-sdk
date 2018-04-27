@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_t
 [
     [ "SpeechToTextService", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3109441848891235f75e821edf13249a", null ],
     [ "SpeechToTextService", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#adae4d46d23ff63d9ce3fb5efdc72b87d", null ],
+    [ "SpeechToTextService", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa6f3e2c6cb36724294c1df2d12779b65", null ],
     [ "SpeechToTextService", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a41ba5f878b3de78c256ef056ae5f1260", null ],
     [ "AddAudio", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a0e4816762c46e7e0caa4019b6b2b29d5", null ],
     [ "AddCorpus", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a7a0efb32659126c40aec9bae0f9a15da", null ],
@@ -33,7 +34,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_t
     [ "ObserveResult", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abc40f8b84755f6d95609b97ce3cc16e0", null ],
     [ "Recognize", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a97fc5143ff76176873e935cc68a913a2", null ],
     [ "Recognize", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a60083e0fe3f964e7e457293386db4cc0", null ],
-    [ "RecognizeSessionless", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4c958a96c5d9f9cb30f03efd15a34214", null ],
+    [ "RecognizeSessionless", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#af6368f1902636788a5d37935b215c55b", null ],
     [ "RecognizeWithSession", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4df57c2f8c61ddf1d2df93c479e8efc8", null ],
     [ "RecognizeWithSession", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a71af0357446eea60235a3c669f5b3a1b", null ],
     [ "RegisterCallback", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a14f8fcbcdd63ba6ed731b9cbf3934e4f", null ],

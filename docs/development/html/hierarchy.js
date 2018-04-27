@@ -351,6 +351,7 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.Http.Exceptions.ServiceResponseException", "d9/d3b/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_service_response_exception.html", null ]
     ] ],
     [ "IBM.WatsonDeveloperCloud.Http.HttpMediaType", "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.IamTokenData", "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html", null ],
     [ "IBM.WatsonDeveloperCloud.Assistant.v1.IAssistantService", "dc/d22/interface_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_i_assistant_service.html", [
       [ "IBM.WatsonDeveloperCloud.Assistant.v1.AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html", null ]
     ] ],
@@ -423,5 +424,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Metadata", "d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html", null ],
     [ "IBM.WatsonDeveloperCloud.Sockets.ServiceState", "d6/db3/class_i_b_m_1_1_watson_developer_cloud_1_1_sockets_1_1_service_state.html", null ],
     [ "IBM.WatsonDeveloperCloud.Http.Extensions.StreamExtension", "d5/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions_1_1_stream_extension.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.TokenManager", "dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.TokenOptions", "da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html", null ],
     [ "IBM.WatsonDeveloperCloud.Util.Utility", "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html", null ]
 ];

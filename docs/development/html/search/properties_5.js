@@ -29,5 +29,7 @@ var searchData=
   ['excludetagscompletely',['ExcludeTagsCompletely',['../d5/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_html_settings.html#ae5c285a035f1aa3ef8d02ff9c1209f09',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::HtmlSettings']]],
   ['excludetagskeepcontent',['ExcludeTagsKeepContent',['../d5/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_html_settings.html#add599ef840cfa9d9fac8f2215001fff9',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::HtmlSettings']]],
   ['expandedterms',['ExpandedTerms',['../d7/d73/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansion.html#a27b2d1530fbc494f9e3bcb4fe051b33e',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::Expansion']]],
+  ['expiration',['Expiration',['../df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a3c096152aec7a32f2576896c2106f515',1,'IBM::WatsonDeveloperCloud::Util::IamTokenData']]],
+  ['expiresin',['ExpiresIn',['../df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a4d3de79490bbba3685cbf485cfd72262',1,'IBM::WatsonDeveloperCloud::Util::IamTokenData']]],
   ['explanation',['Explanation',['../de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#ac869c6f2814f360cf868ae658f15e96a',1,'IBM::WatsonDeveloperCloud::VisualRecognition::v3::Model::Classifier']]]
 ];

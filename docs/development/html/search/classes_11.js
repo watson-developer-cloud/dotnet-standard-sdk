@@ -7,6 +7,8 @@ var searchData=
   ['text',['Text',['../d7/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_text.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1::Model']]],
   ['texttospeechservice',['TextToSpeechService',['../d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html',1,'IBM::WatsonDeveloperCloud::TextToSpeech::v1']]],
   ['timeslice',['Timeslice',['../d5/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_timeslice.html',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model']]],
+  ['tokenmanager',['TokenManager',['../dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html',1,'IBM::WatsonDeveloperCloud::Util']]],
+  ['tokenoptions',['TokenOptions',['../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html',1,'IBM::WatsonDeveloperCloud::Util']]],
   ['toneanalysis',['ToneAnalysis',['../d1/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_analysis.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]],
   ['toneanalyzerservice',['ToneAnalyzerService',['../d2/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3']]],
   ['tonecategory',['ToneCategory',['../dc/d39/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_category.html',1,'IBM::WatsonDeveloperCloud::ToneAnalyzer::v3::Model']]],

@@ -30,7 +30,7 @@ var interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_sp
     [ "ObserveResult", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a6b2b6f26c971f751947ab92f42d2b156", null ],
     [ "Recognize", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4b8eacd83b55f2043eae3137f74de010", null ],
     [ "Recognize", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a33fd4758252d11331e631acf9d0cbc51", null ],
-    [ "RecognizeSessionless", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3c7a1cf498e427b03fa8fbad1c3ab3d7", null ],
+    [ "RecognizeSessionless", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a79c10c7c54319f71f714673bbb37bef3", null ],
     [ "RecognizeWithSession", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a51c5e096d903dafbead0870313cc54bc", null ],
     [ "RecognizeWithSession", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ad392471ad64109b066cd7b9bca53a1a1", null ],
     [ "RegisterCallback", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#abb5dbfa169c1b505b049f1b7ea232ebb", null ],

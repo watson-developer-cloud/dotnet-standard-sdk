@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_ser
 [
     [ "DiscoveryService", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a485834a2650f389ae47ea8e43bb9e3bf", null ],
     [ "DiscoveryService", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#aaf425aa03e8fd208c4028a6da501eaf3", null ],
+    [ "DiscoveryService", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a4355d35d8d1eb13659355f4e673753e5", null ],
     [ "DiscoveryService", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a4af9a7af81772c09535bcf4985a2aff2", null ],
     [ "AddDocument", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#aa268a1cc045944cad4ffab38411ebd89", null ],
     [ "AddTrainingData", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a8789ae4d9f5b08a91ef920b58c7cb014", null ],

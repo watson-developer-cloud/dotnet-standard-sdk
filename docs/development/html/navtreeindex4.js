@@ -1,5 +1,10 @@
 var NAVTREEINDEX4 =
 {
+"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a805a82905e68f816c764e64e97477869a1eb155cd9cfcdc0c5e6ddc04bc3e684d":[1,0,0,0,0,0,0,41,4,4],
+"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a805a82905e68f816c764e64e97477869a5758125e8e6376c06048da405215b747":[1,0,0,0,0,0,0,41,4,1],
+"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a805a82905e68f816c764e64e97477869a80dc13242b57656668e67c9ca779ccb3":[1,0,0,0,0,0,0,41,4,5],
+"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a805a82905e68f816c764e64e97477869a94e94133f4bdc1794c6b647b8ea134d0":[1,0,0,0,0,0,0,41,4,0],
+"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a805a82905e68f816c764e64e97477869ac57e921596445b99ab85558984966184":[1,0,0,0,0,0,0,41,4,2],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a86d4c18c0586ea5796dfc73fe48c8838":[1,0,0,0,0,0,0,41,8],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a8734c815c9b4b9aaf7c9509ade377efd":[1,0,0,0,0,0,0,41,14],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a91338d7d7d7e3906ae9f8bbb6f8f748e":[1,0,0,0,0,0,0,41,3],
@@ -190,7 +195,7 @@ var NAVTREEINDEX4 =
 "d6/d33/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#ae0cd22d403e50126a6147b3a612b4f71":[1,0,0,0,10,0,0,10,2],
 "d6/d35/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model.html":[0,0,0,0,11,0,0],
 "d6/d35/namespace_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model.html":[1,0,0,0,11,0,0],
-"d6/d3b/_utility_8cs.html":[2,0,0,0,5,2],
+"d6/d3b/_utility_8cs.html":[2,0,0,0,5,3],
 "d6/d3b/_word_heading_detection_8cs.html":[2,0,0,3,0,84],
 "d6/d43/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_categories.html":[1,0,0,0,2,0,0,37],
 "d6/d4b/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_message_response_8cs.html":[2,0,0,2,0,32],
@@ -244,10 +249,5 @@ var NAVTREEINDEX4 =
 "d6/d94/_word_style_8cs.html":[2,0,0,3,0,86],
 "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html":[0,0,0,0,10],
 "d6/d9e/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text.html":[1,0,0,0,10],
-"d6/da0/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_update_value_8cs.html":[2,0,0,2,0,46],
-"d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html":[1,0,0,0,0,0,0,16],
-"d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html#a15e06acea1baf05ee9b6087fc58ce66f":[1,0,0,0,0,0,0,16,0],
-"d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html#a5ba1c9d750db711729428125bd60c860":[1,0,0,0,0,0,0,16,2],
-"d6/da2/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_visited_details.html#ae89864b68fb53bd026773f6d013a1212":[1,0,0,0,0,0,0,16,1],
-"d6/da4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_type.html":[1,0,0,0,2,0,0,57]
+"d6/da0/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_update_value_8cs.html":[2,0,0,2,0,46]
 };

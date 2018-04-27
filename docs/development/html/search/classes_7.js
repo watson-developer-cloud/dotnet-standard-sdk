@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['iamtokendata',['IamTokenData',['../df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html',1,'IBM::WatsonDeveloperCloud::Util']]],
   ['iassistantservice',['IAssistantService',['../dc/d22/interface_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM::WatsonDeveloperCloud::Assistant::v1']]],
   ['iclient',['IClient',['../d5/d17/interface_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_i_client.html',1,'IBM::WatsonDeveloperCloud::Http']]],
   ['iconversationservice',['IConversationService',['../d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html',1,'IBM::WatsonDeveloperCloud::Conversation::v1']]],

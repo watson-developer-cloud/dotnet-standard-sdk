@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_
 [
     [ "TextToSpeechService", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#af81081b893216e208e4c74708a3f5b61", null ],
     [ "TextToSpeechService", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ae881f7f120fbd795a73dc5ac75da38d9", null ],
+    [ "TextToSpeechService", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a35451a4e760641862b2c8673869e8d37", null ],
     [ "TextToSpeechService", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a7dd228484b2ca10ce3846a28704567a0", null ],
     [ "AddWord", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#acc6e991d29dfc87824ff59cf36a2e980", null ],
     [ "AddWords", "d4/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a80ac03dde74b5d502f6e4c1c47bbf13d", null ],

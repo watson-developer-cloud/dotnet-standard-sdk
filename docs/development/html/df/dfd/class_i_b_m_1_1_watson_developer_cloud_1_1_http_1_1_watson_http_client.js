@@ -15,6 +15,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client =
     [ "SendAsync", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#a7cb01f572f28b81a418c9b5d557a3a74", null ],
     [ "SendAsync", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#a7d847bb4fb309f1d2b43011367f26e90", null ],
     [ "WithAuthentication", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#aad15470fc8694c15ad8f7a592b434b3a", null ],
+    [ "WithAuthentication", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#a99a066f6c4da06425a563982206aa69e", null ],
     [ "BaseClient", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#a58e7555b862a371dee9a71a4af4852d9", null ],
     [ "Filters", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#a8a59a040baeac37236d44befc41e4d4b", null ],
     [ "Formatters", "df/dfd/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_watson_http_client.html#ae5952ed3ef5b3b8041ccf3d46d45ad12", null ]

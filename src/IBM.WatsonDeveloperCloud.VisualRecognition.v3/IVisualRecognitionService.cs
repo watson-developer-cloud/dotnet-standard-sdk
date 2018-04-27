@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {

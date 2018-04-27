@@ -37,6 +37,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri)
         {
+            this.BaseClient = new HttpClient();
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -77,6 +78,16 @@ namespace IBM.WatsonDeveloperCloud.Http
                 string auth64 = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
 
                 this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth64);
+            }
+
+            return this;
+        }
+
+        public IClient WithAuthentication(string apikey)
+        {
+            if(!string.IsNullOrEmpty(apikey))
+            {
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
             }
 
             return this;

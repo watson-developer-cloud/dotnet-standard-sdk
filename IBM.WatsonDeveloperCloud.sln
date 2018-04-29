@@ -109,7 +109,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.IntegrationTests", "test\IBM.WatsonDeveloperCloud.IntegrationTests\IBM.WatsonDeveloperCloud.IntegrationTests.csproj", "{259D1094-880A-46D6-B48A-0F3A2B193013}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.Example", "examples\IBM.WatsonDeveloperCloud.Example\IBM.WatsonDeveloperCloud.Example.csproj", "{6CF2DFF1-4657-4D58-A372-94D7BA371BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Example", "examples\IBM.WatsonDeveloperCloud.Example\IBM.WatsonDeveloperCloud.Example.csproj", "{6CF2DFF1-4657-4D58-A372-94D7BA371BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example", "examples\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example.csproj", "{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -273,6 +275,10 @@ Global
 		{6CF2DFF1-4657-4D58-A372-94D7BA371BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CF2DFF1-4657-4D58-A372-94D7BA371BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CF2DFF1-4657-4D58-A372-94D7BA371BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -330,6 +336,7 @@ Global
 		{3FA3418E-F5C5-463B-B371-FF38093A7D9D} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{259D1094-880A-46D6-B48A-0F3A2B193013} = {FF4673C9-CB33-4D4F-9116-776A792A2189}
 		{6CF2DFF1-4657-4D58-A372-94D7BA371BAD} = {FF4673C9-CB33-4D4F-9116-776A792A2189}
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

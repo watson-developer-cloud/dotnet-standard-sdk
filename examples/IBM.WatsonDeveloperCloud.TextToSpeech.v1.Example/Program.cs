@@ -27,9 +27,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example
             Task.WaitAll();
 
             var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["speech_to_text"]["url"].Value<string>();
-            var _username = vcapServices["speech_to_text"]["username"].Value<string>();
-            var _password = vcapServices["speech_to_text"]["password"].Value<string>();
+            var _url = vcapServices["text_to_speech"]["url"].Value<string>();
+            var _username = vcapServices["text_to_speech"]["username"].Value<string>();
+            var _password = vcapServices["text_to_speech"]["password"].Value<string>();
             string _synthesizeText = "Hello, welcome to the Watson dotnet SDK!";
 
             Text synthesizeText = new Text

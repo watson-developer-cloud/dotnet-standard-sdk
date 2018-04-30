@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
@@ -29,31 +28,34 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
     {
         const string SERVICE_NAME = "natural_language_understanding";
         const string URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
-        private TokenManager _tokenManager = null;
+        private readonly TokenManager _tokenManager;
         private string _versionDate;
         public string VersionDate
         {
-            get { return _versionDate; }
-            set { _versionDate = value; }
+            get => _versionDate;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException(nameof(value), "VersionDate must not be null nor empty");
+                _versionDate = value;
+            }
         }
 
         public NaturalLanguageUnderstandingService() : base(SERVICE_NAME, URL)
         {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
+            if(!string.IsNullOrEmpty(Endpoint))
+                Endpoint = URL;
         }
 
         public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
+                throw new ArgumentNullException(nameof(userName), "UserName must not be null nor empty");
 
             if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
+                throw new ArgumentNullException(nameof(password), "Password must not be null nor empty");
 
-            this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
+            SetCredential(userName, password);
 
             VersionDate = versionDate;
         }
@@ -61,9 +63,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey), "Either IamAccessToken or IamApiKey must not be null nor empty");
 
             VersionDate = versionDate;
 
@@ -72,10 +72,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
         public NaturalLanguageUnderstandingService(IClient httpClient) : this()
         {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
+            Client = httpClient ?? throw new ArgumentNullException(nameof(httpClient), "HttpClient must not be null");
         }
 
         /// <summary>
@@ -89,32 +86,19 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             if (parameters == null)
                 throw new ArgumentNullException(nameof(parameters));
 
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            AnalysisResults result = null;
+            AnalysisResults result;
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                var client = _tokenManager == null ? Client.WithAuthentication(UserName, Password) : Client.WithAuthentication(_tokenManager.GetToken());
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
+                var restRequest = client.PostAsync($"{Endpoint}/v1/analyze");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<Parameters>(parameters);
+                restRequest.WithBody(parameters);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                result = restRequest.As<AnalysisResults>().Result;
-                if(result == null)
-                    result = new AnalysisResults();
+                result = restRequest.As<AnalysisResults>().Result ?? new AnalysisResults();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
@@ -135,31 +119,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
 
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            InlineResponse200 result = null;
+            InlineResponse200 result;
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                var client = _tokenManager == null ? Client.WithAuthentication(UserName, Password) : Client.WithAuthentication(_tokenManager.GetToken());
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
+                var restRequest = client.DeleteAsync($"{Endpoint}/v1/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                result = restRequest.As<InlineResponse200>().Result;
-                if(result == null)
-                    result = new InlineResponse200();
+                result = restRequest.As<InlineResponse200>().Result ?? new InlineResponse200();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
@@ -178,31 +149,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         public ListModelsResults ListModels(Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            ListModelsResults result = null;
+            ListModelsResults result;
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                var client = _tokenManager == null ? Client.WithAuthentication(UserName, Password) : Client.WithAuthentication(_tokenManager.GetToken());
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
+                var restRequest = client.GetAsync($"{Endpoint}/v1/models");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                result = restRequest.As<ListModelsResults>().Result;
-                if(result == null)
-                    result = new ListModelsResults();
+                result = restRequest.As<ListModelsResults>().Result ?? new ListModelsResults();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

@@ -19,6 +19,8 @@ environment:
     secure: xRHH3z2B+DfQKsmd9CWOhA==
   VCAP_PASSWORD:
     secure: 3YoxDjzz7qMIbDqokgsB1A==
+  GITHUB_TOKEN:
+    secure: 8sr9qy9Ghr7IaCVsf0mvKITy6nb5RZaEScQ3VIPNMJxPzFCkZ688RHIOmW5qWWy5
 install:
 - cmd: >-
     rm -rf packages

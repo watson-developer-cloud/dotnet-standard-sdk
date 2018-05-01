@@ -35,7 +35,7 @@ install:
 
 before_build:
 - ps: >-
-    git clone -b feature-reformat-to-vcap https://$env:GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+    git clone https://$env:GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
 
     dotnet restore
 

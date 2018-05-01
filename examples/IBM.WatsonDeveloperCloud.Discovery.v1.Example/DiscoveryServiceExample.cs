@@ -32,8 +32,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         public DiscoveryService _discovery;
 
         private static string _existingEnvironmentId;
-
-        private static string _createdEnvironmentId;
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
@@ -66,18 +64,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             _discovery.Endpoint = url;
 
             GetEnvironments();
-            if(!string.IsNullOrEmpty(_existingEnvironmentId))
-                DeleteExistingEnvironment();
-            CreateEnvironment();
-            Task.Factory.StartNew(() =>
-            {
-                Console.WriteLine("\nChecking environment status in 30 seconds.");
-                System.Threading.Thread.Sleep(30000);
-                IsEnvironmentReady(_createdEnvironmentId);
-            });
-            autoEvent.WaitOne();
             GetEnvironment();
-            UpdateEnvironment();
+            //UpdateEnvironment();
 
             GetConfigurations();
             CreateConfiguration();
@@ -112,7 +100,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             DeleteDocument();
             DeleteCollection();
             DeleteConfiguration();
-            DeleteEnvironment();
 
             Console.WriteLine("\n~ Discovery examples complete.");
         }
@@ -166,7 +153,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                     Console.WriteLine("result is null.");
                 }
 
-                _createdEnvironmentId = result.EnvironmentId;
+                _existingEnvironmentId = result.EnvironmentId;
             }
             else
             {
@@ -177,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         public void GetEnvironment()
         {
             Console.WriteLine(string.Format("\nCalling GetEnvironment()..."));
-            var result = _discovery.GetEnvironment(_createdEnvironmentId);
+            var result = _discovery.GetEnvironment(_existingEnvironmentId);
 
             if (result != null)
             {
@@ -206,7 +193,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Description = _updatedEnvironmentDescription
             };
 
-            var result = _discovery.UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
+            var result = _discovery.UpdateEnvironment(_existingEnvironmentId, updateEnvironmentRequest);
 
             if (result != null)
             {
@@ -218,30 +205,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 {
                     Console.WriteLine("result is null.");
                 }
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-        }
-
-        public void DeleteEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteEnvironment()..."));
-            var result = _discovery.DeleteEnvironment(_createdEnvironmentId);
-
-            if(result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                _createdEnvironmentId = null;
             }
             else
             {
@@ -280,7 +243,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.TestConfigurationInEnvironment(_createdEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.TestConfigurationInEnvironment(_existingEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -299,7 +262,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetConfigurations()..."));
 
-            var result = _discovery.ListConfigurations(_createdEnvironmentId);
+            var result = _discovery.ListConfigurations(_existingEnvironmentId);
 
             if (result != null)
             {
@@ -322,7 +285,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 
             };
 
-            var result = _discovery.CreateConfiguration(_createdEnvironmentId, configuration);
+            var result = _discovery.CreateConfiguration(_existingEnvironmentId, configuration);
 
             if (result != null)
             {
@@ -339,7 +302,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetConfiguration()..."));
 
-            var result = _discovery.GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var result = _discovery.GetConfiguration(_existingEnvironmentId, _createdConfigurationId);
 
             if (result != null)
             {
@@ -360,7 +323,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Name = _updatedConfigurationName
             };
 
-            var result = _discovery.UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, configuration);
+            var result = _discovery.UpdateConfiguration(_existingEnvironmentId, _createdConfigurationId, configuration);
 
             if (result != null)
             {
@@ -376,7 +339,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling DeleteConfiguration()..."));
 
-            var result = _discovery.DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
+            var result = _discovery.DeleteConfiguration(_existingEnvironmentId, _createdConfigurationId);
 
             if (result != null)
             {
@@ -394,7 +357,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetCollections()..."));
 
-            var result = _discovery.ListCollections(_createdEnvironmentId);
+            var result = _discovery.ListCollections(_existingEnvironmentId);
 
             if (result != null)
             {
@@ -418,7 +381,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 ConfigurationId = _createdConfigurationId
             };
 
-            var result = _discovery.CreateCollection(_createdEnvironmentId, createCollectionRequest);
+            var result = _discovery.CreateCollection(_existingEnvironmentId, createCollectionRequest);
 
             if (result != null)
             {
@@ -435,7 +398,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetCollection()..."));
 
-            var result = _discovery.GetCollection(_createdEnvironmentId, _createdCollectionId);
+            var result = _discovery.GetCollection(_existingEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -456,7 +419,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Name = _updatedCollectionName,
             };
 
-            var result = _discovery.UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
+            var result = _discovery.UpdateCollection(_existingEnvironmentId, _createdCollectionId, updateCollectionRequest);
 
             if (result != null)
             {
@@ -472,7 +435,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetCollectionFields()..."));
 
-            var result = _discovery.ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
+            var result = _discovery.ListCollectionFields(_existingEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -488,13 +451,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling DeleteCollection()..."));
 
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
+            if (string.IsNullOrEmpty(_existingEnvironmentId))
                 throw new ArgumentNullException("_createdEnvironmentId is null");
 
             if (string.IsNullOrEmpty(_createdCollectionId))
                 throw new ArgumentNullException("_createdCollectionId is null");
 
-            var result = _discovery.DeleteCollection(_createdEnvironmentId, _createdCollectionId);
+            var result = _discovery.DeleteCollection(_existingEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -514,7 +477,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                var result = _discovery.AddDocument(_existingEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -532,7 +495,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetDocument()..."));
 
-            var result = _discovery.GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var result = _discovery.GetDocumentStatus(_existingEnvironmentId, _createdCollectionId, _createdDocumentId);
 
             if (result != null)
             {
@@ -549,7 +512,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+                var result = _discovery.UpdateDocument(_existingEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
 
                 if (result != null)
                 {
@@ -566,7 +529,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling DeleteDocument()..."));
 
-            if (string.IsNullOrEmpty(_createdEnvironmentId))
+            if (string.IsNullOrEmpty(_existingEnvironmentId))
                 throw new ArgumentNullException("_createdEnvironmentId is null");
 
             if (string.IsNullOrEmpty(_createdCollectionId))
@@ -575,7 +538,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             if (string.IsNullOrEmpty(_createdDocumentId))
                 throw new ArgumentNullException("_createdDocumentId is null");
 
-            var result = _discovery.DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
+            var result = _discovery.DeleteDocument(_existingEnvironmentId, _createdCollectionId, _createdDocumentId);
 
             if (result != null)
             {
@@ -592,7 +555,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Query
         private void Query()
         {
-            var result = _discovery.Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+            var result = _discovery.Query(_existingEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
 
             if (result != null)
             {
@@ -608,7 +571,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         #region Notices
         private void GetNotices()
         {
-            var result = _discovery.QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var result = _discovery.QueryNotices(_existingEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
 
             if (result != null)
             {
@@ -626,7 +589,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
 
-            var result = _discovery.ListTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var result = _discovery.ListTrainingData(_existingEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
@@ -650,7 +613,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Filter = "text:meteorology"
             };
 
-            var result = _discovery.AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
+            var result = _discovery.AddTrainingData(_existingEnvironmentId, _createdCollectionId, newTrainingQuery);
 
             if (result != null)
             {
@@ -669,7 +632,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetTrainingData()..."));
 
-            var result = _discovery.GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var result = _discovery.GetTrainingData(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
 
             if (result != null)
             {
@@ -693,7 +656,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Relevance = 1
             };
 
-            var result = _discovery.CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            var result = _discovery.CreateTrainingExample(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
 
             if (result != null)
             {
@@ -712,7 +675,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling GetTrainingExample()..."));
 
-            var result = _discovery.GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var result = _discovery.GetTrainingExample(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             if (result != null)
             {
@@ -736,7 +699,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                 Relevance = 1
             };
 
-            var result = _discovery.UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
+            var result = _discovery.UpdateTrainingExample(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, trainingExample);
 
             if (result != null)
             {
@@ -754,7 +717,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling DeleteTrainingExample()..."));
 
-            var result = _discovery.DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var result = _discovery.DeleteTrainingExample(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             if (result != null)
             {
@@ -773,7 +736,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling DeleteTrainingData()..."));
 
-            var result = _discovery.DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var result = _discovery.DeleteTrainingData(_existingEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
 
             if (result != null)
             {
@@ -792,37 +755,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         {
             Console.WriteLine(string.Format("\nCalling ListTrainingData()..."));
 
-            var result = _discovery.DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
+            var result = _discovery.DeleteAllTrainingData(_existingEnvironmentId, _createdCollectionId);
 
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("result is null.");
-            }
-        }
-        #endregion
-
-        #region Delete Existing Environment
-        public void DeleteExistingEnvironment()
-        {
-            Console.WriteLine(string.Format("\nCalling DeleteExistingEnvironment({0})...", _existingEnvironmentId));
-            var result = _discovery.DeleteEnvironment(_existingEnvironmentId);
-
-            if (result != null)
-            {
-                if (result != null)
-                {
-                    Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-
-                _existingEnvironmentId = null;
             }
             else
             {

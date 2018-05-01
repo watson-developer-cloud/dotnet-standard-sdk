@@ -61,7 +61,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
                 var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
@@ -92,6 +92,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
                 _password = credential.Password;
                 _workspaceID = credential.WorkspaceId;
             }
+            #endregion
 
             _service = new AssistantService(_username, _password, "2018-02-16")
             {

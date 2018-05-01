@@ -19,6 +19,8 @@ using System;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Util;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 {
@@ -27,27 +29,46 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
         public static void Main(string[] args)
         {
             string credentials = string.Empty;
+            
+            #region Get Credentials
+            string _endpoint = string.Empty;
+            string _username = string.Empty;
+            string _password = string.Empty;
+            string _workspaceID = string.Empty;
 
-            try
+            if (string.IsNullOrEmpty(credentials))
             {
-                credentials = Utility.SimpleGet(
-                    Environment.GetEnvironmentVariable("VCAP_URL"),
-                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
+                {
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Credentials file does not exist.");
+                }
+
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                var vcapServices = JObject.Parse(credentials);
+
+                Credential credential = vcapCredentials.GetCredentialByname("discovery-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
+                _workspaceID = credential.WorkspaceId;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-            }
+            #endregion
 
-            Task.WaitAll();
-
-            var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["discovery"]["url"];
-            var _username = vcapServices["discovery"]["username"];
-            var _password = vcapServices["discovery"]["password"];
-
-            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_url.ToString(), _username.ToString(), _password.ToString());
+            DiscoveryServiceExample _discoveryExample = new DiscoveryServiceExample(_endpoint, _username, _password);
             Console.ReadKey();
         }
     }

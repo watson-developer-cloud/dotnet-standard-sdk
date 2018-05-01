@@ -39,7 +39,12 @@ install:
 
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
-- ps: dotnet restore
+before_build:
+- ps: >-
+    git clone https://$GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+
+    dotnet restore
+
 build:
   project: IBM.WatsonDeveloperCloud.sln
   verbosity: minimal

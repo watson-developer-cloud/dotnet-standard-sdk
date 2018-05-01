@@ -68,5 +68,17 @@ namespace IBM.WatsonDeveloperCloud.Util
                 output.Write(buffer, 0, len);
             }
         }
+
+        /// <summary>
+        /// Add a top level object to a json string.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <param name="objectName">The name of the top level object.</param>
+        /// <returns></returns>
+        public static string AddTopLevelObjectToJson(string json, string objectName)
+        {
+            string convertedJson = json.Insert(1, "\"" + objectName + "\": {");
+            return convertedJson.Insert(convertedJson.Length - 1, "}");
+        }
     }
 }

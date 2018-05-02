@@ -221,6 +221,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Console.WriteLine("Failed to get classifier...{0}", e.Message);
             }
 
+            try
+            {
+                IsClassifierReady(createdClassifierId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
+
             var deleteClassifierResult = DeleteClassifier(createdClassifierId);
 
             Assert.IsNotNull(deleteClassifierResult);
@@ -356,13 +366,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             Console.WriteLine(string.Format("Classifier status is {0}", getClassifierResponse.Status.ToString()));
 
-            if (getClassifierResponse.Status == Classifier.StatusEnum.READY)
+            if (getClassifierResponse.Status == Classifier.StatusEnum.READY || getClassifierResponse.Status == Classifier.StatusEnum.FAILED)
             {
                 autoEvent.Set();
-            }
-            else if (getClassifierResponse.Status == Classifier.StatusEnum.FAILED)
-            {
-                throw new Exception("Classifier failed!");
             }
             else
             {

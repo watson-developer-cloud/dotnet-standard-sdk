@@ -15,21 +15,22 @@
 *
 */
 
-using System;
-using Newtonsoft.Json.Linq;
+using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
+namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Example
 {
     public class Example
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            string credentials = string.Empty;
-
             #region Get Credentials
+            string credentials = string.Empty;
             string _endpoint = string.Empty;
             string _username = string.Empty;
             string _password = string.Empty;
@@ -53,7 +54,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
                     VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                     var vcapServices = JObject.Parse(credentials);
 
-                    Credential credential = vcapCredentials.GetCredentialByname("speech-to-text-sdk")[0].Credentials;
+                    Credential credential = vcapCredentials.GetCredentialByname("personality-insights-sdk")[0].Credentials;
                     _endpoint = credential.Url;
                     _username = credential.Username;
                     _password = credential.Password;
@@ -68,7 +69,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
             }
             #endregion
 
-            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_endpoint, _username, _password);
+            PersonalityInsightsService _service = new PersonalityInsightsService(_username, _password, "2016-10-20");
+            _service.Endpoint = _endpoint;
+            string contentToProfile = "The IBM Watson™ Personality Insights service provides a Representational State Transfer (REST) Application Programming Interface (API) that enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can report consumption preferences based on the results of its analysis, and for JSON content that is timestamped, it can report temporal behavior.";
+
+            //  Test Profile
+            Content content = new Content()
+            {
+                ContentItems = new List<ContentItem>()
+                {
+                    new ContentItem()
+                    {
+                        Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
+                        Language = ContentItem.LanguageEnum.EN,
+                        Content = contentToProfile
+                    }
+                }
+            };
+
+            var result = _service.Profile(content, "text/plain", acceptLanguage:"application/json", rawScores: true, consumptionPreferences:true, csvHeaders:true);
+
+            Console.WriteLine("Profile() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+
             Console.ReadKey();
         }
     }

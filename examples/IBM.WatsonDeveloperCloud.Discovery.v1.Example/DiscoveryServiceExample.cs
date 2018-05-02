@@ -64,6 +64,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             _discovery.Endpoint = url;
 
             GetEnvironments();
+            //CreateEnvironment();
             GetEnvironment();
             //UpdateEnvironment();
 
@@ -120,7 +121,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
                     if (!(bool)environment._ReadOnly)
                     {
                         _existingEnvironmentId = environment.EnvironmentId;
-                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment {0} to delete", environment.Name));
+                        Console.WriteLine(string.Format("\nEnvironment found, Setting environment to {0}", environment.Name));
                     }
                 }
             }

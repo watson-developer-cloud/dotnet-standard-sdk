@@ -17,7 +17,6 @@
 
 using System;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Util;
 using System.IO;
 using Newtonsoft.Json;
@@ -51,20 +50,24 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
                     {
                         throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
                     }
+
+                    VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                    var vcapServices = JObject.Parse(credentials);
+
+                    Credential credential = vcapCredentials.GetCredentialByname("conversation-sdk")[0].Credentials;
+                    _endpoint = credential.Url;
+                    _username = credential.Username;
+                    _password = credential.Password;
+                    _workspaceID = credential.WorkspaceId;
                 }
                 else
                 {
-                    Console.WriteLine("Credentials file does not exist.");
+                    Console.WriteLine("Credentials file does not exist. Please define credentials.");
+                    _username = "";
+                    _password = "";
+                    _endpoint = "";
+                    _workspaceID = "";
                 }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("conversation-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
-                _workspaceID = credential.WorkspaceId;
             }
             #endregion
 
@@ -72,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
             ConversationServiceExample _conversationExample = new ConversationServiceExample(_endpoint, _username, _password, _workspaceID);
 
             //  Uncomment to run the context example.
-            //ConversationContextExample _converationContextExample = new ConversationContextExample(_endpoint, _username, _password, _workspaceID);
+            ConversationContextExample _converationContextExample = new ConversationContextExample(_endpoint, _username, _password, _workspaceID);
 
             Console.ReadKey();
         }

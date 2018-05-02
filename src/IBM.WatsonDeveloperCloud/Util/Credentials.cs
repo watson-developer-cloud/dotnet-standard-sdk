@@ -79,12 +79,16 @@ namespace IBM.WatsonDeveloperCloud.Util
         public string Username { get; set; }
         [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
-        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string WorkspaceId { get; set; }
         [JsonProperty("api_key", NullValueHandling = NullValueHandling.Ignore)]
         public string ApiKey { get; set; }
         [JsonProperty("apikey", NullValueHandling = NullValueHandling.Ignore)]
         public string IamApikey { get; set; }
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string WorkspaceId { get; set; }
+        [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string EnvironmentId { get; set; }
+        [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string ClassifierId { get; set; }
     }
     
     /// <summary>

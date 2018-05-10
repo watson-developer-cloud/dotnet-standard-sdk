@@ -48,6 +48,7 @@ var searchData=
   ['createvalue_2ecs',['CreateValue.cs',['../db/dc3/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_create_value_8cs.html',1,'(Global Namespace)'],['../da/d2e/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_create_value_8cs.html',1,'(Global Namespace)']]],
   ['createvoicemodel_2ecs',['CreateVoiceModel.cs',['../d1/d56/_create_voice_model_8cs.html',1,'']]],
   ['createworkspace_2ecs',['CreateWorkspace.cs',['../d0/dd8/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_create_workspace_8cs.html',1,'(Global Namespace)'],['../d1/d9d/_i_b_m_8_watson_developer_cloud_8_conversation_8v1_2_model_2_create_workspace_8cs.html',1,'(Global Namespace)']]],
+  ['credentials_2ecs',['Credentials.cs',['../d5/d48/_credentials_8cs.html',1,'']]],
   ['customword_2ecs',['CustomWord.cs',['../d3/d9b/_custom_word_8cs.html',1,'']]],
   ['customwords_2ecs',['CustomWords.cs',['../d9/d0a/_custom_words_8cs.html',1,'']]]
 ];

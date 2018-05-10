@@ -345,6 +345,7 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.UpdateClassifier", "d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html", null ]
     ] ],
     [ "IBM.WatsonDeveloperCloud.Constants", "d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.Credential", "d1/d39/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_credential.html", null ],
     [ "IBM.WatsonDeveloperCloud.Util.Extensions.DescriptionExtension", "df/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_extensions_1_1_description_extension.html", null ],
     [ "IBM.WatsonDeveloperCloud.Http.Exceptions.Error", "d4/d8e/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions_1_1_error.html", null ],
     [ "Exception", null, [
@@ -426,5 +427,7 @@ var hierarchy =
     [ "IBM.WatsonDeveloperCloud.Http.Extensions.StreamExtension", "d5/d9c/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_extensions_1_1_stream_extension.html", null ],
     [ "IBM.WatsonDeveloperCloud.Util.TokenManager", "dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html", null ],
     [ "IBM.WatsonDeveloperCloud.Util.TokenOptions", "da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html", null ],
-    [ "IBM.WatsonDeveloperCloud.Util.Utility", "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html", null ]
+    [ "IBM.WatsonDeveloperCloud.Util.Utility", "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.VcapCredential", "d0/d59/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_vcap_credential.html", null ],
+    [ "IBM.WatsonDeveloperCloud.Util.VcapCredentials", "d6/d66/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_vcap_credentials.html", null ]
 ];

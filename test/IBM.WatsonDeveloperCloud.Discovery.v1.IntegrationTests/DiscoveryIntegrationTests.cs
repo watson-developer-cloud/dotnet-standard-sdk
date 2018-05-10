@@ -15,9 +15,6 @@
 *
 */
 
-//  Uncomment to skip environment creation
-#define SHORT_TEST
-
 using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,34 +32,29 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
     [TestClass]
     public class DiscoveryIntegrationTests
     {
+        private DiscoveryService _service;
+        private static string _endpoint;
         private static string _username;
         private static string _password;
-        private static string _endpoint;
-        private DiscoveryService _service;
         private static string credentials = string.Empty;
         private static string version = "2017-11-07";
 
-        private static string _createdEnvironmentId;
+        private static string _environmentId;
         private static string _createdConfigurationId;
         private static string _createdCollectionId;
         private static string _createdDocumentId;
         private static string _createdTrainingQueryId;
         private static string _createdTrainingExampleId;
 
-        private string _createdEnvironmentName = "dotnet-test-environment";
-        private string _createdEnvironmentDescription = "Environment created in the .NET SDK Examples";
-        private int _createdEnvironmentSize = 1;
-        private string _updatedEnvironmentName = "dotnet-test-environment-updated";
-        private string _updatedEnvironmentDescription = "Environment created in the .NET SDK Examples - updated";
-        private string _createdConfigurationName = "configName";
-        private string _updatedConfigurationName = "configName-updated";
-        private string _createdConfigurationDescription = "configDescription";
+        private string _createdConfigurationName;
+        private string _updatedConfigurationName;
+        private string _createdConfigurationDescription = "configDescription - safe to delete";
         private string _filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
         private string _metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
 
-        private string _createdCollectionName = "createdCollectionName";
-        private string _createdCollectionDescription = "createdCollectionDescription";
-        private string _updatedCollectionName = "updatedCollectionName";
+        private string _createdCollectionName;
+        private string _createdCollectionDescription = "createdCollectionDescription - safe to delete";
+        private string _updatedCollectionName;
         private CreateCollectionRequest.LanguageEnum _createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
 
 
@@ -72,297 +64,160 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        System.Environment.GetEnvironmentVariable("VCAP_URL"),
-                        System.Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        System.Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                _endpoint = vcapServices["discovery"]["url"].Value<string>();
-                _username = vcapServices["discovery"]["username"].Value<string>();
-                _password = vcapServices["discovery"]["password"].Value<string>();
+                Credential credential = vcapCredentials.GetCredentialByname("discovery-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
             }
+            #endregion
 
             _service = new DiscoveryService(_username, _password, version);
             _service.Endpoint = _endpoint;
 
-#if !SHORT_TEST
-            DeleteExistingEnvironment();
-#endif
+
+            var environments = ListEnvironments();
+            _environmentId = environments.Environments[1].EnvironmentId;
+
+            _createdConfigurationName = Guid.NewGuid().ToString();
+            _updatedConfigurationName = _createdConfigurationName + "-updated";
+            _createdCollectionName = Guid.NewGuid().ToString();
+            _updatedCollectionName = _createdCollectionName + "-updated";
         }
 
         [TestCleanup]
-        public void Teardown()
-        {
-#if !SHORT_TEST
-            DeleteExistingEnvironment();
-#endif
-        }
-
-        private void DeleteExistingEnvironment()
-        {
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult != null)
-            {
-                foreach (Environment environment in listEnvironmentsResult.Environments)
-                {
-                    if (!(bool)environment._ReadOnly)
-                        DeleteEnvironment(environment.EnvironmentId);
-                }
-            }
-        }
-
-#region Environments
-        [TestMethod]
-        public void TestEnvironments_Success()
-        {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
-            {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription
-                };
-
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
-
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
-
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
-
-                UpdateEnvironmentRequest updateEnvironmentRequest = new UpdateEnvironmentRequest()
-                {
-                    Name = _updatedEnvironmentName,
-                    Description = _updatedEnvironmentDescription
-                };
-
-                var updateEnvironmentResult = UpdateEnvironment(_createdEnvironmentId, updateEnvironmentRequest);
-
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(updateEnvironmentResult);
-                Assert.IsTrue(updateEnvironmentResult.Name == _updatedEnvironmentName);
-                Assert.IsTrue(updateEnvironmentResult.Description == _updatedEnvironmentDescription);
-                Assert.IsNotNull(createEnvironmentResults);
-                Assert.IsNotNull(createEnvironmentResults.EnvironmentId);
-                Assert.IsTrue(createEnvironmentResults.Name == _createdEnvironmentName);
-                Assert.IsTrue(createEnvironmentResults.Description == _createdEnvironmentDescription);
-                Assert.IsNotNull(deleteEnvironmentResult);
-                Assert.IsTrue(deleteEnvironmentResult.Status == DeleteEnvironmentResponse.StatusEnum.DELETED);
-
-                _createdEnvironmentId = null;
-#if SHORT_TEST
-            }
-            else
-            {
-                Assert.IsTrue(true);
-            }
-
-            Assert.IsNotNull(listEnvironmentsResult);
-#endif
-        }
-#endregion
-
-#region Configurations
+        public void Teardown() { }
+        
+        #region Configurations
         [TestMethod]
         public void TestConfigurations_Success()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
+            var listConfigurationsResults = ListConfigurations(_environmentId);
 
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = Guid.NewGuid().ToString(),
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var getConfigurationResults = GetConfiguration(_environmentId, _createdConfigurationId);
 
-                var listConfigurationsResults = ListConfigurations(_createdEnvironmentId);
-
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
-
-                };
-
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
-
-                var getConfigurationResults = GetConfiguration(_createdEnvironmentId, _createdConfigurationId);
-
-                Configuration updateConfiguration = new Configuration()
-                {
-                    Name = _updatedConfigurationName
-                };
-
-                var updateConfigurationResults = UpdateConfiguration(_createdEnvironmentId, _createdConfigurationId, updateConfiguration);
-
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(deleteConfigurationResults);
-                Assert.IsTrue(deleteConfigurationResults.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
-                Assert.IsNotNull(updateConfigurationResults);
-                Assert.IsTrue(updateConfigurationResults.ConfigurationId == _createdConfigurationId);
-                Assert.IsTrue(updateConfigurationResults.Description == _createdConfigurationDescription);
-                Assert.IsTrue(updateConfigurationResults.Name == _updatedConfigurationName);
-                Assert.IsNotNull(getConfigurationResults);
-                Assert.IsTrue(getConfigurationResults.ConfigurationId == _createdConfigurationId);
-                Assert.IsTrue(getConfigurationResults.Description == _createdConfigurationDescription);
-                Assert.IsTrue(getConfigurationResults.Name == _createdConfigurationName);
-                Assert.IsNotNull(createConfigurationResults);
-                Assert.IsTrue(createConfigurationResults.Name == _createdConfigurationName);
-                Assert.IsTrue(createConfigurationResults.Description == _createdConfigurationDescription);
-                Assert.IsNotNull(listConfigurationsResults);
-                Assert.IsNotNull(listConfigurationsResults.Configurations);
-                Assert.IsTrue(listConfigurationsResults.Configurations.Count > 0);
-
-                _createdConfigurationId = null;
-                _createdEnvironmentId = null;
-#if SHORT_TEST
-            }
-            else
+            Configuration updateConfiguration = new Configuration()
             {
-                Assert.IsTrue(true);
-            }
-#endif
+                Name = _updatedConfigurationName
+            };
+
+            var updateConfigurationResults = UpdateConfiguration(_environmentId, _createdConfigurationId, updateConfiguration);
+
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(deleteConfigurationResults);
+            Assert.IsTrue(deleteConfigurationResults.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(updateConfigurationResults);
+            Assert.IsTrue(updateConfigurationResults.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(updateConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsNotNull(getConfigurationResults);
+            Assert.IsTrue(getConfigurationResults.ConfigurationId == _createdConfigurationId);
+            Assert.IsTrue(getConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsNotNull(createConfigurationResults);
+            Assert.IsTrue(createConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsNotNull(listConfigurationsResults);
+            Assert.IsNotNull(listConfigurationsResults.Configurations);
+            Assert.IsTrue(listConfigurationsResults.Configurations.Count > 0);
+
+            _createdConfigurationId = null;
+            _environmentId = null;
         }
-#endregion
+        #endregion
 
-#region Collections
+        #region Collections
         [TestMethod]
         public void TestCollections_Success()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var listCollectionsResult = ListCollections(_environmentId);
 
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
-
-                };
-
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
-
-                var listCollectionsResult = ListCollections(_createdEnvironmentId);
-
-                CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-                {
-                    Language = _createdCollectionLanguage,
-                    Name = _createdCollectionName,
-                    Description = _createdCollectionDescription,
-                    ConfigurationId = _createdConfigurationId
-                };
-
-                var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
-                _createdCollectionId = createCollectionResult.CollectionId;
-
-                var getCollectionResult = GetCollection(_createdEnvironmentId, _createdCollectionId);
-
-                UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
-                {
-                    Name = _updatedCollectionName,
-                };
-
-                var updateCollectionResult = UpdateCollection(_createdEnvironmentId, _createdCollectionId, updateCollectionRequest);
-
-                var listCollectionFieldsResult = ListCollectionFields(_createdEnvironmentId, _createdCollectionId);
-
-                var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(deleteCollectionResult);
-                Assert.IsTrue(deleteCollectionResult.Status == DeleteCollectionResponse.StatusEnum.DELETED);
-                Assert.IsNotNull(listCollectionFieldsResult);
-                Assert.IsNotNull(updateCollectionResult);
-                Assert.IsTrue(updateCollectionResult.Name == _updatedCollectionName);
-                Assert.IsTrue(updateCollectionResult.CollectionId == _createdCollectionId);
-                Assert.IsNotNull(getCollectionResult);
-                Assert.IsTrue(getCollectionResult.CollectionId == _createdCollectionId);
-                Assert.IsTrue(getCollectionResult.Name == _createdCollectionName);
-                Assert.IsTrue(getCollectionResult.Description == _createdCollectionDescription);
-                Assert.IsNotNull(createCollectionResult);
-                Assert.IsTrue(createCollectionResult.Name == _createdCollectionName);
-                Assert.IsTrue(createCollectionResult.Description == _createdCollectionDescription);
-                Assert.IsNotNull(listCollectionsResult);
-
-                _createdEnvironmentId = null;
-                _createdConfigurationId = null;
-                _createdCollectionId = null;
-#if SHORT_TEST
-            }
-            else
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Assert.IsTrue(true);
-            }
-#endif
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            var getCollectionResult = GetCollection(_environmentId, _createdCollectionId);
+
+            UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
+            {
+                Name = _updatedCollectionName,
+            };
+
+            var updateCollectionResult = UpdateCollection(_environmentId, _createdCollectionId, updateCollectionRequest);
+
+            var listCollectionFieldsResult = ListCollectionFields(_environmentId, _createdCollectionId);
+
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(deleteCollectionResult);
+            Assert.IsTrue(deleteCollectionResult.Status == DeleteCollectionResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(listCollectionFieldsResult);
+            Assert.IsNotNull(updateCollectionResult);
+            Assert.IsTrue(updateCollectionResult.CollectionId == _createdCollectionId);
+            Assert.IsNotNull(getCollectionResult);
+            Assert.IsTrue(getCollectionResult.CollectionId == _createdCollectionId);
+            Assert.IsTrue(getCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsNotNull(createCollectionResult);
+            Assert.IsTrue(createCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsNotNull(listCollectionsResult);
+
+            _environmentId = null;
+            _createdConfigurationId = null;
+            _createdCollectionId = null;
         }
-#endregion
+        #endregion
 
-#region Preview Environment
+        #region Preview Environment
         //[TestMethod]
         public void PreviewEnvironment()
         {
@@ -370,7 +225,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = TestConfigurationInEnvironment(_createdEnvironmentId, _createdConfigurationId, "html_input");
+                var result = TestConfigurationInEnvironment(_environmentId, _createdConfigurationId, "html_input");
 
                 if (result != null)
                 {
@@ -384,341 +239,217 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Assert.IsNotNull(result);
             }
         }
-#endregion
+        #endregion
 
-#region Documents
+        #region Documents
         [TestMethod]
         public void TestDocuments_Success()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var listCollectionsResult = ListCollections(_environmentId);
 
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
-
-                };
-
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
-
-                var listCollectionsResult = ListCollections(_createdEnvironmentId);
-
-                CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-                {
-                    Language = _createdCollectionLanguage,
-                    Name = _createdCollectionName,
-                    Description = _createdCollectionDescription,
-                    ConfigurationId = _createdConfigurationId
-                };
-
-                var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
-                _createdCollectionId = createCollectionResult.CollectionId;
-
-                DocumentAccepted addDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
-                    _createdDocumentId = addDocumentResult.DocumentId;
-                }
-
-                var getDocumentStatusResult = GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-
-                DocumentAccepted updateDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    updateDocumentResult = UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
-                }
-
-                var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-                var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(deleteDocumentResult);
-                Assert.IsTrue(deleteDocumentResult.Status == DeleteDocumentResponse.StatusEnum.DELETED);
-                Assert.IsNotNull(updateDocumentResult);
-                Assert.IsTrue(updateDocumentResult.DocumentId == _createdDocumentId);
-                Assert.IsNotNull(getDocumentStatusResult);
-                Assert.IsTrue(getDocumentStatusResult.DocumentId == _createdDocumentId);
-                Assert.IsNotNull(addDocumentResult);
-
-                _createdDocumentId = null;
-                _createdCollectionId = null;
-                _createdConfigurationId = null;
-                _createdEnvironmentId = null;
-#if SHORT_TEST
-            }
-            else
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Assert.IsTrue(true);
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
-#endif
+
+            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+
+            DocumentAccepted updateDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+            }
+
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(deleteDocumentResult);
+            Assert.IsTrue(deleteDocumentResult.Status == DeleteDocumentResponse.StatusEnum.DELETED);
+            Assert.IsNotNull(updateDocumentResult);
+            Assert.IsTrue(updateDocumentResult.DocumentId == _createdDocumentId);
+            Assert.IsNotNull(getDocumentStatusResult);
+            Assert.IsTrue(getDocumentStatusResult.DocumentId == _createdDocumentId);
+            Assert.IsNotNull(addDocumentResult);
+
+            _createdDocumentId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _environmentId = null;
         }
-#endregion
+        #endregion
 
-#region Query
+        #region Query
         [TestMethod]
         public void TestQuery()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var listCollectionsResult = ListCollections(_environmentId);
 
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
-
-                };
-
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
-
-                var listCollectionsResult = ListCollections(_createdEnvironmentId);
-
-                CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-                {
-                    Language = _createdCollectionLanguage,
-                    Name = _createdCollectionName,
-                    Description = _createdCollectionDescription,
-                    ConfigurationId = _createdConfigurationId
-                };
-
-                var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
-                _createdCollectionId = createCollectionResult.CollectionId;
-
-                DocumentAccepted addDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
-                    _createdDocumentId = addDocumentResult.DocumentId;
-                }
-
-                var queryResult = Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
-
-                var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-                var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(queryResult);
-
-                _createdDocumentId = null;
-                _createdCollectionId = null;
-                _createdConfigurationId = null;
-                _createdEnvironmentId = null;
-#if SHORT_TEST
-            }
-            else
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Assert.IsTrue(true);
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
-#endif
+
+            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(queryResult);
+
+            _createdDocumentId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _environmentId = null;
         }
-#endregion
+        #endregion
 
-#region Notices
+        #region Notices
         [TestMethod]
         public void TestGetNotices()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var listCollectionsResult = ListCollections(_environmentId);
 
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
-
-                };
-
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
-
-                var listCollectionsResult = ListCollections(_createdEnvironmentId);
-
-                CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-                {
-                    Language = _createdCollectionLanguage,
-                    Name = _createdCollectionName,
-                    Description = _createdCollectionDescription,
-                    ConfigurationId = _createdConfigurationId
-                };
-
-                var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
-                _createdCollectionId = createCollectionResult.CollectionId;
-
-                DocumentAccepted addDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
-                    _createdDocumentId = addDocumentResult.DocumentId;
-                }
-
-                var queryResult = Query(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
-                var queryNoticesResult = QueryNotices(_createdEnvironmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
-
-                var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-                var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(queryNoticesResult);
-
-                _createdEnvironmentId = null;
-                _createdConfigurationId = null;
-                _createdCollectionId = null;
-                _createdDocumentId = null;
-#if SHORT_TEST
-            }
-            else
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Assert.IsTrue(true);
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
             }
-#endif
+
+            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+            var queryNoticesResult = QueryNotices(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(queryNoticesResult);
+
+            _environmentId = null;
+            _createdConfigurationId = null;
+            _createdCollectionId = null;
+            _createdDocumentId = null;
         }
-#endregion
+        #endregion
 
-#region Training Data
+        #region Training Data
         [TestMethod]
         public void TestTrainingData()
         {
-#if SHORT_TEST
-            var listEnvironmentsResult = ListEnvironments();
-
-            if (listEnvironmentsResult.Environments.Count == 0)
+            Configuration configuration = new Configuration()
             {
-#endif
-                CreateEnvironmentRequest createEnvironmentRequest = new CreateEnvironmentRequest()
-                {
-                    Name = _createdEnvironmentName,
-                    Description = _createdEnvironmentDescription,
-                    Size = _createdEnvironmentSize
-                };
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
 
-                var createEnvironmentResults = CreateEnvironment(createEnvironmentRequest);
-                _createdEnvironmentId = createEnvironmentResults.EnvironmentId;
+            };
 
-                Task.Factory.StartNew(() =>
-                {
-                    Console.WriteLine("Checking environment status in 30 seconds...");
-                    Thread.Sleep(30000);
-                });
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-                IsEnvironmentReady(_createdEnvironmentId);
-                autoEvent.WaitOne();
+            var listCollectionsResult = ListCollections(_environmentId);
 
-                Configuration configuration = new Configuration()
-                {
-                    Name = _createdConfigurationName,
-                    Description = _createdConfigurationDescription,
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
 
-                };
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
 
-                var createConfigurationResults = CreateConfiguration(_createdEnvironmentId, configuration);
-                _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
+            }
 
-                var listCollectionsResult = ListCollections(_createdEnvironmentId);
+            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
 
-                CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-                {
-                    Language = _createdCollectionLanguage,
-                    Name = _createdCollectionName,
-                    Description = _createdCollectionDescription,
-                    ConfigurationId = _createdConfigurationId
-                };
+            DocumentAccepted updateDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+            }
 
-                var createCollectionResult = CreateCollection(_createdEnvironmentId, createCollectionRequest);
-                _createdCollectionId = createCollectionResult.CollectionId;
+            var listTrainingDataResult = ListTrainingData(_environmentId, _createdCollectionId);
 
-                DocumentAccepted addDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    addDocumentResult = AddDocument(_createdEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
-                    _createdDocumentId = addDocumentResult.DocumentId;
-                }
-
-                var getDocumentStatusResult = GetDocumentStatus(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-
-                DocumentAccepted updateDocumentResult;
-                using (FileStream fs = File.OpenRead(_filepathToIngest))
-                {
-                    updateDocumentResult = UpdateDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
-                }
-
-                var listTrainingDataResult = ListTrainingData(_createdEnvironmentId, _createdCollectionId);
-
-                var newTrainingQuery = new NewTrainingQuery()
-                {
-                    NaturalLanguageQuery = "naturalLanguageQuery",
-                    Filter = "filter",
-                    Examples = new List<TrainingExample>()
+            var newTrainingQuery = new NewTrainingQuery()
+            {
+                NaturalLanguageQuery = "naturalLanguageQuery",
+                Filter = "filter",
+                Examples = new List<TrainingExample>()
                 {
                     new TrainingExample()
                     {
@@ -727,67 +458,59 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                         Relevance = 1
                     }
                 }
-                };
+            };
 
-                var addTrainingDataResult = AddTrainingData(_createdEnvironmentId, _createdCollectionId, newTrainingQuery);
-                _createdTrainingQueryId = addTrainingDataResult.QueryId;
+            var addTrainingDataResult = AddTrainingData(_environmentId, _createdCollectionId, newTrainingQuery);
+            _createdTrainingQueryId = addTrainingDataResult.QueryId;
 
-                var getTrainingDataResult = GetTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
+            var getTrainingDataResult = GetTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
 
-                var trainingExample = new TrainingExample()
-                {
-                    DocumentId = _createdDocumentId,
-                    Relevance = 1
-                };
-
-                var createTrainingExampleResult = CreateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
-                _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
-
-                var getTrainingExampleResult = GetTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-
-                var updateTrainingExample = new TrainingExamplePatch()
-                {
-                    CrossReference = "crossReference",
-                    Relevance = 1
-                };
-
-                var updateTrainingExampleResult = UpdateTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
-
-                var deleteTrainingExampleResult = DeleteTrainingExample(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-                var deleteTrainingDataResult = DeleteTrainingData(_createdEnvironmentId, _createdCollectionId, _createdTrainingQueryId);
-                var deleteAllTrainingDataResult = DeleteAllTrainingData(_createdEnvironmentId, _createdCollectionId);
-                var deleteDocumentResult = DeleteDocument(_createdEnvironmentId, _createdCollectionId, _createdDocumentId);
-                var deleteCollectionResult = DeleteCollection(_createdEnvironmentId, _createdCollectionId);
-                var deleteConfigurationResults = DeleteConfiguration(_createdEnvironmentId, _createdConfigurationId);
-                var deleteEnvironmentResult = DeleteEnvironment(_createdEnvironmentId);
-
-                Assert.IsNotNull(deleteAllTrainingDataResult);
-                Assert.IsNotNull(deleteTrainingDataResult);
-                Assert.IsNotNull(deleteTrainingExampleResult);
-                Assert.IsNotNull(updateTrainingExampleResult);
-                Assert.IsNotNull(getTrainingExampleResult);
-                Assert.IsNotNull(createTrainingExampleResult);
-                Assert.IsNotNull(getTrainingDataResult);
-                Assert.IsNotNull(addTrainingDataResult);
-                Assert.IsNotNull(listTrainingDataResult);
-
-                _createdTrainingExampleId = null;
-                _createdTrainingQueryId = null;
-                _createdCollectionId = null;
-                _createdConfigurationId = null;
-                _createdEnvironmentId = null;
-                _createdDocumentId = null;
-#if SHORT_TEST
-            }
-            else
+            var trainingExample = new TrainingExample()
             {
-                Assert.IsTrue(true);
-            }
-#endif
-        }
-#endregion
+                DocumentId = _createdDocumentId,
+                Relevance = 1
+            };
 
-#region IsEnvironmentReady
+            var createTrainingExampleResult = CreateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
+
+            var getTrainingExampleResult = GetTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+
+            var updateTrainingExample = new TrainingExamplePatch()
+            {
+                CrossReference = "crossReference",
+                Relevance = 1
+            };
+
+            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
+
+            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
+            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, _createdCollectionId);
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(deleteAllTrainingDataResult);
+            Assert.IsNotNull(deleteTrainingDataResult);
+            Assert.IsNotNull(deleteTrainingExampleResult);
+            Assert.IsNotNull(updateTrainingExampleResult);
+            Assert.IsNotNull(getTrainingExampleResult);
+            Assert.IsNotNull(createTrainingExampleResult);
+            Assert.IsNotNull(getTrainingDataResult);
+            Assert.IsNotNull(addTrainingDataResult);
+            Assert.IsNotNull(listTrainingDataResult);
+
+            _createdTrainingExampleId = null;
+            _createdTrainingQueryId = null;
+            _createdCollectionId = null;
+            _createdConfigurationId = null;
+            _environmentId = null;
+            _createdDocumentId = null;
+        }
+        #endregion
+
+        #region IsEnvironmentReady
         private void IsEnvironmentReady(string environmentId)
         {
             var result = GetEnvironment(environmentId);
@@ -807,10 +530,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 });
             }
         }
-#endregion
+        #endregion
 
-#region Generated
-#region CreateEnvironment
+        #region Generated
+        #region CreateEnvironment
         private Environment CreateEnvironment(CreateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateEnvironment()");
@@ -827,9 +550,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteEnvironment
+        #region DeleteEnvironment
         private DeleteEnvironmentResponse DeleteEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteEnvironment()");
@@ -846,9 +569,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetEnvironment
+        #region GetEnvironment
         private Environment GetEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetEnvironment()");
@@ -865,9 +588,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListEnvironments
+        #region ListEnvironments
         private ListEnvironmentsResponse ListEnvironments(string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListEnvironments()");
@@ -884,9 +607,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListFields
+        #region ListFields
         private ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListFields()");
@@ -903,9 +626,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region UpdateEnvironment
+        #region UpdateEnvironment
         private Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateEnvironment()");
@@ -922,9 +645,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region CreateConfiguration
+        #region CreateConfiguration
         private Configuration CreateConfiguration(string environmentId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateConfiguration()");
@@ -941,9 +664,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteConfiguration
+        #region DeleteConfiguration
         private DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteConfiguration()");
@@ -960,9 +683,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetConfiguration
+        #region GetConfiguration
         private Configuration GetConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetConfiguration()");
@@ -979,9 +702,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListConfigurations
+        #region ListConfigurations
         private ListConfigurationsResponse ListConfigurations(string environmentId, string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListConfigurations()");
@@ -998,9 +721,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region UpdateConfiguration
+        #region UpdateConfiguration
         private Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateConfiguration()");
@@ -1017,9 +740,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region TestConfigurationInEnvironment
+        #region TestConfigurationInEnvironment
         private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to TestConfigurationInEnvironment()");
@@ -1036,9 +759,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region CreateCollection
+        #region CreateCollection
         private Collection CreateCollection(string environmentId, CreateCollectionRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateCollection()");
@@ -1055,9 +778,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteCollection
+        #region DeleteCollection
         private DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCollection()");
@@ -1074,9 +797,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetCollection
+        #region GetCollection
         private Collection GetCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetCollection()");
@@ -1093,9 +816,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListCollectionFields
+        #region ListCollectionFields
         private ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCollectionFields()");
@@ -1112,9 +835,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListCollections
+        #region ListCollections
         private ListCollectionsResponse ListCollections(string environmentId, string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCollections()");
@@ -1131,9 +854,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region UpdateCollection
+        #region UpdateCollection
         private Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateCollection()");
@@ -1150,9 +873,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region CreateExpansions
+        #region CreateExpansions
         private Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateExpansions()");
@@ -1169,9 +892,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteExpansions
+        #region DeleteExpansions
         private BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExpansions()");
@@ -1188,9 +911,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListExpansions
+        #region ListExpansions
         private Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListExpansions()");
@@ -1207,9 +930,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region AddDocument
+        #region AddDocument
         private DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddDocument()");
@@ -1226,9 +949,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteDocument
+        #region DeleteDocument
         private DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteDocument()");
@@ -1245,9 +968,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetDocumentStatus
+        #region GetDocumentStatus
         private DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetDocumentStatus()");
@@ -1264,9 +987,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region UpdateDocument
+        #region UpdateDocument
         private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateDocument()");
@@ -1283,9 +1006,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region FederatedQuery
+        #region FederatedQuery
         private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to FederatedQuery()");
@@ -1302,9 +1025,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region FederatedQueryNotices
+        #region FederatedQueryNotices
         private QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to FederatedQueryNotices()");
@@ -1321,9 +1044,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region Query
+        #region Query
         private QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Query()");
@@ -1340,9 +1063,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region QueryEntities
+        #region QueryEntities
         private QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryEntities()");
@@ -1359,9 +1082,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region QueryNotices
+        #region QueryNotices
         private QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryNotices()");
@@ -1378,9 +1101,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region QueryRelations
+        #region QueryRelations
         private QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryRelations()");
@@ -1397,9 +1120,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region AddTrainingData
+        #region AddTrainingData
         private TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddTrainingData()");
@@ -1416,9 +1139,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region CreateTrainingExample
+        #region CreateTrainingExample
         private TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateTrainingExample()");
@@ -1435,9 +1158,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteAllTrainingData
+        #region DeleteAllTrainingData
         private BaseModel DeleteAllTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteAllTrainingData()");
@@ -1454,9 +1177,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteTrainingData
+        #region DeleteTrainingData
         private BaseModel DeleteTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteTrainingData()");
@@ -1473,9 +1196,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region DeleteTrainingExample
+        #region DeleteTrainingExample
         private BaseModel DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteTrainingExample()");
@@ -1492,9 +1215,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetTrainingData
+        #region GetTrainingData
         private TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetTrainingData()");
@@ -1511,9 +1234,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region GetTrainingExample
+        #region GetTrainingExample
         private TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetTrainingExample()");
@@ -1530,9 +1253,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListTrainingData
+        #region ListTrainingData
         private TrainingDataSet ListTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListTrainingData()");
@@ -1549,9 +1272,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region ListTrainingExamples
+        #region ListTrainingExamples
         private TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListTrainingExamples()");
@@ -1568,9 +1291,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#region UpdateTrainingExample
+        #region UpdateTrainingExample
         private TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateTrainingExample()");
@@ -1587,8 +1310,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             return result;
         }
-#endregion
+        #endregion
 
-#endregion
+        #endregion
     }
 }

@@ -17,8 +17,9 @@
 
 using System;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Util;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
 {
@@ -28,31 +29,53 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         {
             string credentials = string.Empty;
 
-            try
-            {
-                credentials = Utility.SimpleGet(
-                    Environment.GetEnvironmentVariable("VCAP_URL"),
-                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-            }
+            #region Get Credentials
+            string _endpoint = string.Empty;
+            string _username = string.Empty;
+            string _password = string.Empty;
+            string _workspaceID = string.Empty;
 
-            Task.WaitAll();
+            if (string.IsNullOrEmpty(credentials))
+            {
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
+                {
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
 
-            var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["conversation"]["url"];
-            var _username = vcapServices["conversation"]["username"];
-            var _password = vcapServices["conversation"]["password"];
-            var _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";   //vcapServices["conversation"]["workspace_id"];
+                    VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                    var vcapServices = JObject.Parse(credentials);
+
+                    Credential credential = vcapCredentials.GetCredentialByname("conversation-sdk")[0].Credentials;
+                    _endpoint = credential.Url;
+                    _username = credential.Username;
+                    _password = credential.Password;
+                    _workspaceID = credential.WorkspaceId;
+                }
+                else
+                {
+                    Console.WriteLine("Credentials file does not exist. Please define credentials.");
+                    _username = "";
+                    _password = "";
+                    _endpoint = "";
+                    _workspaceID = "";
+                }
+            }
+            #endregion
 
             //  Uncomment to run the service example.
-            //ConversationServiceExample _conversationExample = new ConversationServiceExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
+            ConversationServiceExample _conversationExample = new ConversationServiceExample(_endpoint, _username, _password, _workspaceID);
 
             //  Uncomment to run the context example.
-            ConversationContextExample _converationContextExample = new ConversationContextExample(_url.ToString(), _username.ToString(), _password.ToString(), _workspaceID.ToString());
+            ConversationContextExample _converationContextExample = new ConversationContextExample(_endpoint, _username, _password, _workspaceID);
 
             Console.ReadKey();
         }

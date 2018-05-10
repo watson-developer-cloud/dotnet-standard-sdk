@@ -21,38 +21,58 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
 {
-    public class Program
+    public class Example
     {
         public static void Main(string[] args)
         {
             string credentials = string.Empty;
 
-            try
-            {
-                credentials = Utility.SimpleGet(
-                    Environment.GetEnvironmentVariable("VCAP_URL"),
-                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-            }
+            #region Get Credentials
+            string _endpoint = string.Empty;
+            string _username = string.Empty;
+            string _password = string.Empty;
 
-            Task.WaitAll();
+            if (string.IsNullOrEmpty(credentials))
+            {
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
+                {
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
 
-            var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["tone_analyzer"]["url"].Value<string>();
-            var _username = vcapServices["tone_analyzer"]["username"].Value<string>();
-            var _password = vcapServices["tone_analyzer"]["password"].Value<string>();
+                    VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                    var vcapServices = JObject.Parse(credentials);
+
+                    Credential credential = vcapCredentials.GetCredentialByname("tone-analyzer-sdk")[0].Credentials;
+                    _endpoint = credential.Url;
+                    _username = credential.Username;
+                    _password = credential.Password;
+                }
+                else
+                {
+                    Console.WriteLine("Credentials file does not exist. Please define credentials.");
+                    _username = "";
+                    _password = "";
+                    _endpoint = "";
+                }
+            }
+            #endregion
+
             var versionDate = "2016-05-19";
-
             ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
-            _toneAnalyzer.Endpoint = _url;
+            _toneAnalyzer.Endpoint = _endpoint;
 
             //  Test PostTone
             ToneInput toneInput = new ToneInput()

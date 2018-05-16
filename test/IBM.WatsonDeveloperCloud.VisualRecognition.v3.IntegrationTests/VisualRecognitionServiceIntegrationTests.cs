@@ -57,26 +57,36 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             Console.WriteLine(string.Format("\nSetting up test"));
 
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
-
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
-                _endpoint = vcapServices["visual_recognition"]["url"].Value<string>();
-                _apikey = vcapServices["visual_recognition"]["api_key"].Value<string>();
+
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _apikey = credential.ApiKey;
             }
+            #endregion
 
             _service = new VisualRecognitionService(_apikey, "2016-05-20");
             _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
@@ -241,6 +251,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 Console.WriteLine("Failed to get classifier...{0}", e.Message);
             }
 
+            try
+            {
+                IsClassifierReady(createdClassifierId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
+
             var deleteClassifierResult = DeleteClassifier(createdClassifierId);
 
             Assert.IsNotNull(deleteClassifierResult);
@@ -376,13 +396,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             Console.WriteLine(string.Format("Classifier status is {0}", getClassifierResponse.Status.ToString()));
 
-            if (getClassifierResponse.Status == Classifier.StatusEnum.READY)
+            if (getClassifierResponse.Status == Classifier.StatusEnum.READY || getClassifierResponse.Status == Classifier.StatusEnum.FAILED)
             {
                 autoEvent.Set();
-            }
-            else if (getClassifierResponse.Status == Classifier.StatusEnum.FAILED)
-            {
-                throw new Exception("Classifier failed!");
             }
             else
             {

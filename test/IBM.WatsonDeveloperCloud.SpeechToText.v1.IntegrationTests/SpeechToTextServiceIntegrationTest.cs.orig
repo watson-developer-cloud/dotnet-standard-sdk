@@ -77,7 +77,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
                     Console.WriteLine("Credentials file does not exist.");
                 }
 
+<<<<<<< HEAD
+                Task.WaitAll();
+
+=======
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+>>>>>>> development
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("speech-to-text-sdk")[0].Credentials;

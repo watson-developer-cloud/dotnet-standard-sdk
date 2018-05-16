@@ -1,5 +1,5 @@
 ﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,16 +16,17 @@
 */
 
 using System;
-using Newtonsoft.Json.Linq;
-using IBM.WatsonDeveloperCloud.Util;
 using System.IO;
+using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
+namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example
 {
-    public class Example
+    internal class Example
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             string credentials = string.Empty;
 
@@ -53,7 +54,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
                     VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                     var vcapServices = JObject.Parse(credentials);
 
-                    Credential credential = vcapCredentials.GetCredentialByname("speech-to-text-sdk")[0].Credentials;
+                    Credential credential = vcapCredentials.GetCredentialByname("text-to-speech-sdk")[0].Credentials;
                     _endpoint = credential.Url;
                     _username = credential.Username;
                     _password = credential.Password;
@@ -68,7 +69,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
             }
             #endregion
 
-            SpeechToTextServiceExample _speechToTextExample = new SpeechToTextServiceExample(_endpoint, _username, _password);
+            string _synthesizeText = "Hello, welcome to the Watson dotnet SDK!";
+
+            Text synthesizeText = new Text
+            {
+                _Text = _synthesizeText
+            };
+
+            var _service = new TextToSpeechService(_username, _password);
+            _service.Endpoint = _endpoint;
+
+            // MemoryStream Result with .wav data
+            var synthesizeResult = _service.Synthesize(synthesizeText, "audio/wav");
             Console.ReadKey();
         }
     }

@@ -15,12 +15,13 @@
 *
 */
 
+using System.Collections.Generic;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using System;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 {
@@ -28,6 +29,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
     {
         const string SERVICE_NAME = "natural_language_understanding";
         const string URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
+        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -56,6 +58,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             VersionDate = versionDate;
         }
 
+        public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+
+            _tokenManager = new TokenManager(options);
+        }
+
         public NaturalLanguageUnderstandingService(IClient httpClient) : this()
         {
             if (httpClient == null)
@@ -82,16 +96,26 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/analyze");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<Parameters>(parameters);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<Parameters>(parameters);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<AnalysisResults>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<AnalysisResults>().Result;
                 if(result == null)
                     result = new AnalysisResults();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -118,15 +142,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<InlineResponse200>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<InlineResponse200>().Result;
                 if(result == null)
                     result = new InlineResponse200();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -151,15 +185,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/models");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListModelsResults>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListModelsResults>().Result;
                 if(result == null)
                     result = new ListModelsResults();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

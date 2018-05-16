@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
         public void Constructor_HttpClient_Null()
         {
             LanguageTranslatorService service =
-                new LanguageTranslatorService(null);
+                new LanguageTranslatorService(httpClient: null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -131,9 +131,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
                   .Returns(request);
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                   .Returns(x => { throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty)); });
+                   .Returns(x =>
+                   {
+                       throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                   string.Empty));
+                   });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
@@ -164,7 +167,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            
+
             var customModel = service.CreateModel("model_unit_test", "base_id", Substitute.For<FileStream>("any_file", FileMode.Create));
 
             Assert.IsNotNull(customModel);
@@ -192,7 +195,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
 
             var customModel = service.CreateModel(null);
         }
-        
+
         [TestMethod, ExpectedException(typeof(AggregateException))]
         public void CreateModel_Catch_Exception()
         {
@@ -206,9 +209,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
                    .Returns(request);
 
             request.WithBodyContent(Arg.Any<HttpContent>())
-                   .Returns(x => { throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty)); });
+                   .Returns(x =>
+                   {
+                       throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                   string.Empty));
+                   });
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
@@ -402,7 +408,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
                 }
             };
 
-            request.As <TranslationResult>()
+            request.As<TranslationResult>()
                    .Returns(Task.FromResult(response));
 
             LanguageTranslatorService service =
@@ -482,9 +488,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
                   .Returns(request);
 
             request.WithBody<TranslateRequest>(Arg.Any<TranslateRequest>(), Arg.Any<MediaTypeHeaderValue>())
-                   .Returns(x => { throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty)); });
+                   .Returns(x =>
+                   {
+                       throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                   string.Empty));
+                   });
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
@@ -503,14 +512,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
 
             IdentifiableLanguages response = new IdentifiableLanguages()
             {
-               Languages = new List<IdentifiableLanguage>()
+                Languages = new List<IdentifiableLanguage>()
                {
                    new IdentifiableLanguage()
                    {
                        Language = "language",
                        Name = "name"
                    }
-               } 
+               }
             };
 
             request.As<IdentifiableLanguages>()
@@ -519,7 +528,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
 
-            var identifiableLanguages = service.ListIdentifiableLanguages ();
+            var identifiableLanguages = service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(identifiableLanguages);
             client.Received().GetAsync(Arg.Any<string>());
@@ -587,9 +596,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests
 
             IRequest request = Substitute.For<IRequest>();
             client.PostAsync(Arg.Any<string>())
-                  .Returns(x => { throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty)); });
+                  .Returns(x =>
+                  {
+                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                   Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                   string.Empty));
+                  });
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
 

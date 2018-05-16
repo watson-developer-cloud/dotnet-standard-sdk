@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-/**
+﻿/**
 * Copyright 2017 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +14,12 @@ using System.Threading.Tasks;
 * limitations under the License.
 *
 */
+
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 namespace IBM.WatsonDeveloperCloud.Util
 {
     /// <summary>
@@ -65,6 +67,18 @@ namespace IBM.WatsonDeveloperCloud.Util
             {
                 output.Write(buffer, 0, len);
             }
+        }
+
+        /// <summary>
+        /// Add a top level object to a json string.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <param name="objectName">The name of the top level object.</param>
+        /// <returns></returns>
+        public static string AddTopLevelObjectToJson(string json, string objectName)
+        {
+            string convertedJson = json.Insert(1, "\"" + objectName + "\": {");
+            return convertedJson.Insert(convertedJson.Length - 1, "}");
         }
     }
 }

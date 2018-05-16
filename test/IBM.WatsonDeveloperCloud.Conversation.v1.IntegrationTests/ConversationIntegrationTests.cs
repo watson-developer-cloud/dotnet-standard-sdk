@@ -22,9 +22,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
 {
@@ -60,28 +60,43 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         [TestInitialize]
         public void Setup()
         {
+            #region Get Credentials
+            string _endpoint = string.Empty;
+            string _username = string.Empty;
+            string _password = string.Empty;
+            string _workspaceID = string.Empty;
+
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                _endpoint = vcapServices["conversation"]["url"].Value<string>();
-                _username = vcapServices["conversation"]["username"].Value<string>();
-                _password = vcapServices["conversation"]["password"].Value<string>();
-                _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
+                Credential credential = vcapCredentials.GetCredentialByname("conversation-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
+                _workspaceID = credential.WorkspaceId;
             }
+            #endregion
 
             _service = new ConversationService(_username, _password, "2018-02-16")
             {
@@ -698,7 +713,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Message()");
-            var result = _service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
+            var result = _service.Message(workspaceId: workspaceId, request: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
 
             if (result != null)
             {

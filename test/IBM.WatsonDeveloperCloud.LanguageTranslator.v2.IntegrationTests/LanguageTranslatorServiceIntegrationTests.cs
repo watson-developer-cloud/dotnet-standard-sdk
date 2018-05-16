@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
     [TestClass]
     public class LanguageTranslatorServiceIntegrationTests
     {
-        private static string _userName;
+        private static string _username;
         private static string _password;
         private static string _endpoint;
         private LanguageTranslatorService _service;
@@ -45,35 +45,44 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
-
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                _endpoint = vcapServices["language_translator"]["url"].Value<string>();
-                _userName = vcapServices["language_translator"]["username"].Value<string>();
-                _password = vcapServices["language_translator"]["password"].Value<string>();
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
             }
+            #endregion
         }
 
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var results = _service.ListIdentifiableLanguages();
@@ -86,7 +95,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void Identify_Sucess()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var results = _service.Identify(_text);
@@ -99,7 +108,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void Translate_Sucess()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var translateRequest = new TranslateRequest()
@@ -121,7 +130,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void LisListModels_Sucess()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var results = _service.ListModels();
@@ -134,7 +143,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void GetModelDetails_Success()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var results = _service.GetModel(_baseModel);
@@ -147,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void CreateModel_Success()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             TranslationModel result;
@@ -174,7 +183,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         public void DeleteModel_Success()
         {
             _service =
-                new LanguageTranslatorService(_userName, _password);
+                new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
             var result = _service.DeleteModel(_customModelID);
@@ -188,7 +197,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private TranslationResult Translate(TranslateRequest request)
         {
             Console.WriteLine("\nAttempting to Translate()");
-            var result = _service.Translate(translateRequest: request);
+            var result = _service.Translate(request: request);
 
             if (result != null)
             {

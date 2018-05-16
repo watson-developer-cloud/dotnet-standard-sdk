@@ -1312,6 +1312,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -327,7 +327,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region Sessions
-        [TestMethod]
+        //[TestMethod]
         public void TestSessions_Success()
         {
             byte[] acousticResourceData = null;
@@ -350,7 +350,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var getSessionStatusResult = _service.GetSessionStatus(createSessionResult.SessionId);
 
-            var recognizeAudioResult = _service.RecognizeWithSession(createSessionResult.SessionId, "audio/mp3", audioStream);
+            var recognizeAudioResult = _service.RecognizeWithSession(createSessionResult.SessionId, "audio/mp3", audioStream, null, "en-US_BroadbandModel");
 
             var observeResult = _service.ObserveResult(createSessionResult.SessionId);
 

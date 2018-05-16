@@ -1807,7 +1807,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             {
                 IClient client;
                 client = this.Client.WithAuthentication(this.UserName, this.Password);
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
@@ -1849,7 +1849,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             {
                 IClient client;
                 client = this.Client.WithAuthentication(this.UserName, this.Password);
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
@@ -1948,7 +1948,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             {
                 IClient client;
                 client = this.Client.WithAuthentication(this.UserName, this.Password);
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithBody<UpdateDialogNode>(properties);

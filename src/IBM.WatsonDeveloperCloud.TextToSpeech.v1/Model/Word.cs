@@ -148,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// </summary>
         /// <value>A word from the custom voice model.</value>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
-        public string Word { get; set; }
+        public string _Word { get; set; }
         /// <summary>
         /// The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for representing the phonetic string of a word either as an IPA or IBM SPR translation. A sounds-like translation consists of one or more words that, when combined, sound like the word.
         /// </summary>

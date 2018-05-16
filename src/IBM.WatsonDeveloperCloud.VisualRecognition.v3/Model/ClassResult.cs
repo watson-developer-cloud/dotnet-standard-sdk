@@ -25,9 +25,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     public class ClassResult : BaseModel
     {
         /// <summary>
-        /// The name of the class.
+        /// Name of the class.
         /// </summary>
-        /// <value>The name of the class.</value>
+        /// <value>Name of the class.</value>
         [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassName { get; set; }
         /// <summary>

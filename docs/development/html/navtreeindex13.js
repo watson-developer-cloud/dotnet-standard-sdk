@@ -1,8 +1,5 @@
 var NAVTREEINDEX13 =
 {
-"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a1ffcd813037f6b2354b417aa55e14c18":[1,0,0,0,2,0,0,61,0],
-"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a1ffcd813037f6b2354b417aa55e14c18a1e3e433edd76f91457ea26d0ae88ec2f":[1,0,0,0,2,0,0,61,0,1],
-"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a1ffcd813037f6b2354b417aa55e14c18ac9b2281fa6fd403855443e6555aa16a9":[1,0,0,0,2,0,0,61,0,0],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a436ca0038e2b26af0b46e2276da52f74":[1,0,0,0,2,0,0,61,6],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a70672aa979517eb20a2e7545987f68ec":[1,0,0,0,2,0,0,61,2],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a844a74c47cbc511746879e1bafb88b7a":[1,0,0,0,2,0,0,61,5],
@@ -116,8 +113,8 @@ var NAVTREEINDEX13 =
 "dir_fcac3c54b3eae7ad456cbbd648457ebd.html":[2,0,0,6,1,0],
 "dir_ffe3beb8b07e7d8766846f4dd1f9eb2c.html":[2,0,0,6,1,0,0],
 "files.html":[2,0],
-"functions.html":[1,3,0,0],
 "functions.html":[1,3,0],
+"functions.html":[1,3,0,0],
 "functions_a.html":[1,3,0,1],
 "functions_b.html":[1,3,0,2],
 "functions_c.html":[1,3,0,3],
@@ -125,8 +122,8 @@ var NAVTREEINDEX13 =
 "functions_e.html":[1,3,0,5],
 "functions_enum.html":[1,3,3],
 "functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1],
 "functions_func.html":[1,3,1,0],
+"functions_func.html":[1,3,1],
 "functions_func_c.html":[1,3,1,1],
 "functions_func_d.html":[1,3,1,2],
 "functions_func_f.html":[1,3,1,3],

@@ -443,5 +443,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
         LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/conversation/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
     }
 }

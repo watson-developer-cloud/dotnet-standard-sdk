@@ -186,6 +186,22 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
                 new LanguageTranslatorService(_username, _password);
             _service.Endpoint = _endpoint;
 
+            TranslationModel createModelResult;
+
+            using (FileStream fs = File.OpenRead(_glossaryPath))
+            {
+                createModelResult = _service.CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
+
+                if (createModelResult != null)
+                {
+                    _customModelID = createModelResult.ModelId;
+                }
+                else
+                {
+                    Console.WriteLine("result is null.");
+                }
+            }
+
             var result = _service.DeleteModel(_customModelID);
 
             Assert.IsNotNull(result);
@@ -194,10 +210,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
 
         #region Generated
         #region Translate
-        private TranslationResult Translate(TranslateRequest request)
+        private TranslationResult Translate(TranslateRequest request, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Translate()");
-            var result = _service.Translate(request: request);
+            var result = _service.Translate(request: request, customData: customData);
 
             if (result != null)
             {
@@ -213,10 +229,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region Identify
-        private IdentifiedLanguages Identify(string text)
+        private IdentifiedLanguages Identify(string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Identify()");
-            var result = _service.Identify(text: text);
+            var result = _service.Identify(text: text, customData: customData);
 
             if (result != null)
             {
@@ -231,30 +247,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         }
         #endregion
 
-        #region IdentifyPlain
-        private IdentifiedLanguages IdentifyPlain(string text)
-        {
-            Console.WriteLine("\nAttempting to IdentifyPlain()");
-            var result = _service.IdentifyAsPlain(text: text);
-
-            if (result != null)
-            {
-                Console.WriteLine("IdentifyPlain() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to IdentifyPlain()");
-            }
-
-            return result;
-        }
-        #endregion
-
         #region ListIdentifiableLanguages
-        private IdentifiableLanguages ListIdentifiableLanguages()
+        private IdentifiableLanguages ListIdentifiableLanguages(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListIdentifiableLanguages()");
-            var result = _service.ListIdentifiableLanguages();
+            var result = _service.ListIdentifiableLanguages(customData: customData);
 
             if (result != null)
             {
@@ -270,10 +267,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region CreateModel
-        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null)
+        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateModel()");
-            var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus);
+            var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus, customData: customData);
 
             if (result != null)
             {
@@ -289,10 +286,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region DeleteModel
-        private DeleteModelResult DeleteModel(string modelId)
+        private DeleteModelResult DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteModel()");
-            var result = _service.DeleteModel(modelId: modelId);
+            var result = _service.DeleteModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -308,10 +305,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region GetModel
-        private TranslationModel GetModel(string modelId)
+        private TranslationModel GetModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetModel()");
-            var result = _service.GetModel(modelId: modelId);
+            var result = _service.GetModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -327,10 +324,10 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region ListModels
-        private TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null)
+        private TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = _service.ListModels(source: source, target: target, defaultModels: defaultModels);
+            var result = _service.ListModels(source: source, target: target, defaultModels: defaultModels, customData: customData);
 
             if (result != null)
             {
@@ -344,6 +341,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
             return result;
         }
         #endregion
+
         #endregion
     }
 }

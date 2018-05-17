@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Classifier results for one image.
+    /// Results for one image.
     /// </summary>
     public class ClassifiedImage : BaseModel
     {
@@ -49,8 +49,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
         public ErrorInfo Error { get; set; }
         /// <summary>
-        /// Gets or Sets Classifiers
+        /// The classifiers.
         /// </summary>
+        /// <value>The classifiers.</value>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifierResult> Classifiers { get; set; }
     }

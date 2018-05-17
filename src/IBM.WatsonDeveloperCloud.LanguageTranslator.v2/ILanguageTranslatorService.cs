@@ -37,13 +37,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
         IdentifiedLanguages Identify(string text, Dictionary<string, object> customData = null);
         /// <summary>
-        /// Identify language. as plain Identifies the language of the input text.
-        /// </summary>
-        /// <param name="text">Input text in UTF-8 format.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
-        IdentifiedLanguages IdentifyAsPlain(string text, Dictionary<string, object> customData = null);
-        /// <summary>
         /// List identifiable languages. Lists the languages that the service can identify. Returns the language code (for example, `en` for English or `es` for Spanish) and name of each language.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

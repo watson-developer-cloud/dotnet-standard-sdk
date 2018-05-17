@@ -1,7 +1,5 @@
 var NAVTREEINDEX10 =
 {
-"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a0ab26e220406e352ddf31a40ab9948dc":[1,0,0,0,3,3,10],
-"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a0b0c6ad301ea41b4ac74ada4e46316dc":[1,0,0,0,3,3,3],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a1d2148de29c57d436fb2d25a114acf29":[1,0,0,0,3,3,24],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a23a97c7e2b7739879d16c9c3f04d53b3":[1,0,0,0,3,3,5],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a2cc51ae86d16cb8a4867983cbbc9cdc3":[1,0,0,0,3,3,8],
@@ -210,8 +208,8 @@ var NAVTREEINDEX10 =
 "dd/d0b/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model.html":[0,0,0,0,6,0,0],
 "dd/d12/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_system_response.html":[1,0,0,0,1,0,0,39],
 "dd/d14/_query_relations_8cs.html":[2,0,0,3,0,61],
-"dd/d17/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1.html":[0,0,0,0,10,0],
 "dd/d17/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1.html":[1,0,0,0,10,0],
+"dd/d17/namespace_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1.html":[0,0,0,0,10,0],
 "dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html":[1,0,0,0,12,0,0,4],
 "dd/d1b/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_tone_chat_input.html#a2e92dc2582529a0b64db15d52ba6fc99":[1,0,0,0,12,0,0,4,0],
 "dd/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_entity.html":[1,0,0,0,0,0,0,6],
@@ -249,5 +247,7 @@ var NAVTREEINDEX10 =
 "dd/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value.html#ac6a50c952bcc662c38fabee3b38ddc87":[1,0,0,0,0,0,0,48,3],
 "dd/d37/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value.html#af1a69888a5692d825a5c7017d29a4f21":[1,0,0,0,0,0,0,48,5],
 "dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html":[1,0,0,0,13,4],
-"dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html#a00b0f7bb12745d71fce0d84e4bdca278":[1,0,0,0,13,4,0]
+"dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html#a00b0f7bb12745d71fce0d84e4bdca278":[1,0,0,0,13,4,0],
+"dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html#a64975c84774ca314d4e2b616775db485":[1,0,0,0,13,4,2],
+"dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html#a9a7009eaf80ebe0c4fc45726fe42acfc":[1,0,0,0,13,4,3]
 };

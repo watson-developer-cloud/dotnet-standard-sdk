@@ -1,7 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html#a2cb72ab2d0c34786cf470d729d5f4e61":[1,0,0,0,1,0,2,29],
-"d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html#a31148328b248f1a629101548e701edc2":[1,0,0,0,1,0,2,14],
 "d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html#a3476d05a3b6ecb42529307b850ca7b08":[1,0,0,0,1,0,2,8],
 "d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html#a436be15a87af4fb5f741e60bda7c2ab0":[1,0,0,0,1,0,2,19],
 "d7/dbf/interface_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_i_conversation_service.html#a4593f78630a66cdf03f444f4097bc2b0":[1,0,0,0,1,0,2,20],
@@ -249,5 +247,7 @@ var NAVTREEINDEX6 =
 "d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html#a78c1fcd4c0605be2f1fb236ba3737e61":[1,0,0,0,10,0,0,19,3],
 "d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html#ac61d8d7dee12b9e744ed1800c00a8739":[1,0,0,0,10,0,0,19,5],
 "d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html#ad7b3af85336e5ec8942ed23d8337d83b":[1,0,0,0,10,0,0,19,2],
-"d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html#aecea30053c80f4cbbaf9a2783ca4e111":[1,0,0,0,10,0,0,19,4]
+"d8/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_model.html#aecea30053c80f4cbbaf9a2783ca4e111":[1,0,0,0,10,0,0,19,4],
+"d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html":[1,0,0,0,10,0,0,15],
+"d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a17a891b0e0ed760210a98ba46b4b53ec":[1,0,0,0,10,0,0,15,3]
 };

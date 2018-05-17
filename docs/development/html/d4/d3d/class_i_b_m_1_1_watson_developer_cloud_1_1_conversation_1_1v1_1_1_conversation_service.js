@@ -2,7 +2,6 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversati
 [
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a274ba546275ba0bad8a94452b48313aa", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a7f917effc20d3931c289d495feae21f0", null ],
-    [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aa12d55ed38aaa3c26195ce31ee0352a7", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ac8754b868de97f7d64bbfd3610560672", null ],
     [ "CreateCounterexample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#adf4e15ca49af4cb1bdbf30abe01d7419", null ],
     [ "CreateDialogNode", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#acab07021db8bbc642600130dfb6ae6da", null ],
@@ -18,6 +17,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversati
     [ "DeleteExample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a8cb21deeaeedb4e53d3093b3ed47dd8e", null ],
     [ "DeleteIntent", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a19327765a3e666f0ae6d1d66ac29bdb0", null ],
     [ "DeleteSynonym", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ab6f9d7113b37aa4f5a58139689a11965", null ],
+    [ "DeleteUserData", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ac5b88869b7a49aead55867cd8b49e697", null ],
     [ "DeleteValue", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aa017c2168b38d152dacf124cf7a40841", null ],
     [ "DeleteWorkspace", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aa5372810d5449dc25645c4f17a0930f5", null ],
     [ "GetCounterexample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#af9bef96872fb0aeb1156431d6079e924", null ],

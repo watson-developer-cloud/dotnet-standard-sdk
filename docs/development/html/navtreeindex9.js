@@ -1,6 +1,5 @@
 var NAVTREEINDEX9 =
 {
-"db/d25/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value_export.html#a41ccbc729ce1f8a0f3917e176dfe5b6ca165bf0cd059aeafcee3a9cd1ef47c7a0":[1,0,0,0,0,0,0,50,0,1],
 "db/d25/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value_export.html#a41ccbc729ce1f8a0f3917e176dfe5b6ca74a0a0fa630a3bb566468e188a0ebe62":[1,0,0,0,0,0,0,50,0,0],
 "db/d25/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value_export.html#a80eaf0dcb2b083629ac4b5858b5d205b":[1,0,0,0,0,0,0,50,3],
 "db/d25/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_value_export.html#ab4c746660bde8f42e88447f14ae25731":[1,0,0,0,0,0,0,50,7],
@@ -249,5 +248,6 @@ var NAVTREEINDEX9 =
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a052dbce8bb6f75951c9fc9b22349a1ad":[1,0,0,0,3,3,27],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a0ab26e220406e352ddf31a40ab9948dc":[1,0,0,0,3,3,10],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a0b0c6ad301ea41b4ac74ada4e46316dc":[1,0,0,0,3,3,3],
-"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a1d2148de29c57d436fb2d25a114acf29":[1,0,0,0,3,3,24]
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a1d2148de29c57d436fb2d25a114acf29":[1,0,0,0,3,3,24],
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a23a97c7e2b7739879d16c9c3f04d53b3":[1,0,0,0,3,3,5]
 };

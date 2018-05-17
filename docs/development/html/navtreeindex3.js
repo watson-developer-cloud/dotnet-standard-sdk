@@ -230,14 +230,13 @@ var NAVTREEINDEX3 =
 "d5/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification.html#a769ab52ac5c64192eba9158aa906056a":[1,0,0,0,5,0,0,0,4],
 "d5/d1b/_classifiers_8cs.html":[2,0,0,11,0,4],
 "d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html":[1,0,0,0,6,0,2],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a054c8063cf8a50ae8bdfca5940b1a525":[1,0,0,0,6,0,2,6],
+"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a054c8063cf8a50ae8bdfca5940b1a525":[1,0,0,0,6,0,2,5],
 "d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a1d2669a5bf4e240a19888739079729d9":[1,0,0,0,6,0,2,1],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a302ff9842acc539cec959eab9a9c83f0":[1,0,0,0,6,0,2,5],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a36c5478f0f35c3b63ff42e748c8e4007":[1,0,0,0,6,0,2,4],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a72307563a318d0af660689e62ce4083f":[1,0,0,0,6,0,2,3],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#ae1ad66b82a3931837df4b9dbd260e4bf":[1,0,0,0,6,0,2,2],
+"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a302ff9842acc539cec959eab9a9c83f0":[1,0,0,0,6,0,2,4],
+"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a36c5478f0f35c3b63ff42e748c8e4007":[1,0,0,0,6,0,2,3],
+"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a72307563a318d0af660689e62ce4083f":[1,0,0,0,6,0,2,2],
 "d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#aef550bb077efe597b9d8515741442dbe":[1,0,0,0,6,0,2,0],
-"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#af625a164199305c26dd847fa23b7decf":[1,0,0,0,6,0,2,7],
+"d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#af625a164199305c26dd847fa23b7decf":[1,0,0,0,6,0,2,6],
 "d5/d20/_top_hits_results_8cs.html":[2,0,0,3,0,75],
 "d5/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_example.html":[1,0,0,0,1,0,0,7],
 "d5/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_create_example.html#a04919103e47da49de03909fa0f6db3aa":[1,0,0,0,1,0,0,7,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX3 =
 "d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#a263a35de33cef3b727bc0301f876ba9d":[1,0,0,0,5,0,1,2],
 "d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#a671bd0bad0a825c5f5b3739e505a8a8e":[1,0,0,0,5,0,1,1],
 "d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#a9560a6c8e5714f88b9556ffd491ea211":[1,0,0,0,5,0,1,3],
-"d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#aa014a2759d9c807639490bea9b62225c":[1,0,0,0,5,0,1,4]
+"d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html#aa014a2759d9c807639490bea9b62225c":[1,0,0,0,5,0,1,4],
+"d5/d32/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_supported_features_8cs.html":[2,0,0,8,0,25]
 };

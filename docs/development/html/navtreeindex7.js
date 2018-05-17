@@ -1,6 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a1bad6e181d543b55c5c198e9105d60b4":[1,0,0,0,10,0,0,15,0],
 "d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a1bad6e181d543b55c5c198e9105d60b4a1869d56535e8b1449a6da54ff5e11f50":[1,0,0,0,10,0,0,15,0,0],
 "d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a1bad6e181d543b55c5c198e9105d60b4a8f7afecbc8fbc4cd0f50a57d1172482e":[1,0,0,0,10,0,0,15,0,2],
 "d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a1bad6e181d543b55c5c198e9105d60b4ab9e14d9b2886bcff408b85aefa780419":[1,0,0,0,10,0,0,15,0,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX7 =
 "d9/dda/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_example_collection_8cs.html":[2,0,0,1,0,21],
 "d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group.html":[1,0,0,0,1,0,0,0],
 "d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group.html#a7af54bdcac742015a6bdbaef7f74f9c3":[1,0,0,0,1,0,0,0,1],
-"d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group.html#a8ac9e8b8f92cdc97efe0f966933e4bce":[1,0,0,0,1,0,0,0,0]
+"d9/dde/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_capture_group.html#a8ac9e8b8f92cdc97efe0f966933e4bce":[1,0,0,0,1,0,0,0,0],
+"d9/de2/_document_accepted_8cs.html":[2,0,0,3,0,14]
 };

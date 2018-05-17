@@ -92,12 +92,11 @@ var NAVTREEINDEX9 =
 "db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html#a6df5aa772f1523f80b2076a477249dff":[1,0,0,0,4,0,0,2,0],
 "db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html":[1,0,0,0,7,0,2],
 "db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a1cd9f931d2e083f8e48340465bbdbff5":[1,0,0,0,7,0,2,0],
-"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a334dac592971814328a6806cd99f5d42":[1,0,0,0,7,0,2,6],
-"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a35af3bbd5710438a5d87825252a514bf":[1,0,0,0,7,0,2,3],
+"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a334dac592971814328a6806cd99f5d42":[1,0,0,0,7,0,2,5],
+"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a35af3bbd5710438a5d87825252a514bf":[1,0,0,0,7,0,2,2],
 "db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a382efd5060035f62f0d97d03ef759771":[1,0,0,0,7,0,2,1],
-"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a46a07276ee592decca5eaf31c5621cce":[1,0,0,0,7,0,2,5],
-"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a8d31622d5a48f5c36b0dd6ee96ae145b":[1,0,0,0,7,0,2,2],
-"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#acd0fca0bf5d7958393be912a23294600":[1,0,0,0,7,0,2,4],
+"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a46a07276ee592decca5eaf31c5621cce":[1,0,0,0,7,0,2,4],
+"db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#acd0fca0bf5d7958393be912a23294600":[1,0,0,0,7,0,2,3],
 "db/db0/_list_environments_response_8cs.html":[2,0,0,3,0,33],
 "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html":[1,0,0,0,3,7],
 "db/db0/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_request.html#a0c1842da6c83e6f402083cd4e622663b":[1,0,0,0,3,7,9],
@@ -249,5 +248,6 @@ var NAVTREEINDEX9 =
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a23a97c7e2b7739879d16c9c3f04d53b3":[1,0,0,0,3,3,5],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a2cc51ae86d16cb8a4867983cbbc9cdc3":[1,0,0,0,3,3,8],
 "dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a31a0a38c568e4ec85cb69759bf3a93d8":[1,0,0,0,3,3,0],
-"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a352ddd96a35b5db505fbcce9c46be49f":[1,0,0,0,3,3,11]
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a352ddd96a35b5db505fbcce9c46be49f":[1,0,0,0,3,3,11],
+"dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a41bd163b0485fad6c4cd851b15175760":[1,0,0,0,3,3,18]
 };

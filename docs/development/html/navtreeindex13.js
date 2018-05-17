@@ -1,6 +1,5 @@
 var NAVTREEINDEX13 =
 {
-"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a844a74c47cbc511746879e1bafb88b7a":[1,0,0,0,2,0,0,61,5],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#acb9ca514e0c1482b05f2ddb9afd3f2a3":[1,0,0,0,2,0,0,61,4],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#ae3fabe17be92e990edb82d80d7c7434d":[1,0,0,0,2,0,0,61,1],
 "df/dd8/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_collection.html":[1,0,0,0,0,0,0,14],
@@ -120,8 +119,8 @@ var NAVTREEINDEX13 =
 "functions_e.html":[1,3,0,5],
 "functions_enum.html":[1,3,3],
 "functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1],
 "functions_func.html":[1,3,1,0],
+"functions_func.html":[1,3,1],
 "functions_func_c.html":[1,3,1,1],
 "functions_func_d.html":[1,3,1,2],
 "functions_func_f.html":[1,3,1,3],
@@ -150,8 +149,8 @@ var NAVTREEINDEX13 =
 "functions_n.html":[1,3,0,14],
 "functions_o.html":[1,3,0,15],
 "functions_p.html":[1,3,0,16],
-"functions_prop.html":[1,3,4,0],
 "functions_prop.html":[1,3,4],
+"functions_prop.html":[1,3,4,0],
 "functions_prop_a.html":[1,3,4,1],
 "functions_prop_b.html":[1,3,4,2],
 "functions_prop_c.html":[1,3,4,3],

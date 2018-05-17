@@ -1,6 +1,5 @@
 var NAVTREEINDEX11 =
 {
-"dd/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_intent.html":[1,0,0,0,0,0,0,23],
 "dd/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_intent.html#a49fdf14d8fd1e5c70434661012b0873f":[1,0,0,0,0,0,0,23,2],
 "dd/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_intent.html#a4c3ab530cfa3c3390073f831c1e9f698":[1,0,0,0,0,0,0,23,1],
 "dd/d4b/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_intent.html#aa9cd9d95a31dd9f9dafe4bb36327d46a":[1,0,0,0,0,0,0,23,3],
@@ -151,8 +150,8 @@ var NAVTREEINDEX11 =
 "dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html#a6bfcaefa7fe9c28d96769002a6faf1b7":[1,0,0,0,1,0,0,29,0],
 "dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html#a7f5e312fe90cde632899b7d41a3d77e4":[1,0,0,0,1,0,0,29,1],
 "dd/dd4/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_log_pagination.html#ad1c357675e5629be77332d58189f4476":[1,0,0,0,1,0,0,29,2],
-"dd/dda/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model.html":[0,0,0,0,5,0,0],
 "dd/dda/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model.html":[1,0,0,0,5,0,0],
+"dd/dda/namespace_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model.html":[0,0,0,0,5,0,0],
 "dd/ddc/_collection_disk_usage_8cs.html":[2,0,0,3,0,3],
 "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent.html":[1,0,0,0,1,0,0,23],
 "dd/ddc/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_model_1_1_intent.html#a2c45f975233e15fdfd1518ecd24a71c3":[1,0,0,0,1,0,0,23,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX11 =
 "de/d46/_i_b_m_8_watson_developer_cloud_8_assistant_8v1_2_model_2_intent_export_8cs.html":[2,0,0,1,0,25],
 "de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html":[1,0,0,0,12,0,0,8],
 "de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html#a107b84dd437dcd88949372bd0ae55299":[1,0,0,0,12,0,0,8,0],
-"de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html#a89a6f92596fcf34d457b8325923ed5c6":[1,0,0,0,12,0,0,8,1]
+"de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html#a89a6f92596fcf34d457b8325923ed5c6":[1,0,0,0,12,0,0,8,1],
+"de/d4d/_semantic_roles_result_8cs.html":[2,0,0,6,0,35]
 };

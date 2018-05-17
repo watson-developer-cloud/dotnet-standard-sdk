@@ -1,6 +1,5 @@
 var NAVTREEINDEX12 =
 {
-"de/d48/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html#a89a6f92596fcf34d457b8325923ed5c6":[1,0,0,0,12,0,0,8,1],
 "de/d4d/_semantic_roles_result_8cs.html":[2,0,0,6,0,35],
 "de/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_aggregation.html":[1,0,0,0,2,0,0,49],
 "de/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_aggregation.html#a13fa269f99099c6f4cfbd9327c14d35a":[1,0,0,0,2,0,0,49,3],
@@ -172,8 +171,8 @@ var NAVTREEINDEX12 =
 "df/d6d/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_aggregation_result.html#ac10ca765a58f06db345688a314e0b5fa":[1,0,0,0,2,0,0,0,0],
 "df/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_extensions_1_1_description_extension.html":[1,0,0,0,13,1,0],
 "df/d70/_i_request_8cs.html":[2,0,0,0,0,6],
-"df/d72/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions.html":[0,0,0,0,3,0],
 "df/d72/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions.html":[1,0,0,0,3,0],
+"df/d72/namespace_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_exceptions.html":[0,0,0,0,3,0],
 "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html":[1,0,0,0,13,6],
 "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html#a144fef5bb770913cf3846ff3e1f8aa78":[1,0,0,0,13,6,2],
 "df/d7e/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_utility.html#a9a5e162990888a0f8ddfab5835f96b66":[1,0,0,0,13,6,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX12 =
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a1ffcd813037f6b2354b417aa55e14c18ac9b2281fa6fd403855443e6555aa16a9":[1,0,0,0,2,0,0,61,0,0],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a436ca0038e2b26af0b46e2276da52f74":[1,0,0,0,2,0,0,61,6],
 "df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a70672aa979517eb20a2e7545987f68ec":[1,0,0,0,2,0,0,61,2],
-"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a844a74c47cbc511746879e1bafb88b7a":[1,0,0,0,2,0,0,61,5]
+"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#a844a74c47cbc511746879e1bafb88b7a":[1,0,0,0,2,0,0,61,5],
+"df/dd7/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_relations.html#acb9ca514e0c1482b05f2ddb9afd3f2a3":[1,0,0,0,2,0,0,61,4]
 };

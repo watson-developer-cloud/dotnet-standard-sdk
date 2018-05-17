@@ -32,7 +32,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     {
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
-        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -58,17 +57,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             VersionDate = versionDate;
         }
 
-        public VisualRecognitionService(TokenOptions options, string versionDate) : this()
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            _tokenManager = new TokenManager(options);
-        }
 
         public VisualRecognitionService(IClient httpClient) : this()
         {
@@ -137,15 +125,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client;
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -203,15 +183,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client;
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -251,15 +223,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client;
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -298,15 +262,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client;
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -343,15 +299,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client;
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
                 restRequest.WithArgument("version", VersionDate);

@@ -21,14 +21,14 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Classify results for multiple images.
+    /// Results for all images.
     /// </summary>
     public class ClassifiedImages : BaseModel
     {
         /// <summary>
-        /// The number of custom classes identified in the images.
+        /// Number of custom classes identified in the images.
         /// </summary>
-        /// <value>The number of custom classes identified in the images.</value>
+        /// <value>Number of custom classes identified in the images.</value>
         [JsonProperty("custom_classes", NullValueHandling = NullValueHandling.Ignore)]
         public long? CustomClasses { get; set; }
         /// <summary>
@@ -38,9 +38,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("images_processed", NullValueHandling = NullValueHandling.Ignore)]
         public long? ImagesProcessed { get; set; }
         /// <summary>
-        /// The array of classified images.
+        /// Classified images.
         /// </summary>
-        /// <value>The array of classified images.</value>
+        /// <value>Classified images.</value>
         [JsonProperty("images", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifiedImage> Images { get; set; }
         /// <summary>

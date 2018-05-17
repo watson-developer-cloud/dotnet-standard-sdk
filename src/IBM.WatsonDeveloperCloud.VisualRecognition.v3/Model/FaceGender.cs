@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Provides information about the gender of the face.
+    /// Information about the gender of the face.
     /// </summary>
     public class FaceGender : BaseModel
     {

@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Provides information about the face.
+    /// Information about the face.
     /// </summary>
     public class Face : BaseModel
     {

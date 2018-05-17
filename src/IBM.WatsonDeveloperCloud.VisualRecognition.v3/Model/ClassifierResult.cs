@@ -32,15 +32,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// The ID of a classifier identified in the image.
+        /// ID of a classifier identified in the image.
         /// </summary>
-        /// <value>The ID of a classifier identified in the image.</value>
+        /// <value>ID of a classifier identified in the image.</value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
-        /// An array of classes within the classifier.
+        /// Classes within the classifier.
         /// </summary>
-        /// <value>An array of classes within the classifier.</value>
+        /// <value>Classes within the classifier.</value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassResult> Classes { get; set; }
     }

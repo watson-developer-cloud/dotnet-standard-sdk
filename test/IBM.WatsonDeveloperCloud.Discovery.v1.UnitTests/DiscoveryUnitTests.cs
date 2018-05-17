@@ -25,7 +25,6 @@ using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Net;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests

@@ -61,11 +61,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         public void Setup()
         {
             #region Get Credentials
-            string _endpoint = string.Empty;
-            string _username = string.Empty;
-            string _password = string.Empty;
-            string _workspaceID = string.Empty;
-
             if (string.IsNullOrEmpty(credentials))
             {
                 var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
@@ -1520,6 +1515,25 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             else
             {
                 Console.WriteLine("Failed to ListLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
             }
 
             return result;

@@ -15,6 +15,7 @@ var interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discove
     [ "DeleteExpansions", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a10a2f02779e90b793820e9ec897b52bb", null ],
     [ "DeleteTrainingData", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aee657087f8ece4fb9c276302c344ed7f", null ],
     [ "DeleteTrainingExample", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abaf9237ff766577afde03acde200ebaa", null ],
+    [ "DeleteUserData", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aac105bbfa1399ac01e73596ae0d5f7fd", null ],
     [ "FederatedQuery", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a7507dfa1afa75421243cd3336cff6cb3", null ],
     [ "FederatedQueryNotices", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a6445546b2b19b92c9922c2c02e564b5d", null ],
     [ "GetCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a41893610c064088e31a8cd73f63916d1", null ],

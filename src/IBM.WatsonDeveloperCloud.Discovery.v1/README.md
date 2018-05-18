@@ -180,7 +180,7 @@ Add a document to your collection.
 ```cs
 using (FileStream fs = File.OpenRead(<filepath>))
 {
-    var result = _discovery.AddDocument(<environmentId>, <collectionId>, <configurationId>, fs as Stream);
+    var result = _discovery.AddDocument(<environmentId>, <collectionId>, fs as Stream);
 }
 ```
 

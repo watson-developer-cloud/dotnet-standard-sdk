@@ -1,6 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html":[1,0,0,0,0,0,0,41],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a049189d98c3b29df790efe726c913672":[1,0,0,0,0,0,0,41,5],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a136bd29157d204e5df3de54a8c86bebb":[1,0,0,0,0,0,0,41,12],
 "d5/d34/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_update_dialog_node.html#a3ad2663662835ce0598e15bfafc081a6":[1,0,0,0,0,0,0,41,13],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "d6/d66/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_vcap_credentials.html":[1,0,0,0,13,8],
 "d6/d66/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_vcap_credentials.html#a2fd8cb241a79921f09be87954c6e66a9":[1,0,0,0,13,8,0],
 "d6/d66/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_vcap_credentials.html#aad408e9b2f8625e853be20f7f5d3227f":[1,0,0,0,13,8,1],
-"d6/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_result.html":[1,0,0,0,6,0,0,20]
+"d6/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_result.html":[1,0,0,0,6,0,0,20],
+"d6/d6c/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_result.html#a1b20e02f4df8a0736e612886a20f2c83":[1,0,0,0,6,0,0,20,0]
 };

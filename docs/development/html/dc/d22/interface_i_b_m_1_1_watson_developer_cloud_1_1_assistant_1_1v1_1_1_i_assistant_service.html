@@ -229,6 +229,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4da1c39ae3de299bf900e0370f2480e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/de1/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_log_collection.html">LogCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d22/interface_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a4da1c39ae3de299bf900e0370f2480e1">ListLogs</a> (string workspaceId, string sort=null, string filter=null, long? pageLimit=null, string cursor=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a4da1c39ae3de299bf900e0370f2480e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">List log events in a workspace. List the events from the log of a specific workspace. If <b>cursor</b> is not specified, this operation is limited to 40 requests per 30 minutes. If <b>cursor</b> is specified, the limit is 120 requests per minute. For more information, see <b>Rate limiting</b>.  <a href="#a4da1c39ae3de299bf900e0370f2480e1">More...</a><br /></td></tr>
 <tr class="separator:a4da1c39ae3de299bf900e0370f2480e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a83df62005b11e44966257c9fd05e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d22/interface_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a35a83df62005b11e44966257c9fd05e3">DeleteUserData</a> (string customerId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a35a83df62005b11e44966257c9fd05e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID. You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://console.bluemix.net/docs/services/conversation/information-security.html">Information security</a>.  <a href="#a35a83df62005b11e44966257c9fd05e3">More...</a><br /></td></tr>
+<tr class="separator:a35a83df62005b11e44966257c9fd05e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="af827ae9c814eb9f8221c701d52654f43"></a>
@@ -928,6 +931,46 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
 
 <p>Implemented in <a class="el" href="../../d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a5ad8f2efab29d03ea6c7a123ada40c9e">IBM.WatsonDeveloperCloud.Assistant.v1.AssistantService</a>.</p>
+
+</div>
+</div>
+<a id="a35a83df62005b11e44966257c9fd05e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a83df62005b11e44966257c9fd05e3">&#9670;&nbsp;</a></span>DeleteUserData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a> IBM.WatsonDeveloperCloud.Assistant.v1.IAssistantService.DeleteUserData </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID. You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://console.bluemix.net/docs/services/conversation/information-security.html">Information security</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">customerId</td><td>The customer ID for which all data is to be deleted.</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
+
+<p>Implemented in <a class="el" href="../../d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ac847e1dd66f3fb04521f9f65ce98bc53">IBM.WatsonDeveloperCloud.Assistant.v1.AssistantService</a>.</p>
 
 </div>
 </div>

@@ -100,6 +100,7 @@ var NAVTREEINDEX0 =
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8":[1,0,0,0,0,0,0,5,3],
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a0e41c6e86528094d3b14bc19868614e0":[1,0,0,0,0,0,0,5,3,7],
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a256a8e2bd6be2a9e278924ba52f20e67":[1,0,0,0,0,0,0,5,3,4],
+"d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a56e0fffc3f79672af6cc22c6d8471fc6":[1,0,0,0,0,0,0,5,3,8],
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a5b053ae8b6dc09eed2aa8c3a07163a7a":[1,0,0,0,0,0,0,5,3,2],
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a91cc9b1f37ee3d349b8c8a25fef5f68c":[1,0,0,0,0,0,0,5,3,6],
 "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8aa84cc046d48610b05c21fd3670d0c829":[1,0,0,0,0,0,0,5,3,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a11796469145d97e2036f913b9f06a1d5":[1,0,0,0,6,0,0,11,4],
 "d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a1d106d33393caf9bc71394ebae7b1f39":[1,0,0,0,6,0,0,11,1],
 "d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a27e67733da1a64a0ab32731c03e8c1b6":[1,0,0,0,6,0,0,11,3],
-"d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a543e11a4ae1f439d23aee2df991f99a9":[1,0,0,0,6,0,0,11,0],
-"d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a80508d217a2eccbdda59088ade1cae59":[1,0,0,0,6,0,0,11,2]
+"d1/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#a543e11a4ae1f439d23aee2df991f99a9":[1,0,0,0,6,0,0,11,0]
 };

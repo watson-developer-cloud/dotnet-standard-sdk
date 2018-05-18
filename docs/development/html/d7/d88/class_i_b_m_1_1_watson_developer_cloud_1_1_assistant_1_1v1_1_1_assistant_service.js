@@ -2,7 +2,6 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_ser
 [
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a3192e40f945bb04826d4a0aaaa8abbce", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a2baea09220b31df2981e9edb3e812870", null ],
-    [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a8b0f84cd15747b5b23efa9b6c9b05886", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a48c921c3963c90822cf45b2a481c6e7d", null ],
     [ "CreateCounterexample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#adc1adff520710fc3a6246c86336f3922", null ],
     [ "CreateDialogNode", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ac4acfc34d72020d698199af98506531d", null ],
@@ -18,6 +17,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_ser
     [ "DeleteExample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a1cf00449328b6a0687b43219f609384d", null ],
     [ "DeleteIntent", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ae662ec15b540fbc1600807998f62a5c3", null ],
     [ "DeleteSynonym", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a5ad8f2efab29d03ea6c7a123ada40c9e", null ],
+    [ "DeleteUserData", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ac847e1dd66f3fb04521f9f65ce98bc53", null ],
     [ "DeleteValue", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a4ba92ec3a6d7e4e2e283ac2d1c5d00ab", null ],
     [ "DeleteWorkspace", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a2e3e72b9c918a0961a1160fc248fd0f7", null ],
     [ "GetCounterexample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a361ec795564c7a85b17b5b97582ce0e2", null ],

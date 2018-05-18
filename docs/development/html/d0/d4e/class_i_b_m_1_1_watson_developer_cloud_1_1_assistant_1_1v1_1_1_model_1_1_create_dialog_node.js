@@ -23,7 +23,8 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_cre
       [ "FILLED_MULTIPLE", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a256a8e2bd6be2a9e278924ba52f20e67", null ],
       [ "GENERIC", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8ac942dc2a9f958acddc67e11472d3ca0b", null ],
       [ "NOMATCH", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a91cc9b1f37ee3d349b8c8a25fef5f68c", null ],
-      [ "NOMATCH_RESPONSES_DEPLETED", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a0e41c6e86528094d3b14bc19868614e0", null ]
+      [ "NOMATCH_RESPONSES_DEPLETED", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a0e41c6e86528094d3b14bc19868614e0", null ],
+      [ "DIGRESSION_RETURN_PROMPT", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a76ce2523b0310ccfa27399dc968462e8a56e0fffc3f79672af6cc22c6d8471fc6", null ]
     ] ],
     [ "NodeTypeEnum", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a9bbb98c8e2b61113ecb6cd4e5a3c0d83", [
       [ "STANDARD", "d0/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_model_1_1_create_dialog_node.html#a9bbb98c8e2b61113ecb6cd4e5a3c0d83a94e94133f4bdc1794c6b647b8ea134d0", null ],

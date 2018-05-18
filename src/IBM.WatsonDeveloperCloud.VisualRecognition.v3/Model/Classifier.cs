@@ -29,9 +29,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
     public class Classifier : BaseModel
     {
         /// <summary>
-        /// The training status of classifier.
+        /// Training status of classifier.
         /// </summary>
-        /// <value>The training status of classifier.</value>
+        /// <value>Training status of classifier.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -62,9 +62,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         }
 
         /// <summary>
-        /// The training status of classifier.
+        /// Training status of classifier.
         /// </summary>
-        /// <value>The training status of classifier.</value>
+        /// <value>Training status of classifier.</value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -104,9 +104,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Created { get; set; }
         /// <summary>
-        /// Array of classes that define a classifier.
+        /// Classes that define a classifier.
         /// </summary>
-        /// <value>Array of classes that define a classifier.</value>
+        /// <value>Classes that define a classifier.</value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ModelClass> Classes { get; set; }
         /// <summary>

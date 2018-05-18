@@ -29,7 +29,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
     {
         const string SERVICE_NAME = "personality_insights";
         const string URL = "https://gateway.watsonplatform.net/personality-insights/api";
-        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {
@@ -58,17 +57,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             VersionDate = versionDate;
         }
 
-        public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            _tokenManager = new TokenManager(options);
-        }
 
         public PersonalityInsightsService(IClient httpClient) : this()
         {
@@ -105,15 +93,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -169,15 +149,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);

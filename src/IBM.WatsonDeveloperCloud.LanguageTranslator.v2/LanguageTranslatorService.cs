@@ -32,7 +32,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
     {
         const string SERVICE_NAME = "language_translator";
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
-        private TokenManager _tokenManager = null;
         public LanguageTranslatorService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
@@ -50,13 +49,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.SetCredential(userName, password);
         }
 
-        public LanguageTranslatorService(TokenOptions options) : this()
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-
-            _tokenManager = new TokenManager(options);
-        }
 
         public LanguageTranslatorService(IClient httpClient) : this()
         {
@@ -81,15 +73,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/translate");
 
                 restRequest.WithBody<TranslateRequest>(request);
@@ -122,57 +106,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v2/identify");
-
-                restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
-                result = restRequest.As<IdentifiedLanguages>().Result;
-                if(result == null)
-                    result = new IdentifiedLanguages();
-                result.CustomData = restRequest.CustomData;
-            }
-            catch(AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Identify language. as plain Identifies the language of the input text.
-        /// </summary>
-        /// <param name="text">Input text in UTF-8 format.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
-        public IdentifiedLanguages IdentifyAsPlain(string text, Dictionary<string, object> customData = null)
-        {
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
-            IdentifiedLanguages result = null;
-
-            try
-            {
-                IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/identify");
 
                 restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
@@ -203,15 +137,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/identifiable_languages");
 
                 if (customData != null)
@@ -276,15 +202,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/models");
 
                 if (!string.IsNullOrEmpty(baseModelId))
@@ -322,15 +240,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
 
                 if (customData != null)
@@ -363,15 +273,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/models/{modelId}");
 
                 if (customData != null)
@@ -404,15 +306,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/models");
 
                 if (!string.IsNullOrEmpty(source))

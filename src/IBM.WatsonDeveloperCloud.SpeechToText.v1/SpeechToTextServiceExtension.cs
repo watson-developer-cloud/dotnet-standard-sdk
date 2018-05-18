@@ -33,6 +33,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {
     public partial class SpeechToTextService : WatsonService, ISpeechToTextService
     {
+        
         /// <summary>
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final results; to enable interim results, use Sessions or WebSockets. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding.
         /// You specify the parameters of the request as a path parameter, request headers, and query parameters. You provide the audio as the body of the request. This method is preferred to the multipart approach for submitting a sessionless recognition request.
@@ -384,45 +385,177 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
 
-        //public object AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null)
-        //{
-        //    if (string.IsNullOrEmpty(customizationId))
-        //        throw new ArgumentNullException(nameof(customizationId));
-        //    if (string.IsNullOrEmpty(audioName))
-        //        throw new ArgumentNullException(nameof(audioName));
-        //    if (audioResource == null)
-        //        throw new ArgumentNullException(nameof(audioResource));
-        //    if (string.IsNullOrEmpty(contentType))
-        //        throw new ArgumentNullException(nameof(contentType));
-        //    object result = null;
+        /// <summary>
+        /// Creates a session and locks recognition requests to that engine. You can use the session for multiple recognition requests so that each request is processed with the same Speech to Text engine. The session expires after 30 seconds of inactivity. For information about avoiding session timeouts, see Timeouts (https://console.bluemix.net/docs/services/speech-to-text/input.html#timeouts). 
+        /// 
+        /// The method returns a cookie in the Set-Cookie response header.You must pass this cookie with each request that uses the session. For more information, see Using cookies with sessions (https://console.bluemix.net/docs/services/speech-to-text/http.html#cookies).
+        /// </summary>
+        /// <param name="model">The identifier of the model that is to be used by the new session.</param>
+        /// <param name="customizationId">The GUID of a custom language model that is to be used with the new session. The base model of the specified custom language model must match the model specified with the model parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom language model is used.</param>
+        /// <param name="acousticCustomizationId">The GUID of a custom acoustic model that is to be used with the new session. The base model of the specified custom acoustic model must match the model specified with the model parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom acoustic model is used.</param>
+        /// <param name="baseModelVersion">The version of the specified base model that is to be used with the new session. Multiple versions of a base model can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The default value depends on whether the parameter is used with or without a custom model. For more information, see Base model version (https://console.bluemix.net/docs/services/speech-to-text/input.html#version).</param>
+        /// <returns>The created session</returns>
+        public SpeechSession CreateSession(string model, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null)
+        {
+            SpeechSession result = null;
 
-        //    try
-        //    {
-        //        var request = this.Client.WithAuthentication(this.UserName, this.Password)
-        //            .PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+            try
+            {
+                if (string.IsNullOrEmpty(model))
+                    throw new ArgumentNullException(nameof(model));
+                
+                var request = this.Client.WithAuthentication(this.UserName, this.Password)
+                                .PostAsync($"{this.Endpoint}/v1/sessions");
+                request.WithArgument("model", model);
+                if (!string.IsNullOrEmpty(customizationId))
+                    request.WithArgument("customization_id", customizationId);
+                if (!string.IsNullOrEmpty(acousticCustomizationId))
+                    request.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                if (!string.IsNullOrEmpty(baseModelVersion))
+                    request.WithArgument("base_model_version", baseModelVersion);
+                request.WithHeader("accept", HttpMediaType.APPLICATION_JSON);
+                result = request.As<SpeechSession>().Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
 
-        //        request.WithHeader("Content-Type", contentType);
-        //        request.WithHeader("Contained-Content-Type", containedContentType);
+            return result;
+        }
 
-        //        if (allowOverwrite != null)
-        //            request.WithArgument("allow_overwrite", allowOverwrite);
+        /// <summary>
+        /// Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method.
+        /// </summary>
+        /// <param name="session">The session to get.</param>
+        /// <returns></returns>
+        public SessionStatus GetSessionStatus(SpeechSession session)
+        {
+            return this.GetSessionStatus(session.SessionId);
+        }
 
-        //        var trainingDataContent = new ByteArrayContent(audioResource);
-        //        MediaTypeHeaderValue audioType;
-        //        MediaTypeHeaderValue.TryParse(contentType, out audioType);
-        //        trainingDataContent.Headers.ContentType = audioType;
+        /// <summary>
+        /// Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method.
+        /// </summary>
+        /// <param name="sessionId">The ID of the session for the recognition task.</param>
+        /// <returns>The session status.</returns>
+        public SessionStatus GetSessionStatus(string sessionId)
+        {
+            SessionStatus result = null;
 
-        //        request.WithBodyContent(trainingDataContent);
+            if (string.IsNullOrEmpty(sessionId))
+                throw new ArgumentNullException("session id can not be null or empty");
 
-        //        result = request.As<object>().Result;
-        //    }
-        //    catch (AggregateException ae)
-        //    {
-        //        throw ae.Flatten();
-        //    }
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .GetAsync($"{this.Endpoint}{string.Format("/v1/sessions/{0}/recognize", sessionId)}")
+                               .WithHeader("Cookie", sessionId)
+                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
+                               .As<SessionStatus>()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
+
+        /// <summary>
+        /// Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.
+        /// </summary>
+        /// <param name="session">The session to be deleted.</param>
+        /// <returns></returns>
+        public object DeleteSession(SpeechSession session)
+        {
+            return this.DeleteSession(session.SessionId);
+        }
+
+        /// <summary>
+        /// Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.
+        /// </summary>
+        /// <param name="session">The ID of the session to be deleted.</param>
+        /// <returns></returns>
+        public object DeleteSession(string sessionId)
+        {
+            if (string.IsNullOrEmpty(sessionId))
+                throw new ArgumentNullException("session id can not be null or empty");
+
+            object result = null;
+
+            try
+            {
+                result =
+                    this.Client.WithAuthentication(this.UserName, this.Password)
+                               .DeleteAsync(string.Format("{0}{1}/{2}", this.Endpoint, "/v1/sessions", sessionId))
+                               .AsMessage()
+                               .Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException as ServiceResponseException;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Requests results for a recognition task within the specified session. You can submit multiple requests for the same recognition task. To see interim results, set the parameter interim_results=true. The request must pass the cookie that was returned by the Create a session method.
+        /// 
+        /// To see results for a specific recognition task, specify a sequence ID(with the sequence_id parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout.
+        /// 
+        /// Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID.
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <param name="contentType"></param>
+        /// <param name="metaData"></param>
+        /// <param name="audio"></param>
+        /// <param name="transferEncoding"></param>
+        /// <param name="model"></param>
+        /// <param name="customizationId"></param>
+        /// <param name="continuous"></param>
+        /// <param name="inactivityTimeout"></param>
+        /// <param name="keywords"></param>
+        /// <param name="keywordsThreshold"></param>
+        /// <param name="maxAlternatives"></param>
+        /// <param name="wordAlternativesThreshold"></param>
+        /// <param name="wordConfidence"></param>
+        /// <param name="timestamps"></param>
+        /// <param name="profanityFilter"></param>
+        /// <param name="smartFormatting"></param>
+        /// <param name="speakerLabels"></param>
+        /// <returns></returns>
+        SpeechRecognitionResults ISpeechToTextService.Recognize(string sessionId, string contentType, Metadata metaData, Stream audio, string transferEncoding, string model, string customizationId, bool? continuous, int? inactivityTimeout, string[] keywords, double? keywordsThreshold, int? maxAlternatives, double? wordAlternativesThreshold, bool? wordConfidence, bool? timestamps, bool profanityFilter, bool? smartFormatting, bool? speakerLabels)
+        {
+            if (string.IsNullOrEmpty(sessionId))
+                throw new ArgumentNullException($"{nameof(sessionId)}");
+
+            if (audio == null)
+                throw new ArgumentNullException($"{nameof(audio)}");
+
+            return
+                this.Recognize(sessionId,
+                               contentType: contentType,
+                               transferEncoding: transferEncoding,
+                               metaData: null,
+                               audio: audio,
+                               customizationId: customizationId,
+                               continuous: continuous,
+                               keywords: keywords,
+                               keywordsThreshold: keywordsThreshold,
+                               wordAlternativesThreshold: wordAlternativesThreshold,
+                               wordConfidence: wordConfidence,
+                               timestamps: timestamps,
+                               smartFormatting: smartFormatting,
+                               speakerLabels: speakerLabels,
+                               profanityFilter: profanityFilter,
+                               maxAlternatives: maxAlternatives,
+                               inactivityTimeout: inactivityTimeout,
+                               model: model);
+        }
     }
 
     public class Metadata
@@ -510,5 +643,59 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         [JsonProperty("speaker_labels", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SpeakerLabels { get; set; }
+    }
+
+    public class SpeechSession
+    {
+        /// <summary>
+        /// URI for HTTP REST recognition requests.
+        /// </summary>
+        [JsonProperty("recognize", NullValueHandling = NullValueHandling.Ignore)]
+        public string Recognize { get; set; }
+
+        /// <summary>
+        /// URI for WebSocket recognition requests.Needed only for working with the WebSocket interface.
+        /// </summary>
+        [JsonProperty("recognizeWS", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecognizeWS { get; set; }
+
+        /// <summary>
+        /// Identifier for the new session. Note: This field is returned only when you create a new session. 
+        /// </summary>
+        [JsonProperty("session_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string SessionId { get; set; }
+
+        /// <summary>
+        /// URI for HTTP REST results observers.
+        /// </summary>
+        [JsonProperty("observe_result", NullValueHandling = NullValueHandling.Ignore)]
+        public string ObserveResult { get; set; }
+
+        /// <summary>
+        /// URI for the new session.Note: This field is returned only when you create a new session.
+        /// </summary>
+        [JsonProperty("new_session_uri", NullValueHandling = NullValueHandling.Ignore)]
+        public string NewSessionUrl { get; set; }
+
+        /// <summary>
+        /// State of the session.The state must be initialized for the session to accept another recognition request.Other internal states are possible, but they have no meaning for the user.Note: This field is returned only when you request the status of an existing session.
+        /// </summary>
+        [JsonProperty("state", NullValueHandling = NullValueHandling.Ignore)]
+        public string State { get; set; }
+
+        /// <summary>
+        /// URI for information about the model that is used with the session. Note: This field is returned only when you request the status of an existing session.
+        /// </summary>
+        [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
+        public string Model { get; set; }
+    }
+
+    public class SessionStatus
+    {
+        /// <summary>
+        /// Information about the specified existing session.
+        /// </summary>
+        [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
+        public SpeechSession Session { get; set; }
     }
 }

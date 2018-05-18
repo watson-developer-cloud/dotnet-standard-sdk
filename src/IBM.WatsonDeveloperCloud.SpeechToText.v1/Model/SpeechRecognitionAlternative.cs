@@ -15,7 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
@@ -50,5 +49,4 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("word_confidence", NullValueHandling = NullValueHandling.Ignore)]
         public string[][] WordConfidence { get; set; }
     }
-
 }

@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_document_emotion_results =
+[
+    [ "Emotion", "d7/d43/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_document_emotion_results.html#a0f203bd2832dae7c5acf8f41c25f7155", null ]
+];

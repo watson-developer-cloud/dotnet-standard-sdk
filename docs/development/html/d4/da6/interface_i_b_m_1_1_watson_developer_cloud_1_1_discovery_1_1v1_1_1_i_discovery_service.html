@@ -101,7 +101,7 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.Discovery.v1.IDiscoveryService:
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afb904172d083287a644e414eb180e13a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_environment.html">Environment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#afb904172d083287a644e414eb180e13a">CreateEnvironment</a> (<a class="el" href="../../d0/d6b/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_environment_request.html">CreateEnvironmentRequest</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:afb904172d083287a644e414eb180e13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an environment. Creates a new environment. You can create only one environment per service instance. An attempt to create another environment results in an error.  <a href="#afb904172d083287a644e414eb180e13a">More...</a><br /></td></tr>
+<tr class="memdesc:afb904172d083287a644e414eb180e13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an environment. Creates a new environment for private data. An environment must be created before collections can be created. <b>Note</b>: You can create only one environment for private data per service instance. An attempt to create another environment results in an error.  <a href="#afb904172d083287a644e414eb180e13a">More...</a><br /></td></tr>
 <tr class="separator:afb904172d083287a644e414eb180e13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc433ead419198587f765193bae8ea4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/dc2/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_delete_environment_response.html">DeleteEnvironmentResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#adc433ead419198587f765193bae8ea4f">DeleteEnvironment</a> (string environmentId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:adc433ead419198587f765193bae8ea4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete environment.  <a href="#adc433ead419198587f765193bae8ea4f">More...</a><br /></td></tr>
@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aaa15e20e14b971133d31348737178b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">List environments. List existing environments for the service instance.  <a href="#aaa15e20e14b971133d31348737178b4a">More...</a><br /></td></tr>
 <tr class="separator:aaa15e20e14b971133d31348737178b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee90bf3424d84366837c4c69a8ea8ab0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dc4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_collection_fields_response.html">ListCollectionFieldsResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aee90bf3424d84366837c4c69a8ea8ab0">ListFields</a> (string environmentId, List&lt; string &gt; collectionIds, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:aee90bf3424d84366837c4c69a8ea8ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">List fields in specified collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.  <a href="#aee90bf3424d84366837c4c69a8ea8ab0">More...</a><br /></td></tr>
+<tr class="memdesc:aee90bf3424d84366837c4c69a8ea8ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">List fields across collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.  <a href="#aee90bf3424d84366837c4c69a8ea8ab0">More...</a><br /></td></tr>
 <tr class="separator:aee90bf3424d84366837c4c69a8ea8ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27b86e1ae185be25ec29f8cb4037caeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d4e/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_environment.html">Environment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a27b86e1ae185be25ec29f8cb4037caeb">UpdateEnvironment</a> (string environmentId, <a class="el" href="../../d4/d64/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_update_environment_request.html">UpdateEnvironmentRequest</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a27b86e1ae185be25ec29f8cb4037caeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update an environment. Updates an environment. The environment's <code>name</code> and <code>description</code> parameters can be changed. You must specify a <code>name</code> for the environment.  <a href="#a27b86e1ae185be25ec29f8cb4037caeb">More...</a><br /></td></tr>
@@ -146,7 +146,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a41893610c064088e31a8cd73f63916d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collection details.  <a href="#a41893610c064088e31a8cd73f63916d1">More...</a><br /></td></tr>
 <tr class="separator:a41893610c064088e31a8cd73f63916d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a073bfa8eac5a4f60629b94974d8436cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dc4/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_collection_fields_response.html">ListCollectionFieldsResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a073bfa8eac5a4f60629b94974d8436cf">ListCollectionFields</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a073bfa8eac5a4f60629b94974d8436cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">List unique fields. Gets a list of the unique fields (and their types) stored in the index.  <a href="#a073bfa8eac5a4f60629b94974d8436cf">More...</a><br /></td></tr>
+<tr class="memdesc:a073bfa8eac5a4f60629b94974d8436cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">List collection fields. Gets a list of the unique fields (and their types) stored in the index.  <a href="#a073bfa8eac5a4f60629b94974d8436cf">More...</a><br /></td></tr>
 <tr class="separator:a073bfa8eac5a4f60629b94974d8436cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4e3614827ca2ece097a1dec87d483d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d53/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_list_collections_response.html">ListCollectionsResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab4e3614827ca2ece097a1dec87d483d5">ListCollections</a> (string environmentId, string name=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:ab4e3614827ca2ece097a1dec87d483d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">List collections. Lists existing collections for the service instance.  <a href="#ab4e3614827ca2ece097a1dec87d483d5">More...</a><br /></td></tr>
@@ -155,13 +155,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0b7aa4d73d5b334f768bb6417cf090fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a collection.  <a href="#a0b7aa4d73d5b334f768bb6417cf090fb">More...</a><br /></td></tr>
 <tr class="separator:a0b7aa4d73d5b334f768bb6417cf090fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae28ba1d1076087f3a8ea218b6e80cf00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html">Expansions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ae28ba1d1076087f3a8ea218b6e80cf00">CreateExpansions</a> (string environmentId, string collectionId, <a class="el" href="../../d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html">Expansions</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ae28ba1d1076087f3a8ea218b6e80cf00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is <code>500</code>. The current expansion list is replaced with the uploaded content.  <a href="#ae28ba1d1076087f3a8ea218b6e80cf00">More...</a><br /></td></tr>
+<tr class="memdesc:ae28ba1d1076087f3a8ea218b6e80cf00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create or update expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is <code>500</code>. The current expansion list is replaced with the uploaded content.  <a href="#ae28ba1d1076087f3a8ea218b6e80cf00">More...</a><br /></td></tr>
 <tr class="separator:ae28ba1d1076087f3a8ea218b6e80cf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10a2f02779e90b793820e9ec897b52bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a10a2f02779e90b793820e9ec897b52bb">DeleteExpansions</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a10a2f02779e90b793820e9ec897b52bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the expansions list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.  <a href="#a10a2f02779e90b793820e9ec897b52bb">More...</a><br /></td></tr>
+<tr class="memdesc:a10a2f02779e90b793820e9ec897b52bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the expansion list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.  <a href="#a10a2f02779e90b793820e9ec897b52bb">More...</a><br /></td></tr>
 <tr class="separator:a10a2f02779e90b793820e9ec897b52bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8e197d8137a642a729d4413bf067f60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html">Expansions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa8e197d8137a642a729d4413bf067f60">ListExpansions</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:aa8e197d8137a642a729d4413bf067f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">List current expansions. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.  <a href="#aa8e197d8137a642a729d4413bf067f60">More...</a><br /></td></tr>
+<tr class="memdesc:aa8e197d8137a642a729d4413bf067f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the expansion list. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.  <a href="#aa8e197d8137a642a729d4413bf067f60">More...</a><br /></td></tr>
 <tr class="separator:aa8e197d8137a642a729d4413bf067f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bcfeebedac8ffedf65aa173f56a27ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_accepted.html">DocumentAccepted</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a0bcfeebedac8ffedf65aa173f56a27ae">AddDocument</a> (string environmentId, string collectionId, System.IO.Stream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a0bcfeebedac8ffedf65aa173f56a27ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a document. Add a document to a collection with optional metadata. * The <code>version</code> query parameter is still required. * Returns immediately after the system has accepted the document for processing. * The user must provide document content, metadata, or both. If the request is missing both document content and metadata, it is rejected. * The user can set the <code>Content-Type</code> parameter on the <code>file</code> part to indicate the media type of the document. If the <code>Content-Type</code> parameter is missing or is one of the generic media types (for example, <code>application/octet-stream</code>), then the service attempts to automatically detect the document's media type. * The following field names are reserved and will be filtered out if present after normalization: <code>id</code>, <code>score</code>, <code>highlight</code>, and any field with the prefix of: <code>_</code>, <code>+</code>, or <code>-</code> * Fields with empty name values after normalization are filtered out before indexing. * Fields containing the following characters after normalization are filtered out before indexing: <code>#</code> and <code>,</code>.  <a href="#a0bcfeebedac8ffedf65aa173f56a27ae">More...</a><br /></td></tr>
@@ -182,7 +182,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6445546b2b19b92c9922c2c02e564b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query multiple collection system notices. Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated when ingesting documents and performing relevance training. See the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a> for more details on the query language.  <a href="#a6445546b2b19b92c9922c2c02e564b5d">More...</a><br /></td></tr>
 <tr class="separator:a6445546b2b19b92c9922c2c02e564b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b67203c117e950a2cf9fb15404b40d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_response.html">QueryResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a70b67203c117e950a2cf9fb15404b40d">Query</a> (string environmentId, string collectionId, string filter=null, string query=null, string naturalLanguageQuery=null, bool? passages=null, string aggregation=null, long? count=null, List&lt; string &gt; returnFields=null, long? offset=null, List&lt; string &gt; sort=null, bool? highlight=null, List&lt; string &gt; passagesFields=null, long? passagesCount=null, long? passagesCharacters=null, bool? deduplicate=null, string deduplicateField=null, bool? similar=null, List&lt; string &gt; similarDocumentIds=null, List&lt; string &gt; similarFields=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a70b67203c117e950a2cf9fb15404b40d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query documents. See the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a> for more details.  <a href="#a70b67203c117e950a2cf9fb15404b40d">More...</a><br /></td></tr>
+<tr class="memdesc:a70b67203c117e950a2cf9fb15404b40d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query your collection. After your content is uploaded and enriched by the <a class="el" href="../../dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery.html">Discovery</a> service, you can build queries to search your content. For details, see the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a>.  <a href="#a70b67203c117e950a2cf9fb15404b40d">More...</a><br /></td></tr>
 <tr class="separator:a70b67203c117e950a2cf9fb15404b40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b2f1e5bc361f59bdcae7c4d1fb0ae3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d95/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_response.html">QueryEntitiesResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1b2f1e5bc361f59bdcae7c4d1fb0ae3f">QueryEntities</a> (string environmentId, string collectionId, <a class="el" href="../../d9/d97/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities.html">QueryEntities</a> entityQuery, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a1b2f1e5bc361f59bdcae7c4d1fb0ae3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knowledge Graph entity query. See the <a href="https://console.bluemix.net/docs/services/discovery/building-kg.html">Knowledge Graph documentation</a> for more details.  <a href="#a1b2f1e5bc361f59bdcae7c4d1fb0ae3f">More...</a><br /></td></tr>
@@ -194,35 +194,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:acdfd3361243d6196bb4fd298e7913eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knowledge Graph relationship query. See the <a href="https://console.bluemix.net/docs/services/discovery/building-kg.html">Knowledge Graph documentation</a> for more details.  <a href="#acdfd3361243d6196bb4fd298e7913eae">More...</a><br /></td></tr>
 <tr class="separator:acdfd3361243d6196bb4fd298e7913eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5820dc55271f9b3d839f82d4e32461a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_query.html">TrainingQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a5820dc55271f9b3d839f82d4e32461a6">AddTrainingData</a> (string environmentId, string collectionId, <a class="el" href="../../de/d62/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_new_training_query.html">NewTrainingQuery</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a5820dc55271f9b3d839f82d4e32461a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a query to the training data for this collection. The query can contain a filter and natural language query.  <a href="#a5820dc55271f9b3d839f82d4e32461a6">More...</a><br /></td></tr>
+<tr class="memdesc:a5820dc55271f9b3d839f82d4e32461a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add query to training data. Adds a query to the training data for this collection. The query can contain a filter and natural language query.  <a href="#a5820dc55271f9b3d839f82d4e32461a6">More...</a><br /></td></tr>
 <tr class="separator:a5820dc55271f9b3d839f82d4e32461a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2c8535adf6473f4027a43c7c8964e39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example.html">TrainingExample</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad2c8535adf6473f4027a43c7c8964e39">CreateTrainingExample</a> (string environmentId, string collectionId, string queryId, <a class="el" href="../../d1/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example.html">TrainingExample</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ad2c8535adf6473f4027a43c7c8964e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new example to this training data query.  <a href="#ad2c8535adf6473f4027a43c7c8964e39">More...</a><br /></td></tr>
+<tr class="memdesc:ad2c8535adf6473f4027a43c7c8964e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add example to training data query. Adds a example to this training data query.  <a href="#ad2c8535adf6473f4027a43c7c8964e39">More...</a><br /></td></tr>
 <tr class="separator:ad2c8535adf6473f4027a43c7c8964e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81fa2279d9e51b6091556921a0cde41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad81fa2279d9e51b6091556921a0cde41">DeleteAllTrainingData</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ad81fa2279d9e51b6091556921a0cde41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all training data for this collection.  <a href="#ad81fa2279d9e51b6091556921a0cde41">More...</a><br /></td></tr>
+<tr class="memdesc:ad81fa2279d9e51b6091556921a0cde41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all training data. Deletes all training data from a collection.  <a href="#ad81fa2279d9e51b6091556921a0cde41">More...</a><br /></td></tr>
 <tr class="separator:ad81fa2279d9e51b6091556921a0cde41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee657087f8ece4fb9c276302c344ed7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aee657087f8ece4fb9c276302c344ed7f">DeleteTrainingData</a> (string environmentId, string collectionId, string queryId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:aee657087f8ece4fb9c276302c344ed7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the training data and all associated examples from the training data set.  <a href="#aee657087f8ece4fb9c276302c344ed7f">More...</a><br /></td></tr>
+<tr class="memdesc:aee657087f8ece4fb9c276302c344ed7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a training data query. Removes the training data query and all associated examples from the training data set.  <a href="#aee657087f8ece4fb9c276302c344ed7f">More...</a><br /></td></tr>
 <tr class="separator:aee657087f8ece4fb9c276302c344ed7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf9237ff766577afde03acde200ebaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abaf9237ff766577afde03acde200ebaa">DeleteTrainingExample</a> (string environmentId, string collectionId, string queryId, string exampleId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:abaf9237ff766577afde03acde200ebaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the example with the given ID for the training data query.  <a href="#abaf9237ff766577afde03acde200ebaa">More...</a><br /></td></tr>
+<tr class="memdesc:abaf9237ff766577afde03acde200ebaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete example for training data query. Deletes the example document with the given ID from the training data query.  <a href="#abaf9237ff766577afde03acde200ebaa">More...</a><br /></td></tr>
 <tr class="separator:abaf9237ff766577afde03acde200ebaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a095ab65f1ab794187d68263c124a723d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_query.html">TrainingQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a095ab65f1ab794187d68263c124a723d">GetTrainingData</a> (string environmentId, string collectionId, string queryId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a095ab65f1ab794187d68263c124a723d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows details for a specific training data query, including the query string and all examples.  <a href="#a095ab65f1ab794187d68263c124a723d">More...</a><br /></td></tr>
+<tr class="memdesc:a095ab65f1ab794187d68263c124a723d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get details about a query. Gets details for a specific training data query, including the query string and all examples.  <a href="#a095ab65f1ab794187d68263c124a723d">More...</a><br /></td></tr>
 <tr class="separator:a095ab65f1ab794187d68263c124a723d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad77b6795d16d6f24816c1821918fdcd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example.html">TrainingExample</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad77b6795d16d6f24816c1821918fdcd1">GetTrainingExample</a> (string environmentId, string collectionId, string queryId, string exampleId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ad77b6795d16d6f24816c1821918fdcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the details for this training example.  <a href="#ad77b6795d16d6f24816c1821918fdcd1">More...</a><br /></td></tr>
+<tr class="memdesc:ad77b6795d16d6f24816c1821918fdcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get details for training data example. Gets the details for this training example.  <a href="#ad77b6795d16d6f24816c1821918fdcd1">More...</a><br /></td></tr>
 <tr class="separator:ad77b6795d16d6f24816c1821918fdcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae72a3bac9a03cdd0aca0fd158171d5bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dcb/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_data_set.html">TrainingDataSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ae72a3bac9a03cdd0aca0fd158171d5bd">ListTrainingData</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ae72a3bac9a03cdd0aca0fd158171d5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the training data for this collection.  <a href="#ae72a3bac9a03cdd0aca0fd158171d5bd">More...</a><br /></td></tr>
+<tr class="memdesc:ae72a3bac9a03cdd0aca0fd158171d5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">List training data. Lists the training data for the specified collection.  <a href="#ae72a3bac9a03cdd0aca0fd158171d5bd">More...</a><br /></td></tr>
 <tr class="separator:ae72a3bac9a03cdd0aca0fd158171d5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8374aa54c63c8a7dd80200601fafde4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d46/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example_list.html">TrainingExampleList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a8374aa54c63c8a7dd80200601fafde4e">ListTrainingExamples</a> (string environmentId, string collectionId, string queryId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a8374aa54c63c8a7dd80200601fafde4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">List all examples for this training data query.  <a href="#a8374aa54c63c8a7dd80200601fafde4e">More...</a><br /></td></tr>
+<tr class="memdesc:a8374aa54c63c8a7dd80200601fafde4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">List examples for a training data query. List all examples for this training data query.  <a href="#a8374aa54c63c8a7dd80200601fafde4e">More...</a><br /></td></tr>
 <tr class="separator:a8374aa54c63c8a7dd80200601fafde4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1449153cb984954d56805d8c00894f0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d06/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example.html">TrainingExample</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1449153cb984954d56805d8c00894f0f">UpdateTrainingExample</a> (string environmentId, string collectionId, string queryId, string exampleId, <a class="el" href="../../df/d35/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_training_example_patch.html">TrainingExamplePatch</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a1449153cb984954d56805d8c00894f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the label or cross reference query for this training example.  <a href="#a1449153cb984954d56805d8c00894f0f">More...</a><br /></td></tr>
+<tr class="memdesc:a1449153cb984954d56805d8c00894f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change label or cross reference for example. Changes the label or cross reference query for this training data example.  <a href="#a1449153cb984954d56805d8c00894f0f">More...</a><br /></td></tr>
 <tr class="separator:a1449153cb984954d56805d8c00894f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac105bbfa1399ac01e73596ae0d5f7fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aac105bbfa1399ac01e73596ae0d5f7fd">DeleteUserData</a> (string customerId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:aac105bbfa1399ac01e73596ae0d5f7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID. You associate a customer ID with data by passing the <b>X-Watson-Metadata</b> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://console.bluemix.net/docs/services/discovery/information-security.html">Information security</a>.  <a href="#aac105bbfa1399ac01e73596ae0d5f7fd">More...</a><br /></td></tr>
+<tr class="separator:aac105bbfa1399ac01e73596ae0d5f7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0bcfeebedac8ffedf65aa173f56a27ae"></a>
@@ -331,12 +334,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a query to the training data for this collection. The query can contain a filter and natural language query. </p>
+<p>Add query to training data. Adds a query to the training data for this collection. The query can contain a filter and natural language query. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
-    <tr><td class="paramname">body</td><td>The body of the training-data query that is to be added to the collection's training data.</td></tr>
+    <tr><td class="paramname">body</td><td>The body of the training data query that is to be added to the collection's training data.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -467,10 +470,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add an environment. Creates a new environment. You can create only one environment per service instance. An attempt to create another environment results in an error. </p>
+<p>Create an environment. Creates a new environment for private data. An environment must be created before collections can be created. <b>Note</b>: You can create only one environment for private data per service instance. An attempt to create another environment results in an error. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">body</td><td>An object that defines an environment name and optional description.</td></tr>
+    <tr><td class="paramname">body</td><td>An object that defines an environment name and optional description. The fields in this object are not approved for personal information and cannot be deleted based on customer ID.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -519,7 +522,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is <code>500</code>. The current expansion list is replaced with the uploaded content. </p>
+<p>Create or update expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is <code>500</code>. The current expansion list is replaced with the uploaded content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -579,7 +582,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a new example to this training data query. </p>
+<p>Add example to training data query. Adds a example to this training data query. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -628,7 +631,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Clears all training data for this collection. </p>
+<p>Delete all training data. Deletes all training data from a collection. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -863,7 +866,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Delete the expansions list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection. </p>
+<p>Delete the expansion list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -916,7 +919,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes the training data and all associated examples from the training data set. </p>
+<p>Delete a training data query. Removes the training data query and all associated examples from the training data set. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -976,7 +979,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes the example with the given ID for the training data query. </p>
+<p>Delete example for training data query. Deletes the example document with the given ID from the training data query. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -990,6 +993,46 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
 
 <p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a482578b20219f0e9ec87f4c78ebb7b4f">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="aac105bbfa1399ac01e73596ae0d5f7fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac105bbfa1399ac01e73596ae0d5f7fd">&#9670;&nbsp;</a></span>DeleteUserData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a> IBM.WatsonDeveloperCloud.Discovery.v1.IDiscoveryService.DeleteUserData </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>customData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID. You associate a customer ID with data by passing the <b>X-Watson-Metadata</b> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://console.bluemix.net/docs/services/discovery/information-security.html">Information security</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">customerId</td><td>The customer ID for which all data is to be deleted.</td></tr>
+    <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
+
+<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#ab0eaa50d6d0812757bb73742b47b063b">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -1502,7 +1545,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Shows details for a specific training data query, including the query string and all examples. </p>
+<p>Get details about a query. Gets details for a specific training data query, including the query string and all examples. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1562,7 +1605,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the details for this training example. </p>
+<p>Get details for training data example. Gets the details for this training example. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1611,7 +1654,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List unique fields. Gets a list of the unique fields (and their types) stored in the index. </p>
+<p>List collection fields. Gets a list of the unique fields (and their types) stored in the index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1792,7 +1835,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List current expansions. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned. </p>
+<p>Get the expansion list. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1839,7 +1882,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List fields in specified collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections. </p>
+<p>List fields across collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1886,7 +1929,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lists the training data for this collection. </p>
+<p>List training data. Lists the training data for the specified collection. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -1939,7 +1982,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List all examples for this training data query. </p>
+<p>List examples for a training data query. List all examples for this training data query. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -2095,7 +2138,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Query documents. See the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a> for more details. </p>
+<p>Query your collection. After your content is uploaded and enriched by the <a class="el" href="../../dd/de6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery.html">Discovery</a> service, you can build queries to search your content. For details, see the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>
@@ -2764,7 +2807,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Changes the label or cross reference query for this training example. </p>
+<p>Change label or cross reference for example. Changes the label or cross reference query for this training data example. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">environmentId</td><td>The ID of the environment.</td></tr>

@@ -101,16 +101,16 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.TextToSpeech.v1.ITextToSpeechSe
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab25930f0940391a9d0629720a7b708c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/dd1/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice.html">Voice</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ab25930f0940391a9d0629720a7b708c6">GetVoice</a> (string voice, string customizationId=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ab25930f0940391a9d0629720a7b708c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a voice. Lists information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice.  <a href="#ab25930f0940391a9d0629720a7b708c6">More...</a><br /></td></tr>
+<tr class="memdesc:ab25930f0940391a9d0629720a7b708c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a voice. Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice.  <a href="#ab25930f0940391a9d0629720a7b708c6">More...</a><br /></td></tr>
 <tr class="separator:ab25930f0940391a9d0629720a7b708c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5bb7091f410073389092b9178da0e66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dbf/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voices.html">Voices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ac5bb7091f410073389092b9178da0e66">ListVoices</a> (Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ac5bb7091f410073389092b9178da0e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get voices. Retrieves a list of all voices available for use with the service. The information includes the name, language, gender, and other details about the voice.  <a href="#ac5bb7091f410073389092b9178da0e66">More...</a><br /></td></tr>
+<tr class="memdesc:ac5bb7091f410073389092b9178da0e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">List voices. Lists all voices available for use with the service. The information includes the name, language, gender, and other details about the voice.  <a href="#ac5bb7091f410073389092b9178da0e66">More...</a><br /></td></tr>
 <tr class="separator:ac5bb7091f410073389092b9178da0e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af89fd4d3610b840e0ba9133d6d562374"><td class="memItemLeft" align="right" valign="top">System.IO.Stream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#af89fd4d3610b840e0ba9133d6d562374">Synthesize</a> (<a class="el" href="../../d7/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_text.html">Text</a> text, string accept=null, string voice=null, string customizationId=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:af89fd4d3610b840e0ba9133d6d562374"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesize audio. Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. You can pass a maximum of 5 KB of text. Use the <code>Accept</code> header or the <code>accept</code> query parameter to specify the requested format (MIME type) of the response audio. By default, the service uses <code>audio/ogg;codecs=opus</code>. For detailed information about the supported audio formats and sampling rates, see <a href="https://console.bluemix.net/docs/services/text-to-speech/http.html#format">Specifying an audio format</a>. If a request includes invalid query parameters, the service returns a <code>Warnings</code> response header that provides messages about the invalid parameters. The warning includes a descriptive message and a list of invalid argument strings. For example, a message such as <code>"Unknown arguments:"</code> or <code>"Unknown url query arguments:"</code> followed by a list of the form <code>"invalid_arg_1, invalid_arg_2."</code> The request succeeds despite the warnings. <b>Note about the Try It Out feature:</b> The <code>Try it out!</code> button is <b>not</b> supported for use with the the <code>POST /v1/synthesize</code> method. For examples of calls to the method, see the <a href="http://www.ibm.com/watson/developercloud/text-to-speech/api/v1/">Text to Speech API reference</a>.  <a href="#af89fd4d3610b840e0ba9133d6d562374">More...</a><br /></td></tr>
 <tr class="separator:af89fd4d3610b840e0ba9133d6d562374"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad92302601c6a4c07a928469752f803cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/de9/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation.html">Pronunciation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ad92302601c6a4c07a928469752f803cc">GetPronunciation</a> (string text, string voice=null, string format=null, string customizationId=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ad92302601c6a4c07a928469752f803cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pronunciation. Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model. <b>Note:</b> This method is currently a beta release.  <a href="#ad92302601c6a4c07a928469752f803cc">More...</a><br /></td></tr>
+<tr class="memdesc:ad92302601c6a4c07a928469752f803cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pronunciation. Gets the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model. <b>Note:</b> This method is currently a beta release.  <a href="#ad92302601c6a4c07a928469752f803cc">More...</a><br /></td></tr>
 <tr class="separator:ad92302601c6a4c07a928469752f803cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e74d73990101bf09b2124fb9f075de8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_model.html">VoiceModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a1e74d73990101bf09b2124fb9f075de8">CreateVoiceModel</a> (<a class="el" href="../../d7/d9b/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_create_voice_model.html">CreateVoiceModel</a> createVoiceModel, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a1e74d73990101bf09b2124fb9f075de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a custom model. Creates a new empty custom voice model. You must specify a name for the new custom model; you can optionally specify the language and a description of the new model. The model is owned by the instance of the service whose credentials are used to create it. <b>Note:</b> This method is currently a beta release.  <a href="#a1e74d73990101bf09b2124fb9f075de8">More...</a><br /></td></tr>
@@ -119,7 +119,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3519a45d2f6fed5ef48f32f6bcc0a778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a custom model. Deletes the specified custom voice model. You must use credentials for the instance of the service that owns a model to delete it. <b>Note:</b> This method is currently a beta release.  <a href="#a3519a45d2f6fed5ef48f32f6bcc0a778">More...</a><br /></td></tr>
 <tr class="separator:a3519a45d2f6fed5ef48f32f6bcc0a778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15c51e5da6bfe5af78febfb5fc152ce8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d04/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_model.html">VoiceModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a15c51e5da6bfe5af78febfb5fc152ce8">GetVoiceModel</a> (string customizationId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a15c51e5da6bfe5af78febfb5fc152ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">List a custom model. Lists all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the <b>List custom models</b> method. <b>Note:</b> This method is currently a beta release.  <a href="#a15c51e5da6bfe5af78febfb5fc152ce8">More...</a><br /></td></tr>
+<tr class="memdesc:a15c51e5da6bfe5af78febfb5fc152ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a custom model. Gets all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the <b>List custom models</b> method. <b>Note:</b> This method is currently a beta release.  <a href="#a15c51e5da6bfe5af78febfb5fc152ce8">More...</a><br /></td></tr>
 <tr class="separator:a15c51e5da6bfe5af78febfb5fc152ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecbed7a9fe904a20b155736aad505e4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d1c/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_models.html">VoiceModels</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#aecbed7a9fe904a20b155736aad505e4f">ListVoiceModels</a> (string language=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:aecbed7a9fe904a20b155736aad505e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">List custom models. Lists metadata such as the name and description for all custom voice models that are owned by an instance of the service. Specify a language to list the voice models for that language only. To see the words in addition to the metadata for a specific voice model, use the <b>List a custom model</b> method. You must use credentials for the instance of the service that owns a model to list information about it. <b>Note:</b> This method is currently a beta release.  <a href="#aecbed7a9fe904a20b155736aad505e4f">More...</a><br /></td></tr>
@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aaef39e37127fe9f3af65b24be60ff928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a custom word. Deletes a single word from the specified custom voice model. <b>Note:</b> This method is currently a beta release.  <a href="#aaef39e37127fe9f3af65b24be60ff928">More...</a><br /></td></tr>
 <tr class="separator:aaef39e37127fe9f3af65b24be60ff928"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28c98d00c754489975458db1505488f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dcd/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_translation.html">Translation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ad28c98d00c754489975458db1505488f">GetWord</a> (string customizationId, string word, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:ad28c98d00c754489975458db1505488f"><td class="mdescLeft">&#160;</td><td class="mdescRight">List a custom word. Returns the translation for a single word from the specified custom model. The output shows the translation as it is defined in the model. <b>Note:</b> This method is currently a beta release.  <a href="#ad28c98d00c754489975458db1505488f">More...</a><br /></td></tr>
+<tr class="memdesc:ad28c98d00c754489975458db1505488f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a custom word. Gets the translation for a single word from the specified custom model. The output shows the translation as it is defined in the model. <b>Note:</b> This method is currently a beta release.  <a href="#ad28c98d00c754489975458db1505488f">More...</a><br /></td></tr>
 <tr class="separator:ad28c98d00c754489975458db1505488f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57ec69aba27491231099e666d9b18ada"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/df5/class_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html">Words</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d1e/interface_i_b_m_1_1_watson_developer_cloud_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a57ec69aba27491231099e666d9b18ada">ListWords</a> (string customizationId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a57ec69aba27491231099e666d9b18ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">List custom words. Lists all of the words and their translations for the specified custom voice model. The output shows the translations as they are defined in the model. <b>Note:</b> This method is currently a beta release.  <a href="#a57ec69aba27491231099e666d9b18ada">More...</a><br /></td></tr>
@@ -185,7 +185,7 @@ Public Member Functions</h2></td></tr>
 <p>Add a custom word. Adds a single word and its translation to the specified custom voice model. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be added or updated for the custom voice model.</td></tr>
     <tr><td class="paramname">translation</td><td>The translation for the word that is to be added or updated.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
@@ -233,7 +233,7 @@ Public Member Functions</h2></td></tr>
 <p>Add custom words. Adds one or more words and their translations to the specified custom voice model. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">customWords</td><td>A <code>Words</code> object that provides one or more words that are to be added or updated for the custom voice model and the translation for each specified word.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
@@ -314,7 +314,7 @@ Public Member Functions</h2></td></tr>
 <p>Delete a custom model. Deletes the specified custom voice model. You must use credentials for the instance of the service that owns a model to delete it. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -360,7 +360,7 @@ Public Member Functions</h2></td></tr>
 <p>Delete a custom word. Deletes a single word from the specified custom voice model. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be deleted from the custom voice model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
@@ -416,13 +416,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get pronunciation. Returns the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model. <b>Note:</b> This method is currently a beta release. </p>
+<p>Get pronunciation. Gets the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>The word for which the pronunciation is requested.</td></tr>
     <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. (optional, default to en-US_MichaelVoice)</td></tr>
     <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The GUID of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -465,11 +465,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get a voice. Lists information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice. </p>
+<p>Get a voice. Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">voice</td><td>The voice for which information is to be returned.</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The GUID of a custom voice model for which information is to be returned. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which information is to be returned. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -506,10 +506,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List a custom model. Lists all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the <b>List custom models</b> method. <b>Note:</b> This method is currently a beta release. </p>
+<p>Get a custom model. Gets all information about a specified custom voice model. In addition to metadata such as the name and description of the voice model, the output includes the words and their translations as defined in the model. To see just the metadata for a voice model, use the <b>List custom models</b> method. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -552,10 +552,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List a custom word. Returns the translation for a single word from the specified custom model. The output shows the translation as it is defined in the model. <b>Note:</b> This method is currently a beta release. </p>
+<p>Get a custom word. Gets the translation for a single word from the specified custom model. The output shows the translation as it is defined in the model. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be queried from the custom voice model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
@@ -623,7 +623,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get voices. Retrieves a list of all voices available for use with the service. The information includes the name, language, gender, and other details about the voice. </p>
+<p>List voices. Lists all voices available for use with the service. The information includes the name, language, gender, and other details about the voice. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
@@ -665,7 +665,7 @@ Public Member Functions</h2></td></tr>
 <p>List custom words. Lists all of the words and their translations for the specified custom voice model. The output shows the translations as they are defined in the model. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -726,7 +726,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">text</td><td>A <code>Text</code> object that provides the text to synthesize. Specify either plain text or a subset of SSML. Pass a maximum of 5 KB of text.</td></tr>
     <tr><td class="paramname">accept</td><td>The type of the response: audio/basic, audio/flac, audio/l16;rate=nnnn, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/mp3, audio/mpeg, audio/mulaw;rate=nnnn, audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis. (optional)</td></tr>
     <tr><td class="paramname">voice</td><td>The voice to use for synthesis. (optional, default to en-US_MichaelVoice)</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The GUID of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>
   </dd>
@@ -772,7 +772,7 @@ Public Member Functions</h2></td></tr>
 <p>Update a custom model. Updates information for the specified custom voice model. You can update metadata such as the name and description of the voice model. You can also update the words in the model and their translations. Adding a new translation for a word that already exists in a custom model overwrites the word's existing translation. A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a model to update it. <b>Note:</b> This method is currently a beta release. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The GUID of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">updateVoiceModel</td><td>An <code>UpdateVoiceModel</code> object that contains information that is to be updated for the custom voice model.</td></tr>
     <tr><td class="paramname">customData</td><td>Custom data object to pass data including custom request headers.</td></tr>
   </table>

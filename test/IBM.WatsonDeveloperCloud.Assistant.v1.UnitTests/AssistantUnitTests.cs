@@ -18,7 +18,6 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using System.Linq;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Assistant.v1.Model;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;

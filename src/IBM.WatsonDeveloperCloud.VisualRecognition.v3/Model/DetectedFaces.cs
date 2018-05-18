@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// DetectedFaces.
+    /// Results for all faces.
     /// </summary>
     public class DetectedFaces : BaseModel
     {
@@ -32,9 +32,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("images_processed", NullValueHandling = NullValueHandling.Ignore)]
         public long? ImagesProcessed { get; set; }
         /// <summary>
-        /// The array of images.
+        /// The images.
         /// </summary>
-        /// <value>The array of images.</value>
+        /// <value>The images.</value>
         [JsonProperty("images", NullValueHandling = NullValueHandling.Ignore)]
         public List<ImageWithFaces> Images { get; set; }
         /// <summary>

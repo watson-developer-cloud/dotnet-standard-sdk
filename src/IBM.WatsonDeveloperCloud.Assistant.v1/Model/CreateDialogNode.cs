@@ -126,7 +126,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
             /// Enum NOMATCH_RESPONSES_DEPLETED for nomatch_responses_depleted
             /// </summary>
             [EnumMember(Value = "nomatch_responses_depleted")]
-            NOMATCH_RESPONSES_DEPLETED
+            NOMATCH_RESPONSES_DEPLETED,
+            
+            /// <summary>
+            /// Enum DIGRESSION_RETURN_PROMPT for digression_return_prompt
+            /// </summary>
+            [EnumMember(Value = "digression_return_prompt")]
+            DIGRESSION_RETURN_PROMPT
         }
 
         /// <summary>

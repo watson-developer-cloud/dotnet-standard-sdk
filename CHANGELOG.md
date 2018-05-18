@@ -1,5 +1,13 @@
 Change Log
 ==========
+## Version 2.2.2
+_2018-05-18_
+* Regenerated SDK based on latest API definition.
+* Fixed: Added in hand written sessions methods for Speech to Text ([#204](https://github.com/watson-developer-cloud/dotnet-standard-sdk/issues/204), [#205](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/205)).
+* Fixed: Revised type of `Timestamps` and `WordConfidence` in `SpeechRecognitionAlternative.cs` from `List<string>` to `string[][]` ([#198](https://github.com/watson-developer-cloud/dotnet-standard-sdk/issues/198), [#205](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/205)).
+* New: Revised tests to get credentials from our internal credential github repo([#4456](https://github.ibm.com/Watson/developer-experience/issues/4456), [#215](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/215)).
+* New: Support for IAM authentication ([#4288](https://zenhub.innovate.ibm.com/app/workspace/o/watson/developer-experience/issues/4288), [#210](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/210)).
+
 ## Version 2.2.1
 _2018-04-21_
 * New: Support for custom request and response headers ([#4311](https://github.ibm.com/Watson/developer-experience/issues/4311), [#206](https://github.com/watson-developer-cloud/dotnet-standard-sdk/pull/206)).

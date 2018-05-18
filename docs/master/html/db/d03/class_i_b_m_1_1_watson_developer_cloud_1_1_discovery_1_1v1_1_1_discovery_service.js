@@ -18,6 +18,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_ser
     [ "DeleteExpansions", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a21657d4aaa9804da2b264baafee68a4d", null ],
     [ "DeleteTrainingData", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a4af59c899a9bd8424b045110c42a6a9f", null ],
     [ "DeleteTrainingExample", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a482578b20219f0e9ec87f4c78ebb7b4f", null ],
+    [ "DeleteUserData", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#ab0eaa50d6d0812757bb73742b47b063b", null ],
     [ "FederatedQuery", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#af6e795ec27fae74a86d70293db74c3bd", null ],
     [ "FederatedQueryNotices", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a758f8d54e1210237e5bb7082bd8f14af", null ],
     [ "GetCollection", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#afb23a8b90aa8edcedccb8757932de3f5", null ],

@@ -7,6 +7,7 @@ var searchData=
   ['text_2ecs',['Text.cs',['../dd/d87/_text_8cs.html',1,'']]],
   ['texttospeechservice_2ecs',['TextToSpeechService.cs',['../db/de7/_text_to_speech_service_8cs.html',1,'']]],
   ['timeslice_2ecs',['Timeslice.cs',['../d7/d29/_timeslice_8cs.html',1,'']]],
+  ['tokenmanager_2ecs',['TokenManager.cs',['../db/d45/_token_manager_8cs.html',1,'']]],
   ['toneanalysis_2ecs',['ToneAnalysis.cs',['../d6/d0a/_tone_analysis_8cs.html',1,'']]],
   ['toneanalyzerservice_2ecs',['ToneAnalyzerService.cs',['../d3/d14/_tone_analyzer_service_8cs.html',1,'']]],
   ['tonecategory_2ecs',['ToneCategory.cs',['../df/d4c/_tone_category_8cs.html',1,'']]],

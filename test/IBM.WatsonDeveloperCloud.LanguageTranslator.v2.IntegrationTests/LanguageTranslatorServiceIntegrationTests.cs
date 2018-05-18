@@ -153,34 +153,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         }
 
         [TestMethod]
-        public void CreateModel_Success()
-        {
-            _service =
-                new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
-
-            TranslationModel result;
-
-            using (FileStream fs = File.OpenRead(_glossaryPath))
-            {
-                result = _service.CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
-
-                if (result != null)
-                {
-                    _customModelID = result.ModelId;
-                }
-                else
-                {
-                    Console.WriteLine("result is null.");
-                }
-            }
-
-            Assert.IsNotNull(result);
-            Assert.IsFalse(string.IsNullOrEmpty(result.ModelId));
-        }
-
-        [TestMethod]
-        public void DeleteModel_Success()
+        public void Model_Success()
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
@@ -204,6 +177,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
 
             var result = _service.DeleteModel(_customModelID);
 
+            Assert.IsNotNull(createModelResult);
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Status == "OK");
         }

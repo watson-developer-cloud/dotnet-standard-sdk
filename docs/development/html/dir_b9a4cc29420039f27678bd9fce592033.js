@@ -14,6 +14,8 @@ var dir_b9a4cc29420039f27678bd9fce592033 =
     ] ],
     [ "SpeechToTextServiceExtension.cs", "d0/d59/_speech_to_text_service_extension_8cs.html", [
       [ "SpeechToTextService", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html", "d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service" ],
-      [ "Metadata", "d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html", "d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata" ]
+      [ "Metadata", "d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata.html", "d9/dce/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_metadata" ],
+      [ "SpeechSession", "d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html", "d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session" ],
+      [ "SessionStatus", "db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status.html", "db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status" ]
     ] ]
 ];

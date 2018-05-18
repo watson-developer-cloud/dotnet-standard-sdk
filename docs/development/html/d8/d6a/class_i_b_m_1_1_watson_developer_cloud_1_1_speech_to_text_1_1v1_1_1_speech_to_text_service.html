@@ -234,6 +234,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abc40f8b84755f6d95609b97ce3cc16e0"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abc40f8b84755f6d95609b97ce3cc16e0">ObserveResult</a> (string sessionId, int? sequenceId=(int?) null, bool interimResults=false)</td></tr>
 <tr class="memdesc:abc40f8b84755f6d95609b97ce3cc16e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests results for a recognition task within a specified session. You can submit this method multiple times for the same recognition task. To see interim results, set the interim_results parameter to true. The request must pass the cookie that was returned by the SpeechToTextService.CreateSession(string) method. To see results for a specific recognition task, specify a sequence ID(with the sequence_id query parameter) that matches the sequence ID of the recognition request.A request with a sequence ID can arrive before, during, or after the matching recognition request, but it must arrive no later than 30 seconds after the recognition completes to avoid a session timeout(response code 408). Send multiple requests for the sequence ID with a maximum gap of 30 seconds to avoid the timeout. Omit the sequence ID to observe results for an ongoing recognition task.If no recognition task is ongoing, the method returns results for the next recognition task regardless of whether it specifies a sequence ID.  <a href="#abc40f8b84755f6d95609b97ce3cc16e0">More...</a><br /></td></tr>
 <tr class="separator:abc40f8b84755f6d95609b97ce3cc16e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e4e59e8cac55331ce8e0988374177e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a04e4e59e8cac55331ce8e0988374177e">CreateSession</a> (string model, string customizationId=null, string acousticCustomizationId=null, string baseModelVersion=null)</td></tr>
+<tr class="memdesc:a04e4e59e8cac55331ce8e0988374177e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a session and locks recognition requests to that engine. You can use the session for multiple recognition requests so that each request is processed with the same Speech to Text engine. The session expires after 30 seconds of inactivity. For information about avoiding session timeouts, see Timeouts (<a href="https://console.bluemix.net/docs/services/speech-to-text/input.html#timeouts">https://console.bluemix.net/docs/services/speech-to-text/input.html#timeouts</a>).  <a href="#a04e4e59e8cac55331ce8e0988374177e">More...</a><br /></td></tr>
+<tr class="separator:a04e4e59e8cac55331ce8e0988374177e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add2f5e043a08c1af85fcf9f2bb46e111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status.html">SessionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#add2f5e043a08c1af85fcf9f2bb46e111">GetSessionStatus</a> (<a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a> session)</td></tr>
+<tr class="memdesc:add2f5e043a08c1af85fcf9f2bb46e111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method.  <a href="#add2f5e043a08c1af85fcf9f2bb46e111">More...</a><br /></td></tr>
+<tr class="separator:add2f5e043a08c1af85fcf9f2bb46e111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0f825cf603648a0eea4b8bca1c673d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status.html">SessionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ad0f825cf603648a0eea4b8bca1c673d3">GetSessionStatus</a> (string sessionId)</td></tr>
+<tr class="memdesc:ad0f825cf603648a0eea4b8bca1c673d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method.  <a href="#ad0f825cf603648a0eea4b8bca1c673d3">More...</a><br /></td></tr>
+<tr class="separator:ad0f825cf603648a0eea4b8bca1c673d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91e432c2e39f62a631688d1095e5c58"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ad91e432c2e39f62a631688d1095e5c58">DeleteSession</a> (<a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a> session)</td></tr>
+<tr class="memdesc:ad91e432c2e39f62a631688d1095e5c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.  <a href="#ad91e432c2e39f62a631688d1095e5c58">More...</a><br /></td></tr>
+<tr class="separator:ad91e432c2e39f62a631688d1095e5c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b35829fba346537d4ddb1dff7f138d"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a22b35829fba346537d4ddb1dff7f138d">DeleteSession</a> (string sessionId)</td></tr>
+<tr class="memdesc:a22b35829fba346537d4ddb1dff7f138d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first.  <a href="#a22b35829fba346537d4ddb1dff7f138d">More...</a><br /></td></tr>
+<tr class="separator:a22b35829fba346537d4ddb1dff7f138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html">IBM.WatsonDeveloperCloud.Service.WatsonService</a></td></tr>
 <tr class="memitem:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#afc75e0313e276d4c1aca9755aac2af17">SetCredential</a> (string userName, string password)</td></tr>
 <tr class="separator:afc75e0313e276d4c1aca9755aac2af17 inherit pub_methods_class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1010,6 +1025,69 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a04e4e59e8cac55331ce8e0988374177e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e4e59e8cac55331ce8e0988374177e">&#9670;&nbsp;</a></span>CreateSession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService.CreateSession </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>acousticCustomizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>baseModelVersion</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a session and locks recognition requests to that engine. You can use the session for multiple recognition requests so that each request is processed with the same Speech to Text engine. The session expires after 30 seconds of inactivity. For information about avoiding session timeouts, see Timeouts (<a href="https://console.bluemix.net/docs/services/speech-to-text/input.html#timeouts">https://console.bluemix.net/docs/services/speech-to-text/input.html#timeouts</a>). </p>
+<p>The method returns a cookie in the Set-Cookie response header.You must pass this cookie with each request that uses the session. For more information, see Using cookies with sessions (<a href="https://console.bluemix.net/docs/services/speech-to-text/http.html#cookies">https://console.bluemix.net/docs/services/speech-to-text/http.html#cookies</a>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used by the new session.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The GUID of a custom language model that is to be used with the new session. The base model of the specified custom language model must match the model specified with the model parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom language model is used.</td></tr>
+    <tr><td class="paramname">acousticCustomizationId</td><td>The GUID of a custom acoustic model that is to be used with the new session. The base model of the specified custom acoustic model must match the model specified with the model parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom acoustic model is used.</td></tr>
+    <tr><td class="paramname">baseModelVersion</td><td>The version of the specified base model that is to be used with the new session. Multiple versions of a base model can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The default value depends on whether the parameter is used with or without a custom model. For more information, see Base model version (<a href="https://console.bluemix.net/docs/services/speech-to-text/input.html#version">https://console.bluemix.net/docs/services/speech-to-text/input.html#version</a>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created session</dd></dl>
+
+<p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ade90d39e4dec476e624f22ac3caba4fd">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
+
+</div>
+</div>
 <a id="a96c9ebfeb249fa6156c2451ba6915c1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96c9ebfeb249fa6156c2451ba6915c1b">&#9670;&nbsp;</a></span>DeleteAcousticModel()</h2>
 
@@ -1261,6 +1339,80 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">BaseModel</a></dd></dl>
 
 <p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4479d86ea1691ef69a8ab7dd437144b9">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="ad91e432c2e39f62a631688d1095e5c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91e432c2e39f62a631688d1095e5c58">&#9670;&nbsp;</a></span>DeleteSession() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService.DeleteSession </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a>&#160;</td>
+          <td class="paramname"><em>session</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>The session to be deleted.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae2ab9352a1399f7681cffd35b429a0ef">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="a22b35829fba346537d4ddb1dff7f138d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b35829fba346537d4ddb1dff7f138d">&#9670;&nbsp;</a></span>DeleteSession() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService.DeleteSession </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sessionId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes an existing session and its engine. The request must pass the cookie that was returned by the Create a session method. You cannot send requests to a session after it is deleted. By default, a session expires after 30 seconds of inactivity if you do not delete it first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>The ID of the session to be deleted.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1a13e78dd17753ec6f19054cecb3d074">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
 
 </div>
 </div>
@@ -1570,6 +1722,80 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>SpeechModelSpeechModel</dd></dl>
 
 <p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a3c49a3d1468684615602f09f1ef7afb3">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="add2f5e043a08c1af85fcf9f2bb46e111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add2f5e043a08c1af85fcf9f2bb46e111">&#9670;&nbsp;</a></span>GetSessionStatus() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status.html">SessionStatus</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService.GetSessionStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html">SpeechSession</a>&#160;</td>
+          <td class="paramname"><em>session</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>The session to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a901147c15e93db509d7bc75753c48afc">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
+
+</div>
+</div>
+<a id="ad0f825cf603648a0eea4b8bca1c673d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0f825cf603648a0eea4b8bca1c673d3">&#9670;&nbsp;</a></span>GetSessionStatus() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_session_status.html">SessionStatus</a> IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechToTextService.GetSessionStatus </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sessionId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether a specified session can accept another recognition request. Concurrent recognition tasks during the same session are not allowed. The method blocks until the session is in the initialized state to indicate that you can send another recognition request. The request must pass the cookie that was returned by the Create a session method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>The ID of the session for the recognition task.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The session status.</dd></dl>
+
+<p>Implements <a class="el" href="../../d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a02681527ddbff159538e101c1f0d5b56">IBM.WatsonDeveloperCloud.SpeechToText.v1.ISpeechToTextService</a>.</p>
 
 </div>
 </div>

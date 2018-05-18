@@ -326,6 +326,46 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region Sessions
+        //[TestMethod]
+        public void TestSessions_Success()
+        {
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get acoustic data: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            Stream audioStream = new MemoryStream(acousticResourceData);
+
+            string sessionModel = "en-US_BroadbandModel";
+            var createSessionResult = _service.CreateSession(sessionModel);
+
+            var getSessionStatusResult = _service.GetSessionStatus(createSessionResult.SessionId);
+
+            var recognizeAudioResult = _service.RecognizeWithSession(createSessionResult.SessionId, "audio/mp3", audioStream, null, "en-US_BroadbandModel");
+
+            var observeResult = _service.ObserveResult(createSessionResult.SessionId);
+
+            var deleteSesionResult = _service.DeleteSession(createSessionResult.SessionId);
+
+            Assert.IsNotNull(deleteSesionResult);
+            Assert.IsNotNull(observeResult);
+            Assert.IsNotNull(recognizeAudioResult);
+            Assert.IsNotNull(createSessionResult);
+            Assert.IsTrue(createSessionResult.Model == sessionModel);
+            Assert.IsNotNull(getSessionStatusResult);
+            Assert.IsTrue(getSessionStatusResult.Session.SessionId == createSessionResult.SessionId);
+        }
+        #endregion
+
         #region Generated
         #region GetModel
         private SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null)

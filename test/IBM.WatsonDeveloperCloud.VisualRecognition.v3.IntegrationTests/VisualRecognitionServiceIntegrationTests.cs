@@ -515,6 +515,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        #region ListClassifiers
+        private Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListClassifiers()");
+            var result = _service.ListClassifiers(verbose: verbose, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListClassifiers() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListClassifiers()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #region UpdateClassifier
         private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
         {

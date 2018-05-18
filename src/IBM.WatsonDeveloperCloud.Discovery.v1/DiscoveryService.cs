@@ -23,6 +23,7 @@ using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using System;
 using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
@@ -61,6 +62,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             VersionDate = versionDate;
         }
 
+
         public DiscoveryService(IClient httpClient) : this()
         {
             if (httpClient == null)
@@ -70,9 +72,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// Add an environment. Creates a new environment.  You can create only one environment per service instance. An attempt to create another environment results in an error.
+        /// Create an environment. Creates a new environment for private data. An environment must be created before collections can be created.   **Note**: You can create only one environment for private data per service instance. An attempt to create another environment results in an error.
         /// </summary>
-        /// <param name="body">An object that defines an environment name and optional description.</param>
+        /// <param name="body">An object that defines an environment name and optional description. The fields in this object are not approved for personal information and cannot be deleted based on customer ID.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Environment" />Environment</returns>
         public Environment CreateEnvironment(CreateEnvironmentRequest body, Dictionary<string, object> customData = null)
@@ -87,16 +89,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateEnvironmentRequest>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateEnvironmentRequest>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Environment>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -124,15 +128,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DeleteEnvironmentResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DeleteEnvironmentResponse>().Result;
                 if(result == null)
                     result = new DeleteEnvironmentResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -160,15 +166,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Environment>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -194,17 +202,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
-                    request.WithArgument("name", name);
+                    restRequest.WithArgument("name", name);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListEnvironmentsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListEnvironmentsResponse>().Result;
                 if(result == null)
                     result = new ListEnvironmentsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -215,7 +225,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// List fields in specified collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
+        /// List fields across collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -235,16 +245,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
-                request.WithArgument("version", VersionDate);
-                request.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListCollectionFieldsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionFieldsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -275,16 +287,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateEnvironmentRequest>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateEnvironmentRequest>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Environment>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -314,16 +328,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<Configuration>(configuration);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<Configuration>(configuration);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Configuration>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -354,15 +370,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DeleteConfigurationResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DeleteConfigurationResponse>().Result;
                 if(result == null)
                     result = new DeleteConfigurationResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -393,15 +411,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Configuration>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -430,17 +450,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
-                    request.WithArgument("name", name);
+                    restRequest.WithArgument("name", name);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListConfigurationsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListConfigurationsResponse>().Result;
                 if(result == null)
                     result = new ListConfigurationsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -474,16 +496,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<Configuration>(configuration);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<Configuration>(configuration);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Configuration>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -541,20 +565,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(step))
-                    request.WithArgument("step", step);
+                    restRequest.WithArgument("step", step);
                 if (!string.IsNullOrEmpty(configurationId))
-                    request.WithArgument("configuration_id", configurationId);
-                request.WithBodyContent(formData);
+                    restRequest.WithArgument("configuration_id", configurationId);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TestDocument>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TestDocument>().Result;
                 if(result == null)
                     result = new TestDocument();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -584,16 +610,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateCollectionRequest>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateCollectionRequest>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Collection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -624,15 +652,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DeleteCollectionResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DeleteCollectionResponse>().Result;
                 if(result == null)
                     result = new DeleteCollectionResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -663,15 +693,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Collection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -682,7 +714,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// List unique fields. Gets a list of the unique fields (and their types) stored in the index.
+        /// List collection fields. Gets a list of the unique fields (and their types) stored in the index.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -702,15 +734,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListCollectionFieldsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionFieldsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -739,17 +773,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(name))
-                    request.WithArgument("name", name);
+                    restRequest.WithArgument("name", name);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ListCollectionsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ListCollectionsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -781,16 +817,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateCollectionRequest>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateCollectionRequest>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Collection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -800,7 +838,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
         /// <summary>
-        /// Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
+        /// Create or update expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -823,16 +861,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<Expansions>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<Expansions>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Expansions>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Expansions>().Result;
                 if(result == null)
                     result = new Expansions();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -843,7 +883,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// Delete the expansions list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
+        /// Delete the expansion list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -863,15 +903,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -882,7 +924,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// List current expansions. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
+        /// Get the expansion list. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -902,15 +944,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Expansions>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Expansions>().Result;
                 if(result == null)
                     result = new Expansions();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -961,16 +1005,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
-                request.WithArgument("version", VersionDate);
-                request.WithBodyContent(formData);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DocumentAccepted>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DocumentAccepted>().Result;
                 if(result == null)
                     result = new DocumentAccepted();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1004,15 +1050,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DeleteDocumentResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DeleteDocumentResponse>().Result;
                 if(result == null)
                     result = new DeleteDocumentResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1046,15 +1094,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DocumentStatus>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DocumentStatus>().Result;
                 if(result == null)
                     result = new DocumentStatus();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1109,16 +1159,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBodyContent(formData);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBodyContent(formData);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DocumentAccepted>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DocumentAccepted>().Result;
                 if(result == null)
                     result = new DocumentAccepted();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1162,40 +1214,42 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query");
-                request.WithArgument("version", VersionDate);
-                request.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
-                    request.WithArgument("query", query);
+                    restRequest.WithArgument("query", query);
                 if (!string.IsNullOrEmpty(naturalLanguageQuery))
-                    request.WithArgument("natural_language_query", naturalLanguageQuery);
+                    restRequest.WithArgument("natural_language_query", naturalLanguageQuery);
                 if (!string.IsNullOrEmpty(aggregation))
-                    request.WithArgument("aggregation", aggregation);
+                    restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
-                    request.WithArgument("count", count);
-                request.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                    restRequest.WithArgument("count", count);
+                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
-                    request.WithArgument("offset", offset);
-                request.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                    restRequest.WithArgument("offset", offset);
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
-                    request.WithArgument("highlight", highlight);
+                    restRequest.WithArgument("highlight", highlight);
                 if (deduplicate != null)
-                    request.WithArgument("deduplicate", deduplicate);
+                    restRequest.WithArgument("deduplicate", deduplicate);
                 if (!string.IsNullOrEmpty(deduplicateField))
-                    request.WithArgument("deduplicate.field", deduplicateField);
+                    restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
-                    request.WithArgument("similar", similar);
-                request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                    restRequest.WithArgument("similar", similar);
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryResponse>().Result;
                 if(result == null)
                     result = new QueryResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1239,38 +1293,40 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
-                request.WithArgument("version", VersionDate);
-                request.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
-                    request.WithArgument("query", query);
+                    restRequest.WithArgument("query", query);
                 if (!string.IsNullOrEmpty(naturalLanguageQuery))
-                    request.WithArgument("natural_language_query", naturalLanguageQuery);
+                    restRequest.WithArgument("natural_language_query", naturalLanguageQuery);
                 if (!string.IsNullOrEmpty(aggregation))
-                    request.WithArgument("aggregation", aggregation);
+                    restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
-                    request.WithArgument("count", count);
-                request.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                    restRequest.WithArgument("count", count);
+                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
-                    request.WithArgument("offset", offset);
-                request.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                    restRequest.WithArgument("offset", offset);
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
-                    request.WithArgument("highlight", highlight);
+                    restRequest.WithArgument("highlight", highlight);
                 if (!string.IsNullOrEmpty(deduplicateField))
-                    request.WithArgument("deduplicate.field", deduplicateField);
+                    restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
-                    request.WithArgument("similar", similar);
-                request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                    restRequest.WithArgument("similar", similar);
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryNoticesResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryNoticesResponse>().Result;
                 if(result == null)
                     result = new QueryNoticesResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1281,7 +1337,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        /// Query documents. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
+        /// Query your collection. After your content is uploaded and enriched by the Discovery service, you can build queries to search your content. For details, see the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1319,46 +1375,48 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
-                    request.WithArgument("query", query);
+                    restRequest.WithArgument("query", query);
                 if (!string.IsNullOrEmpty(naturalLanguageQuery))
-                    request.WithArgument("natural_language_query", naturalLanguageQuery);
+                    restRequest.WithArgument("natural_language_query", naturalLanguageQuery);
                 if (passages != null)
-                    request.WithArgument("passages", passages);
+                    restRequest.WithArgument("passages", passages);
                 if (!string.IsNullOrEmpty(aggregation))
-                    request.WithArgument("aggregation", aggregation);
+                    restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
-                    request.WithArgument("count", count);
-                request.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                    restRequest.WithArgument("count", count);
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
-                    request.WithArgument("offset", offset);
-                request.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                    restRequest.WithArgument("offset", offset);
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
-                    request.WithArgument("highlight", highlight);
-                request.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
+                    restRequest.WithArgument("highlight", highlight);
+                restRequest.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
                 if (passagesCount != null)
-                    request.WithArgument("passages.count", passagesCount);
+                    restRequest.WithArgument("passages.count", passagesCount);
                 if (passagesCharacters != null)
-                    request.WithArgument("passages.characters", passagesCharacters);
+                    restRequest.WithArgument("passages.characters", passagesCharacters);
                 if (deduplicate != null)
-                    request.WithArgument("deduplicate", deduplicate);
+                    restRequest.WithArgument("deduplicate", deduplicate);
                 if (!string.IsNullOrEmpty(deduplicateField))
-                    request.WithArgument("deduplicate.field", deduplicateField);
+                    restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
-                    request.WithArgument("similar", similar);
-                request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                    restRequest.WithArgument("similar", similar);
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryResponse>().Result;
                 if(result == null)
                     result = new QueryResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1392,16 +1450,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<QueryEntities>(entityQuery);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<QueryEntities>(entityQuery);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryEntitiesResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryEntitiesResponse>().Result;
                 if(result == null)
                     result = new QueryEntitiesResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1449,44 +1509,46 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
-                    request.WithArgument("query", query);
+                    restRequest.WithArgument("query", query);
                 if (!string.IsNullOrEmpty(naturalLanguageQuery))
-                    request.WithArgument("natural_language_query", naturalLanguageQuery);
+                    restRequest.WithArgument("natural_language_query", naturalLanguageQuery);
                 if (passages != null)
-                    request.WithArgument("passages", passages);
+                    restRequest.WithArgument("passages", passages);
                 if (!string.IsNullOrEmpty(aggregation))
-                    request.WithArgument("aggregation", aggregation);
+                    restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
-                    request.WithArgument("count", count);
-                request.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                    restRequest.WithArgument("count", count);
+                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
-                    request.WithArgument("offset", offset);
-                request.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                    restRequest.WithArgument("offset", offset);
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
-                    request.WithArgument("highlight", highlight);
-                request.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
+                    restRequest.WithArgument("highlight", highlight);
+                restRequest.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
                 if (passagesCount != null)
-                    request.WithArgument("passages.count", passagesCount);
+                    restRequest.WithArgument("passages.count", passagesCount);
                 if (passagesCharacters != null)
-                    request.WithArgument("passages.characters", passagesCharacters);
+                    restRequest.WithArgument("passages.characters", passagesCharacters);
                 if (!string.IsNullOrEmpty(deduplicateField))
-                    request.WithArgument("deduplicate.field", deduplicateField);
+                    restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
-                    request.WithArgument("similar", similar);
-                request.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                request.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                    restRequest.WithArgument("similar", similar);
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryNoticesResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryNoticesResponse>().Result;
                 if(result == null)
                     result = new QueryNoticesResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1520,16 +1582,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<QueryRelations>(relationshipQuery);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<QueryRelations>(relationshipQuery);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<QueryRelationsResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<QueryRelationsResponse>().Result;
                 if(result == null)
                     result = new QueryRelationsResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1539,11 +1603,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             return result;
         }
         /// <summary>
-        ///  Adds a query to the training data for this collection. The query can contain a filter and natural language query.
+        /// Add query to training data. Adds a query to the training data for this collection. The query can contain a filter and natural language query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body">The body of the training-data query that is to be added to the collection's training data.</param>
+        /// <param name="body">The body of the training data query that is to be added to the collection's training data.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body, Dictionary<string, object> customData = null)
@@ -1562,16 +1626,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<NewTrainingQuery>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<NewTrainingQuery>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingQuery>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingQuery>().Result;
                 if(result == null)
                     result = new TrainingQuery();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1582,7 +1648,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Adds a new example to this training data query.
+        /// Add example to training data query. Adds a example to this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1608,16 +1674,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<TrainingExample>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<TrainingExample>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingExample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1628,7 +1696,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Clears all training data for this collection.
+        /// Delete all training data. Deletes all training data from a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1648,15 +1716,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1667,7 +1737,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Removes the training data and all associated examples from the training data set.
+        /// Delete a training data query. Removes the training data query and all associated examples from the training data set.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1690,15 +1760,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1709,7 +1781,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Removes the example with the given ID for the training data query.
+        /// Delete example for training data query. Deletes the example document with the given ID from the training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1735,15 +1807,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1754,7 +1828,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Shows details for a specific training data query, including the query string and all examples.
+        /// Get details about a query. Gets details for a specific training data query, including the query string and all examples.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1777,15 +1851,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingQuery>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingQuery>().Result;
                 if(result == null)
                     result = new TrainingQuery();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1796,7 +1872,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Gets the details for this training example.
+        /// Get details for training data example. Gets the details for this training example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1822,15 +1898,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingExample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1841,7 +1919,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Lists the training data for this collection.
+        /// List training data. Lists the training data for the specified collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1861,15 +1939,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingDataSet>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingDataSet>().Result;
                 if(result == null)
                     result = new TrainingDataSet();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1880,7 +1960,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  List all examples for this training data query.
+        /// List examples for a training data query. List all examples for this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1903,15 +1983,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingExampleList>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingExampleList>().Result;
                 if(result == null)
                     result = new TrainingExampleList();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1922,7 +2004,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
-        ///  Changes the label or cross reference query for this training example.
+        /// Change label or cross reference for example. Changes the label or cross reference query for this training data example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1951,16 +2033,57 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<TrainingExamplePatch>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<TrainingExamplePatch>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<TrainingExample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/discovery/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException(nameof(customerId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(customerId))
+                    restRequest.WithArgument("customer_id", customerId);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

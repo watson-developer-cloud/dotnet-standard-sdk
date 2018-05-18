@@ -23,9 +23,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
     public partial interface IDiscoveryService
     {
         /// <summary>
-        /// Add an environment. Creates a new environment.  You can create only one environment per service instance. An attempt to create another environment results in an error.
+        /// Create an environment. Creates a new environment for private data. An environment must be created before collections can be created.   **Note**: You can create only one environment for private data per service instance. An attempt to create another environment results in an error.
         /// </summary>
-        /// <param name="body">An object that defines an environment name and optional description.</param>
+        /// <param name="body">An object that defines an environment name and optional description. The fields in this object are not approved for personal information and cannot be deleted based on customer ID.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Environment" />Environment</returns>
         Environment CreateEnvironment(CreateEnvironmentRequest body, Dictionary<string, object> customData = null);
@@ -51,7 +51,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="ListEnvironmentsResponse" />ListEnvironmentsResponse</returns>
         ListEnvironmentsResponse ListEnvironments(string name = null, Dictionary<string, object> customData = null);
         /// <summary>
-        /// List fields in specified collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
+        /// List fields across collections. Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -145,7 +145,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="Collection" />Collection</returns>
         Collection GetCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         /// <summary>
-        /// List unique fields. Gets a list of the unique fields (and their types) stored in the index.
+        /// List collection fields. Gets a list of the unique fields (and their types) stored in the index.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -170,7 +170,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="Collection" />Collection</returns>
         Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null);
         /// <summary>
-        /// Set the expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
+        /// Create or update expansion list. Create or replace the Expansion list for this collection. The maximum number of expanded terms per collection is `500`. The current expansion list is replaced with the uploaded content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -179,7 +179,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="Expansions" />Expansions</returns>
         Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null);
         /// <summary>
-        /// Delete the expansions list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
+        /// Delete the expansion list. Remove the expansion information for this collection. The expansion list must be deleted to disable query expansion for a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -187,7 +187,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         /// <summary>
-        /// List current expansions. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
+        /// Get the expansion list. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -279,7 +279,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
         QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
         /// <summary>
-        /// Query documents. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
+        /// Query your collection. After your content is uploaded and enriched by the Discovery service, you can build queries to search your content. For details, see the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -348,16 +348,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="QueryRelationsResponse" />QueryRelationsResponse</returns>
         QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Adds a query to the training data for this collection. The query can contain a filter and natural language query.
+        /// Add query to training data. Adds a query to the training data for this collection. The query can contain a filter and natural language query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body">The body of the training-data query that is to be added to the collection's training data.</param>
+        /// <param name="body">The body of the training data query that is to be added to the collection's training data.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Adds a new example to this training data query.
+        /// Add example to training data query. Adds a example to this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -367,7 +367,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
         TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Clears all training data for this collection.
+        /// Delete all training data. Deletes all training data from a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -375,7 +375,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel DeleteAllTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Removes the training data and all associated examples from the training data set.
+        /// Delete a training data query. Removes the training data query and all associated examples from the training data set.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -384,7 +384,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel DeleteTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Removes the example with the given ID for the training data query.
+        /// Delete example for training data query. Deletes the example document with the given ID from the training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -394,7 +394,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Shows details for a specific training data query, including the query string and all examples.
+        /// Get details about a query. Gets details for a specific training data query, including the query string and all examples.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -403,7 +403,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Gets the details for this training example.
+        /// Get details for training data example. Gets the details for this training example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -413,7 +413,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
         TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Lists the training data for this collection.
+        /// List training data. Lists the training data for the specified collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -421,7 +421,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="TrainingDataSet" />TrainingDataSet</returns>
         TrainingDataSet ListTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  List all examples for this training data query.
+        /// List examples for a training data query. List all examples for this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -430,7 +430,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <returns><see cref="TrainingExampleList" />TrainingExampleList</returns>
         TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null);
         /// <summary>
-        ///  Changes the label or cross reference query for this training example.
+        /// Change label or cross reference for example. Changes the label or cross reference query for this training data example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -440,5 +440,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TrainingExample" />TrainingExample</returns>
         TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/discovery/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
     }
 }

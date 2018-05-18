@@ -17,8 +17,9 @@
 
 using System;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 using IBM.WatsonDeveloperCloud.Util;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
 {
@@ -28,26 +29,46 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
         {
             string credentials = string.Empty;
 
-            try
+            #region Get Credentials
+            string _endpoint = string.Empty;
+            string _username = string.Empty;
+            string _password = string.Empty;
+
+            if (string.IsNullOrEmpty(credentials))
             {
-                credentials = Utility.SimpleGet(
-                    Environment.GetEnvironmentVariable("VCAP_URL"),
-                    Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                    Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
+                {
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
+
+                    VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                    var vcapServices = JObject.Parse(credentials);
+
+                    Credential credential = vcapCredentials.GetCredentialByname("natural-language-understanding-sdk")[0].Credentials;
+                    _endpoint = credential.Url;
+                    _username = credential.Username;
+                    _password = credential.Password;
+                }
+                else
+                {
+                    Console.WriteLine("Credentials file does not exist. Please define credentials.");
+                    _username = "";
+                    _password = "";
+                    _endpoint = "";
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-            }
+            #endregion
 
-            Task.WaitAll();
-
-            var vcapServices = JObject.Parse(credentials);
-            var _url = vcapServices["natural_language_understanding"]["url"];
-            var _username = vcapServices["natural_language_understanding"]["username"];
-            var _password = vcapServices["natural_language_understanding"]["password"];
-
-            NaturalLanguageUnderstandingExample _naturalLanguageUnderstandingExample = new NaturalLanguageUnderstandingExample(_url.ToString(), _username.ToString(), _password.ToString());
+            NaturalLanguageUnderstandingExample _naturalLanguageUnderstandingExample = new NaturalLanguageUnderstandingExample(_endpoint, _username, _password);
             Console.ReadKey();
         }
     }

@@ -67,8 +67,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.NL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.NLU.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests\IBM.WatsonDeveloperCloud.NLU.v1.UnitTests.csproj", "{B401A97F-FD61-4CC9-9392-26324A8E5461}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests.csproj", "{89E40543-56DA-4307-8625-074B9FD4EF5A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests.csproj", "{9F8D0C47-3DDD-4423-B594-69A35898869F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests", "test\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests.csproj", "{E445F5BD-DE8E-418C-809C-C595494BFED1}"
@@ -106,6 +104,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests\IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests.csproj", "{8616701B-F226-4462-9949-DE1F2C88B194}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests", "test\IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests\IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests.csproj", "{3FA3418E-F5C5-463B-B371-FF38093A7D9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example", "examples\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example\IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example.csproj", "{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntTests", "test\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntTests\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntTests.csproj", "{7E050830-759C-4D12-BB8F-57DA8853616D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,10 +191,6 @@ Global
 		{B401A97F-FD61-4CC9-9392-26324A8E5461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B401A97F-FD61-4CC9-9392-26324A8E5461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B401A97F-FD61-4CC9-9392-26324A8E5461}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89E40543-56DA-4307-8625-074B9FD4EF5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F8D0C47-3DDD-4423-B594-69A35898869F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -261,6 +259,14 @@ Global
 		{3FA3418E-F5C5-463B-B371-FF38093A7D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FA3418E-F5C5-463B-B371-FF38093A7D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FA3418E-F5C5-463B-B371-FF38093A7D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E050830-759C-4D12-BB8F-57DA8853616D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E050830-759C-4D12-BB8F-57DA8853616D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E050830-759C-4D12-BB8F-57DA8853616D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E050830-759C-4D12-BB8F-57DA8853616D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -296,7 +302,6 @@ Global
 		{7DA05E71-3503-4982-AAB6-26C9B76BDD5F} = {8B927AB2-21F8-40DE-BE6B-5B1105453133}
 		{A6BC7470-79A2-4C7E-923A-748540791D97} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{B401A97F-FD61-4CC9-9392-26324A8E5461} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
-		{89E40543-56DA-4307-8625-074B9FD4EF5A} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{9F8D0C47-3DDD-4423-B594-69A35898869F} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{E445F5BD-DE8E-418C-809C-C595494BFED1} = {C7873F44-7188-49BE-84C5-532BE4E07147}
 		{B1102C7F-58A6-4F2F-A2BC-2D230F0268FA} = {C7873F44-7188-49BE-84C5-532BE4E07147}
@@ -316,6 +321,8 @@ Global
 		{60793E3F-EF8D-4FF8-9C69-33D1ADBC3C39} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{8616701B-F226-4462-9949-DE1F2C88B194} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{3FA3418E-F5C5-463B-B371-FF38093A7D9D} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
+		{B5E2F85E-7A5B-41A0-A2EF-8C678BC0F0C3} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
+		{7E050830-759C-4D12-BB8F-57DA8853616D} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

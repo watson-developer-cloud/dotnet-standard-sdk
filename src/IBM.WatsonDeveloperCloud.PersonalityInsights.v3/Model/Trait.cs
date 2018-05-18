@@ -28,9 +28,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     public class Trait : BaseModel
     {
         /// <summary>
-        /// The category of the characteristic: * `personality` for Big Five personality characteristics * `needs` for Needs * `values` for Values.
+        /// The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for Needs, and `values` for Values.
         /// </summary>
-        /// <value>The category of the characteristic: * `personality` for Big Five personality characteristics * `needs` for Needs * `values` for Values.</value>
+        /// <value>The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for Needs, and `values` for Values.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CategoryEnum
         {
@@ -55,9 +55,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         }
 
         /// <summary>
-        /// The category of the characteristic: * `personality` for Big Five personality characteristics * `needs` for Needs * `values` for Values.
+        /// The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for Needs, and `values` for Values.
         /// </summary>
-        /// <value>The category of the characteristic: * `personality` for Big Five personality characteristics * `needs` for Needs * `values` for Values.</value>
+        /// <value>The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for Needs, and `values` for Values.</value>
         [JsonProperty("category", NullValueHandling = NullValueHandling.Ignore)]
         public CategoryEnum? Category { get; set; }
         /// <summary>

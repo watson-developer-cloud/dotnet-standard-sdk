@@ -21,14 +21,14 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// ImageWithFaces.
+    /// Information about faces in the image.
     /// </summary>
     public class ImageWithFaces : BaseModel
     {
         /// <summary>
-        /// An array of the faces detected in the images.
+        /// Faces detected in the images.
         /// </summary>
-        /// <value>An array of the faces detected in the images.</value>
+        /// <value>Faces detected in the images.</value>
         [JsonProperty("faces", NullValueHandling = NullValueHandling.Ignore)]
         public List<Face> Faces { get; set; }
         /// <summary>

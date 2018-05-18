@@ -744,7 +744,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteWorkspace
-        private object DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
+        private BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = _service.DeleteWorkspace(workspaceId: workspaceId, customData: customData);
@@ -839,7 +839,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteIntent
-        private object DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
+        private BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent, customData: customData);
@@ -934,7 +934,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteExample
-        private object DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
+        private BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text, customData: customData);
@@ -1029,7 +1029,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteCounterexample
-        private object DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
+        private BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text, customData: customData);
@@ -1124,7 +1124,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteEntity
-        private object DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
+        private BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity, customData: customData);
@@ -1219,7 +1219,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteValue
-        private object DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
+        private BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value, customData: customData);
@@ -1314,7 +1314,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteSynonym
-        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
+        private BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, customData: customData);
@@ -1409,7 +1409,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteDialogNode
-        private object DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
+        private BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, customData: customData);
@@ -1516,6 +1516,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
             }
 
             return result;

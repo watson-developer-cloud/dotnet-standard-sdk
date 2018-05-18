@@ -20,6 +20,7 @@ using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using System;
 
@@ -57,6 +58,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             VersionDate = versionDate;
         }
 
+
         public ToneAnalyzerService(IClient httpClient) : this()
         {
             if (httpClient == null)
@@ -90,22 +92,24 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/tone");
-                request.WithArgument("version", VersionDate);
-                request.WithHeader("Content-Type", contentType);
-                request.WithHeader("Content-Language", contentLanguage);
-                request.WithHeader("Accept-Language", acceptLanguage);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Content-Type", contentType);
+                restRequest.WithHeader("Content-Language", contentLanguage);
+                restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (sentences != null)
-                    request.WithArgument("sentences", sentences);
-                request.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
-                request.WithBody<ToneInput>(toneInput);
+                    restRequest.WithArgument("sentences", sentences);
+                restRequest.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
+                restRequest.WithBody<ToneInput>(toneInput);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ToneAnalysis>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ToneAnalysis>().Result;
                 if(result == null)
                     result = new ToneAnalysis();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -135,18 +139,20 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v3/tone_chat");
-                request.WithArgument("version", VersionDate);
-                request.WithHeader("Content-Language", contentLanguage);
-                request.WithHeader("Accept-Language", acceptLanguage);
-                request.WithBody<ToneChatInput>(utterances);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Content-Language", contentLanguage);
+                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                restRequest.WithBody<ToneChatInput>(utterances);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<UtteranceAnalyses>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<UtteranceAnalyses>().Result;
                 if(result == null)
                     result = new UtteranceAnalyses();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

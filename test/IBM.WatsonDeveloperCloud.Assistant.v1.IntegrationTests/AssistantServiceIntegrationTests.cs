@@ -22,10 +22,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
 using IBM.WatsonDeveloperCloud.Assistant.v1.Model;
-using IBM.WatsonDeveloperCloud.Util;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 {
@@ -61,28 +61,38 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
-
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
-                _endpoint = vcapServices["conversation"]["url"].Value<string>();
-                _username = "4f25be3c-32af-4bd6-84d8-663724bfbb45";
-                _password = vcapServices["conversation"]["password"].Value<string>();
-                _workspaceID = "506e4a2e-3d5d-4dca-b374-38edbb4139ab";
+
+                Credential credential = vcapCredentials.GetCredentialByname("assistant-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
+                _workspaceID = credential.WorkspaceId;
             }
+            #endregion
 
             _service = new AssistantService(_username, _password, "2018-02-16")
             {
@@ -699,7 +709,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Message()");
-            var result = _service.Message(workspaceId: workspaceId, messageRequest: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
+            var result = _service.Message(workspaceId: workspaceId, request: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
 
             if (result != null)
             {
@@ -734,7 +744,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteWorkspace
-        private object DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
+        private BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
             var result = _service.DeleteWorkspace(workspaceId: workspaceId, customData: customData);
@@ -829,7 +839,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteIntent
-        private object DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
+        private BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteIntent()");
             var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent, customData: customData);
@@ -924,7 +934,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteExample
-        private object DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
+        private BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExample()");
             var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text, customData: customData);
@@ -1019,7 +1029,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteCounterexample
-        private object DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
+        private BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
             var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text, customData: customData);
@@ -1114,7 +1124,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteEntity
-        private object DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
+        private BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteEntity()");
             var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity, customData: customData);
@@ -1209,7 +1219,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteValue
-        private object DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
+        private BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteValue()");
             var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value, customData: customData);
@@ -1304,7 +1314,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteSynonym
-        private object DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
+        private BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteSynonym()");
             var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, customData: customData);
@@ -1399,7 +1409,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         #endregion
 
         #region DeleteDialogNode
-        private object DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
+        private BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
             var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, customData: customData);
@@ -1506,6 +1516,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListLogs()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
             }
 
             return result;

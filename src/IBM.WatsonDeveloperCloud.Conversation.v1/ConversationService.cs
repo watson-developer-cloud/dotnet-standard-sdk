@@ -20,6 +20,7 @@ using System.Text;
 using IBM.WatsonDeveloperCloud.Conversation.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
+using IBM.WatsonDeveloperCloud.Util;
 using Newtonsoft.Json;
 using System;
 
@@ -57,6 +58,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             VersionDate = versionDate;
         }
 
+
         public ConversationService(IClient httpClient) : this()
         {
             if (httpClient == null)
@@ -73,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog nodes that were visited during processing of the message. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        public MessageResponse Message(string workspaceId, MessageRequest messageRequest = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
+        public MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -85,18 +87,20 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (nodesVisitedDetails != null)
-                    request.WithArgument("nodes_visited_details", nodesVisitedDetails);
-                request.WithBody<MessageRequest>(messageRequest);
+                    restRequest.WithArgument("nodes_visited_details", nodesVisitedDetails);
+                restRequest.WithBody<MessageRequest>(request);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<MessageResponse>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MessageResponse>().Result;
                 if(result == null)
                     result = new MessageResponse();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -121,16 +125,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateWorkspace>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateWorkspace>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Workspace>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Workspace>().Result;
                 if(result == null)
                     result = new Workspace();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -158,15 +164,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -196,19 +204,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<WorkspaceExport>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<WorkspaceExport>().Result;
                 if(result == null)
                     result = new WorkspaceExport();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -238,25 +248,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<WorkspaceCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<WorkspaceCollection>().Result;
                 if(result == null)
                     result = new WorkspaceCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -286,18 +298,20 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (append != null)
-                    request.WithArgument("append", append);
-                request.WithBody<UpdateWorkspace>(properties);
+                    restRequest.WithArgument("append", append);
+                restRequest.WithBody<UpdateWorkspace>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Workspace>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Workspace>().Result;
                 if(result == null)
                     result = new Workspace();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -327,16 +341,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateIntent>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateIntent>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Intent>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Intent>().Result;
                 if(result == null)
                     result = new Intent();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -367,15 +383,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -408,19 +426,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<IntentExport>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<IntentExport>().Result;
                 if(result == null)
                     result = new IntentExport();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -454,27 +474,29 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<IntentCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<IntentCollection>().Result;
                 if(result == null)
                     result = new IntentCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -508,16 +530,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateIntent>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateIntent>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Intent>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Intent>().Result;
                 if(result == null)
                     result = new Intent();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -550,16 +574,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateExample>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateExample>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Example>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Example>().Result;
                 if(result == null)
                     result = new Example();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -593,15 +619,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -636,17 +664,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Example>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Example>().Result;
                 if(result == null)
                     result = new Example();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -682,25 +712,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ExampleCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ExampleCollection>().Result;
                 if(result == null)
                     result = new ExampleCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -737,16 +769,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateExample>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateExample>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Example>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Example>().Result;
                 if(result == null)
                     result = new Example();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -776,16 +810,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateCounterexample>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateCounterexample>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Counterexample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Counterexample>().Result;
                 if(result == null)
                     result = new Counterexample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -816,15 +852,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -856,17 +894,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Counterexample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Counterexample>().Result;
                 if(result == null)
                     result = new Counterexample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -899,25 +939,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<CounterexampleCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<CounterexampleCollection>().Result;
                 if(result == null)
                     result = new CounterexampleCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -951,16 +993,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateCounterexample>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateCounterexample>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Counterexample>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Counterexample>().Result;
                 if(result == null)
                     result = new Counterexample();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -990,16 +1034,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateEntity>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateEntity>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Entity>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Entity>().Result;
                 if(result == null)
                     result = new Entity();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1030,15 +1076,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1071,19 +1119,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<EntityExport>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<EntityExport>().Result;
                 if(result == null)
                     result = new EntityExport();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1117,27 +1167,29 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<EntityCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<EntityCollection>().Result;
                 if(result == null)
                     result = new EntityCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1171,16 +1223,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateEntity>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateEntity>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Entity>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Entity>().Result;
                 if(result == null)
                     result = new Entity();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1213,16 +1267,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateValue>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateValue>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Value>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Value>().Result;
                 if(result == null)
                     result = new Value();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1256,15 +1312,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1300,19 +1358,21 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ValueExport>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ValueExport>().Result;
                 if(result == null)
                     result = new ValueExport();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1349,27 +1409,29 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (export != null)
-                    request.WithArgument("export", export);
+                    restRequest.WithArgument("export", export);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<ValueCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<ValueCollection>().Result;
                 if(result == null)
                     result = new ValueCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1406,16 +1468,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateValue>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateValue>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Value>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Value>().Result;
                 if(result == null)
                     result = new Value();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1451,16 +1515,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateSynonym>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateSynonym>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Synonym>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Synonym>().Result;
                 if(result == null)
                     result = new Synonym();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1497,15 +1563,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1543,17 +1611,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Synonym>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Synonym>().Result;
                 if(result == null)
                     result = new Synonym();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1592,25 +1662,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<SynonymCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<SynonymCollection>().Result;
                 if(result == null)
                     result = new SynonymCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1650,16 +1722,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateSynonym>(body);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateSynonym>(body);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<Synonym>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Synonym>().Result;
                 if(result == null)
                     result = new Synonym();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1689,16 +1763,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<CreateDialogNode>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateDialogNode>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DialogNode>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DialogNode>().Result;
                 if(result == null)
                     result = new DialogNode();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1729,15 +1805,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<BaseModel>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1769,17 +1847,19 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DialogNode>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DialogNode>().Result;
                 if(result == null)
                     result = new DialogNode();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1812,25 +1892,27 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
-                    request.WithArgument("include_count", includeCount);
+                    restRequest.WithArgument("include_count", includeCount);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
-                    request.WithArgument("include_audit", includeAudit);
+                    restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DialogNodeCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DialogNodeCollection>().Result;
                 if(result == null)
                     result = new DialogNodeCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1864,16 +1946,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
-                request.WithArgument("version", VersionDate);
-                request.WithBody<UpdateDialogNode>(properties);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<UpdateDialogNode>(properties);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<DialogNode>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<DialogNode>().Result;
                 if(result == null)
                     result = new DialogNode();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1903,23 +1987,25 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/logs");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<LogCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LogCollection>().Result;
                 if(result == null)
                     result = new LogCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {
@@ -1951,23 +2037,64 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
-                request.WithArgument("version", VersionDate);
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
+
+                restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(sort))
-                    request.WithArgument("sort", sort);
+                    restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(filter))
-                    request.WithArgument("filter", filter);
+                    restRequest.WithArgument("filter", filter);
                 if (pageLimit != null)
-                    request.WithArgument("page_limit", pageLimit);
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (!string.IsNullOrEmpty(cursor))
-                    request.WithArgument("cursor", cursor);
+                    restRequest.WithArgument("cursor", cursor);
                 if (customData != null)
-                    request.WithCustomData(customData);
-                result = request.As<LogCollection>().Result;
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LogCollection>().Result;
                 if(result == null)
                     result = new LogCollection();
-                result.CustomData = request.CustomData;
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/conversation/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException(nameof(customerId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(customerId))
+                    restRequest.WithArgument("customer_id", customerId);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

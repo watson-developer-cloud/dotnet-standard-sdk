@@ -55,28 +55,37 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-
+            #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                try
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
+                if (File.Exists(credentialsFilepath))
                 {
-                    credentials = Utility.SimpleGet(
-                        Environment.GetEnvironmentVariable("VCAP_URL"),
-                        Environment.GetEnvironmentVariable("VCAP_USERNAME"),
-                        Environment.GetEnvironmentVariable("VCAP_PASSWORD")).Result;
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                    Console.WriteLine("Credentials file does not exist.");
                 }
 
-                Task.WaitAll();
-
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
-                _endpoint = vcapServices["speech_to_text"]["url"].Value<string>();
-                _username = vcapServices["speech_to_text"]["username"].Value<string>();
-                _password = vcapServices["speech_to_text"]["password"].Value<string>();
+
+                Credential credential = vcapCredentials.GetCredentialByname("speech-to-text-sdk")[0].Credentials;
+                _endpoint = credential.Url;
+                _username = credential.Username;
+                _password = credential.Password;
             }
+            #endregion
 
             _service = new SpeechToTextService(_username, _password);
             _service.Endpoint = _endpoint;
@@ -317,6 +326,46 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region Sessions
+        //[TestMethod]
+        public void TestSessions_Success()
+        {
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get acoustic data: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            Stream audioStream = new MemoryStream(acousticResourceData);
+
+            string sessionModel = "en-US_BroadbandModel";
+            var createSessionResult = _service.CreateSession(sessionModel);
+
+            var getSessionStatusResult = _service.GetSessionStatus(createSessionResult.SessionId);
+
+            var recognizeAudioResult = _service.RecognizeWithSession(createSessionResult.SessionId, "audio/mp3", audioStream, null, "en-US_BroadbandModel");
+
+            var observeResult = _service.ObserveResult(createSessionResult.SessionId);
+
+            var deleteSesionResult = _service.DeleteSession(createSessionResult.SessionId);
+
+            Assert.IsNotNull(deleteSesionResult);
+            Assert.IsNotNull(observeResult);
+            Assert.IsNotNull(recognizeAudioResult);
+            Assert.IsNotNull(createSessionResult);
+            Assert.IsTrue(createSessionResult.Model == sessionModel);
+            Assert.IsNotNull(getSessionStatusResult);
+            Assert.IsTrue(getSessionStatusResult.Session.SessionId == createSessionResult.SessionId);
+        }
+        #endregion
+
         #region Generated
         #region GetModel
         private SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null)
@@ -357,10 +406,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region RecognizeSessionless
-        private SpeechRecognitionResults RecognizeSessionless(string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, byte[] audio = null, string contentType = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
+        private SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to RecognizeSessionless()");
-            var result = _service.RecognizeSessionless(model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, audio: audio, contentType: contentType, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customData: customData);
+            var result = _service.RecognizeSessionless(audio: audio, contentType: contentType, model: model, customizationId: customizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customData: customData);
 
             if (result != null)
             {
@@ -1003,7 +1052,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #endregion
-        
+
         private void CheckCustomizationStatus(string classifierId)
         {
             var getLangaugeModelResult = _service.GetLanguageModel(classifierId);

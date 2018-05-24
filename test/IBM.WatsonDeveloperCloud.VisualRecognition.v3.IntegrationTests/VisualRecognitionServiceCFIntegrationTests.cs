@@ -29,7 +29,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 {
     [TestClass]
-    public class VisualRecognitionServiceIntegrationTests
+    public class VisualRecognitionServiceCFIntegrationTests
     {
         private VisualRecognitionService _service;
         private static string credentials = string.Empty;
@@ -125,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region General
         [TestMethod]
-        public void Classify_Success()
+        public void Classify_CF_Success()
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
@@ -138,7 +138,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyURL_Success()
+        public void ClassifyURL_CF_Success()
         {
             var result = _service.Classify(url: _imageUrl);
 
@@ -150,7 +150,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Face
         [TestMethod]
-        public void DetectFaces_Success()
+        public void DetectFaces_CF_Success()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -163,7 +163,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesURL_Success()
+        public void DetectFacesURL_CF_Success()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -177,7 +177,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         //[TestMethod]
-        public void ListClassifiers_Success()
+        public void ListClassifiers_CF_Success()
         {
             Classifiers listClassifiersResult = null;
 
@@ -195,7 +195,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Custom
         [TestMethod]
-        public void TestClassifiers_Success()
+        public void TestClassifiers_CF_Success()
         {
             Classifier createClassifierResult = null;
             try

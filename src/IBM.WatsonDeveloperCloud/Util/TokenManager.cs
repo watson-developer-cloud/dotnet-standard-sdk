@@ -35,7 +35,7 @@ namespace IBM.WatsonDeveloperCloud.Util
 
         public TokenManager(TokenOptions options)
         {
-            _iamUrl = string.IsNullOrEmpty(options.IamUrl) ? "https://iam.ng.bluemix.net/identity/token" : options.IamUrl;
+            _iamUrl = "https://iam.ng.bluemix.net/identity/token";
             _tokenInfo = new IamTokenData();
             if (!string.IsNullOrEmpty(options.IamApiKey))
                 _iamApikey = options.IamApiKey;

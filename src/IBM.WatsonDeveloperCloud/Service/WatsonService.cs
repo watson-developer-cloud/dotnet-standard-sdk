@@ -91,5 +91,11 @@ namespace IBM.WatsonDeveloperCloud.Service
         {
             this.ApiKey = apikey;
         }
+
+        public void SetCredential(TokenOptions options)
+        {
+            this.Endpoint = options.IamUrl;
+            _tokenManager = new TokenManager(options);
+        }
     }
 }

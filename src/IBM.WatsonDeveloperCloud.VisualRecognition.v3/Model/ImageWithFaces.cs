@@ -50,8 +50,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("resolved_url", NullValueHandling = NullValueHandling.Ignore)]
         public string ResolvedUrl { get; set; }
         /// <summary>
-        /// Gets or Sets Error
+        /// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
         /// </summary>
+        /// <value>Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.</value>
         [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
         public ErrorInfo Error { get; set; }
     }

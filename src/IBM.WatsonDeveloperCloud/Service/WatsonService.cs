@@ -90,6 +90,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         public void SetCredential(string apikey)
         {
             this.ApiKey = apikey;
+            this.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
         }
 
         public void SetCredential(TokenOptions options)

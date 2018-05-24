@@ -83,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.ListIdentifiableLanguages();
 
@@ -96,7 +96,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.Identify(_text);
 
@@ -109,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var translateRequest = new TranslateRequest()
             {
@@ -131,7 +131,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.ListModels();
 
@@ -144,7 +144,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.GetModel(_baseModel);
 
@@ -157,7 +157,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             TranslationModel createModelResult;
 

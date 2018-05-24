@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
             #endregion
 
             _service = new NaturalLanguageUnderstandingService(_username, _password, "2017-02-27");
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
         }
 
         [TestMethod]

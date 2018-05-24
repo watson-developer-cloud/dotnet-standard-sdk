@@ -95,7 +95,7 @@ If you are authenticating a Visual Recognition instance using apikey rather than
 void Example()
 {
     var _visualRecognition = new VisualRecognitionService("<apikey>", "<version-date>");
-    _visualRecognition.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+    _visualRecognition.SetEndpoint("https://gateway-a.watsonplatform.net/visual-recognition/api");
 }
 ```
 

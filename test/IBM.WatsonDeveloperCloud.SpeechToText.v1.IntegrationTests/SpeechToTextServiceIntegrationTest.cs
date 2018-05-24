@@ -88,7 +88,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             #endregion
 
             _service = new SpeechToTextService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
         }
 
         #region Models

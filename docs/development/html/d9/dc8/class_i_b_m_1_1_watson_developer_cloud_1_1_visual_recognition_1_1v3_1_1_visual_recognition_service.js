@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visu
 [
     [ "VisualRecognitionService", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ad205928028eb77a39d0fd409d9dd74ff", null ],
     [ "VisualRecognitionService", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a157426b653e1c6c7401662919341026f", null ],
+    [ "VisualRecognitionService", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a05379d75f6b281f69579b2ed59d6ec1c", null ],
     [ "VisualRecognitionService", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a9ec316b288fe4a7e528fa37716ae6845", null ],
     [ "Classify", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a40fdc82a749619a9a062160f1adadfe9", null ],
     [ "CreateClassifier", "d9/dc8/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#ae248b34cb37d4998c8354699e5e3748f", null ],

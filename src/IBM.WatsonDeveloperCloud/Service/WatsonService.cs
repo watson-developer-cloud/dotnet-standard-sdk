@@ -17,6 +17,7 @@
 
 using System;
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Service
 {
@@ -43,6 +44,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         }
         public string UserName { get; set; }
         public string Password { get; set; }
+        protected TokenManager _tokenManager = null;
 
         protected WatsonService(string serviceName)
         {

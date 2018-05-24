@@ -1,5 +1,6 @@
 var NAVTREEINDEX13 =
 {
+"df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a170a7227a0454d14656eb72644691601":[1,0,0,0,13,3,4],
 "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a3c096152aec7a32f2576896c2106f515":[1,0,0,0,13,3,1],
 "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a4d3de79490bbba3685cbf485cfd72262":[1,0,0,0,13,3,2],
 "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#abbb1842fefc4abe84e60611533f4f299":[1,0,0,0,13,3,3],
@@ -141,8 +142,8 @@ var NAVTREEINDEX13 =
 "functions_e.html":[1,3,0,5],
 "functions_enum.html":[1,3,3],
 "functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1],
 "functions_func.html":[1,3,1,0],
+"functions_func.html":[1,3,1],
 "functions_func_c.html":[1,3,1,1],
 "functions_func_d.html":[1,3,1,2],
 "functions_func_f.html":[1,3,1,3],

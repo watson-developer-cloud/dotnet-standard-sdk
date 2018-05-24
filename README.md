@@ -89,20 +89,6 @@ void Example()
 }
 ```
 
-## Visual Recognition Authentication
-Note there are different endpoints for authenticating a Visual Recognition instance depending on if you are authenticating using IAM or apikey. 
-
-If you are authenticating using an apikey
-
-```cs
-_visualRecognition.SetEndpoint("https://gateway-a.watsonplatform.net/visual-recognition/api");
-```
-
-If you are authenticating using IAM
-```cs
-_visualRecognition.SetEndpoint("https://gateway.watsonplatform.net/visual-recognition/api");
-```
-
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 

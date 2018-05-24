@@ -90,13 +90,17 @@ void Example()
 ```
 
 ## Visual Recognition Authentication
-If you are authenticating a Visual Recognition instance using apikey rather than iamApiKey you will need to set the endpoint of the service.
+Note there are different endpoints for authenticating a Visual Recognition instance depending on if you are authenticating using IAM or apikey. 
+
+If you are authenticating using an apikey
+
 ```cs
-void Example()
-{
-    var _visualRecognition = new VisualRecognitionService("<apikey>", "<version-date>");
-    _visualRecognition.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
-}
+_visualRecognition.SetEndpoint("https://gateway-a.watsonplatform.net/visual-recognition/api");
+```
+
+If you are authenticating using IAM
+```cs
+_visualRecognition.SetEndpoint("https://gateway.watsonplatform.net/visual-recognition/api");
 ```
 
 ## Documentation

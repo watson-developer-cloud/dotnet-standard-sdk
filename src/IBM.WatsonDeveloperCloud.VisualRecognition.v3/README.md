@@ -19,16 +19,6 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
 ```
 
-### Visual Recognition Authentication
-If you are authenticating a Visual Recognition instance using apikey rather than iamApiKey you will need to set the endpoint of the service.
-```cs
-void Example()
-{
-    var _visualRecognition = new VisualRecognitionService("<apikey>", "<version-date>");
-    _visualRecognition.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
-}
-```
-
 ### Usage
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from IBM Cloud is required for all calls.
 

@@ -76,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             #endregion
 
             _service = new NaturalLanguageClassifierService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
         }
 
         #region Classifiers

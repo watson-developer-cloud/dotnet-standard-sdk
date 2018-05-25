@@ -94,10 +94,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             }
             #endregion
 
-            _service = new AssistantService(_username, _password, "2018-02-16")
-            {
-                Endpoint = _endpoint
-            };
+            _service = new AssistantService(_username, _password, "2018-02-16");
+            _service.SetEndpoint(_endpoint);
 
 #if DELETE_DOTNET_WORKSPACES
             var workspaces = _service.ListWorkspaces();

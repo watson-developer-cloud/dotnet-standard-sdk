@@ -17,6 +17,7 @@
 
 using System;
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Service
 {
@@ -43,6 +44,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         }
         public string UserName { get; set; }
         public string Password { get; set; }
+        protected TokenManager _tokenManager = null;
 
         protected WatsonService(string serviceName)
         {
@@ -88,6 +90,13 @@ namespace IBM.WatsonDeveloperCloud.Service
         public void SetCredential(string apikey)
         {
             this.ApiKey = apikey;
+            this.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+        }
+
+        public void SetCredential(TokenOptions options)
+        {
+            this.Endpoint = options.IamUrl;
+            _tokenManager = new TokenManager(options);
         }
     }
 }

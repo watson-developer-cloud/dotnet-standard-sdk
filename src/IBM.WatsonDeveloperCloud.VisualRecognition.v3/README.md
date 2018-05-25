@@ -18,20 +18,21 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 </ItemGroup>
 
 ```
+
 ### Usage
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from IBM Cloud is required for all calls.
 
 #### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and api key must be set.
+Before you can send requests to the service it must be instantiated and api key or access token must be set.
 ```cs
-// create a Tone Analyzer Service instance
-VisualRecognitionService _visualRecognition = new VisualRecognitionService();
+TokenOptions tokenOptions = new TokenOptions()
+{
+    IamApiKey = "<iam-apikey>",
+    IamAccessToken = "<iam-access-token>",
+    IamUrl = "<service-endpoint>"
+};
 
-// set the credentials
-_visualRecognition.SetCredential("<apikey>");
-
-// set the VersionDate
-_visualRecognition.VersionDate = "version-date";
+var _visualRecognition = new VisualRecognitionService(tokenOptions, "<version-date>");
 ```
 
 #### Classify an image

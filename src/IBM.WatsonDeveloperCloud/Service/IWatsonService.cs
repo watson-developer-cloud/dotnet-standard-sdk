@@ -16,6 +16,7 @@
 */
 
 using IBM.WatsonDeveloperCloud.Http;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Service
 {
@@ -25,10 +26,12 @@ namespace IBM.WatsonDeveloperCloud.Service
 
         string ServiceName { get; set; }
         string ApiKey { get; set; }
-        string Endpoint { get; set; }
         string UserName { get; set; }
         string Password { get; set; }
 
         void SetCredential(string userName, string password);
+        void SetCredential(string apikey);
+        void SetCredential(TokenOptions tokenOptions);
+        void SetEndpoint(string endpoint);
     }
 }

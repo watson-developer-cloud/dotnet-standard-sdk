@@ -97,7 +97,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             #endregion
 
             _service = new DiscoveryService(_username, _password, version);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
 
             var environments = ListEnvironments();

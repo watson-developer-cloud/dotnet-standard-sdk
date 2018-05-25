@@ -67,7 +67,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
-            this.Endpoint = options.IamUrl;
+            this.Endpoint = options.ServiceUrl;
 
 
             _tokenManager = new TokenManager(options);

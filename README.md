@@ -72,7 +72,7 @@ void Example()
 ```
 
 ## IAM Authentication
-You can authenticate using IAM rather than username and password. You can either allow the SDK to manage the token by providing your IAM apikey or manage the token yourself by providing an access token.
+You can authenticate using IAM rather than username and password or apikey. You can either allow the SDK to manage the token by providing your IAM apikey or manage the token yourself by providing an access token.
 ```cs
 void Example()
 {
@@ -80,7 +80,8 @@ void Example()
     TokenOptions iamAssistantTokenOptions = new TokenOptions()
     {
         IamApiKey = "<iam-apikey>",
-        IamAccessToken = "<iam-access-token>"
+        IamAccessToken = "<iam-access-token>",
+        IamUrl = "<service-endpoint>"
     };
 
     _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");

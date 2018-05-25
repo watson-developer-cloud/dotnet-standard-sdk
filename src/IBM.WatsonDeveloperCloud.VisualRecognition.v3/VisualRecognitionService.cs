@@ -32,7 +32,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     {
         const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
-        private TokenManager _tokenManager = null;
         private string _versionDate;
         public string VersionDate
         {

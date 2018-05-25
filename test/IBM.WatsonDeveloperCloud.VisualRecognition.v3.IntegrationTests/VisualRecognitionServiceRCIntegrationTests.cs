@@ -91,7 +91,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             TokenOptions tokenOptions = new TokenOptions()
             {
                 IamApiKey = _apikey,
-                IamUrl = _endpoint
+                ServiceUrl = _endpoint
             };
             _service = new VisualRecognitionService(tokenOptions, "2018-03-19");
             _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);

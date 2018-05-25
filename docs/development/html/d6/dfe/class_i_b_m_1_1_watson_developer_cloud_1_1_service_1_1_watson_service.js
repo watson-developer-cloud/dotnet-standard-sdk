@@ -5,6 +5,8 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service =
     [ "WatsonService", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a6fced310b589a3da4e476b8f90acfc21", null ],
     [ "SetCredential", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#afc75e0313e276d4c1aca9755aac2af17", null ],
     [ "SetCredential", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#aa051d282d0c181d259368454d8d8621b", null ],
+    [ "SetCredential", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a56b9891a458e4eb9c3434521dd43b906", null ],
+    [ "_tokenManager", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a757a4416cb153572cefe0a9970993c4b", null ],
     [ "ApiKey", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a36fc444ee8b1528948b5a3b847c6565c", null ],
     [ "Client", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a4b0e4d1cf86da00fc7f529ab8a71b4cd", null ],
     [ "Endpoint", "d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#ac773371d46a1ed712143bca80535258a", null ],

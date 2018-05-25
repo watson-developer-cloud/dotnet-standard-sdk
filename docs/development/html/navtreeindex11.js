@@ -1,5 +1,7 @@
 var NAVTREEINDEX11 =
 {
+"dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#acfb9524b248fac62dacb9ff705c6ec60":[1,0,0,0,10,0,0,7,3],
+"dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_util_1_1_media_type_utils.html":[1,0,0,0,10,0,1,0],
 "dd/d20/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_util_1_1_media_type_utils.html#ab988d90adf2be3b43174256ed34c673b":[1,0,0,0,10,0,1,0,0],
 "dd/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_models.html":[1,0,0,0,10,0,0,1],
 "dd/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_models.html#a3902346f11dce4741b530625b6c4e484":[1,0,0,0,10,0,0,1,0],
@@ -138,8 +140,8 @@ var NAVTREEINDEX11 =
 "dd/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html":[1,0,0,0,2,0,0,75],
 "dd/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html#ad34988053a60d5700b8c87648783642a":[1,0,0,0,2,0,0,75,1],
 "dd/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html#adf8bfce81eaffb8bf18e45fad5c63908":[1,0,0,0,2,0,0,75,0],
-"dd/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1.html":[1,0,0,0,2,0],
 "dd/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1.html":[0,0,0,0,2,0],
+"dd/da6/namespace_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1.html":[1,0,0,0,2,0],
 "dd/da8/_image_with_faces_8cs.html":[2,0,0,11,0,12],
 "dd/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nested.html":[1,0,0,0,2,0,0,35],
 "dd/da8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_nested.html#a44eaee6282a3ffb4c469f7c24d2af456":[1,0,0,0,2,0,0,35,0],
@@ -156,8 +158,8 @@ var NAVTREEINDEX11 =
 "dd/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_entity.html":[1,0,0,0,6,0,0,27],
 "dd/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_entity.html#a8fa9cfea69af40807c18bdc6172e09fc":[1,0,0,0,6,0,0,27,1],
 "dd/dbd/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_entity.html#ab9e5741e292abc3b975085dc753dc81a":[1,0,0,0,6,0,0,27,0],
-"dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator.html":[1,0,0,0,4],
 "dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator.html":[0,0,0,0,4],
+"dd/dc5/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator.html":[1,0,0,0,4],
 "dd/dcc/_html_settings_8cs.html":[2,0,0,3,0,28],
 "dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters.html":[1,0,0,0,6,0,0,25],
 "dd/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_parameters.html#a1a86c6ac33b5385da6ce4ad17cb82496":[1,0,0,0,6,0,0,25,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX11 =
 "de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a247cb5f731d40b302dfd308282bbe11e":[1,0,0,0,12,0,0,1,0],
 "de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a3d64269c23e30e1a74e22716b27aa464":[1,0,0,0,12,0,0,1,5],
 "de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a7deaf94047cc7e0786d2ed2ccd294ed1":[1,0,0,0,12,0,0,1,4],
-"de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a7e24196c4c1e8c01e06cc28bb2887bb7":[1,0,0,0,12,0,0,1,1],
-"de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a9ab2186a965b3efa9843033b152bc026":[1,0,0,0,12,0,0,1,3],
-"de/d3a/_nlu_enrichment_keywords_8cs.html":[2,0,0,3,0,41]
+"de/d2d/class_i_b_m_1_1_watson_developer_cloud_1_1_tone_analyzer_1_1v3_1_1_model_1_1_sentence_analysis.html#a7e24196c4c1e8c01e06cc28bb2887bb7":[1,0,0,0,12,0,0,1,1]
 };

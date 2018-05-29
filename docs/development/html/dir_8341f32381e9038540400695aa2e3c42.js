@@ -72,9 +72,6 @@ var dir_8341f32381e9038540400695aa2e3c42 =
     [ "SpeechRecognitionResults.cs", "dc/dec/_speech_recognition_results_8cs.html", [
       [ "SpeechRecognitionResults", "db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html", "db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results" ]
     ] ],
-    [ "SpeechSession.cs", "d6/d7c/_speech_session_8cs.html", [
-      [ "SpeechSession", "dc/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_session.html", "dc/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_session" ]
-    ] ],
     [ "SupportedFeatures.cs", "d5/d32/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_supported_features_8cs.html", [
       [ "SupportedFeatures", "d3/dab/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_supported_features.html", "d3/dab/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_supported_features" ]
     ] ],

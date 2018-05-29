@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_ser
 [
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a3192e40f945bb04826d4a0aaaa8abbce", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a2baea09220b31df2981e9edb3e812870", null ],
+    [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a8b0f84cd15747b5b23efa9b6c9b05886", null ],
     [ "AssistantService", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#a48c921c3963c90822cf45b2a481c6e7d", null ],
     [ "CreateCounterexample", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#adc1adff520710fc3a6246c86336f3922", null ],
     [ "CreateDialogNode", "d7/d88/class_i_b_m_1_1_watson_developer_cloud_1_1_assistant_1_1v1_1_1_assistant_service.html#ac4acfc34d72020d698199af98506531d", null ],

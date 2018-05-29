@@ -1,5 +1,13 @@
 var NAVTREEINDEX13 =
 {
+"df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html":[1,0,0,0,4,0,0,5],
+"df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html#a4ea1e4e61270406f13bfb303e1310b0b":[1,0,0,0,4,0,0,5,3],
+"df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html#a66e83dde69fb6d166c0ff511581d4e47":[1,0,0,0,4,0,0,5,2],
+"df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html#ac972cf87d9761eb8e620fcb818686fda":[1,0,0,0,4,0,0,5,0],
+"df/da3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translate_request.html#ad0c5f644307ca8a5182741a8dc29ab23":[1,0,0,0,4,0,0,5,1],
+"df/dab/_natural_language_classifier_service_8cs.html":[2,0,0,5,3],
+"df/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entity_mention.html":[1,0,0,0,6,0,0,14],
+"df/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entity_mention.html#a52733fcc186c7e35ccb15ba6e0e8e663":[1,0,0,0,6,0,0,14,0],
 "df/dae/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entity_mention.html#abac5f56b1e3c4d6565a97f3b6241349a":[1,0,0,0,6,0,0,14,1],
 "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html":[1,0,0,0,13,3],
 "df/daf/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_iam_token_data.html#a170a7227a0454d14656eb72644691601":[1,0,0,0,13,3,4],

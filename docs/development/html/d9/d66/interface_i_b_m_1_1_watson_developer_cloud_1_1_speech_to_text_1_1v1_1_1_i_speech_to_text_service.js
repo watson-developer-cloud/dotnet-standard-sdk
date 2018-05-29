@@ -1,7 +1,7 @@
 var interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service =
 [
     [ "AddAudio", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af1cb5c5ce1a93146e532ccb80003857e", null ],
-    [ "AddCorpus", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a56523dbb5e4991c97442ae3ec6448107", null ],
+    [ "AddCorpus", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1b55736f8ae0be9a6ffe2f77c305e659", null ],
     [ "AddWord", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1b2b1aa2c3bc00b2ad5106edba760a2e", null ],
     [ "AddWords", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a890d7a1e8edcea84646fefd142da9823", null ],
     [ "CheckJob", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4ed257d7fb504d896048a98e818c1565", null ],
@@ -17,6 +17,7 @@ var interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_sp
     [ "DeleteLanguageModel", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4479d86ea1691ef69a8ab7dd437144b9", null ],
     [ "DeleteSession", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae2ab9352a1399f7681cffd35b429a0ef", null ],
     [ "DeleteSession", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1a13e78dd17753ec6f19054cecb3d074", null ],
+    [ "DeleteUserData", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a651e204dffaa10ac568f3a83adcb0ca7", null ],
     [ "DeleteWord", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a939494e85818dabc56ce2ad76b2a12d5", null ],
     [ "GetAcousticModel", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ab11be4eb4281836aae670ce0d08a97a0", null ],
     [ "GetAudio", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a84fb689f714bcc948a6d2f90c9c9a47f", null ],

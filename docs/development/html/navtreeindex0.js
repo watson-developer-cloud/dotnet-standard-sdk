@@ -237,7 +237,7 @@ var NAVTREEINDEX0 =
 "d1/d07/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_entities_entity.html#aa817fc5eeb02d6bf7a309fd00c3ab01f":[1,0,0,0,2,0,0,52,0],
 "d1/d08/_request_8cs.html":[2,0,0,0,0,8],
 "d1/d0c/_service_response_exception_8cs.html":[2,0,0,0,0,0,2],
-"d1/d1b/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_word_8cs.html":[2,0,0,8,0,26],
+"d1/d1b/_i_b_m_8_watson_developer_cloud_8_speech_to_text_8v1_2_model_2_word_8cs.html":[2,0,0,8,0,25],
 "d1/d1c/_register_status_8cs.html":[2,0,0,8,0,17],
 "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_x_path_patterns.html":[1,0,0,0,2,0,0,87],
 "d1/d1f/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_x_path_patterns.html#aa232c2a38ca5c84c1b45b44837d6713e":[1,0,0,0,2,0,0,87,0],

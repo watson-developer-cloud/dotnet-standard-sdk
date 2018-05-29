@@ -193,9 +193,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
-                if(result == null)
-                    result = new System.IO.FileStream();
-                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

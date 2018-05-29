@@ -72,7 +72,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example
 
             var versionDate = "2016-05-19";
             ToneAnalyzerService _toneAnalyzer = new ToneAnalyzerService(_username, _password, versionDate);
-            _toneAnalyzer.Endpoint = _endpoint;
+            _toneAnalyzer.SetEndpoint(_endpoint);
 
             //  Test PostTone
             ToneInput toneInput = new ToneInput()

@@ -124,19 +124,19 @@ Properties</h2></td></tr>
 <tr class="memdesc:afef8f3dbb6fa27c1e5edefc9e984db8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date and time in Coordinated Universal Time (UTC) at which the job was created. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>).  <a href="#afef8f3dbb6fa27c1e5edefc9e984db8a">More...</a><br /></td></tr>
 <tr class="separator:afef8f3dbb6fa27c1e5edefc9e984db8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20f693aa54b77f2a0bbc60c8a33edcd7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a20f693aa54b77f2a0bbc60c8a33edcd7">Updated</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a20f693aa54b77f2a0bbc60c8a33edcd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). <b>Note:</b> This field is returned only when you list information about a specific or all existing jobs.  <a href="#a20f693aa54b77f2a0bbc60c8a33edcd7">More...</a><br /></td></tr>
+<tr class="memdesc:a20f693aa54b77f2a0bbc60c8a33edcd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). This field is returned only by the <b>Check jobs</b> and <b>Check a job</b> methods.  <a href="#a20f693aa54b77f2a0bbc60c8a33edcd7">More...</a><br /></td></tr>
 <tr class="separator:a20f693aa54b77f2a0bbc60c8a33edcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad52c4d4e621881d09ae569b79ef9eefe"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#ad52c4d4e621881d09ae569b79ef9eefe">Url</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad52c4d4e621881d09ae569b79ef9eefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL to use to request information about the job with the <b>Check a job</b> method. <b>Note:</b> This field is returned only when you create a new job.  <a href="#ad52c4d4e621881d09ae569b79ef9eefe">More...</a><br /></td></tr>
+<tr class="memdesc:ad52c4d4e621881d09ae569b79ef9eefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL to use to request information about the job with the <b>Check a job</b> method. This field is returned only by the <b>Create a job</b> method.  <a href="#ad52c4d4e621881d09ae569b79ef9eefe">More...</a><br /></td></tr>
 <tr class="separator:ad52c4d4e621881d09ae569b79ef9eefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c3b7c5db3421869397626fedbe27598"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a9c3b7c5db3421869397626fedbe27598">UserToken</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a9c3b7c5db3421869397626fedbe27598"><td class="mdescLeft">&#160;</td><td class="mdescRight">The user token associated with a job that was created with a callback URL and a user token. <b>Note:</b> This field can be returned only when you list information about all existing jobs.  <a href="#a9c3b7c5db3421869397626fedbe27598">More...</a><br /></td></tr>
+<tr class="memdesc:a9c3b7c5db3421869397626fedbe27598"><td class="mdescLeft">&#160;</td><td class="mdescRight">The user token associated with a job that was created with a callback URL and a user token. This field can be returned only by the <b>Check jobs</b> method.  <a href="#a9c3b7c5db3421869397626fedbe27598">More...</a><br /></td></tr>
 <tr class="separator:a9c3b7c5db3421869397626fedbe27598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17a891b0e0ed760210a98ba46b4b53ec"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html">SpeechRecognitionResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#a17a891b0e0ed760210a98ba46b4b53ec">Results</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a17a891b0e0ed760210a98ba46b4b53ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. <b>Note:</b> This field can be returned only when you list information about a specific existing job.  <a href="#a17a891b0e0ed760210a98ba46b4b53ec">More...</a><br /></td></tr>
+<tr class="memdesc:a17a891b0e0ed760210a98ba46b4b53ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. This field is returned only by the <b>Check a job</b> method.  <a href="#a17a891b0e0ed760210a98ba46b4b53ec">More...</a><br /></td></tr>
 <tr class="separator:a17a891b0e0ed760210a98ba46b4b53ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace921e39295bf5141dfd29191d020985"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html#ace921e39295bf5141dfd29191d020985">Warnings</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ace921e39295bf5141dfd29191d020985"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. <b>Note:</b> This field can be returned only when you create a new job.  <a href="#ace921e39295bf5141dfd29191d020985">More...</a><br /></td></tr>
+<tr class="memdesc:ace921e39295bf5141dfd29191d020985"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. This field can be returned only by the <b>Create a job</b> method.  <a href="#ace921e39295bf5141dfd29191d020985">More...</a><br /></td></tr>
 <tr class="separator:ace921e39295bf5141dfd29191d020985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td colspan="2" onclick="javascript:toggleInherit('properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model')"><img src="../../closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html">IBM.WatsonDeveloperCloud.BaseModel</a></td></tr>
 <tr class="memitem:a738d348dcb5b0ec56d8032d1c42c7bbd inherit properties_class_i_b_m_1_1_watson_developer_cloud_1_1_base_model"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/class_i_b_m_1_1_watson_developer_cloud_1_1_base_model.html#a738d348dcb5b0ec56d8032d1c42c7bbd">CustomData</a><code> [get, set]</code></td></tr>
@@ -261,8 +261,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. <b>Note:</b> This field can be returned only when you list information about a specific existing job. </p>
-<p>If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. <b>Note:</b> This field can be returned only when you list information about a specific existing job.</p>
+<p>If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. This field is returned only by the <b>Check a job</b> method. </p>
+<p>If the status is <code>completed</code>, the results of the recognition request as an array that includes a single instance of a <code><a class="el" href="../../db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html" title="SpeechRecognitionResults. ">SpeechRecognitionResults</a></code> object. This field is returned only by the <b>Check a job</b> method.</p>
 
 </div>
 </div>
@@ -311,8 +311,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). <b>Note:</b> This field is returned only when you list information about a specific or all existing jobs. </p>
-<p>The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). <b>Note:</b> This field is returned only when you list information about a specific or all existing jobs.</p>
+<p>The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). This field is returned only by the <b>Check jobs</b> and <b>Check a job</b> methods. </p>
+<p>The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>). This field is returned only by the <b>Check jobs</b> and <b>Check a job</b> methods.</p>
 
 </div>
 </div>
@@ -336,8 +336,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The URL to use to request information about the job with the <b>Check a job</b> method. <b>Note:</b> This field is returned only when you create a new job. </p>
-<p>The URL to use to request information about the job with the <b>Check a job</b> method. <b>Note:</b> This field is returned only when you create a new job.</p>
+<p>The URL to use to request information about the job with the <b>Check a job</b> method. This field is returned only by the <b>Create a job</b> method. </p>
+<p>The URL to use to request information about the job with the <b>Check a job</b> method. This field is returned only by the <b>Create a job</b> method.</p>
 
 </div>
 </div>
@@ -361,8 +361,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The user token associated with a job that was created with a callback URL and a user token. <b>Note:</b> This field can be returned only when you list information about all existing jobs. </p>
-<p>The user token associated with a job that was created with a callback URL and a user token. <b>Note:</b> This field can be returned only when you list information about all existing jobs.</p>
+<p>The user token associated with a job that was created with a callback URL and a user token. This field can be returned only by the <b>Check jobs</b> method. </p>
+<p>The user token associated with a job that was created with a callback URL and a user token. This field can be returned only by the <b>Check jobs</b> method.</p>
 
 </div>
 </div>
@@ -386,8 +386,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. <b>Note:</b> This field can be returned only when you create a new job. </p>
-<p>An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. <b>Note:</b> This field can be returned only when you create a new job.</p>
+<p>An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. This field can be returned only by the <b>Create a job</b> method. </p>
+<p>An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. This field can be returned only by the <b>Create a job</b> method.</p>
 
 </div>
 </div>

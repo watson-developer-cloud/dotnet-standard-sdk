@@ -117,11 +117,16 @@ Inheritance diagram for IBM.WatsonDeveloperCloud.Service.WatsonService:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afc75e0313e276d4c1aca9755aac2af17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#afc75e0313e276d4c1aca9755aac2af17">SetCredential</a> (string userName, string password)</td></tr>
+<tr class="memdesc:afc75e0313e276d4c1aca9755aac2af17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the username and password credentials.  <a href="#afc75e0313e276d4c1aca9755aac2af17">More...</a><br /></td></tr>
 <tr class="separator:afc75e0313e276d4c1aca9755aac2af17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa051d282d0c181d259368454d8d8621b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#aa051d282d0c181d259368454d8d8621b">SetCredential</a> (string apikey)</td></tr>
+<tr class="memdesc:aa051d282d0c181d259368454d8d8621b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the apikey of the service. Also sets the endpoint if the user has not set the endpoint.  <a href="#aa051d282d0c181d259368454d8d8621b">More...</a><br /></td></tr>
 <tr class="separator:aa051d282d0c181d259368454d8d8621b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56b9891a458e4eb9c3434521dd43b906"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a56b9891a458e4eb9c3434521dd43b906">SetCredential</a> (<a class="el" href="../../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html">TokenOptions</a> options)</td></tr>
+<tr class="memdesc:a56b9891a458e4eb9c3434521dd43b906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the tokenOptions for the service. Also sets the endpoint if the user has not set the endpoint.  <a href="#a56b9891a458e4eb9c3434521dd43b906">More...</a><br /></td></tr>
 <tr class="separator:a56b9891a458e4eb9c3434521dd43b906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d983ef5208d89faf7c8d9538ac7c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a21d983ef5208d89faf7c8d9538ac7c9c">SetEndpoint</a> (string url)</td></tr>
+<tr class="separator:a21d983ef5208d89faf7c8d9538ac7c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -136,6 +141,8 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a757a4416cb153572cefe0a9970993c4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html">TokenManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a757a4416cb153572cefe0a9970993c4b">_tokenManager</a> = null</td></tr>
 <tr class="separator:a757a4416cb153572cefe0a9970993c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f27c36498abbda325f45d6ffece910"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_watson_service.html#a50f27c36498abbda325f45d6ffece910">_userSetEndpoint</a> = false</td></tr>
+<tr class="separator:a50f27c36498abbda325f45d6ffece910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -158,8 +165,6 @@ Properties</h2></td></tr>
 <tr class="separator:a64f8c7e1323e5f0376cc5b04408785db inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14fa874cb9f1db4834cb6f9cbba1141e inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a14fa874cb9f1db4834cb6f9cbba1141e">ApiKey</a><code> [get, set]</code></td></tr>
 <tr class="separator:a14fa874cb9f1db4834cb6f9cbba1141e inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedf11034a4bc2854340e5577c95d0cd9 inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#aedf11034a4bc2854340e5577c95d0cd9">Endpoint</a><code> [get, set]</code></td></tr>
-<tr class="separator:aedf11034a4bc2854340e5577c95d0cd9 inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a03f64f7662d1e1e5e695b2f7368f05 inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a8a03f64f7662d1e1e5e695b2f7368f05">UserName</a><code> [get, set]</code></td></tr>
 <tr class="separator:a8a03f64f7662d1e1e5e695b2f7368f05 inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a230f076134f4210c4ccc99b9d7368d6c inherit properties_interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a230f076134f4210c4ccc99b9d7368d6c">Password</a><code> [get, set]</code></td></tr>
@@ -305,6 +310,15 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the username and password credentials. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userName</td><td>The username</td></tr>
+    <tr><td class="paramname">password</td><td>The password</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#ac6af350619b7dbef777862bc74cfc752">IBM.WatsonDeveloperCloud.Service.IWatsonService</a>.</p>
 
 </div>
@@ -333,6 +347,16 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the apikey of the service. Also sets the endpoint if the user has not set the endpoint. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apikey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a8765062263ad5502891b8b2c2de267de">IBM.WatsonDeveloperCloud.Service.IWatsonService</a>.</p>
+
 </div>
 </div>
 <a id="a56b9891a458e4eb9c3434521dd43b906"></a>
@@ -359,6 +383,44 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the tokenOptions for the service. Also sets the endpoint if the user has not set the endpoint. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a218603b4649347920360beb6615dcf28">IBM.WatsonDeveloperCloud.Service.IWatsonService</a>.</p>
+
+</div>
+</div>
+<a id="a21d983ef5208d89faf7c8d9538ac7c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d983ef5208d89faf7c8d9538ac7c9c">&#9670;&nbsp;</a></span>SetEndpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IBM.WatsonDeveloperCloud.Service.WatsonService.SetEndpoint </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../d9/d99/interface_i_b_m_1_1_watson_developer_cloud_1_1_service_1_1_i_watson_service.html#a64c50febddb783473ee0cdbe65ee53f5">IBM.WatsonDeveloperCloud.Service.IWatsonService</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -373,6 +435,28 @@ Properties</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="../../dd/d38/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_manager.html">TokenManager</a> IBM.WatsonDeveloperCloud.Service.WatsonService._tokenManager = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50f27c36498abbda325f45d6ffece910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f27c36498abbda325f45d6ffece910">&#9670;&nbsp;</a></span>_userSetEndpoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IBM.WatsonDeveloperCloud.Service.WatsonService._userSetEndpoint = false</td>
         </tr>
       </table>
   </td>
@@ -444,7 +528,7 @@ Properties</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -1,6 +1,6 @@
 var interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service =
 [
-    [ "AddDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a0bcfeebedac8ffedf65aa173f56a27ae", null ],
+    [ "AddDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a5c11c27a7015785ec133dbc298bff378", null ],
     [ "AddTrainingData", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a5820dc55271f9b3d839f82d4e32461a6", null ],
     [ "CreateCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abb879ad8008ea04661e6358003deb42e", null ],
     [ "CreateConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad6f1dbe4c4b6ad1c7b76acfb4cfbf61b", null ],
@@ -36,10 +36,10 @@ var interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discove
     [ "QueryEntities", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1b2f1e5bc361f59bdcae7c4d1fb0ae3f", null ],
     [ "QueryNotices", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a69b6785cf82a1f107043d0f4de369f2e", null ],
     [ "QueryRelations", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#acdfd3361243d6196bb4fd298e7913eae", null ],
-    [ "TestConfigurationInEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a889dc2180b278ab22665d3c1e445deef", null ],
+    [ "TestConfigurationInEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad6bda4e601199d8a23ee791345cce782", null ],
     [ "UpdateCollection", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a0b7aa4d73d5b334f768bb6417cf090fb", null ],
     [ "UpdateConfiguration", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a4e51e2aa6e8150734d1c15ac7ae4d0e1", null ],
-    [ "UpdateDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a81d432ebfbc37e40b4eabd9ece24f135", null ],
+    [ "UpdateDocument", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaf91dc13a66139a35fa4c23ddc695999", null ],
     [ "UpdateEnvironment", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a27b86e1ae185be25ec29f8cb4037caeb", null ],
     [ "UpdateTrainingExample", "d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1449153cb984954d56805d8c00894f0f", null ]
 ];

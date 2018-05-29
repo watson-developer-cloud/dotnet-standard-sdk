@@ -6,7 +6,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_mode
       [ "RETRAINING", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#ac76768d03fb4353db86fbcc01f64b0aca8a1153eec57fd47d747a690f948fa741", null ],
       [ "FAILED", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#ac76768d03fb4353db86fbcc01f64b0acab9e14d9b2886bcff408b85aefa780419", null ]
     ] ],
-    [ "Classes", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#abdb990a77eb2a2aae015c54b4bf88e99", null ],
+    [ "Classes", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#aeeb71303ba57dbce498c58ed81be090f", null ],
     [ "ClassifierId", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#a878abc6cd166a770b46b51dac3f558de", null ],
     [ "CoreMlEnabled", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#a6a89e7930ab90f9a5fa6013647baf746", null ],
     [ "Created", "de/d0c/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html#aa6f68a8c3de46ae3c2148399dfa6083b", null ],

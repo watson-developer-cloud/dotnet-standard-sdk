@@ -109,9 +109,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acb6c7b0c073e782abd20e46aa626ff82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/daa/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_identifiable_languages.html">IdentifiableLanguages</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#acb6c7b0c073e782abd20e46aa626ff82">ListIdentifiableLanguages</a> (Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:acb6c7b0c073e782abd20e46aa626ff82"><td class="mdescLeft">&#160;</td><td class="mdescRight">List identifiable languages. Lists the languages that the service can identify. Returns the language code (for example, <code>en</code> for English or <code>es</code> for Spanish) and name of each language.  <a href="#acb6c7b0c073e782abd20e46aa626ff82">More...</a><br /></td></tr>
 <tr class="separator:acb6c7b0c073e782abd20e46aa626ff82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a303073f7d9eb9d47393dabccc0556761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a303073f7d9eb9d47393dabccc0556761">CreateModel</a> (string baseModelId, string name=null, System.IO.Stream forcedGlossary=null, System.IO.Stream parallelCorpus=null, System.IO.Stream monolingualCorpus=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a303073f7d9eb9d47393dabccc0556761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create model. Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.  <a href="#a303073f7d9eb9d47393dabccc0556761">More...</a><br /></td></tr>
-<tr class="separator:a303073f7d9eb9d47393dabccc0556761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab88e7c314b1b891c74113746e4154b60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html">TranslationModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#ab88e7c314b1b891c74113746e4154b60">CreateModel</a> (string baseModelId, string name=null, System.IO.FileStream forcedGlossary=null, System.IO.FileStream parallelCorpus=null, System.IO.FileStream monolingualCorpus=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:ab88e7c314b1b891c74113746e4154b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create model. Uploads a TMX glossary file on top of a domain to customize a translation model. Depending on the size of the file, training can range from minutes for a glossary to several hours for a large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded glossary and corpus files is limited to 250 MB.  <a href="#ab88e7c314b1b891c74113746e4154b60">More...</a><br /></td></tr>
+<tr class="separator:ab88e7c314b1b891c74113746e4154b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e32ea1b94f29f48b68233506aee80ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d81/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_delete_model_result.html">DeleteModelResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html#a1e32ea1b94f29f48b68233506aee80ab">DeleteModel</a> (string modelId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a1e32ea1b94f29f48b68233506aee80ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete model. Deletes a custom translation model.  <a href="#a1e32ea1b94f29f48b68233506aee80ab">More...</a><br /></td></tr>
 <tr class="separator:a1e32ea1b94f29f48b68233506aee80ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,8 +123,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac4baa96fc274904b04e5c4b640f62f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a303073f7d9eb9d47393dabccc0556761"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a303073f7d9eb9d47393dabccc0556761">&#9670;&nbsp;</a></span>CreateModel()</h2>
+<a id="ab88e7c314b1b891c74113746e4154b60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab88e7c314b1b891c74113746e4154b60">&#9670;&nbsp;</a></span>CreateModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,19 +144,19 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>forcedGlossary</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>parallelCorpus</em> = <code>null</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>monolingualCorpus</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -187,7 +187,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TranslationModelTranslationModel</dd></dl>
 
-<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ad9584b28ada3f353ab2e9828f19e4d36">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
+<p>Implemented in <a class="el" href="../../d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html#ade26e3ebdd4c4bb8586519846fe33a97">IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>

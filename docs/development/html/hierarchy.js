@@ -296,7 +296,6 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionAlternative", "d6/d2a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html", null ],
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResult", "d4/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html", null ],
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechRecognitionResults", "db/d94/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html", null ],
-      [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechSession", "dc/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_session.html", null ],
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SupportedFeatures", "d3/dab/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_supported_features.html", null ],
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.Word", "dc/d6a/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word.html", null ],
       [ "IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.WordAlternativeResult", "d3/d36/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_result.html", null ],
@@ -340,7 +339,6 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.FaceGender", "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.FaceLocation", "d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.ImageWithFaces", "df/d84/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces.html", null ],
-      [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.ModelClass", "d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.WarningInfo", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.UpdateClassifier", "d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html", null ]
     ] ],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['observeresult',['ObserveResult',['../dc/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_session.html#ab274509fdc98c925fe2cfab8671f4620',1,'IBM.WatsonDeveloperCloud.SpeechToText.v1.Model.SpeechSession.ObserveResult()'],['../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html#a8513bd69e660b3c42654b705b7548ef6',1,'IBM.WatsonDeveloperCloud.SpeechToText.v1.SpeechSession.ObserveResult()']]],
+  ['observeresult',['ObserveResult',['../d6/dd3/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_speech_session.html#a8513bd69e660b3c42654b705b7548ef6',1,'IBM::WatsonDeveloperCloud::SpeechToText::v1::SpeechSession']]],
   ['operation',['Operation',['../df/d32/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_normalization_operation.html#ac490db5352320eda28b5a4b656090e0c',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::NormalizationOperation']]],
   ['options',['Options',['../d5/dd6/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#a9d72b533f627defde7f7c4c7bed63ec1',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::Enrichment']]],
   ['originalmediatype',['OriginalMediaType',['../d8/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_test_document.html#a74137bdf9def2dc026f26855edfb3b2c',1,'IBM::WatsonDeveloperCloud::Discovery::v1::Model::TestDocument']]],

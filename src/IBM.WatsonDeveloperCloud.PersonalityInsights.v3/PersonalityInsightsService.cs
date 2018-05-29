@@ -57,6 +57,19 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             VersionDate = versionDate;
         }
 
+        public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+            this.Endpoint = options.ServiceUrl;
+
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public PersonalityInsightsService(IClient httpClient) : this()
         {
@@ -93,7 +106,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -133,8 +153,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// <param name="csvHeaders">Indicates whether column labels are returned with a CSV response. By default, no column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`. (optional, default to false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="Profile" />Profile</returns>
-        public Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
+        public System.IO.MemoryStream ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
@@ -144,12 +164,19 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Profile result = null;
+            System.IO.MemoryStream result = null;
 
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -165,10 +192,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 restRequest.WithBody<Content>(content);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                result = restRequest.As<Profile>().Result;
-                if(result == null)
-                    result = new Profile();
-                result.CustomData = restRequest.CustomData;
+                result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
             catch(AggregateException ae)
             {

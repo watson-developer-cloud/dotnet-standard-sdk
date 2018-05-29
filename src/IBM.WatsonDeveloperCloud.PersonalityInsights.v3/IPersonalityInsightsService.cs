@@ -46,7 +46,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// <param name="csvHeaders">Indicates whether column labels are returned with a CSV response. By default, no column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`. (optional, default to false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="Profile" />Profile</returns>
-        Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null);
+        /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
+        System.IO.MemoryStream ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null);
     }
 }

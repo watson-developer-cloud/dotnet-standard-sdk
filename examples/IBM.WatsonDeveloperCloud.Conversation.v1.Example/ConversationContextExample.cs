@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Example
         public ConversationContextExample(string url, string username, string password, string workspaceId)
         {
             _conversation = new ConversationService(username, password, "2018-02-16");
-            _conversation.Endpoint = url;
+            _conversation.SetEndpoint(url);
 
             _workspaceID = workspaceId;
 

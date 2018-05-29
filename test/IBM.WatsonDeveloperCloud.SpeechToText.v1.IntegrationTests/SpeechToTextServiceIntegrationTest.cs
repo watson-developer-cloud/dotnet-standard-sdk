@@ -365,6 +365,99 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             Assert.IsTrue(getSessionStatusResult.Session.SessionId == createSessionResult.SessionId);
         }
         #endregion
+        
+        private void CheckCustomizationStatus(string classifierId)
+        {
+            var getLangaugeModelResult = _service.GetLanguageModel(classifierId);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Status));
+
+            if (getLangaugeModelResult.Status == LanguageModel.StatusEnum.READY || getLangaugeModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        private void CheckCorpusStatus(string classifierId, string corpusName)
+        {
+            var getCorpusResult = _service.GetCorpus(classifierId, corpusName);
+
+            Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
+
+            if (getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckCorpusStatus(classifierId, corpusName);
+                });
+            }
+            else if (getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
+            {
+                throw new Exception("Corpus status is undetermined.");
+            }
+            else
+            {
+                autoEvent.Set();
+            }
+        }
+
+        private void CheckAcousticCustomizationStatus(string classifierId)
+        {
+            var getAcousticModelResult = _service.GetAcousticModel(classifierId);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Status));
+
+            if (getAcousticModelResult.Status == AcousticModel.StatusEnum.AVAILABLE || getAcousticModelResult.Status == AcousticModel.StatusEnum.READY)
+                autoEvent.Set();
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        private void CheckAudioStatus(string classifierId, string audioname)
+        {
+            var getAudioResult = _service.GetAudio(classifierId, audioname);
+
+            Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Status));
+
+            if (getAudioResult.Status == AudioListing.StatusEnum.OK)
+            {
+                autoEvent.Set();
+            }
+            else if (getAudioResult.Status == AudioListing.StatusEnum.INVALID)
+            {
+                throw new Exception("Adding audio failed");
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    CheckAcousticCustomizationStatus(classifierId);
+                });
+            }
+        }
+
+        public async Task<byte[]> DownloadAcousticResource(string acousticResourceUrl)
+        {
+            var client = new HttpClient();
+            var task = client.GetByteArrayAsync(acousticResourceUrl);
+            var msg = await task;
+
+            return msg;
+        }
 
         #region Generated
         #region GetModel
@@ -672,7 +765,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region AddCorpus
-        private BaseModel AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null, Dictionary<string, object> customData = null)
+        private BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddCorpus()");
             var result = _service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType, customData: customData);
@@ -1051,99 +1144,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
         #endregion
 
-        private void CheckCustomizationStatus(string classifierId)
-        {
-            var getLangaugeModelResult = _service.GetLanguageModel(classifierId);
-
-            Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Status));
-
-            if (getLangaugeModelResult.Status == LanguageModel.StatusEnum.READY || getLangaugeModelResult.Status == LanguageModel.StatusEnum.AVAILABLE)
-                autoEvent.Set();
-            else
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(5000);
-                    CheckCustomizationStatus(classifierId);
-                });
-            }
-        }
-
-        private void CheckCorpusStatus(string classifierId, string corpusName)
-        {
-            var getCorpusResult = _service.GetCorpus(classifierId, corpusName);
-
-            Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Status));
-
-            if (getCorpusResult.Status == Corpus.StatusEnum.BEING_PROCESSED)
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(5000);
-                    CheckCorpusStatus(classifierId, corpusName);
-                });
-            }
-            else if (getCorpusResult.Status == Corpus.StatusEnum.UNDETERMINED)
-            {
-                throw new Exception("Corpus status is undetermined.");
-            }
-            else
-            {
-                autoEvent.Set();
-            }
-        }
-
-        private void CheckAcousticCustomizationStatus(string classifierId)
-        {
-            var getAcousticModelResult = _service.GetAcousticModel(classifierId);
-
-            Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Status));
-
-            if (getAcousticModelResult.Status == AcousticModel.StatusEnum.AVAILABLE || getAcousticModelResult.Status == AcousticModel.StatusEnum.READY)
-                autoEvent.Set();
-            else
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(5000);
-                    CheckAcousticCustomizationStatus(classifierId);
-                });
-            }
-        }
-
-        private void CheckAudioStatus(string classifierId, string audioname)
-        {
-            var getAudioResult = _service.GetAudio(classifierId, audioname);
-
-            Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Status));
-
-            if (getAudioResult.Status == AudioListing.StatusEnum.OK)
-            {
-                autoEvent.Set();
-            }
-            else if (getAudioResult.Status == AudioListing.StatusEnum.INVALID)
-            {
-                throw new Exception("Adding audio failed");
-            }
-            else
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    System.Threading.Thread.Sleep(5000);
-                    CheckAcousticCustomizationStatus(classifierId);
-                });
-            }
-        }
-
-        public async Task<byte[]> DownloadAcousticResource(string acousticResourceUrl)
-        {
-            var client = new HttpClient();
-            var task = client.GetByteArrayAsync(acousticResourceUrl);
-            var msg = await task;
-
-            return msg;
-        }
+        #endregion
     }
 }

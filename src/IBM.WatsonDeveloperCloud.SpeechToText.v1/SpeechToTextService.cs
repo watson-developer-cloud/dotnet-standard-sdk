@@ -52,6 +52,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             this.SetCredential(userName, password);
         }
 
+        public SpeechToTextService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public SpeechToTextService(IClient httpClient) : this()
         {
@@ -76,7 +83,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models/{modelId}");
 
                 if (customData != null)
@@ -106,7 +120,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
                 if (customData != null)
@@ -141,7 +162,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
         /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned. (optional, default to false)</param>
         /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only. (optional, default to false)</param>
+        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and internet addresses into more readable, conventional representations in the final transcript of a recognition request. For US English, also converts certain keyword strings to punctuation symbols. By default, no smart formatting is performed. Applies to US English and Spanish transcription only. (optional, default to false)</param>
         /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels). (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
@@ -156,7 +177,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
                 restRequest.WithHeader("Content-Type", contentType);
@@ -219,7 +247,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
                 if (customData != null)
@@ -249,7 +284,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions");
 
                 if (customData != null)
@@ -268,7 +310,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         }
 
         /// <summary>
-        /// Create a job. Creates a job for a new asynchronous recognition request. The job is owned by the user whose service credentials are used to create it. How you learn the status and results of a job depends on the parameters you include with the job creation request: * By callback notification: Include the `callback_url` parameter to specify a URL to which the service is to send callback notifications when the status of the job changes. Optionally, you can also include the `events` and `user_token` parameters to subscribe to specific events and to specify a string that is to be included with each notification for the job. * By polling the service: Omit the `callback_url`, `events`, and `user_token` parameters. You must then use the **Check jobs** or **Check a job** methods to check the status of the job, using the latter to retrieve the results when the job is complete.  The two approaches are not mutually exclusive. You can poll the service for job status or obtain results from the service manually even if you include a callback URL. In both cases, you can include the `results_ttl` parameter to specify how long the results are to remain available after the job is complete. For detailed usage information about the two approaches, including callback notifications, see [Creating a job](https://console.bluemix.net/docs/services/speech-to-text/async.html#create). Note that using the HTTPS **Check a job** method to retrieve results is more secure than receiving them via callback notification over HTTP because it provides confidentiality in addition to authentication and data integrity.   The method supports the same basic parameters as other HTTP and WebSocket recognition requests. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)   ### Audio formats (content types)   Use the `Content-Type` parameter to specify the audio format (MIME type) of the audio: * `audio/basic` (Use only with narrowband models.) * `audio/flac` * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness (`endianness`) of the audio.) * `audio/mp3` * `audio/mpeg` * `audio/mulaw` (Specify the sampling rate (`rate`) of the audio.) * `audio/ogg` (The service automatically detects the codec of the input audio.) * `audio/ogg;codecs=opus` * `audio/ogg;codecs=vorbis` * `audio/wav` (Provide audio with a maximum of nine channels.) * `audio/webm` (The service automatically detects the codec of the input audio.) * `audio/webm;codecs=opus` * `audio/webm;codecs=vorbis`   For information about the supported audio formats, including specifying the sampling rate, channels, and endianness for the indicated formats, see [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).
+        /// Create a job. Creates a job for a new asynchronous recognition request. The job is owned by the user whose service credentials are used to create it. How you learn the status and results of a job depends on the parameters you include with the job creation request: * By callback notification: Include the `callback_url` parameter to specify a URL to which the service is to send callback notifications when the status of the job changes. Optionally, you can also include the `events` and `user_token` parameters to subscribe to specific events and to specify a string that is to be included with each notification for the job. * By polling the service: Omit the `callback_url`, `events`, and `user_token` parameters. You must then use the **Check jobs** or **Check a job** methods to check the status of the job, using the latter to retrieve the results when the job is complete.  The two approaches are not mutually exclusive. You can poll the service for job status or obtain results from the service manually even if you include a callback URL. In both cases, you can include the `results_ttl` parameter to specify how long the results are to remain available after the job is complete. For detailed usage information about the two approaches, including callback notifications, see [Creating a job](https://console.bluemix.net/docs/services/speech-to-text/async.html#create). Using the HTTPS **Check a job** method to retrieve results is more secure than receiving them via callback notification over HTTP because it provides confidentiality in addition to authentication and data integrity.   The method supports the same basic parameters as other HTTP and WebSocket recognition requests. The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the endianness.)   ### Audio formats (content types)   Use the `Content-Type` parameter to specify the audio format (MIME type) of the audio: * `audio/basic` (Use only with narrowband models.) * `audio/flac` * `audio/l16` (Specify the sampling rate (`rate`) and optionally the number of channels (`channels`) and endianness (`endianness`) of the audio.) * `audio/mp3` * `audio/mpeg` * `audio/mulaw` (Specify the sampling rate (`rate`) of the audio.) * `audio/ogg` (The service automatically detects the codec of the input audio.) * `audio/ogg;codecs=opus` * `audio/ogg;codecs=vorbis` * `audio/wav` (Provide audio with a maximum of nine channels.) * `audio/webm` (The service automatically detects the codec of the input audio.) * `audio/webm;codecs=opus` * `audio/webm;codecs=vorbis`   For information about the supported audio formats, including specifying the sampling rate, channels, and endianness for the indicated formats, see [Audio formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).
         /// </summary>
         /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
         /// <param name="contentType">The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg, audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
@@ -289,7 +331,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
         /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are returned. (optional, default to false)</param>
         /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and Internet addresses into more readable, conventional representations in the final transcript of a recognition request. By default, no smart formatting is performed. Applies to US English transcription only. (optional, default to false)</param>
+        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers, currency values, and internet addresses into more readable, conventional representations in the final transcript of a recognition request. For US English, also converts certain keyword strings to punctuation symbols. By default, no smart formatting is performed. Applies to US English and Spanish transcription only. (optional, default to false)</param>
         /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, no speaker labels are returned. Setting `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify `false` for the parameter.   To determine whether a language model supports speaker labels, use the **Get models** method and check that the attribute `speaker_labels` is set to `true`. You can also refer to [Speaker labels](https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels). (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
@@ -304,7 +346,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
                 restRequest.WithHeader("Content-Type", contentType);
@@ -376,7 +425,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
                 if (customData != null)
@@ -410,7 +466,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/register_callback");
 
                 if (!string.IsNullOrEmpty(callbackUrl))
@@ -447,7 +510,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/unregister_callback");
 
                 if (!string.IsNullOrEmpty(callbackUrl))
@@ -481,7 +551,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
 
                 restRequest.WithBody<CreateLanguageModel>(createLanguageModel);
@@ -515,7 +592,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
                 if (customData != null)
@@ -548,7 +632,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
                 if (customData != null)
@@ -579,7 +670,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
 
                 if (!string.IsNullOrEmpty(language))
@@ -614,7 +712,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
 
                 if (customData != null)
@@ -649,7 +754,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
 
                 if (!string.IsNullOrEmpty(wordTypeToAdd))
@@ -686,7 +798,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
 
                 if (customData != null)
@@ -704,7 +823,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
         /// <summary>
-        /// Add a corpus. Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Note that adding a corpus does not affect the custom language model until you train the model for the new data by using the **Train a custom language model** method.   Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see [Preparing a corpus text file](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#prepareCorpus).   The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the **List a corpus** method to check the status of the analysis.   The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the **List custom words** method to examine the words resource, using other words method to eliminate typos and modify how words are pronounced as needed.   To add a corpus file that has the same name as an existing corpus, set the `allow_overwrite` parameter to `true`; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word** method.   The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand custom (OOV) words to a model; this includes words that the service extracts from corpora and words that you add directly.
+        /// Add a corpus. Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Adding a corpus does not affect the custom language model until you train the model for the new data by using the **Train a custom language model** method.   Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy. For guidelines about adding a corpus text file and for information about how the service parses a corpus file, see [Preparing a corpus text file](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#prepareCorpus).   The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes the contents of the corpus and automatically extracts new words that it finds. This can take on the order of a minute or two to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional corpora or words to the custom model, or to train the model, until the service's analysis of the corpus for the current request completes. Use the **List a corpus** method to check the status of the analysis.   The service auto-populates the model's words resource with any word that is not found in its base vocabulary; these are referred to as out-of-vocabulary (OOV) words. You can use the **List custom words** method to examine the words resource, using other words method to eliminate typos and modify how words are pronounced as needed.   To add a corpus file that has the same name as an existing corpus, set the `allow_overwrite` parameter to `true`; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word** method.   The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all corpora combined. Also, you can add no more than 30 thousand custom (OOV) words to a model; this includes words that the service extracts from corpora and words that you add directly.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
         /// <param name="corpusName">The name of the corpus for the custom language model. When adding a corpus, do not include spaces in the name; use a localized name that matches the language of the custom model; and do not use the name `user`, which is reserved by the service to denote custom words added or modified by the user.</param>
@@ -713,7 +832,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="corpusFileContentType">The content type of corpusFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null, Dictionary<string, object> customData = null)
+        public BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException(nameof(customizationId));
@@ -733,11 +852,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(corpusFileContentType, out contentType);
                     corpusFileContent.Headers.ContentType = contentType;
-                    formData.Add(corpusFileContent, "corpus_file", "filename");
+                    formData.Add(corpusFileContent, "corpus_file", corpusFile.Name);
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
                 if (allowOverwrite != null)
@@ -776,7 +902,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
                 if (customData != null)
@@ -812,7 +945,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
                 if (customData != null)
@@ -845,7 +985,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
 
                 if (customData != null)
@@ -866,7 +1013,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Add a custom word. Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words found in each corpus added to the model. You can use this method to add a word or to modify an existing word in the words resource. The words resource for a model can contain a maximum of 30 thousand custom (OOV) words, including words that the service extracts from corpora and words that you add directly.   You must use credentials for the instance of the service that owns a model to add or modify a custom word for the model. You must pass a value of `application/json` with the `Content-Type` header. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the **Train a custom language model** method.   Use the `word_name` parameter to specify the custom word that is to be added or modified. Use the `CustomWord` object to provide one or both of the optional `sounds_like` and `display_as` fields for the word. * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. For information about pronunciation rules, see [Using the sounds_like field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#soundsLike). * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in corpora training data. For example, you might indicate that the word `IBM(trademark)` is to be displayed as `IBM`. For more information, see [Using the display_as field](https://console.bluemix.net/docs/services/speech-to-text/language-resource.html#displayAs).    If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the **List a custom word** method to review the word that you add.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="wordName">The custom word for the custom language model. When adding or updating a custom word, do not include spaces in the word; use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
+        /// <param name="wordName">The custom word for the custom language model. When you add or update a custom word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
         /// <param name="customWord">A `CustomWord` object that provides information about the specified custom word. Specify an empty object to add a word with no sounds-like or display-as information.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
@@ -883,7 +1030,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
                 restRequest.WithBody<CustomWord>(customWord);
@@ -920,7 +1074,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
                 restRequest.WithBody<CustomWords>(customWords);
@@ -943,7 +1104,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Delete a custom word. Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the **Train a custom language model** method. You must use credentials for the instance of the service that owns a model to delete its words.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="wordName">The custom word for the custom language model. When adding or updating a custom word, do not include spaces in the word; use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
+        /// <param name="wordName">The custom word for the custom language model. When you add or update a custom word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         public BaseModel DeleteWord(string customizationId, string wordName, Dictionary<string, object> customData = null)
@@ -957,7 +1118,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
                 if (customData != null)
@@ -979,7 +1147,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// List a custom word. Lists information about a custom word from a custom language model. You must use credentials for the instance of the service that owns a model to query information about its words.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="wordName">The custom word for the custom language model. When adding or updating a custom word, do not include spaces in the word; use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
+        /// <param name="wordName">The custom word for the custom language model. When you add or update a custom word with the **Add a custom word** method, do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound words.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Word" />Word</returns>
         public Word GetWord(string customizationId, string wordName, Dictionary<string, object> customData = null)
@@ -993,7 +1161,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
                 if (customData != null)
@@ -1028,7 +1203,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
                 if (!string.IsNullOrEmpty(wordType))
@@ -1064,7 +1246,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
                 restRequest.WithBody<CreateAcousticModel>(createAcousticModel);
@@ -1098,7 +1287,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
                 if (customData != null)
@@ -1131,7 +1327,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
                 if (customData != null)
@@ -1162,7 +1365,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
                 if (!string.IsNullOrEmpty(language))
@@ -1197,7 +1407,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
 
                 if (customData != null)
@@ -1231,7 +1448,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
 
                 if (!string.IsNullOrEmpty(customLanguageModelId))
@@ -1268,7 +1492,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
 
                 if (!string.IsNullOrEmpty(customLanguageModelId))
@@ -1313,7 +1544,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
                 restRequest.WithHeader("Content-Type", contentType);
@@ -1358,7 +1596,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
                 if (customData != null)
@@ -1394,7 +1639,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
                 if (customData != null)
@@ -1427,7 +1679,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
 
                 if (customData != null)
@@ -1435,6 +1694,47 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 result = restRequest.As<AudioResources>().Result;
                 if(result == null)
                     result = new AudioResources();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Delete labeled data. Deletes all data that is associated with a specified customer ID. The method deletes all data for the customer ID, regardless of the method by which the information was added. The method has no effect if no data is associated with the customer ID. You must issue the request with credentials for the same instance of the service that was used to associate the customer ID with the data.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes the data. For more information about customer IDs and about using this method, see [Information security](https://console.bluemix.net/docs/services/speech-to-text/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException(nameof(customerId));
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
+
+                if (!string.IsNullOrEmpty(customerId))
+                    restRequest.WithArgument("customer_id", customerId);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

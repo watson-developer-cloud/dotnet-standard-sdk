@@ -701,6 +701,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             Assert.IsNotNull(listAllLogsResult);
         }
         #endregion
+        
+        #region Delay
+        private void Delay(int delayTimeInMilliseconds)
+        {
+            System.Threading.Thread.Sleep(delayTimeInMilliseconds);
+        }
+        #endregion
 
         #region Generated
         #region Message
@@ -1539,13 +1546,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         }
         #endregion
 
-        #endregion
-
-        #region Delay
-        private void Delay(int delayTimeInMilliseconds)
-        {
-            System.Threading.Thread.Sleep(delayTimeInMilliseconds);
-        }
         #endregion
     }
 }

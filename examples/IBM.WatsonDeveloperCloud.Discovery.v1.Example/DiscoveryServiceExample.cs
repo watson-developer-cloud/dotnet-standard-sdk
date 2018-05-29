@@ -244,7 +244,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
 
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.TestConfigurationInEnvironment(_existingEnvironmentId, null, "enrich", _createdConfigurationId, fs as Stream, _metadata);
+                var result = _discovery.TestConfigurationInEnvironment(_existingEnvironmentId, null, "enrich", _createdConfigurationId, fs, _metadata);
 
                 if (result != null)
                 {
@@ -478,7 +478,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling AddDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.AddDocument(_existingEnvironmentId, _createdCollectionId, fs as Stream, _metadata);
+                var result = _discovery.AddDocument(_existingEnvironmentId, _createdCollectionId, fs, _metadata);
 
                 if (result != null)
                 {
@@ -513,7 +513,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Example
             Console.WriteLine(string.Format("\nCalling UpdateDocument()..."));
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                var result = _discovery.UpdateDocument(_existingEnvironmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+                var result = _discovery.UpdateDocument(_existingEnvironmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
 
                 if (result != null)
                 {

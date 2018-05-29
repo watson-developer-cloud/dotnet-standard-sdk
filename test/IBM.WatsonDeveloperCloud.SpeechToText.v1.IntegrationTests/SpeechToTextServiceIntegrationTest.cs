@@ -249,7 +249,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region Acoustic Customizations
-        //[TestMethod]
+        [TestMethod]
         public void TestAcousticCustomizations()
         {
             byte[] acousticResourceData = null;

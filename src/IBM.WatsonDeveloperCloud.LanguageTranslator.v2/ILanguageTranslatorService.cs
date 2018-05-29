@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null);
+        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, System.IO.FileStream monolingualCorpus = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Delete model. Deletes a custom translation model.
         /// </summary>

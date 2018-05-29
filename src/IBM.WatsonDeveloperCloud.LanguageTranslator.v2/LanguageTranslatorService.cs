@@ -49,6 +49,13 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             this.SetCredential(userName, password);
         }
 
+        public LanguageTranslatorService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public LanguageTranslatorService(IClient httpClient) : this()
         {
@@ -73,7 +80,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/translate");
 
                 restRequest.WithBody<TranslateRequest>(request);
@@ -106,7 +120,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/identify");
 
                 restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
@@ -137,7 +158,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/identifiable_languages");
 
                 if (customData != null)
@@ -164,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <param name="monolingualCorpus">A UTF-8 encoded plain text file that is used to customize the target language model. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null)
+        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, System.IO.FileStream monolingualCorpus = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(baseModelId))
                 throw new ArgumentNullException(nameof(baseModelId));
@@ -180,7 +208,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
-                    formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", forcedGlossary.Name);
                 }
 
                 if (parallelCorpus != null)
@@ -189,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
+                    formData.Add(parallelCorpusContent, "parallel_corpus", parallelCorpus.Name);
                 }
 
                 if (monolingualCorpus != null)
@@ -198,11 +226,18 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/plain", out contentType);
                     monolingualCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(monolingualCorpusContent, "monolingual_corpus", "filename");
+                    formData.Add(monolingualCorpusContent, "monolingual_corpus", monolingualCorpus.Name);
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/models");
 
                 if (!string.IsNullOrEmpty(baseModelId))
@@ -240,7 +275,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/models/{modelId}");
 
                 if (customData != null)
@@ -273,7 +315,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/models/{modelId}");
 
                 if (customData != null)
@@ -306,7 +355,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/models");
 
                 if (!string.IsNullOrEmpty(source))

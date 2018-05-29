@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
-        ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
+        ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Detect faces in images. **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy` knowledge graph. For details about the enhanced Face model, see the [Release notes](https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018).  Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition.  Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels per inch.
         /// </summary>
@@ -43,7 +43,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
+        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call.  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+        /// </summary>
+        /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
+        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in the new classifier. You can include more than one positive example file in a call.  Specify the parameter name by appending `_positive_examples` to the class name. For example, `goldenretriever_positive_examples` creates the class **goldenretriever**.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  Encode special characters in the file name in UTF-8.</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.  Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        Classifier CreateClassifier(string name, System.IO.FileStream classnamePositiveExamples, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Delete a classifier. 
         /// </summary>
@@ -65,5 +74,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifiers" />Classifiers</returns>
         Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Update a classifier. Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see [Updating custom classifiers](https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers).  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.  **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in the classifier. The positive examples create or update classes in the classifier. You can include more than one positive example file in a call.  Specify the parameter name by appending `_positive_examples` to the class name. For example, `goldenretriever_positive_examples` creates the class `goldenretriever`.  Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels. The maximum number of images is 10,000 images or 100 MB per .zip file.  Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the classes of the new classifier. Must contain a minimum of 10 images.  Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        Classifier UpdateClassifier(string classifierId, System.IO.FileStream classnamePositiveExamples = null, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Retrieve a Core ML model of a classifier. Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>"core_ml_enabled": true</tt> in the classifier details.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
+        System.IO.MemoryStream GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
     }
 }

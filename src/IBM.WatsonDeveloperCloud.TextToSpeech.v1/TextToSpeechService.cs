@@ -172,7 +172,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
 
-                restRequest.WithHeader("Accept", accept);
+                restRequest.WithArgument("accept", accept);
                 if (!string.IsNullOrEmpty(voice))
                     restRequest.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(customizationId))
@@ -181,9 +181,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
-                if(result == null)
-                    result = new System.IO.FileStream();
-                result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
             {

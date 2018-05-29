@@ -2086,7 +2086,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
@@ -2135,7 +2135,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (includeAudit != null)
@@ -2248,7 +2248,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialogNodes/{dialogNode}");
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithBody<UpdateDialogNode>(properties);

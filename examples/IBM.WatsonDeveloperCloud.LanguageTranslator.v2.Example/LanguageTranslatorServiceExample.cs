@@ -35,7 +35,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example
         public LanguageTranslatorServiceExample(string url, string username, string password)
         {
             _languageTranslator = new LanguageTranslatorService(username, password);
-            _languageTranslator.Endpoint = url;
+            _languageTranslator.SetEndpoint(url);
 
             ListModels();
             CreateModel();

@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Example
         public NaturalLanguageUnderstandingExample(string url, string username, string password)
         {
             _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService(username, password, "2017-02-27");
-            _naturalLanguageUnderstandingService.Endpoint = url;
+            _naturalLanguageUnderstandingService.SetEndpoint(url);
 
             Analyze();
             ListModels();

@@ -26,9 +26,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     public class VoiceModel : BaseModel
     {
         /// <summary>
-        /// The customization ID (GUID) of the custom voice model. **Note:** When you create a new custom voice model, the service returns only the GUID of the new custom model; it does not return the other fields of this object.
+        /// The customization ID (GUID) of the custom voice model. The **Create a custom model** method returns only this field. It does not not return the other fields of this object.
         /// </summary>
-        /// <value>The customization ID (GUID) of the custom voice model. **Note:** When you create a new custom voice model, the service returns only the GUID of the new custom model; it does not return the other fields of this object.</value>
+        /// <value>The customization ID (GUID) of the custom voice model. The **Create a custom model** method returns only this field. It does not not return the other fields of this object.</value>
         [JsonProperty("customization_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CustomizationId { get; set; }
         /// <summary>
@@ -68,9 +68,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// An array of `Word` objects that lists the words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words. **Note:** This field is returned only when you list information about a specific custom voice model.
+        /// An array of `Word` objects that lists the words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words. This field is returned only by the **Get a voice** method and only when you specify the customization ID of a custom voice model.
         /// </summary>
-        /// <value>An array of `Word` objects that lists the words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words. **Note:** This field is returned only when you list information about a specific custom voice model.</value>
+        /// <value>An array of `Word` objects that lists the words and their translations from the custom voice model. The words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is empty if the custom model contains no words. This field is returned only by the **Get a voice** method and only when you specify the customization ID of a custom voice model.</value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
         public List<Word> Words { get; set; }
     }

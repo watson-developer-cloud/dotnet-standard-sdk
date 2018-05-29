@@ -77,7 +77,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Example
             };
 
             var _service = new TextToSpeechService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             // MemoryStream Result with .wav data
             var synthesizeResult = _service.Synthesize(synthesizeText, "audio/wav");

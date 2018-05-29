@@ -129,7 +129,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
-                var result = _service.Classify(fs as Stream, imagesFileContentType: "image/jpeg");
+                var result = _service.Classify(fs, imagesFileContentType: "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -154,7 +154,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
-                var result = _service.DetectFaces(fs as Stream, null, "image/jpeg");
+                var result = _service.DetectFaces(fs, null, "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -194,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         #region Custom
-        [TestMethod]
+        //[TestMethod]
         public void TestClassifiers_CF_Success()
         {
             Classifier createClassifierResult = null;
@@ -421,7 +421,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Generated
         #region Classify
-        private ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        private ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
             var result = _service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType, customData: customData);
@@ -440,7 +440,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region DetectFaces
-        private DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        private DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DetectFaces()");
             var result = _service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType, customData: customData);
@@ -552,6 +552,45 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return result;
         }
         #endregion
+
+        #region GetCoreMlModel
+        private Task<Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetCoreMlModel()");
+            var result = _service.GetCoreMlModel(classifierId: classifierId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetCoreMlModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetCoreMlModel()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #endregion
     }
 }

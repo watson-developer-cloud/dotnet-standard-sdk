@@ -241,7 +241,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region CreateModel
-        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null)
+        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, System.IO.FileStream monolingualCorpus = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateModel()");
             var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus, customData: customData);

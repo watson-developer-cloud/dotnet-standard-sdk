@@ -48,7 +48,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         public SpeechToTextServiceExample(string url, string username, string password)
         {
             service = new SpeechToTextService(username, password);
-            service.Endpoint = url;
+            service.SetEndpoint(url);
 
             //var listModelsResult = ListModels();
 

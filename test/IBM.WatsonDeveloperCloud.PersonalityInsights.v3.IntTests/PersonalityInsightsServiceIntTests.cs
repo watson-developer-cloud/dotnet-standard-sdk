@@ -118,14 +118,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         #endregion
 
         #region ProfileAsCsv
-        private Profile ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        private System.IO.MemoryStream ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ProfileAsCsv()");
             var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences, customData: customData);
 
             if (result != null)
             {
-                Console.WriteLine("ProfileAsCsv() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+                Console.WriteLine("ProfileAsCsv() succeeded!");
             }
             else
             {

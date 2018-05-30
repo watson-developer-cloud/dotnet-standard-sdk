@@ -231,71 +231,78 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 string urlService = string.Empty;
-                IRequest request = null;
+                IRequest restRequest = null;
 
-                if (string.IsNullOrEmpty(sessionId))
+                IClient client;
+                if (_tokenManager == null)
                 {
-                    request =
-                        this.Client.WithAuthentication(this.UserName, this.Password)
-                               .PostAsync($"{this.Endpoint}/v1/recognize");
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+
                 }
                 else
                 {
-                    request =
-                        this.Client.WithAuthentication(this.UserName, this.Password)
-                                   .PostAsync($"{this.Endpoint}/v1/sessions/{sessionId}")
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                if (string.IsNullOrEmpty(sessionId))
+                {
+                    restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
+                }
+                else
+                {
+                    restRequest = client.PostAsync($"{this.Endpoint}/v1/sessions/{sessionId}")
                                    .WithHeader("Cookie", sessionId);
                 }
 
                 if (!string.IsNullOrEmpty(transferEncoding))
-                    request.WithHeader("Transfer-Encoding", transferEncoding);
+                    restRequest.WithHeader("Transfer-Encoding", transferEncoding);
 
                 if (metaData == null)
                 {
                     // if a session exists, the model should not be sent
                     if (string.IsNullOrEmpty(sessionId))
-                        request.WithArgument("model", model);
+                        restRequest.WithArgument("model", model);
 
                     if (!string.IsNullOrEmpty(customizationId))
-                        request.WithArgument("customization_id", customizationId);
+                        restRequest.WithArgument("customization_id", customizationId);
 
                     if (continuous.HasValue)
-                        request.WithArgument("continuous", continuous.Value);
+                        restRequest.WithArgument("continuous", continuous.Value);
 
                     if (inactivityTimeout.HasValue && inactivityTimeout.Value > 0)
-                        request.WithArgument("inactivity_timeout", inactivityTimeout.Value);
+                        restRequest.WithArgument("inactivity_timeout", inactivityTimeout.Value);
 
                     if (keywords != null && keywords.Length > 0)
-                        request.WithArgument("keywords", keywords);
+                        restRequest.WithArgument("keywords", keywords);
 
                     if (keywordsThreshold.HasValue && keywordsThreshold.Value > 0)
-                        request.WithArgument("keywords_threshold", keywordsThreshold.Value);
+                        restRequest.WithArgument("keywords_threshold", keywordsThreshold.Value);
 
                     if (maxAlternatives.HasValue && maxAlternatives.Value > 0)
-                        request.WithArgument("max_alternatives", maxAlternatives.Value);
+                        restRequest.WithArgument("max_alternatives", maxAlternatives.Value);
 
                     if (wordAlternativesThreshold.HasValue && wordAlternativesThreshold.Value > 0)
-                        request.WithArgument("word_alternatives_threshold", wordAlternativesThreshold.Value);
+                        restRequest.WithArgument("word_alternatives_threshold", wordAlternativesThreshold.Value);
 
                     if (wordConfidence.HasValue)
-                        request.WithArgument("word_confidence", wordConfidence.Value);
+                        restRequest.WithArgument("word_confidence", wordConfidence.Value);
 
                     if (timestamps.HasValue)
-                        request.WithArgument("timestamps", timestamps.Value);
+                        restRequest.WithArgument("timestamps", timestamps.Value);
 
                     if (profanityFilter)
-                        request.WithArgument("profanity_filter", profanityFilter);
+                        restRequest.WithArgument("profanity_filter", profanityFilter);
 
                     if (smartFormatting.HasValue)
-                        request.WithArgument("smart_formatting", smartFormatting.Value);
+                        restRequest.WithArgument("smart_formatting", smartFormatting.Value);
 
                     if (speakerLabels.HasValue)
-                        request.WithArgument("speaker_labels", speakerLabels.Value);
+                        restRequest.WithArgument("speaker_labels", speakerLabels.Value);
 
                     StreamContent bodyContent = new StreamContent(audio);
                     bodyContent.Headers.Add("Content-Type", contentType);
 
-                    request.WithBodyContent(bodyContent);
+                    restRequest.WithBodyContent(bodyContent);
                 }
                 else
                 {
@@ -311,16 +318,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                     // if a session exists, the model should not be sent
                     if (string.IsNullOrEmpty(sessionId))
-                        request.WithArgument("model", model);
+                        restRequest.WithArgument("model", model);
 
                     formData.Add(metadata, "metadata");
                     formData.Add(audioContent, "upload");
 
-                    request.WithBodyContent(formData);
+                    restRequest.WithBodyContent(formData);
                 }
 
-                result =
-                    request.As<SpeechRecognitionResults>()
+                result = restRequest.As<SpeechRecognitionResults>()
                            .Result;
 
             }
@@ -350,18 +356,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                var request =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}/v1/sessions/{sessionId}/observe_result");
+                IRequest restRequest = null;
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                restRequest = client.GetAsync($"{this.Endpoint}/v1/sessions/{sessionId}/observe_result");
 
                 if (sequenceId.HasValue)
-                    request.WithArgument("sequence_id", sequenceId);
+                    restRequest.WithArgument("sequence_id", sequenceId);
 
                 if (interimResults)
-                    request.WithArgument("interim_results", interimResults);
+                    restRequest.WithArgument("interim_results", interimResults);
 
                 var strResult =
-                    request.AsString()
+                    restRequest.AsString()
                            .Result;
                 var serializer = new JsonSerializer();
 
@@ -403,18 +418,28 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             {
                 if (string.IsNullOrEmpty(model))
                     throw new ArgumentNullException(nameof(model));
-                
-                var request = this.Client.WithAuthentication(this.UserName, this.Password)
-                                .PostAsync($"{this.Endpoint}/v1/sessions");
-                request.WithArgument("model", model);
+
+                IRequest restRequest = null;
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                restRequest = client.PostAsync($"{this.Endpoint}/v1/sessions");
+                restRequest.WithArgument("model", model);
                 if (!string.IsNullOrEmpty(customizationId))
-                    request.WithArgument("customization_id", customizationId);
+                    restRequest.WithArgument("customization_id", customizationId);
                 if (!string.IsNullOrEmpty(acousticCustomizationId))
-                    request.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                    restRequest.WithArgument("acoustic_customization_id", acousticCustomizationId);
                 if (!string.IsNullOrEmpty(baseModelVersion))
-                    request.WithArgument("base_model_version", baseModelVersion);
-                request.WithHeader("accept", HttpMediaType.APPLICATION_JSON);
-                result = request.As<SpeechSession>().Result;
+                    restRequest.WithArgument("base_model_version", baseModelVersion);
+                restRequest.WithHeader("accept", HttpMediaType.APPLICATION_JSON);
+                result = restRequest.As<SpeechSession>().Result;
             }
             catch (AggregateException ae)
             {
@@ -448,13 +473,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .GetAsync($"{this.Endpoint}{string.Format("/v1/sessions/{0}/recognize", sessionId)}")
-                               .WithHeader("Cookie", sessionId)
-                               .WithHeader("accept", HttpMediaType.APPLICATION_JSON)
-                               .As<SessionStatus>()
-                               .Result;
+                IRequest restRequest = null;
+
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                restRequest = client.GetAsync($"{this.Endpoint}{string.Format("/v1/sessions/{0}/recognize", sessionId)}");
+                restRequest.WithHeader("Cookie", sessionId);
+                restRequest.WithHeader("accept", HttpMediaType.APPLICATION_JSON);
+                result = restRequest.As<SessionStatus>().Result;
+                               
             }
             catch (AggregateException ae)
             {
@@ -488,11 +523,20 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
             try
             {
-                result =
-                    this.Client.WithAuthentication(this.UserName, this.Password)
-                               .DeleteAsync(string.Format("{0}{1}/{2}", this.Endpoint, "/v1/sessions", sessionId))
-                               .AsMessage()
-                               .Result;
+                IRequest restRequest = null;
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                restRequest = client.DeleteAsync(string.Format("{0}{1}/{2}", this.Endpoint, "/v1/sessions", sessionId));
+
+                result = restRequest.AsMessage().Result;
             }
             catch (AggregateException ae)
             {

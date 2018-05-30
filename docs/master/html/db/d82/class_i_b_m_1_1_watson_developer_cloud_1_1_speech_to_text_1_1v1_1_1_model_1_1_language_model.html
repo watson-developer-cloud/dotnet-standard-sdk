@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.2.2</span>
+   &#160;<span id="projectnumber">2.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -123,7 +123,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:ad3536614e09d15d4c7badbb882a08f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current status of the custom language model: * <code>pending</code> indicates that the model was created but is waiting either for training data to be added or for the service to finish analyzing added data. * <code>ready</code> indicates that the model contains data and is ready to be trained. * <code>training</code> indicates that the model is currently being trained. * <code>available</code> indicates that the model is trained and ready to use. * <code>upgrading</code> indicates that the model is currently being upgraded. * <code>failed</code> indicates that training of the model failed.  <a href="#ad3536614e09d15d4c7badbb882a08f36">More...</a><br /></td></tr>
 <tr class="separator:ad3536614e09d15d4c7badbb882a08f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a397f8bbffe60a640f2730b222efb0690"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a397f8bbffe60a640f2730b222efb0690">CustomizationId</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a397f8bbffe60a640f2730b222efb0690"><td class="mdescLeft">&#160;</td><td class="mdescRight">The customization ID (GUID) of the custom language model. <b>Note:</b> When you create a new custom language model, the service returns only the GUID of the new model; it does not return the other fields of this object.  <a href="#a397f8bbffe60a640f2730b222efb0690">More...</a><br /></td></tr>
+<tr class="memdesc:a397f8bbffe60a640f2730b222efb0690"><td class="mdescLeft">&#160;</td><td class="mdescRight">The customization ID (GUID) of the custom language model. The <b>Create a custom language model</b> method returns only this field of the object; it does not return the other fields.  <a href="#a397f8bbffe60a640f2730b222efb0690">More...</a><br /></td></tr>
 <tr class="separator:a397f8bbffe60a640f2730b222efb0690"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15acd5de41b493e1a27476f8fdcbb900"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a15acd5de41b493e1a27476f8fdcbb900">Created</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a15acd5de41b493e1a27476f8fdcbb900"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date and time in Coordinated Universal Time (UTC) at which the custom language model was created. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>).  <a href="#a15acd5de41b493e1a27476f8fdcbb900">More...</a><br /></td></tr>
@@ -150,7 +150,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a07407e2ed627d13d95424065c9653562"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the language model for which the custom language model was created.  <a href="#a07407e2ed627d13d95424065c9653562">More...</a><br /></td></tr>
 <tr class="separator:a07407e2ed627d13d95424065c9653562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd0ff0b2d083425debcf4a7f7262fca5"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#afd0ff0b2d083425debcf4a7f7262fca5">Progress</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afd0ff0b2d083425debcf4a7f7262fca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training; the field changes from <code>0</code> to <code>100</code> when training is complete.  <a href="#afd0ff0b2d083425debcf4a7f7262fca5">More...</a><br /></td></tr>
+<tr class="memdesc:afd0ff0b2d083425debcf4a7f7262fca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training. The field changes from <code>0</code> to <code>100</code> when training is complete.  <a href="#afd0ff0b2d083425debcf4a7f7262fca5">More...</a><br /></td></tr>
 <tr class="separator:afd0ff0b2d083425debcf4a7f7262fca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad82a94e4744dbe65c23d962541bad9c2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d82/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#ad82a94e4744dbe65c23d962541bad9c2">Warnings</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ad82a94e4744dbe65c23d962541bad9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the request included unknown parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected<code>, where</code>parameters` is a list that includes a quoted string for each unknown parameter.  <a href="#ad82a94e4744dbe65c23d962541bad9c2">More...</a><br /></td></tr>
@@ -282,8 +282,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The customization ID (GUID) of the custom language model. <b>Note:</b> When you create a new custom language model, the service returns only the GUID of the new model; it does not return the other fields of this object. </p>
-<p>The customization ID (GUID) of the custom language model. <b>Note:</b> When you create a new custom language model, the service returns only the GUID of the new model; it does not return the other fields of this object.</p>
+<p>The customization ID (GUID) of the custom language model. The <b>Create a custom language model</b> method returns only this field of the object; it does not return the other fields. </p>
+<p>The customization ID (GUID) of the custom language model. The <b>Create a custom language model</b> method returns only this field of the object; it does not return the other fields.</p>
 
 </div>
 </div>
@@ -432,8 +432,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training; the field changes from <code>0</code> to <code>100</code> when training is complete. </p>
-<p>A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training; the field changes from <code>0</code> to <code>100</code> when training is complete.</p>
+<p>A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training. The field changes from <code>0</code> to <code>100</code> when training is complete. </p>
+<p>A percentage that indicates the progress of the custom language model's current training. A value of <code>100</code> means that the model is fully trained. <b>Note:</b> The <code>progress</code> field does not currently reflect the progress of the training. The field changes from <code>0</code> to <code>100</code> when training is complete.</p>
 
 </div>
 </div>

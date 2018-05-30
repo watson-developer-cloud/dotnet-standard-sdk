@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.2.2</span>
+   &#160;<span id="projectnumber">2.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -95,10 +95,16 @@ $(document).ready(function(){initNavTree('da/d5f/class_i_b_m_1_1_watson_develope
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a5234983c653dbed0644fb7cc608bf67f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html#a5234983c653dbed0644fb7cc608bf67f">IamApiKey</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5234983c653dbed0644fb7cc608bf67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The IAM Apikey for the service instance. If provided, The SDK will manage authentication through tokens.  <a href="#a5234983c653dbed0644fb7cc608bf67f">More...</a><br /></td></tr>
 <tr class="separator:a5234983c653dbed0644fb7cc608bf67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6076ca95d3108ce529363a01e865a1ab"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html#a6076ca95d3108ce529363a01e865a1ab">IamAccessToken</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6076ca95d3108ce529363a01e865a1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">The access token for the service instance. If provided, the SDK will not manage authentication through tokens.  <a href="#a6076ca95d3108ce529363a01e865a1ab">More...</a><br /></td></tr>
 <tr class="separator:a6076ca95d3108ce529363a01e865a1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ff722f3c9d30e75d272bbdc67ea6b7b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html#a9ff722f3c9d30e75d272bbdc67ea6b7b">ServiceUrl</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9ff722f3c9d30e75d272bbdc67ea6b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The service URL.  <a href="#a9ff722f3c9d30e75d272bbdc67ea6b7b">More...</a><br /></td></tr>
+<tr class="separator:a9ff722f3c9d30e75d272bbdc67ea6b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91ea0b5fce9ab8e58474d47c8ff6e4e0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_util_1_1_token_options.html#a91ea0b5fce9ab8e58474d47c8ff6e4e0">IamUrl</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a91ea0b5fce9ab8e58474d47c8ff6e4e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The IAM authentication URL. If omitted the value defaults to "https://iam.bluemix.net/identity/token".  <a href="#a91ea0b5fce9ab8e58474d47c8ff6e4e0">More...</a><br /></td></tr>
 <tr class="separator:a91ea0b5fce9ab8e58474d47c8ff6e4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -124,6 +130,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The access token for the service instance. If provided, the SDK will not manage authentication through tokens. </p>
+
 </div>
 </div>
 <a id="a5234983c653dbed0644fb7cc608bf67f"></a>
@@ -146,6 +154,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The IAM Apikey for the service instance. If provided, The SDK will manage authentication through tokens. </p>
+
 </div>
 </div>
 <a id="a91ea0b5fce9ab8e58474d47c8ff6e4e0"></a>
@@ -167,6 +177,32 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The IAM authentication URL. If omitted the value defaults to "https://iam.bluemix.net/identity/token". </p>
+
+</div>
+</div>
+<a id="a9ff722f3c9d30e75d272bbdc67ea6b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ff722f3c9d30e75d272bbdc67ea6b7b">&#9670;&nbsp;</a></span>ServiceUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.WatsonDeveloperCloud.Util.TokenOptions.ServiceUrl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The service URL. </p>
 
 </div>
 </div>

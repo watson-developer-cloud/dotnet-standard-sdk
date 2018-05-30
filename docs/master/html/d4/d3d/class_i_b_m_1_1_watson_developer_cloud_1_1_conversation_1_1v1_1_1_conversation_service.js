@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversati
 [
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a274ba546275ba0bad8a94452b48313aa", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#a7f917effc20d3931c289d495feae21f0", null ],
+    [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#aa12d55ed38aaa3c26195ce31ee0352a7", null ],
     [ "ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#ac8754b868de97f7d64bbfd3610560672", null ],
     [ "CreateCounterexample", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#adf4e15ca49af4cb1bdbf30abe01d7419", null ],
     [ "CreateDialogNode", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html#acab07021db8bbc642600130dfb6ae6da", null ],

@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.2.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.3.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1/)
 
 ### Natural Language Classifier
 IBM Watson™ [Natural Language Classifier][natural_language_classifier] uses machine learning algorithms to return the top matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLangaugeClassifier.v1" Version="2.2.2" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLangaugeClassifier.v1" Version="2.3.0" />
 </ItemGroup>
 
 ```

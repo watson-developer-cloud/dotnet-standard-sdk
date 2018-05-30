@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['custom_5frequest_5fheaders',['CUSTOM_REQUEST_HEADERS',['../d4/dc0/class_i_b_m_1_1_watson_developer_cloud_1_1_constants.html#a1725eed22374578cb49bcbc9c5f5d05a',1,'IBM::WatsonDeveloperCloud::Constants']]]
+  ['binary_5foctet_5fstream',['BINARY_OCTET_STREAM',['../dc/d22/class_i_b_m_1_1_watson_developer_cloud_1_1_http_1_1_http_media_type.html#a78a09bb44440dd643f0542eb6f1bd7ca',1,'IBM::WatsonDeveloperCloud::Http::HttpMediaType']]]
 ];

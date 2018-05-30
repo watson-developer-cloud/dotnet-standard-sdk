@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">2.2.2</span>
+   &#160;<span id="projectnumber">2.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -133,9 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4e51e2aa6e8150734d1c15ac7ae4d0e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d08/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_configuration.html">Configuration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a4e51e2aa6e8150734d1c15ac7ae4d0e1">UpdateConfiguration</a> (string environmentId, string configurationId, <a class="el" href="../../df/d08/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_configuration.html">Configuration</a> configuration, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a4e51e2aa6e8150734d1c15ac7ae4d0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a configuration. Replaces an existing configuration. * Completely replaces the original configuration. * The <code>configuration_id</code>, <code>updated</code>, and <code>created</code> fields are accepted in the request, but they are ignored, and an error is not generated. It is also acceptable for users to submit an updated configuration with none of the three properties. * Documents are processed with a snapshot of the configuration as it was at the time the document was submitted to be ingested. This means that already submitted documents will not see any updates made to the configuration.  <a href="#a4e51e2aa6e8150734d1c15ac7ae4d0e1">More...</a><br /></td></tr>
 <tr class="separator:a4e51e2aa6e8150734d1c15ac7ae4d0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a889dc2180b278ab22665d3c1e445deef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_test_document.html">TestDocument</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a889dc2180b278ab22665d3c1e445deef">TestConfigurationInEnvironment</a> (string environmentId, string configuration=null, string step=null, string configurationId=null, System.IO.Stream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a889dc2180b278ab22665d3c1e445deef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test configuration. Runs a sample document through the default or your configuration and returns diagnostic information designed to help you understand how the document was processed. The document is not added to the index.  <a href="#a889dc2180b278ab22665d3c1e445deef">More...</a><br /></td></tr>
-<tr class="separator:a889dc2180b278ab22665d3c1e445deef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6bda4e601199d8a23ee791345cce782"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_test_document.html">TestDocument</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad6bda4e601199d8a23ee791345cce782">TestConfigurationInEnvironment</a> (string environmentId, string configuration=null, string step=null, string configurationId=null, System.IO.FileStream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:ad6bda4e601199d8a23ee791345cce782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test configuration. Runs a sample document through the default or your configuration and returns diagnostic information designed to help you understand how the document was processed. The document is not added to the index.  <a href="#ad6bda4e601199d8a23ee791345cce782">More...</a><br /></td></tr>
+<tr class="separator:ad6bda4e601199d8a23ee791345cce782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb879ad8008ea04661e6358003deb42e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d00/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_collection.html">Collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abb879ad8008ea04661e6358003deb42e">CreateCollection</a> (string environmentId, <a class="el" href="../../da/d69/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_create_collection_request.html">CreateCollectionRequest</a> body, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:abb879ad8008ea04661e6358003deb42e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a collection.  <a href="#abb879ad8008ea04661e6358003deb42e">More...</a><br /></td></tr>
 <tr class="separator:abb879ad8008ea04661e6358003deb42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,18 +163,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8e197d8137a642a729d4413bf067f60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/dd5/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html">Expansions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa8e197d8137a642a729d4413bf067f60">ListExpansions</a> (string environmentId, string collectionId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:aa8e197d8137a642a729d4413bf067f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the expansion list. Returns the current expansion list for the specified collection. If an expansion list is not specified, an object with empty expansion arrays is returned.  <a href="#aa8e197d8137a642a729d4413bf067f60">More...</a><br /></td></tr>
 <tr class="separator:aa8e197d8137a642a729d4413bf067f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcfeebedac8ffedf65aa173f56a27ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_accepted.html">DocumentAccepted</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a0bcfeebedac8ffedf65aa173f56a27ae">AddDocument</a> (string environmentId, string collectionId, System.IO.Stream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a0bcfeebedac8ffedf65aa173f56a27ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a document. Add a document to a collection with optional metadata. * The <code>version</code> query parameter is still required. * Returns immediately after the system has accepted the document for processing. * The user must provide document content, metadata, or both. If the request is missing both document content and metadata, it is rejected. * The user can set the <code>Content-Type</code> parameter on the <code>file</code> part to indicate the media type of the document. If the <code>Content-Type</code> parameter is missing or is one of the generic media types (for example, <code>application/octet-stream</code>), then the service attempts to automatically detect the document's media type. * The following field names are reserved and will be filtered out if present after normalization: <code>id</code>, <code>score</code>, <code>highlight</code>, and any field with the prefix of: <code>_</code>, <code>+</code>, or <code>-</code> * Fields with empty name values after normalization are filtered out before indexing. * Fields containing the following characters after normalization are filtered out before indexing: <code>#</code> and <code>,</code>.  <a href="#a0bcfeebedac8ffedf65aa173f56a27ae">More...</a><br /></td></tr>
-<tr class="separator:a0bcfeebedac8ffedf65aa173f56a27ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c11c27a7015785ec133dbc298bff378"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_accepted.html">DocumentAccepted</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a5c11c27a7015785ec133dbc298bff378">AddDocument</a> (string environmentId, string collectionId, System.IO.FileStream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:a5c11c27a7015785ec133dbc298bff378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a document. Add a document to a collection with optional metadata. * The <code>version</code> query parameter is still required. * Returns immediately after the system has accepted the document for processing. * The user must provide document content, metadata, or both. If the request is missing both document content and metadata, it is rejected. * The user can set the <code>Content-Type</code> parameter on the <code>file</code> part to indicate the media type of the document. If the <code>Content-Type</code> parameter is missing or is one of the generic media types (for example, <code>application/octet-stream</code>), then the service attempts to automatically detect the document's media type. * The following field names are reserved and will be filtered out if present after normalization: <code>id</code>, <code>score</code>, <code>highlight</code>, and any field with the prefix of: <code>_</code>, <code>+</code>, or <code>-</code> * Fields with empty name values after normalization are filtered out before indexing. * Fields containing the following characters after normalization are filtered out before indexing: <code>#</code> and <code>,</code>.  <a href="#a5c11c27a7015785ec133dbc298bff378">More...</a><br /></td></tr>
+<tr class="separator:a5c11c27a7015785ec133dbc298bff378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed962df1612fb6cd24633370864dfa61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d5f/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_delete_document_response.html">DeleteDocumentResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aed962df1612fb6cd24633370864dfa61">DeleteDocument</a> (string environmentId, string collectionId, string documentId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:aed962df1612fb6cd24633370864dfa61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a document. If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP status code <code>200</code>) with the status set to 'deleted'.  <a href="#aed962df1612fb6cd24633370864dfa61">More...</a><br /></td></tr>
 <tr class="separator:aed962df1612fb6cd24633370864dfa61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a928436ec82be92d1524a3bc6b4f8698f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dbe/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_status.html">DocumentStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a928436ec82be92d1524a3bc6b4f8698f">GetDocumentStatus</a> (string environmentId, string collectionId, string documentId, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a928436ec82be92d1524a3bc6b4f8698f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get document details. Fetch status details about a submitted document. <b>Note:</b> this operation does not return the document itself. Instead, it returns only the document's processing status and any notices (warnings or errors) that were generated when the document was ingested. Use the query API to retrieve the actual document content.  <a href="#a928436ec82be92d1524a3bc6b4f8698f">More...</a><br /></td></tr>
 <tr class="separator:a928436ec82be92d1524a3bc6b4f8698f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d432ebfbc37e40b4eabd9ece24f135"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_accepted.html">DocumentAccepted</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a81d432ebfbc37e40b4eabd9ece24f135">UpdateDocument</a> (string environmentId, string collectionId, string documentId, System.IO.Stream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
-<tr class="memdesc:a81d432ebfbc37e40b4eabd9ece24f135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a document. Replace an existing document. Starts ingesting a document with optional metadata.  <a href="#a81d432ebfbc37e40b4eabd9ece24f135">More...</a><br /></td></tr>
-<tr class="separator:a81d432ebfbc37e40b4eabd9ece24f135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf91dc13a66139a35fa4c23ddc695999"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df8/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_document_accepted.html">DocumentAccepted</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaf91dc13a66139a35fa4c23ddc695999">UpdateDocument</a> (string environmentId, string collectionId, string documentId, System.IO.FileStream file=null, string metadata=null, string fileContentType=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
+<tr class="memdesc:aaf91dc13a66139a35fa4c23ddc695999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a document. Replace an existing document. Starts ingesting a document with optional metadata.  <a href="#aaf91dc13a66139a35fa4c23ddc695999">More...</a><br /></td></tr>
+<tr class="separator:aaf91dc13a66139a35fa4c23ddc695999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7507dfa1afa75421243cd3336cff6cb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dcf/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_model_1_1_query_response.html">QueryResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da6/interface_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a7507dfa1afa75421243cd3336cff6cb3">FederatedQuery</a> (string environmentId, List&lt; string &gt; collectionIds, string filter=null, string query=null, string naturalLanguageQuery=null, string aggregation=null, long? count=null, List&lt; string &gt; returnFields=null, long? offset=null, List&lt; string &gt; sort=null, bool? highlight=null, bool? deduplicate=null, string deduplicateField=null, bool? similar=null, List&lt; string &gt; similarDocumentIds=null, List&lt; string &gt; similarFields=null, Dictionary&lt; string, object &gt; customData=null)</td></tr>
 <tr class="memdesc:a7507dfa1afa75421243cd3336cff6cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query documents in multiple collections. See the <a href="https://console.bluemix.net/docs/services/discovery/using.html">Discovery service documentation</a> for more details.  <a href="#a7507dfa1afa75421243cd3336cff6cb3">More...</a><br /></td></tr>
 <tr class="separator:a7507dfa1afa75421243cd3336cff6cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,8 +228,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aac105bbfa1399ac01e73596ae0d5f7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0bcfeebedac8ffedf65aa173f56a27ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bcfeebedac8ffedf65aa173f56a27ae">&#9670;&nbsp;</a></span>AddDocument()</h2>
+<a id="a5c11c27a7015785ec133dbc298bff378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c11c27a7015785ec133dbc298bff378">&#9670;&nbsp;</a></span>AddDocument()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,7 +249,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>file</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -292,7 +292,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DocumentAcceptedDocumentAccepted</dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#aa268a1cc045944cad4ffab38411ebd89">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
+<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a061eeaa8e29b54beb04f9a63cbf5d7de">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -2445,8 +2445,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a889dc2180b278ab22665d3c1e445deef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a889dc2180b278ab22665d3c1e445deef">&#9670;&nbsp;</a></span>TestConfigurationInEnvironment()</h2>
+<a id="ad6bda4e601199d8a23ee791345cce782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6bda4e601199d8a23ee791345cce782">&#9670;&nbsp;</a></span>TestConfigurationInEnvironment()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2478,7 +2478,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>file</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -2523,7 +2523,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TestDocumentTestDocument</dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a71976ac044dfe03c02b75e4cea21d2da">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
+<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a9ffab36730962c998067153b7c0c6a7f">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -2635,8 +2635,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a81d432ebfbc37e40b4eabd9ece24f135"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81d432ebfbc37e40b4eabd9ece24f135">&#9670;&nbsp;</a></span>UpdateDocument()</h2>
+<a id="aaf91dc13a66139a35fa4c23ddc695999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf91dc13a66139a35fa4c23ddc695999">&#9670;&nbsp;</a></span>UpdateDocument()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2662,7 +2662,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">System.IO.Stream&#160;</td>
+          <td class="paramtype">System.IO.FileStream&#160;</td>
           <td class="paramname"><em>file</em> = <code>null</code>, </td>
         </tr>
         <tr>
@@ -2706,7 +2706,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DocumentAcceptedDocumentAccepted</dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#a9103b50f175c009ebf8509c6447c37d7">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
+<p>Implemented in <a class="el" href="../../db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html#ac259b2a8e1d33b3de6278cdf225e0af3">IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService</a>.</p>
 
 </div>
 </div>

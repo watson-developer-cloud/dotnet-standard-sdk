@@ -39,9 +39,6 @@ var dir_5256ff93b4e9e06f445ec8585da2fc27 =
     [ "ImageWithFaces.cs", "dd/da8/_image_with_faces_8cs.html", [
       [ "ImageWithFaces", "df/d84/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces.html", "df/d84/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces" ]
     ] ],
-    [ "ModelClass.cs", "dc/daa/_model_class_8cs.html", [
-      [ "ModelClass", "d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html", "d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class" ]
-    ] ],
     [ "WarningInfo.cs", "db/d1c/_warning_info_8cs.html", [
       [ "WarningInfo", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info" ]
     ] ]

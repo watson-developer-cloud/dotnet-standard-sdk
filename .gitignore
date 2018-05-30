@@ -239,3 +239,7 @@ _Pvt_Extensions
 .fake/
 /src/IBM.WatsonDeveloperCloud.LanguageTranslator.Test/appsettings.json
 /test/IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests/appsettings.json
+
+**/.swagger-codegen-ignore
+**/.swagger-codegen
+src/tests/

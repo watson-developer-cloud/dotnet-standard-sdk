@@ -48,7 +48,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         public SpeechToTextServiceExample(string url, string username, string password)
         {
             service = new SpeechToTextService(username, password);
-            service.Endpoint = url;
+            service.SetEndpoint(url);
 
             //var listModelsResult = ListModels();
 
@@ -407,7 +407,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         #endregion
 
         #region AddCorpus
-        private object AddCorpus(string customizationId, string corpusName, System.IO.Stream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
+        private object AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
         {
             Console.WriteLine("\nAttempting to AddCorpus()");
             var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType);

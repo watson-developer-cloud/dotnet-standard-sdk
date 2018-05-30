@@ -57,6 +57,19 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             VersionDate = versionDate;
         }
 
+        public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+            this.Endpoint = options.ServiceUrl;
+
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public NaturalLanguageUnderstandingService(IClient httpClient) : this()
         {
@@ -85,7 +98,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -123,7 +143,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -158,7 +185,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
                 restRequest.WithArgument("version", VersionDate);

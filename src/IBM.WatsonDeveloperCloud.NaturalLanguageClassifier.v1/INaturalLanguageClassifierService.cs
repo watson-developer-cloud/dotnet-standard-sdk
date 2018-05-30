@@ -45,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see [Data preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData, Dictionary<string, object> customData = null);
+        Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null);
         /// <summary>
         /// Delete classifier. 
         /// </summary>

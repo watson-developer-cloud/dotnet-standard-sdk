@@ -76,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             #endregion
 
             _service = new NaturalLanguageClassifierService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
         }
 
         #region Classifiers
@@ -188,7 +188,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         #endregion
 
         #region CreateClassifier
-        private Classifier CreateClassifier(System.IO.Stream metadata, System.IO.Stream trainingData, Dictionary<string, object> customData = null)
+        private Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
             var result = _service.CreateClassifier(metadata: metadata, trainingData: trainingData, customData: customData);

@@ -62,6 +62,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             VersionDate = versionDate;
         }
 
+        public DiscoveryService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+            this.Endpoint = options.ServiceUrl;
+
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public DiscoveryService(IClient httpClient) : this()
         {
@@ -90,7 +103,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -129,7 +149,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -167,7 +194,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -203,7 +237,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -246,7 +287,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -288,7 +336,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -329,7 +384,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -371,7 +433,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -412,7 +481,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -451,7 +527,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -497,7 +580,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -528,7 +618,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TestDocument" />TestDocument</returns>
-        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -555,7 +645,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", "filename");
+                    formData.Add(fileContent, "file", file.Name);
                 }
 
                 if (metadata != null)
@@ -566,7 +656,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -611,7 +708,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -653,7 +757,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -694,7 +805,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -735,7 +853,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -774,7 +899,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -818,7 +950,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -862,7 +1001,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -904,7 +1050,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -945,7 +1098,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -973,7 +1133,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -995,7 +1155,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", "filename");
+                    formData.Add(fileContent, "file", file.Name);
                 }
 
                 if (metadata != null)
@@ -1006,7 +1166,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1051,7 +1218,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1095,7 +1269,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1125,7 +1306,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1149,7 +1330,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", "filename");
+                    formData.Add(fileContent, "file", file.Name);
                 }
 
                 if (metadata != null)
@@ -1160,7 +1341,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1215,7 +1403,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1294,7 +1489,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1376,7 +1578,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1451,7 +1660,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1510,7 +1726,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1583,7 +1806,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1627,7 +1857,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1675,7 +1912,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1717,7 +1961,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1761,7 +2012,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1808,7 +2066,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1852,7 +2117,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1899,7 +2171,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1940,7 +2219,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1984,7 +2270,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2034,7 +2327,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2072,7 +2372,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 restRequest.WithArgument("version", VersionDate);

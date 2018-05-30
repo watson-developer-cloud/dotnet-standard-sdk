@@ -58,6 +58,19 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             VersionDate = versionDate;
         }
 
+        public ToneAnalyzerService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+            this.Endpoint = options.ServiceUrl;
+
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public ToneAnalyzerService(IClient httpClient) : this()
         {
@@ -93,7 +106,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -140,7 +160,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
                 restRequest.WithArgument("version", VersionDate);

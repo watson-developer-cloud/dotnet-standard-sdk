@@ -97,7 +97,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             #endregion
 
             _service = new DiscoveryService(_username, _password, version);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
 
             var environments = ListEnvironments();
@@ -271,7 +271,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
@@ -280,7 +280,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted updateDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
             }
 
             var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
@@ -332,7 +332,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
@@ -381,7 +381,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
@@ -431,7 +431,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs as Stream, _metadata);
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
@@ -440,7 +440,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             DocumentAccepted updateDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs as Stream, _metadata);
+                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
             }
 
             var listTrainingDataResult = ListTrainingData(_environmentId, _createdCollectionId);
@@ -743,7 +743,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region TestConfigurationInEnvironment
-        private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to TestConfigurationInEnvironment()");
             var result = _service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step, configurationId: configurationId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
@@ -933,7 +933,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region AddDocument
-        private DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        private DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddDocument()");
             var result = _service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
@@ -990,7 +990,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region UpdateDocument
-        private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateDocument()");
             var result = _service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);

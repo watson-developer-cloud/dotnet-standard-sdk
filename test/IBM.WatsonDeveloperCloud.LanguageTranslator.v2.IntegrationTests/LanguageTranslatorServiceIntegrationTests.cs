@@ -83,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.ListIdentifiableLanguages();
 
@@ -96,7 +96,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.Identify(_text);
 
@@ -109,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var translateRequest = new TranslateRequest()
             {
@@ -131,7 +131,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.ListModels();
 
@@ -144,7 +144,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             var results = _service.GetModel(_baseModel);
 
@@ -157,7 +157,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         {
             _service =
                 new LanguageTranslatorService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
 
             TranslationModel createModelResult;
 
@@ -241,7 +241,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         #endregion
 
         #region CreateModel
-        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.Stream forcedGlossary = null, System.IO.Stream parallelCorpus = null, System.IO.Stream monolingualCorpus = null, Dictionary<string, object> customData = null)
+        private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, System.IO.FileStream monolingualCorpus = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateModel()");
             var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, monolingualCorpus: monolingualCorpus, customData: customData);

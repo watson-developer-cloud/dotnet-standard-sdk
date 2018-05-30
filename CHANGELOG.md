@@ -1,5 +1,13 @@
 Change Log
 ==========
+## Version 2.3.0
+_2018-05-29_
+* Regenerated SDK based on the latest API definition. All services except for Natural Language Classifier support IAM authentication.
+* Service endpoint is set to the `gateway-a` endpoint if the user authenticates using apikey rather than TokenOptions.
+* Where a file is required we now use `FileStream` rather than `Stream` to preserve the filename.
+* New: Add `SetEndpoint()` method to the service base class. This sets a flag so we can keep track if the user manually changed the service endpoint and if so will not automatically change the endpoint.
+* Fixed: Disambiguate `IamUrl` and `ServiceUrl`. The `IamUrl` is now user configurable.
+
 ## Version 2.2.2
 _2018-05-18_
 * Regenerated SDK based on latest API definition.

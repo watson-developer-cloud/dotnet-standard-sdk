@@ -28,8 +28,8 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 {
-    [TestClass]
-    public class VisualRecognitionServiceIntegrationTests
+    //[TestClass]
+    public class VisualRecognitionServiceRCIntegrationTests
     {
         private VisualRecognitionService _service;
         private static string credentials = string.Empty;
@@ -82,13 +82,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-iam-sdk")[0].Credentials;
                 _endpoint = credential.Url;
-                _apikey = credential.ApiKey;
+                _apikey = credential.IamApikey;
             }
             #endregion
 
-            _service = new VisualRecognitionService(_apikey, "2016-05-20");
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = _apikey,
+                ServiceUrl = _endpoint
+            };
+            _service = new VisualRecognitionService(tokenOptions, "2018-03-19");
             _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
@@ -125,11 +130,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region General
         [TestMethod]
-        public void Classify_Success()
+        public void Classify_RC_Success()
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
-                var result = _service.Classify(fs as Stream, imagesFileContentType: "image/jpeg");
+                var result = _service.Classify(fs, imagesFileContentType: "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -138,7 +143,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyURL_Success()
+        public void ClassifyURL_RC_Success()
         {
             var result = _service.Classify(url: _imageUrl);
 
@@ -150,11 +155,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Face
         [TestMethod]
-        public void DetectFaces_Success()
+        public void DetectFaces_RC_Success()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
-                var result = _service.DetectFaces(fs as Stream, null, "image/jpeg");
+                var result = _service.DetectFaces(fs, null, "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -163,7 +168,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesURL_Success()
+        public void DetectFacesURL_RC_Success()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -177,7 +182,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         //[TestMethod]
-        public void ListClassifiers_Success()
+        public void ListClassifiers_RC_Success()
         {
             Classifiers listClassifiersResult = null;
 
@@ -195,7 +200,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Custom
         [TestMethod]
-        public void TestClassifiers_Success()
+        public void TestClassifiers_RC_Success()
         {
             Classifier createClassifierResult = null;
             try
@@ -421,7 +426,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Generated
         #region Classify
-        private ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        private ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
             var result = _service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType, customData: customData);
@@ -440,7 +445,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         #region DetectFaces
-        private DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        private DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DetectFaces()");
             var result = _service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType, customData: customData);
@@ -552,6 +557,26 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             return result;
         }
         #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -96,11 +96,21 @@ namespace IBM.WatsonDeveloperCloud.Util
     /// </summary>
     public class TokenOptions
     {
-        [JsonProperty("iamApiKey", NullValueHandling = NullValueHandling.Ignore)]
+        /// <summary>
+        /// The IAM Apikey for the service instance. If provided, The SDK will manage authentication through tokens.
+        /// </summary>
         public string IamApiKey { get; set; }
-        [JsonProperty("iamAcessToken", NullValueHandling = NullValueHandling.Ignore)]
+        /// <summary>
+        /// The access token for the service instance. If provided, the SDK will not manage authentication through tokens. 
+        /// </summary>
         public string IamAccessToken { get; set; }
-        [JsonProperty("iamUrl", NullValueHandling = NullValueHandling.Ignore)]
+        /// <summary>
+        /// The service URL.
+        /// </summary>
+        public string ServiceUrl { get; set; }
+        /// <summary>
+        /// The IAM authentication URL. If omitted the value defaults to "https://iam.bluemix.net/identity/token".
+        /// </summary>
         public string IamUrl { get; set; }
     }
 

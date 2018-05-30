@@ -67,9 +67,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }
         /// <summary>
-        /// Returns information about a specified custom voice model. **Note:** This field is returned only when you list information about a specific voice and specify the GUID of a custom voice model that is based on that voice.
+        /// Returns information about a specified custom voice model. This field is returned only by the **Get a voice** method and only when you specify the customization ID of a custom voice model.
         /// </summary>
-        /// <value>Returns information about a specified custom voice model. **Note:** This field is returned only when you list information about a specific voice and specify the GUID of a custom voice model that is based on that voice.</value>
+        /// <value>Returns information about a specified custom voice model. This field is returned only by the **Get a voice** method and only when you specify the customization ID of a custom voice model.</value>
         [JsonProperty("customization", NullValueHandling = NullValueHandling.Ignore)]
         public VoiceModel Customization { get; set; }
     }

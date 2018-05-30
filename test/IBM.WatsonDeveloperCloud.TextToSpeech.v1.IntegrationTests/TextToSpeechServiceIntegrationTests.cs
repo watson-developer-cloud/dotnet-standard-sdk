@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
             #endregion
 
             _service = new TextToSpeechService(_username, _password);
-            _service.Endpoint = _endpoint;
+            _service.SetEndpoint(_endpoint);
         }
 
         #region Voices
@@ -293,7 +293,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region Synthesize
-        private System.IO.Stream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null, Dictionary<string, object> customData = null)
+        private System.IO.MemoryStream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Synthesize()");
             var result = _service.Synthesize(text: text, accept: accept, voice: voice, customizationId: customizationId, customData: customData);
@@ -514,6 +514,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListWords()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteUserData
+        private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteUserData()");
+            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteUserData() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteUserData()");
             }
 
             return result;

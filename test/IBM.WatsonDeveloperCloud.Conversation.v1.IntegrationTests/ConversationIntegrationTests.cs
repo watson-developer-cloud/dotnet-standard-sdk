@@ -93,10 +93,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             }
             #endregion
 
-            _service = new ConversationService(_username, _password, "2018-02-16")
-            {
-                Endpoint = _endpoint
-            };
+            _service = new ConversationService(_username, _password, "2018-02-16");
+            _service.SetEndpoint(_endpoint);
 
 #if DELETE_DOTNET_WORKSPACES
             var workspaces = _service.ListWorkspaces();
@@ -700,6 +698,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
             var filter = "(language::en,request.context.metadata.deployment::deployment_1)";
             var listAllLogsResult = ListAllLogs(filter);
             Assert.IsNotNull(listAllLogsResult);
+        }
+        #endregion
+
+        #region Delay
+        private void Delay(int delayTimeInMilliseconds)
+        {
+            System.Threading.Thread.Sleep(delayTimeInMilliseconds);
         }
         #endregion
 
@@ -1540,13 +1545,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.IntegratiationTests
         }
         #endregion
 
-        #endregion
-
-        #region Delay
-        private void Delay(int delayTimeInMilliseconds)
-        {
-            System.Threading.Thread.Sleep(delayTimeInMilliseconds);
-        }
         #endregion
     }
 }

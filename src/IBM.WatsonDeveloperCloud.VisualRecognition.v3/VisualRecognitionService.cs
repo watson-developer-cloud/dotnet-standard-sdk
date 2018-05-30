@@ -31,7 +31,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
         const string SERVICE_NAME = "visual_recognition";
-        const string URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+        const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -57,6 +57,19 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             VersionDate = versionDate;
         }
 
+        public VisualRecognitionService(TokenOptions options, string versionDate) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+            this.Endpoint = options.ServiceUrl;
+
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public VisualRecognitionService(IClient httpClient) : this()
         {
@@ -78,7 +91,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
-        public ClassifiedImages Classify(System.IO.Stream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        public ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -96,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
                     imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", "filename");
+                    formData.Add(imagesFileContent, "images_file", imagesFile.Name);
                 }
 
                 if (url != null)
@@ -125,7 +138,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                client = this.Client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -154,7 +174,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        public DetectedFaces DetectFaces(System.IO.Stream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -172,7 +192,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
                     imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", "filename");
+                    formData.Add(imagesFileContent, "images_file", imagesFile.Name);
                 }
 
                 if (url != null)
@@ -183,7 +203,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                client = this.Client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -223,7 +250,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                client = this.Client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -262,7 +296,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                client = this.Client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -299,7 +340,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                client = this.Client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -311,6 +359,54 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = restRequest.As<Classifiers>().Result;
                 if(result == null)
                     result = new Classifiers();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        
+        /// <summary>
+        /// Delete labeled data. Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException(nameof(customerId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/user_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                if (!string.IsNullOrEmpty(customerId))
+                    restRequest.WithArgument("customer_id", customerId);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

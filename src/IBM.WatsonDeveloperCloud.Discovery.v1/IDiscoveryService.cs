@@ -119,7 +119,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TestDocument" />TestDocument</returns>
-        TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Create a collection. 
         /// </summary>
@@ -204,7 +204,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Delete a document. If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP status code `200`) with the status set to 'deleted'.
         /// </summary>
@@ -234,7 +234,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.Stream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Query documents in multiple collections. See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details.
         /// </summary>

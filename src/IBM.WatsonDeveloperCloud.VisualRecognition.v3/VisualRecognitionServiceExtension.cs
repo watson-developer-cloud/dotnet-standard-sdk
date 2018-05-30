@@ -82,13 +82,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(negativeExamplesContent, "negative_examples", "negative_examples.zip");
                 }
 
-                result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers")
-                                .WithArgument("api_key", ApiKey)
-                                .WithArgument("version", VersionDate)
-                                .WithBodyContent(formData)
-                                .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                                .As<Classifier>()
-                                .Result;
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers");
+
+                restRequest.WithArgument("version", VersionDate);
+                if(!string.IsNullOrEmpty(ApiKey))
+                    restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                result = restRequest.As<Classifier>().Result;
+                if (result == null)
+                    result = new Classifier();
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -141,13 +156,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(negativeExamplesContent, "negative_examples", "negative_examples.zip");
                 }
 
-                result = this.Client.PostAsync($"{this.Endpoint}/v3/classifiers/{updateClassifier.ClassifierId}")
-                                .WithArgument("api_key", ApiKey)
-                                .WithArgument("version", VersionDate)
-                                .WithBodyContent(formData)
-                                .WithFormatter(new MediaTypeHeaderValue("application/octet-stream"))
-                                .As<Classifier>()
-                                .Result;
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers/{updateClassifier.ClassifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(ApiKey))
+                    restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                result = restRequest.As<Classifier>().Result;
+                if (result == null)
+                    result = new Classifier();
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -171,12 +201,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             
             try
             {
-                var request = this.Client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}/core_ml_model");
-                request.WithArgument("api_key", ApiKey);
-                request.WithArgument("version", VersionDate);
-                request.WithArgument("classifier_id", classifierId);
-                request.WithFormatter(MediaTypeHeaderValue.Parse("application/octet-stream"));
-                result = request.AsStream();
+                IClient client;
+                if (_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}/core_ml_model");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(ApiKey))
+                    restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithArgument("classifier_id", classifierId);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                result = restRequest.AsStream();
             }
             catch (AggregateException ae)
             {

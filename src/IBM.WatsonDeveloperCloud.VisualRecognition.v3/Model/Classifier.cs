@@ -108,7 +108,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// </summary>
         /// <value>Classes that define a classifier.</value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
-        public List<ModelClass> Classes { get; set; }
+        public List<ClassResult> Classes { get; set; }
         /// <summary>
         /// Date and time in Coordinated Universal Time (UTC) that the classifier was updated. Returned when verbose=`true`. Might not be returned by some requests. Identical to `updated` and retained for backward compatibility.
         /// </summary>

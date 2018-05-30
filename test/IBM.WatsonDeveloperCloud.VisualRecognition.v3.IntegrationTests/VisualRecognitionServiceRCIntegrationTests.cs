@@ -82,9 +82,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-iam-sdk")[0].Credentials;
                 _endpoint = credential.Url;
-                _apikey = credential.ApiKey;
+                _apikey = credential.IamApikey;
             }
             #endregion
 
@@ -199,7 +199,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         #region Custom
-        //[TestMethod]
+        [TestMethod]
         public void TestClassifiers_RC_Success()
         {
             Classifier createClassifierResult = null;

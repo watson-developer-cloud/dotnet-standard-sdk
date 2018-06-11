@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// A list of available voices.
         /// </value>
         [JsonProperty("voices", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Voice> Voices { get; set; }
+        public List<Voice> _Voices { get; set; }
     }
 
 }

@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// the custom model has no corpora.
         /// </value>
         [JsonProperty("corpora", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Corpus> Corpora { get; set; }
+        public List<Corpus> _Corpora { get; set; }
     }
 
 }

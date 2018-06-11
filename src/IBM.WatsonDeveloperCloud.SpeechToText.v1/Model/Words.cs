@@ -26,11 +26,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class Words : BaseModel
     {
         /// <summary>
-        /// Information about each word in the custom model's words resource. The array is empty if the custom model has no words.
+        /// An array of objects that provides information about each word in the custom model's words resource. The
+        /// array is empty if the custom model has no words.
         /// </summary>
-        /// <value>Information about each word in the custom model's words resource. The array is empty if the custom model has no words.</value>
+        /// <value>
+        /// An array of objects that provides information about each word in the custom model's words resource. The
+        /// array is empty if the custom model has no words.
+        /// </value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Word> _Words { get; set; }
+        public List<Word> Words { get; set; }
     }
 
 }

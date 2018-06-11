@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Analyzed text that corresponds to the action.
         /// </summary>
-        /// <value>Analyzed text that corresponds to the action.</value>
+        /// <value>
+        /// Analyzed text that corresponds to the action.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// normalized version of the action.
         /// </summary>
-        /// <value>normalized version of the action.</value>
+        /// <value>
+        /// normalized version of the action.
+        /// </value>
         [JsonProperty("normalized", NullValueHandling = NullValueHandling.Ignore)]
         public string Normalized { get; set; }
         /// <summary>

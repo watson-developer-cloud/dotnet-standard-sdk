@@ -28,9 +28,27 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class RecognitionJob : BaseModel
     {
         /// <summary>
-        /// The current status of the job: * `waiting`: The service is preparing the job for processing. The service returns this status when the job is initially created or when it is waiting for capacity to process the job. The job remains in this state until the service has the capacity to begin processing it. * `processing`: The service is actively processing the job. * `completed`: The service has finished processing the job. If the job specified a callback URL and the event `recognitions.completed_with_results`, the service sent the results with the callback notification; otherwise, you must retrieve the results by checking the individual job. * `failed`: The job failed.
+        /// The current status of the job:
+        /// * `waiting`: The service is preparing the job for processing. The service returns this status when the job
+        /// is initially created or when it is waiting for capacity to process the job. The job remains in this state
+        /// until the service has the capacity to begin processing it.
+        /// * `processing`: The service is actively processing the job.
+        /// * `completed`: The service has finished processing the job. If the job specified a callback URL and the
+        /// event `recognitions.completed_with_results`, the service sent the results with the callback notification;
+        /// otherwise, you must retrieve the results by checking the individual job.
+        /// * `failed`: The job failed.
         /// </summary>
-        /// <value>The current status of the job: * `waiting`: The service is preparing the job for processing. The service returns this status when the job is initially created or when it is waiting for capacity to process the job. The job remains in this state until the service has the capacity to begin processing it. * `processing`: The service is actively processing the job. * `completed`: The service has finished processing the job. If the job specified a callback URL and the event `recognitions.completed_with_results`, the service sent the results with the callback notification; otherwise, you must retrieve the results by checking the individual job. * `failed`: The job failed.</value>
+        /// <value>
+        /// The current status of the job:
+        /// * `waiting`: The service is preparing the job for processing. The service returns this status when the job
+        /// is initially created or when it is waiting for capacity to process the job. The job remains in this state
+        /// until the service has the capacity to begin processing it.
+        /// * `processing`: The service is actively processing the job.
+        /// * `completed`: The service has finished processing the job. If the job specified a callback URL and the
+        /// event `recognitions.completed_with_results`, the service sent the results with the callback notification;
+        /// otherwise, you must retrieve the results by checking the individual job.
+        /// * `failed`: The job failed.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -61,51 +79,101 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         }
 
         /// <summary>
-        /// The current status of the job: * `waiting`: The service is preparing the job for processing. The service returns this status when the job is initially created or when it is waiting for capacity to process the job. The job remains in this state until the service has the capacity to begin processing it. * `processing`: The service is actively processing the job. * `completed`: The service has finished processing the job. If the job specified a callback URL and the event `recognitions.completed_with_results`, the service sent the results with the callback notification; otherwise, you must retrieve the results by checking the individual job. * `failed`: The job failed.
+        /// The current status of the job:
+        /// * `waiting`: The service is preparing the job for processing. The service returns this status when the job
+        /// is initially created or when it is waiting for capacity to process the job. The job remains in this state
+        /// until the service has the capacity to begin processing it.
+        /// * `processing`: The service is actively processing the job.
+        /// * `completed`: The service has finished processing the job. If the job specified a callback URL and the
+        /// event `recognitions.completed_with_results`, the service sent the results with the callback notification;
+        /// otherwise, you must retrieve the results by checking the individual job.
+        /// * `failed`: The job failed.
         /// </summary>
-        /// <value>The current status of the job: * `waiting`: The service is preparing the job for processing. The service returns this status when the job is initially created or when it is waiting for capacity to process the job. The job remains in this state until the service has the capacity to begin processing it. * `processing`: The service is actively processing the job. * `completed`: The service has finished processing the job. If the job specified a callback URL and the event `recognitions.completed_with_results`, the service sent the results with the callback notification; otherwise, you must retrieve the results by checking the individual job. * `failed`: The job failed.</value>
+        /// <value>
+        /// The current status of the job:
+        /// * `waiting`: The service is preparing the job for processing. The service returns this status when the job
+        /// is initially created or when it is waiting for capacity to process the job. The job remains in this state
+        /// until the service has the capacity to begin processing it.
+        /// * `processing`: The service is actively processing the job.
+        /// * `completed`: The service has finished processing the job. If the job specified a callback URL and the
+        /// event `recognitions.completed_with_results`, the service sent the results with the callback notification;
+        /// otherwise, you must retrieve the results by checking the individual job.
+        /// * `failed`: The job failed.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The ID of the asynchronous job.
         /// </summary>
-        /// <value>The ID of the asynchronous job.</value>
+        /// <value>
+        /// The ID of the asynchronous job.
+        /// </value>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
         /// <summary>
-        /// The date and time in Coordinated Universal Time (UTC) at which the job was created. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
+        /// The date and time in Coordinated Universal Time (UTC) at which the job was created. The value is provided in
+        /// full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
         /// </summary>
-        /// <value>The date and time in Coordinated Universal Time (UTC) at which the job was created. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).</value>
+        /// <value>
+        /// The date and time in Coordinated Universal Time (UTC) at which the job was created. The value is provided in
+        /// full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public string Created { get; set; }
         /// <summary>
-        /// The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`). This field is returned only by the **Check jobs** and **Check a job** methods.
+        /// The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The
+        /// value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`). This field is returned only by the
+        /// **Check jobs** and **Check a job** methods.
         /// </summary>
-        /// <value>The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`). This field is returned only by the **Check jobs** and **Check a job** methods.</value>
+        /// <value>
+        /// The date and time in Coordinated Universal Time (UTC) at which the job was last updated by the service. The
+        /// value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`). This field is returned only by the
+        /// **Check jobs** and **Check a job** methods.
+        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public string Updated { get; set; }
         /// <summary>
-        /// The URL to use to request information about the job with the **Check a job** method. This field is returned only by the **Create a job** method.
+        /// The URL to use to request information about the job with the **Check a job** method. This field is returned
+        /// only by the **Create a job** method.
         /// </summary>
-        /// <value>The URL to use to request information about the job with the **Check a job** method. This field is returned only by the **Create a job** method.</value>
+        /// <value>
+        /// The URL to use to request information about the job with the **Check a job** method. This field is returned
+        /// only by the **Create a job** method.
+        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
-        /// The user token associated with a job that was created with a callback URL and a user token. This field can be returned only by the **Check jobs** method.
+        /// The user token associated with a job that was created with a callback URL and a user token. This field can
+        /// be returned only by the **Check jobs** method.
         /// </summary>
-        /// <value>The user token associated with a job that was created with a callback URL and a user token. This field can be returned only by the **Check jobs** method.</value>
+        /// <value>
+        /// The user token associated with a job that was created with a callback URL and a user token. This field can
+        /// be returned only by the **Check jobs** method.
+        /// </value>
         [JsonProperty("user_token", NullValueHandling = NullValueHandling.Ignore)]
         public string UserToken { get; set; }
         /// <summary>
-        /// If the status is `completed`, the results of the recognition request as an array that includes a single instance of a `SpeechRecognitionResults` object. This field is returned only by the **Check a job** method.
+        /// If the status is `completed`, the results of the recognition request as an array that includes a single
+        /// instance of a `SpeechRecognitionResults` object. This field is returned only by the **Check a job** method.
         /// </summary>
-        /// <value>If the status is `completed`, the results of the recognition request as an array that includes a single instance of a `SpeechRecognitionResults` object. This field is returned only by the **Check a job** method.</value>
+        /// <value>
+        /// If the status is `completed`, the results of the recognition request as an array that includes a single
+        /// instance of a `SpeechRecognitionResults` object. This field is returned only by the **Check a job** method.
+        /// </value>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<SpeechRecognitionResults> Results { get; set; }
         /// <summary>
-        /// An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. This field can be returned only by the **Create a job** method.
+        /// An array of warning messages about invalid parameters included with the request. Each warning includes a
+        /// descriptive message and a list of invalid argument strings, for example, `\"unexpected query parameter
+        /// 'user_token', query parameter 'callback_url' was not specified\"`. The request succeeds despite the
+        /// warnings. This field can be returned only by the **Create a job** method.
         /// </summary>
-        /// <value>An array of warning messages about invalid parameters included with the request. Each warning includes a descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings. This field can be returned only by the **Create a job** method.</value>
+        /// <value>
+        /// An array of warning messages about invalid parameters included with the request. Each warning includes a
+        /// descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter
+        /// 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings.
+        /// This field can be returned only by the **Create a job** method.
+        /// </value>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Warnings { get; set; }
     }

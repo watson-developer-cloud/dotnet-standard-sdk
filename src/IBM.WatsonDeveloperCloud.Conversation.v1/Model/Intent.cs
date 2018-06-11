@@ -28,25 +28,33 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The name of the intent.
         /// </summary>
-        /// <value>The name of the intent.</value>
+        /// <value>
+        /// The name of the intent.
+        /// </value>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string IntentName { get; set; }
         /// <summary>
         /// The timestamp for creation of the intent.
         /// </summary>
-        /// <value>The timestamp for creation of the intent.</value>
+        /// <value>
+        /// The timestamp for creation of the intent.
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the intent.
         /// </summary>
-        /// <value>The timestamp for the last update to the intent.</value>
+        /// <value>
+        /// The timestamp for the last update to the intent.
+        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The description of the intent.
         /// </summary>
-        /// <value>The description of the intent.</value>
+        /// <value>
+        /// The description of the intent.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }

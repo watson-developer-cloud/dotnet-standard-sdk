@@ -25,9 +25,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class CreateExample : BaseModel
     {
         /// <summary>
-        /// The text of a user input example. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 1024 characters.
+        /// The text of a user input example. This string must conform to the following restrictions:
+        /// - It cannot contain carriage return, newline, or tab characters.
+        /// - It cannot consist of only whitespace characters.
+        /// - It must be no longer than 1024 characters.
         /// </summary>
-        /// <value>The text of a user input example. This string must conform to the following restrictions:  - It cannot contain carriage return, newline, or tab characters.  - It cannot consist of only whitespace characters.  - It must be no longer than 1024 characters.</value>
+        /// <value>
+        /// The text of a user input example. This string must conform to the following restrictions:
+        /// - It cannot contain carriage return, newline, or tab characters.
+        /// - It cannot consist of only whitespace characters.
+        /// - It must be no longer than 1024 characters.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

@@ -30,7 +30,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         /// <summary>
         /// The language model that was used to process the input.
         /// </summary>
-        /// <value>The language model that was used to process the input.</value>
+        /// <value>
+        /// The language model that was used to process the input.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ProcessedLanguageEnum
         {
@@ -69,55 +71,87 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         /// <summary>
         /// The language model that was used to process the input.
         /// </summary>
-        /// <value>The language model that was used to process the input.</value>
+        /// <value>
+        /// The language model that was used to process the input.
+        /// </value>
         [JsonProperty("processed_language", NullValueHandling = NullValueHandling.Ignore)]
         public ProcessedLanguageEnum? ProcessedLanguage { get; set; }
         /// <summary>
         /// The number of words from the input that were used to produce the profile.
         /// </summary>
-        /// <value>The number of words from the input that were used to produce the profile.</value>
+        /// <value>
+        /// The number of words from the input that were used to produce the profile.
+        /// </value>
         [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? WordCount { get; set; }
         /// <summary>
-        /// When guidance is appropriate, a string that provides a message that indicates the number of words found and where that value falls in the range of required or suggested number of words.
+        /// When guidance is appropriate, a string that provides a message that indicates the number of words found and
+        /// where that value falls in the range of required or suggested number of words.
         /// </summary>
-        /// <value>When guidance is appropriate, a string that provides a message that indicates the number of words found and where that value falls in the range of required or suggested number of words.</value>
+        /// <value>
+        /// When guidance is appropriate, a string that provides a message that indicates the number of words found and
+        /// where that value falls in the range of required or suggested number of words.
+        /// </value>
         [JsonProperty("word_count_message", NullValueHandling = NullValueHandling.Ignore)]
         public string WordCountMessage { get; set; }
         /// <summary>
-        /// A recursive array of `Trait` objects that provides detailed results for the Big Five personality characteristics (dimensions and facets) inferred from the input text.
+        /// A recursive array of `Trait` objects that provides detailed results for the Big Five personality
+        /// characteristics (dimensions and facets) inferred from the input text.
         /// </summary>
-        /// <value>A recursive array of `Trait` objects that provides detailed results for the Big Five personality characteristics (dimensions and facets) inferred from the input text.</value>
+        /// <value>
+        /// A recursive array of `Trait` objects that provides detailed results for the Big Five personality
+        /// characteristics (dimensions and facets) inferred from the input text.
+        /// </value>
         [JsonProperty("personality", NullValueHandling = NullValueHandling.Ignore)]
         public List<Trait> Personality { get; set; }
         /// <summary>
         /// Detailed results for the Needs characteristics inferred from the input text.
         /// </summary>
-        /// <value>Detailed results for the Needs characteristics inferred from the input text.</value>
+        /// <value>
+        /// Detailed results for the Needs characteristics inferred from the input text.
+        /// </value>
         [JsonProperty("needs", NullValueHandling = NullValueHandling.Ignore)]
         public List<Trait> Needs { get; set; }
         /// <summary>
         /// Detailed results for the Values characteristics inferred from the input text.
         /// </summary>
-        /// <value>Detailed results for the Values characteristics inferred from the input text.</value>
+        /// <value>
+        /// Detailed results for the Values characteristics inferred from the input text.
+        /// </value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<Trait> Values { get; set; }
         /// <summary>
-        /// For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in terms of temporal characteristics. The results include information about the distribution of the content over the days of the week and the hours of the day.
+        /// For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in
+        /// terms of temporal characteristics. The results include information about the distribution of the content
+        /// over the days of the week and the hours of the day.
         /// </summary>
-        /// <value>For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in terms of temporal characteristics. The results include information about the distribution of the content over the days of the week and the hours of the day.</value>
+        /// <value>
+        /// For JSON content that is timestamped, detailed results about the social behavior disclosed by the input in
+        /// terms of temporal characteristics. The results include information about the distribution of the content
+        /// over the days of the week and the hours of the day.
+        /// </value>
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
         public List<Behavior> Behavior { get; set; }
         /// <summary>
-        /// If the **consumption_preferences** parameter is `true`, detailed results for each category of consumption preferences. Each element of the array provides information inferred from the input text for the individual preferences of that category.
+        /// If the **consumption_preferences** parameter is `true`, detailed results for each category of consumption
+        /// preferences. Each element of the array provides information inferred from the input text for the individual
+        /// preferences of that category.
         /// </summary>
-        /// <value>If the **consumption_preferences** parameter is `true`, detailed results for each category of consumption preferences. Each element of the array provides information inferred from the input text for the individual preferences of that category.</value>
+        /// <value>
+        /// If the **consumption_preferences** parameter is `true`, detailed results for each category of consumption
+        /// preferences. Each element of the array provides information inferred from the input text for the individual
+        /// preferences of that category.
+        /// </value>
         [JsonProperty("consumption_preferences", NullValueHandling = NullValueHandling.Ignore)]
         public List<ConsumptionPreferencesCategory> ConsumptionPreferences { get; set; }
         /// <summary>
-        /// Warning messages associated with the input text submitted with the request. The array is empty if the input generated no warnings.
+        /// Warning messages associated with the input text submitted with the request. The array is empty if the input
+        /// generated no warnings.
         /// </summary>
-        /// <value>Warning messages associated with the input text submitted with the request. The array is empty if the input generated no warnings.</value>
+        /// <value>
+        /// Warning messages associated with the input text submitted with the request. The array is empty if the input
+        /// generated no warnings.
+        /// </value>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public List<Warning> Warnings { get; set; }
     }

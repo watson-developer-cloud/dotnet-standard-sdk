@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Targeted text.
         /// </summary>
-        /// <value>Targeted text.</value>
+        /// <value>
+        /// Targeted text.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// Sentiment score from -1 (negative) to 1 (positive).
         /// </summary>
-        /// <value>Sentiment score from -1 (negative) to 1 (positive).</value>
+        /// <value>
+        /// Sentiment score from -1 (negative) to 1 (positive).
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

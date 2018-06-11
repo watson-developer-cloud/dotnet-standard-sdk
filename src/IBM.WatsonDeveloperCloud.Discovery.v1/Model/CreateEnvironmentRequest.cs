@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Name that identifies the environment.
         /// </summary>
-        /// <value>Name that identifies the environment.</value>
+        /// <value>
+        /// Name that identifies the environment.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Description of the environment.
         /// </summary>
-        /// <value>Description of the environment.</value>
+        /// <value>
+        /// Description of the environment.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// **Deprecated**: Size of the environment.
         /// </summary>
-        /// <value>**Deprecated**: Size of the environment.</value>
+        /// <value>
+        /// **Deprecated**: Size of the environment.
+        /// </value>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         public long? Size { get; set; }
     }

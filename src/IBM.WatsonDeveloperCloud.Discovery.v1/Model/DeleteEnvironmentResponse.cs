@@ -29,7 +29,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the environment.
         /// </summary>
-        /// <value>Status of the environment.</value>
+        /// <value>
+        /// Status of the environment.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -44,13 +46,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the environment.
         /// </summary>
-        /// <value>Status of the environment.</value>
+        /// <value>
+        /// Status of the environment.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier for the environment.
         /// </summary>
-        /// <value>The unique identifier for the environment.</value>
+        /// <value>
+        /// The unique identifier for the environment.
+        /// </value>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnvironmentId { get; set; }
     }

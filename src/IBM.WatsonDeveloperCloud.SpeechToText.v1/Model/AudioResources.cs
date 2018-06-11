@@ -26,15 +26,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class AudioResources : BaseModel
     {
         /// <summary>
-        /// The total minutes of accumulated audio summed over all of the valid audio resources for the custom acoustic model. You can use this value to determine whether the custom model has too little or too much audio to begin training.
+        /// The total minutes of accumulated audio summed over all of the valid audio resources for the custom acoustic
+        /// model. You can use this value to determine whether the custom model has too little or too much audio to
+        /// begin training.
         /// </summary>
-        /// <value>The total minutes of accumulated audio summed over all of the valid audio resources for the custom acoustic model. You can use this value to determine whether the custom model has too little or too much audio to begin training.</value>
+        /// <value>
+        /// The total minutes of accumulated audio summed over all of the valid audio resources for the custom acoustic
+        /// model. You can use this value to determine whether the custom model has too little or too much audio to
+        /// begin training.
+        /// </value>
         [JsonProperty("total_minutes_of_audio", NullValueHandling = NullValueHandling.Ignore)]
         public double? TotalMinutesOfAudio { get; set; }
         /// <summary>
-        /// An array of `AudioResource` objects that provides information about the audio resources of the custom acoustic model. The array is empty if the custom model has no audio resources.
+        /// An array of `AudioResource` objects that provides information about the audio resources of the custom
+        /// acoustic model. The array is empty if the custom model has no audio resources.
         /// </summary>
-        /// <value>An array of `AudioResource` objects that provides information about the audio resources of the custom acoustic model. The array is empty if the custom model has no audio resources.</value>
+        /// <value>
+        /// An array of `AudioResource` objects that provides information about the audio resources of the custom
+        /// acoustic model. The array is empty if the custom model has no audio resources.
+        /// </value>
         [JsonProperty("audio", NullValueHandling = NullValueHandling.Ignore)]
         public List<AudioResource> Audio { get; set; }
     }

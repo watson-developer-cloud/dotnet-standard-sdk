@@ -80,9 +80,50 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         }
 
         /// <summary>
-        /// Analyze text, HTML, or a public webpage. Analyzes text, HTML, or a public webpage with one or more text analysis features.  ### Concepts Identify general concepts that are referenced or alluded to in your content. Concepts that are detected typically have an associated link to a DBpedia resource.  ### Emotion Detect anger, disgust, fear, joy, or sadness that is conveyed by your content. Emotion information can be returned for detected entities, keywords, or user-specified target phrases found in the text.  ### Entities Detect important people, places, geopolitical entities and other types of entities in your content. Entity detection recognizes consecutive coreferences of each entity. For example, analysis of the following text would count "Barack Obama" and "He" as the same entity:  "Barack Obama was the 44th President of the United States. He took office in January 2009."  ### Keywords Determine the most important keywords in your content. Keyword phrases are organized by relevance in the results.  ### Metadata Get author information, publication date, and the title of your text/HTML content.  ### Relations Recognize when two entities are related, and identify the type of relation.  For example, you can identify an "awardedTo" relation between an award and its recipient.  ### Semantic Roles Parse sentences into subject-action-object form, and identify entities and keywords that are subjects or objects of an action.  ### Sentiment Determine whether your content conveys postive or negative sentiment. Sentiment information can be returned for detected entities, keywords, or user-specified target phrases found in the text.   ### Categories Categorize your content into a hierarchical 5-level taxonomy. For example, "Leonardo DiCaprio won an Oscar" returns "/art and entertainment/movies and tv/movies" as the most confident classification.
+        /// Analyze text, HTML, or a public webpage.
+        ///
+        /// Analyzes text, HTML, or a public webpage with one or more text analysis features.
+        ///
+        /// ### Concepts
+        /// Identify general concepts that are referenced or alluded to in your content. Concepts that are detected
+        /// typically have an associated link to a DBpedia resource.
+        ///
+        /// ### Emotion
+        /// Detect anger, disgust, fear, joy, or sadness that is conveyed by your content. Emotion information can be
+        /// returned for detected entities, keywords, or user-specified target phrases found in the text.
+        ///
+        /// ### Entities
+        /// Detect important people, places, geopolitical entities and other types of entities in your content. Entity
+        /// detection recognizes consecutive coreferences of each entity. For example, analysis of the following text
+        /// would count "Barack Obama" and "He" as the same entity:
+        ///
+        /// "Barack Obama was the 44th President of the United States. He took office in January 2009."
+        ///
+        /// ### Keywords
+        /// Determine the most important keywords in your content. Keyword phrases are organized by relevance in the
+        /// results.
+        ///
+        /// ### Metadata
+        /// Get author information, publication date, and the title of your text/HTML content.
+        ///
+        /// ### Relations
+        /// Recognize when two entities are related, and identify the type of relation.  For example, you can identify
+        /// an "awardedTo" relation between an award and its recipient.
+        ///
+        /// ### Semantic Roles
+        /// Parse sentences into subject-action-object form, and identify entities and keywords that are subjects or
+        /// objects of an action.
+        ///
+        /// ### Sentiment
+        /// Determine whether your content conveys postive or negative sentiment. Sentiment information can be returned
+        /// for detected entities, keywords, or user-specified target phrases found in the text.
+        ///
+        /// ### Categories
+        /// Categorize your content into a hierarchical 5-level taxonomy. For example, "Leonardo DiCaprio won an Oscar"
+        /// returns "/art and entertainment/movies and tv/movies" as the most confident classification.returnFields
         /// </summary>
-        /// <param name="parameters">An object containing request parameters. The `features` object and one of the `text`, `html`, or `url` attributes are required.</param>
+        /// <param name="parameters">An object containing request parameters. The `features` object and one of the
+        /// `text`, `html`, or `url` attributes are required.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
         public AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null)
@@ -125,7 +166,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             return result;
         }
         /// <summary>
-        /// Delete model. Deletes a custom model.
+        /// Delete model.
+        ///
+        /// Deletes a custom model.returnFields
         /// </summary>
         /// <param name="modelId">model_id of the model to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -170,7 +213,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         }
 
         /// <summary>
-        /// List models. Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models that you have created and linked to your Natural Language Understanding service.
+        /// List models.
+        ///
+        /// Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models
+        /// that you have created and linked to your Natural Language Understanding service.returnFields
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>

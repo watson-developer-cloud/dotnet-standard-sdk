@@ -27,9 +27,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class AudioDetails : BaseModel
     {
         /// <summary>
-        /// The type of the audio resource: * `audio` for an individual audio file * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files.
+        /// The type of the audio resource:
+        /// * `audio` for an individual audio file
+        /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
+        /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
+        /// a file that does not contain audio, such as a JPEG file).
         /// </summary>
-        /// <value>The type of the audio resource: * `audio` for an individual audio file * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files.</value>
+        /// <value>
+        /// The type of the audio resource:
+        /// * `audio` for an individual audio file
+        /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
+        /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
+        /// a file that does not contain audio, such as a JPEG file).
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -44,13 +54,29 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// Enum ARCHIVE for archive
             /// </summary>
             [EnumMember(Value = "archive")]
-            ARCHIVE
+            ARCHIVE,
+            
+            /// <summary>
+            /// Enum UNDETERMINED for undetermined
+            /// </summary>
+            [EnumMember(Value = "undetermined")]
+            UNDETERMINED
         }
 
         /// <summary>
-        /// **For an archive-type resource,** the format of the compressed archive: * `zip` for a **.zip** file * `gzip` for a **.tar.gz** file   Omitted for an audio-type resource.
+        /// **For an archive-type resource,** the format of the compressed archive:
+        /// * `zip` for a **.zip** file
+        /// * `gzip` for a **.tar.gz** file
+        ///
+        /// Omitted for an audio-type resource.
         /// </summary>
-        /// <value>**For an archive-type resource,** the format of the compressed archive: * `zip` for a **.zip** file * `gzip` for a **.tar.gz** file   Omitted for an audio-type resource.</value>
+        /// <value>
+        /// **For an archive-type resource,** the format of the compressed archive:
+        /// * `zip` for a **.zip** file
+        /// * `gzip` for a **.tar.gz** file
+        ///
+        /// Omitted for an audio-type resource.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CompressionEnum
         {
@@ -69,27 +95,55 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         }
 
         /// <summary>
-        /// The type of the audio resource: * `audio` for an individual audio file * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files.
+        /// The type of the audio resource:
+        /// * `audio` for an individual audio file
+        /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
+        /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
+        /// a file that does not contain audio, such as a JPEG file).
         /// </summary>
-        /// <value>The type of the audio resource: * `audio` for an individual audio file * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files.</value>
+        /// <value>
+        /// The type of the audio resource:
+        /// * `audio` for an individual audio file
+        /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
+        /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
+        /// a file that does not contain audio, such as a JPEG file).
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// **For an archive-type resource,** the format of the compressed archive: * `zip` for a **.zip** file * `gzip` for a **.tar.gz** file   Omitted for an audio-type resource.
+        /// **For an archive-type resource,** the format of the compressed archive:
+        /// * `zip` for a **.zip** file
+        /// * `gzip` for a **.tar.gz** file
+        ///
+        /// Omitted for an audio-type resource.
         /// </summary>
-        /// <value>**For an archive-type resource,** the format of the compressed archive: * `zip` for a **.zip** file * `gzip` for a **.tar.gz** file   Omitted for an audio-type resource.</value>
+        /// <value>
+        /// **For an archive-type resource,** the format of the compressed archive:
+        /// * `zip` for a **.zip** file
+        /// * `gzip` for a **.tar.gz** file
+        ///
+        /// Omitted for an audio-type resource.
+        /// </value>
         [JsonProperty("compression", NullValueHandling = NullValueHandling.Ignore)]
         public CompressionEnum? Compression { get; set; }
         /// <summary>
-        /// **For an audio-type resource,** the codec in which the audio is encoded. Omitted for an archive-type resource.
+        /// **For an audio-type resource,** the codec in which the audio is encoded. Omitted for an archive-type
+        /// resource.
         /// </summary>
-        /// <value>**For an audio-type resource,** the codec in which the audio is encoded. Omitted for an archive-type resource.</value>
+        /// <value>
+        /// **For an audio-type resource,** the codec in which the audio is encoded. Omitted for an archive-type
+        /// resource.
+        /// </value>
         [JsonProperty("codec", NullValueHandling = NullValueHandling.Ignore)]
         public string Codec { get; set; }
         /// <summary>
-        /// **For an audio-type resource,** the sampling rate of the audio in Hertz (samples per second). Omitted for an archive-type resource.
+        /// **For an audio-type resource,** the sampling rate of the audio in Hertz (samples per second). Omitted for an
+        /// archive-type resource.
         /// </summary>
-        /// <value>**For an audio-type resource,** the sampling rate of the audio in Hertz (samples per second). Omitted for an archive-type resource.</value>
+        /// <value>
+        /// **For an audio-type resource,** the sampling rate of the audio in Hertz (samples per second). Omitted for an
+        /// archive-type resource.
+        /// </value>
         [JsonProperty("frequency", NullValueHandling = NullValueHandling.Ignore)]
         public long? Frequency { get; set; }
     }

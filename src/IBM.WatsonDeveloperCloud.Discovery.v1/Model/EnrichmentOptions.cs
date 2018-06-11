@@ -27,13 +27,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// An object representing the enrichment features that will be applied to the specified field.
         /// </summary>
-        /// <value>An object representing the enrichment features that will be applied to the specified field.</value>
+        /// <value>
+        /// An object representing the enrichment features that will be applied to the specified field.
+        /// </value>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentFeatures Features { get; set; }
         /// <summary>
-        /// *For use with `elements` enrichments only.* The element extraction model to use. Models available are: `contract`.
+        /// *For use with `elements` enrichments only.* The element extraction model to use. Models available are:
+        /// `contract`.
         /// </summary>
-        /// <value>*For use with `elements` enrichments only.* The element extraction model to use. Models available are: `contract`.</value>
+        /// <value>
+        /// *For use with `elements` enrichments only.* The element extraction model to use. Models available are:
+        /// `contract`.
+        /// </value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
     }

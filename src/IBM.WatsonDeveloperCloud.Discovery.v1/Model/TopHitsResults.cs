@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of matching results.
         /// </summary>
-        /// <value>Number of matching results.</value>
+        /// <value>
+        /// Number of matching results.
+        /// </value>
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
         /// Top results returned by the aggregation.
         /// </summary>
-        /// <value>Top results returned by the aggregation.</value>
+        /// <value>
+        /// Top results returned by the aggregation.
+        /// </value>
         [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryResult> Hits { get; set; }
     }

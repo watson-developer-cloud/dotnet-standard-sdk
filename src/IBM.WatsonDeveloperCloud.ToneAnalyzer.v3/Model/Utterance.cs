@@ -25,15 +25,21 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     public class Utterance : BaseModel
     {
         /// <summary>
-        /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain multiple sentences.
+        /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain
+        /// multiple sentences.
         /// </summary>
-        /// <value>An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain multiple sentences.</value>
+        /// <value>
+        /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain
+        /// multiple sentences.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// A string that identifies the user who contributed the utterance specified by the `text` parameter.
         /// </summary>
-        /// <value>A string that identifies the user who contributed the utterance specified by the `text` parameter.</value>
+        /// <value>
+        /// A string that identifies the user who contributed the utterance specified by the `text` parameter.
+        /// </value>
         [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
         public string User { get; set; }
     }

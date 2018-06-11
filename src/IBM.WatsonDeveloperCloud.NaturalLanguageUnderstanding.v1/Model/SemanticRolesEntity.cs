@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Entity type.
         /// </summary>
-        /// <value>Entity type.</value>
+        /// <value>
+        /// Entity type.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
         /// The entity text.
         /// </summary>
-        /// <value>The entity text.</value>
+        /// <value>
+        /// The entity text.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

@@ -28,49 +28,67 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The name of the workspace.
         /// </summary>
-        /// <value>The name of the workspace.</value>
+        /// <value>
+        /// The name of the workspace.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The language of the workspace.
         /// </summary>
-        /// <value>The language of the workspace.</value>
+        /// <value>
+        /// The language of the workspace.
+        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The timestamp for creation of the workspace.
         /// </summary>
-        /// <value>The timestamp for creation of the workspace.</value>
+        /// <value>
+        /// The timestamp for creation of the workspace.
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the workspace.
         /// </summary>
-        /// <value>The timestamp for the last update to the workspace.</value>
+        /// <value>
+        /// The timestamp for the last update to the workspace.
+        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The workspace ID.
         /// </summary>
-        /// <value>The workspace ID.</value>
+        /// <value>
+        /// The workspace ID.
+        /// </value>
         [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string WorkspaceId { get; private set; }
         /// <summary>
         /// The description of the workspace.
         /// </summary>
-        /// <value>The description of the workspace.</value>
+        /// <value>
+        /// The description of the workspace.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// Any metadata related to the workspace.
         /// </summary>
-        /// <value>Any metadata related to the workspace.</value>
+        /// <value>
+        /// Any metadata related to the workspace.
+        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// Whether training data from the workspace (including artifacts such as intents and entities) can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// Whether training data from the workspace (including artifacts such as intents and entities) can be used by
+        /// IBM for general service improvements. `true` indicates that workspace training data is not to be used.
         /// </summary>
-        /// <value>Whether training data from the workspace (including artifacts such as intents and entities) can be used by IBM for general service improvements. `true` indicates that workspace training data is not to be used.</value>
+        /// <value>
+        /// Whether training data from the workspace (including artifacts such as intents and entities) can be used by
+        /// IBM for general service improvements. `true` indicates that workspace training data is not to be used.
+        /// </value>
         [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
         public bool? LearningOptOut { get; set; }
     }

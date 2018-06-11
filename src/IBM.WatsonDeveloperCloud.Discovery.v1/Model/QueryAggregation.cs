@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The type of aggregation command used. For example: term, filter, max, min, etc.
         /// </summary>
-        /// <value>The type of aggregation command used. For example: term, filter, max, min, etc.</value>
+        /// <value>
+        /// The type of aggregation command used. For example: term, filter, max, min, etc.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
@@ -39,13 +41,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of matching results.
         /// </summary>
-        /// <value>Number of matching results.</value>
+        /// <value>
+        /// Number of matching results.
+        /// </value>
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
         /// Aggregations returned by the Discovery service.
         /// </summary>
-        /// <value>Aggregations returned by the Discovery service.</value>
+        /// <value>
+        /// Aggregations returned by the Discovery service.
+        /// </value>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryAggregation> Aggregations { get; set; }
     }

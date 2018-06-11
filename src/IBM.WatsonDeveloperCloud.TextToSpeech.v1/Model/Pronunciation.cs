@@ -25,11 +25,15 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     public class Pronunciation : BaseModel
     {
         /// <summary>
-        /// The pronunciation of the specified text in the requested voice and format. If a custom voice model is specified, the pronunciation also reflects that custom voice.
+        /// The pronunciation of the specified text in the requested voice and format. If a custom voice model is
+        /// specified, the pronunciation also reflects that custom voice.
         /// </summary>
-        /// <value>The pronunciation of the specified text in the requested voice and format. If a custom voice model is specified, the pronunciation also reflects that custom voice.</value>
+        /// <value>
+        /// The pronunciation of the specified text in the requested voice and format. If a custom voice model is
+        /// specified, the pronunciation also reflects that custom voice.
+        /// </value>
         [JsonProperty("pronunciation", NullValueHandling = NullValueHandling.Ignore)]
-        public string _Pronunciation { get; set; }
+        public string Pronunciation { get; set; }
     }
 
 }

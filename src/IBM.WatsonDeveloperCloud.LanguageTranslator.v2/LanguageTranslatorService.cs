@@ -34,12 +34,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
         public LanguageTranslatorService() : base(SERVICE_NAME, URL)
         {
+            Console.WriteLine("Language Translator v2 is being deprecated. Please use Language Translator V3.");
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
         public LanguageTranslatorService(string userName, string password) : this()
         {
+            Console.WriteLine("Language Translator v2 is being deprecated. Please use Language Translator V3.");
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
 
@@ -51,6 +53,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
         public LanguageTranslatorService(TokenOptions options) : this()
         {
+            Console.WriteLine("Language Translator v2 is being deprecated. Please use Language Translator V3.");
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
 
@@ -68,6 +71,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 
         public LanguageTranslatorService(IClient httpClient) : this()
         {
+            Console.WriteLine("Language Translator v2 is being deprecated. Please use Language Translator V3.");
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
 

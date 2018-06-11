@@ -410,7 +410,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         private object AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null)
         {
             Console.WriteLine("\nAttempting to AddCorpus()");
-            var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType);
+            var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite);
 
             if (result != null)
             {

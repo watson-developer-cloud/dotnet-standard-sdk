@@ -29,7 +29,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 {
     [TestClass]
-    public class VisualRecognitionServiceRCIntegrationTests
+    public class VisualRecognitionServiceCFIntegrationTests
     {
         private VisualRecognitionService _service;
         private static string credentials = string.Empty;
@@ -82,18 +82,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk-rc")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk-cf")[0].Credentials;
                 _endpoint = credential.Url;
-                _apikey = credential.IamApikey;
+                _apikey = credential.ApiKey;
             }
             #endregion
 
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = _apikey,
-                ServiceUrl = _endpoint
-            };
-            _service = new VisualRecognitionService(tokenOptions, "2018-03-19");
+            _service = new VisualRecognitionService(_apikey, "2016-05-20");
             _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
@@ -102,35 +97,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestCleanup]
         public void Teardown()
         {
-            var classifiers = _service.ListClassifiers();
-            List<string> dotnet_classifiers = new List<string>();
-
-            foreach (Classifier classifier in classifiers._Classifiers)
-            {
-                if (classifier.Name == _createdClassifierName)
-                    dotnet_classifiers.Add(classifier.ClassifierId);
-            }
-
-            foreach (string classifierId in dotnet_classifiers)
-            {
-                try
-                {
-                    var getClassifierResult = GetClassifier(classifierId);
-                    if (getClassifierResult != null)
-                        DeleteClassifier(classifierId);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("error: {0}", e.Message);
-                }
-
-            }
+            
         }
         #endregion
 
         #region General
         [TestMethod]
-        public void Classify_RC_Success()
+        public void Classify_Success_CF()
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
@@ -143,7 +116,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyURL_RC_Success()
+        public void ClassifyURL_Success_CF()
         {
             var result = _service.Classify(url: _imageUrl);
 
@@ -155,7 +128,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Face
         [TestMethod]
-        public void DetectFaces_RC_Success()
+        public void DetectFaces_Success_CF()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -168,7 +141,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesURL_RC_Success()
+        public void DetectFacesURL_Success_CF()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -181,8 +154,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        [TestMethod]
-        public void ListClassifiers_RC_Success()
+        //[TestMethod]
+        public void ListClassifiers_Success_CF()
         {
             Classifiers listClassifiersResult = null;
 
@@ -199,8 +172,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         #region Custom
-        [TestMethod]
-        public void TestClassifiers_RC_Success()
+        //[TestMethod]
+        public void TestClassifiers_Success_CF()
         {
             Classifier createClassifierResult = null;
             try
@@ -552,6 +525,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to UpdateClassifier()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetCoreMlModel
+        private Task<Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetCoreMlModel()");
+            var result = _service.GetCoreMlModel(classifierId: classifierId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetCoreMlModel() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetCoreMlModel()");
             }
 
             return result;

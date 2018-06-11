@@ -82,7 +82,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk-cf")[0].Credentials;
                 _endpoint = credential.Url;
                 _apikey = credential.ApiKey;
             }

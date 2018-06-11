@@ -28,7 +28,7 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 {
-    //[TestClass]
+    [TestClass]
     public class VisualRecognitionServiceRCIntegrationTests
     {
         private VisualRecognitionService _service;
@@ -181,7 +181,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        //[TestMethod]
+        [TestMethod]
         public void ListClassifiers_RC_Success()
         {
             Classifiers listClassifiersResult = null;

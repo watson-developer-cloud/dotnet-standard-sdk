@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// When `true`, sentiment analysis of keywords will be performed on the specified field.
         /// </summary>
-        /// <value>When `true`, sentiment analysis of keywords will be performed on the specified field.</value>
+        /// <value>
+        /// When `true`, sentiment analysis of keywords will be performed on the specified field.
+        /// </value>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Sentiment { get; set; }
         /// <summary>
         /// When `true`, emotion detection of keywords will be performed on the specified field.
         /// </summary>
-        /// <value>When `true`, emotion detection of keywords will be performed on the specified field.</value>
+        /// <value>
+        /// When `true`, emotion detection of keywords will be performed on the specified field.
+        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Emotion { get; set; }
         /// <summary>
         /// The maximum number of keywords to extract for each instance of the specified field.
         /// </summary>
-        /// <value>The maximum number of keywords to extract for each instance of the specified field.</value>
+        /// <value>
+        /// The maximum number of keywords to extract for each instance of the specified field.
+        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

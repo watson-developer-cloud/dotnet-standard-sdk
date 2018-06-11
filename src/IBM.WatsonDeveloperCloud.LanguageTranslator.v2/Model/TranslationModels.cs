@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// An array of available models.
         /// </summary>
-        /// <value>An array of available models.</value>
+        /// <value>
+        /// An array of available models.
+        /// </value>
         [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
         public List<TranslationModel> Models { get; set; }
     }

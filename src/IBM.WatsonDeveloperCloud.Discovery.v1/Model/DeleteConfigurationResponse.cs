@@ -30,7 +30,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the configuration. A deleted configuration has the status deleted.
         /// </summary>
-        /// <value>Status of the configuration. A deleted configuration has the status deleted.</value>
+        /// <value>
+        /// Status of the configuration. A deleted configuration has the status deleted.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -45,19 +47,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the configuration. A deleted configuration has the status deleted.
         /// </summary>
-        /// <value>Status of the configuration. A deleted configuration has the status deleted.</value>
+        /// <value>
+        /// Status of the configuration. A deleted configuration has the status deleted.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier for the configuration.
         /// </summary>
-        /// <value>The unique identifier for the configuration.</value>
+        /// <value>
+        /// The unique identifier for the configuration.
+        /// </value>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfigurationId { get; set; }
         /// <summary>
         /// An array of notice messages, if any.
         /// </summary>
-        /// <value>An array of notice messages, if any.</value>
+        /// <value>
+        /// An array of notice messages, if any.
+        /// </value>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
         public List<Notice> Notices { get; set; }
     }

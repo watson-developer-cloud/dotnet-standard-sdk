@@ -25,33 +25,57 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class SpeakerLabelsResult : BaseModel
     {
         /// <summary>
-        /// The start time of a word from the transcript. The value matches the start time of a word from the `timestamps` array.
+        /// The start time of a word from the transcript. The value matches the start time of a word from the
+        /// `timestamps` array.
         /// </summary>
-        /// <value>The start time of a word from the transcript. The value matches the start time of a word from the `timestamps` array.</value>
+        /// <value>
+        /// The start time of a word from the transcript. The value matches the start time of a word from the
+        /// `timestamps` array.
+        /// </value>
         [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public float? From { get; set; }
         /// <summary>
-        /// The end time of a word from the transcript. The value matches the end time of a word from the `timestamps` array.
+        /// The end time of a word from the transcript. The value matches the end time of a word from the `timestamps`
+        /// array.
         /// </summary>
-        /// <value>The end time of a word from the transcript. The value matches the end time of a word from the `timestamps` array.</value>
+        /// <value>
+        /// The end time of a word from the transcript. The value matches the end time of a word from the `timestamps`
+        /// array.
+        /// </value>
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public float? To { get; set; }
         /// <summary>
-        /// The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at `0` initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered.
+        /// The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at `0`
+        /// initially but can evolve and change across interim results (if supported by the method) and between interim
+        /// and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous,
+        /// or ordered.
         /// </summary>
-        /// <value>The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at `0` initially but can evolve and change across interim results (if supported by the method) and between interim and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous, or ordered.</value>
+        /// <value>
+        /// The numeric identifier that the service assigns to a speaker from the audio. Speaker IDs begin at `0`
+        /// initially but can evolve and change across interim results (if supported by the method) and between interim
+        /// and final results as the service processes the audio. They are not guaranteed to be sequential, contiguous,
+        /// or ordered.
+        /// </value>
         [JsonProperty("speaker", NullValueHandling = NullValueHandling.Ignore)]
         public long? Speaker { get; set; }
         /// <summary>
         /// A score that indicates the service's confidence in its identification of the speaker in the range of 0 to 1.
         /// </summary>
-        /// <value>A score that indicates the service's confidence in its identification of the speaker in the range of 0 to 1.</value>
+        /// <value>
+        /// A score that indicates the service's confidence in its identification of the speaker in the range of 0 to 1.
+        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public float? Confidence { get; set; }
         /// <summary>
-        /// An indication of whether the service might further change word and speaker-label results. A value of `true` means that the service guarantees not to send any further updates for the current or any preceding results; `false` means that the service might send further updates to the results.
+        /// An indication of whether the service might further change word and speaker-label results. A value of `true`
+        /// means that the service guarantees not to send any further updates for the current or any preceding results;
+        /// `false` means that the service might send further updates to the results.
         /// </summary>
-        /// <value>An indication of whether the service might further change word and speaker-label results. A value of `true` means that the service guarantees not to send any further updates for the current or any preceding results; `false` means that the service might send further updates to the results.</value>
+        /// <value>
+        /// An indication of whether the service might further change word and speaker-label results. A value of `true`
+        /// means that the service guarantees not to send any further updates for the current or any preceding results;
+        /// `false` means that the service might send further updates to the results.
+        /// </value>
         [JsonProperty("final", NullValueHandling = NullValueHandling.Ignore)]
         public bool? FinalResults { get; set; }
     }

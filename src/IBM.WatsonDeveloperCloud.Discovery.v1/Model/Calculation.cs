@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The field where the aggregation is located in the document.
         /// </summary>
-        /// <value>The field where the aggregation is located in the document.</value>
+        /// <value>
+        /// The field where the aggregation is located in the document.
+        /// </value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
         /// Value of the aggregation.
         /// </summary>
-        /// <value>Value of the aggregation.</value>
+        /// <value>
+        /// Value of the aggregation.
+        /// </value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public double? Value { get; set; }
     }

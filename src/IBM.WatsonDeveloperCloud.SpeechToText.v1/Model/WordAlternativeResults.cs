@@ -28,19 +28,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// <summary>
         /// The start time in seconds of the word from the input audio that corresponds to the word alternatives.
         /// </summary>
-        /// <value>The start time in seconds of the word from the input audio that corresponds to the word alternatives.</value>
+        /// <value>
+        /// The start time in seconds of the word from the input audio that corresponds to the word alternatives.
+        /// </value>
         [JsonProperty("start_time", NullValueHandling = NullValueHandling.Ignore)]
         public double? StartTime { get; set; }
         /// <summary>
         /// The end time in seconds of the word from the input audio that corresponds to the word alternatives.
         /// </summary>
-        /// <value>The end time in seconds of the word from the input audio that corresponds to the word alternatives.</value>
+        /// <value>
+        /// The end time in seconds of the word from the input audio that corresponds to the word alternatives.
+        /// </value>
         [JsonProperty("end_time", NullValueHandling = NullValueHandling.Ignore)]
         public double? EndTime { get; set; }
         /// <summary>
         /// An array of alternative hypotheses for a word from the input audio.
         /// </summary>
-        /// <value>An array of alternative hypotheses for a word from the input audio.</value>
+        /// <value>
+        /// An array of alternative hypotheses for a word from the input audio.
+        /// </value>
         [JsonProperty("alternatives", NullValueHandling = NullValueHandling.Ignore)]
         public List<WordAlternativeResult> Alternatives { get; set; }
     }

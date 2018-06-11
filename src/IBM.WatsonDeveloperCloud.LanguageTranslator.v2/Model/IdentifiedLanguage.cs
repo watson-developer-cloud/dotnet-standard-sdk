@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// The language code for an identified language.
         /// </summary>
-        /// <value>The language code for an identified language.</value>
+        /// <value>
+        /// The language code for an identified language.
+        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The confidence score for the identified language.
         /// </summary>
-        /// <value>The confidence score for the identified language.</value>
+        /// <value>
+        /// The confidence score for the identified language.
+        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
     }

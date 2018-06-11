@@ -28,9 +28,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// List of classifiers.
         /// </summary>
-        /// <value>List of classifiers.</value>
+        /// <value>
+        /// List of classifiers.
+        /// </value>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Classifier> _Classifiers { get; set; }
+        public List<Classifier> Classifiers { get; set; }
     }
 
 }

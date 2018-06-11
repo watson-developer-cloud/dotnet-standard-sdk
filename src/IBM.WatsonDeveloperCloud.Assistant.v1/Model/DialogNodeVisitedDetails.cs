@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// A dialog node that was triggered during processing of the input message.
         /// </summary>
-        /// <value>A dialog node that was triggered during processing of the input message.</value>
+        /// <value>
+        /// A dialog node that was triggered during processing of the input message.
+        /// </value>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
         public string DialogNode { get; set; }
         /// <summary>
         /// The title of the dialog node.
         /// </summary>
-        /// <value>The title of the dialog node.</value>
+        /// <value>
+        /// The title of the dialog node.
+        /// </value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
         /// The conditions that trigger the dialog node.
         /// </summary>
-        /// <value>The conditions that trigger the dialog node.</value>
+        /// <value>
+        /// The conditions that trigger the dialog node.
+        /// </value>
         [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Conditions { get; set; }
     }

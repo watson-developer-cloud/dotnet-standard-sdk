@@ -25,9 +25,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class NluEnrichmentRelations : BaseModel
     {
         /// <summary>
-        /// *For use with `natural_language_understanding` enrichments only.* The enrichement model to use with relationship extraction. May be a custom model provided by Watson Knowledge Studio, the public model for use with Knowledge Graph `en-news`, the default is`en-news`.
+        /// *For use with `natural_language_understanding` enrichments only.* The enrichement model to use with
+        /// relationship extraction. May be a custom model provided by Watson Knowledge Studio, the public model for use
+        /// with Knowledge Graph `en-news`, the default is`en-news`.
         /// </summary>
-        /// <value>*For use with `natural_language_understanding` enrichments only.* The enrichement model to use with relationship extraction. May be a custom model provided by Watson Knowledge Studio, the public model for use with Knowledge Graph `en-news`, the default is`en-news`.</value>
+        /// <value>
+        /// *For use with `natural_language_understanding` enrichments only.* The enrichement model to use with
+        /// relationship extraction. May be a custom model provided by Watson Knowledge Studio, the public model for use
+        /// with Knowledge Graph `en-news`, the default is`en-news`.
+        /// </value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
     }

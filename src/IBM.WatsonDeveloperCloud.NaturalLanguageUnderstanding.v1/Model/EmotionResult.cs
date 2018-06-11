@@ -21,20 +21,25 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can be returned for detected entities, keywords, or user-specified target phrases found in the text.
+    /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can be
+    /// returned for detected entities, keywords, or user-specified target phrases found in the text.
     /// </summary>
     public class EmotionResult : BaseModel
     {
         /// <summary>
         /// The returned emotion results across the document.
         /// </summary>
-        /// <value>The returned emotion results across the document.</value>
+        /// <value>
+        /// The returned emotion results across the document.
+        /// </value>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentEmotionResults Document { get; set; }
         /// <summary>
         /// The returned emotion results per specified target.
         /// </summary>
-        /// <value>The returned emotion results per specified target.</value>
+        /// <value>
+        /// The returned emotion results per specified target.
+        /// </value>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<TargetedEmotionResults> Targets { get; set; }
     }

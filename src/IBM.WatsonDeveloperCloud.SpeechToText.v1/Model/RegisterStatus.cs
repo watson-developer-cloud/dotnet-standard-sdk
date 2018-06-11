@@ -27,9 +27,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class RegisterStatus : BaseModel
     {
         /// <summary>
-        /// The current status of the job: * `created` if the callback URL was successfully white-listed as a result of the call. * `already created` if the URL was already white-listed.
+        /// The current status of the job:
+        /// * `created` if the callback URL was successfully white-listed as a result of the call.
+        /// * `already created` if the URL was already white-listed.
         /// </summary>
-        /// <value>The current status of the job: * `created` if the callback URL was successfully white-listed as a result of the call. * `already created` if the URL was already white-listed.</value>
+        /// <value>
+        /// The current status of the job:
+        /// * `created` if the callback URL was successfully white-listed as a result of the call.
+        /// * `already created` if the URL was already white-listed.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -48,15 +54,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         }
 
         /// <summary>
-        /// The current status of the job: * `created` if the callback URL was successfully white-listed as a result of the call. * `already created` if the URL was already white-listed.
+        /// The current status of the job:
+        /// * `created` if the callback URL was successfully white-listed as a result of the call.
+        /// * `already created` if the URL was already white-listed.
         /// </summary>
-        /// <value>The current status of the job: * `created` if the callback URL was successfully white-listed as a result of the call. * `already created` if the URL was already white-listed.</value>
+        /// <value>
+        /// The current status of the job:
+        /// * `created` if the callback URL was successfully white-listed as a result of the call.
+        /// * `already created` if the URL was already white-listed.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The callback URL that is successfully registered.
         /// </summary>
-        /// <value>The callback URL that is successfully registered.</value>
+        /// <value>
+        /// The callback URL that is successfully registered.
+        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
     }

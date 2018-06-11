@@ -27,19 +27,27 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Estimated minimum age.
         /// </summary>
-        /// <value>Estimated minimum age.</value>
+        /// <value>
+        /// Estimated minimum age.
+        /// </value>
         [JsonProperty("min", NullValueHandling = NullValueHandling.Ignore)]
         public long? Min { get; set; }
         /// <summary>
         /// Estimated maximum age.
         /// </summary>
-        /// <value>Estimated maximum age.</value>
+        /// <value>
+        /// Estimated maximum age.
+        /// </value>
         [JsonProperty("max", NullValueHandling = NullValueHandling.Ignore)]
         public long? Max { get; set; }
         /// <summary>
-        /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value for the property.
+        /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value
+        /// for the property.
         /// </summary>
-        /// <value>Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value for the property.</value>
+        /// <value>
+        /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value
+        /// for the property.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

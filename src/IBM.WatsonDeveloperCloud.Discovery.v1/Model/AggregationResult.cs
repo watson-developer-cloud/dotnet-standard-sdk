@@ -28,19 +28,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Key that matched the aggregation type.
         /// </summary>
-        /// <value>Key that matched the aggregation type.</value>
+        /// <value>
+        /// Key that matched the aggregation type.
+        /// </value>
         [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public string Key { get; set; }
         /// <summary>
         /// Number of matching results.
         /// </summary>
-        /// <value>Number of matching results.</value>
+        /// <value>
+        /// Number of matching results.
+        /// </value>
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
         /// Aggregations returned in the case of chained aggregations.
         /// </summary>
-        /// <value>Aggregations returned in the case of chained aggregations.</value>
+        /// <value>
+        /// Aggregations returned in the case of chained aggregations.
+        /// </value>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryAggregation> Aggregations { get; set; }
     }

@@ -27,55 +27,75 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Whether or not to return the concepts that are mentioned in the analyzed text.
         /// </summary>
-        /// <value>Whether or not to return the concepts that are mentioned in the analyzed text.</value>
+        /// <value>
+        /// Whether or not to return the concepts that are mentioned in the analyzed text.
+        /// </value>
         [JsonProperty("concepts", NullValueHandling = NullValueHandling.Ignore)]
         public ConceptsOptions Concepts { get; set; }
         /// <summary>
         /// Whether or not to extract the emotions implied in the analyzed text.
         /// </summary>
-        /// <value>Whether or not to extract the emotions implied in the analyzed text.</value>
+        /// <value>
+        /// Whether or not to extract the emotions implied in the analyzed text.
+        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionOptions Emotion { get; set; }
         /// <summary>
         /// Whether or not to extract detected entity objects from the analyzed text.
         /// </summary>
-        /// <value>Whether or not to extract detected entity objects from the analyzed text.</value>
+        /// <value>
+        /// Whether or not to extract detected entity objects from the analyzed text.
+        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public EntitiesOptions Entities { get; set; }
         /// <summary>
         /// Whether or not to return the keywords in the analyzed text.
         /// </summary>
-        /// <value>Whether or not to return the keywords in the analyzed text.</value>
+        /// <value>
+        /// Whether or not to return the keywords in the analyzed text.
+        /// </value>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public KeywordsOptions Keywords { get; set; }
         /// <summary>
-        /// Whether or not the author, publication date, and title of the analyzed text should be returned. This parameter is only available for URL and HTML input.
+        /// Whether or not the author, publication date, and title of the analyzed text should be returned. This
+        /// parameter is only available for URL and HTML input.
         /// </summary>
-        /// <value>Whether or not the author, publication date, and title of the analyzed text should be returned. This parameter is only available for URL and HTML input.</value>
+        /// <value>
+        /// Whether or not the author, publication date, and title of the analyzed text should be returned. This
+        /// parameter is only available for URL and HTML input.
+        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public MetadataOptions Metadata { get; set; }
         /// <summary>
         /// Whether or not to return the relationships between detected entities in the analyzed text.
         /// </summary>
-        /// <value>Whether or not to return the relationships between detected entities in the analyzed text.</value>
+        /// <value>
+        /// Whether or not to return the relationships between detected entities in the analyzed text.
+        /// </value>
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public RelationsOptions Relations { get; set; }
         /// <summary>
         /// Whether or not to return the subject-action-object relations from the analyzed text.
         /// </summary>
-        /// <value>Whether or not to return the subject-action-object relations from the analyzed text.</value>
+        /// <value>
+        /// Whether or not to return the subject-action-object relations from the analyzed text.
+        /// </value>
         [JsonProperty("semantic_roles", NullValueHandling = NullValueHandling.Ignore)]
         public SemanticRolesOptions SemanticRoles { get; set; }
         /// <summary>
         /// Whether or not to return the overall sentiment of the analyzed text.
         /// </summary>
-        /// <value>Whether or not to return the overall sentiment of the analyzed text.</value>
+        /// <value>
+        /// Whether or not to return the overall sentiment of the analyzed text.
+        /// </value>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public SentimentOptions Sentiment { get; set; }
         /// <summary>
         /// Whether or not to return the high level category the content is categorized as (i.e. news, art).
         /// </summary>
-        /// <value>Whether or not to return the high level category the content is categorized as (i.e. news, art).</value>
+        /// <value>
+        /// Whether or not to return the high level category the content is categorized as (i.e. news, art).
+        /// </value>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public CategoriesOptions Categories { get; set; }
     }

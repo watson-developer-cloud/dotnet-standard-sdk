@@ -25,27 +25,39 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
     public class Behavior : BaseModel
     {
         /// <summary>
-        /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.
+        /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form
+        /// `behavior_{value}`.
         /// </summary>
-        /// <value>The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form `behavior_{value}`.</value>
+        /// <value>
+        /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form
+        /// `behavior_{value}`.
+        /// </value>
         [JsonProperty("trait_id", NullValueHandling = NullValueHandling.Ignore)]
         public string TraitId { get; set; }
         /// <summary>
         /// The user-visible, localized name of the characteristic.
         /// </summary>
-        /// <value>The user-visible, localized name of the characteristic.</value>
+        /// <value>
+        /// The user-visible, localized name of the characteristic.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The category of the characteristic: `behavior` for temporal data.
         /// </summary>
-        /// <value>The category of the characteristic: `behavior` for temporal data.</value>
+        /// <value>
+        /// The category of the characteristic: `behavior` for temporal data.
+        /// </value>
         [JsonProperty("category", NullValueHandling = NullValueHandling.Ignore)]
         public string Category { get; set; }
         /// <summary>
-        /// For JSON content that is timestamped, the percentage of timestamped input data that occurred during that day of the week or hour of the day. The range is 0 to 1.
+        /// For JSON content that is timestamped, the percentage of timestamped input data that occurred during that day
+        /// of the week or hour of the day. The range is 0 to 1.
         /// </summary>
-        /// <value>For JSON content that is timestamped, the percentage of timestamped input data that occurred during that day of the week or hour of the day. The range is 0 to 1.</value>
+        /// <value>
+        /// For JSON content that is timestamped, the percentage of timestamped input data that occurred during that day
+        /// of the week or hour of the day. The range is 0 to 1.
+        /// </value>
         [JsonProperty("percentage", NullValueHandling = NullValueHandling.Ignore)]
         public double? Percentage { get; set; }
     }

@@ -27,9 +27,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class Corpus : BaseModel
     {
         /// <summary>
-        /// The status of the corpus: * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be trained with data from the corpus. * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept requests to add new corpora or words, or to train the custom model. * `undetermined` indicates that the service encountered an error while processing the corpus.
+        /// The status of the corpus:
+        /// * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be
+        /// trained with data from the corpus.
+        /// * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept
+        /// requests to add new corpora or words, or to train the custom model.
+        /// * `undetermined` indicates that the service encountered an error while processing the corpus.
         /// </summary>
-        /// <value>The status of the corpus: * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be trained with data from the corpus. * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept requests to add new corpora or words, or to train the custom model. * `undetermined` indicates that the service encountered an error while processing the corpus.</value>
+        /// <value>
+        /// The status of the corpus:
+        /// * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be
+        /// trained with data from the corpus.
+        /// * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept
+        /// requests to add new corpora or words, or to train the custom model.
+        /// * `undetermined` indicates that the service encountered an error while processing the corpus.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -54,33 +66,55 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         }
 
         /// <summary>
-        /// The status of the corpus: * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be trained with data from the corpus. * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept requests to add new corpora or words, or to train the custom model. * `undetermined` indicates that the service encountered an error while processing the corpus.
+        /// The status of the corpus:
+        /// * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be
+        /// trained with data from the corpus.
+        /// * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept
+        /// requests to add new corpora or words, or to train the custom model.
+        /// * `undetermined` indicates that the service encountered an error while processing the corpus.
         /// </summary>
-        /// <value>The status of the corpus: * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be trained with data from the corpus. * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept requests to add new corpora or words, or to train the custom model. * `undetermined` indicates that the service encountered an error while processing the corpus.</value>
+        /// <value>
+        /// The status of the corpus:
+        /// * `analyzed` indicates that the service has successfully analyzed the corpus; the custom model can be
+        /// trained with data from the corpus.
+        /// * `being_processed` indicates that the service is still analyzing the corpus; the service cannot accept
+        /// requests to add new corpora or words, or to train the custom model.
+        /// * `undetermined` indicates that the service encountered an error while processing the corpus.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The name of the corpus.
         /// </summary>
-        /// <value>The name of the corpus.</value>
+        /// <value>
+        /// The name of the corpus.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The total number of words in the corpus. The value is `0` while the corpus is being processed.
         /// </summary>
-        /// <value>The total number of words in the corpus. The value is `0` while the corpus is being processed.</value>
+        /// <value>
+        /// The total number of words in the corpus. The value is `0` while the corpus is being processed.
+        /// </value>
         [JsonProperty("total_words", NullValueHandling = NullValueHandling.Ignore)]
         public long? TotalWords { get; set; }
         /// <summary>
         /// The number of OOV words in the corpus. The value is `0` while the corpus is being processed.
         /// </summary>
-        /// <value>The number of OOV words in the corpus. The value is `0` while the corpus is being processed.</value>
+        /// <value>
+        /// The number of OOV words in the corpus. The value is `0` while the corpus is being processed.
+        /// </value>
         [JsonProperty("out_of_vocabulary_words", NullValueHandling = NullValueHandling.Ignore)]
         public long? OutOfVocabularyWords { get; set; }
         /// <summary>
-        /// If the status of the corpus is `undetermined`, the following message: `Analysis of corpus 'name' failed. Please try adding the corpus again by setting the 'allow_overwrite' flag to 'true'`.
+        /// If the status of the corpus is `undetermined`, the following message: `Analysis of corpus 'name' failed.
+        /// Please try adding the corpus again by setting the 'allow_overwrite' flag to 'true'`.
         /// </summary>
-        /// <value>If the status of the corpus is `undetermined`, the following message: `Analysis of corpus 'name' failed. Please try adding the corpus again by setting the 'allow_overwrite' flag to 'true'`.</value>
+        /// <value>
+        /// If the status of the corpus is `undetermined`, the following message: `Analysis of corpus 'name' failed.
+        /// Please try adding the corpus again by setting the 'allow_overwrite' flag to 'true'`.
+        /// </value>
         [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
         public string Error { get; set; }
     }

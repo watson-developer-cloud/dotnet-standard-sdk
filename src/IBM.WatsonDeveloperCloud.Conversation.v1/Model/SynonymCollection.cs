@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// An array of synonyms.
         /// </summary>
-        /// <value>An array of synonyms.</value>
+        /// <value>
+        /// An array of synonyms.
+        /// </value>
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<Synonym> Synonyms { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>The pagination data for the returned objects.</value>
+        /// <value>
+        /// The pagination data for the returned objects.
+        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

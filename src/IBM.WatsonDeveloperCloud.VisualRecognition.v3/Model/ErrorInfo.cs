@@ -20,26 +20,33 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
 {
     /// <summary>
-    /// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
+    /// Information about what might have caused a failure, such as an image that is too large. Not returned when there
+    /// is no error.
     /// </summary>
     public class ErrorInfo : BaseModel
     {
         /// <summary>
         /// HTTP status code.
         /// </summary>
-        /// <value>HTTP status code.</value>
+        /// <value>
+        /// HTTP status code.
+        /// </value>
         [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
         public long? Code { get; set; }
         /// <summary>
         /// Human-readable error description. For example, `File size limit exceeded`.
         /// </summary>
-        /// <value>Human-readable error description. For example, `File size limit exceeded`.</value>
+        /// <value>
+        /// Human-readable error description. For example, `File size limit exceeded`.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// Codified error string. For example, `limit_exceeded`.
         /// </summary>
-        /// <value>Codified error string. For example, `limit_exceeded`.</value>
+        /// <value>
+        /// Codified error string. For example, `limit_exceeded`.
+        /// </value>
         [JsonProperty("error_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ErrorId { get; set; }
     }

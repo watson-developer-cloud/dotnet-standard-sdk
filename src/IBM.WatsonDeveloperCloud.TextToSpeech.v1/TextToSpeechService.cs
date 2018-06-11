@@ -54,6 +54,15 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
 
+            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            {
+                this.Endpoint = options.ServiceUrl;
+            }
+            else
+            {
+                options.ServiceUrl = this.Endpoint;
+            }
+
             _tokenManager = new TokenManager(options);
         }
 

@@ -56,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// items listed in the `expanded_terms` array.
         /// </value>
         [JsonProperty("expansions", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Expansion> Expansions { get; set; }
+        public List<Expansion> _Expansions { get; set; }
     }
 
 }

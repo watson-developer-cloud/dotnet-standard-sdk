@@ -174,7 +174,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// sounds-like is one or more words that, when combined, sound like the word.
         /// </value>
         [JsonProperty("translation", NullValueHandling = NullValueHandling.Ignore)]
-        public string Translation { get; set; }
+        public string _Translation { get; set; }
     }
 
 }

@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// specified, the pronunciation also reflects that custom voice.
         /// </value>
         [JsonProperty("pronunciation", NullValueHandling = NullValueHandling.Ignore)]
-        public string Pronunciation { get; set; }
+        public string _Pronunciation { get; set; }
     }
 
 }

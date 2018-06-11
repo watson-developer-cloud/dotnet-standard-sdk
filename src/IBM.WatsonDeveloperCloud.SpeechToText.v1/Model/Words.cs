@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// array is empty if the custom model has no words.
         /// </value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Word> Words { get; set; }
+        public List<Word> _Words { get; set; }
     }
 
 }

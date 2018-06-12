@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
 {
-    //[TestClass]
+    [TestClass]
     public class LanguageTranslatorServiceIntegrationTestsRC
     {
         private static string _apikey;
@@ -70,7 +70,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc-wdc")[0].Credentials;
                 _endpoint = credential.Url;
                 _apikey = credential.IamApikey;
             }

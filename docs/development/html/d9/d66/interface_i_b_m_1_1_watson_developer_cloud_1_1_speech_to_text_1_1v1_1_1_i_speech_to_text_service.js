@@ -1,7 +1,7 @@
 var interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service =
 [
     [ "AddAudio", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af1cb5c5ce1a93146e532ccb80003857e", null ],
-    [ "AddCorpus", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1b55736f8ae0be9a6ffe2f77c305e659", null ],
+    [ "AddCorpus", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a80f1d940b8a4fa367034f3b50a16dd74", null ],
     [ "AddWord", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a1b2b1aa2c3bc00b2ad5106edba760a2e", null ],
     [ "AddWords", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a890d7a1e8edcea84646fefd142da9823", null ],
     [ "CheckJob", "d9/d66/interface_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a4ed257d7fb504d896048a98e818c1565", null ],

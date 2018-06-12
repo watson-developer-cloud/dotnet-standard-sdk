@@ -2,7 +2,7 @@ var searchData=
 [
   ['languagemodel_2ecs',['LanguageModel.cs',['../d0/d1a/_language_model_8cs.html',1,'']]],
   ['languagemodels_2ecs',['LanguageModels.cs',['../db/d2a/_language_models_8cs.html',1,'']]],
-  ['languagetranslatorservice_2ecs',['LanguageTranslatorService.cs',['../d9/d98/_language_translator_service_8cs.html',1,'']]],
+  ['languagetranslatorservice_2ecs',['LanguageTranslatorService.cs',['../d2/d19/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_language_translator_service_8cs.html',1,'(Global Namespace)'],['../d0/d6c/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_language_translator_service_8cs.html',1,'(Global Namespace)']]],
   ['listcollectionfieldsresponse_2ecs',['ListCollectionFieldsResponse.cs',['../d6/dfe/_list_collection_fields_response_8cs.html',1,'']]],
   ['listcollectionsresponse_2ecs',['ListCollectionsResponse.cs',['../d1/dab/_list_collections_response_8cs.html',1,'']]],
   ['listconfigurationsresponse_2ecs',['ListConfigurationsResponse.cs',['../d5/d26/_list_configurations_response_8cs.html',1,'']]],

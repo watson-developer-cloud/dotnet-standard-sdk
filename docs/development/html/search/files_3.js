@@ -4,7 +4,7 @@ var searchData=
   ['deleteconfigurationresponse_2ecs',['DeleteConfigurationResponse.cs',['../d2/d88/_delete_configuration_response_8cs.html',1,'']]],
   ['deletedocumentresponse_2ecs',['DeleteDocumentResponse.cs',['../d8/de3/_delete_document_response_8cs.html',1,'']]],
   ['deleteenvironmentresponse_2ecs',['DeleteEnvironmentResponse.cs',['../dd/daa/_delete_environment_response_8cs.html',1,'']]],
-  ['deletemodelresult_2ecs',['DeleteModelResult.cs',['../dd/d70/_delete_model_result_8cs.html',1,'']]],
+  ['deletemodelresult_2ecs',['DeleteModelResult.cs',['../d0/d0c/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_delete_model_result_8cs.html',1,'(Global Namespace)'],['../d2/d38/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_delete_model_result_8cs.html',1,'(Global Namespace)']]],
   ['descriptionattribute_2ecs',['DescriptionAttribute.cs',['../d3/d66/_description_attribute_8cs.html',1,'']]],
   ['descriptionextension_2ecs',['DescriptionExtension.cs',['../dd/d69/_description_extension_8cs.html',1,'']]],
   ['detectedfaces_2ecs',['DetectedFaces.cs',['../d0/db2/_detected_faces_8cs.html',1,'']]],

@@ -213,6 +213,16 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model.TranslationModel", "d1/dfe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_model.html", null ],
       [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model.TranslationModels", "db/d71/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_models.html", null ],
       [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model.TranslationResult", "da/dc9/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_model_1_1_translation_result.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.DeleteModelResult", "de/db7/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_delete_model_result.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.IdentifiableLanguage", "d2/d9f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.IdentifiableLanguages", "da/d70/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.IdentifiedLanguage", "d3/de2/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_identified_language.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.IdentifiedLanguages", "df/dbe/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.TranslateRequest", "da/d4c/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_translate_request.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.Translation", "da/d6f/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_translation.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.TranslationModel", "da/dc7/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.TranslationModels", "da/de3/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_translation_models.html", null ],
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model.TranslationResult", "dc/db7/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model_1_1_translation_result.html", null ],
       [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model.Classification", "d5/d1a/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification.html", null ],
       [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model.ClassificationCollection", "de/da5/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classification_collection.html", null ],
       [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model.ClassifiedClass", "d6/def/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classified_class.html", null ],
@@ -339,6 +349,7 @@ var hierarchy =
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.FaceGender", "d1/d86/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_gender.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.FaceLocation", "d9/dbc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_face_location.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.ImageWithFaces", "df/d84/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces.html", null ],
+      [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.ModelClass", "d1/d99/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model.WarningInfo", "d9/dcc/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html", null ],
       [ "IBM.WatsonDeveloperCloud.VisualRecognition.v3.UpdateClassifier", "d4/da0/class_i_b_m_1_1_watson_developer_cloud_1_1_visual_recognition_1_1v3_1_1_update_classifier.html", null ]
     ] ],
@@ -370,6 +381,9 @@ var hierarchy =
     ] ],
     [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.ILanguageTranslatorService", "de/d3e/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_i_language_translator_service.html", [
       [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html", null ]
+    ] ],
+    [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.ILanguageTranslatorService", "db/dcf/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html", [
+      [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.LanguageTranslatorService", "de/d8d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_language_translator_service.html", null ]
     ] ],
     [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.INaturalLanguageClassifierService", "d5/d2b/interface_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html", [
       [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.NaturalLanguageClassifierService", "db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html", null ]
@@ -405,6 +419,7 @@ var hierarchy =
         [ "IBM.WatsonDeveloperCloud.Conversation.v1.ConversationService", "d4/d3d/class_i_b_m_1_1_watson_developer_cloud_1_1_conversation_1_1v1_1_1_conversation_service.html", null ],
         [ "IBM.WatsonDeveloperCloud.Discovery.v1.DiscoveryService", "db/d03/class_i_b_m_1_1_watson_developer_cloud_1_1_discovery_1_1v1_1_1_discovery_service.html", null ],
         [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.LanguageTranslatorService", "d7/d18/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v2_1_1_language_translator_service.html", null ],
+        [ "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.LanguageTranslatorService", "de/d8d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_language_translator_service.html", null ],
         [ "IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.NaturalLanguageClassifierService", "db/d52/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_natural_language_classifier_service.html", null ],
         [ "IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.NaturalLanguageUnderstandingService", "d5/d1e/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html", null ],
         [ "IBM.WatsonDeveloperCloud.PersonalityInsights.v3.PersonalityInsightsService", "db/dad/class_i_b_m_1_1_watson_developer_cloud_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html", null ],

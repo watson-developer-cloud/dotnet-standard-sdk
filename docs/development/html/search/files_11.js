@@ -24,9 +24,9 @@ var searchData=
   ['trainingquery_2ecs',['TrainingQuery.cs',['../dd/dad/_training_query_8cs.html',1,'']]],
   ['trainingstatus_2ecs',['TrainingStatus.cs',['../d3/d5b/_training_status_8cs.html',1,'']]],
   ['trait_2ecs',['Trait.cs',['../db/d9d/_trait_8cs.html',1,'']]],
-  ['translaterequest_2ecs',['TranslateRequest.cs',['../d8/d9d/_translate_request_8cs.html',1,'']]],
-  ['translation_2ecs',['Translation.cs',['../d1/db6/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_8cs.html',1,'(Global Namespace)'],['../d0/d3f/_i_b_m_8_watson_developer_cloud_8_text_to_speech_8v1_2_model_2_translation_8cs.html',1,'(Global Namespace)']]],
-  ['translationmodel_2ecs',['TranslationModel.cs',['../d2/d13/_translation_model_8cs.html',1,'']]],
-  ['translationmodels_2ecs',['TranslationModels.cs',['../d3/ddb/_translation_models_8cs.html',1,'']]],
-  ['translationresult_2ecs',['TranslationResult.cs',['../d3/dc3/_translation_result_8cs.html',1,'']]]
+  ['translaterequest_2ecs',['TranslateRequest.cs',['../d4/d0a/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translate_request_8cs.html',1,'(Global Namespace)'],['../d8/dcf/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_translate_request_8cs.html',1,'(Global Namespace)']]],
+  ['translation_2ecs',['Translation.cs',['../d1/db6/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_8cs.html',1,'(Global Namespace)'],['../dd/da0/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_translation_8cs.html',1,'(Global Namespace)'],['../d0/d3f/_i_b_m_8_watson_developer_cloud_8_text_to_speech_8v1_2_model_2_translation_8cs.html',1,'(Global Namespace)']]],
+  ['translationmodel_2ecs',['TranslationModel.cs',['../d0/def/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_model_8cs.html',1,'(Global Namespace)'],['../d3/d56/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_translation_model_8cs.html',1,'(Global Namespace)']]],
+  ['translationmodels_2ecs',['TranslationModels.cs',['../dd/d8d/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_models_8cs.html',1,'(Global Namespace)'],['../d7/d96/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_translation_models_8cs.html',1,'(Global Namespace)']]],
+  ['translationresult_2ecs',['TranslationResult.cs',['../d0/d07/_i_b_m_8_watson_developer_cloud_8_language_translator_8v2_2_model_2_translation_result_8cs.html',1,'(Global Namespace)'],['../da/d83/_i_b_m_8_watson_developer_cloud_8_language_translator_8v3_2_model_2_translation_result_8cs.html',1,'(Global Namespace)']]]
 ];

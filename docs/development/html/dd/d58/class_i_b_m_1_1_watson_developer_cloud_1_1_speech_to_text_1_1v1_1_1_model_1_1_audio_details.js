@@ -6,7 +6,8 @@ var class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_
     ] ],
     [ "TypeEnum", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#accf133e0e9b1df4d614df84eb422087b", [
       [ "AUDIO", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#accf133e0e9b1df4d614df84eb422087bae423b8bde9bfbfd7e9409b23b23aed91", null ],
-      [ "ARCHIVE", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#accf133e0e9b1df4d614df84eb422087ba71f01f32e90440fd6039511dde69e995", null ]
+      [ "ARCHIVE", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#accf133e0e9b1df4d614df84eb422087ba71f01f32e90440fd6039511dde69e995", null ],
+      [ "UNDETERMINED", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#accf133e0e9b1df4d614df84eb422087bada2177f2ae8cc1092278858168601205", null ]
     ] ],
     [ "Codec", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#a643035ce12e6f24dbce504026046cf03", null ],
     [ "Compression", "dd/d58/class_i_b_m_1_1_watson_developer_cloud_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details.html#ac7885b729e0a4237c0401953bac35a69", null ],

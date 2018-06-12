@@ -138,7 +138,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void Model_Success_RC()
         {
             TranslationModel createModelResult;

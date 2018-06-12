@@ -28,31 +28,41 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// Unique identifier for this classifier.
         /// </summary>
-        /// <value>Unique identifier for this classifier.</value>
+        /// <value>
+        /// Unique identifier for this classifier.
+        /// </value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
         /// Link to the classifier.
         /// </summary>
-        /// <value>Link to the classifier.</value>
+        /// <value>
+        /// Link to the classifier.
+        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// The submitted phrase.
         /// </summary>
-        /// <value>The submitted phrase.</value>
+        /// <value>
+        /// The submitted phrase.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// The class with the highest confidence.
         /// </summary>
-        /// <value>The class with the highest confidence.</value>
+        /// <value>
+        /// The class with the highest confidence.
+        /// </value>
         [JsonProperty("top_class", NullValueHandling = NullValueHandling.Ignore)]
         public string TopClass { get; set; }
         /// <summary>
         /// An array of up to ten class-confidence pairs sorted in descending order of confidence.
         /// </summary>
-        /// <value>An array of up to ten class-confidence pairs sorted in descending order of confidence.</value>
+        /// <value>
+        /// An array of up to ten class-confidence pairs sorted in descending order of confidence.
+        /// </value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifiedClass> Classes { get; set; }
     }

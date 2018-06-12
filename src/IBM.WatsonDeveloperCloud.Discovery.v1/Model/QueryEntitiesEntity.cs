@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Entity text content.
         /// </summary>
-        /// <value>Entity text content.</value>
+        /// <value>
+        /// Entity text content.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// The type of the specified entity.
         /// </summary>
-        /// <value>The type of the specified entity.</value>
+        /// <value>
+        /// The type of the specified entity.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
     }

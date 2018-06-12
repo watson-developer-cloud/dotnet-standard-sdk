@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// An array of objects describing the intents defined for the workspace.
         /// </summary>
-        /// <value>An array of objects describing the intents defined for the workspace.</value>
+        /// <value>
+        /// An array of objects describing the intents defined for the workspace.
+        /// </value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<IntentExport> Intents { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>The pagination data for the returned objects.</value>
+        /// <value>
+        /// The pagination data for the returned objects.
+        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

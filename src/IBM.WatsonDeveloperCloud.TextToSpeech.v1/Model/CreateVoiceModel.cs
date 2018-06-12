@@ -29,7 +29,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// <summary>
         /// The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.
         /// </summary>
-        /// <value>The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.</value>
+        /// <value>
+        /// The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LanguageEnum
         {
@@ -98,19 +100,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// <summary>
         /// The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.
         /// </summary>
-        /// <value>The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.</value>
+        /// <value>
+        /// The language of the new custom voice model. Omit the parameter to use the the default language, `en-US`.
+        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public LanguageEnum? Language { get; set; }
         /// <summary>
         /// The name of the new custom voice model.
         /// </summary>
-        /// <value>The name of the new custom voice model.</value>
+        /// <value>
+        /// The name of the new custom voice model.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// A description of the new custom voice model. Specifying a description is recommended.
         /// </summary>
-        /// <value>A description of the new custom voice model. Specifying a description is recommended.</value>
+        /// <value>
+        /// A description of the new custom voice model. Specifying a description is recommended.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }

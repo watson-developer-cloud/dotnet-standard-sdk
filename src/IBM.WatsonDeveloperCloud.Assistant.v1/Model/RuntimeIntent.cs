@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The name of the recognized intent.
         /// </summary>
-        /// <value>The name of the recognized intent.</value>
+        /// <value>
+        /// The name of the recognized intent.
+        /// </value>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Intent { get; set; }
         /// <summary>
         /// A decimal percentage that represents Watson's confidence in the intent.
         /// </summary>
-        /// <value>A decimal percentage that represents Watson's confidence in the intent.</value>
+        /// <value>
+        /// A decimal percentage that represents Watson's confidence in the intent.
+        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Confidence { get; set; }
     }

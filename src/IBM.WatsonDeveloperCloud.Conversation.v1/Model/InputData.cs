@@ -25,9 +25,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     public class InputData : BaseModel
     {
         /// <summary>
-        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.
+        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
+        /// must be no longer than 2048 characters.
         /// </summary>
-        /// <value>The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it must be no longer than 2048 characters.</value>
+        /// <value>
+        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
+        /// must be no longer than 2048 characters.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

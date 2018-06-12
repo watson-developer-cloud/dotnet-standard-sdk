@@ -765,10 +765,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region AddCorpus
-        private BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, string corpusFileContentType = null, Dictionary<string, object> customData = null)
+        private BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddCorpus()");
-            var result = _service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, corpusFileContentType: corpusFileContentType, customData: customData);
+            var result = _service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite, customData: customData);
 
             if (result != null)
             {

@@ -27,25 +27,33 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Summary of the document usage statistics for the environment.
         /// </summary>
-        /// <value>Summary of the document usage statistics for the environment.</value>
+        /// <value>
+        /// Summary of the document usage statistics for the environment.
+        /// </value>
         [JsonProperty("documents", NullValueHandling = NullValueHandling.Ignore)]
         public EnvironmentDocuments Documents { get; set; }
         /// <summary>
         /// Summary of the disk usage of the environment.
         /// </summary>
-        /// <value>Summary of the disk usage of the environment.</value>
+        /// <value>
+        /// Summary of the disk usage of the environment.
+        /// </value>
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public DiskUsage DiskUsage { get; set; }
         /// <summary>
         /// Summary of the collection usage in the environment.
         /// </summary>
-        /// <value>Summary of the collection usage in the environment.</value>
+        /// <value>
+        /// Summary of the collection usage in the environment.
+        /// </value>
         [JsonProperty("collections", NullValueHandling = NullValueHandling.Ignore)]
         public CollectionUsage Collections { get; set; }
         /// <summary>
         /// **Deprecated**: Summary of the memory usage of the environment.
         /// </summary>
-        /// <value>**Deprecated**: Summary of the memory usage of the environment.</value>
+        /// <value>
+        /// **Deprecated**: Summary of the memory usage of the environment.
+        /// </value>
         [JsonProperty("memory_usage", NullValueHandling = NullValueHandling.Ignore)]
         public MemoryUsage MemoryUsage { get; set; }
     }

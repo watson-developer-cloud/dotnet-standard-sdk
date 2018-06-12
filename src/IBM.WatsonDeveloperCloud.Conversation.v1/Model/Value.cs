@@ -31,7 +31,9 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// Specifies the type of value.
         /// </summary>
-        /// <value>Specifies the type of value.</value>
+        /// <value>
+        /// Specifies the type of value.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValueTypeEnum
         {
@@ -52,43 +54,57 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// Specifies the type of value.
         /// </summary>
-        /// <value>Specifies the type of value.</value>
+        /// <value>
+        /// Specifies the type of value.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public ValueTypeEnum? ValueType { get; set; }
         /// <summary>
         /// The text of the entity value.
         /// </summary>
-        /// <value>The text of the entity value.</value>
+        /// <value>
+        /// The text of the entity value.
+        /// </value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string ValueText { get; set; }
         /// <summary>
         /// Any metadata related to the entity value.
         /// </summary>
-        /// <value>Any metadata related to the entity value.</value>
+        /// <value>
+        /// Any metadata related to the entity value.
+        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
         /// The timestamp for creation of the entity value.
         /// </summary>
-        /// <value>The timestamp for creation of the entity value.</value>
+        /// <value>
+        /// The timestamp for creation of the entity value.
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the entity value.
         /// </summary>
-        /// <value>The timestamp for the last update to the entity value.</value>
+        /// <value>
+        /// The timestamp for the last update to the entity value.
+        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// An array containing any synonyms for the entity value.
         /// </summary>
-        /// <value>An array containing any synonyms for the entity value.</value>
+        /// <value>
+        /// An array containing any synonyms for the entity value.
+        /// </value>
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
         /// <summary>
         /// An array containing any patterns for the entity value.
         /// </summary>
-        /// <value>An array containing any patterns for the entity value.</value>
+        /// <value>
+        /// An array containing any patterns for the entity value.
+        /// </value>
         [JsonProperty("patterns", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Patterns { get; set; }
     }

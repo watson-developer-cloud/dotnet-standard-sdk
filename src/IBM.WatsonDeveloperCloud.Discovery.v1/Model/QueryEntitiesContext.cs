@@ -20,14 +20,21 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
+    /// Entity text to provide context for the queried entity and rank based on that association. For example, if you
+    /// wanted to query the city of London in England your query would look for `London` with the context of `England`.
     /// </summary>
     public class QueryEntitiesContext : BaseModel
     {
         /// <summary>
-        /// Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
+        /// Entity text to provide context for the queried entity and rank based on that association. For example, if
+        /// you wanted to query the city of London in England your query would look for `London` with the context of
+        /// `England`.
         /// </summary>
-        /// <value>Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.</value>
+        /// <value>
+        /// Entity text to provide context for the queried entity and rank based on that association. For example, if
+        /// you wanted to query the city of London in England your query would look for `London` with the context of
+        /// `England`.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

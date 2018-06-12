@@ -28,31 +28,41 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The docuemnt ID (as indexed in Discovery) of the evidence location.
         /// </summary>
-        /// <value>The docuemnt ID (as indexed in Discovery) of the evidence location.</value>
+        /// <value>
+        /// The docuemnt ID (as indexed in Discovery) of the evidence location.
+        /// </value>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
         /// <summary>
         /// The field of the document where the supporting evidence was identified.
         /// </summary>
-        /// <value>The field of the document where the supporting evidence was identified.</value>
+        /// <value>
+        /// The field of the document where the supporting evidence was identified.
+        /// </value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
         /// The start location of the evidence in the identified field. This value is inclusive.
         /// </summary>
-        /// <value>The start location of the evidence in the identified field. This value is inclusive.</value>
+        /// <value>
+        /// The start location of the evidence in the identified field. This value is inclusive.
+        /// </value>
         [JsonProperty("start_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? StartOffset { get; set; }
         /// <summary>
         /// The end location of the evidence in the identified field. This value is inclusive.
         /// </summary>
-        /// <value>The end location of the evidence in the identified field. This value is inclusive.</value>
+        /// <value>
+        /// The end location of the evidence in the identified field. This value is inclusive.
+        /// </value>
         [JsonProperty("end_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? EndOffset { get; set; }
         /// <summary>
         /// An array of entity objects that show evidence of the result.
         /// </summary>
-        /// <value>An array of entity objects that show evidence of the result.</value>
+        /// <value>
+        /// An array of entity objects that show evidence of the result.
+        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryEvidenceEntity> Entities { get; set; }
     }

@@ -60,7 +60,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// Classify a phrase. Returns label information for the input. The status must be `Available` before you can use the classifier to classify text.
+        /// Classify a phrase.
+        ///
+        /// Returns label information for the input. The status must be `Available` before you can use the classifier to
+        /// classify text.returnFields
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify. The maximum length of the text phrase is 1024 characters.</param>
@@ -97,10 +100,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// Classify multiple phrases. Returns label information for multiple phrases. The status must be `Available` before you can use the classifier to classify text.  Note that classifying Japanese texts is a beta feature.
+        /// Classify multiple phrases.
+        ///
+        /// Returns label information for multiple phrases. The status must be `Available` before you can use the
+        /// classifier to classify text.
+        ///
+        /// Note that classifying Japanese texts is a beta feature.returnFields
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify.  The maximum length of the text phrase is 1024 characters. You can submit up to 30 text phrases in a request.</param>
+        /// <param name="body">Phrase to classify.
+        ///
+        /// The maximum length of the text phrase is 1024 characters. You can submit up to 30 text phrases in a
+        /// request.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
         public ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)
@@ -133,10 +144,19 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             return result;
         }
         /// <summary>
-        /// Create classifier. Sends data to create and train a classifier and returns information about the new classifier.
+        /// Create classifier.
+        ///
+        /// Sends data to create and train a classifier and returns information about the new classifier.returnFields
         /// </summary>
-        /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an optional name to identify the classifier. Specify the language with the 2-letter primary language code as assigned in ISO standard 639.  Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).</param>
-        /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The data can include up to 20,000 records. For details, see [Data preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
+        /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an
+        /// optional name to identify the classifier. Specify the language with the 2-letter primary language code as
+        /// assigned in ISO standard 639.
+        ///
+        /// Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`),
+        /// Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).</param>
+        /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The
+        /// data can include up to 20,000 records. For details, see [Data
+        /// preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
         public Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null)
@@ -190,7 +210,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// Delete classifier. 
+        /// Delete classifier.
         /// </summary>
         /// <param name="classifierId">Classifier ID to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -223,7 +243,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// Get information about a classifier. Returns status and other information about a classifier.
+        /// Get information about a classifier.
+        ///
+        /// Returns status and other information about a classifier.returnFields
         /// </summary>
         /// <param name="classifierId">Classifier ID to query.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -256,7 +278,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// List classifiers. Returns an empty array if no classifiers are available.
+        /// List classifiers.
+        ///
+        /// Returns an empty array if no classifiers are available.returnFields
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifierList" />ClassifierList</returns>

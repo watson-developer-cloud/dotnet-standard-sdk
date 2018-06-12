@@ -28,25 +28,39 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// An array of up to 50 messages logged with the request.
         /// </summary>
-        /// <value>An array of up to 50 messages logged with the request.</value>
+        /// <value>
+        /// An array of up to 50 messages logged with the request.
+        /// </value>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic LogMessages { get; set; }
         /// <summary>
         /// An array of responses to the user.
         /// </summary>
-        /// <value>An array of responses to the user.</value>
+        /// <value>
+        /// An array of responses to the user.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Text { get; set; }
         /// <summary>
-        /// An array of the nodes that were triggered to create the response, in the order in which they were visited. This information is useful for debugging and for tracing the path taken through the node tree.
+        /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
+        /// This information is useful for debugging and for tracing the path taken through the node tree.
         /// </summary>
-        /// <value>An array of the nodes that were triggered to create the response, in the order in which they were visited. This information is useful for debugging and for tracing the path taken through the node tree.</value>
+        /// <value>
+        /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
+        /// This information is useful for debugging and for tracing the path taken through the node tree.
+        /// </value>
         [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic NodesVisited { get; set; }
         /// <summary>
-        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message request.
+        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
+        /// processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message
+        /// request.
         /// </summary>
-        /// <value>An array of objects containing detailed diagnostic information about the nodes that were triggered during processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message request.</value>
+        /// <value>
+        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
+        /// processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message
+        /// request.
+        /// </value>
         [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic NodesVisitedDetails { get; set; }
     }

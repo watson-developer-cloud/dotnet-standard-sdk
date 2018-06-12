@@ -28,19 +28,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Common entity name.
         /// </summary>
-        /// <value>Common entity name.</value>
+        /// <value>
+        /// Common entity name.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Link to the corresponding DBpedia resource.
         /// </summary>
-        /// <value>Link to the corresponding DBpedia resource.</value>
+        /// <value>
+        /// Link to the corresponding DBpedia resource.
+        /// </value>
         [JsonProperty("dbpedia_resource", NullValueHandling = NullValueHandling.Ignore)]
         public string DbpediaResource { get; set; }
         /// <summary>
         /// Entity subtype information.
         /// </summary>
-        /// <value>Entity subtype information.</value>
+        /// <value>
+        /// Entity subtype information.
+        /// </value>
         [JsonProperty("subtype", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Subtype { get; set; }
     }

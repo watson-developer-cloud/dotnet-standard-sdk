@@ -28,19 +28,27 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// <summary>
         /// An array of `ToneScore` objects that provides the results for the tones of the category.
         /// </summary>
-        /// <value>An array of `ToneScore` objects that provides the results for the tones of the category.</value>
+        /// <value>
+        /// An array of `ToneScore` objects that provides the results for the tones of the category.
+        /// </value>
         [JsonProperty("tones", NullValueHandling = NullValueHandling.Ignore)]
         public List<ToneScore> Tones { get; set; }
         /// <summary>
-        /// The unique, non-localized identifier of the category for the results. The service can return results for the following category IDs: `emotion_tone`, `language_tone`, and `social_tone`.
+        /// The unique, non-localized identifier of the category for the results. The service can return results for the
+        /// following category IDs: `emotion_tone`, `language_tone`, and `social_tone`.
         /// </summary>
-        /// <value>The unique, non-localized identifier of the category for the results. The service can return results for the following category IDs: `emotion_tone`, `language_tone`, and `social_tone`.</value>
+        /// <value>
+        /// The unique, non-localized identifier of the category for the results. The service can return results for the
+        /// following category IDs: `emotion_tone`, `language_tone`, and `social_tone`.
+        /// </value>
         [JsonProperty("category_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CategoryId { get; set; }
         /// <summary>
         /// The user-visible, localized name of the category.
         /// </summary>
-        /// <value>The user-visible, localized name of the category.</value>
+        /// <value>
+        /// The user-visible, localized name of the category.
+        /// </value>
         [JsonProperty("category_name", NullValueHandling = NullValueHandling.Ignore)]
         public string CategoryName { get; set; }
     }

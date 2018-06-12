@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// The submitted phrases.
         /// </summary>
-        /// <value>The submitted phrases.</value>
+        /// <value>
+        /// The submitted phrases.
+        /// </value>
         [JsonProperty("collection", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifyInput> Collection { get; set; }
     }

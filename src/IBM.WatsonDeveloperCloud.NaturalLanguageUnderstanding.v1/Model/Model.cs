@@ -27,25 +27,33 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Shows as available if the model is ready for use.
         /// </summary>
-        /// <value>Shows as available if the model is ready for use.</value>
+        /// <value>
+        /// Shows as available if the model is ready for use.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string Status { get; set; }
         /// <summary>
         /// Unique model ID.
         /// </summary>
-        /// <value>Unique model ID.</value>
+        /// <value>
+        /// Unique model ID.
+        /// </value>
         [JsonProperty("model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ModelId { get; set; }
         /// <summary>
         /// ISO 639-1 code indicating the language of the model.
         /// </summary>
-        /// <value>ISO 639-1 code indicating the language of the model.</value>
+        /// <value>
+        /// ISO 639-1 code indicating the language of the model.
+        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// Model description.
         /// </summary>
-        /// <value>Model description.</value>
+        /// <value>
+        /// Model description.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }

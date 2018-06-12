@@ -28,9 +28,25 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class AcousticModel : BaseModel
     {
         /// <summary>
-        /// The current status of the custom acoustic model: * `pending` indicates that the model was created but is waiting either for training data to be added or for the service to finish analyzing added data. * `ready` indicates that the model contains data and is ready to be trained. * `training` indicates that the model is currently being trained. * `available` indicates that the model is trained and ready to use. * `upgrading` indicates that the model is currently being upgraded. * `failed` indicates that training of the model failed.
+        /// The current status of the custom acoustic model:
+        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
+        /// the service to finish analyzing added data.
+        /// * `ready` indicates that the model contains data and is ready to be trained.
+        /// * `training` indicates that the model is currently being trained.
+        /// * `available` indicates that the model is trained and ready to use.
+        /// * `upgrading` indicates that the model is currently being upgraded.
+        /// * `failed` indicates that training of the model failed.
         /// </summary>
-        /// <value>The current status of the custom acoustic model: * `pending` indicates that the model was created but is waiting either for training data to be added or for the service to finish analyzing added data. * `ready` indicates that the model contains data and is ready to be trained. * `training` indicates that the model is currently being trained. * `available` indicates that the model is trained and ready to use. * `upgrading` indicates that the model is currently being upgraded. * `failed` indicates that training of the model failed.</value>
+        /// <value>
+        /// The current status of the custom acoustic model:
+        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
+        /// the service to finish analyzing added data.
+        /// * `ready` indicates that the model contains data and is ready to be trained.
+        /// * `training` indicates that the model is currently being trained.
+        /// * `available` indicates that the model is trained and ready to use.
+        /// * `upgrading` indicates that the model is currently being upgraded.
+        /// * `failed` indicates that training of the model failed.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -73,69 +89,121 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         }
 
         /// <summary>
-        /// The current status of the custom acoustic model: * `pending` indicates that the model was created but is waiting either for training data to be added or for the service to finish analyzing added data. * `ready` indicates that the model contains data and is ready to be trained. * `training` indicates that the model is currently being trained. * `available` indicates that the model is trained and ready to use. * `upgrading` indicates that the model is currently being upgraded. * `failed` indicates that training of the model failed.
+        /// The current status of the custom acoustic model:
+        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
+        /// the service to finish analyzing added data.
+        /// * `ready` indicates that the model contains data and is ready to be trained.
+        /// * `training` indicates that the model is currently being trained.
+        /// * `available` indicates that the model is trained and ready to use.
+        /// * `upgrading` indicates that the model is currently being upgraded.
+        /// * `failed` indicates that training of the model failed.
         /// </summary>
-        /// <value>The current status of the custom acoustic model: * `pending` indicates that the model was created but is waiting either for training data to be added or for the service to finish analyzing added data. * `ready` indicates that the model contains data and is ready to be trained. * `training` indicates that the model is currently being trained. * `available` indicates that the model is trained and ready to use. * `upgrading` indicates that the model is currently being upgraded. * `failed` indicates that training of the model failed.</value>
+        /// <value>
+        /// The current status of the custom acoustic model:
+        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
+        /// the service to finish analyzing added data.
+        /// * `ready` indicates that the model contains data and is ready to be trained.
+        /// * `training` indicates that the model is currently being trained.
+        /// * `available` indicates that the model is trained and ready to use.
+        /// * `upgrading` indicates that the model is currently being upgraded.
+        /// * `failed` indicates that training of the model failed.
+        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// The customization ID (GUID) of the custom acoustic model. The **Create a custom acoustic model** method returns only this field of the object; it does not return the other fields.
+        /// The customization ID (GUID) of the custom acoustic model. The **Create a custom acoustic model** method
+        /// returns only this field of the object; it does not return the other fields.
         /// </summary>
-        /// <value>The customization ID (GUID) of the custom acoustic model. The **Create a custom acoustic model** method returns only this field of the object; it does not return the other fields.</value>
+        /// <value>
+        /// The customization ID (GUID) of the custom acoustic model. The **Create a custom acoustic model** method
+        /// returns only this field of the object; it does not return the other fields.
+        /// </value>
         [JsonProperty("customization_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CustomizationId { get; set; }
         /// <summary>
-        /// The date and time in Coordinated Universal Time (UTC) at which the custom acoustic model was created. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
+        /// The date and time in Coordinated Universal Time (UTC) at which the custom acoustic model was created. The
+        /// value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
         /// </summary>
-        /// <value>The date and time in Coordinated Universal Time (UTC) at which the custom acoustic model was created. The value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).</value>
+        /// <value>
+        /// The date and time in Coordinated Universal Time (UTC) at which the custom acoustic model was created. The
+        /// value is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public string Created { get; set; }
         /// <summary>
         /// The language identifier of the custom acoustic model (for example, `en-US`).
         /// </summary>
-        /// <value>The language identifier of the custom acoustic model (for example, `en-US`).</value>
+        /// <value>
+        /// The language identifier of the custom acoustic model (for example, `en-US`).
+        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
-        /// A list of the available versions of the custom acoustic model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown.
+        /// A list of the available versions of the custom acoustic model. Each element of the array indicates a version
+        /// of the base model with which the custom model can be used. Multiple versions exist only if the custom model
+        /// has been upgraded; otherwise, only a single version is shown.
         /// </summary>
-        /// <value>A list of the available versions of the custom acoustic model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown.</value>
+        /// <value>
+        /// A list of the available versions of the custom acoustic model. Each element of the array indicates a version
+        /// of the base model with which the custom model can be used. Multiple versions exist only if the custom model
+        /// has been upgraded; otherwise, only a single version is shown.
+        /// </value>
         [JsonProperty("versions", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Versions { get; set; }
         /// <summary>
         /// The GUID of the service credentials for the instance of the service that owns the custom acoustic model.
         /// </summary>
-        /// <value>The GUID of the service credentials for the instance of the service that owns the custom acoustic model.</value>
+        /// <value>
+        /// The GUID of the service credentials for the instance of the service that owns the custom acoustic model.
+        /// </value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
         /// <summary>
         /// The name of the custom acoustic model.
         /// </summary>
-        /// <value>The name of the custom acoustic model.</value>
+        /// <value>
+        /// The name of the custom acoustic model.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The description of the custom acoustic model.
         /// </summary>
-        /// <value>The description of the custom acoustic model.</value>
+        /// <value>
+        /// The description of the custom acoustic model.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// The name of the language model for which the custom acoustic model was created.
         /// </summary>
-        /// <value>The name of the language model for which the custom acoustic model was created.</value>
+        /// <value>
+        /// The name of the language model for which the custom acoustic model was created.
+        /// </value>
         [JsonProperty("base_model_name", NullValueHandling = NullValueHandling.Ignore)]
         public string BaseModelName { get; set; }
         /// <summary>
-        /// A percentage that indicates the progress of the custom acoustic model's current training. A value of `100` means that the model is fully trained. **Note:** The `progress` field does not currently reflect the progress of the training. The field changes from `0` to `100` when training is complete.
+        /// A percentage that indicates the progress of the custom acoustic model's current training. A value of `100`
+        /// means that the model is fully trained. **Note:** The `progress` field does not currently reflect the
+        /// progress of the training. The field changes from `0` to `100` when training is complete.
         /// </summary>
-        /// <value>A percentage that indicates the progress of the custom acoustic model's current training. A value of `100` means that the model is fully trained. **Note:** The `progress` field does not currently reflect the progress of the training. The field changes from `0` to `100` when training is complete.</value>
+        /// <value>
+        /// A percentage that indicates the progress of the custom acoustic model's current training. A value of `100`
+        /// means that the model is fully trained. **Note:** The `progress` field does not currently reflect the
+        /// progress of the training. The field changes from `0` to `100` when training is complete.
+        /// </value>
         [JsonProperty("progress", NullValueHandling = NullValueHandling.Ignore)]
         public long? Progress { get; set; }
         /// <summary>
-        /// If the request included unknown parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.
+        /// If the request included unknown parameters, the following message: `Unexpected query parameter(s)
+        /// ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown
+        /// parameter.
         /// </summary>
-        /// <value>If the request included unknown parameters, the following message: `Unexpected query parameter(s) ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown parameter.</value>
+        /// <value>
+        /// If the request included unknown parameters, the following message: `Unexpected query parameter(s)
+        /// ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown
+        /// parameter.
+        /// </value>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public string Warnings { get; set; }
     }

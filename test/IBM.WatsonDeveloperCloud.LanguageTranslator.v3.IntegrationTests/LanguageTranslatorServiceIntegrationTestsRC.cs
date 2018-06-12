@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
 {
-    [TestClass]
+    //[TestClass]
     public class LanguageTranslatorServiceIntegrationTestsRC
     {
         private static string _apikey;

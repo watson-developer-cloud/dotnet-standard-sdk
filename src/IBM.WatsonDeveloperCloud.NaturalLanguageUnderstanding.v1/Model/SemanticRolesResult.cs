@@ -27,25 +27,33 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Sentence from the source that contains the subject, action, and object.
         /// </summary>
-        /// <value>Sentence from the source that contains the subject, action, and object.</value>
+        /// <value>
+        /// Sentence from the source that contains the subject, action, and object.
+        /// </value>
         [JsonProperty("sentence", NullValueHandling = NullValueHandling.Ignore)]
         public string Sentence { get; set; }
         /// <summary>
         /// The extracted subject from the sentence.
         /// </summary>
-        /// <value>The extracted subject from the sentence.</value>
+        /// <value>
+        /// The extracted subject from the sentence.
+        /// </value>
         [JsonProperty("subject", NullValueHandling = NullValueHandling.Ignore)]
         public SemanticRolesSubject Subject { get; set; }
         /// <summary>
         /// The extracted action from the sentence.
         /// </summary>
-        /// <value>The extracted action from the sentence.</value>
+        /// <value>
+        /// The extracted action from the sentence.
+        /// </value>
         [JsonProperty("action", NullValueHandling = NullValueHandling.Ignore)]
         public SemanticRolesAction Action { get; set; }
         /// <summary>
         /// The extracted object from the sentence.
         /// </summary>
-        /// <value>The extracted object from the sentence.</value>
+        /// <value>
+        /// The extracted object from the sentence.
+        /// </value>
         [JsonProperty("object", NullValueHandling = NullValueHandling.Ignore)]
         public SemanticRolesObject _Object { get; set; }
     }

@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// <summary>
         /// The text to synthesize.
         /// </summary>
-        /// <value>The text to synthesize.</value>
+        /// <value>
+        /// The text to synthesize.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string _Text { get; set; }
     }

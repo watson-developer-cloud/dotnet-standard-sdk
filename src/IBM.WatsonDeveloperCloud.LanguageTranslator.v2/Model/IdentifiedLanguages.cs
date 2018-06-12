@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// A ranking of identified languages with confidence scores.
         /// </summary>
-        /// <value>A ranking of identified languages with confidence scores.</value>
+        /// <value>
+        /// A ranking of identified languages with confidence scores.
+        /// </value>
         [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
         public List<IdentifiedLanguage> Languages { get; set; }
     }

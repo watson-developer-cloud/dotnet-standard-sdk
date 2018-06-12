@@ -27,25 +27,33 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The entity type for this entity. Possible types vary based on model used.
         /// </summary>
-        /// <value>The entity type for this entity. Possible types vary based on model used.</value>
+        /// <value>
+        /// The entity type for this entity. Possible types vary based on model used.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
         /// The original text of this entity as found in the evidence field.
         /// </summary>
-        /// <value>The original text of this entity as found in the evidence field.</value>
+        /// <value>
+        /// The original text of this entity as found in the evidence field.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// The start location of the entity text in the identified field. This value is inclusive.
         /// </summary>
-        /// <value>The start location of the entity text in the identified field. This value is inclusive.</value>
+        /// <value>
+        /// The start location of the entity text in the identified field. This value is inclusive.
+        /// </value>
         [JsonProperty("start_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? StartOffset { get; set; }
         /// <summary>
         /// The end location of the entity text in the identified field. This value is exclusive.
         /// </summary>
-        /// <value>The end location of the entity text in the identified field. This value is exclusive.</value>
+        /// <value>
+        /// The end location of the entity text in the identified field. This value is exclusive.
+        /// </value>
         [JsonProperty("end_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? EndOffset { get; set; }
     }

@@ -28,19 +28,25 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Name of the classifier.
         /// </summary>
-        /// <value>Name of the classifier.</value>
+        /// <value>
+        /// Name of the classifier.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// ID of a classifier identified in the image.
         /// </summary>
-        /// <value>ID of a classifier identified in the image.</value>
+        /// <value>
+        /// ID of a classifier identified in the image.
+        /// </value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
         /// Classes within the classifier.
         /// </summary>
-        /// <value>Classes within the classifier.</value>
+        /// <value>
+        /// Classes within the classifier.
+        /// </value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassResult> Classes { get; set; }
     }

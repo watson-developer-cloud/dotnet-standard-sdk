@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The area of the results the aggregation was restricted to.
         /// </summary>
-        /// <value>The area of the results the aggregation was restricted to.</value>
+        /// <value>
+        /// The area of the results the aggregation was restricted to.
+        /// </value>
         [JsonProperty("path", NullValueHandling = NullValueHandling.Ignore)]
         public string Path { get; set; }
     }

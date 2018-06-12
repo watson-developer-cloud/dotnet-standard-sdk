@@ -27,9 +27,19 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
     public class Translation : BaseModel
     {
         /// <summary>
-        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
+        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
+        /// intonation for the word. You can create only a single entry, with or without a single part of speech, for
+        /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
+        /// information, see [Working with Japanese
+        /// entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
         /// </summary>
-        /// <value>**Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).</value>
+        /// <value>
+        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
+        /// intonation for the word. You can create only a single entry, with or without a single part of speech, for
+        /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
+        /// information, see [Working with Japanese
+        /// entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PartOfSpeechEnum
         {
@@ -138,15 +148,31 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         }
 
         /// <summary>
-        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
+        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
+        /// intonation for the word. You can create only a single entry, with or without a single part of speech, for
+        /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
+        /// information, see [Working with Japanese
+        /// entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
         /// </summary>
-        /// <value>**Japanese only.** The part of speech for the word. The service uses the value to produce the correct intonation for the word. You can create only a single entry, with or without a single part of speech, for any word; you cannot create multiple entries with different parts of speech for the same word. For more information, see [Working with Japanese entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).</value>
+        /// <value>
+        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
+        /// intonation for the word. You can create only a single entry, with or without a single part of speech, for
+        /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
+        /// information, see [Working with Japanese
+        /// entries](https://console.bluemix.net/docs/services/text-to-speech/custom-rules.html#jaNotes).
+        /// </value>
         [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
         public PartOfSpeechEnum? PartOfSpeech { get; set; }
         /// <summary>
-        /// The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A sounds-like is one or more words that, when combined, sound like the word.
+        /// The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for
+        /// representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A
+        /// sounds-like is one or more words that, when combined, sound like the word.
         /// </summary>
-        /// <value>The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A sounds-like is one or more words that, when combined, sound like the word.</value>
+        /// <value>
+        /// The phonetic or sounds-like translation for the word. A phonetic translation is based on the SSML format for
+        /// representing the phonetic string of a word either as an IPA translation or as an IBM SPR translation. A
+        /// sounds-like is one or more words that, when combined, sound like the word.
+        /// </value>
         [JsonProperty("translation", NullValueHandling = NullValueHandling.Ignore)]
         public string _Translation { get; set; }
     }

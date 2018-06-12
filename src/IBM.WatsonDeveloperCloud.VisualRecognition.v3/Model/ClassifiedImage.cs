@@ -28,31 +28,43 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Source of the image before any redirects. Not returned when the image is uploaded.
         /// </summary>
-        /// <value>Source of the image before any redirects. Not returned when the image is uploaded.</value>
+        /// <value>
+        /// Source of the image before any redirects. Not returned when the image is uploaded.
+        /// </value>
         [JsonProperty("source_url", NullValueHandling = NullValueHandling.Ignore)]
         public string SourceUrl { get; set; }
         /// <summary>
         /// Fully resolved URL of the image after redirects are followed. Not returned when the image is uploaded.
         /// </summary>
-        /// <value>Fully resolved URL of the image after redirects are followed. Not returned when the image is uploaded.</value>
+        /// <value>
+        /// Fully resolved URL of the image after redirects are followed. Not returned when the image is uploaded.
+        /// </value>
         [JsonProperty("resolved_url", NullValueHandling = NullValueHandling.Ignore)]
         public string ResolvedUrl { get; set; }
         /// <summary>
         /// Relative path of the image file if uploaded directly. Not returned when the image is passed by URL.
         /// </summary>
-        /// <value>Relative path of the image file if uploaded directly. Not returned when the image is passed by URL.</value>
+        /// <value>
+        /// Relative path of the image file if uploaded directly. Not returned when the image is passed by URL.
+        /// </value>
         [JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
         public string Image { get; set; }
         /// <summary>
-        /// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
+        /// Information about what might have caused a failure, such as an image that is too large. Not returned when
+        /// there is no error.
         /// </summary>
-        /// <value>Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.</value>
+        /// <value>
+        /// Information about what might have caused a failure, such as an image that is too large. Not returned when
+        /// there is no error.
+        /// </value>
         [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
         public ErrorInfo Error { get; set; }
         /// <summary>
         /// The classifiers.
         /// </summary>
-        /// <value>The classifiers.</value>
+        /// <value>
+        /// The classifiers.
+        /// </value>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifierResult> Classifiers { get; set; }
     }

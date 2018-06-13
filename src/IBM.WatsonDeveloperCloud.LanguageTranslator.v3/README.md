@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v3/)
 
 ### Language Translator
 
@@ -8,14 +8,14 @@
 #### Nuget
 ```
 
-PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
+PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
 ```
 #### .csproj
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.4.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v3" Version="2.4.0" />
 </ItemGroup>
 
 ```
@@ -23,13 +23,16 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
 
 #### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
+Before you can send requests to the service it must be instantiated and api key or access token must be set.
 ```cs
-// create a Language Translator Service instance
-LanguageTranslationService _languageTranslator = new LanguageTranslationService();
+TokenOptions tokenOptions = new TokenOptions()
+{
+    IamApiKey = "<iam-apikey>",
+    IamAccessToken = "<iam-access-token>",
+    IamUrl = "<service-endpoint>"
+};
 
-// set the credentials
-_languageTranslator.SetCredential("<username>", "<password>");
+var _languageTranslator = new LanguageTranslator(tokenOptions, "<version-date>");
 ```
 
 #### Translate

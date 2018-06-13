@@ -1,5 +1,11 @@
 Change Log
 ==========
+## Version 2.4.0
+_2018-06-12_
+* Regenerated SDK based on the latest API definition.
+* New: Support for Language Translator v3.
+* Fixed: Added a null header check in ErrorFilter.cs.
+* 
 ## Version 2.3.0
 _2018-05-29_
 * Regenerated SDK based on the latest API definition. All services except for Natural Language Classifier support IAM authentication.

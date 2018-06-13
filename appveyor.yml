@@ -29,7 +29,7 @@ install:
 
     nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
 
-    nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.13 Doxygen
+    nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
 
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 

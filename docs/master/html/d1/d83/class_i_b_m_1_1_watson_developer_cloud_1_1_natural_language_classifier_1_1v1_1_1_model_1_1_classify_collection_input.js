@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input =
-[
-    [ "Collection", "d1/d83/class_i_b_m_1_1_watson_developer_cloud_1_1_natural_language_classifier_1_1v1_1_1_model_1_1_classify_collection_input.html#a6308ea7a0a55dfcd1287126addb5617d", null ]
-];

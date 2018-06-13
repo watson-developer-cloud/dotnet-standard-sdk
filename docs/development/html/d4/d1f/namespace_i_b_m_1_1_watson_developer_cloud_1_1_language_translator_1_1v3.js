@@ -1,6 +1,0 @@
-var namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3 =
-[
-    [ "Model", "db/deb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model.html", "db/deb/namespace_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_model" ],
-    [ "ILanguageTranslatorService", "db/dcf/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html", "db/dcf/interface_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_i_language_translator_service" ],
-    [ "LanguageTranslatorService", "de/d8d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_language_translator_service.html", "de/d8d/class_i_b_m_1_1_watson_developer_cloud_1_1_language_translator_1_1v3_1_1_language_translator_service" ]
-];

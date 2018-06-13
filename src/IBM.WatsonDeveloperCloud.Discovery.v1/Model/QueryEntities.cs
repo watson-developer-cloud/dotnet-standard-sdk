@@ -27,31 +27,47 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.
         /// </summary>
-        /// <value>The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.</value>
+        /// <value>
+        /// The entity query feature to perform. Supported features are `disambiguate` and `similar_entities`.
+        /// </value>
         [JsonProperty("feature", NullValueHandling = NullValueHandling.Ignore)]
         public string Feature { get; set; }
         /// <summary>
         /// A text string that appears within the entity text field.
         /// </summary>
-        /// <value>A text string that appears within the entity text field.</value>
+        /// <value>
+        /// A text string that appears within the entity text field.
+        /// </value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public QueryEntitiesEntity Entity { get; set; }
         /// <summary>
-        /// Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.
+        /// Entity text to provide context for the queried entity and rank based on that association. For example, if
+        /// you wanted to query the city of London in England your query would look for `London` with the context of
+        /// `England`.
         /// </summary>
-        /// <value>Entity text to provide context for the queried entity and rank based on that association. For example, if you wanted to query the city of London in England your query would look for `London` with the context of `England`.</value>
+        /// <value>
+        /// Entity text to provide context for the queried entity and rank based on that association. For example, if
+        /// you wanted to query the city of London in England your query would look for `London` with the context of
+        /// `England`.
+        /// </value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public QueryEntitiesContext Context { get; set; }
         /// <summary>
         /// The number of results to return. The default is `10`. The maximum is `1000`.
         /// </summary>
-        /// <value>The number of results to return. The default is `10`. The maximum is `1000`.</value>
+        /// <value>
+        /// The number of results to return. The default is `10`. The maximum is `1000`.
+        /// </value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
         /// <summary>
-        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.
+        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence
+        /// items per query is 10,000.
         /// </summary>
-        /// <value>The number of evidence items to return for each result. The default is `0`. The maximum number of evidence items per query is 10,000.</value>
+        /// <value>
+        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence
+        /// items per query is 10,000.
+        /// </value>
         [JsonProperty("evidence_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? EvidenceCount { get; set; }
     }

@@ -28,8 +28,8 @@ using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 {
-    //[TestClass]
-    public class VisualRecognitionServiceRCIntegrationTests
+    [TestClass]
+    public class VisualRecognitionServiceIntegrationTestsRC
     {
         private VisualRecognitionService _service;
         private static string credentials = string.Empty;
@@ -82,7 +82,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-iam-sdk")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk-rc")[0].Credentials;
                 _endpoint = credential.Url;
                 _apikey = credential.IamApikey;
             }
@@ -130,7 +130,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region General
         [TestMethod]
-        public void Classify_RC_Success()
+        public void Classify_Success_RC()
         {
             using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
             {
@@ -143,7 +143,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyURL_RC_Success()
+        public void ClassifyURL_Success_RC()
         {
             var result = _service.Classify(url: _imageUrl);
 
@@ -155,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Face
         [TestMethod]
-        public void DetectFaces_RC_Success()
+        public void DetectFaces_Success_RC()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -168,7 +168,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesURL_RC_Success()
+        public void DetectFacesURL_Success_RC()
         {
             using (FileStream fs = File.OpenRead(_localFaceFilePath))
             {
@@ -181,8 +181,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        //[TestMethod]
-        public void ListClassifiers_RC_Success()
+        [TestMethod]
+        public void ListClassifiers_Success_RC()
         {
             Classifiers listClassifiersResult = null;
 
@@ -200,7 +200,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Custom
         [TestMethod]
-        public void TestClassifiers_RC_Success()
+        public void TestClassifiers_Success_RC()
         {
             Classifier createClassifierResult = null;
             try

@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The field where the aggregation is located in the document.
         /// </summary>
-        /// <value>The field where the aggregation is located in the document.</value>
+        /// <value>
+        /// The field where the aggregation is located in the document.
+        /// </value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
         /// Interval of the aggregation. (For 'histogram' type).
         /// </summary>
-        /// <value>Interval of the aggregation. (For 'histogram' type).</value>
+        /// <value>
+        /// Interval of the aggregation. (For 'histogram' type).
+        /// </value>
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
         public long? Interval { get; set; }
     }

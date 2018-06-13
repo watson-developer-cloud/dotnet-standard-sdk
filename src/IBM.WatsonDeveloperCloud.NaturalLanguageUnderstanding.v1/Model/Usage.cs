@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Number of features used in the API call.
         /// </summary>
-        /// <value>Number of features used in the API call.</value>
+        /// <value>
+        /// Number of features used in the API call.
+        /// </value>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public long? Features { get; set; }
         /// <summary>
         /// Number of text characters processed.
         /// </summary>
-        /// <value>Number of text characters processed.</value>
+        /// <value>
+        /// Number of text characters processed.
+        /// </value>
         [JsonProperty("text_characters", NullValueHandling = NullValueHandling.Ignore)]
         public long? TextCharacters { get; set; }
         /// <summary>
         /// Number of 10,000-character units processed.
         /// </summary>
-        /// <value>Number of 10,000-character units processed.</value>
+        /// <value>
+        /// Number of 10,000-character units processed.
+        /// </value>
         [JsonProperty("text_units", NullValueHandling = NullValueHandling.Ignore)]
         public long? TextUnits { get; set; }
     }

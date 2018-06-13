@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The confidence score of the result's analysis. A higher score indicating greater confidence.
         /// </summary>
-        /// <value>The confidence score of the result's analysis. A higher score indicating greater confidence.</value>
+        /// <value>
+        /// The confidence score of the result's analysis. A higher score indicating greater confidence.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
     }

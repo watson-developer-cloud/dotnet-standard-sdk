@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The name of the collection.
         /// </summary>
-        /// <value>The name of the collection.</value>
+        /// <value>
+        /// The name of the collection.
+        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// A description of the collection.
         /// </summary>
-        /// <value>A description of the collection.</value>
+        /// <value>
+        /// A description of the collection.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// The ID of the configuration in which the collection is to be updated.
         /// </summary>
-        /// <value>The ID of the configuration in which the collection is to be updated.</value>
+        /// <value>
+        /// The ID of the configuration in which the collection is to be updated.
+        /// </value>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfigurationId { get; set; }
     }

@@ -28,19 +28,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The text of the synonym.
         /// </summary>
-        /// <value>The text of the synonym.</value>
+        /// <value>
+        /// The text of the synonym.
+        /// </value>
         [JsonProperty("synonym", NullValueHandling = NullValueHandling.Ignore)]
         public string SynonymText { get; set; }
         /// <summary>
         /// The timestamp for creation of the synonym.
         /// </summary>
-        /// <value>The timestamp for creation of the synonym.</value>
+        /// <value>
+        /// The timestamp for creation of the synonym.
+        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the most recent update to the synonym.
         /// </summary>
-        /// <value>The timestamp for the most recent update to the synonym.</value>
+        /// <value>
+        /// The timestamp for the most recent update to the synonym.
+        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
     }

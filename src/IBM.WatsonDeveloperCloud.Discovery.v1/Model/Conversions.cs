@@ -28,31 +28,43 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// A list of PDF conversion settings.
         /// </summary>
-        /// <value>A list of PDF conversion settings.</value>
+        /// <value>
+        /// A list of PDF conversion settings.
+        /// </value>
         [JsonProperty("pdf", NullValueHandling = NullValueHandling.Ignore)]
         public PdfSettings Pdf { get; set; }
         /// <summary>
         /// A list of Word conversion settings.
         /// </summary>
-        /// <value>A list of Word conversion settings.</value>
+        /// <value>
+        /// A list of Word conversion settings.
+        /// </value>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public WordSettings Word { get; set; }
         /// <summary>
         /// A list of HTML conversion settings.
         /// </summary>
-        /// <value>A list of HTML conversion settings.</value>
+        /// <value>
+        /// A list of HTML conversion settings.
+        /// </value>
         [JsonProperty("html", NullValueHandling = NullValueHandling.Ignore)]
         public HtmlSettings Html { get; set; }
         /// <summary>
         /// A list of Document Segmentation settings.
         /// </summary>
-        /// <value>A list of Document Segmentation settings.</value>
+        /// <value>
+        /// A list of Document Segmentation settings.
+        /// </value>
         [JsonProperty("segment", NullValueHandling = NullValueHandling.Ignore)]
         public SegmentSettings Segment { get; set; }
         /// <summary>
-        /// Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.
+        /// Defines operations that can be used to transform the final output JSON into a normalized form. Operations
+        /// are executed in the order that they appear in the array.
         /// </summary>
-        /// <value>Defines operations that can be used to transform the final output JSON into a normalized form. Operations are executed in the order that they appear in the array.</value>
+        /// <value>
+        /// Defines operations that can be used to transform the final output JSON into a normalized form. Operations
+        /// are executed in the order that they appear in the array.
+        /// </value>
         [JsonProperty("json_normalizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<NormalizationOperation> JsonNormalizations { get; set; }
     }

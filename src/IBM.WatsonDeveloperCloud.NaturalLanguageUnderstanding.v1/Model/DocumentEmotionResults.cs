@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// An object containing the emotion results for the document.
         /// </summary>
-        /// <value>An object containing the emotion results for the document.</value>
+        /// <value>
+        /// An object containing the emotion results for the document.
+        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }
     }

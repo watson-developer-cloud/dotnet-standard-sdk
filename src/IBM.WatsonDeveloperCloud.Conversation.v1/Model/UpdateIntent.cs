@@ -26,21 +26,33 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
     public class UpdateIntent : BaseModel
     {
         /// <summary>
-        /// The name of the intent. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, hyphen, and dot characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 128 characters.
+        /// The name of the intent. This string must conform to the following restrictions:
+        /// - It can contain only Unicode alphanumeric, underscore, hyphen, and dot characters.
+        /// - It cannot begin with the reserved prefix `sys-`.
+        /// - It must be no longer than 128 characters.
         /// </summary>
-        /// <value>The name of the intent. This string must conform to the following restrictions:  - It can contain only Unicode alphanumeric, underscore, hyphen, and dot characters.  - It cannot begin with the reserved prefix `sys-`.  - It must be no longer than 128 characters.</value>
+        /// <value>
+        /// The name of the intent. This string must conform to the following restrictions:
+        /// - It can contain only Unicode alphanumeric, underscore, hyphen, and dot characters.
+        /// - It cannot begin with the reserved prefix `sys-`.
+        /// - It must be no longer than 128 characters.
+        /// </value>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string Intent { get; set; }
         /// <summary>
         /// The description of the intent.
         /// </summary>
-        /// <value>The description of the intent.</value>
+        /// <value>
+        /// The description of the intent.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// An array of user input examples for the intent.
         /// </summary>
-        /// <value>An array of user input examples for the intent.</value>
+        /// <value>
+        /// An array of user input examples for the intent.
+        /// </value>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateExample> Examples { get; set; }
     }

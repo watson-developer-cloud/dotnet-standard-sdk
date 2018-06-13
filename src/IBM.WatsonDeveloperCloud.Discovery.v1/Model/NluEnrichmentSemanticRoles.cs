@@ -27,19 +27,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// When `true` entities are extracted from the identified sentence parts.
         /// </summary>
-        /// <value>When `true` entities are extracted from the identified sentence parts.</value>
+        /// <value>
+        /// When `true` entities are extracted from the identified sentence parts.
+        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Entities { get; set; }
         /// <summary>
         /// When `true`, keywords are extracted from the identified sentence parts.
         /// </summary>
-        /// <value>When `true`, keywords are extracted from the identified sentence parts.</value>
+        /// <value>
+        /// When `true`, keywords are extracted from the identified sentence parts.
+        /// </value>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Keywords { get; set; }
         /// <summary>
         /// The maximum number of semantic roles enrichments to extact from each instance of the specified field.
         /// </summary>
-        /// <value>The maximum number of semantic roles enrichments to extact from each instance of the specified field.</value>
+        /// <value>
+        /// The maximum number of semantic roles enrichments to extact from each instance of the specified field.
+        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

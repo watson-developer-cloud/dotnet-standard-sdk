@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The path to the category through the taxonomy hierarchy.
         /// </summary>
-        /// <value>The path to the category through the taxonomy hierarchy.</value>
+        /// <value>
+        /// The path to the category through the taxonomy hierarchy.
+        /// </value>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
         /// <summary>
         /// Confidence score for the category classification. Higher values indicate greater confidence.
         /// </summary>
-        /// <value>Confidence score for the category classification. Higher values indicate greater confidence.</value>
+        /// <value>
+        /// Confidence score for the category classification. Higher values indicate greater confidence.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

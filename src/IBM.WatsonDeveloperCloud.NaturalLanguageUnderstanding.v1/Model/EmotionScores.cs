@@ -27,31 +27,41 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Anger score from 0 to 1. A higher score means that the text is more likely to convey anger.
         /// </summary>
-        /// <value>Anger score from 0 to 1. A higher score means that the text is more likely to convey anger.</value>
+        /// <value>
+        /// Anger score from 0 to 1. A higher score means that the text is more likely to convey anger.
+        /// </value>
         [JsonProperty("anger", NullValueHandling = NullValueHandling.Ignore)]
         public float? Anger { get; set; }
         /// <summary>
         /// Disgust score from 0 to 1. A higher score means that the text is more likely to convey disgust.
         /// </summary>
-        /// <value>Disgust score from 0 to 1. A higher score means that the text is more likely to convey disgust.</value>
+        /// <value>
+        /// Disgust score from 0 to 1. A higher score means that the text is more likely to convey disgust.
+        /// </value>
         [JsonProperty("disgust", NullValueHandling = NullValueHandling.Ignore)]
         public float? Disgust { get; set; }
         /// <summary>
         /// Fear score from 0 to 1. A higher score means that the text is more likely to convey fear.
         /// </summary>
-        /// <value>Fear score from 0 to 1. A higher score means that the text is more likely to convey fear.</value>
+        /// <value>
+        /// Fear score from 0 to 1. A higher score means that the text is more likely to convey fear.
+        /// </value>
         [JsonProperty("fear", NullValueHandling = NullValueHandling.Ignore)]
         public float? Fear { get; set; }
         /// <summary>
         /// Joy score from 0 to 1. A higher score means that the text is more likely to convey joy.
         /// </summary>
-        /// <value>Joy score from 0 to 1. A higher score means that the text is more likely to convey joy.</value>
+        /// <value>
+        /// Joy score from 0 to 1. A higher score means that the text is more likely to convey joy.
+        /// </value>
         [JsonProperty("joy", NullValueHandling = NullValueHandling.Ignore)]
         public float? Joy { get; set; }
         /// <summary>
         /// Sadness score from 0 to 1. A higher score means that the text is more likely to convey sadness.
         /// </summary>
-        /// <value>Sadness score from 0 to 1. A higher score means that the text is more likely to convey sadness.</value>
+        /// <value>
+        /// Sadness score from 0 to 1. A higher score means that the text is more likely to convey sadness.
+        /// </value>
         [JsonProperty("sadness", NullValueHandling = NullValueHandling.Ignore)]
         public float? Sadness { get; set; }
     }

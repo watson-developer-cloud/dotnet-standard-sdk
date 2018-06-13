@@ -28,25 +28,33 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Confidence score for the relation. Higher values indicate greater confidence.
         /// </summary>
-        /// <value>Confidence score for the relation. Higher values indicate greater confidence.</value>
+        /// <value>
+        /// Confidence score for the relation. Higher values indicate greater confidence.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
         /// <summary>
         /// The sentence that contains the relation.
         /// </summary>
-        /// <value>The sentence that contains the relation.</value>
+        /// <value>
+        /// The sentence that contains the relation.
+        /// </value>
         [JsonProperty("sentence", NullValueHandling = NullValueHandling.Ignore)]
         public string Sentence { get; set; }
         /// <summary>
         /// The type of the relation.
         /// </summary>
-        /// <value>The type of the relation.</value>
+        /// <value>
+        /// The type of the relation.
+        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
         /// The extracted relation objects from the text.
         /// </summary>
-        /// <value>The extracted relation objects from the text.</value>
+        /// <value>
+        /// The extracted relation objects from the text.
+        /// </value>
         [JsonProperty("arguments", NullValueHandling = NullValueHandling.Ignore)]
         public List<RelationArgument> Arguments { get; set; }
     }

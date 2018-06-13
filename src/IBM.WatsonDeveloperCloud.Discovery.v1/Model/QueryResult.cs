@@ -27,31 +27,41 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
-        /// <value>The unique identifier of the document.</value>
+        /// <value>
+        /// The unique identifier of the document.
+        /// </value>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Id { get; set; }
         /// <summary>
         /// *Deprecated* This field is now part of the `result_metadata` object.
         /// </summary>
-        /// <value>*Deprecated* This field is now part of the `result_metadata` object.</value>
+        /// <value>
+        /// *Deprecated* This field is now part of the `result_metadata` object.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Score { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
-        /// <value>Metadata of the document.</value>
+        /// <value>
+        /// Metadata of the document.
+        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
-        /// <value>The collection ID of the collection containing the document for this result.</value>
+        /// <value>
+        /// The collection ID of the collection containing the document for this result.
+        /// </value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic CollectionId { get; set; }
         /// <summary>
         /// Metadata of the query result.
         /// </summary>
-        /// <value>Metadata of the query result.</value>
+        /// <value>
+        /// Metadata of the query result.
+        /// </value>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic ResultMetadata { get; set; }
     }

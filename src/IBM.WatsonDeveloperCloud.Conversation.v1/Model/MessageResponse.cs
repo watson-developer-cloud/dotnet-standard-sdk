@@ -28,37 +28,49 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The user input from the request.
         /// </summary>
-        /// <value>The user input from the request.</value>
+        /// <value>
+        /// The user input from the request.
+        /// </value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Input { get; set; }
         /// <summary>
         /// An array of intents recognized in the user input, sorted in descending order of confidence.
         /// </summary>
-        /// <value>An array of intents recognized in the user input, sorted in descending order of confidence.</value>
+        /// <value>
+        /// An array of intents recognized in the user input, sorted in descending order of confidence.
+        /// </value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Intents { get; set; }
         /// <summary>
         /// An array of entities identified in the user input.
         /// </summary>
-        /// <value>An array of entities identified in the user input.</value>
+        /// <value>
+        /// An array of entities identified in the user input.
+        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Entities { get; set; }
         /// <summary>
         /// Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.
         /// </summary>
-        /// <value>Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.</value>
+        /// <value>
+        /// Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.
+        /// </value>
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic AlternateIntents { get; set; }
         /// <summary>
         /// State information for the conversation.
         /// </summary>
-        /// <value>State information for the conversation.</value>
+        /// <value>
+        /// State information for the conversation.
+        /// </value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Context { get; set; }
         /// <summary>
         /// Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.
         /// </summary>
-        /// <value>Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.</value>
+        /// <value>
+        /// Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.
+        /// </value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Output { get; set; }
     }

@@ -70,7 +70,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("language-translator-sdk")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-sdk-v2-sdk-cf")[0].Credentials;
                 _endpoint = credential.Url;
                 _username = credential.Username;
                 _password = credential.Password;

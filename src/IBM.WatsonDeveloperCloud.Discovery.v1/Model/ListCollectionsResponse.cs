@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// An array containing information about each collection in the environment.
         /// </summary>
-        /// <value>An array containing information about each collection in the environment.</value>
+        /// <value>
+        /// An array containing information about each collection in the environment.
+        /// </value>
         [JsonProperty("collections", NullValueHandling = NullValueHandling.Ignore)]
         public List<Collection> Collections { get; set; }
     }

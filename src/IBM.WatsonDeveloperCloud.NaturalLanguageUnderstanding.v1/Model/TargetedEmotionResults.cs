@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Targeted text.
         /// </summary>
-        /// <value>Targeted text.</value>
+        /// <value>
+        /// Targeted text.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// An object containing the emotion results for the target.
         /// </summary>
-        /// <value>An object containing the emotion results for the target.</value>
+        /// <value>
+        /// An object containing the emotion results for the target.
+        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }
     }

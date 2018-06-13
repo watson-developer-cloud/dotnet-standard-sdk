@@ -27,13 +27,17 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Codified warning string, such as `limit_reached`.
         /// </summary>
-        /// <value>Codified warning string, such as `limit_reached`.</value>
+        /// <value>
+        /// Codified warning string, such as `limit_reached`.
+        /// </value>
         [JsonProperty("warning_id", NullValueHandling = NullValueHandling.Ignore)]
         public string WarningId { get; set; }
         /// <summary>
         /// Information about the error.
         /// </summary>
-        /// <value>Information about the error.</value>
+        /// <value>
+        /// Information about the error.
+        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }

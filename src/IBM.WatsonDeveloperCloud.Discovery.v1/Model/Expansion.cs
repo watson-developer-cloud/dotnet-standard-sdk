@@ -21,20 +21,29 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// An expansion definition. Each object respresents one set of expandable strings. For example, you could have expansions for the word `hot` in one object, and expansions for the word `cold` in another.
+    /// An expansion definition. Each object respresents one set of expandable strings. For example, you could have
+    /// expansions for the word `hot` in one object, and expansions for the word `cold` in another.
     /// </summary>
     public class Expansion : BaseModel
     {
         /// <summary>
-        /// A list of terms that will be expanded for this expansion. If specified, only the items in this list are expanded.
+        /// A list of terms that will be expanded for this expansion. If specified, only the items in this list are
+        /// expanded.
         /// </summary>
-        /// <value>A list of terms that will be expanded for this expansion. If specified, only the items in this list are expanded.</value>
+        /// <value>
+        /// A list of terms that will be expanded for this expansion. If specified, only the items in this list are
+        /// expanded.
+        /// </value>
         [JsonProperty("input_terms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> InputTerms { get; set; }
         /// <summary>
-        /// A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also functions as the input term list.
+        /// A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also
+        /// functions as the input term list.
         /// </summary>
-        /// <value>A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also functions as the input term list.</value>
+        /// <value>
+        /// A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also
+        /// functions as the input term list.
+        /// </value>
         [JsonProperty("expanded_terms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExpandedTerms { get; set; }
     }

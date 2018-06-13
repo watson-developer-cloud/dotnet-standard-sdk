@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// An array of Configurations that are available for the service instance.
         /// </summary>
-        /// <value>An array of Configurations that are available for the service instance.</value>
+        /// <value>
+        /// An array of Configurations that are available for the service instance.
+        /// </value>
         [JsonProperty("configurations", NullValueHandling = NullValueHandling.Ignore)]
         public List<Configuration> Configurations { get; set; }
     }

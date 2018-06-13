@@ -27,37 +27,49 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The URL that will return the same page of results.
         /// </summary>
-        /// <value>The URL that will return the same page of results.</value>
+        /// <value>
+        /// The URL that will return the same page of results.
+        /// </value>
         [JsonProperty("refresh_url", NullValueHandling = NullValueHandling.Ignore)]
         public string RefreshUrl { get; set; }
         /// <summary>
         /// The URL that will return the next page of results.
         /// </summary>
-        /// <value>The URL that will return the next page of results.</value>
+        /// <value>
+        /// The URL that will return the next page of results.
+        /// </value>
         [JsonProperty("next_url", NullValueHandling = NullValueHandling.Ignore)]
         public string NextUrl { get; set; }
         /// <summary>
         /// Reserved for future use.
         /// </summary>
-        /// <value>Reserved for future use.</value>
+        /// <value>
+        /// Reserved for future use.
+        /// </value>
         [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
         public long? Total { get; set; }
         /// <summary>
         /// Reserved for future use.
         /// </summary>
-        /// <value>Reserved for future use.</value>
+        /// <value>
+        /// Reserved for future use.
+        /// </value>
         [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
         public long? Matched { get; set; }
         /// <summary>
         /// A token identifying the current page of results.
         /// </summary>
-        /// <value>A token identifying the current page of results.</value>
+        /// <value>
+        /// A token identifying the current page of results.
+        /// </value>
         [JsonProperty("refresh_cursor", NullValueHandling = NullValueHandling.Ignore)]
         public string RefreshCursor { get; set; }
         /// <summary>
         /// A token identifying the next page of results.
         /// </summary>
-        /// <value>A token identifying the next page of results.</value>
+        /// <value>
+        /// A token identifying the next page of results.
+        /// </value>
         [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
         public string NextCursor { get; set; }
     }

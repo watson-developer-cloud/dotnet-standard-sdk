@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// The submitted phrase.
         /// </summary>
-        /// <value>The submitted phrase.</value>
+        /// <value>
+        /// The submitted phrase.
+        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

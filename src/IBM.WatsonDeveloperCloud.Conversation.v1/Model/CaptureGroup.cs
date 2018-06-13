@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// A recognized capture group for the entity.
         /// </summary>
-        /// <value>A recognized capture group for the entity.</value>
+        /// <value>
+        /// A recognized capture group for the entity.
+        /// </value>
         [JsonProperty("group", NullValueHandling = NullValueHandling.Ignore)]
         public string Group { get; set; }
         /// <summary>
         /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
         /// </summary>
-        /// <value>Zero-based character offsets that indicate where the entity value begins and ends in the input text.</value>
+        /// <value>
+        /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
+        /// </value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public List<long?> Location { get; set; }
     }

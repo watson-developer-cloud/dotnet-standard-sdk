@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// model_id of the deleted model.
         /// </summary>
-        /// <value>model_id of the deleted model.</value>
+        /// <value>
+        /// model_id of the deleted model.
+        /// </value>
         [JsonProperty("deleted", NullValueHandling = NullValueHandling.Ignore)]
         public string Deleted { get; set; }
     }

@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// The classifiers available to the user. Returns an empty array if no classifiers are available.
         /// </summary>
-        /// <value>The classifiers available to the user. Returns an empty array if no classifiers are available.</value>
+        /// <value>
+        /// The classifiers available to the user. Returns an empty array if no classifiers are available.
+        /// </value>
         [JsonProperty("classifiers", NullValueHandling = NullValueHandling.Ignore)]
         public List<Classifier> Classifiers { get; set; }
     }

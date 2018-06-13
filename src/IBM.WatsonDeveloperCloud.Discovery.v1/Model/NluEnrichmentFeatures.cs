@@ -27,43 +27,57 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// An object specifying the Keyword enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifying the Keyword enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifying the Keyword enrichment and related parameters.
+        /// </value>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentKeywords Keywords { get; set; }
         /// <summary>
         /// An object speficying the Entities enrichment and related parameters.
         /// </summary>
-        /// <value>An object speficying the Entities enrichment and related parameters.</value>
+        /// <value>
+        /// An object speficying the Entities enrichment and related parameters.
+        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentEntities Entities { get; set; }
         /// <summary>
         /// An object specifying the sentiment extraction enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifying the sentiment extraction enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifying the sentiment extraction enrichment and related parameters.
+        /// </value>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentSentiment Sentiment { get; set; }
         /// <summary>
         /// An object specifying the emotion detection enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifying the emotion detection enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifying the emotion detection enrichment and related parameters.
+        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentEmotion Emotion { get; set; }
         /// <summary>
         /// An object specifying the categories enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifying the categories enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifying the categories enrichment and related parameters.
+        /// </value>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentCategories Categories { get; set; }
         /// <summary>
         /// An object specifiying the semantic roles enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifiying the semantic roles enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifiying the semantic roles enrichment and related parameters.
+        /// </value>
         [JsonProperty("semantic_roles", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentSemanticRoles SemanticRoles { get; set; }
         /// <summary>
         /// An object specifying the relations enrichment and related parameters.
         /// </summary>
-        /// <value>An object specifying the relations enrichment and related parameters.</value>
+        /// <value>
+        /// An object specifying the relations enrichment and related parameters.
+        /// </value>
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentRelations Relations { get; set; }
     }

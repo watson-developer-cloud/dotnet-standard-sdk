@@ -27,19 +27,29 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Name of the class.
         /// </summary>
-        /// <value>Name of the class.</value>
+        /// <value>
+        /// Name of the class.
+        /// </value>
         [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassName { get; set; }
         /// <summary>
-        /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
+        /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that
+        /// the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
         /// </summary>
-        /// <value>Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.</value>
+        /// <value>
+        /// Confidence score for the property in the range of 0 to 1. A higher score indicates greater likelihood that
+        /// the class is depicted in the image. The default threshold for returning scores from a classifier is 0.5.
+        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
         /// <summary>
-        /// Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only if identified.
+        /// Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only
+        /// if identified.
         /// </summary>
-        /// <value>Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only if identified.</value>
+        /// <value>
+        /// Knowledge graph of the property. For example, `/fruit/pome/apple/eating apple/Granny Smith`. Included only
+        /// if identified.
+        /// </value>
         [JsonProperty("type_hierarchy", NullValueHandling = NullValueHandling.Ignore)]
         public string TypeHierarchy { get; set; }
     }

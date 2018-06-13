@@ -28,7 +28,9 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// A list of all languages that the service can identify.
         /// </summary>
-        /// <value>A list of all languages that the service can identify.</value>
+        /// <value>
+        /// A list of all languages that the service can identify.
+        /// </value>
         [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
         public List<IdentifiableLanguage> Languages { get; set; }
     }

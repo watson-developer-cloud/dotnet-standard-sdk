@@ -27,7 +27,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// URL of the RSS or ATOM feed.
         /// </summary>
-        /// <value>URL of the RSS or ATOM feed.</value>
+        /// <value>
+        /// URL of the RSS or ATOM feed.
+        /// </value>
         [JsonProperty("link", NullValueHandling = NullValueHandling.Ignore)]
         public string Link { get; set; }
     }

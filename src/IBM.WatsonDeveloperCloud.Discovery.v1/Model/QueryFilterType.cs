@@ -28,13 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// A comma-separated list of types to exclude.
         /// </summary>
-        /// <value>A comma-separated list of types to exclude.</value>
+        /// <value>
+        /// A comma-separated list of types to exclude.
+        /// </value>
         [JsonProperty("exclude", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Exclude { get; set; }
         /// <summary>
         /// A comma-separated list of types to include. All other types are excluded.
         /// </summary>
-        /// <value>A comma-separated list of types to include. All other types are excluded.</value>
+        /// <value>
+        /// A comma-separated list of types to include. All other types are excluded.
+        /// </value>
         [JsonProperty("include", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Include { get; set; }
     }

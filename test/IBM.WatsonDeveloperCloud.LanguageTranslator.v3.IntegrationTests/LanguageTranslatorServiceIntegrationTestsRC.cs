@@ -70,7 +70,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc-wdc")[0].Credentials;
                 _endpoint = credential.Url;
                 _apikey = credential.IamApikey;
             }
@@ -138,7 +138,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void Model_Success_RC()
         {
             TranslationModel createModelResult;

@@ -35,7 +35,7 @@ TokenOptions tokenOptions = new TokenOptions()
 var _languageTranslator = new LanguageTranslator(tokenOptions, "<version-date>");
 ```
 
-Services created before 2018-06-15 are authenticated using username and password..
+Services created before `2018-06-15` are authenticated using username and password.
 ```cs
 // create a Language Translator Service instance
 LanguageTranslationService _languageTranslator = new LanguageTranslationService();

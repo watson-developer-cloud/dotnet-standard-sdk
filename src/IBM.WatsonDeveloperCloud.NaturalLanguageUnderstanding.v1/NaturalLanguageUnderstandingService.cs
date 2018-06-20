@@ -127,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         ///
         /// ### Categories
         /// Categorize your content into a hierarchical 5-level taxonomy. For example, "Leonardo DiCaprio won an Oscar"
-        /// returns "/art and entertainment/movies and tv/movies" as the most confident classification.returnFields
+        /// returns "/art and entertainment/movies and tv/movies" as the most confident classification.
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>
@@ -175,7 +175,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Delete model.
         ///
-        /// Deletes a custom model.returnFields
+        /// Deletes a custom model.
         /// </summary>
         /// <param name="modelId">model_id of the model to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -223,7 +223,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// List models.
         ///
         /// Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models
-        /// that you have created and linked to your Natural Language Understanding service.returnFields
+        /// that you have created and linked to your Natural Language Understanding service.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>

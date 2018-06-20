@@ -65,6 +65,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
+
             if (!string.IsNullOrEmpty(options.ServiceUrl))
             {
                 this.Endpoint = options.ServiceUrl;
@@ -88,7 +89,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <summary>
         /// Classify images.
         ///
-        /// Classify images with built-in or custom classifiers.returnFields
+        /// Classify images with built-in or custom classifiers.
         /// </summary>
         /// <param name="imagesFile">An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB.
         /// Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in
@@ -215,7 +216,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// biometric facial recognition.
         ///
         /// Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum
-        /// recommended pixel density is 32X32 pixels per inch.returnFields
+        /// recommended pixel density is 32X32 pixels per inch.
         /// </summary>
         /// <param name="imagesFile">An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip
         /// file to 100 MB. You can include a maximum of 15 images in a request.
@@ -338,7 +339,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <summary>
         /// Retrieve classifier details.
         ///
-        /// Retrieve information about a custom classifier.returnFields
+        /// Retrieve information about a custom classifier.
         /// </summary>
         /// <param name="classifierId">The ID of the classifier.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -438,7 +439,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).returnFields
+        /// security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

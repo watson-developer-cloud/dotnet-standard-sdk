@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1 wraps the Watson Developer Cloud Natural Language Classifier service (http://www.ibm.com/watson/developercloud/natural-language-classifier.html)</Description>
         <AssemblyTitle>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1</AssemblyTitle>
-        <VersionPrefix>2.4.0</VersionPrefix>
+        <VersionPrefix>2.4.1</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
         <TargetFramework>netstandard1.3</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1</AssemblyName>
@@ -12,7 +12,7 @@
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
         <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-        <Version>2.4.0</Version>
+        <Version>2.4.1</Version>
     </PropertyGroup>
 
     <ItemGroup>

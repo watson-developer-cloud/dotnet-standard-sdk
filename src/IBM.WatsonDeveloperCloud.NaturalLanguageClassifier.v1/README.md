@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1/)
 
 ### Natural Language Classifier
 IBM Watson™ [Natural Language Classifier][natural_language_classifier] uses machine learning algorithms to return the top matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLangaugeClassifier.v1" Version="2.4.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLangaugeClassifier.v1" Version="2.4.1" />
 </ItemGroup>
 
 ```
@@ -24,7 +24,20 @@ IBM Watson™ Natural Language Classifier can help your application understand t
 You can create and train a classifier in less than 15 minutes.
 
 #### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
+Before you can send requests to the service it must be instantiated and api key or access token must be set.
+```cs
+TokenOptions tokenOptions = new TokenOptions()
+{
+    IamApiKey = "<iam-apikey>",
+    IamAccessToken = "<iam-access-token>",
+    IamUrl = "<service-endpoint>"
+};
+
+var _naturalLanguageClassifierService = new NaturalLanguageClassifierService(tokenOptions);
+
+```
+
+You can also authenticate using username and password.
 ```cs
 // create a Natural Language Classifier Service instance
 NaturalLanguageClassifierService _naturalLanguageClassifierService = new NaturalLanguageClassifierService();

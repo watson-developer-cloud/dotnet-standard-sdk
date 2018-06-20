@@ -92,7 +92,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Get a response to a user's input.
         ///
-        /// There is no rate limit for this operation.returnFields
+        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="request">The message to be sent. This includes the user's input, along with optional intents,
@@ -148,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Create a workspace based on component objects. You must provide workspace components defining the content of
         /// the new workspace.
         ///
-        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="properties">The content of the new workspace.
         ///
@@ -199,7 +199,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete a workspace from the service instance.
         ///
-        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -249,7 +249,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Get information about a workspace, optionally including all workspace content.
         ///
         /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 20 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// the limit is 20 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -307,7 +307,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// List the workspaces associated with a Watson Assistant service instance.
         ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
         /// 100)</param>
@@ -374,7 +374,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Update an existing workspace with new or modified data. You must provide component objects defining the
         /// content of the updated workspace.
         ///
-        /// This operation is limited to 30 request per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 30 request per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">Valid data defining the new and updated workspace content.
@@ -437,7 +437,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Create a new intent.
         ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new intent.</param>
@@ -490,7 +490,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete an intent from a workspace.
         ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -543,7 +543,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Get information about an intent, optionally including all intent content.
         ///
         /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -605,7 +605,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// List the intents for a workspace.
         ///
         /// With **export**=`false`, this operation is limited to 2000 requests per 30 minutes. With **export**=`true`,
-        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -680,7 +680,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Update an existing intent with new or modified data. You must provide component objects defining the content
         /// of the updated intent.
         ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -740,7 +740,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Add a new user input example to an intent.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -796,7 +796,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete a user input example from an intent.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -851,7 +851,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Get information about a user input example.
         ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -910,7 +910,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// List the user input examples for an intent.
         ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -982,7 +982,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Update the text of a user input example.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1041,7 +1041,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant
         /// input.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new counterexample.</param>
@@ -1095,7 +1095,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant
         /// input.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1148,7 +1148,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant
         /// input.
         ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1205,7 +1205,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant
         /// input.
         ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
@@ -1275,7 +1275,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
         ///
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1330,7 +1330,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Create a new entity.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">The content of the new entity.</param>
@@ -1383,7 +1383,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete an entity from a workspace.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1436,7 +1436,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Get information about an entity, optionally including all entity content.
         ///
         /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1498,7 +1498,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// List the entities for a workspace.
         ///
         /// With **export**=`false`, this operation is limited to 1000 requests per 30 minutes. With **export**=`true`,
-        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -1573,7 +1573,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Update an existing entity with new or modified data. You must provide component objects defining the content
         /// of the updated entity.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1632,7 +1632,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Create a new value for an entity.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1688,7 +1688,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete a value from an entity.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1743,7 +1743,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Get information about an entity value.
         ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1807,7 +1807,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// List the values for an entity.
         ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1885,7 +1885,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// Update an existing entity value with new or modified data. You must provide component objects defining the
         /// content of the updated entity value.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -1948,7 +1948,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Add a new synonym to an entity value.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2007,7 +2007,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete a synonym from an entity value.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2065,7 +2065,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Get information about a synonym of an entity value.
         ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2127,7 +2127,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// List the synonyms for an entity value.
         ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2202,7 +2202,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Update an existing entity value synonym with new text.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2263,7 +2263,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Create a new dialog node.
         ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">A CreateDialogNode object defining the content of the new dialog node.</param>
@@ -2316,7 +2316,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Delete a dialog node from a workspace.
         ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -2368,7 +2368,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Get information about a dialog node.
         ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -2424,7 +2424,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// List the dialog nodes for a workspace.
         ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
@@ -2493,7 +2493,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// Update an existing dialog node with new or modified data.
         ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.returnFields
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -2554,7 +2554,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// List the events from the logs of all workspaces in the service instance.
         ///
         /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
-        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.returnFields
+        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
@@ -2621,7 +2621,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// List the events from the log of a specific workspace.
         ///
         /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
-        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.returnFields
+        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
@@ -2690,7 +2690,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/conversation/information-security.html).returnFields
+        /// security](https://console.bluemix.net/docs/services/conversation/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

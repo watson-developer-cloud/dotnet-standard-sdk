@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud/)
 
 ### Watson Developer Cloud
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud" Version="2.4.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud" Version="2.4.1" />
 </ItemGroup>
 
 ```

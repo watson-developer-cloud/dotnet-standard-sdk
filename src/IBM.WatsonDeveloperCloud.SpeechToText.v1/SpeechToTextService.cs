@@ -56,7 +56,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-
             if (!string.IsNullOrEmpty(options.ServiceUrl))
             {
                 this.Endpoint = options.ServiceUrl;
@@ -80,8 +79,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Get a model.
         ///
-        /// Retrieves information about a single specified language model that is available for use with the service.
-        /// The information includes the name of the model and its minimum sampling rate in Hertz, among other things.returnFields
+        /// Gets information for a single specified language model that is available for use with the service. The
+        /// information includes the name of the model and its minimum sampling rate in Hertz, among other things.
         /// </summary>
         /// <param name="modelId">The identifier of the model in the form of its name from the output of the **Get
         /// models** method.</param>
@@ -124,8 +123,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// List models.
         ///
-        /// Retrieves a list of all language models that are available for use with the service. The information
-        /// includes the name of the model and its minimum sampling rate in Hertz, among other things.returnFields
+        /// Lists all language models that are available for use with the service. The information includes the name of
+        /// the model and its minimum sampling rate in Hertz, among other things.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechModels" />SpeechModels</returns>
@@ -161,7 +160,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             return result;
         }
         /// <summary>
-        /// Recognize audio (sessionless).
+        /// Recognize audio.
         ///
         /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final
         /// results; to enable interim results, use session-based requests or the WebSocket API. The service imposes a
@@ -212,12 +211,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// You can encounter this limit, for example, if you want to spot a very large number of keywords.
         ///
         /// For information about submitting a multipart request, see [Submitting multipart requests as form
-        /// data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).returnFields
+        /// data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
         /// </summary>
         /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
-        /// <param name="contentType">The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg,
-        /// audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm,
-        /// audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
+        /// <param name="contentType">The type of the input.</param>
         /// <param name="model">The identifier of the model that is to be used for the recognition request or, for the
         /// **Create a session** method, with the new session. (optional, default to en-US_BroadbandModel)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom language model that is to be used with
@@ -250,10 +247,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain
         /// phrases. (optional)</param>
         /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in
-        /// submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live
-        /// microphone when a user simply walks away. Use `-1` for infinity. (optional, default to 30)</param>
+        /// submitted audio, the connection is closed with a 400 error. The parameter is useful for stopping audio
+        /// submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default
+        /// to 30)</param>
         /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one
-        /// or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify
+        /// or more tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you specify
         /// any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the
         /// parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
         /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is
@@ -366,7 +364,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// You can use the method to retrieve the results of any job, regardless of whether it was submitted with a
         /// callback URL and the `recognitions.completed_with_results` event, and you can retrieve the results multiple
         /// times for as long as they remain available. Use the **Check jobs** method to request information about the
-        /// most recent jobs associated with the calling user.returnFields
+        /// most recent jobs associated with the calling user.
         /// </summary>
         /// <param name="id">The ID of the asynchronous job.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -413,7 +411,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// created with a callback URL and a user token, the user token for the job. To obtain the results for a job
         /// whose status is `completed` or not one of the latest 100 outstanding jobs, use the **Check a job** method. A
         /// job and its results remain available until you delete them with the **Delete a job** method or until the
-        /// job's time to live expires, whichever comes first.returnFields
+        /// job's time to live expires, whichever comes first.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJobs" />RecognitionJobs</returns>
@@ -471,10 +469,16 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// job** method to retrieve results is more secure than receiving them via callback notification over HTTP
         /// because it provides confidentiality in addition to authentication and data integrity.
         ///
-        /// The method supports the same basic parameters as other HTTP and WebSocket recognition requests. The service
-        /// imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for
-        /// audio that includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the
-        /// `audio/l16` format, you can specify the endianness.)
+        /// The method supports the same basic parameters as other HTTP and WebSocket recognition requests. It also
+        /// supports the following parameters specific to the asynchronous interface:
+        /// * `callback_url`
+        /// * `events`
+        /// * `user_token`
+        /// * `results_ttl`
+        ///
+        /// The service imposes a data size limit of 100 MB. It automatically detects the endianness of the incoming
+        /// audio and, for audio that includes multiple channels, downmixes the audio to one-channel mono during
+        /// transcoding. (For the `audio/l16` format, you can specify the endianness.)
         ///
         /// ### Audio formats (content types)
         ///
@@ -496,29 +500,33 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// For information about the supported audio formats, including specifying the sampling rate, channels, and
         /// endianness for the indicated formats, see [Audio
-        /// formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).returnFields
+        /// formats](https://console.bluemix.net/docs/services/speech-to-text/audio-formats.html).
         /// </summary>
         /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
-        /// <param name="contentType">The type of the input: audio/basic, audio/flac, audio/l16, audio/mp3, audio/mpeg,
-        /// audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis, audio/wav, audio/webm,
-        /// audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
+        /// <param name="contentType">The type of the input.</param>
         /// <param name="model">The identifier of the model that is to be used for the recognition request or, for the
         /// **Create a session** method, with the new session. (optional, default to en-US_BroadbandModel)</param>
         /// <param name="callbackUrl">A URL to which callback notifications are to be sent. The URL must already be
-        /// successfully white-listed by using the **Register a callback** method. Omit the parameter to poll the
-        /// service for job completion and results. You can include the same callback URL with any number of job
-        /// creation requests. Use the `user_token` parameter to specify a unique user-specified string with each job to
-        /// differentiate the callback notifications for the jobs. (optional)</param>
+        /// successfully white-listed by using the **Register a callback** method. You can include the same callback URL
+        /// with any number of job creation requests. Omit the parameter to poll the service for job completion and
+        /// results.
+        ///
+        /// Use the `user_token` parameter to specify a unique user-specified string with each job to differentiate the
+        /// callback notifications for the jobs. (optional)</param>
         /// <param name="events">If the job includes a callback URL, a comma-separated list of notification events to
-        /// which to subscribe. Valid events are: `recognitions.started` generates a callback notification when the
-        /// service begins to process the job. `recognitions.completed` generates a callback notification when the job
-        /// is complete; you must use the **Check a job** method to retrieve the results before they time out or are
-        /// deleted. `recognitions.completed_with_results` generates a callback notification when the job is complete;
-        /// the notification includes the results of the request. `recognitions.failed` generates a callback
-        /// notification if the service experiences an error while processing the job. Omit the parameter to subscribe
-        /// to the default events: `recognitions.started`, `recognitions.completed`, and `recognitions.failed`. The
-        /// `recognitions.completed` and `recognitions.completed_with_results` events are incompatible; you can specify
-        /// only of the two events. If the job does not include a callback URL, omit the parameter. (optional)</param>
+        /// which to subscribe. Valid events are
+        /// * `recognitions.started` generates a callback notification when the service begins to process the job.
+        /// * `recognitions.completed` generates a callback notification when the job is complete. You must use the
+        /// **Check a job** method to retrieve the results before they time out or are deleted.
+        /// * `recognitions.completed_with_results` generates a callback notification when the job is complete. The
+        /// notification includes the results of the request.
+        /// * `recognitions.failed` generates a callback notification if the service experiences an error while
+        /// processing the job.
+        ///
+        /// Omit the parameter to subscribe to the default events: `recognitions.started`, `recognitions.completed`, and
+        /// `recognitions.failed`. The `recognitions.completed` and `recognitions.completed_with_results` events are
+        /// incompatible; you can specify only of the two events. If the job does not include a callback URL, omit the
+        /// parameter. (optional)</param>
         /// <param name="userToken">If the job includes a callback URL, a user-specified string that the service is to
         /// include with each callback notification for the job; the token allows the user to maintain an internal
         /// mapping between jobs and notification events. If the job does not include a callback URL, omit the
@@ -557,10 +565,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain
         /// phrases. (optional)</param>
         /// <param name="inactivityTimeout">The time in seconds after which, if only silence (no speech) is detected in
-        /// submitted audio, the connection is closed with a 400 error. Useful for stopping audio submission from a live
-        /// microphone when a user simply walks away. Use `-1` for infinity. (optional, default to 30)</param>
+        /// submitted audio, the connection is closed with a 400 error. The parameter is useful for stopping audio
+        /// submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default
+        /// to 30)</param>
         /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one
-        /// or more tokens. Keywords are spotted only in the final hypothesis, not in interim results. If you specify
+        /// or more tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you specify
         /// any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the
         /// parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
         /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is
@@ -677,7 +686,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Deletes the specified job. You cannot delete a job that the service is actively processing. Once you delete
         /// a job, its results are no longer available. The service automatically deletes a job and its results when the
         /// time to live for the results expires. You must submit the request with the service credentials of the user
-        /// who created the job.returnFields
+        /// who created the job.
         /// </summary>
         /// <param name="id">The ID of the asynchronous job.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -745,7 +754,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// After you successfully register a callback URL, you can use it with an indefinite number of recognition
         /// requests. You can register a maximum of 20 callback URLS in a one-hour span of time. For more information,
         /// see [Registering a callback
-        /// URL](https://console.bluemix.net/docs/services/speech-to-text/async.html#register).returnFields
+        /// URL](https://console.bluemix.net/docs/services/speech-to-text/async.html#register).
         /// </summary>
         /// <param name="callbackUrl">An HTTP or HTTPS URL to which callback notifications are to be sent. To be
         /// white-listed, the URL must successfully echo the challenge string during URL verification. During
@@ -800,7 +809,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Unregisters a callback URL that was previously white-listed with a **Register a callback** request for use
         /// with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous
-        /// recognition requests.returnFields
+        /// recognition requests.
         /// </summary>
         /// <param name="callbackUrl">The callback URL that is to be unregistered.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -845,7 +854,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Creates a new custom language model for a specified base model. The custom language model can be used only
         /// with the base model for which it is created. The model is owned by the instance of the service whose
-        /// credentials are used to create it.returnFields
+        /// credentials are used to create it.
         /// </summary>
         /// <param name="createLanguageModel">A `CreateLanguageModel` object that provides basic information about the
         /// new custom language model.</param>
@@ -891,7 +900,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Deletes an existing custom language model. The custom model cannot be deleted if another request, such as
         /// adding a corpus to the model, is currently being processed. You must use credentials for the instance of the
-        /// service that owns a model to delete it.returnFields
+        /// service that owns a model to delete it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -935,7 +944,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Get a custom language model.
         ///
         /// Gets information about a specified custom language model. You must use credentials for the instance of the
-        /// service that owns a model to list information about it.returnFields
+        /// service that owns a model to list information about it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -979,9 +988,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// List custom language models.
         ///
         /// Lists information about all custom language models that are owned by an instance of the service. Use the
-        /// `language` parameter to see all custom language models for the specified language; omit the parameter to see
+        /// `language` parameter to see all custom language models for the specified language. Omit the parameter to see
         /// all custom language models for all languages. You must use credentials for the instance of the service that
-        /// owns a model to list information about it.returnFields
+        /// owns a model to list information about it.
         /// </summary>
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic
@@ -1028,7 +1037,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Resets a custom language model by removing all corpora and words from the model. Resetting a custom language
         /// model initializes the model to its state when it was first created. Metadata such as the name and language
         /// of the model are preserved, but the model's words resource is removed and must be re-created. You must use
-        /// credentials for the instance of the service that owns a model to reset it.returnFields
+        /// credentials for the instance of the service that owns a model to reset it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1081,8 +1090,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// of data on which the service is being trained and the current load on the service. The method returns an
         /// HTTP 200 response code to indicate that the training process has begun.
         ///
-        /// You can monitor the status of the training by using the **List a custom language model** method to poll the
-        /// model's status. Use a loop to check the status every 10 seconds. The method returns a `Customization` object
+        /// You can monitor the status of the training by using the **Get a custom language model** method to poll the
+        /// model's status. Use a loop to check the status every 10 seconds. The method returns a `LanguageModel` object
         /// that includes `status` and `progress` fields. A status of `available` means that the custom model is trained
         /// and ready to use. The service cannot accept subsequent training requests, or requests to add new corpora or
         /// words, until the existing request completes.
@@ -1092,7 +1101,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// or a request to add a corpus or words to the model.
         /// * No training data (corpora or words) have been added to the custom model.
         /// * One or more words that were added to the custom model have invalid sounds-like pronunciations that you
-        /// must fix.returnFields
+        /// must fix.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1165,13 +1174,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// to upgrade it.
         ///
         /// The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully.
-        /// You can monitor the status of the upgrade by using the **List a custom language model** method to poll the
-        /// model's status. Use a loop to check the status every 10 seconds. While it is being upgraded, the custom
-        /// model has the status `upgrading`. When the upgrade is complete, the model resumes the status that it had
-        /// prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.
+        /// You can monitor the status of the upgrade by using the **Get a custom language model** method to poll the
+        /// model's status. The method returns a `LanguageModel` object that includes `status` and `progress` fields.
+        /// Use a loop to check the status every 10 seconds. While it is being upgraded, the custom model has the status
+        /// `upgrading`. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The
+        /// service cannot accept subsequent requests for the model until the upgrade completes.
         ///
         /// For more information, see [Upgrading custom
-        /// models](https://console.bluemix.net/docs/services/speech-to-text/custom-upgrade.html).returnFields
+        /// models](https://console.bluemix.net/docs/services/speech-to-text/custom-upgrade.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1244,7 +1254,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million
         /// total words from all corpora combined. Also, you can add no more than 30 thousand custom (OOV) words to a
-        /// model; this includes words that the service extracts from corpora and words that you add directly.returnFields
+        /// model; this includes words that the service extracts from corpora and words that you add directly.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1321,7 +1331,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// another corpus or they have been modified in some way with the **Add custom words** or **Add a custom word**
         /// method. Removing a corpus does not affect the custom model until you train the model with the **Train a
         /// custom language model** method. You must use credentials for the instance of the service that owns a model
-        /// to delete its corpora.returnFields
+        /// to delete its corpora.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1372,7 +1382,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Gets information about a corpus from a custom language model. The information includes the total number of
         /// words and out-of-vocabulary (OOV) words, name, and status of the corpus. You must use credentials for the
-        /// instance of the service that owns a model to list its corpora.returnFields
+        /// instance of the service that owns a model to list its corpora.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1423,7 +1433,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Lists information about all corpora from a custom language model. The information includes the total number
         /// of words and out-of-vocabulary (OOV) words, name, and status of each corpus. You must use credentials for
-        /// the instance of the service that owns a model to list its corpora.returnFields
+        /// the instance of the service that owns a model to list its corpora.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1493,7 +1503,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// If you add a custom word that already exists in the words resource for the custom model, the new definition
         /// overwrites the existing data for the word. If the service encounters an error, it does not add the word to
-        /// the words resource. Use the **List a custom word** method to review the word that you add.returnFields
+        /// the words resource. Use the **List a custom word** method to review the word that you add.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1556,9 +1566,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// the model. Adding or modifying custom words does not affect the custom model until you train the model for
         /// the new data by using the **Train a custom language model** method.
         ///
-        /// You add custom words by providing a `Words` object, which is an array of `Word` objects, one per word. You
-        /// must use the object's word parameter to identify the word that is to be added. You can also provide one or
-        /// both of the optional `sounds_like` and `display_as` fields for each word.
+        /// You add custom words by providing a `CustomWords` object, which is an array of `CustomWord` objects, one per
+        /// word. You must use the object's `word` parameter to identify the word that is to be added. You can also
+        /// provide one or both of the optional `sounds_like` and `display_as` fields for each word.
         /// * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to
         /// specify how the word can be pronounced by users. Use the parameter for words that are difficult to
         /// pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound
@@ -1589,7 +1599,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// You can use the **List custom words** or **List a custom word** method to review the words that you add.
         /// Words with an invalid `sounds_like` field include an `error` field that describes the problem. You can use
         /// other words-related methods to correct errors, eliminate typos, and modify how words are pronounced as
-        /// needed.returnFields
+        /// needed.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1642,7 +1652,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// service removes only the custom pronunciation for the word; the word remains in the base vocabulary.
         /// Removing a custom word does not affect the custom model until you train the model with the **Train a custom
         /// language model** method. You must use credentials for the instance of the service that owns a model to
-        /// delete its words.returnFields
+        /// delete its words.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1691,7 +1701,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Get a custom word.
         ///
         /// Gets information about a custom word from a custom language model. You must use credentials for the instance
-        /// of the service that owns a model to query information about its words.returnFields
+        /// of the service that owns a model to query information about its words.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1743,7 +1753,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// model's words resource, only custom words that were added or modified by the user, or only out-of-vocabulary
         /// (OOV) words that were extracted from corpora. You can also indicate the order in which the service is to
         /// return words; by default, words are listed in ascending alphabetical order. You must use credentials for the
-        /// instance of the service that owns a model to query information about its words.returnFields
+        /// instance of the service that owns a model to query information about its words.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1801,7 +1811,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only
         /// with the base model for which it is created. The model is owned by the instance of the service whose
-        /// credentials are used to create it.returnFields
+        /// credentials are used to create it.
         /// </summary>
         /// <param name="createAcousticModel">A `CreateAcousticModel` object that provides basic information about the
         /// new custom acoustic model.</param>
@@ -1847,7 +1857,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// Deletes an existing custom acoustic model. The custom model cannot be deleted if another request, such as
         /// adding an audio resource to the model, is currently being processed. You must use credentials for the
-        /// instance of the service that owns a model to delete it.returnFields
+        /// instance of the service that owns a model to delete it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1891,7 +1901,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Get a custom acoustic model.
         ///
         /// Gets information about a specified custom acoustic model. You must use credentials for the instance of the
-        /// service that owns a model to list information about it.returnFields
+        /// service that owns a model to list information about it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -1935,9 +1945,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// List custom acoustic models.
         ///
         /// Lists information about all custom acoustic models that are owned by an instance of the service. Use the
-        /// `language` parameter to see all custom acoustic models for the specified language; omit the parameter to see
+        /// `language` parameter to see all custom acoustic models for the specified language. Omit the parameter to see
         /// all custom acoustic models for all languages. You must use credentials for the instance of the service that
-        /// owns a model to list information about it.returnFields
+        /// owns a model to list information about it.
         /// </summary>
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic
@@ -1984,7 +1994,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic
         /// model initializes the model to its state when it was first created. Metadata such as the name and language
         /// of the model are preserved, but the model's audio resources are removed and must be re-created. You must use
-        /// credentials for the instance of the service that owns a model to reset it.returnFields
+        /// credentials for the instance of the service that owns a model to reset it.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2039,8 +2049,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// whether the audio is clean or noisy. The method returns an HTTP 200 response code to indicate that the
         /// training process has begun.
         ///
-        /// You can monitor the status of the training by using the **List a custom acoustic model** method to poll the
-        /// model's status. Use a loop to check the status once a minute. The method returns an `Customization` object
+        /// You can monitor the status of the training by using the **Get a custom acoustic model** method to poll the
+        /// model's status. Use a loop to check the status once a minute. The method returns an `AcousticModel` object
         /// that includes `status` and `progress` fields. A status of `available` indicates that the custom model is
         /// trained and ready to use. The service cannot accept subsequent training requests, or requests to add new
         /// audio resources, until the existing request completes.
@@ -2056,7 +2066,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// * The service is currently handling another request for the custom model, such as another training request
         /// or a request to add audio resources to the model.
         /// * The custom model contains less than 10 minutes or more than 50 hours of audio data.
-        /// * One or more of the custom model's audio resources is invalid.returnFields
+        /// * One or more of the custom model's audio resources is invalid.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2114,10 +2124,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// that owns a model to upgrade it.
         ///
         /// The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully.
-        /// You can monitor the status of the upgrade by using the **List a custom acoustic model** method to poll the
-        /// model's status. Use a loop to check the status once a minute. While it is being upgraded, the custom model
-        /// has the status `upgrading`. When the upgrade is complete, the model resumes the status that it had prior to
-        /// upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.
+        /// You can monitor the status of the upgrade by using the **Get a custom acoustic model** method to poll the
+        /// model's status. The method returns an `AcousticModel` object that includes `status` and `progress` fields.
+        /// Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status
+        /// `upgrading`. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The
+        /// service cannot accept subsequent requests for the model until the upgrade completes.
         ///
         /// If the custom acoustic model was trained with a separately created custom language model, you must use the
         /// `custom_language_model_id` parameter to specify the GUID of that custom language model. The custom language
@@ -2125,7 +2136,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// acoustic model was not trained with a custom language model.
         ///
         /// For more information, see [Upgrading custom
-        /// models](https://console.bluemix.net/docs/services/speech-to-text/custom-upgrade.html).returnFields
+        /// models](https://console.bluemix.net/docs/services/speech-to-text/custom-upgrade.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2196,10 +2207,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// encoding. You cannot submit requests to add additional audio resources to a custom acoustic model, or to
         /// train the model, until the service's analysis of all audio files for the current request completes.
         ///
-        /// To determine the status of the service's analysis of the audio, use the **List an audio resource** method to
-        /// poll the status of the audio. The method accepts the GUID of the custom model and the name of the audio
-        /// resource, and it returns the status of the resource. Use a loop to check the status of the audio every few
-        /// seconds until it becomes `ok`.
+        /// To determine the status of the service's analysis of the audio, use the **Get an audio resource** method to
+        /// poll the status of the audio. The method accepts the customization ID of the custom model and the name of
+        /// the audio resource, and it returns the status of the resource. Use a loop to check the status of the audio
+        /// every few seconds until it becomes `ok`.
         ///
         /// ### Content types for audio-type resources
         ///
@@ -2243,7 +2254,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// parameter to specify the format of the contained audio files. The parameter accepts all of the audio formats
         /// supported for use with speech recognition and with the `Content-Type` header, including the `rate`,
         /// `channels`, and `endianness` parameters that are used with some formats. The default contained audio format
-        /// is `audio/wav`.returnFields
+        /// is `audio/wav`.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2252,9 +2263,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// model.</param>
         /// <param name="audioResource">The audio resource that is to be added to the custom acoustic model, an
         /// individual audio file or an archive file.</param>
-        /// <param name="contentType">The type of the input: application/zip, application/gzip, audio/basic, audio/flac,
-        /// audio/l16, audio/mp3, audio/mpeg, audio/mulaw, audio/ogg, audio/ogg;codecs=opus, audio/ogg;codecs=vorbis,
-        /// audio/wav, audio/webm, audio/webm;codecs=opus, or audio/webm;codecs=vorbis.</param>
+        /// <param name="contentType">The type of the input.</param>
         /// <param name="containedContentType">For an archive-type resource, specifies the format of the audio files
         /// contained in the archive file. The parameter accepts all of the audio formats supported for use with speech
         /// recognition, including the `rate`, `channels`, and `endianness` parameters that are used with some formats.
@@ -2322,7 +2331,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// removes the entire archive of files; the current interface does not allow deletion of individual files from
         /// an archive resource. Removing an audio resource does not affect the custom model until you train the model
         /// on its updated data by using the **Train a custom acoustic model** method. You must use credentials for the
-        /// instance of the service that owns a model to delete its audio resources.returnFields
+        /// instance of the service that owns a model to delete its audio resources.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2370,8 +2379,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Get an audio resource.
         ///
-        /// gets information about an audio resource from a custom acoustic model. The method returns an `AudioListing`
-        /// object whose fields depend on the type of audio resource you specify with the method's `audio_name`
+        /// Gets information about an audio resource from a custom acoustic model. The method returns an `AudioListing`
+        /// object whose fields depend on the type of audio resource that you specify with the method's `audio_name`
         /// parameter:
         /// * **For an audio-type resource,** the object's fields match those of an `AudioResource` object: `duration`,
         /// `name`, `details`, and `status`.
@@ -2379,9 +2388,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// `AudioResource` object. It also includes an `audio` field, which contains an array of `AudioResource`
         /// objects that provides information about the audio files that are contained in the archive.
         ///
-        /// The information includes the status of the specified audio resource, which is important for checking the
-        /// service's analysis of the resource in response to a request to add it to the custom model. You must use
-        /// credentials for the instance of the service that owns a model to list its audio resources.returnFields
+        /// The information includes the status of the specified audio resource. The status is important for checking
+        /// the service's analysis of a resource that you add to the custom model.
+        /// * For an audio-type resource, the `status` field is located in the `AudioListing` object.
+        /// * For an archive-type resource, the `status` field is located in the `AudioResource` object that is returned
+        /// in the `container` field.
+        ///
+        /// You must use credentials for the instance of the service that owns a model to list its audio resources.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2433,7 +2446,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// of the resource and information about its audio data, such as its duration. It also includes the status of
         /// the audio resource, which is important for checking the service's analysis of the resource in response to a
         /// request to add it to the custom acoustic model. You must use credentials for the instance of the service
-        /// that owns a model to list its audio resources.returnFields
+        /// that owns a model to list its audio resources.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -2482,7 +2495,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// the data. For more information about customer IDs and about using this method, see [Information
-        /// security](https://console.bluemix.net/docs/services/speech-to-text/information-security.html).returnFields
+        /// security](https://console.bluemix.net/docs/services/speech-to-text/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

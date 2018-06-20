@@ -1,6 +1,6 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
 
-### Language Translator
+### Language Translator V2
 
 [Language Translator][language_translator] translates text from one language to another. The service offers multiple domain-specific models that you can customize based on your unique terminology and language. Use Language Translator to take news from across the globe and present it in your language, communicate with your customers in their own language, and more.
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.4.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.4.1" />
 </ItemGroup>
 
 ```
@@ -23,7 +23,19 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
 
 #### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
+Before you can send requests to the service it must be instantiated and api key or access token must be set.
+```cs
+TokenOptions tokenOptions = new TokenOptions()
+{
+    IamApiKey = "<iam-apikey>",
+    IamAccessToken = "<iam-access-token>",
+    IamUrl = "<service-endpoint>"
+};
+
+var _languageTranslator = new LanguageTranslator(tokenOptions, "<version-date>");
+```
+
+Services created before `2018-06-15` are authenticated using username and password.
 ```cs
 // create a Language Translator Service instance
 LanguageTranslationService _languageTranslator = new LanguageTranslationService();

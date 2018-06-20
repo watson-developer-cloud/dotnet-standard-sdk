@@ -1,5 +1,10 @@
 Change Log
 ==========
+## Version 2.4.1
+_2018-06-20_
+* Regenerated SDK based on the latest API definition.
+* Added IAM authentication support for Natural Language Classifier.
+
 ## Version 2.4.0
 _2018-06-12_
 * Regenerated SDK based on the latest API definition.

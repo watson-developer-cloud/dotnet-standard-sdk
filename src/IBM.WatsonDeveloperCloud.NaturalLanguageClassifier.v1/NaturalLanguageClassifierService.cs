@@ -50,6 +50,21 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             this.SetCredential(userName, password);
         }
 
+        public NaturalLanguageClassifierService(TokenOptions options) : this()
+        {
+            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
+                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
+            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            {
+                this.Endpoint = options.ServiceUrl;
+            }
+            else
+            {
+                options.ServiceUrl = this.Endpoint;
+            }
+
+            _tokenManager = new TokenManager(options);
+        }
 
         public NaturalLanguageClassifierService(IClient httpClient) : this()
         {
@@ -63,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Classify a phrase.
         ///
         /// Returns label information for the input. The status must be `Available` before you can use the classifier to
-        /// classify text.returnFields
+        /// classify text.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify. The maximum length of the text phrase is 1024 characters.</param>
@@ -80,7 +95,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
 
                 restRequest.WithBody<ClassifyInput>(body);
@@ -105,7 +127,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Returns label information for multiple phrases. The status must be `Available` before you can use the
         /// classifier to classify text.
         ///
-        /// Note that classifying Japanese texts is a beta feature.returnFields
+        /// Note that classifying Japanese texts is a beta feature.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify.
@@ -125,7 +147,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
 
                 restRequest.WithBody<ClassifyCollectionInput>(body);
@@ -146,7 +175,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// <summary>
         /// Create classifier.
         ///
-        /// Sends data to create and train a classifier and returns information about the new classifier.returnFields
+        /// Sends data to create and train a classifier and returns information about the new classifier.
         /// </summary>
         /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an
         /// optional name to identify the classifier. Specify the language with the 2-letter primary language code as
@@ -190,7 +219,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                 }
 
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
 
                 restRequest.WithBodyContent(formData);
@@ -224,7 +260,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
@@ -245,7 +288,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// <summary>
         /// Get information about a classifier.
         ///
-        /// Returns status and other information about a classifier.returnFields
+        /// Returns status and other information about a classifier.
         /// </summary>
         /// <param name="classifierId">Classifier ID to query.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -259,7 +302,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
@@ -280,7 +330,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// <summary>
         /// List classifiers.
         ///
-        /// Returns an empty array if no classifiers are available.returnFields
+        /// Returns an empty array if no classifiers are available.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifierList" />ClassifierList</returns>
@@ -291,7 +341,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             try
             {
                 IClient client;
-                client = this.Client.WithAuthentication(this.UserName, this.Password);
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
                 if (customData != null)

@@ -48,9 +48,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// for more information, see [Providing sufficient
         /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON
         /// input, provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input: application/json, text/html, or text/plain. A character
-        /// encoding can be specified by including a `charset` parameter. For example,
-        /// 'text/html;charset=utf-8'.</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/html;charset=utf-8'.</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -102,9 +101,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// for more information, see [Providing sufficient
         /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON
         /// input, provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input: application/json, text/html, or text/plain. A character
-        /// encoding can be specified by including a `charset` parameter. For example,
-        /// 'text/html;charset=utf-8'.</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/html;charset=utf-8'.</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.

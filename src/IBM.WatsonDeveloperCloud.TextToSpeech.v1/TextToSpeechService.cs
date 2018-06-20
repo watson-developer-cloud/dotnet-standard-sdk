@@ -53,7 +53,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-
             if (!string.IsNullOrEmpty(options.ServiceUrl))
             {
                 this.Endpoint = options.ServiceUrl;
@@ -79,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// Gets information about the specified voice. The information includes the name, language, gender, and other
         /// details about the voice. Specify a customization ID to obtain information for that custom voice model of the
-        /// specified voice. To list information about all available voices, use the **List voices** method.returnFields
+        /// specified voice. To list information about all available voices, use the **List voices** method.
         /// </summary>
         /// <param name="voice">The voice for which information is to be returned.</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model for which information is
@@ -129,7 +128,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// Lists all voices available for use with the service. The information includes the name, language, gender,
         /// and other details about the voice. To see information about a specific voice, use the **Get a voice**
-        /// method.returnFields
+        /// method.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Voices" />Voices</returns>
@@ -177,7 +176,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// provides messages about the invalid parameters. The warning includes a descriptive message and a list of
         /// invalid argument strings. For example, a message such as `"Unknown arguments:"` or `"Unknown url query
         /// arguments:"` followed by a list of the form `"invalid_arg_1, invalid_arg_2."` The request succeeds despite
-        /// the warnings.returnFields
+        /// the warnings.
         /// </summary>
         /// <param name="text">A `Text` object that provides the text to synthesize. Specify either plain text or a
         /// subset of SSML. Pass a maximum of 5 KB of text.</param>
@@ -237,7 +236,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// format. You can also request the pronunciation for a specific voice to see the default translation for the
         /// language of that voice or for a specific custom voice model to see the translation for that voice model.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="text">The word for which the pronunciation is requested.</param>
         /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. All
@@ -301,7 +300,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// specify the language and a description for the new model. The model is owned by the instance of the service
         /// whose credentials are used to create it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="createVoiceModel">A `CreateVoiceModel` object that contains information about the new custom
         /// voice model.</param>
@@ -348,7 +347,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Deletes the specified custom voice model. You must use credentials for the instance of the service that owns
         /// a model to delete it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -395,7 +394,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// description of the voice model, the output includes the words and their translations as defined in the
         /// model. To see just the metadata for a voice model, use the **List custom models** method.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -443,7 +442,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// addition to the metadata for a specific voice model, use the **List a custom model** method. You must use
         /// credentials for the instance of the service that owns a model to list information about it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="language">The language for which custom voice models that are owned by the requesting service
         /// credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the
@@ -493,7 +492,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the
         /// service that owns a model to update it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -545,7 +544,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a
         /// model to add a word to it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -600,7 +599,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns
         /// a model to add words to it.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -651,7 +650,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Deletes a single word from the specified custom voice model. You must use credentials for the instance of
         /// the service that owns a model to delete its words.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -701,7 +700,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// it is defined in the model. You must use credentials for the instance of the service that owns a model to
         /// list its words.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -751,7 +750,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// translations as they are defined in the model. You must use credentials for the instance of the service that
         /// owns a model to list its words.
         ///
-        /// **Note:** This method is currently a beta release.returnFields
+        /// **Note:** This method is currently a beta release.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -800,7 +799,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// the data. For more information about customer IDs and about using this method, see [Information
-        /// security](https://console.bluemix.net/docs/services/text-to-speech/information-security.html).returnFields
+        /// security](https://console.bluemix.net/docs/services/text-to-speech/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

@@ -79,7 +79,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             {
                 options.ServiceUrl = this.Endpoint;
             }
-            
+
             _tokenManager = new TokenManager(options);
         }
 
@@ -98,7 +98,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// created.
         ///
         /// **Note**: You can create only one environment for private data per service instance. An attempt to create
-        /// another environment results in an error.returnFields
+        /// another environment results in an error.
         /// </summary>
         /// <param name="body">An object that defines an environment name and optional description. The fields in this
         /// object are not approved for personal information and cannot be deleted based on customer ID.</param>
@@ -237,7 +237,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List environments.
         ///
-        /// List existing environments for the service instance.returnFields
+        /// List existing environments for the service instance.
         /// </summary>
         /// <param name="name">Show only the environment with the given name. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -284,7 +284,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List fields across collections.
         ///
-        /// Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.returnFields
+        /// Gets a list of the unique fields (and their types) stored in the indexes of the specified collections.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -336,7 +336,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Update an environment.
         ///
         /// Updates an environment. The environment's `name` and  `description` parameters can be changed. You must
-        /// specify a `name` for the environment.returnFields
+        /// specify a `name` for the environment.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="body">An object that defines the environment's name and, optionally, description.</param>
@@ -394,7 +394,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an
         /// error. This makes it easier to use newer configuration files with older versions of the API and the service.
-        /// It also makes it possible for the tooling to add additional metadata and information to the configuration.returnFields
+        /// It also makes it possible for the tooling to add additional metadata and information to the configuration.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configuration">Input an object that enables you to customize how your content is ingested and
@@ -460,7 +460,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// The deletion is performed unconditionally. A configuration deletion request succeeds even if the
         /// configuration is referenced by a collection or document ingestion. However, documents that have already been
         /// submitted for processing continue to use the deleted configuration. Documents are always processed with a
-        /// snapshot of the configuration as it existed at the time the document was submitted.returnFields
+        /// snapshot of the configuration as it existed at the time the document was submitted.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
@@ -558,7 +558,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List configurations.
         ///
-        /// Lists existing configurations for the service instance.returnFields
+        /// Lists existing configurations for the service instance.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="name">Find configurations with the given name. (optional)</param>
@@ -615,7 +615,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// with none of the three properties.
         ///   * Documents are processed with a snapshot of the configuration as it was at the time the document was
         /// submitted to be ingested. This means that already submitted documents will not see any updates made to the
-        /// configuration.returnFields
+        /// configuration.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
@@ -682,7 +682,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Test configuration.
         ///
         /// Runs a sample document through the default or your configuration and returns diagnostic information designed
-        /// to help you understand how the document was processed. The document is not added to the index.returnFields
+        /// to help you understand how the document was processed. The document is not added to the index.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configuration">The configuration to use to process the document. If this part is provided, then
@@ -924,7 +924,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List collection fields.
         ///
-        /// Gets a list of the unique fields (and their types) stored in the index.returnFields
+        /// Gets a list of the unique fields (and their types) stored in the index.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -974,7 +974,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List collections.
         ///
-        /// Lists existing collections for the service instance.returnFields
+        /// Lists existing collections for the service instance.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="name">Find collections with the given name. (optional)</param>
@@ -1075,7 +1075,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// Create or replace the Expansion list for this collection. The maximum number of expanded terms per
         /// collection is `500`.
-        /// The current expansion list is replaced with the uploaded content.returnFields
+        /// The current expansion list is replaced with the uploaded content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1130,7 +1130,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Delete the expansion list.
         ///
         /// Remove the expansion information for this collection. The expansion list must be deleted to disable query
-        /// expansion for a collection.returnFields
+        /// expansion for a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1181,7 +1181,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Get the expansion list.
         ///
         /// Returns the current expansion list for the specified collection. If an expansion list is not specified, an
-        /// object with empty expansion arrays is returned.returnFields
+        /// object with empty expansion arrays is returned.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1249,7 +1249,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///   * Fields with empty name values after normalization are filtered out before indexing.
         ///
         ///   * Fields containing the following characters after normalization are filtered out before indexing: `#` and
-        /// `,`.returnFields
+        /// `,`.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1329,7 +1329,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Delete a document.
         ///
         /// If the given document ID is invalid, or if the document is not found, then the a success response is
-        /// returned (HTTP status code `200`) with the status set to 'deleted'.returnFields
+        /// returned (HTTP status code `200`) with the status set to 'deleted'.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1384,7 +1384,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// Fetch status details about a submitted document. **Note:** this operation does not return the document
         /// itself. Instead, it returns only the document's processing status and any notices (warnings or errors) that
-        /// were generated when the document was ingested. Use the query API to retrieve the actual document content.returnFields
+        /// were generated when the document was ingested. Use the query API to retrieve the actual document content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1437,7 +1437,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Update a document.
         ///
-        /// Replace an existing document. Starts ingesting a document with optional metadata.returnFields
+        /// Replace an existing document. Starts ingesting a document with optional metadata.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1519,7 +1519,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Query documents in multiple collections.
         ///
         /// See the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html)
-        /// for more details.returnFields
+        /// for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -1640,7 +1640,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated
         /// when ingesting documents and performing relevance training. See the [Discovery service
         /// documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query
-        /// language.returnFields
+        /// language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -1754,7 +1754,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// After your content is uploaded and enriched by the Discovery service, you can build queries to search your
         /// content. For details, see the [Discovery service
-        /// documentation](https://console.bluemix.net/docs/services/discovery/using.html).returnFields
+        /// documentation](https://console.bluemix.net/docs/services/discovery/using.html).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1887,7 +1887,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Knowledge Graph entity query.
         ///
         /// See the [Knowledge Graph
-        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.returnFields
+        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -1945,7 +1945,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated
         /// when ingesting documents and performing relevance training. See the [Discovery service
         /// documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query
-        /// language.returnFields
+        /// language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2072,7 +2072,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Knowledge Graph relationship query.
         ///
         /// See the [Knowledge Graph
-        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.returnFields
+        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2127,7 +2127,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// Add query to training data.
         ///
         /// Adds a query to the training data for this collection. The query can contain a filter and natural language
-        /// query.returnFields
+        /// query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2182,7 +2182,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Add example to training data query.
         ///
-        /// Adds a example to this training data query.returnFields
+        /// Adds a example to this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2239,7 +2239,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Delete all training data.
         ///
-        /// Deletes all training data from a collection.returnFields
+        /// Deletes all training data from a collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2289,7 +2289,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Delete a training data query.
         ///
-        /// Removes the training data query and all associated examples from the training data set.returnFields
+        /// Removes the training data query and all associated examples from the training data set.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2342,7 +2342,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Delete example for training data query.
         ///
-        /// Deletes the example document with the given ID from the training data query.returnFields
+        /// Deletes the example document with the given ID from the training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2398,7 +2398,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Get details about a query.
         ///
-        /// Gets details for a specific training data query, including the query string and all examples.returnFields
+        /// Gets details for a specific training data query, including the query string and all examples.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2451,7 +2451,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Get details for training data example.
         ///
-        /// Gets the details for this training example.returnFields
+        /// Gets the details for this training example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2507,7 +2507,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List training data.
         ///
-        /// Lists the training data for the specified collection.returnFields
+        /// Lists the training data for the specified collection.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2557,7 +2557,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// List examples for a training data query.
         ///
-        /// List all examples for this training data query.returnFields
+        /// List all examples for this training data query.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2610,7 +2610,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Change label or cross reference for example.
         ///
-        /// Changes the label or cross reference query for this training data example.returnFields
+        /// Changes the label or cross reference query for this training data example.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2674,7 +2674,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/discovery/information-security.html).returnFields
+        /// security](https://console.bluemix.net/docs/services/discovery/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

@@ -102,13 +102,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII
         /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
         /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
-        /// For `text/html`, the service removes HTML tags and analyzes only the textual content.returnFields
+        /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
-        /// <param name="contentType">The type of the input: application/json, text/plain, or text/html. A character
-        /// encoding can be specified by including a `charset` parameter. For example,
-        /// 'text/plain;charset=utf-8'.</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/plain;charset=utf-8'.</param>
         /// <param name="sentences">Indicates whether the service is to return an analysis of each individual sentence
         /// in addition to its analysis of the full document. If `true` (the default), the service returns results for
         /// each sentence. (optional, default to true)</param>
@@ -190,7 +189,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// service returns an error for that utterance and does not analyze the utterance. The request fails if all
         /// utterances have more than 500 characters.
         ///
-        /// Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.returnFields
+        /// Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
         /// </summary>
         /// <param name="utterances">An object that contains the content to be analyzed.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional

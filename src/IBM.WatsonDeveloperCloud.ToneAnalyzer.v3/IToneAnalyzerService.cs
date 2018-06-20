@@ -41,9 +41,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
-        /// <param name="contentType">The type of the input: application/json, text/plain, or text/html. A character
-        /// encoding can be specified by including a `charset` parameter. For example,
-        /// 'text/plain;charset=utf-8'.</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/plain;charset=utf-8'.</param>
         /// <param name="sentences">Indicates whether the service is to return an analysis of each individual sentence
         /// in addition to its analysis of the full document. If `true` (the default), the service returns results for
         /// each sentence. (optional, default to true)</param>

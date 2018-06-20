@@ -98,13 +98,13 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         public List<string> Synonyms { get; set; }
         /// <summary>
         /// An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by
-        /// **type**), but not both. A pattern is a regular expression no longer than 128 characters. For more
+        /// **type**), but not both. A pattern is a regular expression no longer than 512 characters. For more
         /// information about how to specify a pattern, see the
         /// [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
         /// </summary>
         /// <value>
         /// An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by
-        /// **type**), but not both. A pattern is a regular expression no longer than 128 characters. For more
+        /// **type**), but not both. A pattern is a regular expression no longer than 512 characters. For more
         /// information about how to specify a pattern, see the
         /// [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
         /// </value>

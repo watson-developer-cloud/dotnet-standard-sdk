@@ -53,7 +53,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-
             if (!string.IsNullOrEmpty(options.ServiceUrl))
             {
                 this.Endpoint = options.ServiceUrl;
@@ -77,7 +76,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// Translate.
         ///
-        /// Translates the input text from the source language to the target language.returnFields
+        /// Translates the input text from the source language to the target language.
         /// </summary>
         /// <param name="request">The translate request containing the text, and either a model ID or source and target
         /// language pair.</param>
@@ -120,7 +119,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// Identify language.
         ///
-        /// Identifies the language of the input text.returnFields
+        /// Identifies the language of the input text.
         /// </summary>
         /// <param name="text">Input text in UTF-8 format.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -164,7 +163,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// List identifiable languages.
         ///
         /// Lists the languages that the service can identify. Returns the language code (for example, `en` for English
-        /// or `es` for Spanish) and name of each language.returnFields
+        /// or `es` for Spanish) and name of each language.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
@@ -206,7 +205,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         ///
         /// Depending on the size of the file, training can range from minutes for a glossary to several hours for a
         /// large parallel corpus. Glossary files must be less than 10 MB. The cumulative file size of all uploaded
-        /// glossary and corpus files is limited to 250 MB.returnFields
+        /// glossary and corpus files is limited to 250 MB.
         /// </summary>
         /// <param name="baseModelId">The model ID of the model to use as the base for customization. To see available
         /// models, use the `List models` method.</param>
@@ -293,7 +292,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// Delete model.
         ///
-        /// Deletes a custom translation model.returnFields
+        /// Deletes a custom translation model.
         /// </summary>
         /// <param name="modelId">Model ID of the model to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -335,7 +334,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// Get model details.
         ///
-        /// Gets information about a translation model, including training status for custom models.returnFields
+        /// Gets information about a translation model, including training status for custom models.
         /// </summary>
         /// <param name="modelId">Model ID of the model to get.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -377,7 +376,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2
         /// <summary>
         /// List models.
         ///
-        /// Lists available translation models.returnFields
+        /// Lists available translation models.
         /// </summary>
         /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
         /// <param name="target">Specify a language code to filter results by target language. (optional)</param>

@@ -23,19 +23,6 @@ Natural Language Understanding uses natural language processing to analyze seman
 
 You can create [custom models][custom_models] with Watson Knowledge Studio that can be used to detect custom [entities][entities] and [relations][relations] in Natural Language Understanding.
 
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create a Natural Language Understanding Service instance
-NaturalLanguageUnderstandingService _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService();
-
-// set the credentials
-_naturalLanguageUnderstandingService.SetCredential("<username>", "<password>");
-
-//  set the VersionDate
-_naturalLanguageUnderstandingService.VersionDate = "2017-02-27";
-```
-
 #### Analyze
 Analyze features of natural language content.
 ```cs

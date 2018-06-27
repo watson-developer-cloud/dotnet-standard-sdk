@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// Also sets the endpoint if the user has not set the endpoint.
         /// </summary>
         /// <param name="apikey"></param>
-        private void SetCredential(string apikey)
+        public void SetCredential(string apikey)
         {
             this.ApiKey = apikey;
             if (!_userSetEndpoint)

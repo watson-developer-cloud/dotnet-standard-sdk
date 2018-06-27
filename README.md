@@ -17,7 +17,7 @@ The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of RE
 ## Before you begin
 Ensure you have the following prerequisites:
 
-* An IBM Cloud account. If you don't have one, [sign up][bluemix_registration].
+* You need an [IBM Cloud][ibm-cloud-onboarding] account.
 * Install [Visual Studio][visual-studio-download] for Windows or [Visual Studio Code][visual-studio-code-download] for OSX or Linux.
 * Install [.NET Core][dotnet-core-download].
 
@@ -135,3 +135,4 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [visual-studio-download]: https://www.visualstudio.com/vs/community/
 [visual-studio-code-download]: https://code.visualstudio.com/
 [dotnet-standard-sdk-documentation]: https://watson-developer-cloud.github.io/dotnet-standard-sdk/
+[ibm-cloud-onboarding]: http://console.bluemix.net/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-DotNet

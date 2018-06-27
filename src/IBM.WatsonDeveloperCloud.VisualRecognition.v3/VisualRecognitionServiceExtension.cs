@@ -33,6 +33,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
         /// <summary>
+        /// Sets the apikey of the service. 
+        /// Also sets the endpoint if the user has not set the endpoint.
+        /// </summary>
+        /// <param name="apikey"></param>
+        private void SetCredential(string apikey)
+        {
+            this.ApiKey = apikey;
+            if (!_userSetEndpoint)
+                this.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+        }
+
+        /// <summary>
         /// Create a classifier. Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive or negative examples. Include at least two sets of examples, either two positive example files or one positive and one negative file. You can upload a maximum of 256 MB per call.  Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="createClassifier">Object used to define options for creating a classifier.</param>

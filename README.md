@@ -39,6 +39,76 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 
 Or manually [here][latest_release].
 
+## Authentication
+Watson services are migrating to token-based Identity and Access Management (IAM) authentication.
+
+- With some service instances, you authenticate to the API by using **[IAM](#iam)**.
+- In other instances, you authenticate by providing the **[username and password](#username-and-password)** for the service instance.
+- Visual Recognition uses a form of [API key](#api-key) only with instances created before May 23, 2018. Newer instances of Visual Recognition use [IAM](#iam).
+
+### Getting credentials
+To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
+
+1.  Go to the IBM Cloud **[Dashboard][watson-dashboard]** page.
+1.  Either click an existing Watson service instance or click **Create**.
+1.  Click **Show** to view your service credentials.
+1.  Copy the `url` and either `apikey` or `username` and `password`.
+
+In your code, you can use these values in the service constructor or with a method call after instantiating your service.
+
+### IAM
+
+Some services use token-based Identity and Access Management (IAM) authentication. IAM authentication uses a service API key to get an access token that is passed with the call. Access tokens are valid for approximately one hour and must be regenerated.
+
+You supply either an IAM service **API key** or an **access token**:
+
+- Use the API key to have the SDK manage the lifecycle of the access token. The SDK requests an access token, ensures that the access token is valid, and refreshes it if necessary.
+- Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key override your stored IAM credentials with an IAM API key.
+
+#### Supplying the IAM API key
+```cs
+void Example()
+{
+    TokenOptions iamAssistantTokenOptions = new TokenOptions()
+    {
+        IamApiKey = "<iam-apikey>",
+        IamUrl = "<service-endpoint>"
+    };
+
+    _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");
+}
+```
+
+#### Supplying the access token
+```cs
+void Example()
+{
+    TokenOptions iamAssistantTokenOptions = new TokenOptions()
+    {
+        IamAccessToken = "<iam-access-token>"
+    };
+
+    _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");
+}
+```
+
+### Username and password
+```cs
+void Example()
+{
+    _assistant = new AssistantService("<username>", "<password>", "<version-date>");
+}
+```
+
+### API key
+**Important**: This type of authentication works only with Visual Recognition instances created before May 23, 2018. Newer instances of Visual Recognition use [IAM](#iam).
+```cs
+void Example()
+{
+    _visualRecognition = new VisualRecognitionService("<apikey>", "<version-date>");
+}
+```
+
 ## Custom Request Headers
 You can send custom request headers by adding them to the `customData` object.
 ```cs
@@ -69,24 +139,6 @@ void Example()
     
     var responseHeaders = results.ResponseHeaders;  //  The response headers
     var responseJson = results.ResponseJson;        //  The raw response json
-}
-```
-
-## IAM Authentication
-You can authenticate using IAM rather than username and password or apikey. You can either allow the SDK to manage the token by providing your IAM apikey or manage the token yourself by providing an access token.
-```cs
-void Example()
-{
-    //  Provide either an iamApiKey or iamAccessToken to authenticate the service.
-    TokenOptions iamAssistantTokenOptions = new TokenOptions()
-    {
-        IamApiKey = "<iam-apikey>",
-        IamAccessToken = "<iam-access-token>",
-        IamUrl = "<service-endpoint>"
-    };
-
-    _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
 }
 ```
 

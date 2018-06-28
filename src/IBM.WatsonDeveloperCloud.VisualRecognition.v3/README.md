@@ -22,19 +22,6 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ### Usage
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from IBM Cloud is required for all calls.
 
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and api key or access token must be set.
-```cs
-TokenOptions tokenOptions = new TokenOptions()
-{
-    IamApiKey = "<iam-apikey>",
-    IamAccessToken = "<iam-access-token>",
-    IamUrl = "<service-endpoint>"
-};
-
-var _visualRecognition = new VisualRecognitionService(tokenOptions, "<version-date>");
-```
-
 #### Classify an image
 Upload images or URLs to identify classes by default. To identify custom classifiers, include the classifier_ids or owners parameters. Images must be in .jpeg, or .png format.
 

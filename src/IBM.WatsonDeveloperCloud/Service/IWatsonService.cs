@@ -30,7 +30,6 @@ namespace IBM.WatsonDeveloperCloud.Service
         string Password { get; set; }
 
         void SetCredential(string userName, string password);
-        void SetCredential(string apikey);
         void SetCredential(TokenOptions tokenOptions);
         void SetEndpoint(string endpoint);
     }

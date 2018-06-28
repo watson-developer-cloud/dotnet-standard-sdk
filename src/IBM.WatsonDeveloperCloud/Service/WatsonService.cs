@@ -92,19 +92,7 @@ namespace IBM.WatsonDeveloperCloud.Service
             this.UserName = userName;
             this.Password = password;
         }
-
-        /// <summary>
-        /// Sets the apikey of the service. 
-        /// Also sets the endpoint if the user has not set the endpoint.
-        /// </summary>
-        /// <param name="apikey"></param>
-        public void SetCredential(string apikey)
-        {
-            this.ApiKey = apikey;
-            if (!_userSetEndpoint)
-                this.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
-        }
-
+        
         /// <summary>
         /// Sets the tokenOptions for the service. 
         /// Also sets the endpoint if the user has not set the endpoint.

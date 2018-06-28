@@ -22,28 +22,6 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 ### Usage
 Select a domain, then identify or select the language of text, and then translate the text from one supported language to another.
 
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and api key or access token must be set.
-```cs
-TokenOptions tokenOptions = new TokenOptions()
-{
-    IamApiKey = "<iam-apikey>",
-    IamAccessToken = "<iam-access-token>",
-    IamUrl = "<service-endpoint>"
-};
-
-var _languageTranslator = new LanguageTranslator(tokenOptions, "<version-date>");
-```
-
-Services created before `2018-06-15` are authenticated using username and password.
-```cs
-// create a Language Translator Service instance
-LanguageTranslationService _languageTranslator = new LanguageTranslationService();
-
-// set the credentials
-_languageTranslator.SetCredential("<username>", "<password>");
-```
-
 #### Translate
 Translates input text from the source language to the target language.
 ```cs

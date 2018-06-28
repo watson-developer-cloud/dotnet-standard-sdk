@@ -21,19 +21,6 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 ### Usage
 The IBM Watson™ [Discovery][discovery] Service uses data analysis combined with cognitive intuition in order to take your unstructured data and enrich it so that you can query it to return the information that you need from it.
 
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create a Discovery Service instance
-DiscoveryService _discovery = new DiscoveryService();
-
-// set the credentials
-_discovery.SetCredential("<username>", "<password>");
-
-// set the VersionDate
-_discovery.VersionDate = "<version-date>";
-```
-
 #### Create an environment
 Creates an environment for the service instance. Note: You can create only one environment per service instance. Attempting to create another environment for the same service instance results in an error. See the [Discovery service home page][discovery-sizing] for additional information about sizing and pricing. To create a free trial environment, specify the value of size as 0 (zero).
 ```cs

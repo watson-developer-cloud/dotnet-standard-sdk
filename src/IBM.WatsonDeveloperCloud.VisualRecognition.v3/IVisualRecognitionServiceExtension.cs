@@ -23,6 +23,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
     public partial interface IVisualRecognitionService
     {
+        void SetCredential(string apikey);
+
         Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null);
         
         Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null);

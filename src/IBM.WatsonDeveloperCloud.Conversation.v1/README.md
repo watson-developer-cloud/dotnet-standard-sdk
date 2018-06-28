@@ -26,19 +26,6 @@ You complete these steps to implement your application:
 
 * Develop your application. You code your application to connect to the Conversation workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
 
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create a Conversation Service instance
-ConversationService _conversation = new ConversationService();
-
-// set the credentials
-_conversation.SetCredential(<username>, <password>);
-
-// set the VersionDate
-_conversation.VersionDate = "<version-date>";
-```
-
 #### List workspaces
 List existing workspaces for the service instance.
 ```cs

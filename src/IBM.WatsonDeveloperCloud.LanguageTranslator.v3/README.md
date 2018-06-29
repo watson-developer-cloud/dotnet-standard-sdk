@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v3/)
 
 ### Language Translator V3
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v3" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v3" Version="2.4.2" />
 </ItemGroup>
 
 ```

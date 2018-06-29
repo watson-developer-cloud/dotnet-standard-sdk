@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v1/)
 
 ### Assistant
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Assistant.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v1" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v1" Version="2.4.2" />
 </ItemGroup>
 
 ```
@@ -25,19 +25,6 @@ You complete these steps to implement your application:
 * Configure a workspace. With the easy-to-use graphical environment, you set up the dialog flow and training data for your application.
 
 * Develop your application. You code your application to connect to the Assistant workspace through API calls. You then integrate your app with other systems that you need, including back-end systems and third-party services such as chat services or social media.
-
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create an Assistant Service instance
-AssistantService _assistant = new AssistantService();
-
-// set the credentials
-_assistant.SetCredential(<username>, <password>);
-
-// set the VersionDate
-_assistant.VersionDate = "<version-date>";
-```
 
 #### List workspaces
 List existing workspaces for the service instance.

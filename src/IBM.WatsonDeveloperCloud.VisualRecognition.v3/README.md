@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.VisualRecognition.v3/)
 
 ### Visual Recognition
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and celebrity faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
@@ -14,26 +14,13 @@ PM > Install-Package IBM.WatsonDeveloperCloud.VisualRecognition.v3
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.VisualRecognition.v3" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.VisualRecognition.v3" Version="2.4.2" />
 </ItemGroup>
 
 ```
 
 ### Usage
 The IBM Watson™ [Visual Recognition][visual-recognition] service uses deep learning algorithms to identify scenes, objects, and faces in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. You can create and add images to a collection and then search that collection with your own image to find similar images. A valid API Key from IBM Cloud is required for all calls.
-
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and api key or access token must be set.
-```cs
-TokenOptions tokenOptions = new TokenOptions()
-{
-    IamApiKey = "<iam-apikey>",
-    IamAccessToken = "<iam-access-token>",
-    IamUrl = "<service-endpoint>"
-};
-
-var _visualRecognition = new VisualRecognitionService(tokenOptions, "<version-date>");
-```
 
 #### Classify an image
 Upload images or URLs to identify classes by default. To identify custom classifiers, include the classifier_ids or owners parameters. Images must be in .jpeg, or .png format.

@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Discovery.v1/)
 
 ### Discovery
 The IBM Watson™ [Discovery][discovery] service makes it possible to rapidly build cognitive, cloud-based exploration applications that unlock actionable insights hidden in unstructured data - including your own proprietary data, as well as public and third-party data.
@@ -14,25 +14,12 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Discovery.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Discovery.v1" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Discovery.v1" Version="2.4.2" />
 </ItemGroup>
 
 ```
 ### Usage
 The IBM Watson™ [Discovery][discovery] Service uses data analysis combined with cognitive intuition in order to take your unstructured data and enrich it so that you can query it to return the information that you need from it.
-
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create a Discovery Service instance
-DiscoveryService _discovery = new DiscoveryService();
-
-// set the credentials
-_discovery.SetCredential("<username>", "<password>");
-
-// set the VersionDate
-_discovery.VersionDate = "<version-date>";
-```
 
 #### Create an environment
 Creates an environment for the service instance. Note: You can create only one environment per service instance. Attempting to create another environment for the same service instance results in an error. See the [Discovery service home page][discovery-sizing] for additional information about sizing and pricing. To create a free trial environment, specify the value of size as 0 (zero).

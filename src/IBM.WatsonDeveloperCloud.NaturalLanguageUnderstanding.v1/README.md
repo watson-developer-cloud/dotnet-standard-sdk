@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1/)
 
 ### Natural Language Understanding
 With [Natural Language Understanding][natural_language_understanding] developers can analyze semantic features of text input, including - categories, concepts, emotion, entities, keywords, metadata, relations, semantic roles, and sentiment.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1" Version="2.4.2" />
 </ItemGroup>
 
 ```
@@ -22,19 +22,6 @@ PM > Install-Package IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 Natural Language Understanding uses natural language processing to analyze semantic features of any text. Provide plain text, HTML, or a public URL, and Natural Language Understanding returns results for the features you specify. The service cleans HTML before analysis by default, which removes most advertisements and other unwanted content.
 
 You can create [custom models][custom_models] with Watson Knowledge Studio that can be used to detect custom [entities][entities] and [relations][relations] in Natural Language Understanding.
-
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-// create a Natural Language Understanding Service instance
-NaturalLanguageUnderstandingService _naturalLanguageUnderstandingService = new NaturalLanguageUnderstandingService();
-
-// set the credentials
-_naturalLanguageUnderstandingService.SetCredential("<username>", "<password>");
-
-//  set the VersionDate
-_naturalLanguageUnderstandingService.VersionDate = "2017-02-27";
-```
 
 #### Analyze
 Analyze features of natural language content.

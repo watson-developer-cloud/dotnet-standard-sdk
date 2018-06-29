@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.4.1-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.4.2-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.SpeechToText.v1/)
 
 ### Speech to Text
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.SpeechToText.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.SpeechToText.v1" Version="2.4.1" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.SpeechToText.v1" Version="2.4.2" />
 </ItemGroup>
 
 ```
@@ -37,17 +37,7 @@ The Speech to Text API consists of the following groups of related calls:
 * Custom corpora provides an HTTP interface for managing the corpora associated with a custom language model. You add a corpus to a custom model to extract words from the corpus into the model's vocabulary.
 
 * Custom words provides an HTTP interface for managing individual words in a custom language model. You can add, list, and delete words from a custom model.
-
-#### Instantiating and authenticating the service
-Before you can send requests to the service it must be instantiated and credentials must be set.
-```cs
-//  create a Speech to Text Service instance
-SpeechToTextService _speechToText = new SpeechToTextService();
-
-//  set the credentials
-_speechToText.SetCredential("<username>", "<password>");
-```
-
+* 
 #### Get models
 Retrieves a list of all models available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things.
 ```cs

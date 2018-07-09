@@ -50,6 +50,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("duplicates_removed", NullValueHandling = NullValueHandling.Ignore)]
         public long? DuplicatesRemoved { get; set; }
+        /// <summary>
+        /// The session token for this query. The session token can be used to add events associated with this query to
+        /// the query and event log.
+        /// </summary>
+        /// <value>
+        /// The session token for this query. The session token can be used to add events associated with this query to
+        /// the query and event log.
+        /// </value>
+        [JsonProperty("session_token", NullValueHandling = NullValueHandling.Ignore)]
+        public string SessionToken { get; set; }
     }
 
 }

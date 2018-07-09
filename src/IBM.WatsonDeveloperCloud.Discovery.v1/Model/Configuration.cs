@@ -92,6 +92,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </value>
         [JsonProperty("normalizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<NormalizationOperation> Normalizations { get; set; }
+        /// <summary>
+        /// Object containing source parameters for the configuration.
+        /// </summary>
+        /// <value>
+        /// Object containing source parameters for the configuration.
+        /// </value>
+        [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
+        public Source Source { get; set; }
     }
 
 }

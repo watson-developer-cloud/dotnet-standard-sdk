@@ -20,26 +20,28 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Metadata of a query result.
+    /// Object that defines a Salesforce document object type crawl with this configuration.
     /// </summary>
-    public class QueryResultResultMetadata : BaseModel
+    public class SourceOptionsObject : BaseModel
     {
         /// <summary>
-        /// The raw score of the result. A higher score indicates a greater match to the query parameters.
+        /// The name of the Salesforce document object to crawl. For example, `case`.
         /// </summary>
         /// <value>
-        /// The raw score of the result. A higher score indicates a greater match to the query parameters.
+        /// The name of the Salesforce document object to crawl. For example, `case`.
         /// </value>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
         /// <summary>
-        /// The confidence score of the result's analysis. A higher score indicates greater confidence.
+        /// The maximum number of documents to crawl for this document object. By default, all documents in the document
+        /// object are crawled.
         /// </summary>
         /// <value>
-        /// The confidence score of the result's analysis. A higher score indicates greater confidence.
+        /// The maximum number of documents to crawl for this document object. By default, all documents in the document
+        /// object are crawled.
         /// </value>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Limit { get; set; }
     }
 
 }

@@ -25,10 +25,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class DiskUsage : BaseModel
     {
         /// <summary>
-        /// Number of bytes used on the environment's disk capacity.
+        /// Number of bytes within the environment's disk capacity that are currently used to store data.
         /// </summary>
         /// <value>
-        /// Number of bytes used on the environment's disk capacity.
+        /// Number of bytes within the environment's disk capacity that are currently used to store data.
         /// </value>
         [JsonProperty("used_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? UsedBytes { get; private set; }

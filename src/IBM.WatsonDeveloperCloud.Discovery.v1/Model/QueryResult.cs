@@ -33,10 +33,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Id { get; set; }
         /// <summary>
-        /// *Deprecated* This field is now part of the `result_metadata` object.
+        /// *Deprecated* This field is now part of the **result_metadata** object.
         /// </summary>
         /// <value>
-        /// *Deprecated* This field is now part of the `result_metadata` object.
+        /// *Deprecated* This field is now part of the **result_metadata** object.
         /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Score { get; set; }

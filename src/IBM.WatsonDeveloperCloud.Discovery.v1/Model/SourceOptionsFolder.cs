@@ -20,31 +20,33 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// An object specifiying the semantic roles enrichment and related parameters.
+    /// Object that defines a box folder to crawl with this configuration.
     /// </summary>
-    public class NluEnrichmentSemanticRoles : BaseModel
+    public class SourceOptionsFolder : BaseModel
     {
         /// <summary>
-        /// When `true`, entities are extracted from the identified sentence parts.
+        /// The Box user ID of the user who owns the folder to crawl.
         /// </summary>
         /// <value>
-        /// When `true`, entities are extracted from the identified sentence parts.
+        /// The Box user ID of the user who owns the folder to crawl.
         /// </value>
-        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Entities { get; set; }
+        [JsonProperty("owner_user_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string OwnerUserId { get; set; }
         /// <summary>
-        /// When `true`, keywords are extracted from the identified sentence parts.
+        /// The Box folder ID of the folder to crawl.
         /// </summary>
         /// <value>
-        /// When `true`, keywords are extracted from the identified sentence parts.
+        /// The Box folder ID of the folder to crawl.
         /// </value>
-        [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Keywords { get; set; }
+        [JsonProperty("folder_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string FolderId { get; set; }
         /// <summary>
-        /// The maximum number of semantic roles enrichments to extact from each instance of the specified field.
+        /// The maximum number of documents to crawl for this folder. By default, all documents in the folder are
+        /// crawled.
         /// </summary>
         /// <value>
-        /// The maximum number of semantic roles enrichments to extact from each instance of the specified field.
+        /// The maximum number of documents to crawl for this folder. By default, all documents in the folder are
+        /// crawled.
         /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }

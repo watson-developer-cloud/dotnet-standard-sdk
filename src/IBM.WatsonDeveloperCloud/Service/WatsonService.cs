@@ -89,8 +89,20 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="password">The password</param>
         public void SetCredential(string userName, string password)
         {
-            this.UserName = userName;
-            this.Password = password;
+            if (userName == "apikey")
+            {
+                TokenOptions tokenOptions = new TokenOptions()
+                {
+                    IamApiKey = password
+                };
+
+                SetCredential(tokenOptions);
+            }
+            else
+            {
+                this.UserName = userName;
+                this.Password = password;
+            }
         }
         
         /// <summary>
@@ -100,8 +112,18 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="options"></param>
         public void SetCredential(TokenOptions options)
         {
-            if(!_userSetEndpoint)
-                this.Endpoint = options.IamUrl;
+            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            {
+                if (!_userSetEndpoint)
+                {
+                    this.Endpoint = options.ServiceUrl;
+                }
+            }
+            else
+            {
+                options.ServiceUrl = this.Endpoint;
+            }
+
             _tokenManager = new TokenManager(options);
         }
 

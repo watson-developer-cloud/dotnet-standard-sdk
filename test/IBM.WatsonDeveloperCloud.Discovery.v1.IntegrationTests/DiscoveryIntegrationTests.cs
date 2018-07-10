@@ -515,9 +515,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             var listCredentialsResult = ListCredentials(_environmentId);
 
-            Credentials credentials = new Credentials()
+            Model.Credentials credentials = new Model.Credentials()
             {
-                SourceType = Credentials.SourceTypeEnum.BOX,
+                SourceType = Model.Credentials.SourceTypeEnum.BOX,
                 CredentialDetails = new CredentialDetails()
                 {
                     CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
@@ -534,12 +534,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             string credentialId = createCredentialsResult.CredentialId;
 
             var getCredentialResult = GetCredentials(_environmentId, credentialId);
+            string privateKey = "privatekey";
+            var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
+            var base64PrivateKey = System.Convert.ToBase64String(privateKeyBytes);
 
-            Credentials updatedCredentials = new Credentials()
+            Model.Credentials updatedCredentials = new Model.Credentials()
             {
+                SourceType = Model.Credentials.SourceTypeEnum.BOX,
                 CredentialDetails = new CredentialDetails()
                 {
-                    EnterpriseId = "boxEnterpriseIdUpdated"
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "myEnterpriseIdUpdated",
+                    ClientId = "myClientIdUpdated",
+                    ClientSecret = "myClientSecretUpdated",
+                    PublicKeyId = "myPublicIdKeyUpdated",
+                    Passphrase = "myPassphraseUpdated",
+                    PrivateKey = base64PrivateKey
                 }
             };
 
@@ -553,13 +563,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsTrue(!string.IsNullOrEmpty(createCredentialsResult.CredentialId));
             Assert.IsTrue(createCredentialsResult.SourceType == Credentials.SourceTypeEnum.BOX);
             Assert.IsTrue(createCredentialsResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
-            Assert.IsTrue(createCredentialsResult.CredentialDetails.EnterpriseId == "box-enterprise-id");
+            Assert.IsTrue(createCredentialsResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
             Assert.IsNotNull(getCredentialResult);
             Assert.IsTrue(getCredentialResult.SourceType == Credentials.SourceTypeEnum.BOX);
             Assert.IsTrue(getCredentialResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
-            Assert.IsTrue(getCredentialResult.CredentialDetails.EnterpriseId == "box-enterprise-id");
+            Assert.IsTrue(getCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
             Assert.IsNotNull(updateCredentialResult);
-            Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "box-enterprise-id-updated");
+            Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
             Assert.IsNotNull(deleteCredentialsResult);
             Assert.IsTrue(deleteCredentialsResult.CredentialId == credentialId);
             Assert.IsTrue(deleteCredentialsResult.Status == Model.DeleteCredentials.StatusEnum.DELETED);

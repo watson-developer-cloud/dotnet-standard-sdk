@@ -113,11 +113,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LanguageTranslatorV3", "Lan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3", "src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj", "{CF4DDE0B-F484-49EB-A78B-10772AB458C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests.csproj", "{0A0E29F3-02D1-4824-A523-AC0EA962CB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests.csproj", "{0A0E29F3-02D1-4824-A523-AC0EA962CB91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests.csproj", "{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests.csproj", "{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example.csproj", "{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example.csproj", "{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

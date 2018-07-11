@@ -98,7 +98,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// You can also include an image with the **url** parameter. (optional)</param>
         /// <param name="acceptLanguage">The language of the output class names. The full set of languages is supported
-        /// only for the built-in `default` classifier ID. The class names of custom classifiers are not translated.
+        /// for the built-in classifier IDs: `default`, `food`, and `explicit`. The class names of custom classifiers
+        /// are not translated.
         ///
         /// The response might not be in the specified language when the requested language is not supported or when
         /// there is no translation for the class name. (optional, default to en)</param>

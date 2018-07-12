@@ -89,26 +89,26 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// Creation date of the environment, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
+        /// Creation date of the environment, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         /// <value>
-        /// Creation date of the environment, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
+        /// Creation date of the environment, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
-        /// Date of most recent environment update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
+        /// Date of most recent environment update, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         /// <value>
-        /// Date of most recent environment update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
+        /// Date of most recent environment update, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
-        /// If true, then the environment contains read-only collections which are maintained by IBM.
+        /// If `true`, the environment contains read-only collections that are maintained by IBM.
         /// </summary>
         /// <value>
-        /// If true, then the environment contains read-only collections which are maintained by IBM.
+        /// If `true`, the environment contains read-only collections that are maintained by IBM.
         /// </value>
         [JsonProperty("read_only", NullValueHandling = NullValueHandling.Ignore)]
         public virtual bool? _ReadOnly { get; private set; }

@@ -63,12 +63,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Name of the enrichment service to call. Current options are `natural_language_understanding` and `elements`.
         ///
-        ///  When using `natual_language_understanding`, the `options` object must contain Natural Language
-        /// Understanding Options.
+        ///  When using `natual_language_understanding`, the **options** object must contain Natural Language
+        /// Understanding options.
         ///
-        ///  When using `elements` the `options` object must contain Element Classification options. Additionally, when
-        /// using the `elements` enrichment the configuration specified and files ingested must meet all the criteria
-        /// specified in [the
+        ///  When using `elements` the **options** object must contain Element Classification options. Additionally,
+        /// when using the `elements` enrichment the configuration specified and files ingested must meet all the
+        /// criteria specified in [the
         /// documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)
         ///
         ///
@@ -78,12 +78,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <value>
         /// Name of the enrichment service to call. Current options are `natural_language_understanding` and `elements`.
         ///
-        ///  When using `natual_language_understanding`, the `options` object must contain Natural Language
-        /// Understanding Options.
+        ///  When using `natual_language_understanding`, the **options** object must contain Natural Language
+        /// Understanding options.
         ///
-        ///  When using `elements` the `options` object must contain Element Classification options. Additionally, when
-        /// using the `elements` enrichment the configuration specified and files ingested must meet all the criteria
-        /// specified in [the
+        ///  When using `elements` the **options** object must contain Element Classification options. Additionally,
+        /// when using the `elements` enrichment the configuration specified and files ingested must meet all the
+        /// criteria specified in [the
         /// documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)
         ///
         ///

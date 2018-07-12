@@ -113,11 +113,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LanguageTranslatorV3", "Lan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3", "src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj", "{CF4DDE0B-F484-49EB-A78B-10772AB458C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.UnitTests.csproj", "{0A0E29F3-02D1-4824-A523-AC0EA962CB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example.csproj", "{B71E13FA-0A6E-4B90-B509-6B2D690554C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests.csproj", "{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests.csproj", "{5DAAA089-EDCA-448F-835E-1EB1CAEB0226}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example", "examples\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Example\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Example.csproj", "{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests", "test\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests.csproj", "{F1D7E642-0F19-497F-89E6-8D0FD747C595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -281,18 +281,18 @@ Global
 		{CF4DDE0B-F484-49EB-A78B-10772AB458C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF4DDE0B-F484-49EB-A78B-10772AB458C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF4DDE0B-F484-49EB-A78B-10772AB458C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A0E29F3-02D1-4824-A523-AC0EA962CB91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A0E29F3-02D1-4824-A523-AC0EA962CB91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A0E29F3-02D1-4824-A523-AC0EA962CB91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A0E29F3-02D1-4824-A523-AC0EA962CB91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A979FF0A-063D-4D96-A9B2-81E7A483E2AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E70682E0-EE89-4FEE-82F2-01ED0990E2E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71E13FA-0A6E-4B90-B509-6B2D690554C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71E13FA-0A6E-4B90-B509-6B2D690554C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71E13FA-0A6E-4B90-B509-6B2D690554C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71E13FA-0A6E-4B90-B509-6B2D690554C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DAAA089-EDCA-448F-835E-1EB1CAEB0226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DAAA089-EDCA-448F-835E-1EB1CAEB0226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DAAA089-EDCA-448F-835E-1EB1CAEB0226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DAAA089-EDCA-448F-835E-1EB1CAEB0226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D7E642-0F19-497F-89E6-8D0FD747C595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D7E642-0F19-497F-89E6-8D0FD747C595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D7E642-0F19-497F-89E6-8D0FD747C595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D7E642-0F19-497F-89E6-8D0FD747C595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -351,9 +351,9 @@ Global
 		{7E050830-759C-4D12-BB8F-57DA8853616D} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3} = {28E61676-E9FF-4DA9-99CC-5E0D16F02380}
 		{CF4DDE0B-F484-49EB-A78B-10772AB458C2} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
-		{0A0E29F3-02D1-4824-A523-AC0EA962CB91} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
-		{A979FF0A-063D-4D96-A9B2-81E7A483E2AC} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
-		{E70682E0-EE89-4FEE-82F2-01ED0990E2E2} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
+		{B71E13FA-0A6E-4B90-B509-6B2D690554C9} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
+		{5DAAA089-EDCA-448F-835E-1EB1CAEB0226} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
+		{F1D7E642-0F19-497F-89E6-8D0FD747C595} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

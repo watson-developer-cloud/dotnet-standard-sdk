@@ -37,11 +37,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("input_terms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> InputTerms { get; set; }
         /// <summary>
-        /// A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also
+        /// A list of terms that this expansion will be expanded to. If specified without **input_terms**, it also
         /// functions as the input term list.
         /// </summary>
         /// <value>
-        /// A list of terms that this expansion will be expanded to. If specified without `input_terms`, it also
+        /// A list of terms that this expansion will be expanded to. If specified without **input_terms**, it also
         /// functions as the input term list.
         /// </value>
         [JsonProperty("expanded_terms", NullValueHandling = NullValueHandling.Ignore)]

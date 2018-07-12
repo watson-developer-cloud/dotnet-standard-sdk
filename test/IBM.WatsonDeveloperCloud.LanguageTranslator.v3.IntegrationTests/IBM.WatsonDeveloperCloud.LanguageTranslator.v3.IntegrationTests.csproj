@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>2.4.2</VersionPrefix>
+    <VersionPrefix>2.5.0</VersionPrefix>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <AssemblyName>IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests</AssemblyName>
-    <PackageId>IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests</PackageId>
+    <AssemblyName>IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests</AssemblyName>
+    <PackageId>IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.4;portable-net451+win8</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>2.4.2</Version>
+    <Version>2.5.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="appsettings.json">
+    <None Update="appsettings.json;.\glossary.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

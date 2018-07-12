@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string _username;
         private static string _password;
         private static string credentials = string.Empty;
-        private static string version = "2017-11-07";
+        private static string version = "2018-03-05";
 
         private static string _environmentId;
         private static string _createdConfigurationId;
@@ -98,7 +98,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             _service = new DiscoveryService(_username, _password, version);
             _service.SetEndpoint(_endpoint);
-
 
             var environments = ListEnvironments();
             _environmentId = environments.Environments[1].EnvironmentId;
@@ -507,6 +506,73 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             _createdConfigurationId = null;
             _environmentId = null;
             _createdDocumentId = null;
+        }
+        #endregion
+
+        #region Credentials
+        [TestMethod]
+        public void TestCredentials_Success()
+        {
+            var listCredentialsResult = ListCredentials(_environmentId);
+
+            Model.Credentials credentials = new Model.Credentials()
+            {
+                SourceType = Model.Credentials.SourceTypeEnum.BOX,
+                CredentialDetails = new CredentialDetails()
+                {
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "myEnterpriseId",
+                    ClientId = "myClientId",
+                    ClientSecret = "myClientSecret",
+                    PublicKeyId = "myPublicIdKey",
+                    Passphrase = "myPassphrase",
+                    PrivateKey = "myPrivateKey"
+                }
+            };
+
+            var createCredentialsResult = CreateCredentials(_environmentId, credentials);
+            string credentialId = createCredentialsResult.CredentialId;
+
+            var getCredentialResult = GetCredentials(_environmentId, credentialId);
+            string privateKey = "privatekey";
+            var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
+            var base64PrivateKey = System.Convert.ToBase64String(privateKeyBytes);
+
+            Model.Credentials updatedCredentials = new Model.Credentials()
+            {
+                SourceType = Model.Credentials.SourceTypeEnum.BOX,
+                CredentialDetails = new CredentialDetails()
+                {
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "myEnterpriseIdUpdated",
+                    ClientId = "myClientIdUpdated",
+                    ClientSecret = "myClientSecretUpdated",
+                    PublicKeyId = "myPublicIdKeyUpdated",
+                    Passphrase = "myPassphraseUpdated",
+                    PrivateKey = base64PrivateKey
+                }
+            };
+
+            var updateCredentialResult = UpdateCredentials(_environmentId, credentialId, updatedCredentials);
+
+            var deleteCredentialsResult = DeleteCredentials(_environmentId, credentialId);
+
+            Assert.IsNotNull(listCredentialsResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(listCredentialsResult.ResponseJson));
+            Assert.IsNotNull(createCredentialsResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(createCredentialsResult.CredentialId));
+            Assert.IsTrue(createCredentialsResult.SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsTrue(createCredentialsResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(createCredentialsResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
+            Assert.IsNotNull(getCredentialResult);
+            Assert.IsTrue(getCredentialResult.SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsTrue(getCredentialResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(getCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
+            Assert.IsNotNull(updateCredentialResult);
+            Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
+            Assert.IsNotNull(deleteCredentialsResult);
+            Assert.IsTrue(deleteCredentialsResult.CredentialId == credentialId);
+            Assert.IsTrue(deleteCredentialsResult.Status == Model.DeleteCredentials.StatusEnum.DELETED);
         }
         #endregion
 
@@ -1009,10 +1075,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region FederatedQuery
-        private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
+        private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to FederatedQuery()");
-            var result = _service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
+            var result = _service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, passages: passages, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, customData: customData);
 
             if (result != null)
             {
@@ -1325,6 +1391,101 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateCredentials
+        private Credentials CreateCredentials(string environmentId, Credentials credentialsParameter, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateCredentials()");
+            var result = _service.CreateCredentials(environmentId: environmentId, credentialsParameter: credentialsParameter, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateCredentials() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateCredentials()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteCredentials
+        private DeleteCredentials DeleteCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteCredentials()");
+            var result = _service.DeleteCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteCredentials() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteCredentials()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetCredentials
+        private Credentials GetCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetCredentials()");
+            var result = _service.GetCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetCredentials() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetCredentials()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListCredentials
+        private CredentialsList ListCredentials(string environmentId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListCredentials()");
+            var result = _service.ListCredentials(environmentId: environmentId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListCredentials() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListCredentials()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region UpdateCredentials
+        private Credentials UpdateCredentials(string environmentId, string credentialId, Credentials credentialsParameter, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to UpdateCredentials()");
+            var result = _service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, credentialsParameter: credentialsParameter, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("UpdateCredentials() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to UpdateCredentials()");
             }
 
             return result;

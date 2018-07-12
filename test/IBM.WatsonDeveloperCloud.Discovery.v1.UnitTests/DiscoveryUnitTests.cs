@@ -3762,5 +3762,510 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         }
         #endregion
         #endregion
+
+        #region Credentials
+        #region List Credentials
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCredentials_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.ListCredentials(null);
+        }
+
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void ListCredentials_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.ListCredentials("environmentId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void ListCredentials_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "2017-11-07";
+            service.ListCredentials("environmentId");
+        }
+
+        [TestMethod]
+        public void ListCredentials_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            var response = new CredentialsList()
+            {
+                Credentials = new List<Credentials>()
+                {
+                    new Credentials()
+                    {
+                        SourceType = Credentials.SourceTypeEnum.BOX,
+                        CredentialDetails = new CredentialDetails()
+                        {
+                            ClientId = "clientId",
+                            ClientSecret = "clientSecret",
+                            CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                            EnterpriseId = "enterpriseId",
+                            OrganizationUrl = "organizationUrl",
+                            Passphrase = "passphrase",
+                            Password = "password",
+                            PrivateKey = "privateKey",
+                            PublicKeyId = "publicKeyId",
+                            SiteCollectionPath = "siteCollectionPath",
+                            Url = "url",
+                            Username = "username"
+                        }
+                    }
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.As<CredentialsList>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.ListCredentials("environmentId");
+
+            Assert.IsNotNull(result);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsNotNull(result.Credentials);
+            Assert.IsNotNull(result.Credentials[0]);
+            Assert.IsTrue(result.Credentials[0].SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsNotNull(result.Credentials[0].CredentialDetails);
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.ClientId == "clientId");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.ClientSecret == "clientSecret");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.EnterpriseId == "enterpriseId");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.OrganizationUrl == "organizationUrl");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.Passphrase == "passphrase");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.Password == "password");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.PrivateKey == "privateKey");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.PublicKeyId == "publicKeyId");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.SiteCollectionPath == "siteCollectionPath");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.Url == "url");
+            Assert.IsTrue(result.Credentials[0].CredentialDetails.Username == "username");
+        }
+        #endregion
+
+        #region Create Credentials
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void CreateCredentials_No_Environment()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.CreateCredentials(null, new Credentials());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void CreateCredentials_No_Credentials()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.CreateCredentials("environmentId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void CreateCredentials_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+
+            service.CreateCredentials("environtmentId", new Credentials());
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void CreateCredentials_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "2017-11-07";
+
+            service.CreateCredentials("environmentId", new Credentials());
+        }
+
+        [TestMethod]
+        public void CreateCredentials_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            Credentials response = new Credentials()
+            {
+                SourceType = Credentials.SourceTypeEnum.BOX,
+                CredentialDetails = new CredentialDetails()
+                {
+                    ClientId = "clientId",
+                    ClientSecret = "clientSecret",
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "enterpriseId",
+                    OrganizationUrl = "organizationUrl",
+                    Passphrase = "passphrase",
+                    Password = "password",
+                    PrivateKey = "privateKey",
+                    PublicKeyId = "publicKeyId",
+                    SiteCollectionPath = "siteCollectionPath",
+                    Url = "url",
+                    Username = "username"
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBody<Credentials>(new Credentials())
+                .Returns(request);
+            request.As<Credentials>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.CreateCredentials("environmentId", new Credentials());
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsTrue(result.SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsNotNull(result.CredentialDetails);
+            Assert.IsTrue(result.CredentialDetails.ClientId == "clientId");
+            Assert.IsTrue(result.CredentialDetails.ClientSecret == "clientSecret");
+            Assert.IsTrue(result.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(result.CredentialDetails.EnterpriseId == "enterpriseId");
+            Assert.IsTrue(result.CredentialDetails.OrganizationUrl == "organizationUrl");
+            Assert.IsTrue(result.CredentialDetails.Passphrase == "passphrase");
+            Assert.IsTrue(result.CredentialDetails.Password == "password");
+            Assert.IsTrue(result.CredentialDetails.PrivateKey == "privateKey");
+            Assert.IsTrue(result.CredentialDetails.PublicKeyId == "publicKeyId");
+            Assert.IsTrue(result.CredentialDetails.SiteCollectionPath == "siteCollectionPath");
+            Assert.IsTrue(result.CredentialDetails.Url == "url");
+            Assert.IsTrue(result.CredentialDetails.Username == "username");
+        }
+        #endregion
+
+        #region Get Credential
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCredentials_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.GetCredentials(null, "credentialId");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCredentials_No_CredentialId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.GetCredentials("environmentId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void GetCredentials_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.GetCredentials("environmentId", "credentialId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void GetCredentials_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "2017-11-07";
+            service.GetCredentials("environmentId", "credentialId");
+        }
+
+        [TestMethod]
+        public void GetCredentials_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            Credentials response = new Credentials()
+            {
+                SourceType = Credentials.SourceTypeEnum.BOX,
+                CredentialDetails = new CredentialDetails()
+                {
+                    ClientId = "clientId",
+                    ClientSecret = "clientSecret",
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "enterpriseId",
+                    OrganizationUrl = "organizationUrl",
+                    Passphrase = "passphrase",
+                    Password = "password",
+                    PrivateKey = "privateKey",
+                    PublicKeyId = "publicKeyId",
+                    SiteCollectionPath = "siteCollectionPath",
+                    Url = "url",
+                    Username = "username"
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.As<Credentials>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.GetCredentials("environmentId", "credentailID");
+
+            Assert.IsNotNull(result);
+            client.Received().GetAsync(Arg.Any<string>());
+            Assert.IsTrue(result.SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsNotNull(result.CredentialDetails);
+            Assert.IsTrue(result.CredentialDetails.ClientId == "clientId");
+            Assert.IsTrue(result.CredentialDetails.ClientSecret == "clientSecret");
+            Assert.IsTrue(result.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(result.CredentialDetails.EnterpriseId == "enterpriseId");
+            Assert.IsTrue(result.CredentialDetails.OrganizationUrl == "organizationUrl");
+            Assert.IsTrue(result.CredentialDetails.Passphrase == "passphrase");
+            Assert.IsTrue(result.CredentialDetails.Password == "password");
+            Assert.IsTrue(result.CredentialDetails.PrivateKey == "privateKey");
+            Assert.IsTrue(result.CredentialDetails.PublicKeyId == "publicKeyId");
+            Assert.IsTrue(result.CredentialDetails.SiteCollectionPath == "siteCollectionPath");
+            Assert.IsTrue(result.CredentialDetails.Url == "url");
+            Assert.IsTrue(result.CredentialDetails.Username == "username");
+        }
+        #endregion
+
+        #region Delete Credential
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCredentials_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.DeleteCredentials(null, "credentialId");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCredentials_No_CredentialId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.DeleteCredentials("environmentId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteCredentials_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.DeleteCredentials("environmentId", "credentialId");
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void DeleteCredentials_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "2017-11-07";
+
+            service.DeleteCredentials("environmentId", "credentialId");
+        }
+
+        [TestMethod]
+        public void DeleteCredentials_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            DeleteCredentials response = new DeleteCredentials()
+            {
+                CredentialId = "credentialId",
+                Status = DeleteCredentials.StatusEnum.DELETED
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.As<DeleteCredentials>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.DeleteCredentials("environmentId", "credentialId");
+
+            Assert.IsNotNull(result);
+            client.Received().DeleteAsync(Arg.Any<string>());
+            Assert.IsTrue(result.CredentialId == "credentialId");
+            Assert.IsTrue(result.Status == DeleteCredentials.StatusEnum.DELETED);
+        }
+        #endregion
+
+        #region Update Credentials
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateCredentials_No_EnvironmentId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.UpdateCredentials(null, "credentialId", new Credentials());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateCredentials_No_CredentialId()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.UpdateCredentials("environmentId", null, new Credentials());
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateCredentials_No_Body()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.UpdateCredentials("environmentId", "credentialId", null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateCredentials_No_VersionDate()
+        {
+            DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
+            service.VersionDate = null;
+            service.UpdateCredentials("environmentId", "credentialId", new Credentials());
+        }
+
+        [TestMethod, ExpectedException(typeof(AggregateException))]
+        public void UpdateCredentials_Catch_Exception()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                 .Returns(x =>
+                 {
+                     throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+                                                                               string.Empty));
+                 });
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "2017-11-07";
+
+            service.UpdateCredentials("environmentId", "credentialId", new Credentials());
+        }
+
+        [TestMethod]
+        public void UpdateCredentials_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PutAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            Credentials response = new Credentials()
+            {
+                SourceType = Credentials.SourceTypeEnum.BOX,
+                CredentialDetails = new CredentialDetails()
+                {
+                    ClientId = "clientId",
+                    ClientSecret = "clientSecret",
+                    CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
+                    EnterpriseId = "enterpriseId",
+                    OrganizationUrl = "organizationUrl",
+                    Passphrase = "passphrase",
+                    Password = "password",
+                    PrivateKey = "privateKey",
+                    PublicKeyId = "publicKeyId",
+                    SiteCollectionPath = "siteCollectionPath",
+                    Url = "url",
+                    Username = "username"
+                }
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBody<Credentials>(new Credentials())
+                .Returns(request);
+            request.As<Credentials>()
+                .Returns(Task.FromResult(response));
+
+            DiscoveryService service = new DiscoveryService(client);
+            service.VersionDate = "versionDate";
+
+            var result = service.UpdateCredentials("environmentId", "credentialId", new Credentials());
+
+            Assert.IsNotNull(result);
+            client.Received().PutAsync(Arg.Any<string>());
+            Assert.IsTrue(result.SourceType == Credentials.SourceTypeEnum.BOX);
+            Assert.IsNotNull(result.CredentialDetails);
+            Assert.IsTrue(result.CredentialDetails.ClientId == "clientId");
+            Assert.IsTrue(result.CredentialDetails.ClientSecret == "clientSecret");
+            Assert.IsTrue(result.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
+            Assert.IsTrue(result.CredentialDetails.EnterpriseId == "enterpriseId");
+            Assert.IsTrue(result.CredentialDetails.OrganizationUrl == "organizationUrl");
+            Assert.IsTrue(result.CredentialDetails.Passphrase == "passphrase");
+            Assert.IsTrue(result.CredentialDetails.Password == "password");
+            Assert.IsTrue(result.CredentialDetails.PrivateKey == "privateKey");
+            Assert.IsTrue(result.CredentialDetails.PublicKeyId == "publicKeyId");
+            Assert.IsTrue(result.CredentialDetails.SiteCollectionPath == "siteCollectionPath");
+            Assert.IsTrue(result.CredentialDetails.Url == "url");
+            Assert.IsTrue(result.CredentialDetails.Username == "username");
+        }
+        #endregion
+        #endregion
     }
 }

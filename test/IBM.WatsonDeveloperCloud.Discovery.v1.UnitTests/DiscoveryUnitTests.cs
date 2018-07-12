@@ -3060,18 +3060,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
-            Assert.IsTrue(response.EnvironmentId == "environmentId");
-            Assert.IsTrue(response.CollectionId == "collectionId");
-            Assert.IsNotNull(response.Queries);
-            Assert.IsTrue(response.Queries.Count > 0);
-            Assert.IsTrue(response.Queries[0].QueryId == "queryId");
-            Assert.IsTrue(response.Queries[0].NaturalLanguageQuery == "naturalLanguageQuery");
-            Assert.IsTrue(response.Queries[0].Filter == "filter");
-            Assert.IsNotNull(response.Queries[0].Examples);
-            Assert.IsTrue(response.Queries[0].Examples.Count > 0);
-            Assert.IsTrue(response.Queries[0].Examples[0].DocumentId == "documentId");
-            Assert.IsTrue(response.Queries[0].Examples[0].CrossReference == "crossReference");
-            Assert.IsTrue(response.Queries[0].Examples[0].Relevance == 1.0f);
+            Assert.IsTrue(result.EnvironmentId == "environmentId");
+            Assert.IsTrue(result.CollectionId == "collectionId");
+            Assert.IsNotNull(result.Queries);
+            Assert.IsTrue(result.Queries.Count > 0);
+            Assert.IsTrue(result.Queries[0].QueryId == "queryId");
+            Assert.IsTrue(result.Queries[0].NaturalLanguageQuery == "naturalLanguageQuery");
+            Assert.IsTrue(result.Queries[0].Filter == "filter");
+            Assert.IsNotNull(result.Queries[0].Examples);
+            Assert.IsTrue(result.Queries[0].Examples.Count > 0);
+            Assert.IsTrue(result.Queries[0].Examples[0].DocumentId == "documentId");
+            Assert.IsTrue(result.Queries[0].Examples[0].CrossReference == "crossReference");
+            Assert.IsTrue(result.Queries[0].Examples[0].Relevance == 1.0f);
         }
         #endregion
 
@@ -3359,14 +3359,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
-            Assert.IsTrue(response.QueryId == "queryId");
-            Assert.IsTrue(response.NaturalLanguageQuery == "naturalLanguageQuery");
-            Assert.IsTrue(response.Filter == "filter");
-            Assert.IsNotNull(response.Examples);
-            Assert.IsTrue(response.Examples.Count > 0);
-            Assert.IsTrue(response.Examples[0].DocumentId == "documentId");
-            Assert.IsTrue(response.Examples[0].CrossReference == "crossReference");
-            Assert.IsTrue(response.Examples[0].Relevance == 1.0f);
+            Assert.IsTrue(result.QueryId == "queryId");
+            Assert.IsTrue(result.NaturalLanguageQuery == "naturalLanguageQuery");
+            Assert.IsTrue(result.Filter == "filter");
+            Assert.IsNotNull(result.Examples);
+            Assert.IsTrue(result.Examples.Count > 0);
+            Assert.IsTrue(result.Examples[0].DocumentId == "documentId");
+            Assert.IsTrue(result.Examples[0].CrossReference == "crossReference");
+            Assert.IsTrue(result.Examples[0].Relevance == 1.0f);
         }
         #endregion
 
@@ -3400,7 +3400,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void CreateTrainingExample_No_Body()
         {
             DiscoveryService service = new DiscoveryService("username", "password", "versionDate");
-            service.CreateTrainingExample("environmentId", "collectionId", "queryId",null);
+            service.CreateTrainingExample("environmentId", "collectionId", "queryId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -3648,9 +3648,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().GetAsync(Arg.Any<string>());
-            Assert.IsTrue(response.DocumentId == "documentId");
-            Assert.IsTrue(response.CrossReference == "crossReference");
-            Assert.IsTrue(response.Relevance == 1.0f);
+            Assert.IsTrue(result.DocumentId == "documentId");
+            Assert.IsTrue(result.CrossReference == "crossReference");
+            Assert.IsTrue(result.Relevance == 1.0f);
         }
         #endregion
 

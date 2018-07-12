@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
@@ -72,8 +73,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <summary>
         /// Update an environment.
         ///
-        /// Updates an environment. The environment's `name` and  `description` parameters can be changed. You must
-        /// specify a `name` for the environment.
+        /// Updates an environment. The environment's **name** and  **description** parameters can be changed. You must
+        /// specify a **name** for the environment.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="body">An object that defines the environment's name and, optionally, description.</param>
@@ -85,9 +86,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// Creates a new configuration.
         ///
-        /// If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they
-        /// are ignored and overridden by the system, and an error is not returned so that the overridden fields do not
-        /// need to be removed when copying a configuration.
+        /// If the input configuration contains the **configuration_id**, **created**, or **updated** properties, then
+        /// they are ignored and overridden by the system, and an error is not returned so that the overridden fields do
+        /// not need to be removed when copying a configuration.
         ///
         /// The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an
         /// error. This makes it easier to use newer configuration files with older versions of the API and the service.
@@ -97,11 +98,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="configuration">Input an object that enables you to customize how your content is ingested and
         /// what enrichments are added to your data.
         ///
-        /// `name` is required and must be unique within the current `environment`. All other properties are optional.
+        /// **name** is required and must be unique within the current **environment**. All other properties are
+        /// optional.
         ///
-        /// If the input configuration contains the `configuration_id`, `created`, or `updated` properties, then they
-        /// will be ignored and overridden by the system (an error is not returned so that the overridden fields do not
-        /// need to be removed when copying a configuration).
+        /// If the input configuration contains the **configuration_id**, **created**, or **updated** properties, then
+        /// they will be ignored and overridden by the system (an error is not returned so that the overridden fields do
+        /// not need to be removed when copying a configuration).
         ///
         /// The configuration can contain unrecognized JSON fields. Any such fields will be ignored and will not
         /// generate an error. This makes it easier to use newer configuration files with older versions of the API and
@@ -146,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// Replaces an existing configuration.
         ///   * Completely replaces the original configuration.
-        ///   * The `configuration_id`, `updated`, and `created` fields are accepted in the request, but they are
+        ///   * The **configuration_id**, **updated**, and **created** fields are accepted in the request, but they are
         /// ignored, and an error is not generated. It is also acceptable for users to submit an updated configuration
         /// with none of the three properties.
         ///   * Documents are processed with a snapshot of the configuration as it was at the time the document was
@@ -157,13 +159,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="configurationId">The ID of the configuration.</param>
         /// <param name="configuration">Input an object that enables you to update and customize how your data is
         /// ingested and what enrichments are added to your data.
-        /// The `name` parameter is required and must be unique within the current `environment`. All other properties
-        /// are optional, but if they are omitted  the default values replace the current value of each omitted
-        /// property.
+        /// The **name** parameter is required and must be unique within the current **environment**. All other
+        /// properties are optional, but if they are omitted  the default values replace the current value of each
+        /// omitted property.
         ///
-        /// If the input configuration contains the `configuration_id`, `created`, or `updated` properties, they are
-        /// ignored and overridden by the system, and an error is not returned so that the overridden fields do not need
-        /// to be removed when updating a configuration.
+        /// If the input configuration contains the **configuration_id**, **created**, or **updated** properties, they
+        /// are ignored and overridden by the system, and an error is not returned so that the overridden fields do not
+        /// need to be removed when updating a configuration.
         ///
         /// The configuration can contain unrecognized JSON fields. Any such fields are ignored and do not generate an
         /// error. This makes it easier to use newer configuration files with older versions of the API and the service.
@@ -180,15 +182,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configuration">The configuration to use to process the document. If this part is provided, then
-        /// the provided configuration is used to process the document. If the `configuration_id` is also provided (both
-        /// are present at the same time), then request is rejected. The maximum supported configuration size is 1 MB.
-        /// Configuration parts larger than 1 MB are rejected.
+        /// the provided configuration is used to process the document. If the **configuration_id** is also provided
+        /// (both are present at the same time), then request is rejected. The maximum supported configuration size is 1
+        /// MB. Configuration parts larger than 1 MB are rejected.
         /// See the `GET /configurations/{configuration_id}` operation for an example configuration. (optional)</param>
         /// <param name="step">Specify to only run the input document through the given step instead of running the
         /// input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
         /// (optional)</param>
         /// <param name="configurationId">The ID of the configuration to use to process the document. If the
-        /// `configuration` form part is also provided (both are present at the same time), then request will be
+        /// **configuration** form part is also provided (both are present at the same time), then the request will be
         /// rejected. (optional)</param>
         /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes.
         /// Files larger than 50 megabytes is rejected. (optional)</param>
@@ -296,15 +298,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ///
         /// Add a document to a collection with optional metadata.
         ///
-        ///   * The `version` query parameter is still required.
+        ///   * The **version** query parameter is still required.
         ///
         ///   * Returns immediately after the system has accepted the document for processing.
         ///
         ///   * The user must provide document content, metadata, or both. If the request is missing both document
         /// content and metadata, it is rejected.
         ///
-        ///   * The user can set the `Content-Type` parameter on the `file` part to indicate the media type of the
-        /// document. If the `Content-Type` parameter is missing or is one of the generic media types (for example,
+        ///   * The user can set the **Content-Type** parameter on the **file** part to indicate the media type of the
+        /// document. If the **Content-Type** parameter is missing or is one of the generic media types (for example,
         /// `application/octet-stream`), then the service attempts to automatically detect the document's media type.
         ///
         ///   * The following field names are reserved and will be filtered out if present after normalization: `id`,
@@ -389,11 +391,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full
         /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use `natural_language_query` and `query` at the same time.
+        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
         /// (optional)</param>
         /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use `natural_language_query` and `query` at the
-        /// same time. (optional)</param>
+        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
+        /// the same time. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
@@ -410,26 +412,34 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
         /// (optional)</param>
         /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the `title` field) are removed. Duplicate comparison is limited to the current
-        /// query only, `offset` is not considered. Defaults to `false`. This parameter is currently Beta functionality.
-        /// (optional)</param>
+        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
+        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
+        /// to false)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, `offset` is not
+        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
         /// considered. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
         /// documents.
         ///
-        /// **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope
+        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
         /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
         /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
         /// (optional)</param>
+        /// <param name="passages">A passages query that returns the most relevant passages from the results.
+        /// (optional)</param>
+        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
+        /// parameter not specified, then all top-level fields are included. (optional)</param>
+        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
+        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
+        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
+        /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
+        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Query multiple collection system notices.
         ///
@@ -445,11 +455,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full
         /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use `natural_language_query` and `query` at the same time.
+        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
         /// (optional)</param>
         /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use `natural_language_query` and `query` at the
-        /// same time. (optional)</param>
+        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
+        /// the same time. (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
@@ -466,16 +476,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
         /// (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, `offset` is not
+        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
         /// considered. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
         /// documents.
         ///
-        /// **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope
+        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
         /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
         /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
         /// (optional)</param>
@@ -496,11 +506,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full
         /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use `natural_language_query` and `query` at the same time.
+        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
         /// (optional)</param>
         /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use `natural_language_query` and `query` at the
-        /// same time. (optional)</param>
+        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
+        /// the same time. (optional)</param>
         /// <param name="passages">A passages query that returns the most relevant passages from the results.
         /// (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
@@ -525,20 +535,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
         /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
         /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the `title` field) are removed. Duplicate comparison is limited to the current
-        /// query only, `offset` is not considered. Defaults to `false`. This parameter is currently Beta functionality.
-        /// (optional)</param>
+        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
+        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
+        /// to false)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, `offset` is not
+        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
         /// considered. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
         /// documents.
         ///
-        /// **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope
+        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
         /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
         /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
         /// (optional)</param>
@@ -573,11 +583,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// trying to get a sense of concepts in the data set. (optional)</param>
         /// <param name="query">A query search returns all documents in your data set with full enrichments and full
         /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use `natural_language_query` and `query` at the same time.
+        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
         /// (optional)</param>
         /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use `natural_language_query` and `query` at the
-        /// same time. (optional)</param>
+        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
+        /// the same time. (optional)</param>
         /// <param name="passages">A passages query that returns the most relevant passages from the results.
         /// (optional)</param>
         /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
@@ -602,16 +612,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
         /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, `offset` is not
+        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
         /// considered. This parameter is currently Beta functionality. (optional)</param>
         /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the `similar.document_ids` parameter. The default is `false`. (optional)</param>
+        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
         /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
         /// documents.
         ///
-        /// **Note:** If the `natural_language_query` parameter is also specified, it will be used to expand the scope
+        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
         /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// `filter` and `query` are subsequently applied and reduce the query scope. (optional)</param>
+        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
         /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
         /// (optional)</param>
@@ -760,5 +770,65 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Create credentials.
+        ///
+        /// Creates a set of credentials to connect to a remote source. Created credentials are used in a configuration
+        /// to associate a collection with the remote source.
+        ///
+        /// **Note:** All credentials are sent over an encrypted connection and encrypted at rest.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="credentialsParameter">An object that defines an individual set of source credentials.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Credentials" />Credentials</returns>
+        Credentials CreateCredentials(string environmentId, Credentials credentialsParameter, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Delete credentials.
+        ///
+        /// Deletes a set of stored credentials from your Discovery instance.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="credentialId">The unique identifier for a set of source credentials.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="DeleteCredentials" />DeleteCredentials</returns>
+        DeleteCredentials DeleteCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// View Credentials.
+        ///
+        /// Returns details about the specified credentials.
+        ///
+        ///  **Note:** Secure credential information such as a password or SSH key is never returned and must be
+        /// obtained from the source system.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="credentialId">The unique identifier for a set of source credentials.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Credentials" />Credentials</returns>
+        Credentials GetCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// List credentials.
+        ///
+        /// List all the source credentials that have been created for this service instance.
+        ///
+        ///  **Note:**  All credentials are sent over an encrypted connection and encrypted at rest.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="CredentialsList" />CredentialsList</returns>
+        CredentialsList ListCredentials(string environmentId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// Update credentials.
+        ///
+        /// Updates an existing set of source credentials.
+        ///
+        /// **Note:** All credentials are sent over an encrypted connection and encrypted at rest.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="credentialId">The unique identifier for a set of source credentials.</param>
+        /// <param name="credentialsParameter">An object that defines an individual set of source credentials.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Credentials" />Credentials</returns>
+        Credentials UpdateCredentials(string environmentId, string credentialId, Credentials credentialsParameter, Dictionary<string, object> customData = null);
     }
 }

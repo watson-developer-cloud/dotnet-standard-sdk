@@ -150,6 +150,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </value>
         [JsonProperty("training_status", NullValueHandling = NullValueHandling.Ignore)]
         public TrainingStatus TrainingStatus { get; set; }
+        /// <summary>
+        /// Object containing source crawl status information.
+        /// </summary>
+        /// <value>
+        /// Object containing source crawl status information.
+        /// </value>
+        [JsonProperty("source_crawl", NullValueHandling = NullValueHandling.Ignore)]
+        public SourceStatus SourceCrawl { get; set; }
     }
 
 }

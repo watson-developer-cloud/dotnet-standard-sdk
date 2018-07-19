@@ -2099,7 +2099,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                restRequest.WithArgument("force", true);
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();

@@ -39,7 +39,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Example
         //private string _corpusPath = @"SpeechToTextTestData/theJabberwocky-utf8.txt";
         private string _acousticModelName = "dotnet-integration-test-custom-acoustic-model";
         private string _acousticModelDescription = "A custom model to teset .NET SDK Speech to Text acoustic customization.";
-        private string _acousticResourceUrl = "https://ia802302.us.archive.org/10/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit.mp3";
+        private string _acousticResourceUrl = "https://archive.org/download/Greatest_Speeches_of_the_20th_Century/KeynoteAddressforDemocraticConvention_64kb.mp3";
         //private string _acousticResourcePath = @"SpeechToTextTestData/TheFirstAmericaninEarthOrbit.mp3";
         private string _acousticResourceName = "firstOrbit";
         private string _acousticResourceMimeType = "audio/mpeg";

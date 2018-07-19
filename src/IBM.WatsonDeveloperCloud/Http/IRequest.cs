@@ -38,6 +38,8 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         IRequest WithHeader(string key, string value);
 
+        IRequest WithContentType(string contentType);
+
         IRequest WithArgument(string key, object value);
 
         IRequest WithArguments(object arguments);

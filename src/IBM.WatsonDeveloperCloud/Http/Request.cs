@@ -85,6 +85,12 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
+        public IRequest WithContentType(string contentType)
+        {
+            this.Message.Content.Headers.ContentType = new MediaTypeWithQualityHeaderValue(contentType);
+            return this;
+        }
+
         public IRequest WithArgument(string key, object value)
         {
             this.Message.RequestUri = this.Message.RequestUri.WithArguments(new KeyValuePair<string, object>(key, value));

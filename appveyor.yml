@@ -70,7 +70,7 @@ after_build:
 
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
     {
-      .\packages\Doxygen.1.8.13\tools\doxygen.exe Doxyfile
+      .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
 
 
       If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "master")

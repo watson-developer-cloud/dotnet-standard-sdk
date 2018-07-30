@@ -16,6 +16,12 @@ environment:
   GITHUB_TOKEN:
     secure: 8sr9qy9Ghr7IaCVsf0mvKITy6nb5RZaEScQ3VIPNMJxPzFCkZ688RHIOmW5qWWy5
 install:
+# Get the latest stable version of Node.js or io.js
+- ps: Install-Product node $env:nodejs_version
+# install modules
+- npm install
+- pip install --user bumpversion
+- npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages
 

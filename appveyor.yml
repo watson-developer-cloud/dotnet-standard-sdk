@@ -70,12 +70,12 @@ after_build:
 
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
     {
-      .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
-
-
+      
       If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "master")
 
       {
+          .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
+          
           git config --global user.email "wps@us.ibm.com"
           git config --global user.name "Watson Github Bot"
           git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages

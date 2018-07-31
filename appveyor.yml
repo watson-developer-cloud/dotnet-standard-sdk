@@ -138,7 +138,8 @@ test_script:
           else
           {
               Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
-              if(EndsWith($folder.FullName, "UnitTests"))
+
+              if($folder.FullName.EndsWith("UnitTests"))
               {
                   dotnet test $folder.FullName
                   if($LastExitCode -ne 0) 

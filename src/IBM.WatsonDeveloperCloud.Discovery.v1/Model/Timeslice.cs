@@ -44,11 +44,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
         public string Interval { get; set; }
         /// <summary>
-        /// Used to inducate that anomaly detection should be performed. Anomaly detection is used to locate unusual
+        /// Used to indicate that anomaly detection should be performed. Anomaly detection is used to locate unusual
         /// datapoints within a time series.
         /// </summary>
         /// <value>
-        /// Used to inducate that anomaly detection should be performed. Anomaly detection is used to locate unusual
+        /// Used to indicate that anomaly detection should be performed. Anomaly detection is used to locate unusual
         /// datapoints within a time series.
         /// </value>
         [JsonProperty("anomaly", NullValueHandling = NullValueHandling.Ignore)]

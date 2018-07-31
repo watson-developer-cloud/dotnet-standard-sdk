@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
 
@@ -49,6 +50,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
+        /// <summary>
+        /// An array of contextual entity mentions.
+        /// </summary>
+        /// <value>
+        /// An array of contextual entity mentions.
+        /// </value>
+        [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Mentions> Mentions { get; set; }
     }
 
 }

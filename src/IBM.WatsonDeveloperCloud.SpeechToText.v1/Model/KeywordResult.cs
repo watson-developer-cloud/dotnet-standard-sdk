@@ -49,10 +49,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("end_time", NullValueHandling = NullValueHandling.Ignore)]
         public double? EndTime { get; set; }
         /// <summary>
-        /// A confidence score for the keyword match in the range of 0 to 1.
+        /// A confidence score for the keyword match in the range of 0.0 to 1.0.
         /// </summary>
         /// <value>
-        /// A confidence score for the keyword match in the range of 0 to 1.
+        /// A confidence score for the keyword match in the range of 0.0 to 1.0.
         /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }

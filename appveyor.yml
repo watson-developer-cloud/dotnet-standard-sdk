@@ -53,6 +53,9 @@ build:
   verbosity: minimal
 after_build:
 - ps: >-
+    git config --global user.email "wps@us.ibm.com"
+    git config --global user.name "Watson Github Bot"
+
     if(!$env:APPVEYOR_REPO_TAG_NAME)
 
     {
@@ -70,7 +73,15 @@ after_build:
     {
       Write-Output "branchName starts with rc- running bumpversion"
 
+      git clone --quiet --branch=$branchName https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git $branchName
+
       C:\Python\Python37\Scripts\bumpversion.exe --current-version 2.5.0 --new-version 2.6.0 --verbose patch
+
+      cd $branchName
+      git add -A
+      git commit -m "Versioned up"
+      git push -f origin $branchName
+      cd ../
     }
 
     else
@@ -89,8 +100,6 @@ after_build:
       {
           .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
 
-          git config --global user.email "wps@us.ibm.com"
-          git config --global user.name "Watson Github Bot"
           git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
 
           If(Test-Path -Path gh-pages\docs\$branchName)

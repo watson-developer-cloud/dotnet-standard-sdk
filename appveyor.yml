@@ -1,4 +1,4 @@
-version: 2.3.{build}
+version: 2.6.{build}
 branches:
   except:
   - gh-pages
@@ -111,57 +111,54 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\glossary.tmx C:\projects\dotnet-standard-sdk\glossary.tmx
 test_script:
 - ps: >-
-    if($env:GITHUB_TOKEN)
-    {
-        if((Test-Path -Path coverage))
-        {
-            rm coverage -r -force
-        }
-        New-Item -path . -name coverage -itemtype directory
-        ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
-        { 
-            if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
-            {
-                Write-Output \"No pull request number. Executing tests\"
-                dotnet test $folder.FullName
-                if($LastExitCode -ne 0) 
-                {
-                    $host.SetShouldExit($LastExitCode )
-                }
-                echo \"Test passed: $?\"
-                echo \"LastExitCode: $LastExitCode\"
-                $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
-                $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
-                $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
-                & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
-            }
-            else
-            {
-                Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
-                if(EndsWith($folder.FullName, "UnitTests"))
-                {
-                    dotnet test $folder.FullName
-                    if($LastExitCode -ne 0) 
-                    {
-                        $host.SetShouldExit($LastExitCode )
-                    }
-                    echo \"Test passed: $?\"
-                    echo \"LastExitCode: $LastExitCode\"
-                }
-            }
-        }
-                                                                                                      
-        C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
-                                                                                                      
-        if($env:COVERALLS_REPO_TOKEN)
-        {
-            C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
-        }
-        else
-        {
-            Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
-        }
-    }
+      if((Test-Path -Path coverage))
+      {
+          rm coverage -r -force
+      }
+      New-Item -path . -name coverage -itemtype directory
+      ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
+      { 
+          if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+          {
+              Write-Output \"No pull request number. Executing tests\"
+              dotnet test $folder.FullName
+              if($LastExitCode -ne 0) 
+              {
+                  $host.SetShouldExit($LastExitCode )
+              }
+              echo \"Test passed: $?\"
+              echo \"LastExitCode: $LastExitCode\"
+              $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
+              $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
+              $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
+              & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
+          }
+          else
+          {
+              Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
+              if(EndsWith($folder.FullName, "UnitTests"))
+              {
+                  dotnet test $folder.FullName
+                  if($LastExitCode -ne 0) 
+                  {
+                      $host.SetShouldExit($LastExitCode )
+                  }
+                  echo \"Test passed: $?\"
+                  echo \"LastExitCode: $LastExitCode\"
+              }
+          }
+      }
+                                                                                                    
+      C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
+                                                                                                    
+      if($env:COVERALLS_REPO_TOKEN)
+      {
+          C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
+      }
+      else
+      {
+          Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
+      }
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud

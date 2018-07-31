@@ -93,6 +93,32 @@ after_build:
           git commit -m "Updated documentation for $branchName"
           git push -f origin gh-pages
           cd ../
+
+          If($branchName -eq "master")
+
+          {
+            Write-Output "branchName  is master - building nuget packages"
+            dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3 --configuration Release
+          }
+          
+          else
+
+          {
+            Write-Output "branchName is not master - do not pack."
+          }
+
       }
 
       else
@@ -134,6 +160,17 @@ test_script:
               $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
               $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
               & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
+
+              C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
+
+              if($env:COVERALLS_REPO_TOKEN)
+              {
+                  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
+              }
+              else
+              {
+                  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
+              }
           }
           else
           {
@@ -150,18 +187,7 @@ test_script:
                   echo \"LastExitCode: $LastExitCode\"
               }
           }
-      }
-                                                                                                    
-      C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
-                                                                                                    
-      if($env:COVERALLS_REPO_TOKEN)
-      {
-          C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
-      }
-      else
-      {
-          Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
-      }
+      }                                                                 
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud
@@ -171,6 +197,8 @@ artifacts:
   name: IBM.WatsonDeveloperCloud.Conversation.v1
 - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
+- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 - path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 - path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'

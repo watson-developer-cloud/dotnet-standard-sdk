@@ -137,7 +137,17 @@ test_script:
             }
             else
             {
-                Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping tests.\"
+                Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
+                if(EndsWith($folder.FullName, "UnitTests"))
+                {
+                    dotnet test $folder.FullName
+                    if($LastExitCode -ne 0) 
+                    {
+                        $host.SetShouldExit($LastExitCode )
+                    }
+                    echo \"Test passed: $?\"
+                    echo \"LastExitCode: $LastExitCode\"
+                }
             }
         }
                                                                                                       

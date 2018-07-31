@@ -65,6 +65,19 @@ after_build:
         $branchName = $env:APPVEYOR_REPO_TAG_NAME
     }
 
+    if($branchName.StartsWtih("rc-"))
+    
+    {
+      Write-Output "branchName starts with rc- running bumpversion"
+
+      C:\Python\Python37\Scripts\bumpversion.exe --current-version 2.5.0 --new-version 2.6.0 --verbose patch
+    }
+
+    else
+
+    {
+      Write-Output "branchname does not start with rc-. Not bumping version."
+    }
 
     Write-Output "branchName  is " + $branchName
 
@@ -75,7 +88,7 @@ after_build:
 
       {
           .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
-          
+
           git config --global user.email "wps@us.ibm.com"
           git config --global user.name "Watson Github Bot"
           git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages

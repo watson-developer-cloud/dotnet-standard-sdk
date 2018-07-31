@@ -1,4 +1,4 @@
-﻿if((Test-Path -Path coverage))
+﻿if(Test-Path -Path coverage)
 {
   Remove-Item .\coverage -recurse
 }

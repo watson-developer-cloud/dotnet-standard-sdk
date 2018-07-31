@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// InlineResponse200.
+    /// Delete model results.
     /// </summary>
     public class InlineResponse200 : BaseModel
     {

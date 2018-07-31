@@ -1616,7 +1616,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
                 restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
@@ -1740,7 +1740,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
                 restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
@@ -1827,9 +1827,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
         /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
         /// (optional)</param>
+        /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
+        /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
+        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1855,6 +1857,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(loggingOptOut))
+                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut);
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
@@ -2054,7 +2058,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                restRequest.WithArgument("return_fields", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
                 restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);

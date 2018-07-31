@@ -135,31 +135,31 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default
         /// to 30)</param>
         /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one
-        /// or more tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you specify
-        /// any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the
-        /// parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
+        /// or more string tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you
+        /// specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords.
+        /// Omit the parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
         /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is
         /// considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a
-        /// probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you
-        /// specify a threshold, you must also specify one or more keywords. (optional)</param>
-        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a
-        /// single transcription is returned. (optional, default to 1)</param>
+        /// probability between 0.0 and 1.0. No keyword spotting is performed if you omit the parameter. If you specify
+        /// a threshold, you must also specify one or more keywords. (optional)</param>
+        /// <param name="maxAlternatives">The maximum number of alternative transcripts that the service is to return.
+        /// By default, a single transcription is returned. (optional, default to 1)</param>
         /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a
         /// hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is
-        /// considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and
-        /// 1 inclusive. No alternative words are computed if you omit the parameter. (optional)</param>
-        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each
-        /// word. By default, no word confidence measures are returned. (optional, default to false)</param>
-        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are
-        /// returned. (optional, default to false)</param>
-        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword
+        /// considered if its confidence is greater than or equal to the threshold. Specify a probability between 0.0
+        /// and 1.0. No alternative words are computed if you omit the parameter. (optional)</param>
+        /// <param name="wordConfidence">If `true`, the service returns a confidence measure in the range of 0.0 to 1.0
+        /// for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
+        /// <param name="timestamps">If `true`, the service returns time alignment for each word. By default, no
+        /// timestamps are returned. (optional, default to false)</param>
+        /// <param name="profanityFilter">If `true`, the service filters profanity from all output except for keyword
         /// results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return
         /// results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers,
-        /// currency values, and internet addresses into more readable, conventional representations in the final
-        /// transcript of a recognition request. For US English, also converts certain keyword strings to punctuation
-        /// symbols. By default, no smart formatting is performed. Applies to US English and Spanish transcription only.
-        /// (optional, default to false)</param>
+        /// <param name="smartFormatting">If `true`, the service converts dates, times, series of digits and numbers,
+        /// phone numbers, currency values, and internet addresses into more readable, conventional representations in
+        /// the final transcript of a recognition request. For US English, the service also converts certain keyword
+        /// strings to punctuation symbols. By default, no smart formatting is performed. Applies to US English and
+        /// Spanish transcription only. (optional, default to false)</param>
         /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by
         /// which participants in a multi-person exchange. By default, no speaker labels are returned. Setting
         /// `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify
@@ -171,7 +171,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null);
+        SpeechRecognitionResults Recognize(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Check a job.
         ///
@@ -324,31 +324,31 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// submission from a live microphone when a user simply walks away. Use `-1` for infinity. (optional, default
         /// to 30)</param>
         /// <param name="keywords">An array of keyword strings to spot in the audio. Each keyword string can include one
-        /// or more tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you specify
-        /// any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords. Omit the
-        /// parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
+        /// or more string tokens. Keywords are spotted only in the final results, not in interim hypotheses. If you
+        /// specify any keywords, you must also specify a keywords threshold. You can spot a maximum of 1000 keywords.
+        /// Omit the parameter or specify an empty array if you do not need to spot keywords. (optional)</param>
         /// <param name="keywordsThreshold">A confidence value that is the lower bound for spotting a keyword. A word is
         /// considered to match a keyword if its confidence is greater than or equal to the threshold. Specify a
-        /// probability between 0 and 1 inclusive. No keyword spotting is performed if you omit the parameter. If you
-        /// specify a threshold, you must also specify one or more keywords. (optional)</param>
-        /// <param name="maxAlternatives">The maximum number of alternative transcripts to be returned. By default, a
-        /// single transcription is returned. (optional, default to 1)</param>
+        /// probability between 0.0 and 1.0. No keyword spotting is performed if you omit the parameter. If you specify
+        /// a threshold, you must also specify one or more keywords. (optional)</param>
+        /// <param name="maxAlternatives">The maximum number of alternative transcripts that the service is to return.
+        /// By default, a single transcription is returned. (optional, default to 1)</param>
         /// <param name="wordAlternativesThreshold">A confidence value that is the lower bound for identifying a
         /// hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is
-        /// considered if its confidence is greater than or equal to the threshold. Specify a probability between 0 and
-        /// 1 inclusive. No alternative words are computed if you omit the parameter. (optional)</param>
-        /// <param name="wordConfidence">If `true`, a confidence measure in the range of 0 to 1 is returned for each
-        /// word. By default, no word confidence measures are returned. (optional, default to false)</param>
-        /// <param name="timestamps">If `true`, time alignment is returned for each word. By default, no timestamps are
-        /// returned. (optional, default to false)</param>
-        /// <param name="profanityFilter">If `true` (the default), filters profanity from all output except for keyword
+        /// considered if its confidence is greater than or equal to the threshold. Specify a probability between 0.0
+        /// and 1.0. No alternative words are computed if you omit the parameter. (optional)</param>
+        /// <param name="wordConfidence">If `true`, the service returns a confidence measure in the range of 0.0 to 1.0
+        /// for each word. By default, no word confidence measures are returned. (optional, default to false)</param>
+        /// <param name="timestamps">If `true`, the service returns time alignment for each word. By default, no
+        /// timestamps are returned. (optional, default to false)</param>
+        /// <param name="profanityFilter">If `true`, the service filters profanity from all output except for keyword
         /// results by replacing inappropriate words with a series of asterisks. Set the parameter to `false` to return
         /// results with no censoring. Applies to US English transcription only. (optional, default to true)</param>
-        /// <param name="smartFormatting">If `true`, converts dates, times, series of digits and numbers, phone numbers,
-        /// currency values, and internet addresses into more readable, conventional representations in the final
-        /// transcript of a recognition request. For US English, also converts certain keyword strings to punctuation
-        /// symbols. By default, no smart formatting is performed. Applies to US English and Spanish transcription only.
-        /// (optional, default to false)</param>
+        /// <param name="smartFormatting">If `true`, the service converts dates, times, series of digits and numbers,
+        /// phone numbers, currency values, and internet addresses into more readable, conventional representations in
+        /// the final transcript of a recognition request. For US English, the service also converts certain keyword
+        /// strings to punctuation symbols. By default, no smart formatting is performed. Applies to US English and
+        /// Spanish transcription only. (optional, default to false)</param>
         /// <param name="speakerLabels">If `true`, the response includes labels that identify which words were spoken by
         /// which participants in a multi-person exchange. By default, no speaker labels are returned. Setting
         /// `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify
@@ -608,9 +608,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII
         /// characters. With cURL, use the `--data-binary` option to upload the file for the request.</param>
         /// <param name="allowOverwrite">If `true`, the specified corpus or audio resource overwrites an existing corpus
-        /// or audio resource with the same name. If `false` (the default), the request fails if a corpus or audio
-        /// resource with the same name already exists. The parameter has no effect if a corpus or audio resource with
-        /// the same name does not already exist. (optional, default to false)</param>
+        /// or audio resource with the same name. If `false`, the request fails if a corpus or audio resource with the
+        /// same name already exists. The parameter has no effect if a corpus or audio resource with the same name does
+        /// not already exist. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, Dictionary<string, object> customData = null);
@@ -1043,9 +1043,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// For a complete list of supported audio formats, see [Audio
         /// formats](/docs/services/speech-to-text/input.html#formats). (optional, default to audio/wav)</param>
         /// <param name="allowOverwrite">If `true`, the specified corpus or audio resource overwrites an existing corpus
-        /// or audio resource with the same name. If `false` (the default), the request fails if a corpus or audio
-        /// resource with the same name already exists. The parameter has no effect if a corpus or audio resource with
-        /// the same name does not already exist. (optional, default to false)</param>
+        /// or audio resource with the same name. If `false`, the request fails if a corpus or audio resource with the
+        /// same name already exists. The parameter has no effect if a corpus or audio resource with the same name does
+        /// not already exist. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         BaseModel AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType, string containedContentType = null, bool? allowOverwrite = null, Dictionary<string, object> customData = null);

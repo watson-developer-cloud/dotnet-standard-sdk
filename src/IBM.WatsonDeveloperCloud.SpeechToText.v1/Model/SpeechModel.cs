@@ -74,16 +74,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
-        /// <summary>
-        /// The URI for the model for use with the **Create a session** method. This field is returned only by the **Get
-        /// a model** method.
-        /// </summary>
-        /// <value>
-        /// The URI for the model for use with the **Create a session** method. This field is returned only by the **Get
-        /// a model** method.
-        /// </value>
-        [JsonProperty("sessions", NullValueHandling = NullValueHandling.Ignore)]
-        public string Sessions { get; set; }
     }
 
 }

@@ -111,11 +111,13 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\glossary.tmx C:\projects\dotnet-standard-sdk\glossary.tmx
 test_script:
 - ps: >-
-      if((Test-Path -Path coverage))
+      if(Test-Path -Path coverage)
       {
           rm coverage -r -force
       }
+
       New-Item -path . -name coverage -itemtype directory
+      
       ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
       { 
           if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)

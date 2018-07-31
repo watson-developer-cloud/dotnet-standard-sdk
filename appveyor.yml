@@ -68,28 +68,6 @@ after_build:
         $branchName = $env:APPVEYOR_REPO_TAG_NAME
     }
 
-    if($branchName.StartsWtih("rc-"))
-    
-    {
-      Write-Output "branchName starts with rc- running bumpversion"
-
-      git clone --quiet --branch=$branchName https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git $branchName
-
-      C:\Python\Python37\Scripts\bumpversion.exe --current-version 2.5.0 --new-version 2.6.0 --verbose patch
-
-      cd $branchName
-      git add -A
-      git commit -m "Versioned up"
-      git push -f origin $branchName
-      cd ../
-    }
-
-    else
-
-    {
-      Write-Output "branchname does not start with rc-. Not bumping version."
-    }
-
     Write-Output "branchName  is " + $branchName
 
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)

@@ -1857,8 +1857,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(loggingOptOut))
-                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut);
+                if (loggingOptOut == null)
+                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))

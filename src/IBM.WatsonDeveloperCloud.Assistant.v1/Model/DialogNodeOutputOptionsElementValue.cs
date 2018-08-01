@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The user input.
         /// </value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
     }
 
 }

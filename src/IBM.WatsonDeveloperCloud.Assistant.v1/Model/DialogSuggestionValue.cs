@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The user input.
         /// </value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// An array of intents to be sent along with the user input.
         /// </summary>

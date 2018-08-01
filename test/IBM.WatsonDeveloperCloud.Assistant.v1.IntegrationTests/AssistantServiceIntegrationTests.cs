@@ -701,7 +701,38 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             Assert.IsNotNull(listAllLogsResult);
         }
         #endregion
-        
+
+        #region Mentions
+        [TestMethod]
+        public void TestMentions_Success()
+        {
+            CreateWorkspace workspace = new CreateWorkspace()
+            {
+                Name = _createdWorkspaceName,
+                Description = _createdWorkspaceDescription,
+                Language = _createdWorkspaceLanguage,
+                LearningOptOut = true
+            };
+
+            var createWorkspaceResult = CreateWorkspace(workspace);
+            var workspaceId = createWorkspaceResult.WorkspaceId;
+
+            CreateEntity entity = new CreateEntity()
+            {
+                Entity = _createdEntity,
+                Description = _createdEntityDescription
+            };
+
+            var createEntityResult = CreateEntity(workspaceId, entity);
+
+            var ListMentionsResult = ListMentions(workspaceId, _createdEntity);
+
+            Assert.IsNotNull(createEntityResult);
+            Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.EntityName));
+            Assert.IsNotNull(ListMentionsResult);
+        }
+        #endregion
+
         #region Delay
         private void Delay(int delayTimeInMilliseconds)
         {
@@ -1198,6 +1229,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to UpdateEntity()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ListMentions
+        private EntityMentionCollection ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to ListMentions()");
+            var result = _service.ListMentions(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("ListMentions() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to ListMentions()");
             }
 
             return result;

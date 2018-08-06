@@ -1,5 +1,5 @@
 {
-  "branch": "test-release",
+  "branch": "master",
   "verifyConditions": [],
   "prepare": [
     {

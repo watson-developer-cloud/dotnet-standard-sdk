@@ -19,9 +19,7 @@ install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
 # install modules
-- npm install
 - pip install --user bumpversion
-- npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages
 
@@ -215,6 +213,8 @@ artifacts:
   name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
+before_deploy:
+- ps: npx semantic-release
 deploy:
 - provider: NuGet
   api_key:
@@ -222,3 +222,4 @@ deploy:
   on:
     branch: master
     APPVEYOR_REPO_TAG: true
+    

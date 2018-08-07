@@ -40,9 +40,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
         private static string _workspaceID;
         private string _inputString = "Hello";
-        private string _assistantString0 = "unlock the door";
-        private string _assistantString1 = "turn on the ac";
-        private string _assistantString2 = "turn down the radio";
+        private string _assistantString0 = "Are you open on christmas?";
+        private string _assistantString1 = "Can you connect me to a real person?";
+        private string _assistantString2 = "goodbye";
 
         private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
         private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script. Please delete this.";

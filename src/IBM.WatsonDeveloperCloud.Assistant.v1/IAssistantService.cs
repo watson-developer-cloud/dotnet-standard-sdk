@@ -254,7 +254,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <summary>
         /// List user input examples.
         ///
-        /// List the user input examples for an intent.
+        /// List the user input examples for an intent, optionally including contextual entity mentions.
         ///
         /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -449,6 +449,24 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Entity" />Entity</returns>
         Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// List entity mentions.
+        ///
+        /// List mentions for a contextual entity. An entity mention is an occurrence of a contextual entity in the
+        /// context of an intent user input example.
+        ///
+        /// This operation is limited to 200 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="EntityMentionCollection" />EntityMentionCollection</returns>
+        EntityMentionCollection ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
         /// <summary>
         /// Add entity value.
         ///

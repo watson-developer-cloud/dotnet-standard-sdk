@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// A request formatted for the Conversation service.
+    /// A message request formatted for the Conversation service.
     /// </summary>
     public class MessageRequest : BaseModel
     {
@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// An input object that includes the input text.
         /// </value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
@@ -80,7 +80,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// multiple requests.
         /// </value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public OutputData Output { get; set; }
+        public dynamic Output { get; set; }
     }
 
 }

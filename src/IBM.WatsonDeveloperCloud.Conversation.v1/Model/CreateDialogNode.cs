@@ -323,7 +323,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public object Output { get; set; }
+        public dynamic Output { get; set; }
         /// <summary>
         /// The context for the dialog node.
         /// </summary>
@@ -376,6 +376,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </value>
         [JsonProperty("variable", NullValueHandling = NullValueHandling.Ignore)]
         public string Variable { get; set; }
+        /// <summary>
+        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// </summary>
+        /// <value>
+        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// </value>
+        [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserLabel { get; set; }
     }
 
 }

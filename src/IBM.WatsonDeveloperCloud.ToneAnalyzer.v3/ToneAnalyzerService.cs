@@ -155,9 +155,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Content-Type", contentType);
-                restRequest.WithHeader("Content-Language", contentLanguage);
-                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(contentLanguage))
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (sentences != null)
                     restRequest.WithArgument("sentences", sentences);
                 restRequest.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
@@ -227,8 +230,10 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Content-Language", contentLanguage);
-                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentLanguage))
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 restRequest.WithBody<ToneChatInput>(utterances);
                 if (customData != null)
                     restRequest.WithCustomData(customData);

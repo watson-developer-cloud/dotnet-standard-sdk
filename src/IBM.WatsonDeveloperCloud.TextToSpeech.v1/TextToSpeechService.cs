@@ -212,7 +212,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
 
-                restRequest.WithArgument("accept", accept);
+                if (!string.IsNullOrEmpty(accept))
+                    restRequest.WithHeader("Accept", accept);
                 if (!string.IsNullOrEmpty(voice))
                     restRequest.WithArgument("voice", voice);
                 if (!string.IsNullOrEmpty(customizationId))

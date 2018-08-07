@@ -310,13 +310,15 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("previous_sibling", NullValueHandling = NullValueHandling.Ignore)]
         public string PreviousSibling { get; set; }
         /// <summary>
-        /// The output of the dialog node.
+        /// The output of the dialog node. For more information about how to specify dialog node output, see the
+        /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </summary>
         /// <value>
-        /// The output of the dialog node.
+        /// The output of the dialog node. For more information about how to specify dialog node output, see the
+        /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public object Output { get; set; }
+        public dynamic Output { get; set; }
         /// <summary>
         /// The context (if defined) for the dialog node.
         /// </summary>
@@ -381,6 +383,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </value>
         [JsonProperty("variable", NullValueHandling = NullValueHandling.Ignore)]
         public string Variable { get; set; }
+        /// <summary>
+        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// </summary>
+        /// <value>
+        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// </value>
+        [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserLabel { get; set; }
     }
 
 }

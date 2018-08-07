@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.5.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.6.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
 
 ### Conversation
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.5.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.6.0" />
 </ItemGroup>
 
 ```

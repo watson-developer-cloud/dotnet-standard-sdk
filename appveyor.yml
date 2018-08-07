@@ -9,12 +9,14 @@ clone_folder: C:\projects\dotnet-standard-sdk
 environment:
   COVERALLS_REPO_TOKEN:
     secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME
-  GH_TOKEN:
+  WPS_GITHUB_TOKEN:
     secure: J0LjUlYl+lGJMLBcOgVF1m1I07nyr+8yFOMaNBA23RGLMJKvYnRlhmGWXp07ejgu
   CRED_SECRET:
     secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8=
-  GITHUB_TOKEN:
+  CREDENTIALS_GITHUB_TOKEN:
     secure: 8sr9qy9Ghr7IaCVsf0mvKITy6nb5RZaEScQ3VIPNMJxPzFCkZ688RHIOmW5qWWy5
+  GITHUB_TOKEN:
+    secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
@@ -41,7 +43,7 @@ before_build:
 - ps: >-
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
     {
-      git clone https://$env:GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
     }
 
     dotnet restore
@@ -76,7 +78,7 @@ after_build:
       {
           .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
 
-          git clone --quiet --branch=gh-pages https://$env:GH_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
+          git clone --quiet --branch=gh-pages https://$env:WPS_GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
 
           If(Test-Path -Path gh-pages\docs\$branchName)
           {

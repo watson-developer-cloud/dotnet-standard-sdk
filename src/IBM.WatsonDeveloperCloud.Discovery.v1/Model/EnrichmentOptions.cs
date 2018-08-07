@@ -15,7 +15,9 @@
 *
 */
 
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
@@ -24,6 +26,91 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// </summary>
     public class EnrichmentOptions : BaseModel
     {
+        /// <summary>
+        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
+        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
+        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
+        /// Not all features support all languages, automatic detection is recommended.
+        /// </summary>
+        /// <value>
+        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
+        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
+        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
+        /// Not all features support all languages, automatic detection is recommended.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LanguageEnum
+        {
+            
+            /// <summary>
+            /// Enum AR for ar
+            /// </summary>
+            [EnumMember(Value = "ar")]
+            AR,
+            
+            /// <summary>
+            /// Enum EN for en
+            /// </summary>
+            [EnumMember(Value = "en")]
+            EN,
+            
+            /// <summary>
+            /// Enum FR for fr
+            /// </summary>
+            [EnumMember(Value = "fr")]
+            FR,
+            
+            /// <summary>
+            /// Enum DE for de
+            /// </summary>
+            [EnumMember(Value = "de")]
+            DE,
+            
+            /// <summary>
+            /// Enum IT for it
+            /// </summary>
+            [EnumMember(Value = "it")]
+            IT,
+            
+            /// <summary>
+            /// Enum PT for pt
+            /// </summary>
+            [EnumMember(Value = "pt")]
+            PT,
+            
+            /// <summary>
+            /// Enum RU for ru
+            /// </summary>
+            [EnumMember(Value = "ru")]
+            RU,
+            
+            /// <summary>
+            /// Enum ES for es
+            /// </summary>
+            [EnumMember(Value = "es")]
+            ES,
+            
+            /// <summary>
+            /// Enum SV for sv
+            /// </summary>
+            [EnumMember(Value = "sv")]
+            SV
+        }
+
+        /// <summary>
+        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
+        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
+        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
+        /// Not all features support all languages, automatic detection is recommended.
+        /// </summary>
+        /// <value>
+        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
+        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
+        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
+        /// Not all features support all languages, automatic detection is recommended.
+        /// </value>
+        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
+        public LanguageEnum? Language { get; set; }
         /// <summary>
         /// An object representing the enrichment features that will be applied to the specified field.
         /// </summary>

@@ -21,7 +21,8 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// An output object that includes the response to the user, the nodes that were hit, and messages from the log.
+    /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages from
+    /// the log.
     /// </summary>
     public class OutputData : BaseModel
     {
@@ -41,6 +42,16 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Text { get; set; }
+        /// <summary>
+        /// Output intended for any channel. It is the responsibility of the client application to implement the
+        /// supported response types.
+        /// </summary>
+        /// <value>
+        /// Output intended for any channel. It is the responsibility of the client application to implement the
+        /// supported response types.
+        /// </value>
+        [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic Generic { get; set; }
         /// <summary>
         /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
         /// This information is useful for debugging and for tracing the path taken through the node tree.

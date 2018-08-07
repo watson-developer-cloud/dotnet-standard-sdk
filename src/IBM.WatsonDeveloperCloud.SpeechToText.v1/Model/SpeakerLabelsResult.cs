@@ -59,10 +59,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("speaker", NullValueHandling = NullValueHandling.Ignore)]
         public long? Speaker { get; set; }
         /// <summary>
-        /// A score that indicates the service's confidence in its identification of the speaker in the range of 0 to 1.
+        /// A score that indicates the service's confidence in its identification of the speaker in the range of 0.0 to
+        /// 1.0.
         /// </summary>
         /// <value>
-        /// A score that indicates the service's confidence in its identification of the speaker in the range of 0 to 1.
+        /// A score that indicates the service's confidence in its identification of the speaker in the range of 0.0 to
+        /// 1.0.
         /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public float? Confidence { get; set; }

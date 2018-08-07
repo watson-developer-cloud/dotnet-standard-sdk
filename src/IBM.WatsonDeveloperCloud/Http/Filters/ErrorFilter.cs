@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.Http.Filters
 
                 var error = responseMessage.Content.ReadAsStringAsync().Result;
 
-                if (responseMessage.Content.Headers.ContentType != null && responseMessage.Content.Headers.ContentType.MediaType == HttpMediaType.APPLICATION_JSON)
+                if (responseMessage.Content.Headers?.ContentType?.MediaType == HttpMediaType.APPLICATION_JSON)
                 {
                     exception.Error = JsonConvert.DeserializeObject<Error>(error);
                 }

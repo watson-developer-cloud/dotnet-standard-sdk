@@ -88,7 +88,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum PT for pt
             /// </summary>
             [EnumMember(Value = "pt")]
-            PT
+            PT,
+            
+            /// <summary>
+            /// Enum NL for nl
+            /// </summary>
+            [EnumMember(Value = "nl")]
+            NL
         }
 
         /// <summary>

@@ -199,7 +199,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         #region Custom
-        [TestMethod]
+        //[TestMethod]
         public void TestClassifiers_Success_RC()
         {
             Classifier createClassifierResult = null;

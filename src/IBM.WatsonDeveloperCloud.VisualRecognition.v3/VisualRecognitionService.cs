@@ -188,7 +188,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithArgument("api_key", ApiKey);
-                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
@@ -431,7 +432,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-        
+
         /// <summary>
         /// Delete labeled data.
         ///

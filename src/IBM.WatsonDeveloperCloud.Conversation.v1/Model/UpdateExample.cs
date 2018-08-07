@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
@@ -38,6 +39,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
+        /// <summary>
+        /// An array of contextual entity mentions.
+        /// </summary>
+        /// <value>
+        /// An array of contextual entity mentions.
+        /// </value>
+        [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Mentions> Mentions { get; set; }
     }
 
 }

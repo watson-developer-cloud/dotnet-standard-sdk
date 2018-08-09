@@ -1,5 +1,5 @@
 {
-  "branch": "4945-semantic-release",
+  "branch": "master",
   "verifyConditions": [],
   "prepare": [
     {

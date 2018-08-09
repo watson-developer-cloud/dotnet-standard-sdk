@@ -53,10 +53,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The session token for this query. The session token can be used to add events associated with this query to
         /// the query and event log.
+        ///
+        /// **Important:** Session tokens are case sensitive.
         /// </summary>
         /// <value>
         /// The session token for this query. The session token can be used to add events associated with this query to
         /// the query and event log.
+        ///
+        /// **Important:** Session tokens are case sensitive.
         /// </value>
         [JsonProperty("session_token", NullValueHandling = NullValueHandling.Ignore)]
         public string SessionToken { get; set; }

@@ -164,9 +164,12 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Content-Type", contentType);
-                restRequest.WithHeader("Content-Language", contentLanguage);
-                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(contentLanguage))
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (rawScores != null)
                     restRequest.WithArgument("raw_scores", rawScores);
                 if (csvHeaders != null)
@@ -267,9 +270,12 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Content-Type", contentType);
-                restRequest.WithHeader("Content-Language", contentLanguage);
-                restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(contentLanguage))
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (rawScores != null)
                     restRequest.WithArgument("raw_scores", rawScores);
                 if (csvHeaders != null)

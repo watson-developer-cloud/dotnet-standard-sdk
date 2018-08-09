@@ -103,6 +103,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// </value>
         [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
         public bool? LearningOptOut { get; set; }
+        /// <summary>
+        /// Global settings for the workspace.
+        /// </summary>
+        /// <value>
+        /// Global settings for the workspace.
+        /// </value>
+        [JsonProperty("system_settings", NullValueHandling = NullValueHandling.Ignore)]
+        public WorkspaceSystemSettings SystemSettings { get; set; }
     }
 
 }

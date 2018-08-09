@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.5.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.6.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.LanguageTranslator.v2/)
 
 ### Language Translator V2
 **Language Translator v3 is now available. The v2 Language Translator API will no longer be available after July 31, 2018. To take advantage of the latest service enhancements, migrate to the v3 API. View the [Migrating to Language Translator v3](https://console.bluemix.net/docs/services/language-translator/migrating.html) page for more information.**
@@ -16,7 +16,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.5.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.LanguageTranslator.v2" Version="2.6.0" />
 </ItemGroup>
 
 ```

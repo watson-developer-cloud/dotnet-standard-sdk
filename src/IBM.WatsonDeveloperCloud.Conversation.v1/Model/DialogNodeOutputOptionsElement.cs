@@ -17,29 +17,31 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
+namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
 {
     /// <summary>
-    /// Metadata of a query result.
+    /// DialogNodeOutputOptionsElement.
     /// </summary>
-    public class QueryResultResultMetadata : BaseModel
+    public class DialogNodeOutputOptionsElement : BaseModel
     {
         /// <summary>
-        /// The raw score of the result. A higher score indicates a greater match to the query parameters.
+        /// The user-facing label for the option.
         /// </summary>
         /// <value>
-        /// The raw score of the result. A higher score indicates a greater match to the query parameters.
+        /// The user-facing label for the option.
         /// </value>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
+        public string Label { get; set; }
         /// <summary>
-        /// The confidence score of the result's analysis. A higher score indicates greater confidence.
+        /// An object defining the message input to be sent to the Conversation service if the user selects the
+        /// corresponding option.
         /// </summary>
         /// <value>
-        /// The confidence score of the result's analysis. A higher score indicates greater confidence.
+        /// An object defining the message input to be sent to the Conversation service if the user selects the
+        /// corresponding option.
         /// </value>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public DialogNodeOutputOptionsElementValue Value { get; set; }
     }
 
 }

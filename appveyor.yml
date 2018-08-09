@@ -17,6 +17,8 @@ environment:
     secure: 8sr9qy9Ghr7IaCVsf0mvKITy6nb5RZaEScQ3VIPNMJxPzFCkZ688RHIOmW5qWWy5
   GITHUB_TOKEN:
     secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+
+  GITHUB_PREFIX: /api/v3
+  GITHUB_URL: https://github.ibm.com
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
@@ -216,7 +218,7 @@ artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 before_deploy:
-- ps: npx semantic-release
+- ps: npx semantic-release@13.1.1
 deploy:
 - provider: NuGet
   api_key:

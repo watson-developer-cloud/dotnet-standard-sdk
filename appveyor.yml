@@ -216,7 +216,7 @@ artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 before_deploy:
-- ps: npx semantic-release@13.1.1
+- ps: npx semantic-release
 deploy:
 - provider: NuGet
   api_key:

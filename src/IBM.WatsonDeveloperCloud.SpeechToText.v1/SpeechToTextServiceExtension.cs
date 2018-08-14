@@ -135,6 +135,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="smartFormatting"></param>
         /// <param name="speakerLabels"></param>
         /// <returns></returns>
+        [Obsolete("RecognizeWithSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public SpeechRecognitionResults RecognizeWithSession(string sessionId, string contentType, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
         {
             if (string.IsNullOrEmpty(sessionId))
@@ -177,6 +178,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="metaData"></param>
         /// <param name="audio"></param>
         /// <returns></returns>
+        [Obsolete("RecognizeWithSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public SpeechRecognitionResults RecognizeWithSession(string sessionId, string contentType, Metadata metaData, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
         {
             if (string.IsNullOrEmpty(sessionId))
@@ -347,6 +349,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="sequenceId">The sequence ID of the recognition task whose results you want to observe. Omit the parameter to obtain results either for an ongoing recognition, if any, or for the next recognition task regardless of whether it specifies a sequence ID.</param>
         /// <param name="interimResults">Indicates whether the service is to return interim results. If true, interim results are returned as a stream of JSON objects; each object represents a single SpeechRecognitionEvent. If false, the response is a single SpeechRecognitionEvent with final results only.</param>
         /// <returns></returns>
+        [Obsolete("ObserveResult is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public List<SpeechRecognitionResults> ObserveResult(string sessionId, int? sequenceId = (int?)null, bool interimResults = false)
         {
             List<SpeechRecognitionResults> result = null;
@@ -410,6 +413,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="acousticCustomizationId">The GUID of a custom acoustic model that is to be used with the new session. The base model of the specified custom acoustic model must match the model specified with the model parameter. You must make the request with service credentials created for the instance of the service that owns the custom model. By default, no custom acoustic model is used.</param>
         /// <param name="baseModelVersion">The version of the specified base model that is to be used with the new session. Multiple versions of a base model can exist when a model is updated for internal improvements. The parameter is intended primarily for use with custom models that have been upgraded for a new base model. The default value depends on whether the parameter is used with or without a custom model. For more information, see Base model version (https://console.bluemix.net/docs/services/speech-to-text/input.html#version).</param>
         /// <returns>The created session</returns>
+        [Obsolete("CreateSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public SpeechSession CreateSession(string model, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null)
         {
             SpeechSession result = null;
@@ -454,6 +458,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="session">The session to get.</param>
         /// <returns></returns>
+        [Obsolete("GetSessionStatus is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public SessionStatus GetSessionStatus(SpeechSession session)
         {
             return this.GetSessionStatus(session.SessionId);
@@ -464,6 +469,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="sessionId">The ID of the session for the recognition task.</param>
         /// <returns>The session status.</returns>
+        [Obsolete("GetSessionStatus is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public SessionStatus GetSessionStatus(string sessionId)
         {
             SessionStatus result = null;
@@ -504,6 +510,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="session">The session to be deleted.</param>
         /// <returns></returns>
+        [Obsolete("DeleteSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public object DeleteSession(SpeechSession session)
         {
             return this.DeleteSession(session.SessionId);
@@ -514,6 +521,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="session">The ID of the session to be deleted.</param>
         /// <returns></returns>
+        [Obsolete("DeleteSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
         public object DeleteSession(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
@@ -689,6 +697,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         public bool? SpeakerLabels { get; set; }
     }
 
+    [Obsolete("SpeechSession is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
     public class SpeechSession
     {
         /// <summary>
@@ -734,6 +743,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         public string Model { get; set; }
     }
 
+    [Obsolete("SessionStatus is deprecated as of August 8, 2018, and will be removed from service on September 7, 2018.")]
     public class SessionStatus
     {
         /// <summary>

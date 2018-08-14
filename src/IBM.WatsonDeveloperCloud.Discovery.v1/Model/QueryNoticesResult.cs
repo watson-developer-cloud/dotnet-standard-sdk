@@ -65,83 +65,52 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The type of the original source file.
         /// </summary>
-        /// <value>
-        /// The type of the original source file.
-        /// </value>
         [JsonProperty("file_type", NullValueHandling = NullValueHandling.Ignore)]
         public FileTypeEnum? FileType { get; set; }
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the document.
-        /// </value>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Id { get; set; }
         /// <summary>
         /// *Deprecated* This field is now part of the **result_metadata** object.
         /// </summary>
-        /// <value>
-        /// *Deprecated* This field is now part of the **result_metadata** object.
-        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Score { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
-        /// <value>
-        /// Metadata of the document.
-        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
-        /// <value>
-        /// The collection ID of the collection containing the document for this result.
-        /// </value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic CollectionId { get; set; }
         /// <summary>
         /// Metadata of the query result.
         /// </summary>
-        /// <value>
-        /// Metadata of the query result.
-        /// </value>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic ResultMetadata { get; set; }
         /// <summary>
         /// The internal status code returned by the ingestion subsystem indicating the overall result of ingesting the
         /// source document.
         /// </summary>
-        /// <value>
-        /// The internal status code returned by the ingestion subsystem indicating the overall result of ingesting the
-        /// source document.
-        /// </value>
         [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Code { get; set; }
         /// <summary>
         /// Name of the original source file (if available).
         /// </summary>
-        /// <value>
-        /// Name of the original source file (if available).
-        /// </value>
         [JsonProperty("filename", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Filename { get; set; }
         /// <summary>
         /// The SHA-1 hash of the original source file (formatted as a hexadecimal string).
         /// </summary>
-        /// <value>
-        /// The SHA-1 hash of the original source file (formatted as a hexadecimal string).
-        /// </value>
         [JsonProperty("sha1", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Sha1 { get; set; }
         /// <summary>
         /// Array of notices for the document.
         /// </summary>
-        /// <value>
-        /// Array of notices for the document.
-        /// </value>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Notices { get; set; }
     }

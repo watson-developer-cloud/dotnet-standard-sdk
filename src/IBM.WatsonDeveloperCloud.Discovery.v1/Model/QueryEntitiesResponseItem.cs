@@ -28,25 +28,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Entity text content.
         /// </summary>
-        /// <value>
-        /// Entity text content.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// The type of the result entity.
         /// </summary>
-        /// <value>
-        /// The type of the result entity.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
         /// List of different evidentiary items to support the result.
         /// </summary>
-        /// <value>
-        /// List of different evidentiary items to support the result.
-        /// </value>
         [JsonProperty("evidence", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryEvidence> Evidence { get; set; }
     }

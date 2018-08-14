@@ -30,11 +30,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// if the requesting service credentials own no custom acoustic models (if no language is specified) or own no
         /// custom acoustic models for the specified language.
         /// </summary>
-        /// <value>
-        /// An array of objects that provides information about each available custom acoustic model. The array is empty
-        /// if the requesting service credentials own no custom acoustic models (if no language is specified) or own no
-        /// custom acoustic models for the specified language.
-        /// </value>
         [JsonProperty("customizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<AcousticModel> Customizations { get; set; }
     }

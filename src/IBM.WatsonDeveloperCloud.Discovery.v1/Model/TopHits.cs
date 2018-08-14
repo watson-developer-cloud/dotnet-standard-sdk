@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of top hits returned by the aggregation.
         /// </summary>
-        /// <value>
-        /// Number of top hits returned by the aggregation.
-        /// </value>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         public long? Size { get; set; }
         /// <summary>

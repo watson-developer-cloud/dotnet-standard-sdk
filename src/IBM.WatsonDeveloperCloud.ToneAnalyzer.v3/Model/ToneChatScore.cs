@@ -28,10 +28,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// The score for the tone in the range of 0.5 to 1. A score greater than 0.75 indicates a high likelihood that
         /// the tone is perceived in the utterance.
         /// </summary>
-        /// <value>
-        /// The score for the tone in the range of 0.5 to 1. A score greater than 0.75 indicates a high likelihood that
-        /// the tone is perceived in the utterance.
-        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
         /// <summary>
@@ -39,19 +35,11 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// following tone IDs: `sad`, `frustrated`, `satisfied`, `excited`, `polite`, `impolite`, and `sympathetic`.
         /// The service returns results only for tones whose scores meet a minimum threshold of 0.5.
         /// </summary>
-        /// <value>
-        /// The unique, non-localized identifier of the tone for the results. The service can return results for the
-        /// following tone IDs: `sad`, `frustrated`, `satisfied`, `excited`, `polite`, `impolite`, and `sympathetic`.
-        /// The service returns results only for tones whose scores meet a minimum threshold of 0.5.
-        /// </value>
         [JsonProperty("tone_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ToneId { get; set; }
         /// <summary>
         /// The user-visible, localized name of the tone.
         /// </summary>
-        /// <value>
-        /// The user-visible, localized name of the tone.
-        /// </value>
         [JsonProperty("tone_name", NullValueHandling = NullValueHandling.Ignore)]
         public string ToneName { get; set; }
     }

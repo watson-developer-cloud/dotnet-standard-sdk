@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// <summary>
         /// An array of objects that provides information about each available model.
         /// </summary>
-        /// <value>
-        /// An array of objects that provides information about each available model.
-        /// </value>
         [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
         public List<SpeechModel> Models { get; set; }
     }

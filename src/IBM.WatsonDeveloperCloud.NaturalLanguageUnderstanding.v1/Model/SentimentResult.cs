@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The document level sentiment.
         /// </summary>
-        /// <value>
-        /// The document level sentiment.
-        /// </value>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentSentimentResults Document { get; set; }
         /// <summary>
         /// The targeted sentiment to analyze.
         /// </summary>
-        /// <value>
-        /// The targeted sentiment to analyze.
-        /// </value>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<TargetedSentimentResults> Targets { get; set; }
     }

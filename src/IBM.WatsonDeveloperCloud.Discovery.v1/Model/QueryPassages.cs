@@ -27,49 +27,31 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The unique identifier of the document from which the passage has been extracted.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the document from which the passage has been extracted.
-        /// </value>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
         /// <summary>
         /// The confidence score of the passages's analysis. A higher score indicates greater confidence.
         /// </summary>
-        /// <value>
-        /// The confidence score of the passages's analysis. A higher score indicates greater confidence.
-        /// </value>
         [JsonProperty("passage_score", NullValueHandling = NullValueHandling.Ignore)]
         public double? PassageScore { get; set; }
         /// <summary>
         /// The content of the extracted passage.
         /// </summary>
-        /// <value>
-        /// The content of the extracted passage.
-        /// </value>
         [JsonProperty("passage_text", NullValueHandling = NullValueHandling.Ignore)]
         public string PassageText { get; set; }
         /// <summary>
         /// The position of the first character of the extracted passage in the originating field.
         /// </summary>
-        /// <value>
-        /// The position of the first character of the extracted passage in the originating field.
-        /// </value>
         [JsonProperty("start_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? StartOffset { get; set; }
         /// <summary>
         /// The position of the last character of the extracted passage in the originating field.
         /// </summary>
-        /// <value>
-        /// The position of the last character of the extracted passage in the originating field.
-        /// </value>
         [JsonProperty("end_offset", NullValueHandling = NullValueHandling.Ignore)]
         public long? EndOffset { get; set; }
         /// <summary>
         /// The label of the field from which the passage has been extracted.
         /// </summary>
-        /// <value>
-        /// The label of the field from which the passage has been extracted.
-        /// </value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
     }

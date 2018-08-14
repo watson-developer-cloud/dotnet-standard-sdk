@@ -28,11 +28,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The user input.
         /// </summary>
-        /// <value>
-        /// The user input.
-        /// </value>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public InputData Input { get; set; }
     }
 
 }

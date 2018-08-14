@@ -59,103 +59,64 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The status of the collection.
         /// </summary>
-        /// <value>
-        /// The status of the collection.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier of the collection.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the collection.
-        /// </value>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string CollectionId { get; private set; }
         /// <summary>
         /// The name of the collection.
         /// </summary>
-        /// <value>
-        /// The name of the collection.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The description of the collection.
         /// </summary>
-        /// <value>
-        /// The description of the collection.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// The creation date of the collection in the format yyyy-MM-dd'T'HH:mmcon:ss.SSS'Z'.
         /// </summary>
-        /// <value>
-        /// The creation date of the collection in the format yyyy-MM-dd'T'HH:mmcon:ss.SSS'Z'.
-        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp of when the collection was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
-        /// <value>
-        /// The timestamp of when the collection was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The unique identifier of the collection's configuration.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the collection's configuration.
-        /// </value>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfigurationId { get; set; }
         /// <summary>
         /// The language of the documents stored in the collection. Permitted values include `en` (English), `de`
         /// (German), and `es` (Spanish).
         /// </summary>
-        /// <value>
-        /// The language of the documents stored in the collection. Permitted values include `en` (English), `de`
-        /// (German), and `es` (Spanish).
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The object providing information about the documents in the collection. Present only when retrieving details
         /// of a collection.
         /// </summary>
-        /// <value>
-        /// The object providing information about the documents in the collection. Present only when retrieving details
-        /// of a collection.
-        /// </value>
         [JsonProperty("document_counts", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentCounts DocumentCounts { get; set; }
         /// <summary>
         /// The object providing information about the disk usage of the collection. Present only when retrieving
         /// details of a collection.
         /// </summary>
-        /// <value>
-        /// The object providing information about the disk usage of the collection. Present only when retrieving
-        /// details of a collection.
-        /// </value>
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public CollectionDiskUsage DiskUsage { get; set; }
         /// <summary>
         /// Provides information about the status of relevance training for collection.
         /// </summary>
-        /// <value>
-        /// Provides information about the status of relevance training for collection.
-        /// </value>
         [JsonProperty("training_status", NullValueHandling = NullValueHandling.Ignore)]
         public TrainingStatus TrainingStatus { get; set; }
         /// <summary>
         /// Object containing source crawl status information.
         /// </summary>
-        /// <value>
-        /// Object containing source crawl status information.
-        /// </value>
         [JsonProperty("source_crawl", NullValueHandling = NullValueHandling.Ignore)]
         public SourceStatus SourceCrawl { get; set; }
     }

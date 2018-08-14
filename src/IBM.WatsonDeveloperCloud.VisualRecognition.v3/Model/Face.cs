@@ -27,25 +27,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Age information about a face.
         /// </summary>
-        /// <value>
-        /// Age information about a face.
-        /// </value>
         [JsonProperty("age", NullValueHandling = NullValueHandling.Ignore)]
         public FaceAge Age { get; set; }
         /// <summary>
         /// Information about the gender of the face.
         /// </summary>
-        /// <value>
-        /// Information about the gender of the face.
-        /// </value>
         [JsonProperty("gender", NullValueHandling = NullValueHandling.Ignore)]
         public FaceGender Gender { get; set; }
         /// <summary>
         /// The location of the bounding box around the face.
         /// </summary>
-        /// <value>
-        /// The location of the bounding box around the face.
-        /// </value>
         [JsonProperty("face_location", NullValueHandling = NullValueHandling.Ignore)]
         public FaceLocation FaceLocation { get; set; }
     }

@@ -56,18 +56,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique
         /// times each entity is identified. The default is `score`.
         /// </summary>
-        /// <value>
-        /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique
-        /// times each entity is identified. The default is `score`.
-        /// </value>
         [JsonProperty("sort", NullValueHandling = NullValueHandling.Ignore)]
         public SortEnum? Sort { get; set; }
         /// <summary>
         /// An array of entities to find relationships for.
         /// </summary>
-        /// <value>
-        /// An array of entities to find relationships for.
-        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryRelationsEntity> Entities { get; set; }
         /// <summary>
@@ -75,37 +68,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// you wanted to query the city of London in England your query would look for `London` with the context of
         /// `England`.
         /// </summary>
-        /// <value>
-        /// Entity text to provide context for the queried entity and rank based on that association. For example, if
-        /// you wanted to query the city of London in England your query would look for `London` with the context of
-        /// `England`.
-        /// </value>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public QueryEntitiesContext Context { get; set; }
         /// <summary>
         /// Filters to apply to the relationship query.
         /// </summary>
-        /// <value>
-        /// Filters to apply to the relationship query.
-        /// </value>
         [JsonProperty("filter", NullValueHandling = NullValueHandling.Ignore)]
         public QueryRelationsFilter Filter { get; set; }
         /// <summary>
         /// The number of results to return. The default is `10`. The maximum is `1000`.
         /// </summary>
-        /// <value>
-        /// The number of results to return. The default is `10`. The maximum is `1000`.
-        /// </value>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
         /// <summary>
         /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence
         /// items per query is 10,000.
         /// </summary>
-        /// <value>
-        /// The number of evidence items to return for each result. The default is `0`. The maximum number of evidence
-        /// items per query is 10,000.
-        /// </value>
         [JsonProperty("evidence_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? EvidenceCount { get; set; }
     }

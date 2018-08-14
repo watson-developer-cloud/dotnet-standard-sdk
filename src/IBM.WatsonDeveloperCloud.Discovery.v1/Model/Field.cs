@@ -106,17 +106,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The type of the field.
         /// </summary>
-        /// <value>
-        /// The type of the field.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public FieldTypeEnum? FieldType { get; set; }
         /// <summary>
         /// The name of the field.
         /// </summary>
-        /// <value>
-        /// The name of the field.
-        /// </value>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string FieldName { get; private set; }
     }

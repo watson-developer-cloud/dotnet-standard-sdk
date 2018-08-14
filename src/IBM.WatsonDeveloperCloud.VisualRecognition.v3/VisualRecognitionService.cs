@@ -124,8 +124,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// The following built-in classifier IDs require no training:
         /// - `default`: Returns classes from thousands of general tags.
-        /// - `food`: (Beta) Enhances specificity and accuracy for images of food items.
-        /// - `explicit`: (Beta) Evaluates whether the image might be pornographic. (optional)</param>
+        /// - `food`: Enhances specificity and accuracy for images of food items.
+        /// - `explicit`: Evaluates whether the image might be pornographic. (optional)</param>
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
@@ -153,7 +153,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (url != null)
                 {
                     var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    urlContent.Headers.ContentType = null;
                     formData.Add(urlContent, "url");
                 }
 
@@ -259,7 +259,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (url != null)
                 {
                     var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    urlContent.Headers.ContentType = null;
                     formData.Add(urlContent, "url");
                 }
 
@@ -282,6 +282,102 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = restRequest.As<DetectedFaces>().Result;
                 if(result == null)
                     result = new DetectedFaces();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Create a classifier.
+        ///
+        /// Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive
+        /// or negative examples. Include at least two sets of examples, either two positive example files or one
+        /// positive and one negative file. You can upload a maximum of 256 MB per call.
+        ///
+        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+        /// </summary>
+        /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
+        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in
+        /// the new classifier. You can include more than one positive example file in a call.
+        ///
+        /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
+        /// `goldenretriever_positive_examples` creates the class **goldenretriever**.
+        ///
+        /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
+        /// The maximum number of images is 10,000 images or 100 MB per .zip file.
+        ///
+        /// Encode special characters in the file name in UTF-8.</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the
+        /// classes of the new classifier. Must contain a minimum of 10 images.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        public Classifier CreateClassifier(string name, System.IO.FileStream classnamePositiveExamples, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+            if (classnamePositiveExamples == null)
+                throw new ArgumentNullException(nameof(classnamePositiveExamples));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Classifier result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (name != null)
+                {
+                    var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    nameContent.Headers.ContentType = null;
+                    formData.Add(nameContent, "name");
+                }
+
+                if (classnamePositiveExamples != null)
+                {
+                    var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    classnamePositiveExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", classnamePositiveExamples.Name);
+                }
+
+                if (negativeExamples != null)
+                {
+                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    negativeExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(negativeExamplesContent, "negative_examples", negativeExamples.Name);
+                }
+
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
@@ -433,6 +529,144 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             return result;
         }
 
+        /// <summary>
+        /// Update a classifier.
+        ///
+        /// Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to
+        /// existing classes. You must supply at least one set of positive or negative examples. For details, see
+        /// [Updating custom
+        /// classifiers](https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers).
+        ///
+        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+        ///
+        /// **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining
+        /// requests in parallel, the last request overwrites the previous requests. The retrained property shows the
+        /// last time the classifier retraining finished.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <param name="classnamePositiveExamples">A .zip file of images that depict the visual subject of a class in
+        /// the classifier. The positive examples create or update classes in the classifier. You can include more than
+        /// one positive example file in a call.
+        ///
+        /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
+        /// `goldenretriever_positive_examples` creates the class `goldenretriever`.
+        ///
+        /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
+        /// The maximum number of images is 10,000 images or 100 MB per .zip file.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the
+        /// classes of the new classifier. Must contain a minimum of 10 images.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        public Classifier UpdateClassifier(string classifierId, System.IO.FileStream classnamePositiveExamples = null, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Classifier result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (classnamePositiveExamples != null)
+                {
+                    var classnamePositiveExamplesContent = new ByteArrayContent((classnamePositiveExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    classnamePositiveExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(classnamePositiveExamplesContent, "classname_positive_examples", classnamePositiveExamples.Name);
+                }
+
+                if (negativeExamples != null)
+                {
+                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    negativeExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(negativeExamplesContent, "negative_examples", negativeExamples.Name);
+                }
+
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Retrieve a Core ML model of a classifier.
+        ///
+        /// Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>"core_ml_enabled":
+        /// true</tt> in the classifier details.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
+        public System.IO.MemoryStream GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            System.IO.MemoryStream result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}/core_ml_model");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithArgument("api_key", ApiKey);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
         /// <summary>
         /// Delete labeled data.
         ///

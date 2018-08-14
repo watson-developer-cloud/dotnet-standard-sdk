@@ -27,25 +27,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The total number of available documents in the collection.
         /// </summary>
-        /// <value>
-        /// The total number of available documents in the collection.
-        /// </value>
         [JsonProperty("available", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? Available { get; private set; }
         /// <summary>
         /// The number of documents in the collection that are currently being processed.
         /// </summary>
-        /// <value>
-        /// The number of documents in the collection that are currently being processed.
-        /// </value>
         [JsonProperty("processing", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? Processing { get; private set; }
         /// <summary>
         /// The number of documents in the collection that failed to be ingested.
         /// </summary>
-        /// <value>
-        /// The number of documents in the collection that failed to be ingested.
-        /// </value>
         [JsonProperty("failed", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? Failed { get; private set; }
     }

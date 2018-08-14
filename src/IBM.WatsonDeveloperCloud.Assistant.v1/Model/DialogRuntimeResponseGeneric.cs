@@ -112,95 +112,57 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
         /// for Premium users.
         /// </summary>
-        /// <value>
-        /// The type of response returned by the dialog node. The specified response type must be supported by the
-        /// client application or channel.
-        ///
-        /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
-        /// </value>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public ResponseTypeEnum? ResponseType { get; set; }
         /// <summary>
         /// The preferred type of control to display.
         /// </summary>
-        /// <value>
-        /// The preferred type of control to display.
-        /// </value>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
         public PreferenceEnum? Preference { get; set; }
         /// <summary>
         /// The text of the response.
         /// </summary>
-        /// <value>
-        /// The text of the response.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// How long to pause, in milliseconds.
         /// </summary>
-        /// <value>
-        /// How long to pause, in milliseconds.
-        /// </value>
         [JsonProperty("time", NullValueHandling = NullValueHandling.Ignore)]
         public long? Time { get; set; }
         /// <summary>
         /// Whether to send a \"user is typing\" event during the pause.
         /// </summary>
-        /// <value>
-        /// Whether to send a "user is typing" event during the pause.
-        /// </value>
         [JsonProperty("typing", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Typing { get; set; }
         /// <summary>
         /// The URL of the image.
         /// </summary>
-        /// <value>
-        /// The URL of the image.
-        /// </value>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
         /// The title to show before the response.
         /// </summary>
-        /// <value>
-        /// The title to show before the response.
-        /// </value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
         /// The description to show with the the response.
         /// </summary>
-        /// <value>
-        /// The description to show with the the response.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// An array of objects describing the options from which the user can choose.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the options from which the user can choose.
-        /// </value>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeOutputOptionsElement> Options { get; set; }
         /// <summary>
         /// A message to be sent to the human agent who will be taking over the conversation.
         /// </summary>
-        /// <value>
-        /// A message to be sent to the human agent who will be taking over the conversation.
-        /// </value>
         [JsonProperty("message_to_human_agent", NullValueHandling = NullValueHandling.Ignore)]
         public string MessageToHumanAgent { get; set; }
         /// <summary>
         /// A label identifying the topic of the conversation, derived from the **user_label** property of the relevant
         /// node.
         /// </summary>
-        /// <value>
-        /// A label identifying the topic of the conversation, derived from the **user_label** property of the relevant
-        /// node.
-        /// </value>
         [JsonProperty("topic", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Topic { get; private set; }
         /// <summary>
@@ -209,12 +171,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// **Note:** The **suggestions** property is part of the disambiguation feature, which is only available for
         /// Premium users.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the possible matching dialog nodes from which the user can choose.
-        ///
-        /// **Note:** The **suggestions** property is part of the disambiguation feature, which is only available for
-        /// Premium users.
-        /// </value>
         [JsonProperty("suggestions", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogSuggestion> Suggestions { get; set; }
     }

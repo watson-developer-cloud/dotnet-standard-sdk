@@ -53,9 +53,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// Specifies the type of value.
         /// </summary>
-        /// <value>
-        /// Specifies the type of value.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public ValueTypeEnum? ValueType { get; set; }
         /// <summary>
@@ -64,20 +61,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// - It cannot consist of only whitespace characters.
         /// - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>
-        /// The text of the entity value. This string must conform to the following restrictions:
-        /// - It cannot contain carriage return, newline, or tab characters.
-        /// - It cannot consist of only whitespace characters.
-        /// - It must be no longer than 64 characters.
-        /// </value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string Value { get; set; }
         /// <summary>
         /// Any metadata related to the entity value.
         /// </summary>
-        /// <value>
-        /// Any metadata related to the entity value.
-        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
@@ -87,13 +75,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// - It cannot consist of only whitespace characters.
         /// - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>
-        /// An array containing any synonyms for the entity value. You can provide either synonyms or patterns (as
-        /// indicated by **type**), but not both. A synonym must conform to the following restrictions:
-        /// - It cannot contain carriage return, newline, or tab characters.
-        /// - It cannot consist of only whitespace characters.
-        /// - It must be no longer than 64 characters.
-        /// </value>
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
         /// <summary>
@@ -102,12 +83,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// information about how to specify a pattern, see the
         /// [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
         /// </summary>
-        /// <value>
-        /// An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by
-        /// **type**), but not both. A pattern is a regular expression no longer than 512 characters. For more
-        /// information about how to specify a pattern, see the
-        /// [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
-        /// </value>
         [JsonProperty("patterns", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Patterns { get; set; }
     }

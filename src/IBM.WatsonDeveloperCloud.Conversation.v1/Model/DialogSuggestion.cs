@@ -28,30 +28,18 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The user-facing label for the disambiguation option. This label is taken from the **user_label** property of
         /// the corresponding dialog node.
         /// </summary>
-        /// <value>
-        /// The user-facing label for the disambiguation option. This label is taken from the **user_label** property of
-        /// the corresponding dialog node.
-        /// </value>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
         /// <summary>
         /// An object defining the message input, intents, and entities to be sent to the Conversation service if the
         /// user selects the corresponding disambiguation option.
         /// </summary>
-        /// <value>
-        /// An object defining the message input, intents, and entities to be sent to the Conversation service if the
-        /// user selects the corresponding disambiguation option.
-        /// </value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public DialogSuggestionValue Value { get; set; }
         /// <summary>
         /// The dialog output that will be returned from the Conversation service if the user selects the corresponding
         /// option.
         /// </summary>
-        /// <value>
-        /// The dialog output that will be returned from the Conversation service if the user selects the corresponding
-        /// option.
-        /// </value>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public object Output { get; set; }
     }

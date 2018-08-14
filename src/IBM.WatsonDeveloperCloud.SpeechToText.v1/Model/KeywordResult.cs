@@ -27,33 +27,21 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// <summary>
         /// A specified keyword normalized to the spoken phrase that matched in the audio input.
         /// </summary>
-        /// <value>
-        /// A specified keyword normalized to the spoken phrase that matched in the audio input.
-        /// </value>
         [JsonProperty("normalized_text", NullValueHandling = NullValueHandling.Ignore)]
         public string NormalizedText { get; set; }
         /// <summary>
         /// The start time in seconds of the keyword match.
         /// </summary>
-        /// <value>
-        /// The start time in seconds of the keyword match.
-        /// </value>
         [JsonProperty("start_time", NullValueHandling = NullValueHandling.Ignore)]
         public double? StartTime { get; set; }
         /// <summary>
         /// The end time in seconds of the keyword match.
         /// </summary>
-        /// <value>
-        /// The end time in seconds of the keyword match.
-        /// </value>
         [JsonProperty("end_time", NullValueHandling = NullValueHandling.Ignore)]
         public double? EndTime { get; set; }
         /// <summary>
         /// A confidence score for the keyword match in the range of 0.0 to 1.0.
         /// </summary>
-        /// <value>
-        /// A confidence score for the keyword match in the range of 0.0 to 1.0.
-        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
     }

@@ -21,11 +21,9 @@ using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
@@ -94,6 +92,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="metaData"></param>
         /// <param name="audio"></param>
         /// <returns></returns>
+        [Obsolete("Recognize using metadata is deprecated. Please set options using recognize parameters.")]
         public SpeechRecognitionResults Recognize(string contentType, Metadata metaData, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "")
         {
             if (metaData == null)
@@ -610,6 +609,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         }
     }
 
+    [Obsolete("Metadata is obsolete. Please use method parameters to set options.")]
     public class Metadata
     {
         /// <summary>

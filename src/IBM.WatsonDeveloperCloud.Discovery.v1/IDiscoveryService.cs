@@ -18,6 +18,8 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
+using System;
+using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {

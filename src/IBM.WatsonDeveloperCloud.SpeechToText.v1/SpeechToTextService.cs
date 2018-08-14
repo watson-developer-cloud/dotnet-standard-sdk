@@ -322,7 +322,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
-                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                if (keywords != null)
+                    restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
@@ -339,7 +340,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                restRequest.WithBody<byte[]>(audio);
+                var audioContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                audioContent.Headers.ContentType = audioType;
+                restRequest.WithBodyContent(audioContent);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<SpeechRecognitionResults>().Result;
@@ -666,7 +671,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                restRequest.WithBody<byte[]>(audio);
+                var audioContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                audioContent.Headers.ContentType = audioType;
+                restRequest.WithBodyContent(audioContent);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<RecognitionJob>().Result;
@@ -2307,7 +2316,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithBody<byte[]>(audioResource);
+                var audioResourceContent = new ByteArrayContent(audioResource);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioResourceType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceType);
+                audioResourceContent.Headers.ContentType = audioResourceType;
+                restRequest.WithBodyContent(audioResourceContent);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;

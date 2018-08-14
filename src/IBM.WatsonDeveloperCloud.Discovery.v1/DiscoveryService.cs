@@ -320,7 +320,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                if (collectionIds != null && collectionIds.Count > 0)
+                    restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
@@ -1649,7 +1650,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
+                if (collectionIds != null && collectionIds.Count > 0)
+                    restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
@@ -1660,18 +1662,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                if (returnFields != null && returnFields.Count > 0)
+                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                if (sort != null && sort.Count > 0)
+                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
                 if (highlight != null)
                     restRequest.WithArgument("highlight", highlight);
                 if (!string.IsNullOrEmpty(deduplicateField))
                     restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
                     restRequest.WithArgument("similar", similar);
-                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (similarDocumentIds != null && similarDocumentIds.Count > 0)
+                    restRequest.WithArgument("similar.document_ids", string.Join(",", similarDocumentIds.ToArray()));
+                if (similarFields != null && similarFields.Count > 0)
+                    restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryNoticesResponse>().Result;
@@ -1895,13 +1901,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
+                if (returnFields != null && returnFields.Count > 0)
+                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                if (sort != null && sort.Count > 0)
+                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
                 if (highlight != null)
                     restRequest.WithArgument("highlight", highlight);
-                restRequest.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
+                if (passagesFields != null && passagesFields.Count > 0)
+                    restRequest.WithArgument("passages.fields", string.Join(",", passagesFields.ToArray()));
                 if (passagesCount != null)
                     restRequest.WithArgument("passages.count", passagesCount);
                 if (passagesCharacters != null)
@@ -1910,8 +1919,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
                     restRequest.WithArgument("similar", similar);
-                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
-                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
+                if (similarDocumentIds != null && similarDocumentIds.Count > 0)
+                    restRequest.WithArgument("similar.document_ids", string.Join(",", similarDocumentIds.ToArray()));
+                if (similarFields != null && similarFields.Count > 0)
+                    restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryNoticesResponse>().Result;
@@ -2952,7 +2963,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("count", count);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                if (sort != null && sort.Count > 0)
+                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<LogQueryResponse>().Result;

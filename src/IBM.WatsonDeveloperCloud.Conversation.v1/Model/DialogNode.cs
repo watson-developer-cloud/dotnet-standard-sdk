@@ -283,7 +283,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public DialogNodeOutput Output { get; set; }
         /// <summary>
         /// The context (if defined) for the dialog node.
         /// </summary>

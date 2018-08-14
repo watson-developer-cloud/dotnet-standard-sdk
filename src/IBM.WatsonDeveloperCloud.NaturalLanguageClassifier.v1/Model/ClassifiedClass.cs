@@ -28,18 +28,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// A decimal percentage that represents the confidence that Watson has in this class. Higher values represent
         /// higher confidences.
         /// </summary>
-        /// <value>
-        /// A decimal percentage that represents the confidence that Watson has in this class. Higher values represent
-        /// higher confidences.
-        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
         /// <summary>
         /// Class label.
         /// </summary>
-        /// <value>
-        /// Class label.
-        /// </value>
         [JsonProperty("class_name", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassName { get; set; }
     }

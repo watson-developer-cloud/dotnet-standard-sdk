@@ -79,24 +79,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// has the wrong format or sampling rate, or because it is corrupted). For an archive file, the entire archive
         /// is invalid if any of its audio files are invalid.
         /// </summary>
-        /// <value>
-        /// The status of the audio resource:
-        /// * `ok` indicates that the service has successfully analyzed the audio data. The data can be used to train
-        /// the custom model.
-        /// * `being_processed` indicates that the service is still analyzing the audio data. The service cannot accept
-        /// requests to add new audio resources or to train the custom model until its analysis is complete.
-        /// * `invalid` indicates that the audio data is not valid for training the custom model (possibly because it
-        /// has the wrong format or sampling rate, or because it is corrupted). For an archive file, the entire archive
-        /// is invalid if any of its audio files are invalid.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The total seconds of audio in the audio resource. The value is always a whole number.
         /// </summary>
-        /// <value>
-        /// The total seconds of audio in the audio resource. The value is always a whole number.
-        /// </value>
         [JsonProperty("duration", NullValueHandling = NullValueHandling.Ignore)]
         public double? Duration { get; set; }
         /// <summary>
@@ -105,22 +92,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// **For an audio-type resource,** the user-specified name of the resource or the name of the audio file that
         /// the user added for the resource. The value depends on the method that is called.
         /// </summary>
-        /// <value>
-        /// **For an archive-type resource,** the user-specified name of the resource.
-        ///
-        /// **For an audio-type resource,** the user-specified name of the resource or the name of the audio file that
-        /// the user added for the resource. The value depends on the method that is called.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// An `AudioDetails` object that provides detailed information about the audio resource. The object is empty
         /// until the service finishes processing the audio.
         /// </summary>
-        /// <value>
-        /// An `AudioDetails` object that provides detailed information about the audio resource. The object is empty
-        /// until the service finishes processing the audio.
-        /// </value>
         [JsonProperty("details", NullValueHandling = NullValueHandling.Ignore)]
         public AudioDetails Details { get; set; }
     }

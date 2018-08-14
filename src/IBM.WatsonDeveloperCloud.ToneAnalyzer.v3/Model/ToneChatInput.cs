@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// <summary>
         /// An array of `Utterance` objects that provides the input content that the service is to analyze.
         /// </summary>
-        /// <value>
-        /// An array of `Utterance` objects that provides the input content that the service is to analyze.
-        /// </value>
         [JsonProperty("utterances", NullValueHandling = NullValueHandling.Ignore)]
         public List<Utterance> Utterances { get; set; }
     }

@@ -70,33 +70,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `weekly`: Runs every week on Sunday between 00:00 and 06:00.
         /// -  `monthly`: Runs the on the first Sunday of every month between 00:00 and 06:00.
         /// </summary>
-        /// <value>
-        /// The crawl schedule in the specified **time_zone**.
-        ///
-        /// -  `daily`: Runs every day between 00:00 and 06:00.
-        /// -  `weekly`: Runs every week on Sunday between 00:00 and 06:00.
-        /// -  `monthly`: Runs the on the first Sunday of every month between 00:00 and 06:00.
-        /// </value>
         [JsonProperty("frequency", NullValueHandling = NullValueHandling.Ignore)]
         public FrequencyEnum? Frequency { get; set; }
         /// <summary>
         /// When `true`, the source is re-crawled based on the **frequency** field in this object. When `false` the
         /// source is not re-crawled; When `false` and connecting to Salesforce the source is crawled annually.
         /// </summary>
-        /// <value>
-        /// When `true`, the source is re-crawled based on the **frequency** field in this object. When `false` the
-        /// source is not re-crawled; When `false` and connecting to Salesforce the source is crawled annually.
-        /// </value>
         [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Enabled { get; set; }
         /// <summary>
         /// The time zone to base source crawl times on. Possible values correspond to the IANA (Internet Assigned
         /// Numbers Authority) time zones list.
         /// </summary>
-        /// <value>
-        /// The time zone to base source crawl times on. Possible values correspond to the IANA (Internet Assigned
-        /// Numbers Authority) time zones list.
-        /// </value>
         [JsonProperty("time_zone", NullValueHandling = NullValueHandling.Ignore)]
         public string TimeZone { get; set; }
     }

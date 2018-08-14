@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Enables/disables the Document Segmentation feature.
         /// </summary>
-        /// <value>
-        /// Enables/disables the Document Segmentation feature.
-        /// </value>
         [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Enabled { get; set; }
         /// <summary>
         /// Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6.
         /// </summary>
-        /// <value>
-        /// Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6.
-        /// </value>
         [JsonProperty("selector_tags", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> SelectorTags { get; set; }
     }

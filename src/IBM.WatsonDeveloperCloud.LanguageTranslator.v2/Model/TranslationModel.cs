@@ -100,89 +100,55 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// Availability of a model.
         /// </summary>
-        /// <value>
-        /// Availability of a model.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// A globally unique string that identifies the underlying model that is used for translation.
         /// </summary>
-        /// <value>
-        /// A globally unique string that identifies the underlying model that is used for translation.
-        /// </value>
         [JsonProperty("model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ModelId { get; set; }
         /// <summary>
         /// Optional name that can be specified when the model is created.
         /// </summary>
-        /// <value>
-        /// Optional name that can be specified when the model is created.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Translation source language code.
         /// </summary>
-        /// <value>
-        /// Translation source language code.
-        /// </value>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
         /// Translation target language code.
         /// </summary>
-        /// <value>
-        /// Translation target language code.
-        /// </value>
         [JsonProperty("target", NullValueHandling = NullValueHandling.Ignore)]
         public string Target { get; set; }
         /// <summary>
         /// Model ID of the base model that was used to customize the model. If the model is not a custom model, this
         /// will be an empty string.
         /// </summary>
-        /// <value>
-        /// Model ID of the base model that was used to customize the model. If the model is not a custom model, this
-        /// will be an empty string.
-        /// </value>
         [JsonProperty("base_model_id", NullValueHandling = NullValueHandling.Ignore)]
         public string BaseModelId { get; set; }
         /// <summary>
         /// The domain of the translation model.
         /// </summary>
-        /// <value>
-        /// The domain of the translation model.
-        /// </value>
         [JsonProperty("domain", NullValueHandling = NullValueHandling.Ignore)]
         public string Domain { get; set; }
         /// <summary>
         /// Whether this model can be used as a base for customization. Customized models are not further customizable,
         /// and some base models are not customizable.
         /// </summary>
-        /// <value>
-        /// Whether this model can be used as a base for customization. Customized models are not further customizable,
-        /// and some base models are not customizable.
-        /// </value>
         [JsonProperty("customizable", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Customizable { get; set; }
         /// <summary>
         /// Whether or not the model is a default model. A default model is the model for a given language pair that
         /// will be used when that language pair is specified in the source and target parameters.
         /// </summary>
-        /// <value>
-        /// Whether or not the model is a default model. A default model is the model for a given language pair that
-        /// will be used when that language pair is specified in the source and target parameters.
-        /// </value>
         [JsonProperty("default_model", NullValueHandling = NullValueHandling.Ignore)]
         public bool? DefaultModel { get; set; }
         /// <summary>
         /// Either an empty string, indicating the model is not a custom model, or the ID of the service instance that
         /// created the model.
         /// </summary>
-        /// <value>
-        /// Either an empty string, indicating the model is not a custom model, or the ID of the service instance that
-        /// created the model.
-        /// </value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
     }

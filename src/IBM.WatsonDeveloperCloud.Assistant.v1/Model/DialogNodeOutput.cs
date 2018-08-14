@@ -29,17 +29,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// An array of objects describing the output defined for the dialog node.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the output defined for the dialog node.
-        /// </value>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Generic { get; set; }
         /// <summary>
         /// Options that modify how specified output is handled.
         /// </summary>
-        /// <value>
-        /// Options that modify how specified output is handled.
-        /// </value>
         [JsonProperty("modifiers", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Modifiers { get; set; }
     }

@@ -67,12 +67,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
         /// </summary>
-        /// <value>
-        /// The type of source to connect to.
-        /// -  `box` indicates the configuration is to connect an instance of Enterprise Box.
-        /// -  `salesforce` indicates the configuration is to connect to Salesforce.
-        /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -80,27 +74,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// **credentials** method. The **source_type** of the credentials used must match the **type** field specified
         /// in this object.
         /// </summary>
-        /// <value>
-        /// The **credential_id** of the credentials to use to connect to the source. Credentials are defined using the
-        /// **credentials** method. The **source_type** of the credentials used must match the **type** field specified
-        /// in this object.
-        /// </value>
         [JsonProperty("credential_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CredentialId { get; set; }
         /// <summary>
         /// Object containing the schedule information for the source.
         /// </summary>
-        /// <value>
-        /// Object containing the schedule information for the source.
-        /// </value>
         [JsonProperty("schedule", NullValueHandling = NullValueHandling.Ignore)]
         public SourceSchedule Schedule { get; set; }
         /// <summary>
         /// The **options** object defines which items to crawl from the source system.
         /// </summary>
-        /// <value>
-        /// The **options** object defines which items to crawl from the source system.
-        /// </value>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public SourceOptions Options { get; set; }
     }

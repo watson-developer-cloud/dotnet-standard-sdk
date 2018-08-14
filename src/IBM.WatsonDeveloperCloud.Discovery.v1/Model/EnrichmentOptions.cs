@@ -103,30 +103,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
         /// Not all features support all languages, automatic detection is recommended.
         /// </summary>
-        /// <value>
-        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
-        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
-        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
-        /// Not all features support all languages, automatic detection is recommended.
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public LanguageEnum? Language { get; set; }
         /// <summary>
         /// An object representing the enrichment features that will be applied to the specified field.
         /// </summary>
-        /// <value>
-        /// An object representing the enrichment features that will be applied to the specified field.
-        /// </value>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentFeatures Features { get; set; }
         /// <summary>
         /// *For use with `elements` enrichments only.* The element extraction model to use. Models available are:
         /// `contract`.
         /// </summary>
-        /// <value>
-        /// *For use with `elements` enrichments only.* The element extraction model to use. Models available are:
-        /// `contract`.
-        /// </value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
     }

@@ -55,36 +55,22 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
         /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
         /// </summary>
-        /// <value>
-        /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
-        /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
-        /// </value>
         [JsonProperty("sensitivity", NullValueHandling = NullValueHandling.Ignore)]
         public SensitivityEnum? Sensitivity { get; set; }
         /// <summary>
         /// The text of the introductory prompt that accompanies disambiguation options presented to the user.
         /// </summary>
-        /// <value>
-        /// The text of the introductory prompt that accompanies disambiguation options presented to the user.
-        /// </value>
         [JsonProperty("prompt", NullValueHandling = NullValueHandling.Ignore)]
         public string Prompt { get; set; }
         /// <summary>
         /// The user-facing label for the option users can select if none of the suggested options is correct. If no
         /// value is specified for this property, this option does not appear.
         /// </summary>
-        /// <value>
-        /// The user-facing label for the option users can select if none of the suggested options is correct. If no
-        /// value is specified for this property, this option does not appear.
-        /// </value>
         [JsonProperty("none_of_the_above_prompt", NullValueHandling = NullValueHandling.Ignore)]
         public string NoneOfTheAbovePrompt { get; set; }
         /// <summary>
         /// Whether the disambiguation feature is enabled for the workspace.
         /// </summary>
-        /// <value>
-        /// Whether the disambiguation feature is enabled for the workspace.
-        /// </value>
         [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Enabled { get; set; }
     }

@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The match the aggregated results queried for.
         /// </summary>
-        /// <value>
-        /// The match the aggregated results queried for.
-        /// </value>
         [JsonProperty("match", NullValueHandling = NullValueHandling.Ignore)]
         public string Match { get; set; }
     }

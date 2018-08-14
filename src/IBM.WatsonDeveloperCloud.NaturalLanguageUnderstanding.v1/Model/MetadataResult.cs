@@ -28,41 +28,26 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The authors of the document.
         /// </summary>
-        /// <value>
-        /// The authors of the document.
-        /// </value>
         [JsonProperty("authors", NullValueHandling = NullValueHandling.Ignore)]
         public List<Author> Authors { get; set; }
         /// <summary>
         /// The publication date in the format ISO 8601.
         /// </summary>
-        /// <value>
-        /// The publication date in the format ISO 8601.
-        /// </value>
         [JsonProperty("publication_date", NullValueHandling = NullValueHandling.Ignore)]
         public string PublicationDate { get; set; }
         /// <summary>
         /// The title of the document.
         /// </summary>
-        /// <value>
-        /// The title of the document.
-        /// </value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
         /// URL of a prominent image on the webpage.
         /// </summary>
-        /// <value>
-        /// URL of a prominent image on the webpage.
-        /// </value>
         [JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
         public string Image { get; set; }
         /// <summary>
         /// RSS/ATOM feeds found on the webpage.
         /// </summary>
-        /// <value>
-        /// RSS/ATOM feeds found on the webpage.
-        /// </value>
         [JsonProperty("feeds", NullValueHandling = NullValueHandling.Ignore)]
         public List<Feed> Feeds { get; set; }
     }

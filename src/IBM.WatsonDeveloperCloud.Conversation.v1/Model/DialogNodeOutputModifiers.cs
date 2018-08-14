@@ -29,11 +29,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// dialog nodes. If this option is set to **false**, new values will be appended to previously specified
         /// values.
         /// </summary>
-        /// <value>
-        /// Whether values in the output will overwrite output values in an array specified by previously executed
-        /// dialog nodes. If this option is set to **false**, new values will be appended to previously specified
-        /// values.
-        /// </value>
         [JsonProperty("overwrite", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Overwrite { get; set; }
     }

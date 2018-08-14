@@ -28,19 +28,12 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The name of the entity.
         /// </summary>
-        /// <value>
-        /// The name of the entity.
-        /// </value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public string Entity { get; set; }
         /// <summary>
         /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
         /// text.
         /// </summary>
-        /// <value>
-        /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
-        /// text.
-        /// </value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public List<long?> Location { get; set; }
     }

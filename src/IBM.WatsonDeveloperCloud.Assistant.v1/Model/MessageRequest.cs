@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
         /// <summary>
         /// Entities to use when evaluating the message. Include entities from the previous response to continue using
         /// those entities rather than detecting entities in the new input.
@@ -58,7 +58,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// multiple requests.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public OutputData Output { get; set; }
+        public dynamic Output { get; set; }
     }
 
 }

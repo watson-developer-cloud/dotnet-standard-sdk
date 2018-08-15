@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud
         /// The version number for this SDK build. Added to the header in 
         /// each request as `User-Agent`.
         /// </summary>
-        public const string SDK_VERSION = "watson-apis-dotnet-sdk/2.6.0";
+        public const string SDK_VERSION = "watson-apis-dotnet-sdk/2.7.0";
         /// <summary>
         /// A constant used to access custom request headers in the dynamic
         /// customData object.

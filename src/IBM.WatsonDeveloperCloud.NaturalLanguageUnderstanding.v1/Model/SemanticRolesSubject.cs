@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Text that corresponds to the subject role.
         /// </summary>
-        /// <value>
-        /// Text that corresponds to the subject role.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>

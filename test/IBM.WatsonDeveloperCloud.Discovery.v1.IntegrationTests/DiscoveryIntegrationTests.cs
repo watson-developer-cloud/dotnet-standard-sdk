@@ -510,7 +510,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Credentials
-        //[TestMethod]
+        [TestMethod]
         public void TestCredentials_Success()
         {
             var listCredentialsResult = ListCredentials(_environmentId);
@@ -573,6 +573,103 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(deleteCredentialsResult);
             Assert.IsTrue(deleteCredentialsResult.CredentialId == credentialId);
             Assert.IsTrue(deleteCredentialsResult.Status == Model.DeleteCredentials.StatusEnum.DELETED);
+        }
+        #endregion
+
+        #region Events
+        [TestMethod]
+        public void TestCreateEvent_Success()
+        {
+            Configuration configuration = new Configuration()
+            {
+                Name = _createdConfigurationName,
+                Description = _createdConfigurationDescription,
+
+            };
+
+            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
+            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+
+            var listCollectionsResult = ListCollections(_environmentId);
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = _createdCollectionLanguage,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            DocumentAccepted addDocumentResult;
+            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            {
+                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                _createdDocumentId = addDocumentResult.DocumentId;
+            }
+
+            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+
+            var queryResult = Query(_environmentId, _createdCollectionId, naturalLanguageQuery: "what year did watson play jeopardy");
+
+            CreateEventObject queryEvent = new CreateEventObject()
+            {
+                Type = CreateEventObject.TypeEnum.CLICK,
+                Data = new EventData()
+                {
+                    EnvironmentId = _environmentId,
+                    SessionToken = queryResult.SessionToken,
+                    CollectionId = _createdCollectionId,
+                    DocumentId = _createdDocumentId
+                }
+            };
+
+            var createEventResult = CreateEvent(queryEvent);
+
+            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+
+            Assert.IsNotNull(queryResult);
+            Assert.IsNotNull(createEventResult);
+            Assert.IsNotNull(createEventResult.Data);
+            Assert.IsTrue(createEventResult.Data.EnvironmentId == _environmentId);
+            Assert.IsTrue(createEventResult.Data.SessionToken == queryResult.SessionToken);
+            Assert.IsTrue(createEventResult.Data.CollectionId== _createdCollectionId);
+            Assert.IsTrue(createEventResult.Data.DocumentId == _createdDocumentId);
+        }
+        #endregion
+
+        #region metrics
+        [TestMethod]
+        public void TestMetrics_Success()
+        {
+            var getMetricsEventRateResult = GetMetricsEventRate();
+
+            var getMetricsQueryResult = GetMetricsQuery();
+
+            var getMetricsQueryEventResult = GetMetricsQueryEvent();
+
+            var getMetricsQueryNoResultsResult = GetMetricsQueryNoResults();
+
+            var getMetricsQueryTokenEventResult = GetMetricsQueryTokenEvent();
+
+            var queryLogResult = QueryLog();
+
+            Assert.IsNotNull(queryLogResult);
+            Assert.IsNotNull(queryLogResult.Results);
+            Assert.IsNotNull(getMetricsQueryTokenEventResult);
+            Assert.IsNotNull(getMetricsQueryTokenEventResult.Aggregations);
+            Assert.IsNotNull(getMetricsQueryNoResultsResult);
+            Assert.IsNotNull(getMetricsQueryNoResultsResult.Aggregations);
+            Assert.IsNotNull(getMetricsQueryEventResult);
+            Assert.IsNotNull(getMetricsQueryEventResult.Aggregations);
+            Assert.IsNotNull(getMetricsQueryResult);
+            Assert.IsNotNull(getMetricsQueryResult.Aggregations);
+            Assert.IsNotNull(getMetricsEventRateResult);
+            Assert.IsNotNull(getMetricsEventRateResult.Aggregations);
         }
         #endregion
 
@@ -1113,10 +1210,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Query
-        private QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
+        private QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Query()");
-            var result = _service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
+            var result = _service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, loggingOptOut: loggingOptOut, customData: customData);
 
             if (result != null)
             {
@@ -1391,6 +1488,139 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to DeleteUserData()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateEvent
+        private CreateEventResponse CreateEvent(CreateEventObject queryEvent, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateEvent()");
+            var result = _service.CreateEvent(queryEvent: queryEvent, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateEvent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateEvent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetMetricsEventRate
+        private MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetMetricsEventRate()");
+            var result = _service.GetMetricsEventRate(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetMetricsEventRate() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetMetricsEventRate()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetMetricsQuery
+        private MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetMetricsQuery()");
+            var result = _service.GetMetricsQuery(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetMetricsQuery() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetMetricsQuery()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetMetricsQueryEvent
+        private MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetMetricsQueryEvent()");
+            var result = _service.GetMetricsQueryEvent(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetMetricsQueryEvent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetMetricsQueryEvent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetMetricsQueryNoResults
+        private MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetMetricsQueryNoResults()");
+            var result = _service.GetMetricsQueryNoResults(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetMetricsQueryNoResults() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetMetricsQueryNoResults()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetMetricsQueryTokenEvent
+        private MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetMetricsQueryTokenEvent()");
+            var result = _service.GetMetricsQueryTokenEvent(count: count, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetMetricsQueryTokenEvent() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetMetricsQueryTokenEvent()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region QueryLog
+        private LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to QueryLog()");
+            var result = _service.QueryLog(filter: filter, query: query, count: count, offset: offset, sort: sort, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("QueryLog() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to QueryLog()");
             }
 
             return result;

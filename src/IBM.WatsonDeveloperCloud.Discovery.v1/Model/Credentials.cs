@@ -67,20 +67,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
         /// </summary>
-        /// <value>
-        /// The source that this credentials object connects to.
-        /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
-        /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
-        /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
-        /// </value>
         [JsonProperty("source_type", NullValueHandling = NullValueHandling.Ignore)]
         public SourceTypeEnum? SourceType { get; set; }
         /// <summary>
         /// Unique identifier for this set of credentials.
         /// </summary>
-        /// <value>
-        /// Unique identifier for this set of credentials.
-        /// </value>
         [JsonProperty("credential_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string CredentialId { get; private set; }
         /// <summary>
@@ -88,11 +79,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         ///
         /// Obtain credentials for your source from the administrator of the source.
         /// </summary>
-        /// <value>
-        /// Object containing details of the stored credentials.
-        ///
-        /// Obtain credentials for your source from the administrator of the source.
-        /// </value>
         [JsonProperty("credential_details", NullValueHandling = NullValueHandling.Ignore)]
         public CredentialDetails CredentialDetails { get; set; }
     }

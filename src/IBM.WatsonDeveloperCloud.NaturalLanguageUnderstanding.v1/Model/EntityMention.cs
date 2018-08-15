@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Entity mention text.
         /// </summary>
-        /// <value>
-        /// Entity mention text.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// Character offsets indicating the beginning and end of the mention in the analyzed text.
         /// </summary>
-        /// <value>
-        /// Character offsets indicating the beginning and end of the mention in the analyzed text.
-        /// </value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public List<long?> Location { get; set; }
     }

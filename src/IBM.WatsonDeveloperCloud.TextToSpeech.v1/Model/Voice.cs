@@ -27,69 +27,43 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// <summary>
         /// The URI of the voice.
         /// </summary>
-        /// <value>
-        /// The URI of the voice.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// The gender of the voice: `male` or `female`.
         /// </summary>
-        /// <value>
-        /// The gender of the voice: `male` or `female`.
-        /// </value>
         [JsonProperty("gender", NullValueHandling = NullValueHandling.Ignore)]
         public string Gender { get; set; }
         /// <summary>
         /// The name of the voice. Use this as the voice identifier in all requests.
         /// </summary>
-        /// <value>
-        /// The name of the voice. Use this as the voice identifier in all requests.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The language and region of the voice (for example, `en-US`).
         /// </summary>
-        /// <value>
-        /// The language and region of the voice (for example, `en-US`).
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// A textual description of the voice.
         /// </summary>
-        /// <value>
-        /// A textual description of the voice.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// If `true`, the voice can be customized; if `false`, the voice cannot be customized. (Same as
         /// `custom_pronunciation`; maintained for backward compatibility.).
         /// </summary>
-        /// <value>
-        /// If `true`, the voice can be customized; if `false`, the voice cannot be customized. (Same as
-        /// `custom_pronunciation`; maintained for backward compatibility.).
-        /// </value>
         [JsonProperty("customizable", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Customizable { get; set; }
         /// <summary>
         /// Describes the additional service features supported with the voice.
         /// </summary>
-        /// <value>
-        /// Describes the additional service features supported with the voice.
-        /// </value>
         [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }
         /// <summary>
         /// Returns information about a specified custom voice model. This field is returned only by the **Get a voice**
         /// method and only when you specify the customization ID of a custom voice model.
         /// </summary>
-        /// <value>
-        /// Returns information about a specified custom voice model. This field is returned only by the **Get a voice**
-        /// method and only when you specify the customization ID of a custom voice model.
-        /// </value>
         [JsonProperty("customization", NullValueHandling = NullValueHandling.Ignore)]
         public VoiceModel Customization { get; set; }
     }

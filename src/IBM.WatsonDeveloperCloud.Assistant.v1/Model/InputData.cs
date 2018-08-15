@@ -28,10 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
         /// must be no longer than 2048 characters.
         /// </summary>
-        /// <value>
-        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
-        /// must be no longer than 2048 characters.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

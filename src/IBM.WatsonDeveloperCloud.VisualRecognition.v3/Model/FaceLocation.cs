@@ -27,33 +27,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Width in pixels of face region.
         /// </summary>
-        /// <value>
-        /// Width in pixels of face region.
-        /// </value>
         [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
         public float? Width { get; set; }
         /// <summary>
         /// Height in pixels of face region.
         /// </summary>
-        /// <value>
-        /// Height in pixels of face region.
-        /// </value>
         [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
         public float? Height { get; set; }
         /// <summary>
         /// X-position of top-left pixel of face region.
         /// </summary>
-        /// <value>
-        /// X-position of top-left pixel of face region.
-        /// </value>
         [JsonProperty("left", NullValueHandling = NullValueHandling.Ignore)]
         public float? Left { get; set; }
         /// <summary>
         /// Y-position of top-left pixel of face region.
         /// </summary>
-        /// <value>
-        /// Y-position of top-left pixel of face region.
-        /// </value>
         [JsonProperty("top", NullValueHandling = NullValueHandling.Ignore)]
         public float? Top { get; set; }
     }

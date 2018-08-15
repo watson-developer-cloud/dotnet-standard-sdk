@@ -28,33 +28,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The identified relationship type.
         /// </summary>
-        /// <value>
-        /// The identified relationship type.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
         /// The number of times the relationship is mentioned.
         /// </summary>
-        /// <value>
-        /// The number of times the relationship is mentioned.
-        /// </value>
         [JsonProperty("frequency", NullValueHandling = NullValueHandling.Ignore)]
         public long? Frequency { get; set; }
         /// <summary>
         /// Information about the relationship.
         /// </summary>
-        /// <value>
-        /// Information about the relationship.
-        /// </value>
         [JsonProperty("arguments", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryRelationsArgument> Arguments { get; set; }
         /// <summary>
         /// List of different evidentiary items to support the result.
         /// </summary>
-        /// <value>
-        /// List of different evidentiary items to support the result.
-        /// </value>
         [JsonProperty("evidence", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryEvidence> Evidence { get; set; }
     }

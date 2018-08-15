@@ -46,17 +46,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the document. A deleted document has the status deleted.
         /// </summary>
-        /// <value>
-        /// Status of the document. A deleted document has the status deleted.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the document.
-        /// </value>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
     }

@@ -27,19 +27,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The name of the Salesforce document object to crawl. For example, `case`.
         /// </summary>
-        /// <value>
-        /// The name of the Salesforce document object to crawl. For example, `case`.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The maximum number of documents to crawl for this document object. By default, all documents in the document
         /// object are crawled.
         /// </summary>
-        /// <value>
-        /// The maximum number of documents to crawl for this document object. By default, all documents in the document
-        /// object are crawled.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

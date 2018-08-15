@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// An array of objects describing the examples marked as irrelevant input.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the examples marked as irrelevant input.
-        /// </value>
         [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
         public List<Counterexample> Counterexamples { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>
-        /// The pagination data for the returned objects.
-        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

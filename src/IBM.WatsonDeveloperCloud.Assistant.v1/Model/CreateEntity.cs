@@ -31,46 +31,27 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// - It cannot begin with the reserved prefix `sys-`.
         /// - It must be no longer than 64 characters.
         /// </summary>
-        /// <value>
-        /// The name of the entity. This string must conform to the following restrictions:
-        /// - It can contain only Unicode alphanumeric, underscore, and hyphen characters.
-        /// - It cannot begin with the reserved prefix `sys-`.
-        /// - It must be no longer than 64 characters.
-        /// </value>
         [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
         public string Entity { get; set; }
         /// <summary>
         /// The description of the entity. This string cannot contain carriage return, newline, or tab characters, and
         /// it must be no longer than 128 characters.
         /// </summary>
-        /// <value>
-        /// The description of the entity. This string cannot contain carriage return, newline, or tab characters, and
-        /// it must be no longer than 128 characters.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// Any metadata related to the value.
         /// </summary>
-        /// <value>
-        /// Any metadata related to the value.
-        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
         /// An array of objects describing the entity values.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the entity values.
-        /// </value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateValue> Values { get; set; }
         /// <summary>
         /// Whether to use fuzzy matching for the entity.
         /// </summary>
-        /// <value>
-        /// Whether to use fuzzy matching for the entity.
-        /// </value>
         [JsonProperty("fuzzy_match", NullValueHandling = NullValueHandling.Ignore)]
         public bool? FuzzyMatch { get; set; }
     }

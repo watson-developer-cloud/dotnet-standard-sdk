@@ -27,19 +27,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Gender identified by the face. For example, `MALE` or `FEMALE`.
         /// </summary>
-        /// <value>
-        /// Gender identified by the face. For example, `MALE` or `FEMALE`.
-        /// </value>
         [JsonProperty("gender", NullValueHandling = NullValueHandling.Ignore)]
         public string Gender { get; set; }
         /// <summary>
         /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value
         /// for the property.
         /// </summary>
-        /// <value>
-        /// Confidence score in the range of 0 to 1. A higher score indicates greater confidence in the estimated value
-        /// for the property.
-        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

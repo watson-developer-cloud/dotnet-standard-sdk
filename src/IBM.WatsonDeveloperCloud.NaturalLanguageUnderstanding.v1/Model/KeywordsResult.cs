@@ -27,33 +27,21 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Relevance score from 0 to 1. Higher values indicate greater relevance.
         /// </summary>
-        /// <value>
-        /// Relevance score from 0 to 1. Higher values indicate greater relevance.
-        /// </value>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
         public float? Relevance { get; set; }
         /// <summary>
         /// The keyword text.
         /// </summary>
-        /// <value>
-        /// The keyword text.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// Emotion analysis results for the keyword, enabled with the \"emotion\" option.
         /// </summary>
-        /// <value>
-        /// Emotion analysis results for the keyword, enabled with the "emotion" option.
-        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }
         /// <summary>
         /// Sentiment analysis results for the keyword, enabled with the \"sentiment\" option.
         /// </summary>
-        /// <value>
-        /// Sentiment analysis results for the keyword, enabled with the "sentiment" option.
-        /// </value>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public FeatureSentimentResults Sentiment { get; set; }
     }

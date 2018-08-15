@@ -50,6 +50,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private string _acousticResourceUrl = "https://archive.org/download/Greatest_Speeches_of_the_20th_Century/KeynoteAddressforDemocraticConvention_64kb.mp3";
         private string _acousticResourceName = "firstOrbit";
         private string _acousticResourceMimeType = "audio/mpeg";
+        private string _testAudioPath = @"SpeechToTextTestData/test-audio.wav";
         private SpeechToTextService _service;
 
         [TestInitialize]
@@ -249,7 +250,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region Acoustic Customizations
-        //[TestMethod]
+        [TestMethod]
         public void TestAcousticCustomizations()
         {
             byte[] acousticResourceData = null;
@@ -365,7 +366,37 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             Assert.IsTrue(getSessionStatusResult.Session.SessionId == createSessionResult.SessionId);
         }
         #endregion
-        
+
+        #region Recognize
+        [TestMethod]
+        public void TestRecognize_Success()
+        {
+            var testAudio = File.ReadAllBytes(_testAudioPath);
+            var recognizeResult = _service.RecognizeSessionless(testAudio, "audio/wav");
+            Assert.IsNotNull(recognizeResult);
+        }
+        #endregion
+
+        #region Jobs
+        [TestMethod]
+        public void TestJobs_Success()
+        {
+            var testAudio = File.ReadAllBytes(_testAudioPath);
+            var createJobResult = _service.CreateJob(testAudio, "audio/mp3");
+            var jobId = createJobResult.Id;
+
+            var checkJobsResult = _service.CheckJobs();
+            var checkJobResult = _service.CheckJob(jobId);
+
+            var deleteJobResult = _service.DeleteJob(jobId);
+            Assert.IsNotNull(checkJobsResult);
+            Assert.IsNotNull(checkJobResult);
+            Assert.IsNotNull(createJobResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Id));
+            Assert.IsNotNull(deleteJobResult);
+        }
+        #endregion
+
         private void CheckCustomizationStatus(string classifierId)
         {
             var getLangaugeModelResult = _service.GetLanguageModel(classifierId);

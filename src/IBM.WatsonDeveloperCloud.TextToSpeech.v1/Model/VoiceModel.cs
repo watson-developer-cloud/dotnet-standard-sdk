@@ -29,44 +29,27 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// The customization ID (GUID) of the custom voice model. The **Create a custom model** method returns only
         /// this field. It does not not return the other fields of this object.
         /// </summary>
-        /// <value>
-        /// The customization ID (GUID) of the custom voice model. The **Create a custom model** method returns only
-        /// this field. It does not not return the other fields of this object.
-        /// </value>
         [JsonProperty("customization_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CustomizationId { get; set; }
         /// <summary>
         /// The name of the custom voice model.
         /// </summary>
-        /// <value>
-        /// The name of the custom voice model.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The language identifier of the custom voice model (for example, `en-US`).
         /// </summary>
-        /// <value>
-        /// The language identifier of the custom voice model (for example, `en-US`).
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The GUID of the service credentials for the instance of the service that owns the custom voice model.
         /// </summary>
-        /// <value>
-        /// The GUID of the service credentials for the instance of the service that owns the custom voice model.
-        /// </value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
         /// <summary>
         /// The date and time in Coordinated Universal Time (UTC) at which the custom voice model was created. The value
         /// is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
         /// </summary>
-        /// <value>
-        /// The date and time in Coordinated Universal Time (UTC) at which the custom voice model was created. The value
-        /// is provided in full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
-        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public string Created { get; set; }
         /// <summary>
@@ -74,19 +57,11 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// Equals `created` when a new voice model is first added but has yet to be updated. The value is provided in
         /// full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
         /// </summary>
-        /// <value>
-        /// The date and time in Coordinated Universal Time (UTC) at which the custom voice model was last modified.
-        /// Equals `created` when a new voice model is first added but has yet to be updated. The value is provided in
-        /// full ISO 8601 format (`YYYY-MM-DDThh:mm:ss.sTZD`).
-        /// </value>
         [JsonProperty("last_modified", NullValueHandling = NullValueHandling.Ignore)]
         public string LastModified { get; set; }
         /// <summary>
         /// The description of the custom voice model.
         /// </summary>
-        /// <value>
-        /// The description of the custom voice model.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
@@ -95,12 +70,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// empty if the custom model contains no words. This field is returned only by the **Get a voice** method and
         /// only when you specify the customization ID of a custom voice model.
         /// </summary>
-        /// <value>
-        /// An array of `Word` objects that lists the words and their translations from the custom voice model. The
-        /// words are listed in alphabetical order, with uppercase letters listed before lowercase letters. The array is
-        /// empty if the custom model contains no words. This field is returned only by the **Get a voice** method and
-        /// only when you specify the customization ID of a custom voice model.
-        /// </value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
         public List<Word> Words { get; set; }
     }

@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// An array of objects describing the entity mentions defined for an entity.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the entity mentions defined for an entity.
-        /// </value>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<EntityMention> Examples { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>
-        /// The pagination data for the returned objects.
-        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

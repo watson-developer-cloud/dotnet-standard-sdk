@@ -25,11 +25,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
     public class ClassifyInput : BaseModel
     {
         /// <summary>
-        /// The submitted phrase.
+        /// The submitted phrase. The maximum length is 2048 characters.
         /// </summary>
-        /// <value>
-        /// The submitted phrase.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

@@ -81,7 +81,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// classify text.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify. The maximum length of the text phrase is 1024 characters.</param>
+        /// <param name="body">Phrase to classify.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classification" />Classification</returns>
         public Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null)
@@ -130,10 +130,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Note that classifying Japanese texts is a beta feature.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify.
-        ///
-        /// The maximum length of the text phrase is 1024 characters. You can submit up to 30 text phrases in a
-        /// request.</param>
+        /// <param name="body">Phrase to classify. You can submit up to 30 text phrases in a request.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
         public ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)

@@ -27,25 +27,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Maximum number of semantic_roles results to return.
         /// </summary>
-        /// <value>
-        /// Maximum number of semantic_roles results to return.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
         /// <summary>
         /// Set this to true to return keyword information for subjects and objects.
         /// </summary>
-        /// <value>
-        /// Set this to true to return keyword information for subjects and objects.
-        /// </value>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Keywords { get; set; }
         /// <summary>
         /// Set this to true to return entity information for subjects and objects.
         /// </summary>
-        /// <value>
-        /// Set this to true to return entity information for subjects and objects.
-        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Entities { get; set; }
     }

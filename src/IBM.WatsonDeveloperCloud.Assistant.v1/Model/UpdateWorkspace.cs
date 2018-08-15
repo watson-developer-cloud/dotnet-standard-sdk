@@ -29,86 +29,53 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it
         /// must be no longer than 64 characters.
         /// </summary>
-        /// <value>
-        /// The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it
-        /// must be no longer than 64 characters.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The description of the workspace. This string cannot contain carriage return, newline, or tab characters,
         /// and it must be no longer than 128 characters.
         /// </summary>
-        /// <value>
-        /// The description of the workspace. This string cannot contain carriage return, newline, or tab characters,
-        /// and it must be no longer than 128 characters.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// The language of the workspace.
         /// </summary>
-        /// <value>
-        /// The language of the workspace.
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// An array of objects defining the intents for the workspace.
         /// </summary>
-        /// <value>
-        /// An array of objects defining the intents for the workspace.
-        /// </value>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateIntent> Intents { get; set; }
         /// <summary>
         /// An array of objects defining the entities for the workspace.
         /// </summary>
-        /// <value>
-        /// An array of objects defining the entities for the workspace.
-        /// </value>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateEntity> Entities { get; set; }
         /// <summary>
         /// An array of objects defining the nodes in the workspace dialog.
         /// </summary>
-        /// <value>
-        /// An array of objects defining the nodes in the workspace dialog.
-        /// </value>
         [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateDialogNode> DialogNodes { get; set; }
         /// <summary>
         /// An array of objects defining input examples that have been marked as irrelevant input.
         /// </summary>
-        /// <value>
-        /// An array of objects defining input examples that have been marked as irrelevant input.
-        /// </value>
         [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateCounterexample> Counterexamples { get; set; }
         /// <summary>
         /// Any metadata related to the workspace.
         /// </summary>
-        /// <value>
-        /// Any metadata related to the workspace.
-        /// </value>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
         /// Whether training data from the workspace can be used by IBM for general service improvements. `true`
         /// indicates that workspace training data is not to be used.
         /// </summary>
-        /// <value>
-        /// Whether training data from the workspace can be used by IBM for general service improvements. `true`
-        /// indicates that workspace training data is not to be used.
-        /// </value>
         [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
         public bool? LearningOptOut { get; set; }
         /// <summary>
         /// Global settings for the workspace.
         /// </summary>
-        /// <value>
-        /// Global settings for the workspace.
-        /// </value>
         [JsonProperty("system_settings", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettings SystemSettings { get; set; }
     }

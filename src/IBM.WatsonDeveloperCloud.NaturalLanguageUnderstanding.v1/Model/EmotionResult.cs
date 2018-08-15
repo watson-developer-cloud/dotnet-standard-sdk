@@ -29,17 +29,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The returned emotion results across the document.
         /// </summary>
-        /// <value>
-        /// The returned emotion results across the document.
-        /// </value>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentEmotionResults Document { get; set; }
         /// <summary>
         /// The returned emotion results per specified target.
         /// </summary>
-        /// <value>
-        /// The returned emotion results per specified target.
-        /// </value>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<TargetedEmotionResults> Targets { get; set; }
     }

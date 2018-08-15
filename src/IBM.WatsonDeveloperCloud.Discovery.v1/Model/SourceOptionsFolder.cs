@@ -27,27 +27,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The Box user ID of the user who owns the folder to crawl.
         /// </summary>
-        /// <value>
-        /// The Box user ID of the user who owns the folder to crawl.
-        /// </value>
         [JsonProperty("owner_user_id", NullValueHandling = NullValueHandling.Ignore)]
         public string OwnerUserId { get; set; }
         /// <summary>
         /// The Box folder ID of the folder to crawl.
         /// </summary>
-        /// <value>
-        /// The Box folder ID of the folder to crawl.
-        /// </value>
         [JsonProperty("folder_id", NullValueHandling = NullValueHandling.Ignore)]
         public string FolderId { get; set; }
         /// <summary>
         /// The maximum number of documents to crawl for this folder. By default, all documents in the folder are
         /// crawled.
         /// </summary>
-        /// <value>
-        /// The maximum number of documents to crawl for this folder. By default, all documents in the folder are
-        /// crawled.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

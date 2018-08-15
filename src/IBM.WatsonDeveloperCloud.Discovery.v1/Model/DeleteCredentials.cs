@@ -46,17 +46,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// The status of the deletion request.
         /// </summary>
-        /// <value>
-        /// The status of the deletion request.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier of the credentials that have been deleted.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the credentials that have been deleted.
-        /// </value>
         [JsonProperty("credential_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CredentialId { get; set; }
     }

@@ -71,57 +71,36 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// The state of the classifier.
         /// </summary>
-        /// <value>
-        /// The state of the classifier.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// User-supplied name for the classifier.
         /// </summary>
-        /// <value>
-        /// User-supplied name for the classifier.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Link to the classifier.
         /// </summary>
-        /// <value>
-        /// Link to the classifier.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// Unique identifier for this classifier.
         /// </summary>
-        /// <value>
-        /// Unique identifier for this classifier.
-        /// </value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
         /// Date and time (UTC) the classifier was created.
         /// </summary>
-        /// <value>
-        /// Date and time (UTC) the classifier was created.
-        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime Created { get; private set; }
         /// <summary>
         /// Additional detail about the status.
         /// </summary>
-        /// <value>
-        /// Additional detail about the status.
-        /// </value>
         [JsonProperty("status_description", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string StatusDescription { get; private set; }
         /// <summary>
         /// The language used for the classifier.
         /// </summary>
-        /// <value>
-        /// The language used for the classifier.
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
     }

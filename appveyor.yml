@@ -105,12 +105,12 @@ after_build:
             dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1 --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3 --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1 --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1 --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3 --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3 --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
           }
           
           else

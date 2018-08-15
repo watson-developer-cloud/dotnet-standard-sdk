@@ -22,6 +22,7 @@ install:
 - ps: Install-Product node $env:nodejs_version
 # install modules
 - pip install --user bumpversion
+- npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages
 
@@ -111,6 +112,8 @@ after_build:
             dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
+
+            npx semantic-release
           }
           
           else
@@ -215,8 +218,6 @@ artifacts:
   name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 - path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
-before_deploy:
-- ps: npx semantic-release
 deploy:
 - provider: NuGet
   api_key:

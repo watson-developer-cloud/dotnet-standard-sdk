@@ -28,10 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// An unbounded measure of the relevance of a particular result, dependent on the query and matching document.
         /// A higher score indicates a greater match to the query parameters.
         /// </summary>
-        /// <value>
-        /// An unbounded measure of the relevance of a particular result, dependent on the query and matching document.
-        /// A higher score indicates a greater match to the query parameters.
-        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
         /// <summary>
@@ -39,11 +35,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// compared to a trained relevancy model. confidence can range from `0.0` to `1.0`. The higher the number, the
         /// more relevant the document.
         /// </summary>
-        /// <value>
-        /// The confidence score for the given result. Calculated based on how relevant the result is estimated to be,
-        /// compared to a trained relevancy model. confidence can range from `0.0` to `1.0`. The higher the number, the
-        /// more relevant the document.
-        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
     }

@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
         /// </summary>
-        /// <value>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
-        /// </value>
         [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
         public bool? StoreGenericResponses { get; set; }
     }

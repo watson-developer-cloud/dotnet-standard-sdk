@@ -29,30 +29,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Array of folders to crawl from the Box source. Only valid, and required, when the **type** field of the
         /// **source** object is set to `box`.
         /// </summary>
-        /// <value>
-        /// Array of folders to crawl from the Box source. Only valid, and required, when the **type** field of the
-        /// **source** object is set to `box`.
-        /// </value>
         [JsonProperty("folders", NullValueHandling = NullValueHandling.Ignore)]
         public List<SourceOptionsFolder> Folders { get; set; }
         /// <summary>
         /// Array of Salesforce document object types to crawl from the Salesforce source. Only valid, and required,
         /// when the **type** field of the **source** object is set to `salesforce`.
         /// </summary>
-        /// <value>
-        /// Array of Salesforce document object types to crawl from the Salesforce source. Only valid, and required,
-        /// when the **type** field of the **source** object is set to `salesforce`.
-        /// </value>
         [JsonProperty("objects", NullValueHandling = NullValueHandling.Ignore)]
         public List<SourceOptionsObject> Objects { get; set; }
         /// <summary>
         /// Array of Microsoft SharePointoint Online site collections to crawl from the SharePoint source. Only valid
         /// and required when the **type** field of the **source** object is set to `sharepoint`.
         /// </summary>
-        /// <value>
-        /// Array of Microsoft SharePointoint Online site collections to crawl from the SharePoint source. Only valid
-        /// and required when the **type** field of the **source** object is set to `sharepoint`.
-        /// </value>
         [JsonProperty("site_collections", NullValueHandling = NullValueHandling.Ignore)]
         public List<SourceOptionsSiteColl> SiteCollections { get; set; }
     }

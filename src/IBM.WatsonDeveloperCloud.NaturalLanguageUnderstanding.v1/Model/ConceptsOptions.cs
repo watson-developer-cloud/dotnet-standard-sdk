@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Maximum number of concepts to return.
         /// </summary>
-        /// <value>
-        /// Maximum number of concepts to return.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

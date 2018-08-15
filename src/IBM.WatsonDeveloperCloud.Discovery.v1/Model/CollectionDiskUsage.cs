@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of bytes used by the collection.
         /// </summary>
-        /// <value>
-        /// Number of bytes used by the collection.
-        /// </value>
         [JsonProperty("used_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? UsedBytes { get; private set; }
     }

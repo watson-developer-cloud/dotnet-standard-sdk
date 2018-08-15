@@ -52,41 +52,26 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The type of action to invoke.
         /// </summary>
-        /// <value>
-        /// The type of action to invoke.
-        /// </value>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public ActionTypeEnum? ActionType { get; set; }
         /// <summary>
         /// The name of the action.
         /// </summary>
-        /// <value>
-        /// The name of the action.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// A map of key/value pairs to be provided to the action.
         /// </summary>
-        /// <value>
-        /// A map of key/value pairs to be provided to the action.
-        /// </value>
         [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
         public object Parameters { get; set; }
         /// <summary>
         /// The location in the dialog context where the result of the action is stored.
         /// </summary>
-        /// <value>
-        /// The location in the dialog context where the result of the action is stored.
-        /// </value>
         [JsonProperty("result_variable", NullValueHandling = NullValueHandling.Ignore)]
         public string ResultVariable { get; set; }
         /// <summary>
         /// The name of the context variable that the client application will use to pass in credentials for the action.
         /// </summary>
-        /// <value>
-        /// The name of the context variable that the client application will use to pass in credentials for the action.
-        /// </value>
         [JsonProperty("credentials", NullValueHandling = NullValueHandling.Ignore)]
         public string Credentials { get; set; }
     }

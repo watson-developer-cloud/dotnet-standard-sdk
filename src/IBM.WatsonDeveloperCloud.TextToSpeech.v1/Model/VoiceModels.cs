@@ -30,11 +30,6 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// array is empty if the requesting service credentials own no custom voice models (if no language is
         /// specified) or own no custom voice models for the specified language.
         /// </summary>
-        /// <value>
-        /// An array of `VoiceModel` objects that provides information about each available custom voice model. The
-        /// array is empty if the requesting service credentials own no custom voice models (if no language is
-        /// specified) or own no custom voice models for the specified language.
-        /// </value>
         [JsonProperty("customizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<VoiceModel> Customizations { get; set; }
     }

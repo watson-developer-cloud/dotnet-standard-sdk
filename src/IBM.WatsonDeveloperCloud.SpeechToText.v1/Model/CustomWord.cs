@@ -32,13 +32,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         ///
         /// Omit this field for the **Add a custom word** method.
         /// </summary>
-        /// <value>
-        /// For the **Add custom words** method, you must specify the custom word that is to be added to or updated in
-        /// the custom model. Do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the
-        /// tokens of compound words.
-        ///
-        /// Omit this field for the **Add a custom word** method.
-        /// </value>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public string Word { get; set; }
         /// <summary>
@@ -50,15 +43,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// pronunciations you add augment the pronunciation from the base vocabulary. A word can have at most five
         /// sounds-like pronunciations, and a pronunciation can include at most 40 characters not including spaces.
         /// </summary>
-        /// <value>
-        /// An array of sounds-like pronunciations for the custom word. Specify how words that are difficult to
-        /// pronounce, foreign words, acronyms, and so on can be pronounced by users. For a word that is not in the
-        /// service's base vocabulary, omit the parameter to have the service automatically generate a sounds-like
-        /// pronunciation for the word. For a word that is in the service's base vocabulary, use the parameter to
-        /// specify additional pronunciations for the word. You cannot override the default pronunciation of a word;
-        /// pronunciations you add augment the pronunciation from the base vocabulary. A word can have at most five
-        /// sounds-like pronunciations, and a pronunciation can include at most 40 characters not including spaces.
-        /// </value>
         [JsonProperty("sounds_like", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> SoundsLike { get; set; }
         /// <summary>
@@ -66,11 +50,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// the word to have a spelling that is different from its usual representation or from its spelling in corpora
         /// training data.
         /// </summary>
-        /// <value>
-        /// An alternative spelling for the custom word when it appears in a transcript. Use the parameter when you want
-        /// the word to have a spelling that is different from its usual representation or from its spelling in corpora
-        /// training data.
-        /// </value>
         [JsonProperty("display_as", NullValueHandling = NullValueHandling.Ignore)]
         public string DisplayAs { get; set; }
     }

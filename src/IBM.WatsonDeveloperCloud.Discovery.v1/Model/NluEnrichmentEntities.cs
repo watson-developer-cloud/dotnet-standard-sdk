@@ -27,61 +27,38 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// When `true`, sentiment analysis of entities will be performed on the specified field.
         /// </summary>
-        /// <value>
-        /// When `true`, sentiment analysis of entities will be performed on the specified field.
-        /// </value>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Sentiment { get; set; }
         /// <summary>
         /// When `true`, emotion detection of entities will be performed on the specified field.
         /// </summary>
-        /// <value>
-        /// When `true`, emotion detection of entities will be performed on the specified field.
-        /// </value>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Emotion { get; set; }
         /// <summary>
         /// The maximum number of entities to extract for each instance of the specified field.
         /// </summary>
-        /// <value>
-        /// The maximum number of entities to extract for each instance of the specified field.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
         /// <summary>
         /// When `true`, the number of mentions of each identified entity is recorded. The default is `false`.
         /// </summary>
-        /// <value>
-        /// When `true`, the number of mentions of each identified entity is recorded. The default is `false`.
-        /// </value>
         [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Mentions { get; set; }
         /// <summary>
         /// When `true`, the types of mentions for each idetifieid entity is recorded. The default is `false`.
         /// </summary>
-        /// <value>
-        /// When `true`, the types of mentions for each idetifieid entity is recorded. The default is `false`.
-        /// </value>
         [JsonProperty("mention_types", NullValueHandling = NullValueHandling.Ignore)]
         public bool? MentionTypes { get; set; }
         /// <summary>
         /// When `true`, a list of sentence locations for each instance of each identified entity is recorded. The
         /// default is `false`.
         /// </summary>
-        /// <value>
-        /// When `true`, a list of sentence locations for each instance of each identified entity is recorded. The
-        /// default is `false`.
-        /// </value>
         [JsonProperty("sentence_location", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SentenceLocation { get; set; }
         /// <summary>
         /// The enrichement model to use with entity extraction. May be a custom model provided by Watson Knowledge
         /// Studio, the public model for use with Knowledge Graph `en-news`, or the default public model `alchemy`.
         /// </summary>
-        /// <value>
-        /// The enrichement model to use with entity extraction. May be a custom model provided by Watson Knowledge
-        /// Studio, the public model for use with Knowledge Graph `en-news`, or the default public model `alchemy`.
-        /// </value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
     }

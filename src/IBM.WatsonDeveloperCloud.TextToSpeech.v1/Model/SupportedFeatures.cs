@@ -28,20 +28,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         /// If `true`, the voice can be customized; if `false`, the voice cannot be customized. (Same as
         /// `customizable`.).
         /// </summary>
-        /// <value>
-        /// If `true`, the voice can be customized; if `false`, the voice cannot be customized. (Same as
-        /// `customizable`.).
-        /// </value>
         [JsonProperty("custom_pronunciation", NullValueHandling = NullValueHandling.Ignore)]
         public bool? CustomPronunciation { get; set; }
         /// <summary>
         /// If `true`, the voice can be transformed by using the SSML &lt;voice-transformation&gt; element; if `false`,
         /// the voice cannot be transformed.
         /// </summary>
-        /// <value>
-        /// If `true`, the voice can be transformed by using the SSML &lt;voice-transformation&gt; element; if `false`,
-        /// the voice cannot be transformed.
-        /// </value>
         [JsonProperty("voice_transformation", NullValueHandling = NullValueHandling.Ignore)]
         public bool? VoiceTransformation { get; set; }
     }

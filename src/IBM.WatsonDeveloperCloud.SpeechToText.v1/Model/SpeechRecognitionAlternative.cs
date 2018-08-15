@@ -28,19 +28,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// <summary>
         /// A transcription of the audio.
         /// </summary>
-        /// <value>
-        /// A transcription of the audio.
-        /// </value>
         [JsonProperty("transcript", NullValueHandling = NullValueHandling.Ignore)]
         public string Transcript { get; set; }
         /// <summary>
         /// A score that indicates the service's confidence in the transcript in the range of 0.0 to 1.0. Returned only
         /// for the best alternative and only with results marked as final.
         /// </summary>
-        /// <value>
-        /// A score that indicates the service's confidence in the transcript in the range of 0.0 to 1.0. Returned only
-        /// for the best alternative and only with results marked as final.
-        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
         /// <summary>
@@ -48,11 +41,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// elements: the word followed by its start and end time in seconds, for example:
         /// `[[\"hello\",0.0,1.2],[\"world\",1.2,2.5]]`. Returned only for the best alternative.
         /// </summary>
-        /// <value>
-        /// Time alignments for each word from the transcript as a list of lists. Each inner list consists of three
-        /// elements: the word followed by its start and end time in seconds, for example:
-        /// `[["hello",0.0,1.2],["world",1.2,2.5]]`. Returned only for the best alternative.
-        /// </value>
         [JsonProperty("timestamps", NullValueHandling = NullValueHandling.Ignore)]
         public string[][] Timestamps { get; set; }
         /// <summary>
@@ -61,12 +49,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// `[[\"hello\",0.95],[\"world\",0.866]]`. Returned only for the best alternative and only with results marked
         /// as final.
         /// </summary>
-        /// <value>
-        /// A confidence score for each word of the transcript as a list of lists. Each inner list consists of two
-        /// elements: the word and its confidence score in the range of 0.0 to 1.0, for example:
-        /// `[["hello",0.95],["world",0.866]]`. Returned only for the best alternative and only with results marked as
-        /// final.
-        /// </value>
         [JsonProperty("word_confidence", NullValueHandling = NullValueHandling.Ignore)]
         public string[][] WordConfidence { get; set; }
     }

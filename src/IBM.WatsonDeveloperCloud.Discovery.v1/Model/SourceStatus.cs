@@ -92,24 +92,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// checked by using the **notices** query method.
         /// -  `stopped` indicates that the crawl has stopped but is not complete.
         /// </summary>
-        /// <value>
-        /// The current status of the source crawl for this collection. This field returns `not_configured` if the
-        /// default configuration for this source does not have a **source** object defined.
-        ///
-        /// -  `running` indicates that a crawl to fetch more documents is in progress.
-        /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Date in UTC format indicating when the last crawl was attempted. If `null`, no crawl was completed.
         /// </summary>
-        /// <value>
-        /// Date in UTC format indicating when the last crawl was attempted. If `null`, no crawl was completed.
-        /// </value>
         [JsonProperty("last_updated", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime LastUpdated { get; set; }
     }

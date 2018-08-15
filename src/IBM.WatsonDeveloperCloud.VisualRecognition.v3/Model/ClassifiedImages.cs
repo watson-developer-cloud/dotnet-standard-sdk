@@ -28,25 +28,16 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Number of custom classes identified in the images.
         /// </summary>
-        /// <value>
-        /// Number of custom classes identified in the images.
-        /// </value>
         [JsonProperty("custom_classes", NullValueHandling = NullValueHandling.Ignore)]
         public long? CustomClasses { get; set; }
         /// <summary>
         /// Number of images processed for the API call.
         /// </summary>
-        /// <value>
-        /// Number of images processed for the API call.
-        /// </value>
         [JsonProperty("images_processed", NullValueHandling = NullValueHandling.Ignore)]
         public long? ImagesProcessed { get; set; }
         /// <summary>
         /// Classified images.
         /// </summary>
-        /// <value>
-        /// Classified images.
-        /// </value>
         [JsonProperty("images", NullValueHandling = NullValueHandling.Ignore)]
         public List<ClassifiedImage> Images { get; set; }
         /// <summary>
@@ -54,11 +45,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// file and a list of image URLs will still complete, but does not return the expected output. Not returned
         /// when there is no warning.
         /// </summary>
-        /// <value>
-        /// Information about what might cause less than optimal output. For example, a request sent with a corrupt .zip
-        /// file and a list of image URLs will still complete, but does not return the expected output. Not returned
-        /// when there is no warning.
-        /// </value>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public List<WarningInfo> Warnings { get; set; }
     }

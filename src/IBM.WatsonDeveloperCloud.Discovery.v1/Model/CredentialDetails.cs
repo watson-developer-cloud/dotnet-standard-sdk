@@ -75,74 +75,42 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
         /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml`.
         /// </summary>
-        /// <value>
-        /// The authentication method for this credentials definition. The  **credential_type** specified must be
-        /// supported by the **source_type**. The following combinations are possible:
-        ///
-        /// -  `\"source_type\": \"box\"` - valid `credential_type`s: `oauth2`
-        /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
-        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml`.
-        /// </value>
         [JsonProperty("credential_type", NullValueHandling = NullValueHandling.Ignore)]
         public CredentialTypeEnum? CredentialType { get; set; }
         /// <summary>
         /// The **client_id** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `oauth2`.
         /// </summary>
-        /// <value>
-        /// The **client_id** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `oauth2`.
-        /// </value>
         [JsonProperty("client_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClientId { get; set; }
         /// <summary>
         /// The **enterprise_id** of the Box site that these credentials connect to. Only valid, and required, with a
         /// **source_type** of `box`.
         /// </summary>
-        /// <value>
-        /// The **enterprise_id** of the Box site that these credentials connect to. Only valid, and required, with a
-        /// **source_type** of `box`.
-        /// </value>
         [JsonProperty("enterprise_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnterpriseId { get; set; }
         /// <summary>
         /// The **url** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `username_password`.
         /// </summary>
-        /// <value>
-        /// The **url** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `username_password`.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// The **username** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `saml` and `username_password`.
         /// </summary>
-        /// <value>
-        /// The **username** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `saml` and `username_password`.
-        /// </value>
         [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }
         /// <summary>
         /// The **organization_url** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `saml`.
         /// </summary>
-        /// <value>
-        /// The **organization_url** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `saml`.
-        /// </value>
         [JsonProperty("organization_url", NullValueHandling = NullValueHandling.Ignore)]
         public string OrganizationUrl { get; set; }
         /// <summary>
         /// The **site_collection.path** of the source that these credentials connect to. Only valid, and required, with
         /// a **source_type** of `sharepoint`.
         /// </summary>
-        /// <value>
-        /// The **site_collection.path** of the source that these credentials connect to. Only valid, and required, with
-        /// a **source_type** of `sharepoint`.
-        /// </value>
         [JsonProperty("site_collection.path", NullValueHandling = NullValueHandling.Ignore)]
         public string SiteCollectionPath { get; set; }
         /// <summary>
@@ -150,11 +118,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
         /// **credentials**.
         /// </summary>
-        /// <value>
-        /// The **client_secret** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
-        /// **credentials**.
-        /// </value>
         [JsonProperty("client_secret", NullValueHandling = NullValueHandling.Ignore)]
         public string ClientSecret { get; set; }
         /// <summary>
@@ -162,11 +125,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
         /// **credentials**.
         /// </summary>
-        /// <value>
-        /// The **public_key_id** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
-        /// **credentials**.
-        /// </value>
         [JsonProperty("public_key_id", NullValueHandling = NullValueHandling.Ignore)]
         public string PublicKeyId { get; set; }
         /// <summary>
@@ -174,11 +132,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
         /// **credentials**.
         /// </summary>
-        /// <value>
-        /// The **private_key** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
-        /// **credentials**.
-        /// </value>
         [JsonProperty("private_key", NullValueHandling = NullValueHandling.Ignore)]
         public string PrivateKey { get; set; }
         /// <summary>
@@ -186,11 +139,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
         /// **credentials**.
         /// </summary>
-        /// <value>
-        /// The **passphrase** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `oauth2`. This value is never returned and is only used when creating or modifying
-        /// **credentials**.
-        /// </value>
         [JsonProperty("passphrase", NullValueHandling = NullValueHandling.Ignore)]
         public string Passphrase { get; set; }
         /// <summary>
@@ -201,14 +149,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// and a valid Salesforce security token concatenated. This value is never returned and is only used when
         /// creating or modifying **credentials**.
         /// </summary>
-        /// <value>
-        /// The **password** of the source that these credentials connect to. Only valid, and required, with
-        /// **credential_type**s of `saml` and `username_password`.
-        ///
-        /// **Note:** When used with a **source_type** of `salesforce`, the password consists of the Salesforce password
-        /// and a valid Salesforce security token concatenated. This value is never returned and is only used when
-        /// creating or modifying **credentials**.
-        /// </value>
         [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
     }

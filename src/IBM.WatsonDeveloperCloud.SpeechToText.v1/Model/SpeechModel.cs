@@ -28,50 +28,31 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// The name of the model for use as an identifier in calls to the service (for example,
         /// `en-US_BroadbandModel`).
         /// </summary>
-        /// <value>
-        /// The name of the model for use as an identifier in calls to the service (for example,
-        /// `en-US_BroadbandModel`).
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// The language identifier of the model (for example, `en-US`).
         /// </summary>
-        /// <value>
-        /// The language identifier of the model (for example, `en-US`).
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The sampling rate (minimum acceptable rate for audio) used by the model in Hertz.
         /// </summary>
-        /// <value>
-        /// The sampling rate (minimum acceptable rate for audio) used by the model in Hertz.
-        /// </value>
         [JsonProperty("rate", NullValueHandling = NullValueHandling.Ignore)]
         public long? Rate { get; set; }
         /// <summary>
         /// The URI for the model.
         /// </summary>
-        /// <value>
-        /// The URI for the model.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// Describes the additional service features supported with the model.
         /// </summary>
-        /// <value>
-        /// Describes the additional service features supported with the model.
-        /// </value>
         [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }
         /// <summary>
         /// Brief description of the model.
         /// </summary>
-        /// <value>
-        /// Brief description of the model.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }

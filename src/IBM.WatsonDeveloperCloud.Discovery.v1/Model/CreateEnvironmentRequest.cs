@@ -15,7 +15,10 @@
 *
 */
 
+using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
@@ -25,29 +28,112 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class CreateEnvironmentRequest : BaseModel
     {
         /// <summary>
-        /// Name that identifies the environment.
+        /// Size of the environment.
         /// </summary>
         /// <value>
-        /// Name that identifies the environment.
+        /// Size of the environment.
         /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SizeEnum
+        {
+            
+            /// <summary>
+            /// Enum XS for XS
+            /// </summary>
+            [EnumMember(Value = "XS")]
+            XS,
+            
+            /// <summary>
+            /// Enum S for S
+            /// </summary>
+            [EnumMember(Value = "S")]
+            S,
+            
+            /// <summary>
+            /// Enum MS for MS
+            /// </summary>
+            [EnumMember(Value = "MS")]
+            MS,
+            
+            /// <summary>
+            /// Enum M for M
+            /// </summary>
+            [EnumMember(Value = "M")]
+            M,
+            
+            /// <summary>
+            /// Enum ML for ML
+            /// </summary>
+            [EnumMember(Value = "ML")]
+            ML,
+            
+            /// <summary>
+            /// Enum L for L
+            /// </summary>
+            [EnumMember(Value = "L")]
+            L,
+            
+            /// <summary>
+            /// Enum XL for XL
+            /// </summary>
+            [EnumMember(Value = "XL")]
+            XL,
+            
+            /// <summary>
+            /// Enum XXL for XXL
+            /// </summary>
+            [EnumMember(Value = "XXL")]
+            XXL,
+            
+            /// <summary>
+            /// Enum XXXL for XXXL
+            /// </summary>
+            [EnumMember(Value = "XXXL")]
+            XXXL
+        }
+
+        /// <summary>
+        /// Size of the environment.
+        /// </summary>
+        [Obsolete("Integer size is deprecated. Please use StringSize.")]
+        public long? Size
+        {
+            get
+            {
+                int size;
+                int.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment.
+        /// </summary>
+        public SizeEnum? StringSize
+        {
+            get
+            {
+                SizeEnum size;
+                Enum.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment
+        /// </summary>
+        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
+        private string _convertedSize;
+        /// <summary>
+        /// Name that identifies the environment.
+        /// </summary>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Description of the environment.
         /// </summary>
-        /// <value>
-        /// Description of the environment.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
-        /// <summary>
-        /// **Deprecated**: Size of the environment.
-        /// </summary>
-        /// <value>
-        /// **Deprecated**: Size of the environment.
-        /// </value>
-        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Size { get; set; }
     }
 
 }

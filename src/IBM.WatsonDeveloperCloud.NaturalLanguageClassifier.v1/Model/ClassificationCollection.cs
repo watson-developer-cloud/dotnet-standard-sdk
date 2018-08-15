@@ -28,25 +28,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// <summary>
         /// Unique identifier for this classifier.
         /// </summary>
-        /// <value>
-        /// Unique identifier for this classifier.
-        /// </value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
         /// Link to the classifier.
         /// </summary>
-        /// <value>
-        /// Link to the classifier.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// An array of classifier responses for each submitted phrase.
         /// </summary>
-        /// <value>
-        /// An array of classifier responses for each submitted phrase.
-        /// </value>
         [JsonProperty("collection", NullValueHandling = NullValueHandling.Ignore)]
         public List<CollectionItem> Collection { get; set; }
     }

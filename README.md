@@ -1,6 +1,6 @@
 # Watson Developer Cloud .NET Standard SDK
 [![Build status](https://ci.appveyor.com/api/projects/status/bcbl2ripwdmh1918/branch/development?svg=true)](https://ci.appveyor.com/project/mediumTaj/dotnet-standard-sdk/branch/development)
-[![Coverage Status](https://coveralls.io/repos/github/watson-developer-cloud/dotnet-standard-sdk/badge.svg?branch=master)](https://coveralls.io/github/watson-developer-cloud/dotnet-standard-sdk?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/watson-developer-cloud/dotnet-standard-sdk/badge.svg?branch=development)](https://coveralls.io/github/watson-developer-cloud/dotnet-standard-sdk?branch=development)
 [![wdc-community.slack.com](https://wdc-slack-inviter.mybluemix.net/badge.svg)](http://wdc-slack-inviter.mybluemix.net/)
 [![CLA assistant](https://cla-assistant.io/readme/badge/watson-developer-cloud/dotnet-standard-sdk)](https://cla-assistant.io/watson-developer-cloud/dotnet-standard-sdk)
 
@@ -50,10 +50,9 @@ Watson services are migrating to token-based Identity and Access Management (IAM
 ### Getting credentials
 To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
 
-1.  Go to the IBM Cloud **[Dashboard][watson-dashboard]** page.
-1.  Either click an existing Watson service instance or click **Create**.
-1.  Click **Show** to view your service credentials.
-1.  Copy the `url` and either `apikey` or `username` and `password`.
+1. Go to the IBM Cloud [Dashboard](https://console.bluemix.net/dashboard/apps?category=ai) page.
+1. Either click an existing Watson service instance or click [**Create resource > AI**](https://console.bluemix.net/catalog/?category=ai) and create a service instance.
+1. Copy the `url` and either `apikey` or `username` and `password`. Click **Show** if the credentials are masked.
 
 In your code, you can use these values in the service constructor or with a method call after instantiating your service.
 

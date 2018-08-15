@@ -47,25 +47,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Status of the document in the ingestion process.
         /// </summary>
-        /// <value>
-        /// Status of the document in the ingestion process.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The unique identifier of the ingested document.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the ingested document.
-        /// </value>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
         /// <summary>
         /// Array of notices produced by the document-ingestion process.
         /// </summary>
-        /// <value>
-        /// Array of notices produced by the document-ingestion process.
-        /// </value>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
         public List<Notice> Notices { get; set; }
     }

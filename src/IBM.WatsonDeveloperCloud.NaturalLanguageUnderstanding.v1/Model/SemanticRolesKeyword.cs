@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The keyword text.
         /// </summary>
-        /// <value>
-        /// The keyword text.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

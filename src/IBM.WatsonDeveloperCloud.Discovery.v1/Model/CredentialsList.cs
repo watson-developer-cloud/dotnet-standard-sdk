@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// An array of credential definitions that were created for this instance.
         /// </summary>
-        /// <value>
-        /// An array of credential definitions that were created for this instance.
-        /// </value>
         [JsonProperty("credentials", NullValueHandling = NullValueHandling.Ignore)]
         public List<Credentials> Credentials { get; set; }
     }

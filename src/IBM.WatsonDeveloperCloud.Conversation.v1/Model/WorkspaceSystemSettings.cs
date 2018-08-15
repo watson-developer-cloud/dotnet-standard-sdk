@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// Workspace settings related to the Conversation tool.
         /// </summary>
-        /// <value>
-        /// Workspace settings related to the Conversation tool.
-        /// </value>
         [JsonProperty("tooling", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettingsTooling Tooling { get; set; }
         /// <summary>
@@ -37,19 +34,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         ///
         /// **Note:** This feature is available only to Premium users.
         /// </summary>
-        /// <value>
-        /// Workspace settings related to the disambiguation feature.
-        ///
-        /// **Note:** This feature is available only to Premium users.
-        /// </value>
         [JsonProperty("disambiguation", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettingsDisambiguation Disambiguation { get; set; }
         /// <summary>
         /// For internal use only.
         /// </summary>
-        /// <value>
-        /// For internal use only.
-        /// </value>
         [JsonProperty("human_agent_assist", NullValueHandling = NullValueHandling.Ignore)]
         public object HumanAgentAssist { get; set; }
     }

@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// An array of entity values.
         /// </summary>
-        /// <value>
-        /// An array of entity values.
-        /// </value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValueExport> Values { get; set; }
         /// <summary>
         /// An object defining the pagination data for the returned objects.
         /// </summary>
-        /// <value>
-        /// An object defining the pagination data for the returned objects.
-        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }
     }

@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Indicates whether the sentiment is positive, neutral, or negative.
         /// </summary>
-        /// <value>
-        /// Indicates whether the sentiment is positive, neutral, or negative.
-        /// </value>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
         /// <summary>
         /// Sentiment score from -1 (negative) to 1 (positive).
         /// </summary>
-        /// <value>
-        /// Sentiment score from -1 (negative) to 1 (positive).
-        /// </value>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public float? Score { get; set; }
     }

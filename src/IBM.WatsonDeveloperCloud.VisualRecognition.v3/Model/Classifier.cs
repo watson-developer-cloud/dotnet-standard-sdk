@@ -66,67 +66,42 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// <summary>
         /// Training status of classifier.
         /// </summary>
-        /// <value>
-        /// Training status of classifier.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// ID of a classifier identified in the image.
         /// </summary>
-        /// <value>
-        /// ID of a classifier identified in the image.
-        /// </value>
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
         /// <summary>
         /// Name of the classifier.
         /// </summary>
-        /// <value>
-        /// Name of the classifier.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
         /// Unique ID of the account who owns the classifier. Returned when verbose=`true`. Might not be returned by
         /// some requests.
         /// </summary>
-        /// <value>
-        /// Unique ID of the account who owns the classifier. Returned when verbose=`true`. Might not be returned by
-        /// some requests.
-        /// </value>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
         /// <summary>
         /// Whether the classifier can be downloaded as a Core ML model after the training status is `ready`.
         /// </summary>
-        /// <value>
-        /// Whether the classifier can be downloaded as a Core ML model after the training status is `ready`.
-        /// </value>
         [JsonProperty("core_ml_enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? CoreMlEnabled { get; set; }
         /// <summary>
         /// If classifier training has failed, this field may explain why.
         /// </summary>
-        /// <value>
-        /// If classifier training has failed, this field may explain why.
-        /// </value>
         [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
         public string Explanation { get; set; }
         /// <summary>
         /// Date and time in Coordinated Universal Time (UTC) that the classifier was created.
         /// </summary>
-        /// <value>
-        /// Date and time in Coordinated Universal Time (UTC) that the classifier was created.
-        /// </value>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Created { get; set; }
         /// <summary>
         /// Classes that define a classifier.
         /// </summary>
-        /// <value>
-        /// Classes that define a classifier.
-        /// </value>
         [JsonProperty("classes", NullValueHandling = NullValueHandling.Ignore)]
         public List<ModelClass> Classes { get; set; }
         /// <summary>
@@ -134,11 +109,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// verbose=`true`. Might not be returned by some requests. Identical to `updated` and retained for backward
         /// compatibility.
         /// </summary>
-        /// <value>
-        /// Date and time in Coordinated Universal Time (UTC) that the classifier was updated. Returned when
-        /// verbose=`true`. Might not be returned by some requests. Identical to `updated` and retained for backward
-        /// compatibility.
-        /// </value>
         [JsonProperty("retrained", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Retrained { get; set; }
         /// <summary>
@@ -146,11 +116,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// matches either `retrained` or `created`.  Returned when verbose=`true`. Might not be returned by some
         /// requests.
         /// </summary>
-        /// <value>
-        /// Date and time in Coordinated Universal Time (UTC) that the classifier was most recently updated. The field
-        /// matches either `retrained` or `created`.  Returned when verbose=`true`. Might not be returned by some
-        /// requests.
-        /// </value>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime Updated { get; set; }
     }

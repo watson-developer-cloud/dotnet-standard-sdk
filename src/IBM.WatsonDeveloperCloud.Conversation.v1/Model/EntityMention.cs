@@ -28,27 +28,17 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// The text of the user input example.
         /// </summary>
-        /// <value>
-        /// The text of the user input example.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string ExampleText { get; set; }
         /// <summary>
         /// The name of the intent.
         /// </summary>
-        /// <value>
-        /// The name of the intent.
-        /// </value>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string IntentName { get; set; }
         /// <summary>
         /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
         /// text.
         /// </summary>
-        /// <value>
-        /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
-        /// text.
-        /// </value>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public List<long?> Location { get; set; }
     }

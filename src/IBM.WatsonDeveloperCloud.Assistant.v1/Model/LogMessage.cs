@@ -58,17 +58,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The severity of the log message.
         /// </summary>
-        /// <value>
-        /// The severity of the log message.
-        /// </value>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
         public LevelEnum? Level { get; set; }
         /// <summary>
         /// The text of the log message.
         /// </summary>
-        /// <value>
-        /// The text of the log message.
-        /// </value>
         [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Msg { get; set; }
     }

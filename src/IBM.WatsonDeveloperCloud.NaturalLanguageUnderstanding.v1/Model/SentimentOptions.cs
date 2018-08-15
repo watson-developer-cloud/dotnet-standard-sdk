@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Set this to false to hide document-level sentiment results.
         /// </summary>
-        /// <value>
-        /// Set this to false to hide document-level sentiment results.
-        /// </value>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Document { get; set; }
         /// <summary>
         /// Sentiment results will be returned for each target string that is found in the document.
         /// </summary>
-        /// <value>
-        /// Sentiment results will be returned for each target string that is found in the document.
-        /// </value>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Targets { get; set; }
     }

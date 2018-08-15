@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.Model
         /// <summary>
         /// The language code for an identifiable language.
         /// </summary>
-        /// <value>
-        /// The language code for an identifiable language.
-        /// </value>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
         /// The name of the identifiable language.
         /// </summary>
-        /// <value>
-        /// The name of the identifiable language.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
     }

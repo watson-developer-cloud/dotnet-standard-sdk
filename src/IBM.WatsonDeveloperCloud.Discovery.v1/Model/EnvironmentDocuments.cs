@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of documents indexed for the environment.
         /// </summary>
-        /// <value>
-        /// Number of documents indexed for the environment.
-        /// </value>
         [JsonProperty("indexed", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? Indexed { get; private set; }
         /// <summary>
         /// Total number of documents allowed in the environment's capacity.
         /// </summary>
-        /// <value>
-        /// Total number of documents allowed in the environment's capacity.
-        /// </value>
         [JsonProperty("maximum_allowed", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? MaximumAllowed { get; private set; }
     }

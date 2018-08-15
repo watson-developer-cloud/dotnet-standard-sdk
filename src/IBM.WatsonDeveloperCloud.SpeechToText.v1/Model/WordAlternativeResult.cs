@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// <summary>
         /// A confidence score for the word alternative hypothesis in the range of 0.0 to 1.0.
         /// </summary>
-        /// <value>
-        /// A confidence score for the word alternative hypothesis in the range of 0.0 to 1.0.
-        /// </value>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
         /// <summary>
         /// An alternative hypothesis for a word from the input audio.
         /// </summary>
-        /// <value>
-        /// An alternative hypothesis for a word from the input audio.
-        /// </value>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public string Word { get; set; }
     }

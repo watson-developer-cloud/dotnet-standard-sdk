@@ -728,7 +728,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (configuration != null)
                 {
                     var configurationContent = new StringContent(configuration, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    configurationContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    configurationContent.Headers.ContentType = null;
                     formData.Add(configurationContent, "configuration");
                 }
 
@@ -744,7 +744,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (metadata != null)
                 {
                     var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    metadataContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    metadataContent.Headers.ContentType = null;
                     formData.Add(metadataContent, "metadata");
                 }
 
@@ -1296,7 +1296,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (metadata != null)
                 {
                     var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    metadataContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    metadataContent.Headers.ContentType = null;
                     formData.Add(metadataContent, "metadata");
                 }
 
@@ -1487,7 +1487,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 if (metadata != null)
                 {
                     var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    metadataContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    metadataContent.Headers.ContentType = null;
                     formData.Add(metadataContent, "metadata");
                 }
 
@@ -1540,7 +1540,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
         /// (optional)</param>
-        /// <param name="count">Number of documents to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
@@ -1676,7 +1676,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
         /// (optional)</param>
-        /// <param name="count">Number of documents to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
@@ -1792,7 +1792,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
         /// (optional)</param>
-        /// <param name="count">Number of documents to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
@@ -1857,7 +1857,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (loggingOptOut == null)
+                if (loggingOptOut != null)
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
@@ -1987,7 +1987,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
         /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
         /// (optional)</param>
-        /// <param name="count">Number of documents to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
         /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
@@ -2732,6 +2732,395 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Create event.
+        ///
+        /// The **Events** API can be used to create log entries that are associated with specific queries. For example,
+        /// you can record which documents in the results set were "clicked" by a user and when that click occured.
+        /// </summary>
+        /// <param name="queryEvent">An object that defines a query event to be added to the log.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="CreateEventResponse" />CreateEventResponse</returns>
+        public CreateEventResponse CreateEvent(CreateEventObject queryEvent, Dictionary<string, object> customData = null)
+        {
+            if (queryEvent == null)
+                throw new ArgumentNullException(nameof(queryEvent));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            CreateEventResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/events");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<CreateEventObject>(queryEvent);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<CreateEventResponse>().Result;
+                if(result == null)
+                    result = new CreateEventResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Percentage of queries with an associated event.
+        ///
+        /// The percentage of queries using the **natural_language_query** parameter that have a corresponding "click"
+        /// event over a specified time window.  This metric requires having integrated event tracking in your
+        /// application using the **Events** API.
+        /// </summary>
+        /// <param name="startTime">Metric is computed from data recorded after this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="endTime">Metric is computed from data recorded before this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="MetricResponse" />MetricResponse</returns>
+        public MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            MetricResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/event_rate");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (startTime != null)
+                    restRequest.WithArgument("start_time", startTime);
+                if (endTime != null)
+                    restRequest.WithArgument("end_time", endTime);
+                if (!string.IsNullOrEmpty(resultType))
+                    restRequest.WithArgument("result_type", resultType);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MetricResponse>().Result;
+                if(result == null)
+                    result = new MetricResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Number of queries over time.
+        ///
+        /// Total number of queries using the **natural_language_query** parameter over a specific time window.
+        /// </summary>
+        /// <param name="startTime">Metric is computed from data recorded after this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="endTime">Metric is computed from data recorded before this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="MetricResponse" />MetricResponse</returns>
+        public MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            MetricResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (startTime != null)
+                    restRequest.WithArgument("start_time", startTime);
+                if (endTime != null)
+                    restRequest.WithArgument("end_time", endTime);
+                if (!string.IsNullOrEmpty(resultType))
+                    restRequest.WithArgument("result_type", resultType);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MetricResponse>().Result;
+                if(result == null)
+                    result = new MetricResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Number of queries with an event over time.
+        ///
+        /// Total number of queries using the **natural_language_query** parameter that have a corresponding "click"
+        /// event over a specified time window. This metric requires having integrated event tracking in your
+        /// application using the **Events** API.
+        /// </summary>
+        /// <param name="startTime">Metric is computed from data recorded after this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="endTime">Metric is computed from data recorded before this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="MetricResponse" />MetricResponse</returns>
+        public MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            MetricResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_event");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (startTime != null)
+                    restRequest.WithArgument("start_time", startTime);
+                if (endTime != null)
+                    restRequest.WithArgument("end_time", endTime);
+                if (!string.IsNullOrEmpty(resultType))
+                    restRequest.WithArgument("result_type", resultType);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MetricResponse>().Result;
+                if(result == null)
+                    result = new MetricResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Number of queries with no search results over time.
+        ///
+        /// Total number of queries using the **natural_language_query** parameter that have no results returned over a
+        /// specified time window.
+        /// </summary>
+        /// <param name="startTime">Metric is computed from data recorded after this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="endTime">Metric is computed from data recorded before this timestamp; must be in
+        /// `YYYY-MM-DDThh:mm:ssZ` format. (optional)</param>
+        /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="MetricResponse" />MetricResponse</returns>
+        public MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            MetricResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_no_search_results");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (startTime != null)
+                    restRequest.WithArgument("start_time", startTime);
+                if (endTime != null)
+                    restRequest.WithArgument("end_time", endTime);
+                if (!string.IsNullOrEmpty(resultType))
+                    restRequest.WithArgument("result_type", resultType);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MetricResponse>().Result;
+                if(result == null)
+                    result = new MetricResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Most frequent query tokens with an event.
+        ///
+        /// The most frequent query tokens parsed from the **natural_language_query** parameter and their corresponding
+        /// "click" event rate within the recording period (queries and events are stored for 30 days). A query token is
+        /// an individual word or unigram within the query string.
+        /// </summary>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="MetricTokenResponse" />MetricTokenResponse</returns>
+        public MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            MetricTokenResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/top_query_tokens_with_event_rate");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (count != null)
+                    restRequest.WithArgument("count", count);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<MetricTokenResponse>().Result;
+                if(result == null)
+                    result = new MetricTokenResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Search the query and event log.
+        ///
+        /// Searches the query and event log to find query sessions that match the specified criteria. Searching the
+        /// **logs** endpoint uses the standard Discovery query syntax for the parameters that are supported.
+        /// </summary>
+        /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that
+        /// don't mention the query content. Filter searches are better for metadata type searches and when you are
+        /// trying to get a sense of concepts in the data set. (optional)</param>
+        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
+        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
+        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
+        /// (optional)</param>
+        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
+        /// of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
+        /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a
+        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
+        /// sort direction if no prefix is specified. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="LogQueryResponse" />LogQueryResponse</returns>
+        public LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null)
+        {
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            LogQueryResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(filter))
+                    restRequest.WithArgument("filter", filter);
+                if (!string.IsNullOrEmpty(query))
+                    restRequest.WithArgument("query", query);
+                if (count != null)
+                    restRequest.WithArgument("count", count);
+                if (offset != null)
+                    restRequest.WithArgument("offset", offset);
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<LogQueryResponse>().Result;
+                if(result == null)
+                    result = new LogQueryResponse();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

@@ -27,41 +27,26 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// **Deprecated**: Number of bytes used in the environment's memory capacity.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Number of bytes used in the environment's memory capacity.
-        /// </value>
         [JsonProperty("used_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? UsedBytes { get; private set; }
         /// <summary>
         /// **Deprecated**: Total number of bytes available in the environment's memory capacity.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Total number of bytes available in the environment's memory capacity.
-        /// </value>
         [JsonProperty("total_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? TotalBytes { get; private set; }
         /// <summary>
         /// **Deprecated**: Amount of memory capacity used, in KB or GB format.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Amount of memory capacity used, in KB or GB format.
-        /// </value>
         [JsonProperty("used", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Used { get; private set; }
         /// <summary>
         /// **Deprecated**: Total amount of the environment's memory capacity, in KB or GB format.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Total amount of the environment's memory capacity, in KB or GB format.
-        /// </value>
         [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Total { get; private set; }
         /// <summary>
         /// **Deprecated**: Percentage of the environment's memory capacity that is being used.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Percentage of the environment's memory capacity that is being used.
-        /// </value>
         [JsonProperty("percent_used", NullValueHandling = NullValueHandling.Ignore)]
         public virtual double? PercentUsed { get; private set; }
     }

@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// model_id of the deleted model.
         /// </summary>
-        /// <value>
-        /// model_id of the deleted model.
-        /// </value>
         [JsonProperty("deleted", NullValueHandling = NullValueHandling.Ignore)]
         public string Deleted { get; set; }
     }

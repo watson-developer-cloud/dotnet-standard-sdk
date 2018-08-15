@@ -28,25 +28,16 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// A list of relation types to include or exclude from the query.
         /// </summary>
-        /// <value>
-        /// A list of relation types to include or exclude from the query.
-        /// </value>
         [JsonProperty("relation_types", NullValueHandling = NullValueHandling.Ignore)]
         public QueryFilterType RelationTypes { get; set; }
         /// <summary>
         /// A list of entity types to include or exclude from the query.
         /// </summary>
-        /// <value>
-        /// A list of entity types to include or exclude from the query.
-        /// </value>
         [JsonProperty("entity_types", NullValueHandling = NullValueHandling.Ignore)]
         public QueryFilterType EntityTypes { get; set; }
         /// <summary>
         /// A comma-separated list of document IDs to include in the query.
         /// </summary>
-        /// <value>
-        /// A comma-separated list of document IDs to include in the query.
-        /// </value>
         [JsonProperty("document_ids", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> DocumentIds { get; set; }
     }

@@ -83,37 +83,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         ///
         /// Omitted for an archive-type resource.
         /// </summary>
-        /// <value>
-        /// **For an audio-type resource,** the status of the resource:
-        /// * `ok` indicates that the service has successfully analyzed the audio data. The data can be used to train
-        /// the custom model.
-        /// * `being_processed` indicates that the service is still analyzing the audio data. The service cannot accept
-        /// requests to add new audio resources or to train the custom model until its analysis is complete.
-        /// * `invalid` indicates that the audio data is not valid for training the custom model (possibly because it
-        /// has the wrong format or sampling rate, or because it is corrupted).
-        ///
-        /// Omitted for an archive-type resource.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// **For an audio-type resource,**  the total seconds of audio in the resource. The value is always a whole
         /// number. Omitted for an archive-type resource.
         /// </summary>
-        /// <value>
-        /// **For an audio-type resource,**  the total seconds of audio in the resource. The value is always a whole
-        /// number. Omitted for an archive-type resource.
-        /// </value>
         [JsonProperty("duration", NullValueHandling = NullValueHandling.Ignore)]
         public double? Duration { get; set; }
         /// <summary>
         /// **For an audio-type resource,** the user-specified name of the resource. Omitted for an archive-type
         /// resource.
         /// </summary>
-        /// <value>
-        /// **For an audio-type resource,** the user-specified name of the resource. Omitted for an archive-type
-        /// resource.
-        /// </value>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
@@ -121,31 +102,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// resource. The object is empty until the service finishes processing the audio. Omitted for an archive-type
         /// resource.
         /// </summary>
-        /// <value>
-        /// **For an audio-type resource,** an `AudioDetails` object that provides detailed information about the
-        /// resource. The object is empty until the service finishes processing the audio. Omitted for an archive-type
-        /// resource.
-        /// </value>
         [JsonProperty("details", NullValueHandling = NullValueHandling.Ignore)]
         public AudioDetails Details { get; set; }
         /// <summary>
         /// **For an archive-type resource,** an object of type `AudioResource` that provides information about the
         /// resource. Omitted for an audio-type resource.
         /// </summary>
-        /// <value>
-        /// **For an archive-type resource,** an object of type `AudioResource` that provides information about the
-        /// resource. Omitted for an audio-type resource.
-        /// </value>
         [JsonProperty("container", NullValueHandling = NullValueHandling.Ignore)]
         public AudioResource Container { get; set; }
         /// <summary>
         /// **For an archive-type resource,** an array of `AudioResource` objects that provides information about the
         /// audio-type resources that are contained in the resource. Omitted for an audio-type resource.
         /// </summary>
-        /// <value>
-        /// **For an archive-type resource,** an array of `AudioResource` objects that provides information about the
-        /// audio-type resources that are contained in the resource. Omitted for an audio-type resource.
-        /// </value>
         [JsonProperty("audio", NullValueHandling = NullValueHandling.Ignore)]
         public List<AudioResource> Audio { get; set; }
     }

@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
         /// <summary>
         /// The input content that the service is to analyze.
         /// </summary>
-        /// <value>
-        /// The input content that the service is to analyze.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

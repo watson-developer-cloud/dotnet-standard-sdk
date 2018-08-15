@@ -28,9 +28,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model
         /// <summary>
         /// An array of `ContentItem` objects that provides the text that is to be analyzed.
         /// </summary>
-        /// <value>
-        /// An array of `ContentItem` objects that provides the text that is to be analyzed.
-        /// </value>
         [JsonProperty("contentItems", NullValueHandling = NullValueHandling.Ignore)]
         public List<ContentItem> ContentItems { get; set; }
     }

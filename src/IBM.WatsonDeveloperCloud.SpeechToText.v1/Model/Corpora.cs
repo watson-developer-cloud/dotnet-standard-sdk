@@ -29,10 +29,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// An array of objects that provides information about the corpora for the custom model. The array is empty if
         /// the custom model has no corpora.
         /// </summary>
-        /// <value>
-        /// An array of objects that provides information about the corpora for the custom model. The array is empty if
-        /// the custom model has no corpora.
-        /// </value>
         [JsonProperty("corpora", NullValueHandling = NullValueHandling.Ignore)]
         public List<Corpus> _Corpora { get; set; }
     }

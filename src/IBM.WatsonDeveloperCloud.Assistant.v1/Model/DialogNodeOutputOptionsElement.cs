@@ -27,19 +27,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The user-facing label for the option.
         /// </summary>
-        /// <value>
-        /// The user-facing label for the option.
-        /// </value>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
         /// <summary>
         /// An object defining the message input to be sent to the Watson Assistant service if the user selects the
         /// corresponding option.
         /// </summary>
-        /// <value>
-        /// An object defining the message input to be sent to the Watson Assistant service if the user selects the
-        /// corresponding option.
-        /// </value>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeOutputOptionsElementValue Value { get; set; }
     }

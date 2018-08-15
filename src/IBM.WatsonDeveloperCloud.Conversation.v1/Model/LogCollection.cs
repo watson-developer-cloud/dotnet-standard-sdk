@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// <summary>
         /// An array of objects describing log events.
         /// </summary>
-        /// <value>
-        /// An array of objects describing log events.
-        /// </value>
         [JsonProperty("logs", NullValueHandling = NullValueHandling.Ignore)]
         public List<LogExport> Logs { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>
-        /// <value>
-        /// The pagination data for the returned objects.
-        /// </value>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public LogPagination Pagination { get; set; }
     }

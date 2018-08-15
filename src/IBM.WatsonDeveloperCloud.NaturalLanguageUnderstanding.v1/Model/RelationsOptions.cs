@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Enter a custom model ID to override the default model.
         /// </summary>
-        /// <value>
-        /// Enter a custom model ID to override the default model.
-        /// </value>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
     }

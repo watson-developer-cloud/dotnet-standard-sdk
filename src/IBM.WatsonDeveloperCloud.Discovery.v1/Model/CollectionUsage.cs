@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of active collections in the environment.
         /// </summary>
-        /// <value>
-        /// Number of active collections in the environment.
-        /// </value>
         [JsonProperty("available", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? Available { get; private set; }
         /// <summary>
         /// Total number of collections allowed in the environment.
         /// </summary>
-        /// <value>
-        /// Total number of collections allowed in the environment.
-        /// </value>
         [JsonProperty("maximum_allowed", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? MaximumAllowed { get; private set; }
     }

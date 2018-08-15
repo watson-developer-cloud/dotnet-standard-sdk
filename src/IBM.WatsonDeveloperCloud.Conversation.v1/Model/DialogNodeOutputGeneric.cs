@@ -130,110 +130,67 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
         /// </summary>
-        /// <value>
-        /// The type of response returned by the dialog node. The specified response type must be supported by the
-        /// client application or channel.
-        /// </value>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public ResponseTypeEnum? ResponseType { get; set; }
         /// <summary>
         /// How a response is selected from the list, if more than one response is specified. Valid only when
         /// **response_type**=`text`.
         /// </summary>
-        /// <value>
-        /// How a response is selected from the list, if more than one response is specified. Valid only when
-        /// **response_type**=`text`.
-        /// </value>
         [JsonProperty("selection_policy", NullValueHandling = NullValueHandling.Ignore)]
         public SelectionPolicyEnum? SelectionPolicy { get; set; }
         /// <summary>
         /// The preferred type of control to display, if supported by the channel. Valid only when
         /// **response_type**=`option`.
         /// </summary>
-        /// <value>
-        /// The preferred type of control to display, if supported by the channel. Valid only when
-        /// **response_type**=`option`.
-        /// </value>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
         public PreferenceEnum? Preference { get; set; }
         /// <summary>
         /// A list of one or more objects defining text responses. Required when **response_type**=`text`.
         /// </summary>
-        /// <value>
-        /// A list of one or more objects defining text responses. Required when **response_type**=`text`.
-        /// </value>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeOutputTextValuesElement> Values { get; set; }
         /// <summary>
         /// The delimiter to use as a separator between responses when `selection_policy`=`multiline`.
         /// </summary>
-        /// <value>
-        /// The delimiter to use as a separator between responses when `selection_policy`=`multiline`.
-        /// </value>
         [JsonProperty("delimiter", NullValueHandling = NullValueHandling.Ignore)]
         public string Delimiter { get; set; }
         /// <summary>
         /// How long to pause, in milliseconds. The valid values are from 0 to 10000. Valid only when
         /// **response_type**=`pause`.
         /// </summary>
-        /// <value>
-        /// How long to pause, in milliseconds. The valid values are from 0 to 10000. Valid only when
-        /// **response_type**=`pause`.
-        /// </value>
         [JsonProperty("time", NullValueHandling = NullValueHandling.Ignore)]
         public long? Time { get; set; }
         /// <summary>
         /// Whether to send a \"user is typing\" event during the pause. Ignored if the channel does not support this
         /// event. Valid only when **response_type**=`pause`.
         /// </summary>
-        /// <value>
-        /// Whether to send a "user is typing" event during the pause. Ignored if the channel does not support this
-        /// event. Valid only when **response_type**=`pause`.
-        /// </value>
         [JsonProperty("typing", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Typing { get; set; }
         /// <summary>
         /// The URL of the image. Required when **response_type**=`image`.
         /// </summary>
-        /// <value>
-        /// The URL of the image. Required when **response_type**=`image`.
-        /// </value>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
         /// An optional title to show before the response. Valid only when **response_type**=`image` or `option`.
         /// </summary>
-        /// <value>
-        /// An optional title to show before the response. Valid only when **response_type**=`image` or `option`.
-        /// </value>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
         /// An optional description to show with the response. Valid only when **response_type**=`image` or `option`.
         /// </summary>
-        /// <value>
-        /// An optional description to show with the response. Valid only when **response_type**=`image` or `option`.
-        /// </value>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
         /// An array of objects describing the options from which the user can choose. Required when
         /// **response_type**=`option`.
         /// </summary>
-        /// <value>
-        /// An array of objects describing the options from which the user can choose. Required when
-        /// **response_type**=`option`.
-        /// </value>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeOutputOptionsElement> Options { get; set; }
         /// <summary>
         /// An optional message to be sent to the human agent who will be taking over the conversation. Valid only when
         /// **reponse_type**=`connect_to_agent`.
         /// </summary>
-        /// <value>
-        /// An optional message to be sent to the human agent who will be taking over the conversation. Valid only when
-        /// **reponse_type**=`connect_to_agent`.
-        /// </value>
         [JsonProperty("message_to_human_agent", NullValueHandling = NullValueHandling.Ignore)]
         public string MessageToHumanAgent { get; set; }
     }

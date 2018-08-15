@@ -58,19 +58,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// * `created` if the callback URL was successfully white-listed as a result of the call.
         /// * `already created` if the URL was already white-listed.
         /// </summary>
-        /// <value>
-        /// The current status of the job:
-        /// * `created` if the callback URL was successfully white-listed as a result of the call.
-        /// * `already created` if the URL was already white-listed.
-        /// </value>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// The callback URL that is successfully registered.
         /// </summary>
-        /// <value>
-        /// The callback URL that is successfully registered.
-        /// </value>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
     }

@@ -28,20 +28,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// The Microsoft SharePoint Online site collection path to crawl. The path must be be relative to the
         /// **organization_url** that was specified in the credentials associated with this source configuration.
         /// </summary>
-        /// <value>
-        /// The Microsoft SharePoint Online site collection path to crawl. The path must be be relative to the
-        /// **organization_url** that was specified in the credentials associated with this source configuration.
-        /// </value>
         [JsonProperty("site_collection_path", NullValueHandling = NullValueHandling.Ignore)]
         public string SiteCollectionPath { get; set; }
         /// <summary>
         /// The maximum number of documents to crawl for this site collection. By default, all documents in the site
         /// collection are crawled.
         /// </summary>
-        /// <value>
-        /// The maximum number of documents to crawl for this site collection. By default, all documents in the site
-        /// collection are crawled.
-        /// </value>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
     }

@@ -124,8 +124,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// The following built-in classifier IDs require no training:
         /// - `default`: Returns classes from thousands of general tags.
-        /// - `food`: (Beta) Enhances specificity and accuracy for images of food items.
-        /// - `explicit`: (Beta) Evaluates whether the image might be pornographic. (optional)</param>
+        /// - `food`: Enhances specificity and accuracy for images of food items.
+        /// - `explicit`: Evaluates whether the image might be pornographic. (optional)</param>
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
@@ -153,7 +153,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (url != null)
                 {
                     var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    urlContent.Headers.ContentType = null;
                     formData.Add(urlContent, "url");
                 }
 
@@ -259,7 +259,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (url != null)
                 {
                     var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    urlContent.Headers.ContentType = null;
                     formData.Add(urlContent, "url");
                 }
 

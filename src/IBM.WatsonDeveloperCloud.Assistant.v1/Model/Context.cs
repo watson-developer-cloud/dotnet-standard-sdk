@@ -27,17 +27,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// <summary>
         /// The unique identifier of the conversation.
         /// </summary>
-        /// <value>
-        /// The unique identifier of the conversation.
-        /// </value>
         [JsonProperty("conversation_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic ConversationId { get; set; }
         /// <summary>
         /// For internal use only.
         /// </summary>
-        /// <value>
-        /// For internal use only.
-        /// </value>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic System { get; set; }
     }

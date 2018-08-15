@@ -50,10 +50,9 @@ Watson services are migrating to token-based Identity and Access Management (IAM
 ### Getting credentials
 To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
 
-1.  Go to the IBM Cloud **[Dashboard][watson-dashboard]** page.
-1.  Either click an existing Watson service instance or click **Create**.
-1.  Click **Show** to view your service credentials.
-1.  Copy the `url` and either `apikey` or `username` and `password`.
+1. Go to the IBM Cloud [Dashboard](https://console.bluemix.net/dashboard/apps?category=ai) page.
+1. Either click an existing Watson service instance or click [**Create resource > AI**](https://console.bluemix.net/catalog/?category=ai) and create a service instance.
+1. Copy the `url` and either `apikey` or `username` and `password`. Click **Show** if the credentials are masked.
 
 In your code, you can use these values in the service constructor or with a method call after instantiating your service.
 
@@ -189,4 +188,3 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [visual-studio-code-download]: https://code.visualstudio.com/
 [dotnet-standard-sdk-documentation]: https://watson-developer-cloud.github.io/dotnet-standard-sdk/
 [ibm-cloud-onboarding]: http://console.bluemix.net/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-DotNet
-[watson-dashboard]: https://console.bluemix.net/dashboard/apps?category=watson

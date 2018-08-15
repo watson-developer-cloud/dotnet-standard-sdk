@@ -27,49 +27,31 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Number of bytes within the environment's disk capacity that are currently used to store data.
         /// </summary>
-        /// <value>
-        /// Number of bytes within the environment's disk capacity that are currently used to store data.
-        /// </value>
         [JsonProperty("used_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? UsedBytes { get; private set; }
         /// <summary>
         /// Total number of bytes available in the environment's disk capacity.
         /// </summary>
-        /// <value>
-        /// Total number of bytes available in the environment's disk capacity.
-        /// </value>
         [JsonProperty("maximum_allowed_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? MaximumAllowedBytes { get; private set; }
         /// <summary>
         /// **Deprecated**: Total number of bytes available in the environment's disk capacity.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Total number of bytes available in the environment's disk capacity.
-        /// </value>
         [JsonProperty("total_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? TotalBytes { get; private set; }
         /// <summary>
         /// **Deprecated**: Amount of disk capacity used, in KB or GB format.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Amount of disk capacity used, in KB or GB format.
-        /// </value>
         [JsonProperty("used", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Used { get; private set; }
         /// <summary>
         /// **Deprecated**: Total amount of the environment's disk capacity, in KB or GB format.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Total amount of the environment's disk capacity, in KB or GB format.
-        /// </value>
         [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Total { get; private set; }
         /// <summary>
         /// **Deprecated**: Percentage of the environment's disk capacity that is being used.
         /// </summary>
-        /// <value>
-        /// **Deprecated**: Percentage of the environment's disk capacity that is being used.
-        /// </value>
         [JsonProperty("percent_used", NullValueHandling = NullValueHandling.Ignore)]
         public virtual double? PercentUsed { get; private set; }
     }

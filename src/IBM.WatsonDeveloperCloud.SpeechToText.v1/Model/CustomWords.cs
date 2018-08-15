@@ -29,10 +29,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// An array of objects that provides information about each custom word that is to be added to or updated in
         /// the custom language model.
         /// </summary>
-        /// <value>
-        /// An array of objects that provides information about each custom word that is to be added to or updated in
-        /// the custom language model.
-        /// </value>
         [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
         public List<CustomWord> Words { get; set; }
     }

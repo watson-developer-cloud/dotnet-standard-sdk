@@ -28,10 +28,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The text of a response. This can include newline characters (`
         /// `), Markdown tagging, or other special characters, if supported by the channel.
         /// </summary>
-        /// <value>
-        /// The text of a response. This can include newline characters (`
-        /// `), Markdown tagging, or other special characters, if supported by the channel.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
     }

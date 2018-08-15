@@ -27,25 +27,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Name of the concept.
         /// </summary>
-        /// <value>
-        /// Name of the concept.
-        /// </value>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
         /// Relevance score between 0 and 1. Higher scores indicate greater relevance.
         /// </summary>
-        /// <value>
-        /// Relevance score between 0 and 1. Higher scores indicate greater relevance.
-        /// </value>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
         public float? Relevance { get; set; }
         /// <summary>
         /// Link to the corresponding DBpedia resource.
         /// </summary>
-        /// <value>
-        /// Link to the corresponding DBpedia resource.
-        /// </value>
         [JsonProperty("dbpedia_resource", NullValueHandling = NullValueHandling.Ignore)]
         public string DbpediaResource { get; set; }
     }

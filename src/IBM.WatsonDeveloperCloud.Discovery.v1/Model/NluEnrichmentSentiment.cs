@@ -28,17 +28,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// When `true`, sentiment analysis is performed on the entire field.
         /// </summary>
-        /// <value>
-        /// When `true`, sentiment analysis is performed on the entire field.
-        /// </value>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Document { get; set; }
         /// <summary>
         /// A comma-separated list of target strings that will have any associated sentiment analyzed.
         /// </summary>
-        /// <value>
-        /// A comma-separated list of target strings that will have any associated sentiment analyzed.
-        /// </value>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Targets { get; set; }
     }

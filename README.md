@@ -73,7 +73,7 @@ void Example()
     TokenOptions iamAssistantTokenOptions = new TokenOptions()
     {
         IamApiKey = "<iam-apikey>",
-        IamUrl = "<service-endpoint>"
+        ServiceUrl = "<service-endpoint>"
     };
 
     _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");

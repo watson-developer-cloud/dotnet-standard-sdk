@@ -55,6 +55,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// </summary>
         [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic NodesVisitedDetails { get; set; }
+        /// <summary>
+        /// An array of objects describing any actions requested by the dialog node.
+        /// </summary>
+        [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic Actions { get; set; }
     }
 
 }

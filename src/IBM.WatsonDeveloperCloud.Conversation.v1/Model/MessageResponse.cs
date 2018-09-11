@@ -55,6 +55,11 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Output { get; set; }
+        /// <summary>
+        /// An array of objects describing any actions requested by the dialog node.
+        /// </summary>
+        [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic Actions { get; set; }
     }
 
 }

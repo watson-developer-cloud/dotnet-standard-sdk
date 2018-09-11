@@ -25,7 +25,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class RelationsOptions : BaseModel
     {
         /// <summary>
-        /// Enter a custom model ID to override the default model.
+        /// Enter a [custom
+        /// model](https://www.bluemix.net/docs/services/natural-language-understanding/customizing.html) ID to override
+        /// the default model.
         /// </summary>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }

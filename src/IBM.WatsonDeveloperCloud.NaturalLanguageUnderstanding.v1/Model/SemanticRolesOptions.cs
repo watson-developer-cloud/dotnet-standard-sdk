@@ -30,12 +30,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
         /// <summary>
-        /// Set this to true to return keyword information for subjects and objects.
+        /// Set this to `true` to return keyword information for subjects and objects.
         /// </summary>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Keywords { get; set; }
         /// <summary>
-        /// Set this to true to return entity information for subjects and objects.
+        /// Set this to `true` to return entity information for subjects and objects.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Entities { get; set; }

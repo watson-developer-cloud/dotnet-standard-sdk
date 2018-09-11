@@ -49,6 +49,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             AR_AR_BROADBANDMODEL,
             
             /// <summary>
+            /// Enum DE_DE_BROADBANDMODEL for de-DE_BroadbandModel
+            /// </summary>
+            [EnumMember(Value = "de-DE_BroadbandModel")]
+            DE_DE_BROADBANDMODEL,
+            
+            /// <summary>
             /// Enum EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
             /// </summary>
             [EnumMember(Value = "en-GB_BroadbandModel")]

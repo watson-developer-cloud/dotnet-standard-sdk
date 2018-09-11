@@ -2804,7 +2804,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsEventRate(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2859,7 +2859,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQuery(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2916,7 +2916,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQueryEvent(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2972,7 +2972,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQueryNoResults(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))

@@ -285,7 +285,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public DialogNodeOutput Output { get; set; }
         /// <summary>
         /// The context for the dialog node.
         /// </summary>
@@ -319,7 +319,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("variable", NullValueHandling = NullValueHandling.Ignore)]
         public string Variable { get; set; }
         /// <summary>
-        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// A label that can be displayed externally to describe the purpose of the node to users. This string must be
+        /// no longer than 512 characters.
         /// </summary>
         [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
         public string UserLabel { get; set; }

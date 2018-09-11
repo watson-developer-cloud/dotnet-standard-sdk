@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         /// The user input.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public InputData Input { get; set; }
         /// <summary>
         /// An array of intents to be sent along with the user input.
         /// </summary>

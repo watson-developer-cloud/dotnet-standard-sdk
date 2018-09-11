@@ -31,22 +31,24 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
         /// <summary>
-        /// Set this to true to return locations of entity mentions.
+        /// Set this to `true` to return locations of entity mentions.
         /// </summary>
         [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Mentions { get; set; }
         /// <summary>
-        /// Enter a custom model ID to override the standard entity detection model.
+        /// Enter a [custom
+        /// model](https://www.bluemix.net/docs/services/natural-language-understanding/customizing.html) ID to override
+        /// the standard entity detection model.
         /// </summary>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }
         /// <summary>
-        /// Set this to true to return sentiment information for detected entities.
+        /// Set this to `true` to return sentiment information for detected entities.
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Sentiment { get; set; }
         /// <summary>
-        /// Set this to true to analyze emotion for detected keywords.
+        /// Set this to `true` to analyze emotion for detected keywords.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Emotion { get; set; }

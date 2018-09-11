@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Date in string form representing the start of this interval.
         /// </summary>
         [JsonProperty("key_as_string", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime KeyAsString { get; set; }
+        public DateTime? KeyAsString { get; set; }
         /// <summary>
         /// Unix epoch time equivalent of the **key_as_string**, that represents the start of this interval.
         /// </summary>

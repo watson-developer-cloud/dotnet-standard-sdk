@@ -25,6 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Service
     {
         const string PATH_AUTHORIZATION_V1_TOKEN = "/authorization/api/v1/token";
         const string ICP_PREFIX = "icp-";
+        const string APIKEY_AS_USERNAME = "apikey";
         public IClient Client { get; set; }
 
         public string ServiceName { get; set; }
@@ -89,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="password">The password</param>
         public void SetCredential(string userName, string password)
         {
-            if (userName == "apikey" && !password.StartsWith(ICP_PREFIX))
+            if (userName == APIKEY_AS_USERNAME && !password.StartsWith(ICP_PREFIX))
             {
                 TokenOptions tokenOptions = new TokenOptions()
                 {
@@ -112,19 +113,26 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="options"></param>
         public void SetCredential(TokenOptions options)
         {
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (options.IamApiKey.StartsWith(ICP_PREFIX))
             {
-                if (!_userSetEndpoint)
-                {
-                    this.Endpoint = options.ServiceUrl;
-                }
+                SetCredential(APIKEY_AS_USERNAME, options.IamApiKey);
             }
             else
             {
-                options.ServiceUrl = this.Endpoint;
-            }
+                if (!string.IsNullOrEmpty(options.ServiceUrl))
+                {
+                    if (!_userSetEndpoint)
+                    {
+                        this.Endpoint = options.ServiceUrl;
+                    }
+                }
+                else
+                {
+                    options.ServiceUrl = this.Endpoint;
+                }
 
-            _tokenManager = new TokenManager(options);
+                _tokenManager = new TokenManager(options);
+            }
         }
 
         public void SetEndpoint(string url)

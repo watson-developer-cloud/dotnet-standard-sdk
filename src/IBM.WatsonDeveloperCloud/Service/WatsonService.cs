@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.Service
     public abstract class WatsonService : IWatsonService
     {
         const string PATH_AUTHORIZATION_V1_TOKEN = "/authorization/api/v1/token";
-        
+        const string ICP_PREFIX = "icp-";
         public IClient Client { get; set; }
 
         public string ServiceName { get; set; }
@@ -89,7 +89,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="password">The password</param>
         public void SetCredential(string userName, string password)
         {
-            if (userName == "apikey")
+            if (userName == "apikey" && !password.StartsWith(ICP_PREFIX))
             {
                 TokenOptions tokenOptions = new TokenOptions()
                 {

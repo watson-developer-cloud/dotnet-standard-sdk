@@ -249,6 +249,119 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
+        #region German Model
+        [TestMethod]
+        public void TestGermanLanguageModel_Success()
+        {
+            CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
+            {
+                Name = _customModelName,
+                BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.DE_DE_BROADBANDMODEL,
+                Description = _customModelDescription
+            };
+
+            var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
+            string customizationId = createLanguageModelResult.CustomizationId;
+
+            var getLanguageModelResult = GetLanguageModel(customizationId);
+
+            var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.BaseModelName == "de-DE_BroadbandModel");
+        }
+        #endregion
+
+        #region Brazilian Broadband Model
+        [TestMethod]
+        public void TestBrazilianBroadbandLanguageModel_Success()
+        {
+            CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
+            {
+                Name = _customModelName,
+                BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.PT_BR_BROADBANDMODEL,
+                Description = _customModelDescription
+            };
+
+            var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
+            string customizationId = createLanguageModelResult.CustomizationId;
+
+            var getLanguageModelResult = GetLanguageModel(customizationId);
+
+            var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.BaseModelName == "pt-BR_BroadbandModel");
+        }
+        #endregion
+
+        #region Brazilian Narrowband Model
+        [TestMethod]
+        public void TestBrazilianNarrowbandLanguageModel_Success()
+        {
+            CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
+            {
+                Name = _customModelName,
+                BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.PT_BR_NARROWBANDMODEL,
+                Description = _customModelDescription
+            };
+
+            var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
+            string customizationId = createLanguageModelResult.CustomizationId;
+
+            var getLanguageModelResult = GetLanguageModel(customizationId);
+
+            var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.BaseModelName == "pt-BR_NarrowbandModel");
+        }
+        #endregion
+
+        #region German Acoustic Customization
+        [TestMethod]
+        public void TestGermanAcousticCustomization()
+        {
+            byte[] acousticResourceData = null;
+
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(_acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
+
+            Task.WaitAll();
+
+            var listAcousticModelsResult = ListAcousticModels();
+
+            var acousticModel = new CreateAcousticModel
+            {
+                Name = _acousticModelName,
+                BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.DE_DE_BROADBANDMODEL,
+                Description = _acousticModelDescription
+            };
+
+            var createAcousticModelResult = CreateAcousticModel(acousticModel);
+            var acousticCustomizationId = createAcousticModelResult.CustomizationId;
+            var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
+            var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
+
+            Assert.IsNotNull(createAcousticModelResult);
+            Assert.IsNotNull(getAcousticModelResult);
+            Assert.IsNotNull(deleteAcousticModelResult);
+            Assert.IsTrue(getAcousticModelResult.BaseModelName == "de-DE_BroadbandModel");
+        }
+        #endregion
+
         #region Acoustic Customizations
         [TestMethod]
         public void TestAcousticCustomizations()

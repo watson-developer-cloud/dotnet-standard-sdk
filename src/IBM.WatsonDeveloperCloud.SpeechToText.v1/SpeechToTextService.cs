@@ -162,18 +162,18 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <summary>
         /// Recognize audio.
         ///
-        /// Sends audio and returns transcription results for a sessionless recognition request. Returns only the final
-        /// results; to enable interim results, use session-based requests or the WebSocket API. The service imposes a
-        /// data size limit of 100 MB. It automatically detects the endianness of the incoming audio and, for audio that
-        /// includes multiple channels, downmixes the audio to one-channel mono during transcoding. (For the `audio/l16`
-        /// format, you can specify the endianness.)
+        /// Sends audio and returns transcription results for a recognition request. Returns only the final results; to
+        /// enable interim results, use the WebSocket API. The service imposes a data size limit of 100 MB. It
+        /// automatically detects the endianness of the incoming audio and, for audio that includes multiple channels,
+        /// downmixes the audio to one-channel mono during transcoding. (For the `audio/l16` format, you can specify the
+        /// endianness.)
         ///
         /// ### Streaming mode
         ///
         ///  For requests to transcribe live audio as it becomes available, you must set the `Transfer-Encoding` header
         /// to `chunked` to use streaming mode. In streaming mode, the server closes the connection (status code 408) if
-        /// the service receives no data chunk for 30 seconds and the service has no audio to transcribe for 30 seconds.
-        /// The server also closes the connection (status code 400) if no speech is detected for `inactivity_timeout`
+        /// the service receives no data chunk for 30 seconds and it has no audio to transcribe for 30 seconds. The
+        /// server also closes the connection (status code 400) if no speech is detected for `inactivity_timeout`
         /// seconds of audio (not processing time); use the `inactivity_timeout` parameter to change the default of 30
         /// seconds.
         ///
@@ -210,33 +210,32 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// parameters used with the request are greater than the 8 KB limit imposed by most HTTP servers and proxies.
         /// You can encounter this limit, for example, if you want to spot a very large number of keywords.
         ///
-        /// For information about submitting a multipart request, see [Submitting multipart requests as form
-        /// data](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
+        /// For information about submitting a multipart request, see [Making a multipart HTTP
+        /// request](https://console.bluemix.net/docs/services/speech-to-text/http.html#HTTP-multi).
         /// </summary>
         /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
         /// <param name="contentType">The type of the input.</param>
-        /// <param name="model">The identifier of the model that is to be used for the recognition request or, for the
-        /// **Create a session** method, with the new session. (optional, default to en-US_BroadbandModel)</param>
+        /// <param name="model">The identifier of the model that is to be used for the recognition request. (optional,
+        /// default to en-US_BroadbandModel)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom language model that is to be used with
-        /// the recognition request or, for the **Create a session** method, with the new session. The base model of the
-        /// specified custom language model must match the model specified with the `model` parameter. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model. By
-        /// default, no custom language model is used. (optional)</param>
+        /// the recognition request. The base model of the specified custom language model must match the model
+        /// specified with the `model` parameter. You must make the request with service credentials created for the
+        /// instance of the service that owns the custom model. By default, no custom language model is used.
+        /// (optional)</param>
         /// <param name="acousticCustomizationId">The customization ID (GUID) of a custom acoustic model that is to be
-        /// used with the recognition request or, for the **Create a session** method, with the new session. The base
-        /// model of the specified custom acoustic model must match the model specified with the `model` parameter. You
-        /// must make the request with service credentials created for the instance of the service that owns the custom
-        /// model. By default, no custom acoustic model is used. (optional)</param>
+        /// used with the recognition request. The base model of the specified custom acoustic model must match the
+        /// model specified with the `model` parameter. You must make the request with service credentials created for
+        /// the instance of the service that owns the custom model. By default, no custom acoustic model is used.
+        /// (optional)</param>
         /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition
-        /// request or, for the **Create a session** method, with the new session. Multiple versions of a base model can
-        /// exist when a model is updated for internal improvements. The parameter is intended primarily for use with
-        /// custom models that have been upgraded for a new base model. The default value depends on whether the
-        /// parameter is used with or without a custom model. For more information, see [Base model
-        /// version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version). (optional)</param>
+        /// request. Multiple versions of a base model can exist when a model is updated for internal improvements. The
+        /// parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
+        /// default value depends on whether the parameter is used with or without a custom model. For more information,
+        /// see [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
+        /// (optional)</param>
         /// <param name="customizationWeight">If you specify the customization ID (GUID) of a custom language model with
-        /// the recognition request or, for sessions, with the **Create a session** method, the customization weight
-        /// tells the service how much weight to give to words from the custom language model compared to those from the
-        /// base model for the current request.
+        /// the recognition request, the customization weight tells the service how much weight to give to words from
+        /// the custom language model compared to those from the base model for the current request.
         ///
         /// Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom
         /// model when it was trained, the default value is 0.3. A customization weight that you specify overrides a
@@ -510,8 +509,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="audio">The audio to transcribe in the format specified by the `Content-Type` header.</param>
         /// <param name="contentType">The type of the input.</param>
-        /// <param name="model">The identifier of the model that is to be used for the recognition request or, for the
-        /// **Create a session** method, with the new session. (optional, default to en-US_BroadbandModel)</param>
+        /// <param name="model">The identifier of the model that is to be used for the recognition request. (optional,
+        /// default to en-US_BroadbandModel)</param>
         /// <param name="callbackUrl">A URL to which callback notifications are to be sent. The URL must already be
         /// successfully white-listed by using the **Register a callback** method. You can include the same callback URL
         /// with any number of job creation requests. Omit the parameter to poll the service for job completion and
@@ -529,10 +528,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// * `recognitions.failed` generates a callback notification if the service experiences an error while
         /// processing the job.
         ///
-        /// Omit the parameter to subscribe to the default events: `recognitions.started`, `recognitions.completed`, and
-        /// `recognitions.failed`. The `recognitions.completed` and `recognitions.completed_with_results` events are
-        /// incompatible; you can specify only of the two events. If the job does not include a callback URL, omit the
-        /// parameter. (optional)</param>
+        /// The `recognitions.completed` and `recognitions.completed_with_results` events are incompatible. You can
+        /// specify only of the two events.
+        ///
+        /// If the job includes a callback URL, omit the parameter to subscribe to the default events:
+        /// `recognitions.started`, `recognitions.completed`, and `recognitions.failed`. If the job does not include a
+        /// callback URL, omit the parameter. (optional)</param>
         /// <param name="userToken">If the job includes a callback URL, a user-specified string that the service is to
         /// include with each callback notification for the job; the token allows the user to maintain an internal
         /// mapping between jobs and notification events. If the job does not include a callback URL, omit the
@@ -542,25 +543,24 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// parameter to use a time to live of one week. The parameter is valid with or without a callback URL.
         /// (optional)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom language model that is to be used with
-        /// the recognition request or, for the **Create a session** method, with the new session. The base model of the
-        /// specified custom language model must match the model specified with the `model` parameter. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model. By
-        /// default, no custom language model is used. (optional)</param>
+        /// the recognition request. The base model of the specified custom language model must match the model
+        /// specified with the `model` parameter. You must make the request with service credentials created for the
+        /// instance of the service that owns the custom model. By default, no custom language model is used.
+        /// (optional)</param>
         /// <param name="acousticCustomizationId">The customization ID (GUID) of a custom acoustic model that is to be
-        /// used with the recognition request or, for the **Create a session** method, with the new session. The base
-        /// model of the specified custom acoustic model must match the model specified with the `model` parameter. You
-        /// must make the request with service credentials created for the instance of the service that owns the custom
-        /// model. By default, no custom acoustic model is used. (optional)</param>
+        /// used with the recognition request. The base model of the specified custom acoustic model must match the
+        /// model specified with the `model` parameter. You must make the request with service credentials created for
+        /// the instance of the service that owns the custom model. By default, no custom acoustic model is used.
+        /// (optional)</param>
         /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition
-        /// request or, for the **Create a session** method, with the new session. Multiple versions of a base model can
-        /// exist when a model is updated for internal improvements. The parameter is intended primarily for use with
-        /// custom models that have been upgraded for a new base model. The default value depends on whether the
-        /// parameter is used with or without a custom model. For more information, see [Base model
-        /// version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version). (optional)</param>
+        /// request. Multiple versions of a base model can exist when a model is updated for internal improvements. The
+        /// parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
+        /// default value depends on whether the parameter is used with or without a custom model. For more information,
+        /// see [Base model version](https://console.bluemix.net/docs/services/speech-to-text/input.html#version).
+        /// (optional)</param>
         /// <param name="customizationWeight">If you specify the customization ID (GUID) of a custom language model with
-        /// the recognition request or, for sessions, with the **Create a session** method, the customization weight
-        /// tells the service how much weight to give to words from the custom language model compared to those from the
-        /// base model for the current request.
+        /// the recognition request, the customization weight tells the service how much weight to give to words from
+        /// the custom language model compared to those from the base model for the current request.
         ///
         /// Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom
         /// model when it was trained, the default value is 0.3. A customization weight that you specify overrides a
@@ -654,7 +654,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
-                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                if (keywords != null)
+                    restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)

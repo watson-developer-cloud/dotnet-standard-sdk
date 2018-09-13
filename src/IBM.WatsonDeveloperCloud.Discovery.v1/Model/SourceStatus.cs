@@ -98,7 +98,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Date in UTC format indicating when the last crawl was attempted. If `null`, no crawl was completed.
         /// </summary>
         [JsonProperty("last_updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
     }
 
 }

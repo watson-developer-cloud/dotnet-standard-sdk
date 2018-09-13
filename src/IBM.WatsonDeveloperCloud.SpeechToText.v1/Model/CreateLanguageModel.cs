@@ -45,6 +45,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         {
             
             /// <summary>
+            /// Enum DE_DE_BROADBANDMODEL for de-DE_BroadbandModel
+            /// </summary>
+            [EnumMember(Value = "de-DE_BroadbandModel")]
+            DE_DE_BROADBANDMODEL,
+            
+            /// <summary>
             /// Enum EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
             /// </summary>
             [EnumMember(Value = "en-GB_BroadbandModel")]
@@ -108,7 +114,19 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// Enum KO_KR_NARROWBANDMODEL for ko-KR_NarrowbandModel
             /// </summary>
             [EnumMember(Value = "ko-KR_NarrowbandModel")]
-            KO_KR_NARROWBANDMODEL
+            KO_KR_NARROWBANDMODEL,
+            
+            /// <summary>
+            /// Enum PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
+            /// </summary>
+            [EnumMember(Value = "pt-BR_BroadbandModel")]
+            PT_BR_BROADBANDMODEL,
+            
+            /// <summary>
+            /// Enum PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "pt-BR_NarrowbandModel")]
+            PT_BR_NARROWBANDMODEL
         }
 
         /// <summary>

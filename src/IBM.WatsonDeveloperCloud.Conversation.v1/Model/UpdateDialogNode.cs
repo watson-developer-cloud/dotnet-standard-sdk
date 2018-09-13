@@ -319,7 +319,8 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeAction> Actions { get; set; }
         /// <summary>
-        /// A label that can be displayed externally to describe the purpose of the node to users.
+        /// A label that can be displayed externally to describe the purpose of the node to users. This string must be
+        /// no longer than 512 characters.
         /// </summary>
         [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
         public string UserLabel { get; set; }

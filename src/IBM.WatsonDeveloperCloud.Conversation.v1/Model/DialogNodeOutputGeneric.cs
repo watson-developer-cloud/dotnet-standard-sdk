@@ -172,24 +172,26 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.Model
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
         public string Source { get; set; }
         /// <summary>
-        /// An optional title to show before the response. Valid only when **response_type**=`image` or `option`.
+        /// An optional title to show before the response. Valid only when **response_type**=`image` or `option`. This
+        /// string must be no longer than 512 characters.
         /// </summary>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
         /// An optional description to show with the response. Valid only when **response_type**=`image` or `option`.
+        /// This string must be no longer than 256 characters.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// An array of objects describing the options from which the user can choose. Required when
-        /// **response_type**=`option`.
+        /// An array of objects describing the options from which the user can choose. You can include up to 20 options.
+        /// Required when **response_type**=`option`.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeOutputOptionsElement> Options { get; set; }
         /// <summary>
         /// An optional message to be sent to the human agent who will be taking over the conversation. Valid only when
-        /// **reponse_type**=`connect_to_agent`.
+        /// **reponse_type**=`connect_to_agent`. This string must be no longer than 256 characters.
         /// </summary>
         [JsonProperty("message_to_human_agent", NullValueHandling = NullValueHandling.Ignore)]
         public string MessageToHumanAgent { get; set; }

@@ -124,6 +124,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         private string _convertedSize;
+
         /// <summary>
         /// Name that identifies the environment.
         /// </summary>

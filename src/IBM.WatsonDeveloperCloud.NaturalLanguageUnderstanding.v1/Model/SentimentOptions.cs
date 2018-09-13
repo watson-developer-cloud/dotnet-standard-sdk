@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class SentimentOptions : BaseModel
     {
         /// <summary>
-        /// Set this to false to hide document-level sentiment results.
+        /// Set this to `false` to hide document-level sentiment results.
         /// </summary>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Document { get; set; }

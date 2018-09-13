@@ -314,8 +314,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -616,8 +615,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -919,8 +917,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1213,8 +1210,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1509,8 +1505,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1880,8 +1875,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -2198,8 +2192,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -2493,8 +2486,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -2621,9 +2613,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
         /// or `request.context.metadata.deployment`. For more information, see the
         /// [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
+        /// request_timestamp)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
         /// 100)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
@@ -2685,9 +2677,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). Supported values are `name`, `updated`, and `workspace_id`.
-        /// (optional)</param>
+        /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
+        /// request_timestamp)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
         /// [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).

@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class EmotionOptions : BaseModel
     {
         /// <summary>
-        /// Set this to false to hide document-level emotion results.
+        /// Set this to `false` to hide document-level emotion results.
         /// </summary>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Document { get; set; }

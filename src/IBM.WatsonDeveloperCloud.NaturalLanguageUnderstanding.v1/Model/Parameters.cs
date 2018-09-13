@@ -25,17 +25,17 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class Parameters : BaseModel
     {
         /// <summary>
-        /// The plain text to analyze.
+        /// The plain text to analyze. One of the `text`, `html`, or `url` parameters is required.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// The HTML file to analyze.
+        /// The HTML file to analyze. One of the `text`, `html`, or `url` parameters is required.
         /// </summary>
         [JsonProperty("html", NullValueHandling = NullValueHandling.Ignore)]
         public string Html { get; set; }
         /// <summary>
-        /// The web page to analyze.
+        /// The web page to analyze. One of the `text`, `html`, or `url` parameters is required.
         /// </summary>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
@@ -50,7 +50,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("clean", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Clean { get; set; }
         /// <summary>
-        /// XPath query for targeting nodes in HTML.
+        /// An [XPath query](https://www.w3.org/TR/xpath/) to perform on `html` or `url` input. Results of the query
+        /// will be appended to the cleaned webpage text before it is analyzed. To analyze only the results of the XPath
+        /// query, set the `clean` parameter to `false`.
         /// </summary>
         [JsonProperty("xpath", NullValueHandling = NullValueHandling.Ignore)]
         public string Xpath { get; set; }
@@ -65,7 +67,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("return_analyzed_text", NullValueHandling = NullValueHandling.Ignore)]
         public bool? ReturnAnalyzedText { get; set; }
         /// <summary>
-        /// ISO 639-1 code indicating the language to use in the analysis.
+        /// ISO 639-1 code that specifies the language of your text. This overrides automatic language detection.
+        /// Language support differs depending on the features you include in your analysis. See [Language
+        /// support](https://www.bluemix.net/docs/services/natural-language-understanding/language-support.html) for
+        /// more information.
         /// </summary>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }

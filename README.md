@@ -3,6 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/watson-developer-cloud/dotnet-standard-sdk/badge.svg?branch=development)](https://coveralls.io/github/watson-developer-cloud/dotnet-standard-sdk?branch=development)
 [![wdc-community.slack.com](https://wdc-slack-inviter.mybluemix.net/badge.svg)](http://wdc-slack-inviter.mybluemix.net/)
 [![CLA assistant](https://cla-assistant.io/readme/badge/watson-developer-cloud/dotnet-standard-sdk)](https://cla-assistant.io/watson-developer-cloud/dotnet-standard-sdk)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
 
@@ -72,7 +73,7 @@ void Example()
     TokenOptions iamAssistantTokenOptions = new TokenOptions()
     {
         IamApiKey = "<iam-apikey>",
-        IamUrl = "<service-endpoint>"
+        ServiceUrl = "<service-endpoint>"
     };
 
     _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");

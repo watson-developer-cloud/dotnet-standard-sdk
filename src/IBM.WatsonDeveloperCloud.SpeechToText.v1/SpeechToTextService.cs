@@ -286,7 +286,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
+        public SpeechRecognitionResults Recognize(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
         {
             if (audio == null)
                 throw new ArgumentNullException(nameof(audio));
@@ -321,8 +321,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
-                if (keywords != null)
-                    restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
@@ -339,11 +338,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                var audioContent = new ByteArrayContent(audio);
-                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
-                audioContent.Headers.ContentType = audioType;
-                restRequest.WithBodyContent(audioContent);
+                restRequest.WithBody<byte[]>(audio);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<SpeechRecognitionResults>().Result;
@@ -654,8 +649,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (inactivityTimeout != null)
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
-                if (keywords != null)
-                    restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
+                restRequest.WithArgument("keywords", keywords != null && keywords.Count > 0 ? string.Join(",", keywords.ToArray()) : null);
                 if (keywordsThreshold != null)
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
                 if (maxAlternatives != null)
@@ -672,11 +666,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                var audioContent = new ByteArrayContent(audio);
-                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
-                audioContent.Headers.ContentType = audioType;
-                restRequest.WithBodyContent(audioContent);
+                restRequest.WithBody<byte[]>(audio);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<RecognitionJob>().Result;
@@ -1270,10 +1260,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="corpusName">The name of the corpus for the custom language model. When adding a corpus, do not
-        /// include spaces in the name; use a localized name that matches the language of the custom model; and do not
-        /// use the name `user`, which is reserved by the service to denote custom words added or modified by the
-        /// user.</param>
+        /// <param name="corpusName">The name of the new corpus for the custom language model. Use a localized name that
+        /// matches the language of the custom model and reflects the contents of the corpus.
+        /// * Include a maximum of 128 characters in the name.
+        /// * Do not include spaces, slashes, or backslashes in the name.
+        /// * Do not use the name of a corpus that has already been added to the custom model.
+        /// * Do not use the name `user`, which is reserved by the service to denote custom words that are added or
+        /// modified by the user.</param>
         /// <param name="corpusFile">A plain text file that contains the training data for the corpus. Encode the file
         /// in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII
         /// characters. With cURL, use the `--data-binary` option to upload the file for the request.</param>
@@ -1347,10 +1340,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="corpusName">The name of the corpus for the custom language model. When adding a corpus, do not
-        /// include spaces in the name; use a localized name that matches the language of the custom model; and do not
-        /// use the name `user`, which is reserved by the service to denote custom words added or modified by the
-        /// user.</param>
+        /// <param name="corpusName">The name of the corpus for the custom language model.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         public BaseModel DeleteCorpus(string customizationId, string corpusName, Dictionary<string, object> customData = null)
@@ -1398,10 +1388,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="corpusName">The name of the corpus for the custom language model. When adding a corpus, do not
-        /// include spaces in the name; use a localized name that matches the language of the custom model; and do not
-        /// use the name `user`, which is reserved by the service to denote custom words added or modified by the
-        /// user.</param>
+        /// <param name="corpusName">The name of the corpus for the custom language model.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Corpus" />Corpus</returns>
         public Corpus GetCorpus(string customizationId, string corpusName, Dictionary<string, object> customData = null)
@@ -2266,12 +2253,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// supported for use with speech recognition and with the `Content-Type` header, including the `rate`,
         /// `channels`, and `endianness` parameters that are used with some formats. The default contained audio format
         /// is `audio/wav`.
+        ///
+        /// ### Naming restrictions for embedded audio files
+        ///
+        ///  The name of an audio file that is embedded within an archive-type resource must meet the following
+        /// restrictions:
+        /// * Include a maximum of 128 characters in the file name; this includes the file extension.
+        /// * Do not include spaces, slashes, or backslashes in the file name.
+        /// * Do not use the name of an audio file that has already been added to the custom model as part of an
+        /// archive-type resource.
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="audioName">The name of the audio resource for the custom acoustic model. When adding an audio
-        /// resource, do not include spaces in the name; use a localized name that matches the language of the custom
-        /// model.</param>
+        /// <param name="audioName">The name of the new audio resource for the custom acoustic model. Use a localized
+        /// name that matches the language of the custom model and reflects the contents of the resource.
+        /// * Include a maximum of 128 characters in the name.
+        /// * Do not include spaces, slashes, or backslashes in the name.
+        /// * Do not use the name of an audio resource that has already been added to the custom model.</param>
         /// <param name="audioResource">The audio resource that is to be added to the custom acoustic model, an
         /// individual audio file or an archive file.</param>
         /// <param name="contentType">The type of the input.</param>
@@ -2317,11 +2315,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                var audioResourceContent = new ByteArrayContent(audioResource);
-                System.Net.Http.Headers.MediaTypeHeaderValue audioResourceType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceType);
-                audioResourceContent.Headers.ContentType = audioResourceType;
-                restRequest.WithBodyContent(audioResourceContent);
+                restRequest.WithBody<byte[]>(audioResource);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;
@@ -2348,9 +2342,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="audioName">The name of the audio resource for the custom acoustic model. When adding an audio
-        /// resource, do not include spaces in the name; use a localized name that matches the language of the custom
-        /// model.</param>
+        /// <param name="audioName">The name of the audio resource for the custom acoustic model.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
         public BaseModel DeleteAudio(string customizationId, string audioName, Dictionary<string, object> customData = null)
@@ -2411,9 +2403,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
-        /// <param name="audioName">The name of the audio resource for the custom acoustic model. When adding an audio
-        /// resource, do not include spaces in the name; use a localized name that matches the language of the custom
-        /// model.</param>
+        /// <param name="audioName">The name of the audio resource for the custom acoustic model.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AudioListing" />AudioListing</returns>
         public AudioListing GetAudio(string customizationId, string audioName, Dictionary<string, object> customData = null)

@@ -15,11 +15,9 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
-using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {
@@ -68,10 +66,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null);
         BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
         CreateEventResponse CreateEvent(CreateEventObject queryEvent, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsEventRate(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQuery(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQueryEvent(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQueryNoResults(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
         MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null);
         LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null);
         Credentials CreateCredentials(string environmentId, Credentials credentialsParameter, Dictionary<string, object> customData = null);

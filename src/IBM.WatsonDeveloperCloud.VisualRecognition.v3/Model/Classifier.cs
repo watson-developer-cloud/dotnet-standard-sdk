@@ -98,7 +98,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// Date and time in Coordinated Universal Time (UTC) that the classifier was created.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Created { get; set; }
+        public DateTime Created { get; set; }
         /// <summary>
         /// Classes that define a classifier.
         /// </summary>
@@ -110,14 +110,14 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         /// compatibility.
         /// </summary>
         [JsonProperty("retrained", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Retrained { get; set; }
+        public DateTime Retrained { get; set; }
         /// <summary>
         /// Date and time in Coordinated Universal Time (UTC) that the classifier was most recently updated. The field
         /// matches either `retrained` or `created`.  Returned when verbose=`true`. Might not be returned by some
         /// requests.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Updated { get; set; }
+        public DateTime Updated { get; set; }
     }
 
 }

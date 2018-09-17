@@ -163,13 +163,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Date that the log result was created. Returned in `YYYY-MM-DDThh:mm:ssZ` format.
         /// </summary>
         [JsonProperty("created_timestamp", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? CreatedTimestamp { get; set; }
+        public DateTime CreatedTimestamp { get; set; }
         /// <summary>
         /// Date specified by the user when recording an event. Returned in `YYYY-MM-DDThh:mm:ssZ` format. Only returned
         /// with logs of type **event**.
         /// </summary>
         [JsonProperty("client_timestamp", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? ClientTimestamp { get; set; }
+        public DateTime ClientTimestamp { get; set; }
         /// <summary>
         /// Identifier that corresponds to the **natural_language_query** string used in the original or associated
         /// query. All **event** and **query** log entries that have the same original **natural_language_query** string

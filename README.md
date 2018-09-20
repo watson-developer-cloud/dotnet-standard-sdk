@@ -26,7 +26,8 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
-* [Assistant](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
+* [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
+* [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
 * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1)
 * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
 * [Language Translator V2](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2) (deprecated)

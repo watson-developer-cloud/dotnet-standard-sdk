@@ -55,7 +55,6 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Example
             Console.WriteLine(_questionArray[questionIndex]);
             var result = _assistant.Message(_assistantId, _sessionId, messageRequest);
             Console.WriteLine(result.Output.Generic[0].Text);
-            //Console.WriteLine(string.Format("result: {0}", JsonConvert.SerializeObject(result, Formatting.Indented)));
             _questionIndex++;
 
             if (questionIndex < _questionArray.Length - 1)

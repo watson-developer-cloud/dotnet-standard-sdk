@@ -67,7 +67,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.IntTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("assistantV2-sdk-staging")[0].Credentials;
+                Credential credential = vcapCredentials.GetCredentialByname("assistant-sdk")[0].Credentials;
                 endpoint = credential.Url;
                 username = credential.Username;
                 password = credential.Password;

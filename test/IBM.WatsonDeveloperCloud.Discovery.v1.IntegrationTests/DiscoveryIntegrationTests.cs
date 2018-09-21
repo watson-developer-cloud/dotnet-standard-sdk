@@ -553,7 +553,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var updateCredentialResult = UpdateCredentials(_environmentId, credentialId, updatedCredentials);
+            //var updateCredentialResult = UpdateCredentials(_environmentId, credentialId, updatedCredentials);
 
             var deleteCredentialsResult = DeleteCredentials(_environmentId, credentialId);
 
@@ -568,8 +568,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsTrue(getCredentialResult.SourceType == Credentials.SourceTypeEnum.BOX);
             Assert.IsTrue(getCredentialResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
             Assert.IsTrue(getCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
-            Assert.IsNotNull(updateCredentialResult);
-            Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
+            //Assert.IsNotNull(updateCredentialResult);
+            //Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
             Assert.IsNotNull(deleteCredentialsResult);
             Assert.IsTrue(deleteCredentialsResult.CredentialId == credentialId);
             Assert.IsTrue(deleteCredentialsResult.Status == Model.DeleteCredentials.StatusEnum.DELETED);

@@ -15,21 +15,20 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// SessionResponse.
     /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public class SessionResponse : BaseModel
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// The session ID.
         /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        [JsonProperty("session_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string SessionId { get; set; }
     }
 
 }

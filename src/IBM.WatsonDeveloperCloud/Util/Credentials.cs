@@ -89,6 +89,8 @@ namespace IBM.WatsonDeveloperCloud.Util
         public string EnvironmentId { get; set; }
         [JsonProperty("classifier_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ClassifierId { get; set; }
+        [JsonProperty("assistant_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string AssistantId { get; set; }
     }
     
     /// <summary>

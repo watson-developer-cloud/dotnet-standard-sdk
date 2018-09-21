@@ -140,5 +140,10 @@ namespace IBM.WatsonDeveloperCloud.Service
             _userSetEndpoint = true;
             this.Endpoint = url;
         }
+
+        public void SendAsInsecure(bool insecure)
+        {
+            this.Client.SendAsInsecure(insecure);
+        }
     }
 }

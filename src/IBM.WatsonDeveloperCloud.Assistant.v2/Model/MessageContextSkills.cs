@@ -15,21 +15,13 @@
 *
 */
 
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// Contains information specific to particular skills within the Assistant.
     /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public class MessageContextSkills : BaseModel
     {
-        /// <summary>
-        /// A ranking of identified languages with confidence scores.
-        /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
     }
 
 }

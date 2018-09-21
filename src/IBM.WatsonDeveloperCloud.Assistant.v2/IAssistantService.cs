@@ -16,20 +16,14 @@
 */
 
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using IBM.WatsonDeveloperCloud.Assistant.v2.Model;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2
 {
-    /// <summary>
-    /// IdentifiedLanguages.
-    /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public partial interface IAssistantService
     {
-        /// <summary>
-        /// A ranking of identified languages with confidence scores.
-        /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        SessionResponse CreateSession(string assistantId, Dictionary<string, object> customData = null);
+        BaseModel DeleteSession(string assistantId, string sessionId, Dictionary<string, object> customData = null);
+        MessageResponse Message(string assistantId, string sessionId, MessageRequest request = null, Dictionary<string, object> customData = null);
     }
-
 }

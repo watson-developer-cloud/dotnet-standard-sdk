@@ -12,7 +12,6 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Version>2.8.0</Version>
-    <Authors>IBM.WatsonDeveloperCloud.Assistant.v2.UnitTests</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -45,7 +44,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
     <PackageReference Include="OpenCover" Version="4.6.519" />
     <PackageReference Include="coveralls.net" Version="0.7.0" />
-    <PackageReference Include="ReportGenerator" Version="2.4.5.0" />
+    <PackageReference Include="ReportGenerator" Version="2.4.5" />
   </ItemGroup>
 
   <ItemGroup>

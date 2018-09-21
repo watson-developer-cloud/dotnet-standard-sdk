@@ -15,21 +15,25 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// An intent identified in the user input.
     /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public class RuntimeIntent : BaseModel
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// The name of the recognized intent.
         /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
+        public string Intent { get; set; }
+        /// <summary>
+        /// A decimal percentage that represents Watson's confidence in the intent.
+        /// </summary>
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public double? Confidence { get; set; }
     }
 
 }

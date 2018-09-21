@@ -28,25 +28,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
         /// <summary>
         /// Number of words in the input text.
         /// </summary>
-        /// <value>
-        /// Number of words in the input text.
-        /// </value>
         [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? WordCount { get; set; }
         /// <summary>
         /// Number of characters in the input text.
         /// </summary>
-        /// <value>
-        /// Number of characters in the input text.
-        /// </value>
         [JsonProperty("character_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? CharacterCount { get; set; }
         /// <summary>
         /// List of translation output in UTF-8, corresponding to the input text entries.
         /// </summary>
-        /// <value>
-        /// List of translation output in UTF-8, corresponding to the input text entries.
-        /// </value>
         [JsonProperty("translations", NullValueHandling = NullValueHandling.Ignore)]
         public List<Translation> Translations { get; set; }
     }

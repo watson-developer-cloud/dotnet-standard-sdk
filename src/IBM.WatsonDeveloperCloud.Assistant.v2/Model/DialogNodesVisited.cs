@@ -17,23 +17,28 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguage.
+    /// DialogNodesVisited.
     /// </summary>
-    public class IdentifiedLanguage : BaseModel
+    public class DialogNodesVisited : BaseModel
     {
         /// <summary>
-        /// The language code for an identified language.
+        /// A dialog node that was triggered during processing of the input message.
         /// </summary>
-        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
-        public string Language { get; set; }
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
         /// <summary>
-        /// The confidence score for the identified language.
+        /// The title of the dialog node.
         /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
+        /// <summary>
+        /// The conditions that trigger the dialog node.
+        /// </summary>
+        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
+        public string Conditions { get; set; }
     }
 
 }

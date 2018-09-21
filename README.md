@@ -26,7 +26,8 @@ Ensure you have the following prerequisites:
 ## Installing the Watson .NET Standard SDK
 You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
-* [Assistant](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
+* [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
+* [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
 * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1)
 * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
 * [Language Translator V2](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2) (deprecated)
@@ -140,6 +141,17 @@ void Example()
     
     var responseHeaders = results.ResponseHeaders;  //  The response headers
     var responseJson = results.ResponseJson;        //  The raw response json
+}
+```
+
+## Self signed certificates
+You can disable SSL verification on calls to Watson (only do this if you really mean to!).
+```cs
+void Example()
+{
+    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    assistant.SendAsInsecure(true);
+    var results = assistant.Message("<workspace-id>", "<message-request>");
 }
 ```
 

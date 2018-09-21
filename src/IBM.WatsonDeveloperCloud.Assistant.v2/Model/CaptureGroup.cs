@@ -18,18 +18,23 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// CaptureGroup.
     /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public class CaptureGroup : BaseModel
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// A recognized capture group for the entity.
         /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        [JsonProperty("group", NullValueHandling = NullValueHandling.Ignore)]
+        public string Group { get; set; }
+        /// <summary>
+        /// Zero-based character offsets that indicate where the entity value begins and ends in the input text.
+        /// </summary>
+        [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
+        public List<long?> Location { get; set; }
     }
 
 }

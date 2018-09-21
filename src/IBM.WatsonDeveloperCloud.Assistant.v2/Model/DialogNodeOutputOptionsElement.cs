@@ -15,21 +15,26 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// IdentifiedLanguages.
+    /// DialogNodeOutputOptionsElement.
     /// </summary>
-    public class IdentifiedLanguages : BaseModel
+    public class DialogNodeOutputOptionsElement : BaseModel
     {
         /// <summary>
-        /// A ranking of identified languages with confidence scores.
+        /// The user-facing label for the option.
         /// </summary>
-        [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IdentifiedLanguage> Languages { get; set; }
+        [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
+        public string Label { get; set; }
+        /// <summary>
+        /// An object defining the message input to be sent to the assistant if the user selects the corresponding
+        /// option.
+        /// </summary>
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public DialogNodeOutputOptionsElementValue Value { get; set; }
     }
 
 }

@@ -27,9 +27,6 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.Model
         /// <summary>
         /// Translation output in UTF-8.
         /// </summary>
-        /// <value>
-        /// Translation output in UTF-8.
-        /// </value>
         [JsonProperty("translation", NullValueHandling = NullValueHandling.Ignore)]
         public string TranslationOutput { get; set; }
     }

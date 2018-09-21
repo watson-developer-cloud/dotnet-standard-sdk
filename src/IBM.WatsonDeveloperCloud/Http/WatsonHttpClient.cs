@@ -35,9 +35,20 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public MediaTypeFormatterCollection Formatters { get; protected set; }
 
+        public bool Insecure = false;
+
         public WatsonHttpClient(string baseUri)
         {
-            this.BaseClient = new HttpClient();
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -47,21 +58,35 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri, string userName, string password)
         {
-            this.BaseClient = new HttpClient();
-
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
-
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
-
             this.Formatters = new MediaTypeFormatterCollection();
-
             this.WithAuthentication(userName, password);
         }
 
         public WatsonHttpClient(string baseUri, string userName, string password, HttpClient client)
         {
-            this.BaseClient = client;
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -164,6 +189,11 @@ namespace IBM.WatsonDeveloperCloud.Http
         ~WatsonHttpClient()
         {
             Dispose(false);
+        }
+
+        public void SendAsInsecure(bool insecure)
+        {
+            Insecure = insecure;
         }
     }
 }

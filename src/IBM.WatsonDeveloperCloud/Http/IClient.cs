@@ -50,5 +50,7 @@ namespace IBM.WatsonDeveloperCloud.Http
         IRequest SendAsync(HttpMethod method, string resource);
 
         IRequest SendAsync(HttpRequestMessage message);
+
+        void SendAsInsecure(bool insecure);
     }
 }

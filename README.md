@@ -144,6 +144,17 @@ void Example()
 }
 ```
 
+## Self signed certificates
+You can disable SSL verification on calls to Watson (only do this if you really mean to!).
+```cs
+void Example()
+{
+    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    assistant.SendAsInsecure(true);
+    var results = assistant.Message("<workspace-id>", "<message-request>");
+}
+```
+
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 

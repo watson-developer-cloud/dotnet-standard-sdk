@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>2.8.0</VersionPrefix>
+    <VersionPrefix>2.9.0</VersionPrefix>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <AssemblyName>IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests</AssemblyName>
-    <PackageId>IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests</PackageId>
+    <AssemblyName>IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests</AssemblyName>
+    <PackageId>IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.4;portable-net451+win8</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>2.8.0</Version>
+    <Version>2.9.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

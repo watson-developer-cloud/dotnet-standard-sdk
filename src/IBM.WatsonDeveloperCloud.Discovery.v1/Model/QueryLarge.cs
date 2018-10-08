@@ -15,7 +15,6 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
@@ -65,7 +64,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// A comma-separated list of the portion of the document hierarchy to return.
         /// </summary>
         [JsonProperty("return", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> ReturnFields { get; set; }
+        public string ReturnFields { get; set; }
         /// <summary>
         /// The number of query results to skip at the beginning. For example, if the total number of results that are
         /// returned is 10 and the offset is 8, it returns the last two results.
@@ -78,7 +77,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// no prefix is specified. This parameter cannot be used in the same query as the **bias** parameter.
         /// </summary>
         [JsonProperty("sort", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Sort { get; set; }
+        public string Sort { get; set; }
         /// <summary>
         /// When true, a highlight field is returned for each result which contains the fields which match the query
         /// with `<em></em>` tags around the matching query terms.
@@ -90,7 +89,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// top-level fields are included.
         /// </summary>
         [JsonProperty("passages.fields", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> PassagesFields { get; set; }
+        public string PassagesFields { get; set; }
         /// <summary>
         /// The maximum number of passages to return. The search returns fewer passages if the requested total is not
         /// found. The default is `10`. The maximum is `100`.
@@ -121,7 +120,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// invalid when performing a single collection query.
         /// </summary>
         [JsonProperty("collection_ids", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> CollectionIds { get; set; }
+        public string CollectionIds { get; set; }
         /// <summary>
         /// When `true`, results are returned based on their similarity to the document IDs specified in the
         /// **similar.document_ids** parameter.
@@ -136,13 +135,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// subsequently applied and reduce the scope.
         /// </summary>
         [JsonProperty("similar.document_ids", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> SimilarDocumentIds { get; set; }
+        public string SimilarDocumentIds { get; set; }
         /// <summary>
         /// A comma-separated list of field names that are used as a basis for comparison to identify similar documents.
         /// If not specified, the entire document is used for comparison.
         /// </summary>
         [JsonProperty("similar.fields", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> SimilarFields { get; set; }
+        public string SimilarFields { get; set; }
         /// <summary>
         /// Field which the returned results will be biased against. The specified field must be either a **date** or
         /// **number** format. When a **date** type field is specified returned results are biased towards field values

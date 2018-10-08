@@ -297,7 +297,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public SpeechRecognitionResults Recognize(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
+        public SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType, string model = null, string customizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, Dictionary<string, object> customData = null)
         {
             if (audio == null)
                 throw new ArgumentNullException(nameof(audio));
@@ -349,7 +349,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                restRequest.WithBody<byte[]>(audio);
+                var audioContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                audioContent.Headers.ContentType = audioType;
+                restRequest.WithBodyContent(audioContent);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<SpeechRecognitionResults>().Result;
@@ -683,7 +688,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("smart_formatting", smartFormatting);
                 if (speakerLabels != null)
                     restRequest.WithArgument("speaker_labels", speakerLabels);
-                restRequest.WithBody<byte[]>(audio);
+                var audioContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                audioContent.Headers.ContentType = audioType;
+                restRequest.WithBodyContent(audioContent);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<RecognitionJob>().Result;
@@ -2402,7 +2412,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithBody<byte[]>(audioResource);
+                var audioContent = new ByteArrayContent(audioResource);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioType);
+                audioContent.Headers.ContentType = audioType;
+                restRequest.WithBodyContent(audioContent);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;

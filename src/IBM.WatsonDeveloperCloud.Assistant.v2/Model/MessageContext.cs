@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         /// Contains information specific to particular skills within the Assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkills Skills { get; set; }
+        public dynamic Skills { get; set; }
     }
 
 }

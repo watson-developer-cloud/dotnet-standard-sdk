@@ -166,7 +166,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (sentences != null)
                     restRequest.WithArgument("sentences", sentences);
-                restRequest.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
+                if (tones != null && tones.Count > 0)
+                    restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
                 restRequest.WithBody<ToneInput>(toneInput);
                 if (customData != null)
                     restRequest.WithCustomData(customData);

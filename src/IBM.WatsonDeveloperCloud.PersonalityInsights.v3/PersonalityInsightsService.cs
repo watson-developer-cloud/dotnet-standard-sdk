@@ -42,7 +42,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 this.Endpoint = URL;
         }
 
-        
         public PersonalityInsightsService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -57,7 +56,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             VersionDate = versionDate;
         }
-        
 
         public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
         {
@@ -155,14 +153,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
@@ -262,14 +260,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 

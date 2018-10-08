@@ -43,7 +43,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
                 this.Endpoint = URL;
         }
 
-        
         public ConversationService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -58,7 +57,6 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             VersionDate = versionDate;
         }
-        
 
         public ConversationService(TokenOptions options, string versionDate) : this()
         {
@@ -115,14 +113,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
 
@@ -168,14 +166,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
 
@@ -218,14 +216,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
@@ -273,14 +271,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
@@ -332,14 +330,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
 
@@ -404,14 +402,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
@@ -458,14 +456,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
@@ -511,14 +509,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
@@ -569,14 +567,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
@@ -635,14 +633,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
@@ -708,14 +706,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
@@ -763,14 +761,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
@@ -819,14 +817,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
@@ -876,14 +874,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
@@ -939,14 +937,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
@@ -1007,14 +1005,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
@@ -1060,14 +1058,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
@@ -1114,14 +1112,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
@@ -1169,14 +1167,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
@@ -1230,14 +1228,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
@@ -1296,14 +1294,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
@@ -1348,14 +1346,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
@@ -1401,14 +1399,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
@@ -1459,14 +1457,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
@@ -1525,14 +1523,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
@@ -1597,14 +1595,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
@@ -1655,14 +1653,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
 
@@ -1713,14 +1711,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
@@ -1769,14 +1767,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
@@ -1829,14 +1827,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
@@ -1897,14 +1895,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
@@ -1973,14 +1971,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
@@ -2031,14 +2029,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
@@ -2090,14 +2088,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
@@ -2150,14 +2148,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
@@ -2216,14 +2214,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
@@ -2287,14 +2285,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
@@ -2339,14 +2337,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
@@ -2392,14 +2390,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
@@ -2446,14 +2444,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
@@ -2506,14 +2504,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
@@ -2576,14 +2574,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
@@ -2635,14 +2633,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
 
@@ -2703,14 +2701,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
 
@@ -2762,14 +2760,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 

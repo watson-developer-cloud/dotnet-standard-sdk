@@ -194,12 +194,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Creation date of the environment, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Created { get; private set; }
+        public virtual DateTime? Created { get; private set; }
         /// <summary>
         /// Date of most recent environment update, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Updated { get; private set; }
+        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// If `true`, the environment contains read-only collections that are maintained by IBM.
         /// </summary>

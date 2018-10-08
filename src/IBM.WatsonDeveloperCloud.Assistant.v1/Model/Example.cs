@@ -35,12 +35,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The timestamp for creation of the example.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Created { get; private set; }
+        public virtual DateTime? Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the example.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Updated { get; private set; }
+        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// An array of contextual entity mentions.
         /// </summary>

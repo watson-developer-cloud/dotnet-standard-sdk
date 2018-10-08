@@ -1592,8 +1592,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
+            if (collectionIds == null)
+                throw new ArgumentNullException(nameof(collectionIds));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryResponse result = null;

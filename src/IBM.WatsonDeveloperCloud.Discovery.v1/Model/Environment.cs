@@ -144,8 +144,37 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Current size of the environment.
         /// </summary>
+        [Obsolete("Integer size is deprecated. Please use StringSize.")]
+        public long? Size
+        {
+            get
+            {
+                int size;
+                int.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment.
+        /// </summary>
+        public SizeEnum? StringSize
+        {
+            get
+            {
+                SizeEnum size;
+                Enum.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment
+        /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public SizeEnum? Size { get; set; }
+        private string _convertedSize;
+
+
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>

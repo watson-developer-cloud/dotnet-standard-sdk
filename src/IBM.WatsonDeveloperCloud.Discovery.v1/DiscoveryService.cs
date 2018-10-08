@@ -49,7 +49,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 this.Endpoint = URL;
         }
 
-        
         public DiscoveryService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -64,7 +63,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             VersionDate = versionDate;
         }
-        
 
         public DiscoveryService(TokenOptions options, string versionDate) : this()
         {
@@ -120,14 +118,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments");
 
@@ -166,14 +164,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
@@ -211,14 +209,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
@@ -256,14 +254,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments");
 
@@ -308,20 +306,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (collectionIds != null && collectionIds.Count > 0)
-                    restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
+                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
@@ -361,14 +358,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
@@ -432,14 +429,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
@@ -486,14 +483,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
@@ -534,14 +531,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
@@ -582,14 +579,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
@@ -657,14 +654,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
@@ -751,14 +748,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
 
@@ -803,14 +800,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
@@ -852,14 +849,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
@@ -900,14 +897,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
@@ -950,14 +947,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
 
@@ -998,14 +995,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
@@ -1049,14 +1046,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
@@ -1104,14 +1101,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
@@ -1156,14 +1153,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
@@ -1207,14 +1204,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
@@ -1303,14 +1300,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
 
@@ -1358,14 +1355,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
@@ -1413,14 +1410,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
@@ -1494,14 +1491,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     formData.Add(metadataContent, "metadata");
                 }
 
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
@@ -1529,68 +1526,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// see the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
-        /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that
-        /// don't mention the query content. Filter searches are better for metadata type searches and when you are
-        /// trying to get a sense of concepts in the data set. (optional)</param>
-        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
-        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
-        /// (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
-        /// the same time. (optional)</param>
-        /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
-        /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
-        /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
-        /// (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
-        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
-        /// (optional)</param>
-        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
-        /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a
-        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
-        /// sort direction if no prefix is specified. (optional)</param>
-        /// <param name="highlight">When true a highlight field is returned for each result which contains the fields
-        /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
-        /// (optional)</param>
-        /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
-        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
-        /// to false)</param>
-        /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
-        /// considered. This parameter is currently Beta functionality. (optional)</param>
-        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
-        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
-        /// documents.
-        ///
-        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
-        /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
-        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
-        /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
-        /// (optional)</param>
-        /// <param name="passages">A passages query that returns the most relevant passages from the results.
-        /// (optional)</param>
-        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
-        /// parameter not specified, then all top-level fields are included. (optional)</param>
-        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
-        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
-        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
-        /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
-        /// <param name="bias">Field which the returned results will be biased against. The specified field must be either
-        /// a **date** or **number** format. When a **date** type field is specified returned results are biased towards 
-        /// field values closer to the current date. When a **number** type field is specified, returned results are
-        /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
-        /// (optional)</param>
+        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
+        public QueryResponse FederatedQuery(string environmentId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1602,46 +1543,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (loggingOptOut != null)
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
-
-                QueryLarge queryLarge = new QueryLarge()
-                {
-                    Filter = filter,
-                    Query = query,
-                    NaturalLanguageQuery = naturalLanguageQuery,
-                    Passages = passages,
-                    Aggregation = aggregation,
-                    Count = count,
-                    ReturnFields = returnFields,
-                    Offset = offset,
-                    Sort = sort,
-                    Highlight = highlight,
-                    PassagesFields = passagesFields,
-                    PassagesCount = passagesCount,
-                    PassagesCharacters = passagesCharacters,
-                    Deduplicate = deduplicate,
-                    DeduplicateField = deduplicateField,
-                    CollectionIds = collectionIds,
-                    Similar = similar,
-                    SimilarDocumentIds = similarDocumentIds,
-                    SimilarFields = similarFields,
-                    Bias = bias
-                };
-
-                restRequest.WithBody<QueryLarge>(queryLarge);
+                restRequest.WithBody<QueryLarge>(queryLong);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryResponse>().Result;
@@ -1719,20 +1635,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (collectionIds != null && collectionIds.Count > 0)
-                    restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
+                restRequest.WithArgument("collection_ids", collectionIds != null && collectionIds.Count > 0 ? string.Join(",", collectionIds.ToArray()) : null);
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(query))
@@ -1743,22 +1658,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                if (returnFields != null && returnFields.Count > 0)
-                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                if (sort != null && sort.Count > 0)
-                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
                     restRequest.WithArgument("highlight", highlight);
                 if (!string.IsNullOrEmpty(deduplicateField))
                     restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
                     restRequest.WithArgument("similar", similar);
-                if (similarDocumentIds != null && similarDocumentIds.Count > 0)
-                    restRequest.WithArgument("similar.document_ids", string.Join(",", similarDocumentIds.ToArray()));
-                if (similarFields != null && similarFields.Count > 0)
-                    restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryNoticesResponse>().Result;
@@ -1783,67 +1694,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that
-        /// don't mention the query content. Filter searches are better for metadata type searches and when you are
-        /// trying to get a sense of concepts in the data set. (optional)</param>
-        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
-        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
-        /// (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
-        /// the same time. (optional)</param>
-        /// <param name="passages">A passages query that returns the most relevant passages from the results.
-        /// (optional)</param>
-        /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
-        /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
-        /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
-        /// (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
-        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
-        /// (optional)</param>
-        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
-        /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a
-        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
-        /// sort direction if no prefix is specified. (optional)</param>
-        /// <param name="highlight">When true a highlight field is returned for each result which contains the fields
-        /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
-        /// (optional)</param>
-        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
-        /// parameter not specified, then all top-level fields are included. (optional)</param>
-        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
-        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
-        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
-        /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
-        /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
-        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
-        /// to false)</param>
-        /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
-        /// considered. This parameter is currently Beta functionality. (optional)</param>
-        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
-        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
-        /// documents.
-        ///
-        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
-        /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
-        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
-        /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
-        /// (optional)</param>
-        /// <param name="bias">Field which the returned results will be biased against. The specified field must be either
-        /// a **date** or **number** format. When a **date** type field is specified returned results are biased towards 
-        /// field values closer to the current date. When a **number** type field is specified, returned results are
-        /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
-        /// (optional)</param>
+        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
+        public QueryResponse Query(string environmentId, string collectionId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1857,45 +1713,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (loggingOptOut != null)
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
-
-                QueryLarge queryLarge = new QueryLarge()
-                {
-                    Filter = filter,
-                    Query = query,
-                    NaturalLanguageQuery = naturalLanguageQuery,
-                    Passages = passages,
-                    Aggregation = aggregation,
-                    Count = count,
-                    ReturnFields = returnFields,
-                    Offset = offset,
-                    Sort = sort,
-                    Highlight = highlight,
-                    PassagesFields = passagesFields,
-                    PassagesCount = passagesCount,
-                    PassagesCharacters = passagesCharacters,
-                    Deduplicate = deduplicate,
-                    DeduplicateField = deduplicateField,
-                    Similar = similar,
-                    SimilarDocumentIds = similarDocumentIds,
-                    SimilarFields = similarFields,
-                    Bias = bias
-                };
-
-                restRequest.WithBody<QueryLarge>(queryLarge);
+                restRequest.WithBody<QueryLarge>(queryLong);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryResponse>().Result;
@@ -1939,14 +1771,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
 
@@ -2037,14 +1869,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices");
 
@@ -2061,16 +1893,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("aggregation", aggregation);
                 if (count != null)
                     restRequest.WithArgument("count", count);
-                if (returnFields != null && returnFields.Count > 0)
-                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
+                restRequest.WithArgument("return", returnFields != null && returnFields.Count > 0 ? string.Join(",", returnFields.ToArray()) : null);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                if (sort != null && sort.Count > 0)
-                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (highlight != null)
                     restRequest.WithArgument("highlight", highlight);
-                if (passagesFields != null && passagesFields.Count > 0)
-                    restRequest.WithArgument("passages.fields", string.Join(",", passagesFields.ToArray()));
+                restRequest.WithArgument("passages.fields", passagesFields != null && passagesFields.Count > 0 ? string.Join(",", passagesFields.ToArray()) : null);
                 if (passagesCount != null)
                     restRequest.WithArgument("passages.count", passagesCount);
                 if (passagesCharacters != null)
@@ -2079,10 +1908,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("deduplicate.field", deduplicateField);
                 if (similar != null)
                     restRequest.WithArgument("similar", similar);
-                if (similarDocumentIds != null && similarDocumentIds.Count > 0)
-                    restRequest.WithArgument("similar.document_ids", string.Join(",", similarDocumentIds.ToArray()));
-                if (similarFields != null && similarFields.Count > 0)
-                    restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
+                restRequest.WithArgument("similar.document_ids", similarDocumentIds != null && similarDocumentIds.Count > 0 ? string.Join(",", similarDocumentIds.ToArray()) : null);
+                restRequest.WithArgument("similar.fields", similarFields != null && similarFields.Count > 0 ? string.Join(",", similarFields.ToArray()) : null);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryNoticesResponse>().Result;
@@ -2126,14 +1953,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
 
@@ -2181,14 +2008,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
@@ -2238,14 +2065,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
@@ -2289,14 +2116,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
@@ -2342,14 +2169,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
@@ -2398,14 +2225,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
@@ -2451,14 +2278,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
@@ -2507,14 +2334,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
@@ -2557,14 +2384,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
@@ -2610,14 +2437,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
@@ -2669,14 +2496,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
@@ -2721,14 +2548,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
@@ -2770,14 +2597,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/events");
 
@@ -2812,7 +2639,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsEventRate(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2822,14 +2649,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/event_rate");
 
@@ -2867,7 +2694,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQuery(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2877,14 +2704,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries");
 
@@ -2924,7 +2751,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQueryEvent(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2934,14 +2761,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_event");
 
@@ -2980,7 +2807,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="resultType">The type of result to consider when calculating the metric. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricResponse" />MetricResponse</returns>
-        public MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
+        public MetricResponse GetMetricsQueryNoResults(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
             if(string.IsNullOrEmpty(VersionDate))
@@ -2990,14 +2817,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_no_search_results");
 
@@ -3043,14 +2870,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/top_query_tokens_with_event_rate");
 
@@ -3103,14 +2930,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
 
@@ -3123,8 +2950,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("count", count);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
-                if (sort != null && sort.Count > 0)
-                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
+                restRequest.WithArgument("sort", sort != null && sort.Count > 0 ? string.Join(",", sort.ToArray()) : null);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<LogQueryResponse>().Result;
@@ -3165,14 +2991,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials");
 
@@ -3216,14 +3042,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 
@@ -3269,14 +3095,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 
@@ -3318,14 +3144,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials");
 
@@ -3373,14 +3199,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 

@@ -43,7 +43,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 this.Endpoint = URL;
         }
 
-        
         public ToneAnalyzerService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -58,7 +57,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             VersionDate = versionDate;
         }
-        
 
         public ToneAnalyzerService(TokenOptions options, string versionDate) : this()
         {
@@ -148,14 +146,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
@@ -168,8 +166,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (sentences != null)
                     restRequest.WithArgument("sentences", sentences);
-                if (tones != null && tones.Count > 0)
-                    restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
+                restRequest.WithArgument("tones", tones != null && tones.Count > 0 ? string.Join(",", tones.ToArray()) : null);
                 restRequest.WithBody<ToneInput>(toneInput);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
@@ -226,14 +223,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                IClient client = null;
-                if(_tokenManager != null)
+                IClient client;
+                if(_tokenManager == null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 

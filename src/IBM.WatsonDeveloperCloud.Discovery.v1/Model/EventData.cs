@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// in the log was used.
         /// </summary>
         [JsonProperty("client_timestamp", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? ClientTimestamp { get; set; }
+        public DateTime ClientTimestamp { get; set; }
         /// <summary>
         /// The rank of the result item which the event is associated with.
         /// </summary>

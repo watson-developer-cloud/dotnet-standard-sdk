@@ -43,6 +43,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 this.Endpoint = URL;
         }
 
+        
         public AssistantService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -57,6 +58,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             VersionDate = versionDate;
         }
+        
 
         public AssistantService(TokenOptions options, string versionDate) : this()
         {
@@ -112,14 +114,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions");
 
@@ -166,14 +168,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}");
 
@@ -205,8 +207,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, along with optional intents,
-        /// entities, and context from the last response. (optional)</param>
+        /// <param name="request">The message to be sent. This includes the user's input, along with optional content
+        /// such as intents and entities. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
         public MessageResponse Message(string assistantId, string sessionId, MessageRequest request = null, Dictionary<string, object> customData = null)
@@ -223,14 +225,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}/message");
 

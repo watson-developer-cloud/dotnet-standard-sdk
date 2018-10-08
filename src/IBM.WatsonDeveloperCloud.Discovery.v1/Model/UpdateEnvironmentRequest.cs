@@ -15,7 +15,9 @@
 *
 */
 
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
@@ -24,6 +26,73 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     /// </summary>
     public class UpdateEnvironmentRequest : BaseModel
     {
+        /// <summary>
+        /// Size that the environment should be increased to. Environment size cannot be modified when using a Lite
+        /// plan. Environment size can only increased and not decreased.
+        /// </summary>
+        /// <value>
+        /// Size that the environment should be increased to. Environment size cannot be modified when using a Lite
+        /// plan. Environment size can only increased and not decreased.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SizeEnum
+        {
+            
+            /// <summary>
+            /// Enum S for S
+            /// </summary>
+            [EnumMember(Value = "S")]
+            S,
+            
+            /// <summary>
+            /// Enum MS for MS
+            /// </summary>
+            [EnumMember(Value = "MS")]
+            MS,
+            
+            /// <summary>
+            /// Enum M for M
+            /// </summary>
+            [EnumMember(Value = "M")]
+            M,
+            
+            /// <summary>
+            /// Enum ML for ML
+            /// </summary>
+            [EnumMember(Value = "ML")]
+            ML,
+            
+            /// <summary>
+            /// Enum L for L
+            /// </summary>
+            [EnumMember(Value = "L")]
+            L,
+            
+            /// <summary>
+            /// Enum XL for XL
+            /// </summary>
+            [EnumMember(Value = "XL")]
+            XL,
+            
+            /// <summary>
+            /// Enum XXL for XXL
+            /// </summary>
+            [EnumMember(Value = "XXL")]
+            XXL,
+            
+            /// <summary>
+            /// Enum XXXL for XXXL
+            /// </summary>
+            [EnumMember(Value = "XXXL")]
+            XXXL
+        }
+
+        /// <summary>
+        /// Size that the environment should be increased to. Environment size cannot be modified when using a Lite
+        /// plan. Environment size can only increased and not decreased.
+        /// </summary>
+        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
+        public SizeEnum? Size { get; set; }
         /// <summary>
         /// Name that identifies the environment.
         /// </summary>

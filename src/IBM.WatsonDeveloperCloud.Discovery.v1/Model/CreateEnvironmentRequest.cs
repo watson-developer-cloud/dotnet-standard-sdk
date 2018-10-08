@@ -15,7 +15,6 @@
 *
 */
 
-using System;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -28,14 +27,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class CreateEnvironmentRequest : BaseModel
     {
         /// <summary>
-        /// Size of the environment.
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </summary>
         /// <value>
-        /// Size of the environment.
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SizeEnum
         {
+            
+            /// <summary>
+            /// Enum LT for LT
+            /// </summary>
+            [EnumMember(Value = "LT")]
+            LT,
             
             /// <summary>
             /// Enum XS for XS
@@ -93,38 +100,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Size of the environment.
-        /// </summary>
-        [Obsolete("Integer size is deprecated. Please use StringSize.")]
-        public long? Size
-        {
-            get
-            {
-                int size;
-                int.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment.
-        /// </summary>
-        public SizeEnum? StringSize
-        {
-            get
-            {
-                SizeEnum size;
-                Enum.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        private string _convertedSize;
-
+        public SizeEnum? Size { get; set; }
         /// <summary>
         /// Name that identifies the environment.
         /// </summary>

@@ -43,6 +43,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 this.Endpoint = URL;
         }
 
+        
         public ToneAnalyzerService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -57,6 +58,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             VersionDate = versionDate;
         }
+        
 
         public ToneAnalyzerService(TokenOptions options, string versionDate) : this()
         {
@@ -103,6 +105,9 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
         /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
+        ///
+        /// **See also:** [Using the general-purpose
+        /// endpoint](https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
@@ -143,14 +148,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
@@ -190,9 +195,11 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// If you submit more than 50 utterances, the service returns a warning for the overall content and analyzes
         /// only the first 50 utterances. If you submit a single utterance that contains more than 500 characters, the
         /// service returns an error for that utterance and does not analyze the utterance. The request fails if all
-        /// utterances have more than 500 characters.
+        /// utterances have more than 500 characters. Per the JSON specification, the default character encoding for
+        /// JSON content is effectively always UTF-8.
         ///
-        /// Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
+        /// **See also:** [Using the customer-engagement
+        /// endpoint](https://console.bluemix.net/docs/services/tone-analyzer/using-tone-chat.html#using-the-customer-engagement-endpoint).
         /// </summary>
         /// <param name="utterances">An object that contains the content to be analyzed.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional
@@ -218,14 +225,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 

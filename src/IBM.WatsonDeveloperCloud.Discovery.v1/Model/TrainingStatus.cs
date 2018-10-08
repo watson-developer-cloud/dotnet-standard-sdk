@@ -64,12 +64,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets SuccessfullyTrained
         /// </summary>
         [JsonProperty("successfully_trained", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? SuccessfullyTrained { get; set; }
+        public DateTime SuccessfullyTrained { get; set; }
         /// <summary>
         /// Gets or Sets DataUpdated
         /// </summary>
         [JsonProperty("data_updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DataUpdated { get; set; }
+        public DateTime DataUpdated { get; set; }
     }
 
 }

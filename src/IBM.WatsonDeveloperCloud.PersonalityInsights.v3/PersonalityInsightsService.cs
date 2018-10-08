@@ -42,6 +42,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 this.Endpoint = URL;
         }
 
+        
         public PersonalityInsightsService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -56,6 +57,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             VersionDate = versionDate;
         }
+        
 
         public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
         {
@@ -103,10 +105,11 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
         /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
         ///
-        /// For detailed information about calling the service and the responses it can generate, see [Requesting a
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/input.html), [Understanding a JSON
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/output.html), and [Understanding a
-        /// CSV profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
+        /// **See also:**
+        /// * [Requesting a profile](https://console.bluemix.net/docs/services/personality-insights/input.html)
+        /// * [Understanding a JSON profile](https://console.bluemix.net/docs/services/personality-insights/output.html)
+        /// * [Understanding a CSV
+        /// profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
@@ -152,14 +155,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
@@ -209,10 +212,11 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
         /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
         ///
-        /// For detailed information about calling the service and the responses it can generate, see [Requesting a
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/input.html), [Understanding a JSON
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/output.html), and [Understanding a
-        /// CSV profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
+        /// **See also:**
+        /// * [Requesting a profile](https://console.bluemix.net/docs/services/personality-insights/input.html)
+        /// * [Understanding a JSON profile](https://console.bluemix.net/docs/services/personality-insights/output.html)
+        /// * [Understanding a CSV
+        /// profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
@@ -258,14 +262,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client;
-                if(_tokenManager == null)
+                IClient client = null;
+                if(_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 else
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 

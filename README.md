@@ -47,7 +47,6 @@ Watson services are migrating to token-based Identity and Access Management (IAM
 
 - With some service instances, you authenticate to the API by using **[IAM](#iam)**.
 - In other instances, you authenticate by providing the **[username and password](#username-and-password)** for the service instance.
-- Visual Recognition uses a form of [API key](#api-key) only with instances created before May 23, 2018. Newer instances of Visual Recognition use [IAM](#iam).
 
 ### Getting credentials
 To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
@@ -99,15 +98,6 @@ void Example()
 void Example()
 {
     _assistant = new AssistantService("<username>", "<password>", "<version-date>");
-}
-```
-
-### API key
-**Important**: This type of authentication works only with Visual Recognition instances created before May 23, 2018. Newer instances of Visual Recognition use [IAM](#iam).
-```cs
-void Example()
-{
-    _visualRecognition = new VisualRecognitionService("<apikey>", "<version-date>");
 }
 ```
 

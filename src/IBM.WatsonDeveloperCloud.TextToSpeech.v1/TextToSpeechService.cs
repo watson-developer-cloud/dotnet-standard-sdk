@@ -79,6 +79,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Gets information about the specified voice. The information includes the name, language, gender, and other
         /// details about the voice. Specify a customization ID to obtain information for that custom voice model of the
         /// specified voice. To list information about all available voices, use the **List voices** method.
+        ///
+        /// **See also:** [Specifying a
+        /// voice](https://console.bluemix.net/docs/services/text-to-speech/http.html#voices).
         /// </summary>
         /// <param name="voice">The voice for which information is to be returned.</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model for which information is
@@ -129,6 +132,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// Lists all voices available for use with the service. The information includes the name, language, gender,
         /// and other details about the voice. To see information about a specific voice, use the **Get a voice**
         /// method.
+        ///
+        /// **See also:** [Specifying a
+        /// voice](https://console.bluemix.net/docs/services/text-to-speech/http.html#voices).
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Voices" />Voices</returns>
@@ -168,15 +174,16 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// Synthesizes text to spoken audio, returning the synthesized audio stream as an array of bytes. You can pass
         /// a maximum of 5 KB of text.  Use the `Accept` header or the `accept` query parameter to specify the requested
-        /// format (MIME type) of the response audio. By default, the service uses `audio/ogg;codecs=opus`. For detailed
-        /// information about the supported audio formats and sampling rates, see [Specifying an audio
-        /// format](https://console.bluemix.net/docs/services/text-to-speech/http.html#format).
+        /// format (MIME type) of the response audio. By default, the service uses `audio/ogg;codecs=opus`.
         ///
         /// If a request includes invalid query parameters, the service returns a `Warnings` response header that
         /// provides messages about the invalid parameters. The warning includes a descriptive message and a list of
         /// invalid argument strings. For example, a message such as `"Unknown arguments:"` or `"Unknown url query
         /// arguments:"` followed by a list of the form `"invalid_arg_1, invalid_arg_2."` The request succeeds despite
         /// the warnings.
+        ///
+        /// **See also:** [Synthesizing text to
+        /// audio](https://console.bluemix.net/docs/services/text-to-speech/http.html#synthesize).
         /// </summary>
         /// <param name="text">A `Text` object that provides the text to synthesize. Specify either plain text or a
         /// subset of SSML. Pass a maximum of 5 KB of text.</param>
@@ -238,6 +245,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// language of that voice or for a specific custom voice model to see the translation for that voice model.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Querying a word from a
+        /// language](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordsQueryLanguage).
         /// </summary>
         /// <param name="text">The word for which the pronunciation is requested.</param>
         /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. All
@@ -302,6 +312,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// whose credentials are used to create it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Creating a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsCreate).
         /// </summary>
         /// <param name="createVoiceModel">A `CreateVoiceModel` object that contains information about the new custom
         /// voice model.</param>
@@ -349,6 +362,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// a model to delete it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Deleting a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsDelete).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -396,6 +412,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// model. To see just the metadata for a voice model, use the **List custom models** method.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Querying a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsQuery).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -444,6 +463,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// credentials for the instance of the service that owns a model to list information about it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Querying all custom
+        /// models](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsQueryAll).
         /// </summary>
         /// <param name="language">The language for which custom voice models that are owned by the requesting service
         /// credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the
@@ -494,6 +516,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// service that owns a model to update it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Updating a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsUpdate).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -546,6 +571,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// model to add a word to it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:**
+        /// * [Adding a single word to a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordAdd)
+        /// * [Adding words to a Japanese custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -601,6 +632,12 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// a model to add words to it.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:**
+        /// * [Adding multiple words to a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordsAdd)
+        /// * [Adding words to a Japanese custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -652,6 +689,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// the service that owns a model to delete its words.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Deleting a word from a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordDelete).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -702,6 +742,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// list its words.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Querying a single word from a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordQueryModel).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -752,6 +795,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// owns a model to list its words.
         ///
         /// **Note:** This method is currently a beta release.
+        ///
+        /// **See also:** [Querying all words from a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordsQueryModel).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -799,7 +845,9 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// of the service that was used to associate the customer ID with the data.
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
-        /// the data. For more information about customer IDs and about using this method, see [Information
+        /// the data.
+        ///
+        /// **See also:** [Information
         /// security](https://console.bluemix.net/docs/services/text-to-speech/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>

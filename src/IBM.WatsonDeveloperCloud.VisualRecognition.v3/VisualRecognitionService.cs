@@ -45,13 +45,15 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 this.Endpoint = URL;
         }
 
+        [Obsolete("Authentication using legacy apikey is deprecated. Please authenticate using TokenOptions.")]
         public VisualRecognitionService(string apikey, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(apikey))
                 throw new ArgumentNullException(nameof(apikey));
 
             this.SetCredential(apikey);
-            if(string.IsNullOrEmpty(versionDate))
+
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -187,7 +189,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 restRequest.WithBodyContent(formData);
@@ -275,7 +276,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
@@ -322,7 +322,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;
@@ -370,7 +369,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<Classifier>().Result;
@@ -415,7 +413,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 if (verbose != null)
                     restRequest.WithArgument("verbose", verbose);
                 if (customData != null)
@@ -470,7 +467,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/user_data");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithArgument("api_key", ApiKey);
                 if (!string.IsNullOrEmpty(customerId))
                     restRequest.WithArgument("customer_id", customerId);
                 if (customData != null)

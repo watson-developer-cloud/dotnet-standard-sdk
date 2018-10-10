@@ -205,8 +205,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, along with optional intents,
-        /// entities, and context from the last response. (optional)</param>
+        /// <param name="request">The message to be sent. This includes the user's input, along with optional content
+        /// such as intents and entities. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
         public MessageResponse Message(string assistantId, string sessionId, MessageRequest request = null, Dictionary<string, object> customData = null)

@@ -28,14 +28,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class CreateEnvironmentRequest : BaseModel
     {
         /// <summary>
-        /// Size of the environment.
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </summary>
         /// <value>
-        /// Size of the environment.
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SizeEnum
         {
+            
+            /// <summary>
+            /// Enum LT for LT
+            /// </summary>
+            [EnumMember(Value = "LT")]
+            LT,
             
             /// <summary>
             /// Enum XS for XS
@@ -93,7 +101,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Size of the environment.
+        /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
+        /// the default is `S`.
         /// </summary>
         [Obsolete("Integer size is deprecated. Please use StringSize.")]
         public long? Size
@@ -124,6 +133,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         private string _convertedSize;
+
 
         /// <summary>
         /// Name that identifies the environment.

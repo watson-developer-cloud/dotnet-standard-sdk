@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.9.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.10.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Conversation.v1/)
 
 ### Conversation
 **Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.**
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Conversation.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.9.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Conversation.v1" Version="2.10.0" />
 </ItemGroup>
 
 ```

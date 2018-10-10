@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.8.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.10.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v2/)
 
 ### Assistant
 
@@ -15,7 +15,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Assistant.v2
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v2" Version="2.8.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v2" Version="2.10.0" />
 </ItemGroup>
 
 ```

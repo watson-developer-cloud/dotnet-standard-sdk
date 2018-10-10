@@ -29,11 +29,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     {
         /// <summary>
         /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique
-        /// times each entity is identified. The default is `score`.
+        /// times each entity is identified. The default is `score`. This parameter cannot be used in the same query as
+        /// the **bias** parameter.
         /// </summary>
         /// <value>
         /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique
-        /// times each entity is identified. The default is `score`.
+        /// times each entity is identified. The default is `score`. This parameter cannot be used in the same query as
+        /// the **bias** parameter.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SortEnum
@@ -54,7 +56,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 
         /// <summary>
         /// The sorting method for the relationships, can be `score` or `frequency`. `frequency` is the number of unique
-        /// times each entity is identified. The default is `score`.
+        /// times each entity is identified. The default is `score`. This parameter cannot be used in the same query as
+        /// the **bias** parameter.
         /// </summary>
         [JsonProperty("sort", NullValueHandling = NullValueHandling.Ignore)]
         public SortEnum? Sort { get; set; }

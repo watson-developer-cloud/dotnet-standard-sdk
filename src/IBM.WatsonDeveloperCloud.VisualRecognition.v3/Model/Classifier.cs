@@ -90,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model
         [JsonProperty("core_ml_enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? CoreMlEnabled { get; set; }
         /// <summary>
-        /// If classifier training has failed, this field may explain why.
+        /// If classifier training has failed, this field might explain why.
         /// </summary>
         [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
         public string Explanation { get; set; }

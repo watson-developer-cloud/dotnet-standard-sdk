@@ -2651,7 +2651,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             IClient client = CreateClient();
 
             IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
+            client.PostAsync(Arg.Any<string>())
                  .Returns(x =>
                  {
                      throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
@@ -2670,7 +2670,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             IClient client = CreateClient();
 
             IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
+            client.PostAsync(Arg.Any<string>())
                 .Returns(request);
 
             #region Response
@@ -2719,35 +2719,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             };
             #endregion
 
-
-
-
-
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
                 .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<long>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<long>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+            request.WithBody(Arg.Any<QueryLarge>())
                 .Returns(request);
             request.As<QueryResponse>()
                 .Returns(Task.FromResult(response));
@@ -2758,7 +2732,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             var result = service.Query("environmentId", "collectionId");
 
             Assert.IsNotNull(result);
-            client.Received().GetAsync(Arg.Any<string>());
+            client.Received().PostAsync(Arg.Any<string>());
         }
         #endregion
 

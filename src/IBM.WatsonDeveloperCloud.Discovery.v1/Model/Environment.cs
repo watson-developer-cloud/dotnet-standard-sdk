@@ -28,10 +28,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class Environment : BaseModel
     {
         /// <summary>
-        /// Status of the environment.
+        /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
+        /// has been made, but is still in the process of being completed.
         /// </summary>
         /// <value>
-        /// Status of the environment.
+        /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
+        /// has been made, but is still in the process of being completed.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -53,18 +55,30 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum MAINTENANCE for maintenance
             /// </summary>
             [EnumMember(Value = "maintenance")]
-            MAINTENANCE
+            MAINTENANCE,
+            
+            /// <summary>
+            /// Enum RESIZING for resizing
+            /// </summary>
+            [EnumMember(Value = "resizing")]
+            RESIZING
         }
 
         /// <summary>
-        /// Size of the environment.
+        /// Current size of the environment.
         /// </summary>
         /// <value>
-        /// Size of the environment.
+        /// Current size of the environment.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SizeEnum
         {
+            
+            /// <summary>
+            /// Enum LT for LT
+            /// </summary>
+            [EnumMember(Value = "LT")]
+            LT,
             
             /// <summary>
             /// Enum XS for XS
@@ -122,12 +136,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Status of the environment.
+        /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
+        /// has been made, but is still in the process of being completed.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Size of the environment.
+        /// Current size of the environment.
         /// </summary>
         [Obsolete("Integer size is deprecated. Please use StringSize.")]
         public long? Size
@@ -159,6 +174,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
         private string _convertedSize;
 
+
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>
@@ -178,22 +194,34 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Creation date of the environment, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Created { get; private set; }
+        public virtual DateTime? Created { get; private set; }
         /// <summary>
         /// Date of most recent environment update, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Updated { get; private set; }
+        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// If `true`, the environment contains read-only collections that are maintained by IBM.
         /// </summary>
         [JsonProperty("read_only", NullValueHandling = NullValueHandling.Ignore)]
         public virtual bool? _ReadOnly { get; private set; }
         /// <summary>
+        /// The new size requested for this environment. Only returned when the environment *status* is `resizing`.
+        ///
+        /// *Note:* Querying and indexing can still be performed during an environment upsize.
+        /// </summary>
+        [JsonProperty("requested_size", NullValueHandling = NullValueHandling.Ignore)]
+        public string RequestedSize { get; set; }
+        /// <summary>
         /// Details about the resource usage and capacity of the environment.
         /// </summary>
         [JsonProperty("index_capacity", NullValueHandling = NullValueHandling.Ignore)]
         public IndexCapacity IndexCapacity { get; set; }
+        /// <summary>
+        /// Information about Continuous Relevancy Training for this environment.
+        /// </summary>
+        [JsonProperty("search_status", NullValueHandling = NullValueHandling.Ignore)]
+        public SearchStatus SearchStatus { get; set; }
     }
 
 }

@@ -37,12 +37,14 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             set { _versionDate = value; }
         }
 
+        [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
         public ConversationService() : base(SERVICE_NAME, URL)
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
+        [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
         public ConversationService(string userName, string password, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(userName))
@@ -58,6 +60,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             VersionDate = versionDate;
         }
 
+        [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
         public ConversationService(TokenOptions options, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -79,6 +82,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
             _tokenManager = new TokenManager(options);
         }
 
+        [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
         public ConversationService(IClient httpClient) : this()
         {
             if (httpClient == null)

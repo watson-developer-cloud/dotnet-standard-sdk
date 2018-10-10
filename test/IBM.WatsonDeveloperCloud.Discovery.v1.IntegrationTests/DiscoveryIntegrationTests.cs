@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string _username;
         private static string _password;
         private static string credentials = string.Empty;
-        private static string version = "2018-03-05";
+        private static string version = "2018-10-08";
 
         private static string _environmentId;
         private static string _createdConfigurationId;
@@ -335,7 +335,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
+            List<string> rFields = new List<string>();
+            rFields.Add("extracted_metadata.sha1");
+            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, returnFields:rFields);
 
             var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
             var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
@@ -510,7 +512,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Credentials
-        [TestMethod]
+        //[TestMethod]
         public void TestCredentials_Success()
         {
             var listCredentialsResult = ListCredentials(_environmentId);

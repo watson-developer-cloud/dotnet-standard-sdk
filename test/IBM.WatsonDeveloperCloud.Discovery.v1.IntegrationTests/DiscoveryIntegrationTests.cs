@@ -512,7 +512,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Credentials
-        [TestMethod]
+        //[TestMethod]
         public void TestCredentials_Success()
         {
             var listCredentialsResult = ListCredentials(_environmentId);

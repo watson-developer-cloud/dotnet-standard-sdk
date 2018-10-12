@@ -199,7 +199,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// that owns the custom model. Omit the parameter to use the specified voice with no customization.
         /// (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
+        /// <returns><see cref="System.IO.MemoryStream" />System.IO.MemoryStream</returns>
         public System.IO.MemoryStream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null, Dictionary<string, object> customData = null)
         {
             if (text == null)

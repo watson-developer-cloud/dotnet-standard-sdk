@@ -1634,7 +1634,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     PassagesCharacters = passagesCharacters,
                     Deduplicate = deduplicate,
                     DeduplicateField = deduplicateField,
-                    CollectionIds = (collectionIds == null || collectionIds.Count < 1) ? null : string.Join(", ", collectionIds.ToArray()),
+                    CollectionIds = collectionIds,
                     Similar = similar,
                     SimilarDocumentIds = (similarDocumentIds == null || similarDocumentIds.Count < 1) ? null : string.Join(", ", similarDocumentIds.ToArray()),
                     SimilarFields = (similarFields == null || similarFields.Count < 1) ? null : string.Join(", ", similarFields.ToArray()),

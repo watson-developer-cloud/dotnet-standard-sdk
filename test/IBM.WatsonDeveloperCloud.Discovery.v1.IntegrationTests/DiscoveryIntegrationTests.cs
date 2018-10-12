@@ -339,11 +339,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             rFields.Add("extracted_metadata.sha1");
             var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, returnFields:rFields);
 
+            var collectionIds = new List<string>()
+            {
+                _createdCollectionId
+            };
+
+            var federatedQueryResult = FederatedQuery(_environmentId, collectionIds, naturalLanguageQuery: _naturalLanguageQuery);
+
             var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
             var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
 
             Assert.IsNotNull(queryResult);
+            Assert.IsNotNull(federatedQueryResult);
 
             _createdDocumentId = null;
             _createdCollectionId = null;

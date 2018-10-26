@@ -106,25 +106,25 @@ namespace IBM.WatsonDeveloperCloud.VisRec.v3.Example
         }
         #endregion
 
-        #region CreateClassifier
-        private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
-        {
-            Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
-
+//        #region CreateClassifier
+//        private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
+//        {
+//            Console.WriteLine("\nAttempting to CreateClassifier()");
+//            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
+//
+//            if (result != null)
+//            {
+//                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+//            }
+//            else
+//            {
+//                Console.WriteLine("Failed to CreateClassifier()");
+//            }
+//
+//            return result;
+//        }
+//        #endregion
+//
         #region DeleteClassifier
         private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
@@ -182,24 +182,24 @@ namespace IBM.WatsonDeveloperCloud.VisRec.v3.Example
         }
         #endregion
 
-        #region UpdateClassifier
-        private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
-        {
-            Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
+//        #region UpdateClassifier
+//        private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
+//        {
+//            Console.WriteLine("\nAttempting to UpdateClassifier()");
+//            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
+//
+//            if (result != null)
+//            {
+//                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+//            }
+//            else
+//            {
+//                Console.WriteLine("Failed to UpdateClassifier()");
+//            }
+//
+//            return result;
+//        }
+//        #endregion
 
         #region GetCoreMlModel
         private Task<Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null)

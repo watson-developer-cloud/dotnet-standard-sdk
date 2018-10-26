@@ -206,6 +206,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
+
         /// <summary>
         /// Detect faces in images.
         ///
@@ -282,6 +283,108 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = restRequest.As<DetectedFaces>().Result;
                 if(result == null)
                     result = new DetectedFaces();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create a classifier.
+        ///
+        /// Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive
+        /// or negative examples. Include at least two sets of examples, either two positive example files or one
+        /// positive and one negative file. You can upload a maximum of 256 MB per call.
+        ///
+        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+        /// </summary>
+        /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
+        /// <param name="positiveExamples">A .zip file of images that depict the visual subject of a class in the new
+        /// classifier. You can include more than one positive example file in a call.
+        ///
+        /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
+        /// `goldenretriever_positive_examples` creates the class **goldenretriever**.
+        ///
+        /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
+        /// The maximum number of images is 10,000 images or 100 MB per .zip file.
+        ///
+        /// Encode special characters in the file name in UTF-8.</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the
+        /// classes of the new classifier. Must contain a minimum of 10 images.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        public Classifier CreateClassifier(string name, Dictionary<string, System.IO.FileStream> positiveExamples, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+            if (positiveExamples == null)
+                throw new ArgumentNullException(nameof(positiveExamples));
+            if (positiveExamples.Count == 0)
+                throw new ArgumentException("positiveExamples must contain at least one dictionary entry");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Classifier result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (name != null)
+                {
+                    var nameContent = new StringContent(name, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    nameContent.Headers.ContentType = null;
+                    formData.Add(nameContent, "name");
+                }
+
+                if (positiveExamples != null && positiveExamples.Count > 0)
+                {
+                    foreach(KeyValuePair<string, System.IO.FileStream> entry in positiveExamples)
+                    {
+                        var partName = string.Format("{0}_positive_examples", entry.Key);
+                        var partContent = new ByteArrayContent((entry.Value as Stream).ReadAllBytes());
+                        System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                        System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                        partContent.Headers.ContentType = contentType;
+                        formData.Add(partContent, partName, entry.Value.Name);
+                    }
+                }
+
+                if (negativeExamples != null)
+                {
+                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    negativeExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(negativeExamplesContent, "negative_examples", negativeExamples.Name);
+                }
+
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
@@ -420,6 +523,103 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 result = restRequest.As<Classifiers>().Result;
                 if(result == null)
                     result = new Classifiers();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update a classifier.
+        ///
+        /// Update a custom classifier by adding new positive or negative classes (examples) or by adding new images to
+        /// existing classes. You must supply at least one set of positive or negative examples. For details, see
+        /// [Updating custom
+        /// classifiers](https://console.bluemix.net/docs/services/visual-recognition/customizing.html#updating-custom-classifiers).
+        ///
+        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
+        ///
+        /// **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining
+        /// requests in parallel, the last request overwrites the previous requests. The retrained property shows the
+        /// last time the classifier retraining finished.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <param name="positiveExamples">A .zip file of images that depict the visual subject of a class in the
+        /// classifier. The positive examples create or update classes in the classifier. You can include more than one
+        /// positive example file in a call.
+        ///
+        /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
+        /// `goldenretriever_positive_examples` creates the class `goldenretriever`.
+        ///
+        /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
+        /// The maximum number of images is 10,000 images or 100 MB per .zip file.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="negativeExamples">A .zip file of images that do not depict the visual subject of any of the
+        /// classes of the new classifier. Must contain a minimum of 10 images.
+        ///
+        /// Encode special characters in the file name in UTF-8. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Classifier" />Classifier</returns>
+        public Classifier UpdateClassifier(string classifierId, Dictionary<string, System.IO.FileStream> positiveExamples = null, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(classifierId))
+                throw new ArgumentNullException(nameof(classifierId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Classifier result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (positiveExamples != null && positiveExamples.Count > 0)
+                {
+                    foreach(KeyValuePair<string, System.IO.FileStream> entry in positiveExamples)
+                    {
+                        var partName = string.Format("{0}_positive_examples", entry.Key);
+                        var partContent = new ByteArrayContent((entry.Value as Stream).ReadAllBytes());
+                        System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                        System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                        partContent.Headers.ContentType = contentType;
+                        formData.Add(partContent, partName, entry.Value.Name);
+                    }
+                }
+
+                if (negativeExamples != null)
+                {
+                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    negativeExamplesContent.Headers.ContentType = contentType;
+                    formData.Add(negativeExamplesContent, "negative_examples", negativeExamples.Name);
+                }
+
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client;
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Classifier>().Result;
+                if(result == null)
+                    result = new Classifier();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

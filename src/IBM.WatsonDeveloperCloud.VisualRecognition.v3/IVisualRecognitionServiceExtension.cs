@@ -25,10 +25,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     {
         void SetCredential(string apikey);
 
-        Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null);
-        
-        Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null);
-
         Task<System.IO.Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
     }
 }

@@ -288,10 +288,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             {
                 using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
                 {
-                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                    Dictionary<string, System.IO.FileStream> positiveExamples = new Dictionary<string, System.IO.FileStream>();
                     positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
-                    CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
-                    classifier = _service.CreateClassifier(createClassifier);
+                    // CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
+                    classifier = _service.CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
                 }
             }
             catch (Exception e)
@@ -318,10 +318,10 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             {
                 using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
                 {
-                    Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
+                    Dictionary<string, System.IO.FileStream> positiveExamples = new Dictionary<string, System.IO.FileStream>();
                     positiveExamples.Add(_turtleClassname, positiveExamplesStream);
-                    UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                    updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                    // UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
+                    updateClassifierResult = _service.UpdateClassifier(createdClassifierId, positiveExamples);
                 }
             }
             catch (Exception e)
@@ -463,24 +463,24 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        #region CreateClassifier
-        private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
-        {
-            Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
-
-            if (result != null)
-            {
-                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to CreateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
+//        #region CreateClassifier
+//        private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
+//        {
+//            Console.WriteLine("\nAttempting to CreateClassifier()");
+//            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
+//
+//            if (result != null)
+//            {
+//                Console.WriteLine("CreateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+//            }
+//            else
+//            {
+//                Console.WriteLine("Failed to CreateClassifier()");
+//            }
+//
+//            return result;
+//        }
+//        #endregion
 
         #region DeleteClassifier
         private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
@@ -539,24 +539,24 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
-        #region UpdateClassifier
-        private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
-        {
-            Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
-
-            if (result != null)
-            {
-                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-            }
-            else
-            {
-                Console.WriteLine("Failed to UpdateClassifier()");
-            }
-
-            return result;
-        }
-        #endregion
+//        #region UpdateClassifier
+//        private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
+//        {
+//            Console.WriteLine("\nAttempting to UpdateClassifier()");
+//            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
+//
+//            if (result != null)
+//            {
+//                Console.WriteLine("UpdateClassifier() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+//            }
+//            else
+//            {
+//                Console.WriteLine("Failed to UpdateClassifier()");
+//            }
+//
+//            return result;
+//        }
+//        #endregion
 
         #region DeleteUserData
         private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)

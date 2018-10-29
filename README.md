@@ -27,7 +27,7 @@ Ensure you have the following prerequisites:
 You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
 
 * [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
-* [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
+* [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2) (private beta)
 * [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1) (deprecated - Use Assistant V1 or Assistant V2)
 * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
 * [Language Translator V2](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v2) (deprecated - Use LanguageTranslator V3)

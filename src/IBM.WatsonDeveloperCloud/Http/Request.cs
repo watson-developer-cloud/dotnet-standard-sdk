@@ -81,6 +81,10 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public IRequest WithHeader(string key, string value)
         {
+            if (key == "Accept" && value.StartsWith("audio/", StringComparison.OrdinalIgnoreCase))
+            {
+                this.Message.Headers.Accept.Clear();
+            }
             this.Message.Headers.TryAddWithoutValidation(key, value);
             return this;
         }

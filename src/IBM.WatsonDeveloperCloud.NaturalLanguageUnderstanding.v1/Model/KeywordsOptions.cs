@@ -20,7 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An option indicating whether or not important keywords from the analyzed content should be returned.
+    /// Returns important keywords in the content.
+    ///
+    /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Swedish.
     /// </summary>
     public class KeywordsOptions : BaseModel
     {

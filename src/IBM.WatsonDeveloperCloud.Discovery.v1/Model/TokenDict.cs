@@ -15,25 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// State information for the conversation.
+    /// Tokenization dictionary describing how words are tokenized during ingestion and at query time.
     /// </summary>
-    public class MessageContext : BaseModel
+    public class TokenDict : BaseModel
     {
         /// <summary>
-        /// Contains information that can be shared by all skills within the Assistant.
+        /// An array of tokenization rules. Each rule contains, the original `text` string, component `tokens`, any
+        /// alternate character set `readings`, and which `part_of_speech` the text is from.
         /// </summary>
-        [JsonProperty("global", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextGlobal Global { get; set; }
-        /// <summary>
-        /// Contains information specific to particular skills within the Assistant.
-        /// </summary>
-        [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkills Skills { get; set; }
+        [JsonProperty("tokenization_rules", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TokenDictRule> TokenizationRules { get; set; }
     }
 
 }

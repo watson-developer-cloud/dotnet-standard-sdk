@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Relevance score from 0 to 1. Higher values indicate greater relevance.
         /// </summary>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Relevance { get; set; }
+        public double? Relevance { get; set; }
         /// <summary>
         /// The keyword text.
         /// </summary>

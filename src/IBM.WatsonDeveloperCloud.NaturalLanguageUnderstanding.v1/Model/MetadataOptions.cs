@@ -18,7 +18,8 @@
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The Authors, Publication Date, and Title of the document. Supports URL and HTML input types.
+    /// Returns information from the document, including author name, title, RSS/ATOM feeds, prominent page image, and
+    /// publication date. Supports URL and HTML input types only.
     /// </summary>
     public class MetadataOptions : BaseModel
     {

@@ -18,7 +18,9 @@
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The hierarchical 5-level taxonomy the content is categorized into.
+    /// Returns a five-level taxonomy of the content. The top three categories are returned.
+    ///
+    /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
     /// </summary>
     public class CategoriesOptions : BaseModel
     {

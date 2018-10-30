@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Relevance score between 0 and 1. Higher scores indicate greater relevance.
         /// </summary>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Relevance { get; set; }
+        public double? Relevance { get; set; }
         /// <summary>
         /// Link to the corresponding DBpedia resource.
         /// </summary>

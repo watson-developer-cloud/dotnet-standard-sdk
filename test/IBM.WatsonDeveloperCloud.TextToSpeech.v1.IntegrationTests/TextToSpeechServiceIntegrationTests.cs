@@ -123,7 +123,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
         #endregion
 
         #region Custom Voice Models
-        [TestMethod]
+        //[TestMethod]
         public void CustomVoiceModels_Success()
         {
             var listVoiceModelsResult = ListVoiceModels();

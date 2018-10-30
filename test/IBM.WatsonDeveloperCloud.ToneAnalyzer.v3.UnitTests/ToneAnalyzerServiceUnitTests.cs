@@ -393,7 +393,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
                             new ToneChatScore()
                             {
                                 ToneName = "string",
-                                ToneId = "string",
+                                ToneId = ToneChatScore.ToneIdEnum.SAD,
                                 Score = 0
                             }
                         }

@@ -644,7 +644,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        #region metrics
+        #region Metrics
         [TestMethod]
         public void TestMetrics_Success()
         {
@@ -672,6 +672,90 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(getMetricsQueryResult.Aggregations);
             Assert.IsNotNull(getMetricsEventRateResult);
             Assert.IsNotNull(getMetricsEventRateResult.Aggregations);
+        }
+        #endregion
+
+        #region Expansions
+        [TestMethod]
+        public void TestExpansions_Success()
+        {
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.JA,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            _createdCollectionId = createCollectionResult.CollectionId;
+
+            Expansions body = new Expansions()
+            {
+                _Expansions = new List<Expansion>()
+                {
+                    new Expansion()
+                    {
+                        InputTerms = new List<string>()
+                        {
+                            "input-term"
+                        },
+                        ExpandedTerms = new List<string>()
+                        {
+                            "expanded-term"
+                        }
+                    }
+                }
+            };
+
+            var createExpansionsResult = CreateExpansions(_environmentId, _createdCollectionId, body);
+            var listExpansionsResult = ListExpansions(_environmentId, _createdCollectionId);
+            var deleteExpansionResult = DeleteExpansions(_environmentId, _createdCollectionId);
+
+            TokenDict tokenizationDictionary = new TokenDict()
+            {
+                TokenizationRules = new List<TokenDictRule>()
+                {
+                    new TokenDictRule()
+                    {
+                        Text = "すしネコ",
+                        Tokens = new List<string>()
+                        {
+                            "すし", "ネコ"
+                        },
+                        Readings = new List<string>()
+                        {
+                            "寿司", "ネコ"
+                        },
+                        PartOfSpeech = "カスタム名詞"
+                    }
+                }
+            };
+
+            try
+            {
+                var createTokenizationDictionaryResult = CreateTokenizationDictionary(_environmentId, _createdCollectionId, tokenizationDictionary);
+                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(_environmentId, _createdCollectionId);
+                var deleteTokenizationDictionary = DeleteTokenizationDictionary(_environmentId, _createdCollectionId);
+
+                Assert.IsNotNull(deleteTokenizationDictionary);
+                Assert.IsNotNull(getTokenizationDictionaryStatusResult);
+                Assert.IsTrue(getTokenizationDictionaryStatusResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+                Assert.IsNotNull(createTokenizationDictionaryResult);
+                Assert.IsTrue(createTokenizationDictionaryResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            Assert.IsNotNull(deleteExpansionResult);
+            Assert.IsNotNull(listExpansionsResult);
+            Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(listExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
+            Assert.IsNotNull(createExpansionsResult);
+            Assert.IsTrue(createExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(createExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
         }
         #endregion
 
@@ -1091,6 +1175,63 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListExpansions()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateTokenizationDictionary
+        private TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateTokenizationDictionary()");
+            var result = _service.CreateTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, tokenizationDictionary: tokenizationDictionary, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateTokenizationDictionary() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateTokenizationDictionary()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteTokenizationDictionary
+        private BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteTokenizationDictionary()");
+            var result = _service.DeleteTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteTokenizationDictionary() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteTokenizationDictionary()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetTokenizationDictionaryStatus
+        private TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetTokenizationDictionaryStatus()");
+            var result = _service.GetTokenizationDictionaryStatus(environmentId: environmentId, collectionId: collectionId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetTokenizationDictionaryStatus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetTokenizationDictionaryStatus()");
             }
 
             return result;

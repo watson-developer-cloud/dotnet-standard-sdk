@@ -92,7 +92,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model
         /// Date and time (UTC) the classifier was created.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// Additional detail about the status.
         /// </summary>

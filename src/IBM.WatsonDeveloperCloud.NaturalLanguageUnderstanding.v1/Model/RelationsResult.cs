@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Confidence score for the relation. Higher values indicate greater confidence.
         /// </summary>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Score { get; set; }
+        public double? Score { get; set; }
         /// <summary>
         /// The sentence that contains the relation.
         /// </summary>

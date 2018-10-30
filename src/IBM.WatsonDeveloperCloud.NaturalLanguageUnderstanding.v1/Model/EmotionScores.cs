@@ -28,27 +28,27 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Anger score from 0 to 1. A higher score means that the text is more likely to convey anger.
         /// </summary>
         [JsonProperty("anger", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Anger { get; set; }
+        public double? Anger { get; set; }
         /// <summary>
         /// Disgust score from 0 to 1. A higher score means that the text is more likely to convey disgust.
         /// </summary>
         [JsonProperty("disgust", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Disgust { get; set; }
+        public double? Disgust { get; set; }
         /// <summary>
         /// Fear score from 0 to 1. A higher score means that the text is more likely to convey fear.
         /// </summary>
         [JsonProperty("fear", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Fear { get; set; }
+        public double? Fear { get; set; }
         /// <summary>
         /// Joy score from 0 to 1. A higher score means that the text is more likely to convey joy.
         /// </summary>
         [JsonProperty("joy", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Joy { get; set; }
+        public double? Joy { get; set; }
         /// <summary>
         /// Sadness score from 0 to 1. A higher score means that the text is more likely to convey sadness.
         /// </summary>
         [JsonProperty("sadness", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Sadness { get; set; }
+        public double? Sadness { get; set; }
     }
 
 }

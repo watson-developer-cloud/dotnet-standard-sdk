@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Sentiment score from -1 (negative) to 1 (positive).
         /// </summary>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Score { get; set; }
+        public double? Score { get; set; }
     }
 
 }

@@ -65,7 +65,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// The creation date of the collection in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// Unique identifier of the document.
         /// </summary>

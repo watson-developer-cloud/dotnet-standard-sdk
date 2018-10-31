@@ -726,6 +726,20 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestTokenization_Success()
         {
+            var collectionsList = ListCollections(_environmentId);
+
+            foreach (Collection collection in collectionsList.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.Contains("safe to delete"))
+                    {
+                        DeleteCollection(_environmentId, collection.CollectionId);
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
+
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = CreateCollectionRequest.LanguageEnum.JA,

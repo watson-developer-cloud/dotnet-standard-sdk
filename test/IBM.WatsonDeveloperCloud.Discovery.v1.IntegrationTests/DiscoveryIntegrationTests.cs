@@ -41,7 +41,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
         private static string _environmentId;
         private static string _createdConfigurationId;
-        private static string _createdCollectionId;
         private static string _createdDocumentId;
         private static string _createdTrainingQueryId;
         private static string _createdTrainingExampleId;
@@ -164,8 +163,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Configuration configuration = new Configuration()
             {
                 Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
-
+                Description = _createdConfigurationDescription
             };
 
             var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
@@ -176,13 +174,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             var getCollectionResult = GetCollection(_environmentId, _createdCollectionId);
 
@@ -259,13 +256,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -320,13 +316,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -371,33 +366,31 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var noticesCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                addDocumentResult = AddDocument(_environmentId, noticesCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
-            var queryNoticesResult = QueryNotices(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var queryResult = Query(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery);
+            var queryNoticesResult = QueryNotices(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery, true);
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteDocumentResult = DeleteDocument(_environmentId, noticesCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, noticesCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
 
             Assert.IsNotNull(queryNoticesResult);
 
             _environmentId = null;
             _createdConfigurationId = null;
-            _createdCollectionId = null;
             _createdDocumentId = null;
         }
         #endregion
@@ -421,30 +414,29 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var trainingCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                addDocumentResult = AddDocument(_environmentId, trainingCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+            var getDocumentStatusResult = GetDocumentStatus(_environmentId, trainingCollectionId, _createdDocumentId);
 
             DocumentAccepted updateDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
+                updateDocumentResult = UpdateDocument(_environmentId, trainingCollectionId, _createdDocumentId, fs, _metadata);
             }
 
-            var listTrainingDataResult = ListTrainingData(_environmentId, _createdCollectionId);
+            var listTrainingDataResult = ListTrainingData(_environmentId, trainingCollectionId);
 
             var newTrainingQuery = new NewTrainingQuery()
             {
@@ -461,10 +453,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var addTrainingDataResult = AddTrainingData(_environmentId, _createdCollectionId, newTrainingQuery);
+            var addTrainingDataResult = AddTrainingData(_environmentId, trainingCollectionId, newTrainingQuery);
             _createdTrainingQueryId = addTrainingDataResult.QueryId;
 
-            var getTrainingDataResult = GetTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
+            var getTrainingDataResult = GetTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
 
             var trainingExample = new TrainingExample()
             {
@@ -472,10 +464,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var createTrainingExampleResult = CreateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            var createTrainingExampleResult = CreateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, trainingExample);
             _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
 
-            var getTrainingExampleResult = GetTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var getTrainingExampleResult = GetTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             var updateTrainingExample = new TrainingExamplePatch()
             {
@@ -483,13 +475,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
+            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
 
-            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
-            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, _createdCollectionId);
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
+            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, trainingCollectionId);
+            var deleteDocumentResult = DeleteDocument(_environmentId, trainingCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, trainingCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
 
             Assert.IsNotNull(deleteAllTrainingDataResult);
@@ -504,7 +496,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             _createdTrainingExampleId = null;
             _createdTrainingQueryId = null;
-            _createdCollectionId = null;
             _createdConfigurationId = null;
             _environmentId = null;
             _createdDocumentId = null;
@@ -597,13 +588,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -682,9 +672,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = CreateCollectionRequest.LanguageEnum.JA,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = "expansions-collection-please-delete-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
@@ -744,9 +733,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = CreateCollectionRequest.LanguageEnum.JA,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = "tokenization-collection-please-delete-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);

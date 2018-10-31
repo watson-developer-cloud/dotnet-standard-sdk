@@ -711,7 +711,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var createExpansionsResult = CreateExpansions(_environmentId, expansionCollectionId, body);
             var listExpansionsResult = ListExpansions(_environmentId, expansionCollectionId);
             var deleteExpansionResult = DeleteExpansions(_environmentId, expansionCollectionId);
-            
+            DeleteCollection(_environmentId, expansionCollectionId);
+
             Assert.IsNotNull(deleteExpansionResult);
             Assert.IsNotNull(listExpansionsResult);
             Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
@@ -732,7 +733,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 if (!string.IsNullOrEmpty(collection.Description))
                 {
-                    if (collection.Description.Contains("safe to delete"))
+                    if (collection.Description.Contains("safe to delete") || collection.Description.Contains("Please delete me"))
                     {
                         DeleteCollection(_environmentId, collection.CollectionId);
                         Console.WriteLine("deleted " + collection.CollectionId);
@@ -787,6 +788,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 Console.WriteLine(e.Message);
             }
+
+            DeleteCollection(_environmentId, tokenizationCollectionId);
         }
         #endregion
 

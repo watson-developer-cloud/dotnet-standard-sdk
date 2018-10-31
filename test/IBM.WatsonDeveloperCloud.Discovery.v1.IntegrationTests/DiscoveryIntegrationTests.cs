@@ -688,7 +688,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var expansionCollectionId = createCollectionResult.CollectionId;
 
             Expansions body = new Expansions()
             {
@@ -708,9 +708,34 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var createExpansionsResult = CreateExpansions(_environmentId, _createdCollectionId, body);
-            var listExpansionsResult = ListExpansions(_environmentId, _createdCollectionId);
-            var deleteExpansionResult = DeleteExpansions(_environmentId, _createdCollectionId);
+            var createExpansionsResult = CreateExpansions(_environmentId, expansionCollectionId, body);
+            var listExpansionsResult = ListExpansions(_environmentId, expansionCollectionId);
+            var deleteExpansionResult = DeleteExpansions(_environmentId, expansionCollectionId);
+            
+            Assert.IsNotNull(deleteExpansionResult);
+            Assert.IsNotNull(listExpansionsResult);
+            Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(listExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
+            Assert.IsNotNull(createExpansionsResult);
+            Assert.IsTrue(createExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(createExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
+        }
+        #endregion
+
+        #region Tokenization
+        [TestMethod]
+        public void TestTokenization_Success()
+        {
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.JA,
+                Name = _createdCollectionName,
+                Description = _createdCollectionDescription,
+                ConfigurationId = _createdConfigurationId
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var tokenizationCollectionId = createCollectionResult.CollectionId;
 
             TokenDict tokenizationDictionary = new TokenDict()
             {
@@ -734,9 +759,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             try
             {
-                var createTokenizationDictionaryResult = CreateTokenizationDictionary(_environmentId, _createdCollectionId, tokenizationDictionary);
-                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(_environmentId, _createdCollectionId);
-                var deleteTokenizationDictionary = DeleteTokenizationDictionary(_environmentId, _createdCollectionId);
+                var createTokenizationDictionaryResult = CreateTokenizationDictionary(_environmentId, tokenizationCollectionId, tokenizationDictionary);
+                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(_environmentId, tokenizationCollectionId);
+                var deleteTokenizationDictionary = DeleteTokenizationDictionary(_environmentId, tokenizationCollectionId);
 
                 Assert.IsNotNull(deleteTokenizationDictionary);
                 Assert.IsNotNull(getTokenizationDictionaryStatusResult);
@@ -744,18 +769,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Assert.IsNotNull(createTokenizationDictionaryResult);
                 Assert.IsTrue(createTokenizationDictionaryResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-
-            Assert.IsNotNull(deleteExpansionResult);
-            Assert.IsNotNull(listExpansionsResult);
-            Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
-            Assert.IsTrue(listExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
-            Assert.IsNotNull(createExpansionsResult);
-            Assert.IsTrue(createExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
-            Assert.IsTrue(createExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
         }
         #endregion
 

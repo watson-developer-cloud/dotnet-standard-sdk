@@ -21,7 +21,11 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Whether or not to return emotion analysis of the content.
+    /// Detects anger, disgust, fear, joy, or sadness that is conveyed in the content or by the context around target
+    /// phrases specified in the targets parameter. You can analyze emotion for detected entities with
+    /// `entities.emotion` and for keywords with `keywords.emotion`.
+    ///
+    /// Supported languages: English.
     /// </summary>
     public class EmotionOptions : BaseModel
     {

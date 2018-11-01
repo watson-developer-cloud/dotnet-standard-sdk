@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class ListModelsResults : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Models
+        /// An array of available models.
         /// </summary>
         [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
         public List<Model> Models { get; set; }

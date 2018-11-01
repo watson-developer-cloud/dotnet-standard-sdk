@@ -33,7 +33,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// Confidence score for the category classification. Higher values indicate greater confidence.
         /// </summary>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public float? Score { get; set; }
+        public double? Score { get; set; }
     }
 
 }

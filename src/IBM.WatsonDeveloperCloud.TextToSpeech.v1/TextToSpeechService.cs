@@ -186,7 +186,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// audio](https://console.bluemix.net/docs/services/text-to-speech/http.html#synthesize).
         /// </summary>
         /// <param name="text">A `Text` object that provides the text to synthesize. Specify either plain text or a
-        /// subset of SSML. Pass a maximum of 5 KB of text.</param>
+        /// subset of SSML. SSML is an XML-based markup language that provides text annotation for speech-synthesis
+        /// applications. Pass a maximum of 5 KB of text.</param>
         /// <param name="accept">The requested audio format (MIME type) of the audio. You can use the `Accept` header or
         /// the `accept` query parameter to specify the audio format. (For the `audio/l16` format, you can optionally
         /// specify `endianness=big-endian` or `endianness=little-endian`; the default is little endian.) For detailed
@@ -515,10 +516,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// A custom model can contain no more than 20,000 entries. You must use credentials for the instance of the
         /// service that owns a model to update it.
         ///
+        /// You can define sounds-like or phonetic translations for words. A sounds-like translation consists of one or
+        /// more words that, when combined, sound like the word. Phonetic translations are based on the SSML phoneme
+        /// format for representing a word. You can specify them in standard International Phonetic Alphabet (IPA)
+        /// representation
+        ///
+        ///   <code>&lt;phoneme alphabet="ipa" ph="t&#601;m&#712;&#593;to"&gt;&lt;/phoneme&gt;</code>
+        ///
+        ///   or in the proprietary IBM Symbolic Phonetic Representation (SPR)
+        ///
+        ///   <code>&lt;phoneme alphabet="ibm" ph="1gAstroEntxrYFXs"&gt;&lt;/phoneme&gt;</code>
+        ///
         /// **Note:** This method is currently a beta release.
         ///
-        /// **See also:** [Updating a custom
-        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsUpdate).
+        /// **See also:**
+        /// * [Updating a custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-models.html#cuModelsUpdate)
+        /// * [Adding words to a Japanese custom
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Understanding customization](https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -570,13 +586,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// contain no more than 20,000 entries. You must use credentials for the instance of the service that owns a
         /// model to add a word to it.
         ///
+        /// You can define sounds-like or phonetic translations for words. A sounds-like translation consists of one or
+        /// more words that, when combined, sound like the word. Phonetic translations are based on the SSML phoneme
+        /// format for representing a word. You can specify them in standard International Phonetic Alphabet (IPA)
+        /// representation
+        ///
+        ///   <code>&lt;phoneme alphabet="ipa" ph="t&#601;m&#712;&#593;to"&gt;&lt;/phoneme&gt;</code>
+        ///
+        ///   or in the proprietary IBM Symbolic Phonetic Representation (SPR)
+        ///
+        ///   <code>&lt;phoneme alphabet="ibm" ph="1gAstroEntxrYFXs"&gt;&lt;/phoneme&gt;</code>
+        ///
         /// **Note:** This method is currently a beta release.
         ///
         /// **See also:**
         /// * [Adding a single word to a custom
         /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordAdd)
         /// * [Adding words to a Japanese custom
-        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd).
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Understanding customization](https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -631,13 +659,25 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// can contain no more than 20,000 entries. You must use credentials for the instance of the service that owns
         /// a model to add words to it.
         ///
+        /// You can define sounds-like or phonetic translations for words. A sounds-like translation consists of one or
+        /// more words that, when combined, sound like the word. Phonetic translations are based on the SSML phoneme
+        /// format for representing a word. You can specify them in standard International Phonetic Alphabet (IPA)
+        /// representation
+        ///
+        ///   <code>&lt;phoneme alphabet="ipa" ph="t&#601;m&#712;&#593;to"&gt;&lt;/phoneme&gt;</code>
+        ///
+        ///   or in the proprietary IBM Symbolic Phonetic Representation (SPR)
+        ///
+        ///   <code>&lt;phoneme alphabet="ibm" ph="1gAstroEntxrYFXs"&gt;&lt;/phoneme&gt;</code>
+        ///
         /// **Note:** This method is currently a beta release.
         ///
         /// **See also:**
         /// * [Adding multiple words to a custom
         /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuWordsAdd)
         /// * [Adding words to a Japanese custom
-        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd).
+        /// model](https://console.bluemix.net/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Understanding customization](https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>

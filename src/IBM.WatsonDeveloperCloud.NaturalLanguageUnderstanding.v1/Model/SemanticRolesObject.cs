@@ -31,7 +31,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// Gets or Sets Keywords
+        /// An array of extracted keywords.
         /// </summary>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public List<SemanticRolesKeyword> Keywords { get; set; }

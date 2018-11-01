@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
@@ -44,7 +43,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ListCollectionsResponse ListCollections(string environmentId, string name = null, Dictionary<string, object> customData = null);
         Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null);
         Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null);
+        TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary = null, Dictionary<string, object> customData = null);
         BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
+        BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null);
+        TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
         DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null);

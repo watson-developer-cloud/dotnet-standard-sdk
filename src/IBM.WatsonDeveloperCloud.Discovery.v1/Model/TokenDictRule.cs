@@ -18,28 +18,34 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// SemanticRolesSubject.
+    /// An object defining a single tokenizaion rule.
     /// </summary>
-    public class SemanticRolesSubject : BaseModel
+    public class TokenDictRule : BaseModel
     {
         /// <summary>
-        /// Text that corresponds to the subject role.
+        /// The string to tokenize.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// An array of extracted entities.
+        /// Array of tokens that the `text` field is split into when found.
         /// </summary>
-        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<SemanticRolesEntity> Entities { get; set; }
+        [JsonProperty("tokens", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Tokens { get; set; }
         /// <summary>
-        /// An array of extracted keywords.
+        /// Array of tokens that represent the content of the `text` field in an alternate character set.
         /// </summary>
-        [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
-        public List<SemanticRolesKeyword> Keywords { get; set; }
+        [JsonProperty("readings", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Readings { get; set; }
+        /// <summary>
+        /// The part of speech that the `text` string belongs to. For example `noun`. Custom parts of speech can be
+        /// specified.
+        /// </summary>
+        [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
+        public string PartOfSpeech { get; set; }
     }
 
 }

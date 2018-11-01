@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class RelationArgument : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Entities
+        /// An array of extracted entities.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<RelationEntity> Entities { get; set; }

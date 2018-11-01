@@ -20,7 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An option specifying whether or not to identify the subjects, actions, and verbs in the analyzed content.
+    /// Parses sentences into subject, action, and object form.
+    ///
+    /// Supported languages: English, German, Japanese, Korean, Spanish.
     /// </summary>
     public class SemanticRolesOptions : BaseModel
     {

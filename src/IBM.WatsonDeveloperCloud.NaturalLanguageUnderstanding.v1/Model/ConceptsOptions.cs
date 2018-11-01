@@ -20,7 +20,10 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Whether or not to analyze content for general concepts that are referenced or alluded to.
+    /// Returns high-level concepts in the content. For example, a research paper about deep learning might return the
+    /// concept, "Artificial Intelligence" although the term is not mentioned.
+    ///
+    /// Supported languages: English, French, German, Japanese, Korean, Portuguese, Spanish.
     /// </summary>
     public class ConceptsOptions : BaseModel
     {

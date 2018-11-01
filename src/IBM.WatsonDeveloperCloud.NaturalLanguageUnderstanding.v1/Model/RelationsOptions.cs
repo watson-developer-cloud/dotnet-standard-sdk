@@ -20,14 +20,18 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An option specifying if the relationships found between entities in the analyzed content should be returned.
+    /// Recognizes when two entities are related and identifies the type of relation. For example, an `awardedTo`
+    /// relation might connect the entities "Nobel Prize" and "Albert Einstein". See [Relation
+    /// types](/docs/services/natural-language-understanding/relations.html).
+    ///
+    /// Supported languages: Arabic, English, German, Japanese, Korean, Spanish. Chinese, Dutch, French, Italian, and
+    /// Portuguese custom models are also supported.
     /// </summary>
     public class RelationsOptions : BaseModel
     {
         /// <summary>
-        /// Enter a [custom
-        /// model](https://www.bluemix.net/docs/services/natural-language-understanding/customizing.html) ID to override
-        /// the default model.
+        /// Enter a [custom model](/docs/services/natural-language-understanding/customizing.html) ID to override the
+        /// default model.
         /// </summary>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }

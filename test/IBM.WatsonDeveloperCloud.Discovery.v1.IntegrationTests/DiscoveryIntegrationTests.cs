@@ -41,7 +41,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
         private static string _environmentId;
         private static string _createdConfigurationId;
-        private static string _createdCollectionId;
         private static string _createdDocumentId;
         private static string _createdTrainingQueryId;
         private static string _createdTrainingExampleId;
@@ -164,8 +163,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Configuration configuration = new Configuration()
             {
                 Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
-
+                Description = _createdConfigurationDescription
             };
 
             var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
@@ -176,13 +174,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             var getCollectionResult = GetCollection(_environmentId, _createdCollectionId);
 
@@ -259,13 +256,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -320,13 +316,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -371,33 +366,31 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var noticesCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                addDocumentResult = AddDocument(_environmentId, noticesCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery);
-            var queryNoticesResult = QueryNotices(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, true);
+            var queryResult = Query(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery);
+            var queryNoticesResult = QueryNotices(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery, true);
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteDocumentResult = DeleteDocument(_environmentId, noticesCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, noticesCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
 
             Assert.IsNotNull(queryNoticesResult);
 
             _environmentId = null;
             _createdConfigurationId = null;
-            _createdCollectionId = null;
             _createdDocumentId = null;
         }
         #endregion
@@ -421,30 +414,29 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var trainingCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
+                addDocumentResult = AddDocument(_environmentId, trainingCollectionId, fs, _metadata);
                 _createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+            var getDocumentStatusResult = GetDocumentStatus(_environmentId, trainingCollectionId, _createdDocumentId);
 
             DocumentAccepted updateDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
+                updateDocumentResult = UpdateDocument(_environmentId, trainingCollectionId, _createdDocumentId, fs, _metadata);
             }
 
-            var listTrainingDataResult = ListTrainingData(_environmentId, _createdCollectionId);
+            var listTrainingDataResult = ListTrainingData(_environmentId, trainingCollectionId);
 
             var newTrainingQuery = new NewTrainingQuery()
             {
@@ -461,10 +453,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var addTrainingDataResult = AddTrainingData(_environmentId, _createdCollectionId, newTrainingQuery);
+            var addTrainingDataResult = AddTrainingData(_environmentId, trainingCollectionId, newTrainingQuery);
             _createdTrainingQueryId = addTrainingDataResult.QueryId;
 
-            var getTrainingDataResult = GetTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
+            var getTrainingDataResult = GetTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
 
             var trainingExample = new TrainingExample()
             {
@@ -472,10 +464,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var createTrainingExampleResult = CreateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, trainingExample);
+            var createTrainingExampleResult = CreateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, trainingExample);
             _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
 
-            var getTrainingExampleResult = GetTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var getTrainingExampleResult = GetTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
 
             var updateTrainingExample = new TrainingExamplePatch()
             {
@@ -483,13 +475,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
+            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
 
-            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, _createdCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, _createdCollectionId, _createdTrainingQueryId);
-            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, _createdCollectionId);
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
+            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
+            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, trainingCollectionId);
+            var deleteDocumentResult = DeleteDocument(_environmentId, trainingCollectionId, _createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(_environmentId, trainingCollectionId);
             var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
 
             Assert.IsNotNull(deleteAllTrainingDataResult);
@@ -504,7 +496,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             _createdTrainingExampleId = null;
             _createdTrainingQueryId = null;
-            _createdCollectionId = null;
             _createdConfigurationId = null;
             _environmentId = null;
             _createdDocumentId = null;
@@ -597,13 +588,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
                 Language = _createdCollectionLanguage,
-                Name = _createdCollectionName,
-                Description = _createdCollectionDescription,
-                ConfigurationId = _createdConfigurationId
+                Name = _createdCollectionName + "-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
             };
 
             var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
-            _createdCollectionId = createCollectionResult.CollectionId;
+            var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
             using (FileStream fs = File.OpenRead(_filepathToIngest))
@@ -644,7 +634,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        #region metrics
+        #region Metrics
         [TestMethod]
         public void TestMetrics_Success()
         {
@@ -672,6 +662,122 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(getMetricsQueryResult.Aggregations);
             Assert.IsNotNull(getMetricsEventRateResult);
             Assert.IsNotNull(getMetricsEventRateResult.Aggregations);
+        }
+        #endregion
+
+        #region Expansions
+        [TestMethod]
+        public void TestExpansions_Success()
+        {
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.JA,
+                Name = "expansions-collection-please-delete-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var expansionCollectionId = createCollectionResult.CollectionId;
+
+            Expansions body = new Expansions()
+            {
+                _Expansions = new List<Expansion>()
+                {
+                    new Expansion()
+                    {
+                        InputTerms = new List<string>()
+                        {
+                            "input-term"
+                        },
+                        ExpandedTerms = new List<string>()
+                        {
+                            "expanded-term"
+                        }
+                    }
+                }
+            };
+
+            var createExpansionsResult = CreateExpansions(_environmentId, expansionCollectionId, body);
+            var listExpansionsResult = ListExpansions(_environmentId, expansionCollectionId);
+            var deleteExpansionResult = DeleteExpansions(_environmentId, expansionCollectionId);
+            DeleteCollection(_environmentId, expansionCollectionId);
+
+            Assert.IsNotNull(deleteExpansionResult);
+            Assert.IsNotNull(listExpansionsResult);
+            Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(listExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
+            Assert.IsNotNull(createExpansionsResult);
+            Assert.IsTrue(createExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(createExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
+        }
+        #endregion
+
+        #region Tokenization
+        [TestMethod]
+        public void TestTokenization_Success()
+        {
+            var collectionsList = ListCollections(_environmentId);
+
+            foreach (Collection collection in collectionsList.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.Contains("safe to delete") || collection.Description.Contains("Please delete me"))
+                    {
+                        DeleteCollection(_environmentId, collection.CollectionId);
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.JA,
+                Name = "tokenization-collection-please-delete-" + Guid.NewGuid(),
+                Description = _createdCollectionDescription
+            };
+
+            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var tokenizationCollectionId = createCollectionResult.CollectionId;
+
+            TokenDict tokenizationDictionary = new TokenDict()
+            {
+                TokenizationRules = new List<TokenDictRule>()
+                {
+                    new TokenDictRule()
+                    {
+                        Text = "すしネコ",
+                        Tokens = new List<string>()
+                        {
+                            "すし", "ネコ"
+                        },
+                        Readings = new List<string>()
+                        {
+                            "寿司", "ネコ"
+                        },
+                        PartOfSpeech = "カスタム名詞"
+                    }
+                }
+            };
+
+            try
+            {
+                var createTokenizationDictionaryResult = CreateTokenizationDictionary(_environmentId, tokenizationCollectionId, tokenizationDictionary);
+                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(_environmentId, tokenizationCollectionId);
+                var deleteTokenizationDictionary = DeleteTokenizationDictionary(_environmentId, tokenizationCollectionId);
+
+                Assert.IsNotNull(deleteTokenizationDictionary);
+                Assert.IsNotNull(getTokenizationDictionaryStatusResult);
+                Assert.IsTrue(getTokenizationDictionaryStatusResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+                Assert.IsNotNull(createTokenizationDictionaryResult);
+                Assert.IsTrue(createTokenizationDictionaryResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            DeleteCollection(_environmentId, tokenizationCollectionId);
         }
         #endregion
 
@@ -1091,6 +1197,63 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             else
             {
                 Console.WriteLine("Failed to ListExpansions()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region CreateTokenizationDictionary
+        private TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to CreateTokenizationDictionary()");
+            var result = _service.CreateTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, tokenizationDictionary: tokenizationDictionary, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("CreateTokenizationDictionary() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to CreateTokenizationDictionary()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region DeleteTokenizationDictionary
+        private BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to DeleteTokenizationDictionary()");
+            var result = _service.DeleteTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("DeleteTokenizationDictionary() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to DeleteTokenizationDictionary()");
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region GetTokenizationDictionaryStatus
+        private TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            Console.WriteLine("\nAttempting to GetTokenizationDictionaryStatus()");
+            var result = _service.GetTokenizationDictionaryStatus(environmentId: environmentId, collectionId: collectionId, customData: customData);
+
+            if (result != null)
+            {
+                Console.WriteLine("GetTokenizationDictionaryStatus() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
+            }
+            else
+            {
+                Console.WriteLine("Failed to GetTokenizationDictionaryStatus()");
             }
 
             return result;

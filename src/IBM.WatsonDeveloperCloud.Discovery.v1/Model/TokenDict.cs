@@ -15,25 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// TargetedSentimentResults.
+    /// Tokenization dictionary describing how words are tokenized during ingestion and at query time.
     /// </summary>
-    public class TargetedSentimentResults : BaseModel
+    public class TokenDict : BaseModel
     {
         /// <summary>
-        /// Targeted text.
+        /// An array of tokenization rules. Each rule contains, the original `text` string, component `tokens`, any
+        /// alternate character set `readings`, and which `part_of_speech` the text is from.
         /// </summary>
-        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
-        /// <summary>
-        /// Sentiment score from -1 (negative) to 1 (positive).
-        /// </summary>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Score { get; set; }
+        [JsonProperty("tokenization_rules", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TokenDictRule> TokenizationRules { get; set; }
     }
 
 }

@@ -15,7 +15,9 @@
 *
 */
 
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
 {
@@ -25,18 +27,72 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model
     public class ToneChatScore : BaseModel
     {
         /// <summary>
+        /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
+        /// whose scores meet a minimum threshold of 0.5.
+        /// </summary>
+        /// <value>
+        /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
+        /// whose scores meet a minimum threshold of 0.5.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ToneIdEnum
+        {
+            
+            /// <summary>
+            /// Enum EXCITED for excited
+            /// </summary>
+            [EnumMember(Value = "excited")]
+            EXCITED,
+            
+            /// <summary>
+            /// Enum FRUSTRATED for frustrated
+            /// </summary>
+            [EnumMember(Value = "frustrated")]
+            FRUSTRATED,
+            
+            /// <summary>
+            /// Enum IMPOLITE for impolite
+            /// </summary>
+            [EnumMember(Value = "impolite")]
+            IMPOLITE,
+            
+            /// <summary>
+            /// Enum POLITE for polite
+            /// </summary>
+            [EnumMember(Value = "polite")]
+            POLITE,
+            
+            /// <summary>
+            /// Enum SAD for sad
+            /// </summary>
+            [EnumMember(Value = "sad")]
+            SAD,
+            
+            /// <summary>
+            /// Enum SATISFIED for satisfied
+            /// </summary>
+            [EnumMember(Value = "satisfied")]
+            SATISFIED,
+            
+            /// <summary>
+            /// Enum SYMPATHETIC for sympathetic
+            /// </summary>
+            [EnumMember(Value = "sympathetic")]
+            SYMPATHETIC
+        }
+
+        /// <summary>
+        /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
+        /// whose scores meet a minimum threshold of 0.5.
+        /// </summary>
+        [JsonProperty("tone_id", NullValueHandling = NullValueHandling.Ignore)]
+        public ToneIdEnum? ToneId { get; set; }
+        /// <summary>
         /// The score for the tone in the range of 0.5 to 1. A score greater than 0.75 indicates a high likelihood that
         /// the tone is perceived in the utterance.
         /// </summary>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
-        /// <summary>
-        /// The unique, non-localized identifier of the tone for the results. The service can return results for the
-        /// following tone IDs: `sad`, `frustrated`, `satisfied`, `excited`, `polite`, `impolite`, and `sympathetic`.
-        /// The service returns results only for tones whose scores meet a minimum threshold of 0.5.
-        /// </summary>
-        [JsonProperty("tone_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ToneId { get; set; }
         /// <summary>
         /// The user-visible, localized name of the tone.
         /// </summary>

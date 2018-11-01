@@ -25,48 +25,76 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class Features : BaseModel
     {
         /// <summary>
-        /// Whether or not to return the concepts that are mentioned in the analyzed text.
+        /// Returns high-level concepts in the content. For example, a research paper about deep learning might return
+        /// the concept, "Artificial Intelligence" although the term is not mentioned.
+        ///
+        /// Supported languages: English, French, German, Japanese, Korean, Portuguese, Spanish.
         /// </summary>
         [JsonProperty("concepts", NullValueHandling = NullValueHandling.Ignore)]
         public ConceptsOptions Concepts { get; set; }
         /// <summary>
-        /// Whether or not to extract the emotions implied in the analyzed text.
+        /// Detects anger, disgust, fear, joy, or sadness that is conveyed in the content or by the context around
+        /// target phrases specified in the targets parameter. You can analyze emotion for detected entities with
+        /// `entities.emotion` and for keywords with `keywords.emotion`.
+        ///
+        /// Supported languages: English
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionOptions Emotion { get; set; }
         /// <summary>
-        /// Whether or not to extract detected entity objects from the analyzed text.
+        /// Identifies people, cities, organizations, and other entities in the content. See [Entity types and
+        /// subtypes](/docs/services/natural-language-understanding/entity-types.html).
+        ///
+        /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish,
+        /// Swedish. Arabic, Chinese, and Dutch custom models are also supported.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public EntitiesOptions Entities { get; set; }
         /// <summary>
-        /// Whether or not to return the keywords in the analyzed text.
+        /// Returns important keywords in the content.
+        ///
+        /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish,
+        /// Swedish.
         /// </summary>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public KeywordsOptions Keywords { get; set; }
         /// <summary>
-        /// Whether or not the author, publication date, and title of the analyzed text should be returned. This
-        /// parameter is only available for URL and HTML input.
+        /// Returns information from the document, including author name, title, RSS/ATOM feeds, prominent page image,
+        /// and publication date. Supports URL and HTML input types only.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public MetadataOptions Metadata { get; set; }
         /// <summary>
-        /// Whether or not to return the relationships between detected entities in the analyzed text.
+        /// Recognizes when two entities are related and identifies the type of relation. For example, an `awardedTo`
+        /// relation might connect the entities "Nobel Prize" and "Albert Einstein". See [Relation
+        /// types](/docs/services/natural-language-understanding/relations.html).
+        ///
+        /// Supported languages: Arabic, English, German, Japanese, Korean, Spanish. Chinese, Dutch, French, Italian,
+        /// and Portuguese custom models are also supported.
         /// </summary>
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public RelationsOptions Relations { get; set; }
         /// <summary>
-        /// Whether or not to return the subject-action-object relations from the analyzed text.
+        /// Parses sentences into subject, action, and object form.
+        ///
+        /// Supported languages: English, German, Japanese, Korean, Spanish.
         /// </summary>
         [JsonProperty("semantic_roles", NullValueHandling = NullValueHandling.Ignore)]
         public SemanticRolesOptions SemanticRoles { get; set; }
         /// <summary>
-        /// Whether or not to return the overall sentiment of the analyzed text.
+        /// Analyzes the general sentiment of your content or the sentiment toward specific target phrases. You can
+        /// analyze sentiment for detected entities with `entities.sentiment` and for keywords with
+        /// `keywords.sentiment`.
+        ///
+        ///  Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Russian,
+        /// Spanish
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public SentimentOptions Sentiment { get; set; }
         /// <summary>
-        /// Whether or not to return the high level category the content is categorized as (i.e. news, art).
+        /// Returns a five-level taxonomy of the content. The top three categories are returned.
+        ///
+        /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public CategoriesOptions Categories { get; set; }

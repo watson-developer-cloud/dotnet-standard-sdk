@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests
         private static string credentials = string.Empty;
 
         private static string _glossaryPath = "glossary.tmx";
-        private static string _baseModel = "en-fr";
+        private static string _baseModel = "ko-en";
         private static string _customModelName = "dotnetExampleModel";
         private static string _customModelID = "en-fr";
         private static string _text = "I'm sorry, Dave. I'm afraid I can't do that.";

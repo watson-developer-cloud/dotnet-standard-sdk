@@ -1131,6 +1131,59 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
+        /// Create tokenization dictionary.
+        ///
+        /// Upload a custom tokenization dictionary to use with the specified collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="tokenizationDictionary">An object that represents the tokenization dictionary to be uploaded.
+        /// (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="TokenDictStatusResponse" />TokenDictStatusResponse</returns>
+        public TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            TokenDictStatusResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<TokenDict>(tokenizationDictionary);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TokenDictStatusResponse>().Result;
+                if(result == null)
+                    result = new TokenDictStatusResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Delete the expansion list.
         ///
         /// Remove the expansion information for this collection. The expansion list must be deleted to disable query
@@ -1171,6 +1224,106 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete tokenization dictionary.
+        ///
+        /// Delete the tokenization dictionary from the collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get tokenization dictionary status.
+        ///
+        /// Returns the current status of the tokenization dictionary for the specified collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="TokenDictStatusResponse" />TokenDictStatusResponse</returns>
+        public TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if(string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            TokenDictStatusResponse result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TokenDictStatusResponse>().Result;
+                if(result == null)
+                    result = new TokenDictStatusResponse();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)
@@ -1584,6 +1737,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// field values closer to the current date. When a **number** type field is specified, returned results are
         /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
         /// (optional)</param>
+
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -1592,10 +1746,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
-            if (collectionIds == null)
-                throw new ArgumentNullException(nameof(collectionIds));
 
-            if (string.IsNullOrEmpty(VersionDate))
+            if(string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryResponse result = null;
@@ -1642,6 +1794,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 };
 
                 restRequest.WithBody<QueryLarge>(queryLarge);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryResponse>().Result;

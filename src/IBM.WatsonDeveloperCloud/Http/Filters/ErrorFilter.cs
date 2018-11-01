@@ -15,7 +15,9 @@
 *
 */
 
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
 using Newtonsoft.Json;
 
@@ -29,8 +31,24 @@ namespace IBM.WatsonDeveloperCloud.Http.Filters
         {
             if (!responseMessage.IsSuccessStatusCode)
             {
+                HttpHeaders responseHeaders = responseMessage.Headers;
+
+                IEnumerable<string> globalTransactionId;
+                string globalTransactionIdString = "";
+                if (responseHeaders.TryGetValues("x-global-transaction-id", out globalTransactionId))
+                {
+                    globalTransactionIdString = string.Join(", ", globalTransactionId);
+                }
+
+                IEnumerable<string> watsonTransactionId;
+                string watsonTransactionIdString = "";
+                if (responseHeaders.TryGetValues("X-DP-Watson-Tran-ID", out watsonTransactionId))
+                {
+                    watsonTransactionIdString = string.Join(", ", watsonTransactionId);
+                }
+
                 ServiceResponseException exception =
-                    new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase}");
+                    new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase} | x-global-transaction-id: {globalTransactionIdString} | X-DP-Watson-Tran-ID: {watsonTransactionIdString}");
 
                 var error = responseMessage.Content.ReadAsStringAsync().Result;
 

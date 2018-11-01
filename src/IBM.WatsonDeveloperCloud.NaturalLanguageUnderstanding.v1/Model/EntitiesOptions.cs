@@ -20,8 +20,11 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Whether or not to return important people, places, geopolitical, and other entities detected in the analyzed
-    /// content.
+    /// Identifies people, cities, organizations, and other entities in the content. See [Entity types and
+    /// subtypes](/docs/services/natural-language-understanding/entity-types.html).
+    ///
+    /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Swedish.
+    /// Arabic, Chinese, and Dutch custom models are also supported.
     /// </summary>
     public class EntitiesOptions : BaseModel
     {

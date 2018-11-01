@@ -1,6 +1,8 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.10.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v2/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.11.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.Assistant.v2/)
 
 ### Assistant
+
+**Watson Assistant v2 API is released in beta. For details, see the ["Introducing Watson Assistant"](https://www.ibm.com/blogs/watson/2018/03/the-future-of-watson-conversation-watson-assistant/) blog post.**
 
 The IBM Watson™ [Assistant][assistant] service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users.
 
@@ -15,7 +17,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.Assistant.v2
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v2" Version="2.10.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.Assistant.v2" Version="2.11.0" />
 </ItemGroup>
 
 ```

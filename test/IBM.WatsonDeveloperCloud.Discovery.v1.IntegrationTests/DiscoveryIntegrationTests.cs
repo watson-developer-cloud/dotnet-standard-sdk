@@ -722,7 +722,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 if (!string.IsNullOrEmpty(collection.Description))
                 {
-                    if (collection.Description.Contains("safe to delete") || collection.Description.Contains("Please delete me"))
+                    if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
                     {
                         DeleteCollection(_environmentId, collection.CollectionId);
                         Console.WriteLine("deleted " + collection.CollectionId);

@@ -39,16 +39,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri)
         {
-            if (Insecure)
-            {
-                var httpClientHandler = new HttpClientHandler();
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                this.BaseClient = new HttpClient(httpClientHandler);
-            }
-            else
-            {
-                this.BaseClient = new HttpClient();
-            }
+            this.BaseClient = new HttpClient();
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -58,16 +49,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri, string userName, string password)
         {
-            if (Insecure)
-            {
-                var httpClientHandler = new HttpClientHandler();
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                this.BaseClient = new HttpClient(httpClientHandler);
-            }
-            else
-            {
-                this.BaseClient = new HttpClient();
-            }
+            this.BaseClient = new HttpClient();
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -77,16 +59,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri, string userName, string password, HttpClient client)
         {
-            if (Insecure)
-            {
-                var httpClientHandler = new HttpClientHandler();
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                this.BaseClient = new HttpClient(httpClientHandler);
-            }
-            else
-            {
-                this.BaseClient = new HttpClient();
-            }
+            this.BaseClient = new HttpClient();
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -193,7 +166,18 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public void SendAsInsecure(bool insecure)
         {
-            Insecure = insecure;
+            if (insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = null;
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
         }
     }
 }

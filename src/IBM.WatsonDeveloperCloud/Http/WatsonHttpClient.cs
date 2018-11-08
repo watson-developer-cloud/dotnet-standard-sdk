@@ -83,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public IClient WithAuthentication(string apikey)
         {
-            if(!string.IsNullOrEmpty(apikey))
+            if (!string.IsNullOrEmpty(apikey))
             {
                 this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
             }
@@ -174,9 +174,7 @@ namespace IBM.WatsonDeveloperCloud.Http
             }
             else
             {
-                var httpClientHandler = new HttpClientHandler();
-                httpClientHandler.ServerCertificateCustomValidationCallback = null;
-                this.BaseClient = new HttpClient(httpClientHandler);
+                this.BaseClient = new HttpClient();
             }
         }
     }

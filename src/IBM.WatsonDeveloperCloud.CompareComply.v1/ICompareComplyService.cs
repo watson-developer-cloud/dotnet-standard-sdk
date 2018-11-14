@@ -30,10 +30,10 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         FeedbackReturn AddFeedback(FeedbackInput feedbackData, Dictionary<string, object> customData = null);
         FeedbackDeleted DeleteFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null);
         GetFeedback GetFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null);
-        FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryUnchanged = null, string typeRemoved = null, string typeAdded = null, string typeUnchanged = null, long? count = null, long? offset = null, string sort = null, Dictionary<string, object> customData = null);
+        FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryUnchanged = null, string typeRemoved = null, string typeAdded = null, string typeUnchanged = null, long? pageLimit = null, long? offset = null, string sort = null, Dictionary<string, object> customData = null);
         BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string modelId = null, Dictionary<string, object> customData = null);
         BatchStatus GetBatch(string batchId, Dictionary<string, object> customData = null);
-        BatchStatus GetBatches(Dictionary<string, object> customData = null);
+        Batches GetBatches(Dictionary<string, object> customData = null);
         BatchStatus UpdateBatch(string batchId, string action, string modelId = null, Dictionary<string, object> customData = null);
     }
 }

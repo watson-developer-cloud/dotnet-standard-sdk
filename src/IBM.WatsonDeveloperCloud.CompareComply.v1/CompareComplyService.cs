@@ -558,7 +558,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <param name="typeUnchanged">An optional string of comma-separated `nature`:`party` pairs. If this is
         /// specified, the service filters the output to include only feedback that has at least one `nature`:`party`
         /// pair from the list unchanged. (optional)</param>
-        /// <param name="count">An optional integer specifying the number of documents returned by the service. The
+        /// <param name="pageLimit">An optional integer specifying the number of documents returned by the service. The
         /// default is `200`. The sum of the `count` and `offset` values in any single query cannot exceed `10000`.
         /// (optional)</param>
         /// <param name="offset">An optional integer specifying the number of documents returned by the service. The
@@ -570,7 +570,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackList" />FeedbackList</returns>
-        public FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryUnchanged = null, string typeRemoved = null, string typeAdded = null, string typeUnchanged = null, long? count = null, long? offset = null, string sort = null, Dictionary<string, object> customData = null)
+        public FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryUnchanged = null, string typeRemoved = null, string typeAdded = null, string typeUnchanged = null, long? pageLimit = null, long? offset = null, string sort = null, Dictionary<string, object> customData = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -616,8 +616,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("type_added", typeAdded);
                 if (!string.IsNullOrEmpty(typeUnchanged))
                     restRequest.WithArgument("type_unchanged", typeUnchanged);
-                if (count != null)
-                    restRequest.WithArgument("count", count);
+                if (pageLimit != null)
+                    restRequest.WithArgument("page_limit", pageLimit);
                 if (offset != null)
                     restRequest.WithArgument("offset", offset);
                 if (!string.IsNullOrEmpty(sort))
@@ -824,14 +824,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// Gets the list of batch-processing jobs submitted by users.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus GetBatches(Dictionary<string, object> customData = null)
+        /// <returns><see cref="Batches" />Batches</returns>
+        public Batches GetBatches(Dictionary<string, object> customData = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BatchStatus result = null;
+            Batches result = null;
 
             try
             {
@@ -849,9 +849,9 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-                result = restRequest.As<BatchStatus>().Result;
+                result = restRequest.As<Batches>().Result;
                 if(result == null)
-                    result = new BatchStatus();
+                    result = new Batches();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

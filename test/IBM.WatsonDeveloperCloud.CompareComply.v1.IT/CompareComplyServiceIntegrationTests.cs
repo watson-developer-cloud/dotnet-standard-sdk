@@ -155,7 +155,25 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
         [TestMethod]
         public void Feedback_Success()
         {
-            var ListFeedbackResult = service.ListFeedback();
+            DateTime before = DateTime.Now;
+            DateTime after = new DateTime(2018, 11, 13);
+            var ListFeedbackResult = service.ListFeedback(
+                feedbackType: "element_classification",
+                before: before,
+                after: after,
+                documentTitle: "doc title",
+                modelId: "contracts",
+                modelVersion: "11.00",
+                categoryRemoved: "categoryRemoved",
+                categoryAdded: "categoryAdded",
+                categoryUnchanged: "categoryUnchanged",
+                typeRemoved: "nature:party",
+                typeAdded: "nature:party",
+                typeUnchanged: "nature:party",
+                pageLimit: 3,
+                offset: 1,
+                sort: "sort"
+                );
 
             FeedbackInput feedbackData = new FeedbackInput()
             {
@@ -298,11 +316,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
             }
 
             var getBatchResult = service.GetBatch(batchId);
-            var updateBatchResult = service.UpdateBatch(batchId, "cancel");
+            var updateBatchResult = service.UpdateBatch(batchId, "rescan");
 
             Assert.IsNotNull(updateBatchResult);
             Assert.IsNotNull(getBatchResult);
             Assert.IsTrue(getBatchResult.BatchId == batchId);
+            Assert.IsTrue(getBatchesResult._Batches != null);
             Assert.IsNotNull(getBatchesResult);
         }
         #endregion

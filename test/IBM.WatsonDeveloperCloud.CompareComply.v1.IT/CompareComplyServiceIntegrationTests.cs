@@ -166,12 +166,11 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
                 modelVersion: "11.00",
                 categoryRemoved: "categoryRemoved",
                 categoryAdded: "categoryAdded",
-                categoryUnchanged: "categoryUnchanged",
+                categoryNotChanged: "categoryUnchanged",
                 typeRemoved: "nature:party",
                 typeAdded: "nature:party",
-                typeUnchanged: "nature:party",
+                typeNotChanged: "nature:party",
                 pageLimit: 3,
-                offset: 1,
                 sort: "sort"
                 );
 

@@ -147,6 +147,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
                  });
 
             CompareComplyService service = new CompareComplyService(client);
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamAccessToken = "iamAccessToken",
+                ServiceUrl = "https://www.serviceurl.com"
+            };
+            service.SetCredential(tokenOptions);
             service.VersionDate = "2018-02-16";
 
             using (FileStream fs = File.OpenRead(tableFilePath))
@@ -181,7 +187,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
                 .Returns(Task.FromResult(response));
 
             CompareComplyService service = new CompareComplyService(client);
-            service.SetCredential(Arg.Any<TokenOptions>());
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamAccessToken = "iamAccessToken",
+                ServiceUrl="https://www.serviceurl.com"
+            };
+            service.SetCredential(tokenOptions);
             service.VersionDate = "versionDate";
 
             HTMLReturn result = null;

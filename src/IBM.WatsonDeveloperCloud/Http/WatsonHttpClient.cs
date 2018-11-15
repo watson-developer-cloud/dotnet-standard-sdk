@@ -31,11 +31,19 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public List<IHttpFilter> Filters { get; private set; }
 
-        public HttpClient BaseClient { get; private set; }
+        public HttpClient BaseClient { get; set; }
 
         public MediaTypeFormatterCollection Formatters { get; protected set; }
 
         public bool Insecure = false;
+
+        public WatsonHttpClient()
+        {
+            this.BaseClient = new HttpClient();
+            this.Filters = new List<IHttpFilter> { new ErrorFilter() };
+
+            this.Formatters = new MediaTypeFormatterCollection();
+        }
 
         public WatsonHttpClient(string baseUri)
         {

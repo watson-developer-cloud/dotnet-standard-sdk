@@ -18,6 +18,7 @@
 using IBM.WatsonDeveloperCloud.CompareComply.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Exceptions;
+using IBM.WatsonDeveloperCloud.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
@@ -50,32 +51,33 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
             Assert.IsNotNull(service);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_UserName_Null()
+        [TestMethod, ExpectedException(typeof(NullReferenceException))]
+        public void Constructor_TokenOptions_Null()
         {
             CompareComplyService service =
-                new CompareComplyService(null, "password", "2018-02-16");
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Password_Null()
-        {
-            CompareComplyService service =
-                new CompareComplyService("username", null, "2018-02-16");
+                new CompareComplyService(null, "2018-02-16");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_Version_Null()
         {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = "iamApikey"
+            };
             CompareComplyService service =
-                new CompareComplyService("username", "password", null);
+                new CompareComplyService(tokenOptions, null);
         }
 
         [TestMethod]
-        public void Constructor_With_UserName_Password()
+        public void Constructor_With_TokenOptions()
         {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = "iamApikey"
+            };
             CompareComplyService service =
-                new CompareComplyService("username", "password", "2018-02-16");
+                new CompareComplyService(tokenOptions, "2018-02-16");
 
             Assert.IsNotNull(service);
         }
@@ -94,8 +96,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         private IClient CreateClient()
         {
             IClient client = Substitute.For<IClient>();
-
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+            client.WithAuthentication(Arg.Any<string>())
                     .Returns(client);
 
             return client;
@@ -106,7 +107,11 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ConvertToHtml_No_File()
         {
-            CompareComplyService service = new CompareComplyService("username", "password", "versionDate");
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = "iamApikey"
+            };
+            CompareComplyService service = new CompareComplyService(tokenOptions, "versionDate");
 
             service.ConvertToHtml(null);
         }
@@ -114,7 +119,11 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ConvertToHtml_No_VersionDate()
         {
-            CompareComplyService service = new CompareComplyService("username", "password", "versionDate");
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = "iamApikey"
+            };
+            CompareComplyService service = new CompareComplyService(tokenOptions, "versionDate");
             service.VersionDate = null;
 
             using (FileStream fs = Arg.Any<FileStream>())
@@ -147,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         }
 
         [TestMethod]
-        public void CreateCounterExample_Success()
+        public void ConvertToHtml_Success()
         {
             IClient client = CreateClient();
 
@@ -172,6 +181,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
                 .Returns(Task.FromResult(response));
 
             CompareComplyService service = new CompareComplyService(client);
+            service.SetCredential(Arg.Any<TokenOptions>());
             service.VersionDate = "versionDate";
 
             HTMLReturn result = null;

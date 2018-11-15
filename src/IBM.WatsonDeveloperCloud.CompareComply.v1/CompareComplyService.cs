@@ -24,7 +24,6 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.CompareComply.v1
@@ -44,21 +43,6 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
-        }
-
-        public CompareComplyService(string userName, string password, string versionDate) : this()
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
         }
 
         public CompareComplyService(TokenOptions options, string versionDate) : this()
@@ -127,14 +111,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -192,14 +169,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -256,14 +226,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -339,14 +302,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -395,14 +351,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -446,14 +395,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -497,14 +439,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -546,7 +481,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <param name="categoryAdded">An optional string in the form of a comma-separated list of categories. If this
         /// is specified, the service filters the output to include only feedback that has at least one category from
         /// the list added. (optional)</param>
-        /// <param name="categoryUnchanged">An optional string in the form of a comma-separated list of categories. If
+        /// <param name="categoryNotChanged">An optional string in the form of a comma-separated list of categories. If
         /// this is specified, the service filters the output to include only feedback that has at least one category
         /// from the list unchanged. (optional)</param>
         /// <param name="typeRemoved">An optional string of comma-separated `nature`:`party` pairs. If this is
@@ -555,22 +490,22 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <param name="typeAdded">An optional string of comma-separated `nature`:`party` pairs. If this is specified,
         /// the service filters the output to include only feedback that has at least one `nature`:`party` pair from the
         /// list removed. (optional)</param>
-        /// <param name="typeUnchanged">An optional string of comma-separated `nature`:`party` pairs. If this is
+        /// <param name="typeNotChanged">An optional string of comma-separated `nature`:`party` pairs. If this is
         /// specified, the service filters the output to include only feedback that has at least one `nature`:`party`
         /// pair from the list unchanged. (optional)</param>
-        /// <param name="pageLimit">An optional integer specifying the number of documents returned by the service. The
-        /// default is `200`. The sum of the `count` and `offset` values in any single query cannot exceed `10000`.
-        /// (optional)</param>
-        /// <param name="offset">An optional integer specifying the number of documents returned by the service. The
-        /// default is `0`. The sum of the `count` and `offset` values in any single query cannot exceed `10000`.
-        /// (optional)</param>
+        /// <param name="pageLimit">An optional integer specifying the number of documents that you want the service to
+        /// return. The default value is `10` and the maximum value is `100`. (optional)</param>
+        /// <param name="cursor">An optional string that returns the set of documents after the previous set. Use this
+        /// parameter with the `page_limit` parameter. (optional)</param>
         /// <param name="sort">An optional comma-separated list of fields in the document to sort on. You can optionally
         /// specify the sort direction by prefixing the value of the field with `-` for descending order or `+` for
-        /// ascending order (the default). Currently permitted sorting fields are `created` and `document_title`.
-        /// (optional)</param>
+        /// ascending order (the default). Currently permitted sorting fields are `created`, `user_id`, and
+        /// `document_title`. (optional)</param>
+        /// <param name="includeTotal">An optional boolean value. If specified as `true`, the `pagination` object in the
+        /// output includes a value called `total` that gives the total count of feedback created. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackList" />FeedbackList</returns>
-        public FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryUnchanged = null, string typeRemoved = null, string typeAdded = null, string typeUnchanged = null, long? pageLimit = null, long? offset = null, string sort = null, Dictionary<string, object> customData = null)
+        public FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null, Dictionary<string, object> customData = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -581,14 +516,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -608,20 +536,22 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("category_removed", categoryRemoved);
                 if (!string.IsNullOrEmpty(categoryAdded))
                     restRequest.WithArgument("category_added", categoryAdded);
-                if (!string.IsNullOrEmpty(categoryUnchanged))
-                    restRequest.WithArgument("category_unchanged", categoryUnchanged);
+                if (!string.IsNullOrEmpty(categoryNotChanged))
+                    restRequest.WithArgument("category_not_changed", categoryNotChanged);
                 if (!string.IsNullOrEmpty(typeRemoved))
                     restRequest.WithArgument("type_removed", typeRemoved);
                 if (!string.IsNullOrEmpty(typeAdded))
                     restRequest.WithArgument("type_added", typeAdded);
-                if (!string.IsNullOrEmpty(typeUnchanged))
-                    restRequest.WithArgument("type_unchanged", typeUnchanged);
+                if (!string.IsNullOrEmpty(typeNotChanged))
+                    restRequest.WithArgument("type_not_changed", typeNotChanged);
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
-                if (offset != null)
-                    restRequest.WithArgument("offset", offset);
+                if (!string.IsNullOrEmpty(cursor))
+                    restRequest.WithArgument("cursor", cursor);
                 if (!string.IsNullOrEmpty(sort))
                     restRequest.WithArgument("sort", sort);
+                if (includeTotal != null)
+                    restRequest.WithArgument("include_total", includeTotal);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<FeedbackList>().Result;
@@ -740,14 +670,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -792,14 +715,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -836,14 +752,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -892,14 +801,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);

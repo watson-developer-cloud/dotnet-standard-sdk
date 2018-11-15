@@ -108,11 +108,11 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
-        public IClient WithAuthentication(string apikey)
+        public IClient WithAuthentication(string apiToken)
         {
-            if(!string.IsNullOrEmpty(apikey))
+            if(!string.IsNullOrEmpty(apiToken))
             {
-                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
             }
 
             return this;

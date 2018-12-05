@@ -17,32 +17,27 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// Properties that are shared by all skills used by the assistant.
+    /// Metadata related to the message.
     /// </summary>
-    public class MessageContextGlobalSystem : BaseModel
+    public class MessageContextMetadata : BaseModel
     {
         /// <summary>
-        /// The user time zone. The assistant uses the time zone to correctly resolve relative time references.
+        /// A label identifying the deployment environment, used for filtering log data. This string cannot contain
+        /// carriage return, newline, or tab characters.
         /// </summary>
-        [JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)]
-        public string Timezone { get; set; }
+        [JsonProperty("deployment", NullValueHandling = NullValueHandling.Ignore)]
+        public string Deployment { get; set; }
         /// <summary>
-        /// A string value that identifies the user who is interacting with the assistant. The client must provide a
+        /// A string value that identifies the user who is interacting with the workspace. The client must provide a
         /// unique identifier for each individual end user who accesses the application. For Plus and Premium plans,
         /// this user ID is used to identify unique users for billing purposes. This string cannot contain carriage
         /// return, newline, or tab characters.
         /// </summary>
         [JsonProperty("user_id", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
-        /// <summary>
-        /// A counter that is automatically incremented with each turn of the conversation. A value of 1 indicates that
-        /// this is the the first turn of a new conversation, which can affect the behavior of some skills.
-        /// </summary>
-        [JsonProperty("turn_count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? TurnCount { get; set; }
     }
 
 }

@@ -105,12 +105,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
+        /// endpoint](/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
         /// <param name="contentType">The type of the input. A character encoding can be specified by including a
-        /// `charset` parameter. For example, 'text/plain;charset=utf-8'.</param>
+        /// `charset` parameter. For example, 'text/plain;charset=utf-8'. (optional)</param>
         /// <param name="sentences">Indicates whether the service is to return an analysis of each individual sentence
         /// in addition to its analysis of the full document. If `true` (the default), the service returns results for
         /// each sentence. (optional, default to true)</param>
@@ -132,14 +132,12 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
+        public ToneAnalysis Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
             if (toneInput == null)
                 throw new ArgumentNullException(nameof(toneInput));
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ToneAnalysis result = null;
@@ -198,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// JSON content is effectively always UTF-8.
         ///
         /// **See also:** [Using the customer-engagement
-        /// endpoint](https://console.bluemix.net/docs/services/tone-analyzer/using-tone-chat.html#using-the-customer-engagement-endpoint).
+        /// endpoint](/docs/services/tone-analyzer/using-tone-chat.html#using-the-customer-engagement-endpoint).
         /// </summary>
         /// <param name="utterances">An object that contains the content to be analyzed.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional
@@ -217,7 +215,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             if (utterances == null)
                 throw new ArgumentNullException(nameof(utterances));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             UtteranceAnalyses result = null;

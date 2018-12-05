@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// The extracted relation objects from the text.
+        /// Entity mentions that are involved in the relation.
         /// </summary>
         [JsonProperty("arguments", NullValueHandling = NullValueHandling.Ignore)]
         public List<RelationArgument> Arguments { get; set; }

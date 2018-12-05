@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// the custom model. Do not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the
         /// tokens of compound words.
         ///
-        /// Omit this field for the **Add a custom word** method.
+        /// Omit this parameter for the **Add a custom word** method.
         /// </summary>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public string Word { get; set; }

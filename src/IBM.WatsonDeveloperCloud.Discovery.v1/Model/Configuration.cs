@@ -40,19 +40,19 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// The creation date of the configuration in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp of when the configuration was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The description of the configuration, if available.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The document conversion settings for the configuration.
+        /// Document conversion settings.
         /// </summary>
         [JsonProperty("conversions", NullValueHandling = NullValueHandling.Ignore)]
         public Conversions Conversions { get; set; }

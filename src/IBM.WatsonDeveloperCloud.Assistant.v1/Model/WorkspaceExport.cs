@@ -98,14 +98,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The timestamp for creation of the workspace.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the workspace.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
-        /// The workspace ID.
+        /// The workspace ID of the workspace.
         /// </summary>
         [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string WorkspaceId { get; private set; }

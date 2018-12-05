@@ -25,16 +25,6 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
     public class FeedbackDataInput : BaseModel
     {
         /// <summary>
-        /// An optional identifier of the user submitting feedback.
-        /// </summary>
-        [JsonProperty("user_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserId { get; set; }
-        /// <summary>
-        /// An optional comment about the feedback.
-        /// </summary>
-        [JsonProperty("comment", NullValueHandling = NullValueHandling.Ignore)]
-        public string Comment { get; set; }
-        /// <summary>
         /// The type of feedback. The only permitted value is `element_classification`.
         /// </summary>
         [JsonProperty("feedback_type", NullValueHandling = NullValueHandling.Ignore)]

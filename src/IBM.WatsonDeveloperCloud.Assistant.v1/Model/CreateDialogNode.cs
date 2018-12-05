@@ -285,7 +285,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// [documentation](https://console.bluemix.net/docs/services/conversation/dialog-overview.html#complex).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public DialogNodeOutput Output { get; set; }
         /// <summary>
         /// The context for the dialog node.
         /// </summary>
@@ -297,7 +297,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// The next step to be executed in dialog processing.
+        /// The next step to execute following this dialog node.
         /// </summary>
         [JsonProperty("next_step", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeNextStep NextStep { get; set; }

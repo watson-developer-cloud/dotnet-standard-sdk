@@ -15,10 +15,10 @@
 *
 */
 
-using System;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
 {
@@ -105,12 +105,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         /// The creation time of the batch request.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Created { get; set; }
+        public DateTime Created { get; set; }
         /// <summary>
         /// The time of the most recent update to the batch request.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Updated { get; set; }
+        public DateTime Updated { get; set; }
     }
 
 }

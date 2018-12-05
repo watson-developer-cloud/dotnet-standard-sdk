@@ -36,6 +36,11 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         [JsonProperty("identical_text", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IdenticalText { get; set; }
         /// <summary>
+        /// Indicates that the elements aligned are contractual clauses of significance.
+        /// </summary>
+        [JsonProperty("significant_elements", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SignificantElements { get; set; }
+        /// <summary>
         /// One or more hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>
         [JsonProperty("provenance_ids", NullValueHandling = NullValueHandling.Ignore)]

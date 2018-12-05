@@ -80,12 +80,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// The creation date of the collection in the format yyyy-MM-dd'T'HH:mmcon:ss.SSS'Z'.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp of when the collection was last updated in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// The unique identifier of the collection's configuration.
         /// </summary>
@@ -104,8 +104,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("document_counts", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentCounts DocumentCounts { get; set; }
         /// <summary>
-        /// The object providing information about the disk usage of the collection. Present only when retrieving
-        /// details of a collection.
+        /// Summary of the disk usage statistics for this collection.
         /// </summary>
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public CollectionDiskUsage DiskUsage { get; set; }

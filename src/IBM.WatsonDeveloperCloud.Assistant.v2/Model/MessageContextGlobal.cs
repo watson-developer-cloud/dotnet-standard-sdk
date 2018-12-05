@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
     public class MessageContextGlobal : BaseModel
     {
         /// <summary>
-        /// Properties interpreted by the Assistant that are shared across all skills within the Assistant.
+        /// Properties that are shared by all skills used by the assistant.
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
         public MessageContextGlobalSystem System { get; set; }

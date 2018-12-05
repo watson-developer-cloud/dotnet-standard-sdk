@@ -15,7 +15,6 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.CompareComply.v1.Model;
 
@@ -24,8 +23,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
     public partial interface ICompareComplyService
     {
         HTMLReturn ConvertToHtml(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        ClassifyReturn ClassifyElements(System.IO.FileStream file, string modelId = null, Dictionary<string, object> customData = null);
-        TableReturn ExtractTables(System.IO.FileStream file, string modelId = null, Dictionary<string, object> customData = null);
+        ClassifyReturn ClassifyElements(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        TableReturn ExtractTables(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
         CompareReturn CompareDocuments(System.IO.FileStream file1, System.IO.FileStream file2, string file1Label = null, string file2Label = null, string modelId = null, string file1ContentType = null, string file2ContentType = null, Dictionary<string, object> customData = null);
         FeedbackReturn AddFeedback(FeedbackInput feedbackData, Dictionary<string, object> customData = null);
         FeedbackDeleted DeleteFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null);
@@ -33,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null, Dictionary<string, object> customData = null);
         BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string modelId = null, Dictionary<string, object> customData = null);
         BatchStatus GetBatch(string batchId, Dictionary<string, object> customData = null);
-        Batches GetBatches(Dictionary<string, object> customData = null);
+        Batches ListBatches(Dictionary<string, object> customData = null);
         BatchStatus UpdateBatch(string batchId, string action, string modelId = null, Dictionary<string, object> customData = null);
     }
 }

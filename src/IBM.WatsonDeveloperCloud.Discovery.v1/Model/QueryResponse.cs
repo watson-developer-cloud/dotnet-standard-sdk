@@ -58,6 +58,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("session_token", NullValueHandling = NullValueHandling.Ignore)]
         public string SessionToken { get; set; }
+        /// <summary>
+        /// An object contain retrieval type information.
+        /// </summary>
+        [JsonProperty("retrieval_details", NullValueHandling = NullValueHandling.Ignore)]
+        public RetrievalDetails RetrievalDetails { get; set; }
     }
 
 }

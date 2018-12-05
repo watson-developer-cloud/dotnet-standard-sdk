@@ -27,10 +27,10 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
     public class Attribute : BaseModel
     {
         /// <summary>
-        /// The type of attribute. Possible values are `Currency`, `DateTime`, and `Location`.
+        /// The type of attribute. Possible values are `Currency`, `DateTime`, `Location`, `Organization`, and `Person`.
         /// </summary>
         /// <value>
-        /// The type of attribute. Possible values are `Currency`, `DateTime`, and `Location`.
+        /// The type of attribute. Possible values are `Currency`, `DateTime`, `Location`, `Organization`, and `Person`.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
@@ -52,11 +52,23 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
             /// Enum LOCATION for Location
             /// </summary>
             [EnumMember(Value = "Location")]
-            LOCATION
+            LOCATION,
+            
+            /// <summary>
+            /// Enum ORGANIZATION for Organization
+            /// </summary>
+            [EnumMember(Value = "Organization")]
+            ORGANIZATION,
+            
+            /// <summary>
+            /// Enum PERSON for Person
+            /// </summary>
+            [EnumMember(Value = "Person")]
+            PERSON
         }
 
         /// <summary>
-        /// The type of attribute. Possible values are `Currency`, `DateTime`, and `Location`.
+        /// The type of attribute. Possible values are `Currency`, `DateTime`, `Location`, `Organization`, and `Person`.
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }

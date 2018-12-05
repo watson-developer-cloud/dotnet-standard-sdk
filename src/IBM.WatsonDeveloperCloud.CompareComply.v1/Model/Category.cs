@@ -128,16 +128,16 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
             LIABILITY,
             
             /// <summary>
-            /// Enum PAYMENT_TERMS_&_BILLING for Payment Terms & Billing
+            /// Enum PAYMENT_TERMS_BILLING for Payment Terms & Billing
             /// </summary>
             [EnumMember(Value = "Payment Terms & Billing")]
-            PAYMENT_TERMS_AND_BILLING,
+            PAYMENT_TERMS_BILLING,
             
             /// <summary>
-            /// Enum PRICING_&_TAXES for Pricing & Taxes
+            /// Enum PRICING_TAXES for Pricing & Taxes
             /// </summary>
             [EnumMember(Value = "Pricing & Taxes")]
-            PRICING_AND_TAXES,
+            PRICING_TAXES,
             
             /// <summary>
             /// Enum PRIVACY for Privacy
@@ -170,10 +170,10 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
             SUBCONTRACTS,
             
             /// <summary>
-            /// Enum TERM_&_TERMINATION for Term & Termination
+            /// Enum TERM_TERMINATION for Term & Termination
             /// </summary>
             [EnumMember(Value = "Term & Termination")]
-            TERM_AND_TERMINATION,
+            TERM_TERMINATION,
             
             /// <summary>
             /// Enum WARRANTIES for Warranties

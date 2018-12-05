@@ -20,10 +20,15 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The most important keywords in the content, organized by relevance.
+    /// The important keywords in the content, organized by relevance.
     /// </summary>
     public class KeywordsResult : BaseModel
     {
+        /// <summary>
+        /// Number of times the keyword appears in the analyzed text.
+        /// </summary>
+        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Count { get; set; }
         /// <summary>
         /// Relevance score from 0 to 1. Higher values indicate greater relevance.
         /// </summary>
@@ -35,12 +40,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// Emotion analysis results for the keyword, enabled with the \"emotion\" option.
+        /// Emotion analysis results for the keyword, enabled with the `emotion` option.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }
         /// <summary>
-        /// Sentiment analysis results for the keyword, enabled with the \"sentiment\" option.
+        /// Sentiment analysis results for the keyword, enabled with the `sentiment` option.
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public FeatureSentimentResults Sentiment { get; set; }

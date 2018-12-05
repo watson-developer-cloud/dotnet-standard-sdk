@@ -44,7 +44,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         /// Timestamp listing the creation time of the feedback submission.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Created { get; set; }
+        public DateTime Created { get; set; }
         /// <summary>
         /// Information returned from the `POST /v1/feedback` method.
         /// </summary>

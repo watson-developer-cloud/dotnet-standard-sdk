@@ -17,18 +17,15 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Returns a five-level taxonomy of the content. The top three categories are returned.
-    ///
-    /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
+    /// An object specifiying the concepts enrichment and related parameters.
     /// </summary>
-    public class CategoriesOptions : BaseModel
+    public class NluEnrichmentConcepts : BaseModel
     {
         /// <summary>
-        /// Maximum number of categories to return.
-        /// Maximum value: **10**.
+        /// The maximum number of concepts enrichments to extact from each instance of the specified field.
         /// </summary>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }

@@ -20,12 +20,12 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An object containing the emotion results of a document.
+    /// Emotion results for the document as a whole.
     /// </summary>
     public class DocumentEmotionResults : BaseModel
     {
         /// <summary>
-        /// An object containing the emotion results for the document.
+        /// Emotion results for the document as a whole.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }

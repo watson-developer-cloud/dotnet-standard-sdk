@@ -32,11 +32,11 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         [JsonProperty("cell_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CellId { get; set; }
         /// <summary>
-        /// The numeric location of the identified element in the document, represented with two integers labeled
-        /// `begin` and `end`.
+        /// The location of the column header cell in the current table as defined by its `begin` and `end` offsets,
+        /// respectfully, in the input document.
         /// </summary>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
-        public Location Location { get; set; }
+        public object Location { get; set; }
         /// <summary>
         /// The textual contents of this cell from the input document without associated markup content.
         /// </summary>

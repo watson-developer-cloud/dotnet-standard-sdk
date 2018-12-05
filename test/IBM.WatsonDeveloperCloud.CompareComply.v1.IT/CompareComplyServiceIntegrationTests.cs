@@ -292,7 +292,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
         [TestMethod]
         public void Batches_Success()
         {
-            var getBatchesResult = service.GetBatches();
+            var getBatchesResult = service.ListBatches();
             string batchId = "";
 
             using (FileStream fsInput = File.OpenRead(objectStorageCredentialsInputFilepath))

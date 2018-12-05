@@ -42,15 +42,6 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
                 new CompareComplyService(null);
         }
 
-        [TestMethod]
-        public void Constructor_HttpClient()
-        {
-            CompareComplyService service =
-                new CompareComplyService(CreateClient());
-
-            Assert.IsNotNull(service);
-        }
-
         [TestMethod, ExpectedException(typeof(NullReferenceException))]
         public void Constructor_TokenOptions_Null()
         {

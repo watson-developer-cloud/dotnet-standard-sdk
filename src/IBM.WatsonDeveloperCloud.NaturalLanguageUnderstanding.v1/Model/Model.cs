@@ -64,7 +64,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// A dateTime indicating when the model was created.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
     }
 
 }

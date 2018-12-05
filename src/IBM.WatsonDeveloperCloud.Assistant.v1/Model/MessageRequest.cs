@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The user input.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
@@ -39,7 +39,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// State information for the conversation. To maintain state, include the context from the previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
         /// <summary>
         /// Entities to use when evaluating the message. Include entities from the previous response to continue using
         /// those entities rather than detecting entities in the new input.
@@ -57,7 +57,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// from the log.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public OutputData Output { get; set; }
+        public dynamic Output { get; set; }
     }
 
 }

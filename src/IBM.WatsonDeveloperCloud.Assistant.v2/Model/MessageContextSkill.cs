@@ -17,21 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
+namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// Returns a five-level taxonomy of the content. The top three categories are returned.
-    ///
-    /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
+    /// Contains information specific to a particular skill within the Assistant.
     /// </summary>
-    public class CategoriesOptions : BaseModel
+    public class MessageContextSkill : BaseModel
     {
         /// <summary>
-        /// Maximum number of categories to return.
-        /// Maximum value: **10**.
+        /// Arbitrary variables that can be read and written to by a particular skill within the Assistant.
         /// </summary>
-        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Limit { get; set; }
+        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
+        public string UserDefined { get; set; }
     }
 
 }

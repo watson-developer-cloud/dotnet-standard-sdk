@@ -90,31 +90,45 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// Get profile.
         ///
         /// Generates a personality profile for the author of the input text. The service accepts a maximum of 20 MB of
-        /// input content, but it requires much less text to produce an accurate profile; for more information, see
-        /// [Providing sufficient
-        /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). The service
-        /// analyzes text in Arabic, English, Japanese, Korean, or Spanish and returns its results in a variety of
-        /// languages. You can provide plain text, HTML, or JSON input by specifying the **Content-Type** parameter; the
-        /// default is `text/plain`. Request a JSON or comma-separated values (CSV) response by specifying the
-        /// **Accept** parameter; CSV output includes a fixed number of columns and optional headers.
-        ///
-        /// Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per
-        /// the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII
-        /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
-        /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
+        /// input content, but it requires much less text to produce an accurate profile. The service can analyze text
+        /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://console.bluemix.net/docs/services/personality-insights/input.html)
-        /// * [Understanding a JSON profile](https://console.bluemix.net/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
+        /// * [Requesting a profile](/docs/services/personality-insights/input.html)
+        /// * [Providing sufficient input](/docs/services/personality-insights/input.html#sufficient)
+        ///
+        /// ### Content types
+        ///
+        ///  You can provide input content as plain text (`text/plain`), HTML (`text/html`), or JSON
+        /// (`application/json`) by specifying the **Content-Type** parameter. The default is `text/plain`.
+        /// * Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
+        /// * Per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the
+        /// ASCII character set).
+        ///
+        /// When specifying a content type of plain text or HTML, include the `charset` parameter to indicate the
+        /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
+        ///
+        /// **See also:** [Specifying request and response
+        /// formats](/docs/services/personality-insights/input.html#formats)
+        ///
+        /// ### Accept types
+        ///
+        ///  You must request a response as JSON (`application/json`) or comma-separated values (`text/csv`) by
+        /// specifying the **Accept** parameter. CSV output includes a fixed number of columns. Set the **csv_headers**
+        /// parameter to `true` to request optional column headers for CSV output.
+        ///
+        /// **See also:**
+        /// * [Understanding a JSON profile](/docs/services/personality-insights/output.html)
+        /// * [Understanding a CSV profile](/docs/services/personality-insights/output-csv.html).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON
-        /// input, provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
-        /// `charset` parameter. For example, 'text/html;charset=utf-8'.</param>
+        /// input](/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type
+        /// `Content`.</param>
+        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
+        /// description.
+        ///
+        /// Default: `text/plain`. (optional)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -133,20 +147,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// each characteristic; raw scores are not compared with a sample population. By default, only normalized
         /// percentiles are returned. (optional, default to false)</param>
         /// <param name="csvHeaders">Indicates whether column labels are returned with a CSV response. By default, no
-        /// column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`. (optional,
-        /// default to false)</param>
+        /// column labels are returned. Applies only when the response type is CSV (`text/csv`). (optional, default to
+        /// false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Profile" />Profile</returns>
-        public Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        public Profile Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Profile result = null;
@@ -197,31 +209,45 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// Get profile as csv.
         ///
         /// Generates a personality profile for the author of the input text. The service accepts a maximum of 20 MB of
-        /// input content, but it requires much less text to produce an accurate profile; for more information, see
-        /// [Providing sufficient
-        /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). The service
-        /// analyzes text in Arabic, English, Japanese, Korean, or Spanish and returns its results in a variety of
-        /// languages. You can provide plain text, HTML, or JSON input by specifying the **Content-Type** parameter; the
-        /// default is `text/plain`. Request a JSON or comma-separated values (CSV) response by specifying the
-        /// **Accept** parameter; CSV output includes a fixed number of columns and optional headers.
-        ///
-        /// Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per
-        /// the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII
-        /// character set). When specifying a content type of plain text or HTML, include the `charset` parameter to
-        /// indicate the character encoding of the input text; for example: `Content-Type: text/plain;charset=utf-8`.
+        /// input content, but it requires much less text to produce an accurate profile. The service can analyze text
+        /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://console.bluemix.net/docs/services/personality-insights/input.html)
-        /// * [Understanding a JSON profile](https://console.bluemix.net/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV
-        /// profile](https://console.bluemix.net/docs/services/personality-insights/output-csv.html).
+        /// * [Requesting a profile](/docs/services/personality-insights/input.html)
+        /// * [Providing sufficient input](/docs/services/personality-insights/input.html#sufficient)
+        ///
+        /// ### Content types
+        ///
+        ///  You can provide input content as plain text (`text/plain`), HTML (`text/html`), or JSON
+        /// (`application/json`) by specifying the **Content-Type** parameter. The default is `text/plain`.
+        /// * Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
+        /// * Per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the
+        /// ASCII character set).
+        ///
+        /// When specifying a content type of plain text or HTML, include the `charset` parameter to indicate the
+        /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
+        ///
+        /// **See also:** [Specifying request and response
+        /// formats](/docs/services/personality-insights/input.html#formats)
+        ///
+        /// ### Accept types
+        ///
+        ///  You must request a response as JSON (`application/json`) or comma-separated values (`text/csv`) by
+        /// specifying the **Accept** parameter. CSV output includes a fixed number of columns. Set the **csv_headers**
+        /// parameter to `true` to request optional column headers for CSV output.
+        ///
+        /// **See also:**
+        /// * [Understanding a JSON profile](/docs/services/personality-insights/output.html)
+        /// * [Understanding a CSV profile](/docs/services/personality-insights/output-csv.html).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://console.bluemix.net/docs/services/personality-insights/input.html#sufficient). For JSON
-        /// input, provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
-        /// `charset` parameter. For example, 'text/html;charset=utf-8'.</param>
+        /// input](/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type
+        /// `Content`.</param>
+        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
+        /// description.
+        ///
+        /// Default: `text/plain`. (optional)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -240,20 +266,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// each characteristic; raw scores are not compared with a sample population. By default, only normalized
         /// percentiles are returned. (optional, default to false)</param>
         /// <param name="csvHeaders">Indicates whether column labels are returned with a CSV response. By default, no
-        /// column labels are returned. Applies only when the **Accept** parameter is set to `text/csv`. (optional,
-        /// default to false)</param>
+        /// column labels are returned. Applies only when the response type is CSV (`text/csv`). (optional, default to
+        /// false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
-        public System.IO.MemoryStream ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        public System.IO.MemoryStream ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             System.IO.MemoryStream result = null;

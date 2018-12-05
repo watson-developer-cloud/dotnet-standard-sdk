@@ -35,24 +35,25 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("html", NullValueHandling = NullValueHandling.Ignore)]
         public string Html { get; set; }
         /// <summary>
-        /// The web page to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// The webpage to analyze. One of the `text`, `html`, or `url` parameters is required.
         /// </summary>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
-        /// Specific features to analyze the document for.
+        /// Analysis features and options.
         /// </summary>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public Features Features { get; set; }
         /// <summary>
-        /// Remove website elements, such as links, ads, etc.
+        /// Set this to `false` to disable webpage cleaning. To learn more about webpage cleaning, see the [Analyzing
+        /// webpages](/docs/services/natural-language-understanding/analyzing-webpages.html) documentation.
         /// </summary>
         [JsonProperty("clean", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Clean { get; set; }
         /// <summary>
-        /// An [XPath query](https://www.w3.org/TR/xpath/) to perform on `html` or `url` input. Results of the query
-        /// will be appended to the cleaned webpage text before it is analyzed. To analyze only the results of the XPath
-        /// query, set the `clean` parameter to `false`.
+        /// An [XPath query](/docs/services/natural-language-understanding/analyzing-webpages.html#xpath) to perform on
+        /// `html` or `url` input. Results of the query will be appended to the cleaned webpage text before it is
+        /// analyzed. To analyze only the results of the XPath query, set the `clean` parameter to `false`.
         /// </summary>
         [JsonProperty("xpath", NullValueHandling = NullValueHandling.Ignore)]
         public string Xpath { get; set; }

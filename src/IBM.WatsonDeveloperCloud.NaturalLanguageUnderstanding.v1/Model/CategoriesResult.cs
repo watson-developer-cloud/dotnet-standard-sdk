@@ -20,12 +20,15 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The hierarchical 5-level taxonomy the content is categorized into.
+    /// A categorization of the analyzed text.
     /// </summary>
     public class CategoriesResult : BaseModel
     {
         /// <summary>
-        /// The path to the category through the taxonomy hierarchy.
+        /// The path to the category through the 5-level taxonomy hierarchy. For the complete list of categories, see
+        /// the [Categories
+        /// hierarchy](/docs/services/natural-language-understanding/categories.html#categories-hierarchy)
+        /// documentation.
         /// </summary>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }

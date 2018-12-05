@@ -26,21 +26,20 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class MessageRequest : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// The user input.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public InputData Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
         public bool? AlternateIntents { get; set; }
         /// <summary>
-        /// State information for the conversation. Continue a conversation by including the context object from the
-        /// previous response.
+        /// State information for the conversation. To maintain state, include the context from the previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
+        public Context Context { get; set; }
         /// <summary>
         /// Entities to use when evaluating the message. Include entities from the previous response to continue using
         /// those entities rather than detecting entities in the new input.
@@ -54,11 +53,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<RuntimeIntent> Intents { get; set; }
         /// <summary>
-        /// System output. Include the output from the previous response to maintain intermediate information over
-        /// multiple requests.
+        /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages
+        /// from the log.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public OutputData Output { get; set; }
     }
 
 }

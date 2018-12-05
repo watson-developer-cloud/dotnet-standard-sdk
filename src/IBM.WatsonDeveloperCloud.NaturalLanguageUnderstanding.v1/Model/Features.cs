@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// target phrases specified in the targets parameter. You can analyze emotion for detected entities with
         /// `entities.emotion` and for keywords with `keywords.emotion`.
         ///
-        /// Supported languages: English
+        /// Supported languages: English.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionOptions Emotion { get; set; }
@@ -87,7 +87,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// `keywords.sentiment`.
         ///
         ///  Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Russian,
-        /// Spanish
+        /// Spanish.
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public SentimentOptions Sentiment { get; set; }

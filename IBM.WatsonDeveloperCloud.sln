@@ -129,7 +129,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v2.IntTests", "test\IBM.WatsonDeveloperCloud.Assistant.v2.IntTests\IBM.WatsonDeveloperCloud.Assistant.v2.IntTests.csproj", "{200FC8C7-ED91-4F66-8674-D678588FC450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.Assistant.v2.Example", "examples\IBM.WatsonDeveloperCloud.Assistant.v2.Example\IBM.WatsonDeveloperCloud.Assistant.v2.Example.csproj", "{125A4EB4-D769-4EA7-A18D-8D7D568B5B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Assistant.v2.Example", "examples\IBM.WatsonDeveloperCloud.Assistant.v2.Example\IBM.WatsonDeveloperCloud.Assistant.v2.Example.csproj", "{125A4EB4-D769-4EA7-A18D-8D7D568B5B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CompareComplyV1", "CompareComplyV1", "{B368DCF7-FB57-4302-8467-4EB142394A29}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.CompareComply.v1", "src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj", "{0287B6FD-D28A-47C9-9686-C4658EBD2129}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.CompareComply.v1.IT", "test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\IBM.WatsonDeveloperCloud.CompareComply.v1.IT.csproj", "{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.CompareComply.v1.UT", "test\IBM.WatsonDeveloperCloud.CompareComply.v1.UT\IBM.WatsonDeveloperCloud.CompareComply.v1.UT.csproj", "{DF7A03F2-66F3-4B70-8311-A3487553CA0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -325,6 +333,18 @@ Global
 		{125A4EB4-D769-4EA7-A18D-8D7D568B5B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{125A4EB4-D769-4EA7-A18D-8D7D568B5B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{125A4EB4-D769-4EA7-A18D-8D7D568B5B33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0287B6FD-D28A-47C9-9686-C4658EBD2129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0287B6FD-D28A-47C9-9686-C4658EBD2129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0287B6FD-D28A-47C9-9686-C4658EBD2129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0287B6FD-D28A-47C9-9686-C4658EBD2129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -392,6 +412,10 @@ Global
 		{5FBF32E9-0352-4D8B-BED2-D6EE04363A47} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
 		{200FC8C7-ED91-4F66-8674-D678588FC450} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
 		{125A4EB4-D769-4EA7-A18D-8D7D568B5B33} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
+		{B368DCF7-FB57-4302-8467-4EB142394A29} = {28E61676-E9FF-4DA9-99CC-5E0D16F02380}
+		{0287B6FD-D28A-47C9-9686-C4658EBD2129} = {B368DCF7-FB57-4302-8467-4EB142394A29}
+		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B} = {B368DCF7-FB57-4302-8467-4EB142394A29}
+		{DF7A03F2-66F3-4B70-8311-A3487553CA0C} = {B368DCF7-FB57-4302-8467-4EB142394A29}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

@@ -31,15 +31,32 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public List<IHttpFilter> Filters { get; private set; }
 
-        public HttpClient BaseClient { get; private set; }
+        public HttpClient BaseClient { get; set; }
 
         public MediaTypeFormatterCollection Formatters { get; protected set; }
 
         public bool Insecure = false;
 
-        public WatsonHttpClient(string baseUri)
+        public WatsonHttpClient()
         {
             this.BaseClient = new HttpClient();
+            this.Filters = new List<IHttpFilter> { new ErrorFilter() };
+
+            this.Formatters = new MediaTypeFormatterCollection();
+        }
+
+        public WatsonHttpClient(string baseUri)
+        {
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -49,7 +66,16 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri, string userName, string password)
         {
-            this.BaseClient = new HttpClient();
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -59,7 +85,16 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public WatsonHttpClient(string baseUri, string userName, string password, HttpClient client)
         {
-            this.BaseClient = new HttpClient();
+            if (Insecure)
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                this.BaseClient = new HttpClient(httpClientHandler);
+            }
+            else
+            {
+                this.BaseClient = new HttpClient();
+            }
             this.Filters = new List<IHttpFilter> { new ErrorFilter() };
             if (baseUri != null)
                 this.BaseClient.BaseAddress = new Uri(baseUri);
@@ -81,11 +116,11 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
-        public IClient WithAuthentication(string apikey)
+        public IClient WithAuthentication(string apiToken)
         {
-            if (!string.IsNullOrEmpty(apikey))
+            if(!string.IsNullOrEmpty(apiToken))
             {
-                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
             }
 
             return this;
@@ -166,16 +201,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public void SendAsInsecure(bool insecure)
         {
-            if (insecure)
-            {
-                var httpClientHandler = new HttpClientHandler();
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                this.BaseClient = new HttpClient(httpClientHandler);
-            }
-            else
-            {
-                this.BaseClient = new HttpClient();
-            }
+            Insecure = insecure;
         }
     }
 }

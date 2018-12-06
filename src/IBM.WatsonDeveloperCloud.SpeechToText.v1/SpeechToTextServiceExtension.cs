@@ -56,9 +56,6 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             if (audio == null)
                 throw new ArgumentNullException($"{nameof(audio)}");
 
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException($"{nameof(contentType)}");
-
             SpeechRecognitionResults result = null;
 
             try
@@ -123,7 +120,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_id", customizationId);
 
                 StreamContent bodyContent = new StreamContent(audio);
-                bodyContent.Headers.Add("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(contentType))
+                    bodyContent.Headers.Add("Content-Type", contentType);
 
                 restRequest.WithBodyContent(bodyContent);
 

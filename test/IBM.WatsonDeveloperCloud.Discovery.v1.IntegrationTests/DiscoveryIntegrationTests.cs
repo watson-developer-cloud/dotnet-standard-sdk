@@ -120,7 +120,22 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 Name = Guid.NewGuid().ToString(),
                 Description = _createdConfigurationDescription,
-
+                Enrichments = new List<Enrichment>()
+                {
+                    new Enrichment()
+                    {
+                        Options = new EnrichmentOptions()
+                        {
+                            Features = new NluEnrichmentFeatures()
+                            {
+                                Concepts = new NluEnrichmentConcepts()
+                                {
+                                    Limit = 10
+                                }
+                            }
+                        }
+                    }
+                }
             };
 
             var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
@@ -145,6 +160,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(getConfigurationResults);
             Assert.IsTrue(getConfigurationResults.ConfigurationId == _createdConfigurationId);
             Assert.IsTrue(getConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(createConfigurationResults.Enrichments[0].Options.Features.Concepts.Limit == 10);
             Assert.IsNotNull(createConfigurationResults);
             Assert.IsTrue(createConfigurationResults.Description == _createdConfigurationDescription);
             Assert.IsNotNull(listConfigurationsResults);

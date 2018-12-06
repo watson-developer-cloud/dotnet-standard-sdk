@@ -46,12 +46,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         public Features Features { get; set; }
         /// <summary>
         /// Set this to `false` to disable webpage cleaning. To learn more about webpage cleaning, see the [Analyzing
-        /// webpages](/docs/services/natural-language-understanding/analyzing-webpages.html) documentation.
+        /// webpages](https://cloud.ibm.com/docs/services/natural-language-understanding/analyzing-webpages.html) documentation.
         /// </summary>
         [JsonProperty("clean", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Clean { get; set; }
         /// <summary>
-        /// An [XPath query](/docs/services/natural-language-understanding/analyzing-webpages.html#xpath) to perform on
+        /// An [XPath query](https://cloud.ibm.com/docs/services/natural-language-understanding/analyzing-webpages.html#xpath) to perform on
         /// `html` or `url` input. Results of the query will be appended to the cleaned webpage text before it is
         /// analyzed. To analyze only the results of the XPath query, set the `clean` parameter to `false`.
         /// </summary>

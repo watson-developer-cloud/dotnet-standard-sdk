@@ -105,7 +105,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
+        /// endpoint](https://cloud.ibm.com/docs/services/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>

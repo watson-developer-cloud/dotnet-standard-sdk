@@ -25,19 +25,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="appsettings.json">
+    <None Update=".\CompareComplyTestData\**\*;appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update=".\CompareComplyTestData\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

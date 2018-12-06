@@ -103,7 +103,6 @@ after_build:
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
@@ -136,8 +135,6 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
-
-    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.LanguageTranslator.v2.IntegrationTests\glossary.tmx C:\projects\dotnet-standard-sdk\glossary.tmx
 test_script:
 - ps: >-
       if(Test-Path -Path coverage)
@@ -198,8 +195,6 @@ artifacts:
   name: IBM.WatsonDeveloperCloud.Assistant.v1
 - path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.Conversation.v1
-- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v2\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.LanguageTranslator.v2
 - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 - path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'

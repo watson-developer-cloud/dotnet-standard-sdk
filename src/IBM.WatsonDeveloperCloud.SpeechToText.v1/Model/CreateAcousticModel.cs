@@ -31,14 +31,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         /// <value>
         /// The name of the base language model that is to be customized by the new custom acoustic model. The new
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BaseModelNameEnum
@@ -152,7 +152,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         [JsonProperty("base_model_name", NullValueHandling = NullValueHandling.Ignore)]
         public BaseModelNameEnum? BaseModelName { get; set; }

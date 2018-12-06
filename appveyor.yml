@@ -101,6 +101,7 @@ after_build:
             Write-Output "branchName  is master - building nuget packages"
             dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
+            dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
@@ -135,6 +136,8 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
+    
+    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
       if(Test-Path -Path coverage)
@@ -193,6 +196,8 @@ artifacts:
   name: IBM.WatsonDeveloperCloud
 - path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.Assistant.v1
+- path: '\src\IBM.WatsonDeveloperCloud.CompareComply.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.CompareComply.v1
 - path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.Conversation.v1
 - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'

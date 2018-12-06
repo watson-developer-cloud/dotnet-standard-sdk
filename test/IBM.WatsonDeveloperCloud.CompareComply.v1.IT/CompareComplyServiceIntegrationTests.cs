@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
     [TestClass]
     public class CompareComplyServiceIntegrationTests
     {
-        private static string username;
+        private static string apikey;
         private static string password;
         private static string endpoint;
         private CompareComplyService service;
@@ -54,37 +54,36 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
                 objectStorageCredentialsInputFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "cloud-object-storage-credentials-input.json";
                 objectStorageCredentialsOutputFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "cloud-object-storage-credentials-output.json";
 
-                //if (File.Exists(credentialsFilepath))
-                //{
-                //    try
-                //    {
-                //        credentials = File.ReadAllText(credentialsFilepath);
-                //        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                //    }
-                //    catch (Exception e)
-                //    {
-                //        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                //    }
-                //}
-                //else
-                //{
-                //    Console.WriteLine("Credentials file does not exist.");
-                //}
+                if (File.Exists(credentialsFilepath))
+                {
+                    try
+                    {
+                        credentials = File.ReadAllText(credentialsFilepath);
+                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Credentials file does not exist.");
+                }
 
-                //VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                //var vcapServices = JObject.Parse(credentials);
+                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
+                var vcapServices = JObject.Parse(credentials);
 
-                //Credential credential = vcapCredentials.GetCredentialByname("compare-comply-sdk")[0].Credentials;
-                //endpoint = credential.Url;
-                //username = credential.Username;
-                //password = credential.Password;
+                Credential credential = vcapCredentials.GetCredentialByname("compare-comply-sdk")[0].Credentials;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
             TokenOptions tokenOptions = new TokenOptions()
             {
-                ServiceUrl = "https://gateway-s.watsonplatform.net/compare-comply/api",
-                IamUrl = "https://iam.stage1.bluemix.net/identity/token"
+                ServiceUrl = endpoint,
+                IamApiKey = apikey
             };
 
             service = new CompareComplyService(tokenOptions, versionDate);
@@ -277,7 +276,13 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
             var addFeedbackResult = service.AddFeedback(feedbackData);
             string feedbackId = addFeedbackResult.FeedbackId;
 
-            var getFeedbackResult = service.GetFeedback(feedbackId);
+            //  temporary fix for a bug requiring `x-watson-metadata` header
+            Dictionary<string, object> customData = new Dictionary<string, object>();
+            Dictionary<string, string> customHeaders = new Dictionary<string, string>();
+            customHeaders.Add("x-watson-metadata", "customer_id=125");
+            customData.Add(Constants.CUSTOM_REQUEST_HEADERS, customHeaders);
+
+            var getFeedbackResult = service.GetFeedback(feedbackId, customData:customData);
 
             var deleteFeedbackResult = service.DeleteFeedback(feedbackId);
 

@@ -14,7 +14,7 @@ environment:
   CRED_SECRET:
     secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8=
   CREDENTIALS_GITHUB_TOKEN:
-    secure: 8sr9qy9Ghr7IaCVsf0mvKITy6nb5RZaEScQ3VIPNMJxPzFCkZ688RHIOmW5qWWy5
+    secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n
   GITHUB_TOKEN:
     secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+
 install:

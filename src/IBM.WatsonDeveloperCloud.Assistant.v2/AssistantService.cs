@@ -105,7 +105,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             if (string.IsNullOrEmpty(assistantId))
                 throw new ArgumentNullException(nameof(assistantId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             SessionResponse result = null;
@@ -159,7 +159,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException(nameof(sessionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -216,7 +216,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             if (string.IsNullOrEmpty(sessionId))
                 throw new ArgumentNullException(nameof(sessionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MessageResponse result = null;

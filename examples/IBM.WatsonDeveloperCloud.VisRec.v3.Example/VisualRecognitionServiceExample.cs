@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.WatsonDeveloperCloud.Util;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
 using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using Newtonsoft.Json;
@@ -37,8 +38,11 @@ namespace IBM.WatsonDeveloperCloud.VisRec.v3.Example
         #region Constructor
         public VisualRecognitionServiceExample(string apikey, string versionDate)
         {
-
-            _service = new VisualRecognitionService(apikey, versionDate);
+            var options = new TokenOptions()
+            {
+                IamApiKey = _apikey,
+            };
+            _service = new VisualRecognitionService(options, versionDate);
             _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
 
             ClassifyImage();

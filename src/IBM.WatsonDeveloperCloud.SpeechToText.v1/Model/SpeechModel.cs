@@ -46,12 +46,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
-        /// Describes the additional service features supported with the model.
+        /// Describes the additional service features that are supported with the model.
         /// </summary>
         [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }
         /// <summary>
-        /// Brief description of the model.
+        /// A brief description of the model.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }

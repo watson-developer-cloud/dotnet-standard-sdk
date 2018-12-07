@@ -49,7 +49,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Data object used to create a query event.
+        /// Query event data object.
         /// </summary>
         [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
         public EventData Data { get; set; }

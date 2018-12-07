@@ -27,7 +27,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                            Stream audio,
                                            string transferEncoding = "",
                                            string model = "en-US_BroadbandModel",
-                                           string customizationId = "",
+                                           string languageCustomizationId = null,
                                            bool? continuous = null,
                                            int? inactivityTimeout = null,
                                            string[] keywords = null,
@@ -38,6 +38,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                                            bool? timestamps = null,
                                            bool profanityFilter = false,
                                            bool? smartFormatting = null,
-                                           bool? speakerLabels = null);
+                                           bool? speakerLabels = null,
+                                           string customizationId = null);
     }
 }

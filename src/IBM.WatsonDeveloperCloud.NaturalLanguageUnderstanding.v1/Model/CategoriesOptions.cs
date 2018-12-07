@@ -15,6 +15,8 @@
 *
 */
 
+using Newtonsoft.Json;
+
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
@@ -24,6 +26,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// </summary>
     public class CategoriesOptions : BaseModel
     {
+        /// <summary>
+        /// Maximum number of categories to return.
+        /// Maximum value: **10**.
+        /// </summary>
+        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Limit { get; set; }
     }
 
 }

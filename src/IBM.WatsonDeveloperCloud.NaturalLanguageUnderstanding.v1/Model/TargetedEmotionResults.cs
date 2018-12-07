@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An object containing the emotion results for the target.
+    /// Emotion results for a specified target.
     /// </summary>
     public class TargetedEmotionResults : BaseModel
     {
@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// An object containing the emotion results for the target.
+        /// The emotion results for the target.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }

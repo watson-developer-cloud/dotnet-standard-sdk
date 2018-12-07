@@ -56,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model
         [JsonProperty("customizable", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Customizable { get; set; }
         /// <summary>
-        /// Describes the additional service features supported with the voice.
+        /// Describes the additional service features that are supported with the voice.
         /// </summary>
         [JsonProperty("supported_features", NullValueHandling = NullValueHandling.Ignore)]
         public SupportedFeatures SupportedFeatures { get; set; }

@@ -104,8 +104,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("document_counts", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentCounts DocumentCounts { get; set; }
         /// <summary>
-        /// The object providing information about the disk usage of the collection. Present only when retrieving
-        /// details of a collection.
+        /// Summary of the disk usage statistics for this collection.
         /// </summary>
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public CollectionDiskUsage DiskUsage { get; set; }

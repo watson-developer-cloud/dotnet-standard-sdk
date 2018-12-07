@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Http
 {
     public interface IClient : IDisposable
     {
-        HttpClient BaseClient { get; }
+        HttpClient BaseClient { get; set; }
 
         MediaTypeFormatterCollection Formatters { get; }
 

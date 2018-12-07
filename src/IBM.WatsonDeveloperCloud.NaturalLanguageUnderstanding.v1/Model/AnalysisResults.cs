@@ -36,42 +36,44 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("analyzed_text", NullValueHandling = NullValueHandling.Ignore)]
         public string AnalyzedText { get; set; }
         /// <summary>
-        /// URL that was used to retrieve HTML content.
+        /// URL of the webpage that was analyzed.
         /// </summary>
         [JsonProperty("retrieved_url", NullValueHandling = NullValueHandling.Ignore)]
         public string RetrievedUrl { get; set; }
         /// <summary>
-        /// API usage information for the request.
+        /// Usage information.
         /// </summary>
         [JsonProperty("usage", NullValueHandling = NullValueHandling.Ignore)]
         public Usage Usage { get; set; }
         /// <summary>
-        /// The general concepts referenced or alluded to in the specified content.
+        /// The general concepts referenced or alluded to in the analyzed text.
         /// </summary>
         [JsonProperty("concepts", NullValueHandling = NullValueHandling.Ignore)]
         public List<ConceptsResult> Concepts { get; set; }
         /// <summary>
-        /// The important entities in the specified content.
+        /// The entities detected in the analyzed text.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<EntitiesResult> Entities { get; set; }
         /// <summary>
-        /// The important keywords in content organized by relevance.
+        /// The keywords from the analyzed text.
         /// </summary>
         [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
         public List<KeywordsResult> Keywords { get; set; }
         /// <summary>
-        /// The hierarchical 5-level taxonomy the content is categorized into.
+        /// The categories that the service assigned to the analyzed text.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public List<CategoriesResult> Categories { get; set; }
         /// <summary>
-        /// The anger, disgust, fear, joy, or sadness conveyed by the content.
+        /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can
+        /// be returned for detected entities, keywords, or user-specified target phrases found in the text.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionResult Emotion { get; set; }
         /// <summary>
-        /// The metadata holds author information, publication date and the title of the text/HTML content.
+        /// The authors, publication date, title, prominent page image, and RSS/ATOM feeds of the webpage. Supports URL
+        /// and HTML input types.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public MetadataResult Metadata { get; set; }
@@ -81,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public List<RelationsResult> Relations { get; set; }
         /// <summary>
-        /// The subjects of actions and the objects the actions act upon.
+        /// Sentences parsed into `subject`, `action`, and `object` form.
         /// </summary>
         [JsonProperty("semantic_roles", NullValueHandling = NullValueHandling.Ignore)]
         public List<SemanticRolesResult> SemanticRoles { get; set; }

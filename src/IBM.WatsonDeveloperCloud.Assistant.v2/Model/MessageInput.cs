@@ -56,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// Properties that control how the assistant responds.
+        /// Optional properties that control how the assistant responds.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public MessageInputOptions Options { get; set; }

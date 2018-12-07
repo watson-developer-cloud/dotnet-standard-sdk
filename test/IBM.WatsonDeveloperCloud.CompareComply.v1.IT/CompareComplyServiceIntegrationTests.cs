@@ -30,7 +30,6 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
     public class CompareComplyServiceIntegrationTests
     {
         private static string apikey;
-        private static string password;
         private static string endpoint;
         private CompareComplyService service;
         private static string credentials = string.Empty;
@@ -294,7 +293,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
         #endregion
 
         #region Batches
-        [TestMethod]
+        //[TestMethod]
         public void Batches_Success()
         {
             var getBatchesResult = service.ListBatches();

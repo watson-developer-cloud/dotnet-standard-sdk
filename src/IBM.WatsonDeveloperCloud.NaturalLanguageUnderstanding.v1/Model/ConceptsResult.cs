@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The general concepts referenced or alluded to in the specified content.
+    /// The general concepts referenced or alluded to in the analyzed text.
     /// </summary>
     public class ConceptsResult : BaseModel
     {

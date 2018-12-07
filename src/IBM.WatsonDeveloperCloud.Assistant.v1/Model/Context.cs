@@ -34,6 +34,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic System { get; set; }
+        /// <summary>
+        /// Metadata related to the message.
+        /// </summary>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic Metadata { get; set; }
     }
 
 }

@@ -16,6 +16,7 @@
 */
 
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
@@ -25,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class Model : BaseModel
     {
         /// <summary>
-        /// Shows as available if the model is ready for use.
+        /// When the status is `available`, the model is ready to use.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string Status { get; set; }
@@ -44,6 +45,26 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
+        /// <summary>
+        /// ID of the Watson Knowledge Studio workspace that deployed this model to Natural Language Understanding.
+        /// </summary>
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string WorkspaceId { get; set; }
+        /// <summary>
+        /// The model version, if it was manually provided in Watson Knowledge Studio.
+        /// </summary>
+        [JsonProperty("version", NullValueHandling = NullValueHandling.Ignore)]
+        public string Version { get; set; }
+        /// <summary>
+        /// The description of the version, if it was manually provided in Watson Knowledge Studio.
+        /// </summary>
+        [JsonProperty("version_description", NullValueHandling = NullValueHandling.Ignore)]
+        public string VersionDescription { get; set; }
+        /// <summary>
+        /// A dateTime indicating when the model was created.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? Created { get; set; }
     }
 
 }

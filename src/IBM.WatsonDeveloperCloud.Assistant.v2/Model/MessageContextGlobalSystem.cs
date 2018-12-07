@@ -31,8 +31,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         public string Timezone { get; set; }
         /// <summary>
         /// A string value that identifies the user who is interacting with the assistant. The client must provide a
-        /// unique identifier for each individual end user who accesses the application. This user ID may be used for
-        /// billing and other purposes.
+        /// unique identifier for each individual end user who accesses the application. For Plus and Premium plans,
+        /// this user ID is used to identify unique users for billing purposes. This string cannot contain carriage
+        /// return, newline, or tab characters.
         /// </summary>
         [JsonProperty("user_id", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }

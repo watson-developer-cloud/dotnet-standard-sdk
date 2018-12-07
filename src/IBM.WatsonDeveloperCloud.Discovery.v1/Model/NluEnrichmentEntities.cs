@@ -53,8 +53,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// When `true`, a list of sentence locations for each instance of each identified entity is recorded. The
         /// default is `false`.
         /// </summary>
-        [JsonProperty("sentence_location", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SentenceLocation { get; set; }
+        [JsonProperty("sentence_locations", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SentenceLocations { get; set; }
         /// <summary>
         /// The enrichement model to use with entity extraction. May be a custom model provided by Watson Knowledge
         /// Studio, the public model for use with Knowledge Graph `en-news`, or the default public model `alchemy`.

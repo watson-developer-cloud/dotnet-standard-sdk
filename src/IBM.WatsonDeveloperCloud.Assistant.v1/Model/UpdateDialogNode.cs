@@ -297,7 +297,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
         /// <summary>
-        /// The next step to be executed in dialog processing.
+        /// The next step to execute following this dialog node.
         /// </summary>
         [JsonProperty("next_step", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeNextStep NextStep { get; set; }

@@ -89,6 +89,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                         Limit = 8,
                         Sentiment = true,
                         Emotion = true
+                    },
+                    Categories = new CategoriesOptions()
+                    {
+                        Limit = 10
                     }
                 }
             };
@@ -96,6 +100,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
             var result = _service.Analyze(parameters);
 
             Assert.IsNotNull(result);
+            Assert.IsTrue(result.Categories.Count > 0);
+            Assert.IsTrue(result.Keywords.Count > 0);
         }
 
         [TestMethod]

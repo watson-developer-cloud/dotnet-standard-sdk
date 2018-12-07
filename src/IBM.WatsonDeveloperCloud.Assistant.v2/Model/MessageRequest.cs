@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
     public class MessageRequest : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// The user input.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public MessageInput Input { get; set; }

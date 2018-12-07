@@ -88,7 +88,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic CollectionId { get; set; }
         /// <summary>
-        /// Metadata of the query result.
+        /// Metadata of a query result.
         /// </summary>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic ResultMetadata { get; set; }

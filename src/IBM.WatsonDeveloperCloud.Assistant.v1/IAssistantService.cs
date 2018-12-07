@@ -25,7 +25,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null);
         Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null);
         BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null);
-        WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
+        WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null);
         WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
         Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null, Dictionary<string, object> customData = null);
         Intent CreateIntent(string workspaceId, CreateIntent body, Dictionary<string, object> customData = null);

@@ -194,7 +194,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// List models.
         ///
         /// Lists Watson Knowledge Studio [custom
-        /// models](/docs/services/natural-language-understanding/customizing.html) that are deployed to your Natural
+        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are deployed to your Natural
         /// Language Understanding service.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

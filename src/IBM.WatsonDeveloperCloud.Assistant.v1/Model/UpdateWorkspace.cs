@@ -53,7 +53,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateEntity> Entities { get; set; }
         /// <summary>
-        /// An array of objects defining the nodes in the workspace dialog.
+        /// An array of objects defining the nodes in the dialog.
         /// </summary>
         [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
         public List<CreateDialogNode> DialogNodes { get; set; }

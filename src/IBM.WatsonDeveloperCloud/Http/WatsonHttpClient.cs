@@ -31,11 +31,19 @@ namespace IBM.WatsonDeveloperCloud.Http
 
         public List<IHttpFilter> Filters { get; private set; }
 
-        public HttpClient BaseClient { get; private set; }
+        public HttpClient BaseClient { get; set; }
 
         public MediaTypeFormatterCollection Formatters { get; protected set; }
 
         public bool Insecure = false;
+
+        public WatsonHttpClient()
+        {
+            this.BaseClient = new HttpClient();
+            this.Filters = new List<IHttpFilter> { new ErrorFilter() };
+
+            this.Formatters = new MediaTypeFormatterCollection();
+        }
 
         public WatsonHttpClient(string baseUri)
         {
@@ -108,11 +116,11 @@ namespace IBM.WatsonDeveloperCloud.Http
             return this;
         }
 
-        public IClient WithAuthentication(string apikey)
+        public IClient WithAuthentication(string apiToken)
         {
-            if(!string.IsNullOrEmpty(apikey))
+            if(!string.IsNullOrEmpty(apiToken))
             {
-                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
+                this.BaseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
             }
 
             return this;

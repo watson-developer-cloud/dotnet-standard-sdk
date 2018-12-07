@@ -99,30 +99,6 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.UnitTests
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Profile_No_Content_Type()
-        {
-            PersonalityInsightsService service =
-                new PersonalityInsightsService("username", "password", "versionDate");
-
-
-            //  Test Profile
-            Content content = new Content()
-            {
-                ContentItems = new List<ContentItem>()
-                {
-                    new ContentItem()
-                    {
-                        Contenttype = ContentItem.ContenttypeEnum.TEXT_PLAIN,
-                        Language = ContentItem.LanguageEnum.EN,
-                        Content = contentString
-                    }
-                }
-            };
-
-            service.Profile(content, null);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Profile_No_Content()
         {
             PersonalityInsightsService service =

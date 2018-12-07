@@ -37,13 +37,13 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// target phrases specified in the targets parameter. You can analyze emotion for detected entities with
         /// `entities.emotion` and for keywords with `keywords.emotion`.
         ///
-        /// Supported languages: English
+        /// Supported languages: English.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionOptions Emotion { get; set; }
         /// <summary>
         /// Identifies people, cities, organizations, and other entities in the content. See [Entity types and
-        /// subtypes](/docs/services/natural-language-understanding/entity-types.html).
+        /// subtypes](https://cloud.ibm.com/docs/services/natural-language-understanding/entity-types.html).
         ///
         /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish,
         /// Swedish. Arabic, Chinese, and Dutch custom models are also supported.
@@ -67,7 +67,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// Recognizes when two entities are related and identifies the type of relation. For example, an `awardedTo`
         /// relation might connect the entities "Nobel Prize" and "Albert Einstein". See [Relation
-        /// types](/docs/services/natural-language-understanding/relations.html).
+        /// types](https://cloud.ibm.com/docs/services/natural-language-understanding/relations.html).
         ///
         /// Supported languages: Arabic, English, German, Japanese, Korean, Spanish. Chinese, Dutch, French, Italian,
         /// and Portuguese custom models are also supported.
@@ -87,7 +87,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         /// `keywords.sentiment`.
         ///
         ///  Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Russian,
-        /// Spanish
+        /// Spanish.
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public SentimentOptions Sentiment { get; set; }

@@ -30,8 +30,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public MessageOutput Output { get; set; }
         /// <summary>
-        /// The current session context. Included in the response if the `return_context` property of the message input
-        /// was set to `true`.
+        /// State information for the conversation.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public MessageContext Context { get; set; }

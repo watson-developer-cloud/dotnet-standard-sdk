@@ -87,10 +87,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         }
 
         /// <summary>
-        /// Analyze text, HTML, or a public webpage.
+        /// Analyze text.
         ///
-        /// Analyzes text, HTML, or a public webpage with one or more text analysis features, including categories,
-        /// concepts, emotion, entities, keywords, metadata, relations, semantic roles, and sentiment.
+        /// Analyzes text, HTML, or a public webpage for the following features:
+        /// - Categories
+        /// - Concepts
+        /// - Emotion
+        /// - Entities
+        /// - Keywords
+        /// - Metadata
+        /// - Relations
+        /// - Semantic roles
+        /// - Sentiment.
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>
@@ -101,7 +109,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             if (parameters == null)
                 throw new ArgumentNullException(nameof(parameters));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             AnalysisResults result = null;
@@ -148,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             InlineResponse200 result = null;
@@ -185,15 +193,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// List models.
         ///
-        /// Lists available models for Relations and Entities features, including Watson Knowledge Studio custom models
-        /// that you have created and linked to your Natural Language Understanding service.
+        /// Lists Watson Knowledge Studio [custom
+        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are deployed to your Natural
+        /// Language Understanding service.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
         public ListModelsResults ListModels(Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListModelsResults result = null;

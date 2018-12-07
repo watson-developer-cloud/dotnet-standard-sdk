@@ -31,9 +31,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
         /// <summary>
-        /// The confidence score for the given result. Calculated based on how relevant the result is estimated to be,
-        /// compared to a trained relevancy model. confidence can range from `0.0` to `1.0`. The higher the number, the
-        /// more relevant the document.
+        /// The confidence score for the given result. Calculated based on how relevant the result is estimated to be.
+        /// confidence can range from `0.0` to `1.0`. The higher the number, the more relevant the document. The
+        /// `confidence` value for a result was calculated using the model specified in the
+        /// `document_retrieval_strategy` field of the result set.
         /// </summary>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }

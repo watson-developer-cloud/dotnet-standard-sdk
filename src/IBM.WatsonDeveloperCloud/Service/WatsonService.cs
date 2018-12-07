@@ -16,6 +16,7 @@
 */
 
 using System;
+using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Util;
 
@@ -40,6 +41,10 @@ namespace IBM.WatsonDeveloperCloud.Service
             }
             set
             {
+                if(this.Client.BaseClient == null)
+                {
+                    this.Client.BaseClient = new HttpClient();
+                }
                 this.Client.BaseClient.BaseAddress = new Uri(value);
             }
         }
@@ -113,25 +118,36 @@ namespace IBM.WatsonDeveloperCloud.Service
         /// <param name="options"></param>
         public void SetCredential(TokenOptions options)
         {
-            if (options.IamApiKey.StartsWith(ICP_PREFIX))
+            if (!string.IsNullOrEmpty(options.ServiceUrl))
             {
-                SetCredential(APIKEY_AS_USERNAME, options.IamApiKey);
+                if (!_userSetEndpoint)
+                {
+                    this.Endpoint = options.ServiceUrl;
+                }
             }
             else
             {
-                if (!string.IsNullOrEmpty(options.ServiceUrl))
+                options.ServiceUrl = this.Endpoint;
+            }
+
+            if (!string.IsNullOrEmpty(options.IamApiKey))
+            {
+                if (options.IamApiKey.StartsWith(ICP_PREFIX))
                 {
-                    if (!_userSetEndpoint)
-                    {
-                        this.Endpoint = options.ServiceUrl;
-                    }
+                    SetCredential(APIKEY_AS_USERNAME, options.IamApiKey);
                 }
                 else
                 {
-                    options.ServiceUrl = this.Endpoint;
+                    _tokenManager = new TokenManager(options);
                 }
-
+            }
+            else if(!string.IsNullOrEmpty(options.IamAccessToken))
+            {
                 _tokenManager = new TokenManager(options);
+            }
+            else
+            {
+                throw new ArgumentNullException("An iamApikey or iamAccessToken is required.");
             }
         }
 

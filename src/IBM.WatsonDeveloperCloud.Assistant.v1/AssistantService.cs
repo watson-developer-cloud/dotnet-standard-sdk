@@ -90,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <summary>
         /// Get response to user input.
         ///
-        /// Get a response to a user's input.
+        /// Send user input to a workspace and receive a response.
         ///
         /// There is no rate limit for this operation.
         /// </summary>
@@ -106,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MessageResponse result = null;
@@ -159,7 +159,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         public Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Workspace result = null;
@@ -209,7 +209,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -257,14 +257,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
+        /// <param name="sort">Indicates how the returned workspace data will be sorted. This parameter is valid only if
+        /// **export**=`true`. Specify `sort=stable` to sort all workspace objects by unique identifier, in ascending
+        /// alphabetical order. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="WorkspaceExport" />WorkspaceExport</returns>
-        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             WorkspaceExport result = null;
@@ -287,6 +290,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
+                if (!string.IsNullOrEmpty(sort))
+                    restRequest.WithArgument("sort", sort);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<WorkspaceExport>().Result;
@@ -313,8 +318,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -323,7 +328,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         public WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             WorkspaceCollection result = null;
@@ -395,7 +400,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Workspace result = null;
@@ -449,7 +454,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Intent result = null;
@@ -502,7 +507,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(intent))
                 throw new ArgumentNullException(nameof(intent));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -560,7 +565,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(intent))
                 throw new ArgumentNullException(nameof(intent));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             IntentExport result = null;
@@ -614,7 +619,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
+        /// <param name="sort">The attribute by which returned intents will be sorted. To reverse the sort order, prefix
         /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
@@ -626,7 +631,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             IntentCollection result = null;
@@ -699,7 +704,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Intent result = null;
@@ -754,7 +759,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
@@ -810,7 +815,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -867,7 +872,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
@@ -916,8 +921,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned examples will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -930,7 +935,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(intent))
                 throw new ArgumentNullException(nameof(intent));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ExampleCollection result = null;
@@ -998,7 +1003,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Example result = null;
@@ -1051,7 +1056,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
@@ -1105,7 +1110,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -1160,7 +1165,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
@@ -1209,8 +1214,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned counterexamples will be sorted. To reverse the sort
+        /// order, prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1221,7 +1226,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             CounterexampleCollection result = null;
@@ -1287,7 +1292,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Counterexample result = null;
@@ -1324,7 +1329,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <summary>
         /// Create entity.
         ///
-        /// Create a new entity.
+        /// Create a new entity, or enable a system entity.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -1339,7 +1344,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Entity result = null;
@@ -1377,7 +1382,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <summary>
         /// Delete entity.
         ///
-        /// Delete an entity from a workspace.
+        /// Delete an entity from a workspace, or disable a system entity.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -1392,7 +1397,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(entity))
                 throw new ArgumentNullException(nameof(entity));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -1450,7 +1455,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(entity))
                 throw new ArgumentNullException(nameof(entity));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             EntityExport result = null;
@@ -1504,8 +1509,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned entities will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1516,7 +1521,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             EntityCollection result = null;
@@ -1588,7 +1593,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Entity result = null;
@@ -1646,7 +1651,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(entity))
                 throw new ArgumentNullException(nameof(entity));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             EntityMentionCollection result = null;
@@ -1704,7 +1709,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Value result = null;
@@ -1760,7 +1765,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException(nameof(value));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -1820,7 +1825,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException(nameof(value));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ValueExport result = null;
@@ -1874,8 +1879,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned entity values will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -1888,7 +1893,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(entity))
                 throw new ArgumentNullException(nameof(entity));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ValueCollection result = null;
@@ -1964,7 +1969,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Value result = null;
@@ -2022,7 +2027,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
@@ -2081,7 +2086,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(synonym))
                 throw new ArgumentNullException(nameof(synonym));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2141,7 +2146,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(synonym))
                 throw new ArgumentNullException(nameof(synonym));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
@@ -2191,8 +2196,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned entity value synonyms will be sorted. To reverse the sort
+        /// order, prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -2207,7 +2212,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException(nameof(value));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             SynonymCollection result = null;
@@ -2278,7 +2283,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Synonym result = null;
@@ -2330,7 +2335,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
@@ -2383,7 +2388,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(dialogNode))
                 throw new ArgumentNullException(nameof(dialogNode));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2437,7 +2442,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(dialogNode))
                 throw new ArgumentNullException(nameof(dialogNode));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
@@ -2485,8 +2490,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// 100)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
-        /// <param name="sort">The attribute by which returned results will be sorted. To reverse the sort order, prefix
-        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
@@ -2497,7 +2502,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNodeCollection result = null;
@@ -2567,7 +2572,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DialogNode result = null;
@@ -2626,7 +2631,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(filter))
                 throw new ArgumentNullException(nameof(filter));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             LogCollection result = null;
@@ -2694,7 +2699,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             LogCollection result = null;
@@ -2753,7 +2758,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException(nameof(customerId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;

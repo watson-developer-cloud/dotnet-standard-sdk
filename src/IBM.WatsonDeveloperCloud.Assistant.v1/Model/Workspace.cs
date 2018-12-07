@@ -46,7 +46,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Updated { get; private set; }
         /// <summary>
-        /// The workspace ID.
+        /// The workspace ID of the workspace.
         /// </summary>
         [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string WorkspaceId { get; private set; }

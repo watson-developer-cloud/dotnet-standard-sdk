@@ -173,8 +173,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
 
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        private string _convertedSize;
-
+        public string _convertedSize{ get; set; }
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>
@@ -218,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("index_capacity", NullValueHandling = NullValueHandling.Ignore)]
         public IndexCapacity IndexCapacity { get; set; }
         /// <summary>
-        /// Information about Continuous Relevancy Training for this environment.
+        /// Information about the Continuous Relevancy Training for this environment.
         /// </summary>
         [JsonProperty("search_status", NullValueHandling = NullValueHandling.Ignore)]
         public SearchStatus SearchStatus { get; set; }

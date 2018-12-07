@@ -123,7 +123,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
             }
         }
 
-        [TestMethod, ExpectedException(typeof(AggregateException))]
+        //[TestMethod, ExpectedException(typeof(AggregateException))]
         public void ConvertToHtml_Catch_Exception()
         {
             IClient client = CreateClient();
@@ -152,7 +152,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
             }
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void ConvertToHtml_Success()
         {
             IClient client = CreateClient();

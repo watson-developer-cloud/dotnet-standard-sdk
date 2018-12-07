@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         ///
         /// To determine whether a base model supports language model customization, use the **Get a model** method and
         /// check that the attribute `custom_language_model` is set to `true`. You can also refer to [Language support
-        /// for customization](/docs/services/speech-to-text/custom.html#languageSupport).
+        /// for customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BaseModelNameEnum
@@ -137,7 +137,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         ///
         /// To determine whether a base model supports language model customization, use the **Get a model** method and
         /// check that the attribute `custom_language_model` is set to `true`. You can also refer to [Language support
-        /// for customization](/docs/services/speech-to-text/custom.html#languageSupport).
+        /// for customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         [JsonProperty("base_model_name", NullValueHandling = NullValueHandling.Ignore)]
         public BaseModelNameEnum? BaseModelName { get; set; }

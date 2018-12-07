@@ -27,12 +27,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     public class EmotionResult : BaseModel
     {
         /// <summary>
-        /// The returned emotion results across the document.
+        /// Emotion results for the document as a whole.
         /// </summary>
         [JsonProperty("document", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentEmotionResults Document { get; set; }
         /// <summary>
-        /// The returned emotion results per specified target.
+        /// Emotion results for specified targets.
         /// </summary>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<TargetedEmotionResults> Targets { get; set; }

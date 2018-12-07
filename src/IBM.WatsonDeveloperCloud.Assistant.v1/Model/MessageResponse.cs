@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class MessageResponse : BaseModel
     {
         /// <summary>
-        /// The user input from the request.
+        /// The text of the user input.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Input { get; set; }
@@ -46,12 +46,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("alternate_intents", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic AlternateIntents { get; set; }
         /// <summary>
-        /// State information for the conversation.
+        /// State information for the conversation. To maintain state, include the context from the previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Context { get; set; }
         /// <summary>
-        /// Output from the dialog, including the response to the user, the nodes that were triggered, and log messages.
+        /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages
+        /// from the log.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Output { get; set; }

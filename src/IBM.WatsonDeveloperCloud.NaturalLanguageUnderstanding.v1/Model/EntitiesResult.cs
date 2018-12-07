@@ -51,12 +51,12 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
         /// <summary>
-        /// Emotion analysis results for the entity, enabled with the \"emotion\" option.
+        /// Emotion analysis results for the entity, enabled with the `emotion` option.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionScores Emotion { get; set; }
         /// <summary>
-        /// Sentiment analysis results for the entity, enabled with the \"sentiment\" option.
+        /// Sentiment analysis results for the entity, enabled with the `sentiment` option.
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public FeatureSentimentResults Sentiment { get; set; }

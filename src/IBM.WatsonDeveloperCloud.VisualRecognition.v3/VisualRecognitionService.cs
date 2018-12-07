@@ -45,20 +45,6 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 this.Endpoint = URL;
         }
 
-        [Obsolete("Authentication using legacy apikey is deprecated. Please authenticate using TokenOptions.")]
-        public VisualRecognitionService(string apikey, string versionDate) : this()
-        {
-            if (string.IsNullOrEmpty(apikey))
-                throw new ArgumentNullException(nameof(apikey));
-
-            this.SetCredential(apikey);
-
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-
         public VisualRecognitionService(TokenOptions options, string versionDate) : this()
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -134,7 +120,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ClassifiedImages result = null;
@@ -239,7 +225,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DetectedFaces result = null;
@@ -265,7 +251,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }
@@ -291,7 +277,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-
+        
         /// <summary>
         /// Delete a classifier.
         /// </summary>
@@ -303,7 +289,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -311,7 +297,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }
@@ -350,7 +336,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (string.IsNullOrEmpty(classifierId))
                 throw new ArgumentNullException(nameof(classifierId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifier result = null;
@@ -358,7 +344,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }
@@ -394,7 +380,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         public Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Classifiers result = null;
@@ -402,7 +388,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }
@@ -429,7 +415,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             return result;
         }
-
+        
         /// <summary>
         /// Delete labeled data.
         ///
@@ -448,7 +434,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException(nameof(customerId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -456,7 +442,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }

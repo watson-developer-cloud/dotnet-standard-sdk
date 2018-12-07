@@ -103,7 +103,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TranslationResult result = null;
@@ -150,7 +150,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             IdentifiedLanguages result = null;
@@ -196,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
         public IdentifiableLanguages ListIdentifiableLanguages(Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             IdentifiableLanguages result = null;
@@ -266,7 +266,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             if (string.IsNullOrEmpty(baseModelId))
                 throw new ArgumentNullException(nameof(baseModelId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TranslationModel result = null;
@@ -338,7 +338,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteModelResult result = null;
@@ -387,7 +387,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TranslationModel result = null;
@@ -437,7 +437,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
         public TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TranslationModels result = null;

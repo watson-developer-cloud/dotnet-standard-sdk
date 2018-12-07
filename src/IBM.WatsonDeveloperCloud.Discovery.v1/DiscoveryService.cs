@@ -18,7 +18,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.Serialization;
 using System.Text;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
@@ -111,7 +110,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Environment result = null;
@@ -157,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteEnvironmentResponse result = null;
@@ -202,7 +201,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Environment result = null;
@@ -247,7 +246,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public ListEnvironmentsResponse ListEnvironments(string name = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListEnvironmentsResponse result = null;
@@ -299,7 +298,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (collectionIds == null)
                 throw new ArgumentNullException(nameof(collectionIds));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListCollectionFieldsResponse result = null;
@@ -352,7 +351,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Environment result = null;
@@ -423,7 +422,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Configuration result = null;
@@ -477,7 +476,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(configurationId))
                 throw new ArgumentNullException(nameof(configurationId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteConfigurationResponse result = null;
@@ -525,7 +524,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(configurationId))
                 throw new ArgumentNullException(nameof(configurationId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Configuration result = null;
@@ -573,7 +572,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListConfigurationsResponse result = null;
@@ -648,7 +647,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Configuration result = null;
@@ -717,7 +716,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TestDocument result = null;
@@ -794,7 +793,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Collection result = null;
@@ -843,7 +842,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteCollectionResponse result = null;
@@ -891,7 +890,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Collection result = null;
@@ -941,7 +940,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListCollectionFieldsResponse result = null;
@@ -989,7 +988,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             ListCollectionsResponse result = null;
@@ -1040,7 +1039,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Collection result = null;
@@ -1095,7 +1094,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Expansions result = null;
@@ -1148,7 +1147,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TokenDictStatusResponse result = null;
@@ -1200,7 +1199,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -1250,7 +1249,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -1300,7 +1299,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TokenDictStatusResponse result = null;
@@ -1351,7 +1350,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Expansions result = null;
@@ -1429,7 +1428,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DocumentAccepted result = null;
@@ -1502,7 +1501,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(documentId))
                 throw new ArgumentNullException(nameof(documentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteDocumentResponse result = null;
@@ -1557,7 +1556,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(documentId))
                 throw new ArgumentNullException(nameof(documentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DocumentStatus result = null;
@@ -1620,7 +1619,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(documentId))
                 throw new ArgumentNullException(nameof(documentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DocumentAccepted result = null;
@@ -1747,7 +1746,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryResponse result = null;
@@ -1865,7 +1864,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (collectionIds == null)
                 throw new ArgumentNullException(nameof(collectionIds));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryNoticesResponse result = null;
@@ -1992,6 +1991,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// field values closer to the current date. When a **number** type field is specified, returned results are
         /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
         /// (optional)</param>
+
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -2003,7 +2003,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryResponse result = null;
@@ -2085,7 +2085,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (entityQuery == null)
                 throw new ArgumentNullException(nameof(entityQuery));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryEntitiesResponse result = null;
@@ -2183,7 +2183,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryNoticesResponse result = null;
@@ -2272,7 +2272,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (relationshipQuery == null)
                 throw new ArgumentNullException(nameof(relationshipQuery));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             QueryRelationsResponse result = null;
@@ -2327,7 +2327,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingQuery result = null;
@@ -2384,7 +2384,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingExample result = null;
@@ -2435,7 +2435,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2488,7 +2488,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(queryId))
                 throw new ArgumentNullException(nameof(queryId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2544,7 +2544,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(exampleId))
                 throw new ArgumentNullException(nameof(exampleId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2597,7 +2597,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(queryId))
                 throw new ArgumentNullException(nameof(queryId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingQuery result = null;
@@ -2653,7 +2653,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(exampleId))
                 throw new ArgumentNullException(nameof(exampleId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingExample result = null;
@@ -2703,7 +2703,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(collectionId))
                 throw new ArgumentNullException(nameof(collectionId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingDataSet result = null;
@@ -2756,7 +2756,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(queryId))
                 throw new ArgumentNullException(nameof(queryId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingExampleList result = null;
@@ -2815,7 +2815,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (body == null)
                 throw new ArgumentNullException(nameof(body));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             TrainingExample result = null;
@@ -2867,7 +2867,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException(nameof(customerId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             BaseModel result = null;
@@ -2916,7 +2916,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (queryEvent == null)
                 throw new ArgumentNullException(nameof(queryEvent));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             CreateEventResponse result = null;
@@ -2968,7 +2968,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MetricResponse result = null;
@@ -3023,7 +3023,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MetricResponse result = null;
@@ -3080,7 +3080,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MetricResponse result = null;
@@ -3136,7 +3136,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MetricResponse result = null;
@@ -3189,7 +3189,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             MetricTokenResponse result = null;
@@ -3249,7 +3249,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         public LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null)
         {
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             LogQueryResponse result = null;
@@ -3311,7 +3311,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (credentialsParameter == null)
                 throw new ArgumentNullException(nameof(credentialsParameter));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Credentials result = null;
@@ -3362,7 +3362,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(credentialId))
                 throw new ArgumentNullException(nameof(credentialId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             DeleteCredentials result = null;
@@ -3415,7 +3415,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(credentialId))
                 throw new ArgumentNullException(nameof(credentialId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Credentials result = null;
@@ -3464,7 +3464,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             CredentialsList result = null;
@@ -3519,7 +3519,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             if (credentialsParameter == null)
                 throw new ArgumentNullException(nameof(credentialsParameter));
 
-            if(string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             Credentials result = null;

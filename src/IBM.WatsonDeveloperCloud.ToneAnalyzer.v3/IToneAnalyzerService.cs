@@ -22,7 +22,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 {
     public partial interface IToneAnalyzerService
     {
-        ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
+        ToneAnalysis Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
         UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
     }
 }

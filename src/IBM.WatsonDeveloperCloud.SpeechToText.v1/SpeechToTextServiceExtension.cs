@@ -51,13 +51,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// <param name="smartFormatting"></param>
         /// <param name="speakerLabels"></param>
         /// <returns></returns>
-        public SpeechRecognitionResults Recognize(string contentType, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string customizationId = "", bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null)
+        public SpeechRecognitionResults Recognize(string contentType, Stream audio, string transferEncoding = "", string model = "en-US_BroadbandModel", string languageCustomizationId = null, bool? continuous = null, int? inactivityTimeout = null, string[] keywords = null, double? keywordsThreshold = null, int? maxAlternatives = null, double? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool profanityFilter = false, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null)
         {
             if (audio == null)
                 throw new ArgumentNullException($"{nameof(audio)}");
-
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException($"{nameof(contentType)}");
 
             SpeechRecognitionResults result = null;
 
@@ -83,8 +80,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 if (!string.IsNullOrEmpty(transferEncoding))
                     restRequest.WithHeader("Transfer-Encoding", transferEncoding);
 
-                if (!string.IsNullOrEmpty(customizationId))
-                    restRequest.WithArgument("customization_id", customizationId);
+                if (!string.IsNullOrEmpty(languageCustomizationId))
+                    restRequest.WithArgument("language_customization_id", languageCustomizationId);
 
                 if (continuous.HasValue)
                     restRequest.WithArgument("continuous", continuous.Value);
@@ -119,8 +116,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 if (speakerLabels.HasValue)
                     restRequest.WithArgument("speaker_labels", speakerLabels.Value);
 
+                if (!string.IsNullOrEmpty(customizationId))
+                    restRequest.WithArgument("customization_id", customizationId);
+
                 StreamContent bodyContent = new StreamContent(audio);
-                bodyContent.Headers.Add("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(contentType))
+                    bodyContent.Headers.Add("Content-Type", contentType);
 
                 restRequest.WithBodyContent(bodyContent);
 

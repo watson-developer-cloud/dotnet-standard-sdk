@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The document conversion settings for the configuration.
+        /// Document conversion settings.
         /// </summary>
         [JsonProperty("conversions", NullValueHandling = NullValueHandling.Ignore)]
         public Conversions Conversions { get; set; }

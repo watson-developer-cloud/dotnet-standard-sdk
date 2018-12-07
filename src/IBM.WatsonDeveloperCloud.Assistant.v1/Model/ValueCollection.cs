@@ -31,7 +31,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValueExport> Values { get; set; }
         /// <summary>
-        /// An object defining the pagination data for the returned objects.
+        /// The pagination data for the returned objects.
         /// </summary>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }

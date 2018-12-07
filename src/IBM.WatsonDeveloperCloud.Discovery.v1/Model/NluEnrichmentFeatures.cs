@@ -45,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentEmotion Emotion { get; set; }
         /// <summary>
-        /// An object specifying the categories enrichment and related parameters.
+        /// An object that indicates the Categories enrichment will be applied to the specified field.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentCategories Categories { get; set; }
@@ -59,6 +59,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentRelations Relations { get; set; }
+        /// <summary>
+        /// An object specifiying the concepts enrichment and related parameters.
+        /// </summary>
+        [JsonProperty("concepts", NullValueHandling = NullValueHandling.Ignore)]
+        public NluEnrichmentConcepts Concepts { get; set; }
     }
 
 }

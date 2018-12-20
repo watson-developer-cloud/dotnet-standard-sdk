@@ -31,14 +31,13 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
     [TestClass]
     public class ToneAnalyzerServiceIntegrationTests
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
+        private static string apikey;
+        private static string endpoint;
         private string inputText = "Hello! Welcome to IBM Watson! How can I help you?";
         private string chatUser = "testChatUser";
         private string versionDate = "2016-05-19";
         private static string credentials = string.Empty;
-        private ToneAnalyzerService _service;
+        private ToneAnalyzerService service;
 
         [TestInitialize]
         public void Setup()
@@ -69,24 +68,29 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("tone-analyzer-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
+
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+
+            service = new ToneAnalyzerService(tokenOptions, versionDate);
             #endregion
         }
 
         [TestMethod]
         public void PostTone_Success()
         {
-            _service = new ToneAnalyzerService(_username, _password, versionDate);
-
             ToneInput toneInput = new ToneInput()
             {
                 Text = inputText
             };
 
-            var result = _service.Tone(toneInput, "text/html", null);
+            var result = service.Tone(toneInput, "text/html", null);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.DocumentTone.ToneCategories.Count >= 1);
@@ -96,8 +100,6 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         [TestMethod]
         public void ToneChat_Success()
         {
-            _service = new ToneAnalyzerService(_username, _password, versionDate);
-
             ToneChatInput toneChatInput = new ToneChatInput()
             {
                 Utterances = new List<Utterance>()
@@ -109,7 +111,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
                     }
                 }
             };
-            var result = _service.ToneChat(toneChatInput);
+            var result = service.ToneChat(toneChatInput);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.UtterancesTone.Count > 0);
@@ -120,7 +122,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         private ToneAnalysis Tone(ToneInput toneInput, string contentType, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Tone()");
-            var result = _service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
+            var result = service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
 
             if (result != null)
             {
@@ -139,7 +141,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.IntegrationTests
         private UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ToneChat()");
-            var result = _service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
+            var result = service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, customData: customData);
 
             if (result != null)
             {

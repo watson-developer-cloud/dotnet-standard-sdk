@@ -28,8 +28,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.IntTests
     [TestClass]
     public class AssistantServiceIntegrationTests
     {
-        private static string username;
-        private static string password;
+        private static string apikey;
         private static string endpoint;
         private AssistantService service;
         private static string credentials = string.Empty;
@@ -69,13 +68,18 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.IntTests
 
                 Credential credential = vcapCredentials.GetCredentialByname("assistant-sdk")[0].Credentials;
                 endpoint = credential.Url;
-                username = credential.Username;
-                password = credential.Password;
+                apikey = credential.IamApikey;
                 assistantId = credential.AssistantId;
             }
             #endregion
 
-            service = new AssistantService(username, password, versionDate);
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+
+            service = new AssistantService(tokenOptions, versionDate);
             service.SetEndpoint(endpoint);
         }
 

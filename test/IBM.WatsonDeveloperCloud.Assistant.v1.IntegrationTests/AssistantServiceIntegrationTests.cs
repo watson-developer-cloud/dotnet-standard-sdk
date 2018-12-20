@@ -32,31 +32,30 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
     [TestClass]
     public class AssistantServiceIntegrationTests
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
-        private AssistantService _service;
+        private static string apikey;
+        private static string endpoint;
+        private AssistantService service;
         private static string credentials = string.Empty;
 
-        private static string _workspaceID;
-        private string _inputString = "Hello";
-        private string _assistantString0 = "Are you open on christmas?";
-        private string _assistantString1 = "Can you connect me to a real person?";
-        private string _assistantString2 = "goodbye";
+        private static string workspaceID;
+        private string inputString = "Hello";
+        private string assistantString0 = "Are you open on christmas?";
+        private string assistantString1 = "Can you connect me to a real person?";
+        private string assistantString2 = "goodbye";
 
-        private static string _createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
-        private static string _createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script. Please delete this.";
-        private static string _createdWorkspaceLanguage = "en";
-        private static string _createdEntity = "entity";
-        private static string _createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
-        private static string _createdValue = "value";
-        private static string _createdIntent = "intent";
-        private static string _createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
-        private static string _createdCounterExampleText = "Example text";
-        private static string _createdSynonym = "synonym";
-        private static string _createdExample = "example";
-        private static string _dialogNodeName = "dialognode";
-        private static string _dialogNodeDesc = ".NET SDK Integration test dialog node";
+        private static string createdWorkspaceName = "dotnet-sdk-example-workspace-delete";
+        private static string createdWorkspaceDescription = "A Workspace created by the .NET SDK Conversation example script. Please delete this.";
+        private static string createdWorkspaceLanguage = "en";
+        private static string createdEntity = "entity";
+        private static string createdEntityDescription = "Entity created by the .NET SDK Conversation example script.";
+        private static string createdValue = "value";
+        private static string createdIntent = "intent";
+        private static string createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
+        private static string createdCounterExampleText = "Example text";
+        private static string createdSynonym = "synonym";
+        private static string createdExample = "example";
+        private static string dialogNodeName = "dialognode";
+        private static string dialogNodeDesc = ".NET SDK Integration test dialog node";
 
         [TestInitialize]
         public void Setup()
@@ -87,15 +86,19 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("assistant-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
-                _workspaceID = credential.WorkspaceId;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
+                workspaceID = credential.WorkspaceId;
             }
             #endregion
 
-            _service = new AssistantService(_username, _password, "2018-02-16");
-            _service.SetEndpoint(_endpoint);
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+            service = new AssistantService(tokenOptions, "2018-02-16");
+            service.SetEndpoint(endpoint);
 
 #if DELETE_DOTNET_WORKSPACES
             var workspaces = _service.ListWorkspaces();
@@ -126,12 +129,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         [TestCleanup]
         public void Teardown()
         {
-            var workspaces = _service.ListWorkspaces();
+            var workspaces = service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
             foreach (Workspace workspace in workspaces.Workspaces)
             {
-                if (workspace.Name == _createdWorkspaceName)
+                if (workspace.Name == createdWorkspaceName)
                     dotnet_workpaces.Add(workspace.WorkspaceId);
             }
 
@@ -162,11 +165,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             {
                 Input = new InputData()
                 {
-                    Text = _inputString
+                    Text = inputString
                 }
             };
 
-            var results0 = Message(_workspaceID, messageRequest0);
+            var results0 = Message(workspaceID, messageRequest0);
             context = results0.Context;
             intents.Add(GetIntent(results0));
 
@@ -174,12 +177,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             {
                 Input = new InputData()
                 {
-                    Text = _assistantString0
+                    Text = assistantString0
                 },
                 Context = context
             };
 
-            var results1 = Message(_workspaceID, messageRequest1);
+            var results1 = Message(workspaceID, messageRequest1);
             context = results1.Context;
             intents.Add(GetIntent(results1));
 
@@ -187,12 +190,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             {
                 Input = new InputData()
                 {
-                    Text = _assistantString1
+                    Text = assistantString1
                 },
                 Context = context
             };
 
-            var results2 = Message(_workspaceID, messageRequest2);
+            var results2 = Message(workspaceID, messageRequest2);
             context = results2.Context;
             intents.Add(GetIntent(results2));
 
@@ -200,12 +203,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             {
                 Input = new InputData()
                 {
-                    Text = _assistantString2
+                    Text = assistantString2
                 },
                 Context = context
             };
 
-            var results3 = Message(_workspaceID, messageRequest3);
+            var results3 = Message(workspaceID, messageRequest3);
             context = results3.Context;
             intents.Add(GetIntent(results3));
 
@@ -247,9 +250,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace createWorkspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage
             };
 
             var createWorkspaceResult = CreateWorkspace(createWorkspace);
@@ -258,14 +261,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateCounterexample example = new CreateCounterexample()
             {
-                Text = _createdCounterExampleText
+                Text = createdCounterExampleText
             };
 
             var createCounterexampleResult = CreateCounterexample(workspaceId, example);
 
             var getCounterexampleResult = GetCounterexample(workspaceId, example.Text);
 
-            string updatedCounterExampleText = _createdCounterExampleText + "-updated";
+            string updatedCounterExampleText = createdCounterExampleText + "-updated";
             UpdateCounterexample updateCounterExample = new UpdateCounterexample()
             {
                 Text = updatedCounterExampleText
@@ -296,7 +299,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             {
                 Input = new InputData()
                 {
-                    Text = _inputString
+                    Text = inputString
                 },
                 AlternateIntents = true
             };
@@ -306,7 +309,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
             customHeaders.Add("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
             customData.Add(Constants.CUSTOM_REQUEST_HEADERS, customHeaders);
 
-            var results = Message(_workspaceID, messageRequest, customData: customData);
+            var results = Message(workspaceID, messageRequest, customData: customData);
 
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.CustomData);
@@ -324,9 +327,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -337,9 +340,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             UpdateWorkspace updateWorkspace = new UpdateWorkspace()
             {
-                Name = _createdWorkspaceName + "-updated",
-                Description = _createdWorkspaceDescription + "-updated",
-                Language = _createdWorkspaceLanguage
+                Name = createdWorkspaceName + "-updated",
+                Description = createdWorkspaceDescription + "-updated",
+                Language = createdWorkspaceLanguage
             };
 
             var updateWorkspaceResult = UpdateWorkspace(workspaceId, updateWorkspace);
@@ -363,9 +366,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -375,15 +378,15 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateEntity entity = new CreateEntity()
             {
-                Entity = _createdEntity,
-                Description = _createdEntityDescription
+                Entity = createdEntity,
+                Description = createdEntityDescription
             };
 
             var createEntityResult = CreateEntity(workspaceId, entity);
             var getEntityResult = GetEntity(workspaceId, entity.Entity);
 
-            string updatedEntity = _createdEntity + "-updated";
-            string updatedEntityDescription = _createdEntityDescription + "-updated";
+            string updatedEntity = createdEntity + "-updated";
+            string updatedEntityDescription = createdEntityDescription + "-updated";
             UpdateEntity updateEntity = new UpdateEntity()
             {
                 Entity = updatedEntity,
@@ -413,9 +416,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -424,8 +427,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateEntity entity = new CreateEntity()
             {
-                Entity = _createdEntity,
-                Description = _createdEntityDescription
+                Entity = createdEntity,
+                Description = createdEntityDescription
             };
 
             var createEntityResult = CreateEntity(workspaceId, entity);
@@ -433,13 +436,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateValue value = new CreateValue()
             {
-                Value = _createdValue
+                Value = createdValue
             };
 
             var createValueResult = CreateValue(workspaceId, entity.Entity, value);
             var getValueResult = GetValue(workspaceId, entity.Entity, value.Value);
 
-            string updatedValue = _createdValue + "-updated";
+            string updatedValue = createdValue + "-updated";
             UpdateValue updateValue = new UpdateValue()
             {
                 Value = updatedValue
@@ -468,9 +471,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -479,14 +482,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateEntity entity = new CreateEntity()
             {
-                Entity = _createdEntity,
-                Description = _createdEntityDescription
+                Entity = createdEntity,
+                Description = createdEntityDescription
             };
 
             var createEntityResult = CreateEntity(workspaceId, entity);
             CreateValue value = new CreateValue()
             {
-                Value = _createdValue
+                Value = createdValue
             };
 
             var createValueResult = CreateValue(workspaceId, entity.Entity, value);
@@ -494,12 +497,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateSynonym synonym = new CreateSynonym()
             {
-                Synonym = _createdSynonym
+                Synonym = createdSynonym
             };
             var createSynonymResult = CreateSynonym(workspaceId, entity.Entity, value.Value, synonym);
             var getSynonymResult = GetSynonym(workspaceId, entity.Entity, value.Value, synonym.Synonym);
 
-            string updatedSynonym = _createdSynonym + "-updated";
+            string updatedSynonym = createdSynonym + "-updated";
             UpdateSynonym updateSynonym = new UpdateSynonym()
             {
                 Synonym = updatedSynonym
@@ -528,9 +531,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -540,15 +543,15 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateIntent createIntent = new CreateIntent()
             {
-                Intent = _createdIntent,
-                Description = _createdIntentDescription
+                Intent = createdIntent,
+                Description = createdIntentDescription
             };
 
             var createIntentResult = CreateIntent(workspaceId, createIntent);
             var getIntentResult = GetIntent(workspaceId, createIntent.Intent);
 
-            string updatedIntent = _createdIntent + "-updated";
-            string updatedIntentDescription = _createdIntentDescription + "-updated";
+            string updatedIntent = createdIntent + "-updated";
+            string updatedIntentDescription = createdIntentDescription + "-updated";
             UpdateIntent updateIntent = new UpdateIntent()
             {
                 Intent = updatedIntent,
@@ -576,9 +579,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -587,8 +590,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateIntent createIntent = new CreateIntent()
             {
-                Intent = _createdIntent,
-                Description = _createdIntentDescription
+                Intent = createdIntent,
+                Description = createdIntentDescription
             };
 
             var createIntentResult = CreateIntent(workspaceId, createIntent);
@@ -596,12 +599,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateExample createExample = new CreateExample()
             {
-                Text = _createdExample
+                Text = createdExample
             };
             var createExampleResult = CreateExample(workspaceId, createIntent.Intent, createExample);
             var getExampleResult = GetExample(workspaceId, createIntent.Intent, createExample.Text);
 
-            string updatedExample = _createdExample + "-updated";
+            string updatedExample = createdExample + "-updated";
             UpdateExample updateExample = new UpdateExample()
             {
                 Text = updatedExample
@@ -629,9 +632,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -641,14 +644,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateDialogNode createDialogNode = new CreateDialogNode()
             {
-                DialogNode = _dialogNodeName,
-                Description = _dialogNodeDesc
+                DialogNode = dialogNodeName,
+                Description = dialogNodeDesc
             };
             var createDialogNodeResult = CreateDialogNode(workspaceId, createDialogNode);
             var getDialogNodeResult = GetDialogNode(workspaceId, createDialogNode.DialogNode);
 
-            string updatedDialogNodeName = _dialogNodeName + "_updated";
-            string updatedDialogNodeDescription = _dialogNodeDesc + "_updated";
+            string updatedDialogNodeName = dialogNodeName + "_updated";
+            string updatedDialogNodeDescription = dialogNodeDesc + "_updated";
             UpdateDialogNode updateDialogNode = new UpdateDialogNode()
             {
                 DialogNode = updatedDialogNodeName,
@@ -679,9 +682,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -708,9 +711,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         {
             CreateWorkspace workspace = new CreateWorkspace()
             {
-                Name = _createdWorkspaceName,
-                Description = _createdWorkspaceDescription,
-                Language = _createdWorkspaceLanguage,
+                Name = createdWorkspaceName,
+                Description = createdWorkspaceDescription,
+                Language = createdWorkspaceLanguage,
                 LearningOptOut = true
             };
 
@@ -719,13 +722,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
 
             CreateEntity entity = new CreateEntity()
             {
-                Entity = _createdEntity,
-                Description = _createdEntityDescription
+                Entity = createdEntity,
+                Description = createdEntityDescription
             };
 
             var createEntityResult = CreateEntity(workspaceId, entity);
 
-            var ListMentionsResult = ListMentions(workspaceId, _createdEntity);
+            var ListMentionsResult = ListMentions(workspaceId, createdEntity);
 
             Assert.IsNotNull(createEntityResult);
             Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.EntityName));
@@ -745,7 +748,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Message()");
-            var result = _service.Message(workspaceId: workspaceId, request: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
+            var result = service.Message(workspaceId: workspaceId, request: request, nodesVisitedDetails: nodesVisitedDetails, customData: customData);
 
             if (result != null)
             {
@@ -764,7 +767,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateWorkspace()");
-            var result = _service.CreateWorkspace(properties: properties, customData: customData);
+            var result = service.CreateWorkspace(properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -783,7 +786,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteWorkspace()");
-            var result = _service.DeleteWorkspace(workspaceId: workspaceId, customData: customData);
+            var result = service.DeleteWorkspace(workspaceId: workspaceId, customData: customData);
 
             if (result != null)
             {
@@ -802,7 +805,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetWorkspace()");
-            var result = _service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit, customData: customData);
+            var result = service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -821,7 +824,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListWorkspaces()");
-            var result = _service.ListWorkspaces(pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListWorkspaces(pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -840,7 +843,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateWorkspace()");
-            var result = _service.UpdateWorkspace(workspaceId: workspaceId, properties: properties, append: append, customData: customData);
+            var result = service.UpdateWorkspace(workspaceId: workspaceId, properties: properties, append: append, customData: customData);
 
             if (result != null)
             {
@@ -859,7 +862,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Intent CreateIntent(string workspaceId, CreateIntent body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateIntent()");
-            var result = _service.CreateIntent(workspaceId: workspaceId, body: body, customData: customData);
+            var result = service.CreateIntent(workspaceId: workspaceId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -878,7 +881,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteIntent()");
-            var result = _service.DeleteIntent(workspaceId: workspaceId, intent: intent, customData: customData);
+            var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent, customData: customData);
 
             if (result != null)
             {
@@ -897,7 +900,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetIntent()");
-            var result = _service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit, customData: customData);
+            var result = service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -916,7 +919,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListIntents()");
-            var result = _service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -935,7 +938,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateIntent()");
-            var result = _service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
+            var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
 
             if (result != null)
             {
@@ -954,7 +957,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Example CreateExample(string workspaceId, string intent, CreateExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateExample()");
-            var result = _service.CreateExample(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
+            var result = service.CreateExample(workspaceId: workspaceId, intent: intent, body: body, customData: customData);
 
             if (result != null)
             {
@@ -973,7 +976,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExample()");
-            var result = _service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text, customData: customData);
+            var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text, customData: customData);
 
             if (result != null)
             {
@@ -992,7 +995,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetExample()");
-            var result = _service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit, customData: customData);
+            var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1011,7 +1014,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListExamples()");
-            var result = _service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1030,7 +1033,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateExample()");
-            var result = _service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body, customData: customData);
+            var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1049,7 +1052,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateCounterexample()");
-            var result = _service.CreateCounterexample(workspaceId: workspaceId, body: body, customData: customData);
+            var result = service.CreateCounterexample(workspaceId: workspaceId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1068,7 +1071,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCounterexample()");
-            var result = _service.DeleteCounterexample(workspaceId: workspaceId, text: text, customData: customData);
+            var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text, customData: customData);
 
             if (result != null)
             {
@@ -1087,7 +1090,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetCounterexample()");
-            var result = _service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit, customData: customData);
+            var result = service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1106,7 +1109,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCounterexamples()");
-            var result = _service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1125,7 +1128,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateCounterexample()");
-            var result = _service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body, customData: customData);
+            var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1144,7 +1147,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Entity CreateEntity(string workspaceId, CreateEntity properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateEntity()");
-            var result = _service.CreateEntity(workspaceId: workspaceId, properties: properties, customData: customData);
+            var result = service.CreateEntity(workspaceId: workspaceId, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1163,7 +1166,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteEntity()");
-            var result = _service.DeleteEntity(workspaceId: workspaceId, entity: entity, customData: customData);
+            var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity, customData: customData);
 
             if (result != null)
             {
@@ -1182,7 +1185,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetEntity()");
-            var result = _service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
+            var result = service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1201,7 +1204,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListEntities()");
-            var result = _service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1220,7 +1223,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateEntity()");
-            var result = _service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
+            var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1239,7 +1242,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private EntityMentionCollection ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListMentions()");
-            var result = _service.ListMentions(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
+            var result = service.ListMentions(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1258,7 +1261,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Value CreateValue(string workspaceId, string entity, CreateValue properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateValue()");
-            var result = _service.CreateValue(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
+            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1277,7 +1280,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteValue()");
-            var result = _service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value, customData: customData);
+            var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value, customData: customData);
 
             if (result != null)
             {
@@ -1296,7 +1299,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetValue()");
-            var result = _service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit, customData: customData);
+            var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1315,7 +1318,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListValues()");
-            var result = _service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1334,7 +1337,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateValue()");
-            var result = _service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, properties: properties, customData: customData);
+            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1353,7 +1356,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateSynonym()");
-            var result = _service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body, customData: customData);
+            var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1372,7 +1375,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteSynonym()");
-            var result = _service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, customData: customData);
+            var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, customData: customData);
 
             if (result != null)
             {
@@ -1391,7 +1394,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetSynonym()");
-            var result = _service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit, customData: customData);
+            var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1410,7 +1413,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListSynonyms()");
-            var result = _service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1429,7 +1432,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateSynonym()");
-            var result = _service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body, customData: customData);
+            var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1448,7 +1451,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateDialogNode()");
-            var result = _service.CreateDialogNode(workspaceId: workspaceId, properties: properties, customData: customData);
+            var result = service.CreateDialogNode(workspaceId: workspaceId, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1467,7 +1470,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteDialogNode()");
-            var result = _service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, customData: customData);
+            var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, customData: customData);
 
             if (result != null)
             {
@@ -1486,7 +1489,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetDialogNode()");
-            var result = _service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit, customData: customData);
+            var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1505,7 +1508,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListDialogNodes()");
-            var result = _service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
+            var result = service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, includeCount: includeCount, sort: sort, cursor: cursor, includeAudit: includeAudit, customData: customData);
 
             if (result != null)
             {
@@ -1524,7 +1527,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateDialogNode()");
-            var result = _service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties, customData: customData);
+            var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, properties: properties, customData: customData);
 
             if (result != null)
             {
@@ -1543,7 +1546,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListAllLogs()");
-            var result = _service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor, customData: customData);
+            var result = service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor, customData: customData);
 
             if (result != null)
             {
@@ -1562,7 +1565,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListLogs()");
-            var result = _service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor, customData: customData);
+            var result = service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor, customData: customData);
 
             if (result != null)
             {
@@ -1581,7 +1584,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.IntegrationTests
         private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteUserData()");
-            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+            var result = service.DeleteUserData(customerId: customerId, customData: customData);
 
             if (result != null)
             {

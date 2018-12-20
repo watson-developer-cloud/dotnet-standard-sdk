@@ -31,20 +31,20 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
     [TestClass]
     public class VisualRecognitionServiceIntegrationTestsRC
     {
-        private VisualRecognitionService _service;
+        private VisualRecognitionService service;
         private static string credentials = string.Empty;
-        private static string _apikey;
-        private static string _endpoint;
-        private string _imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
-        private string _faceUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Ginni_Rometty_at_the_Fortune_MPW_Summit_in_2011.jpg";
-        private string _localGiraffeFilePath = @"VisualRecognitionTestData/giraffe_to_classify.jpg";
-        private string _localFaceFilePath = @"VisualRecognitionTestData/obama.jpg";
-        private string _localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData/giraffe_positive_examples.zip";
-        private string _giraffeClassname = "giraffe";
-        private string _localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
-        private string _turtleClassname = "turtle";
-        private string _localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
-        private string _createdClassifierName = "dotnet-standard-test-integration-classifier";
+        private static string apikey;
+        private static string endpoint;
+        private string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/1200px-Kittyply_edit1.jpg";
+        private string faceUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Ginni_Rometty_at_the_Fortune_MPW_Summit_in_2011.jpg";
+        private string localGiraffeFilePath = @"VisualRecognitionTestData/giraffe_to_classify.jpg";
+        private string localFaceFilePath = @"VisualRecognitionTestData/obama.jpg";
+        private string localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData/giraffe_positive_examples.zip";
+        private string giraffeClassname = "giraffe";
+        private string localTurtlePositiveExamplesFilePath = @"VisualRecognitionTestData/turtle_positive_examples.zip";
+        private string turtleClassname = "turtle";
+        private string localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
+        private string createdClassifierName = "dotnet-standard-test-integration-classifier";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         private static int _trainRetries = 3;
@@ -83,18 +83,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk-rc")[0].Credentials;
-                _endpoint = credential.Url;
-                _apikey = credential.IamApikey;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
             TokenOptions tokenOptions = new TokenOptions()
             {
-                IamApiKey = _apikey,
-                ServiceUrl = _endpoint
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
             };
-            _service = new VisualRecognitionService(tokenOptions, "2018-03-19");
-            _service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
+            service = new VisualRecognitionService(tokenOptions, "2018-03-19");
+            service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
 
@@ -102,12 +102,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestCleanup]
         public void Teardown()
         {
-            var classifiers = _service.ListClassifiers();
+            var classifiers = service.ListClassifiers();
             List<string> dotnet_classifiers = new List<string>();
 
             foreach (Classifier classifier in classifiers._Classifiers)
             {
-                if (classifier.Name == _createdClassifierName)
+                if (classifier.Name == createdClassifierName)
                     dotnet_classifiers.Add(classifier.ClassifierId);
             }
 
@@ -132,9 +132,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void Classify_Success_RC()
         {
-            using (FileStream fs = File.OpenRead(_localGiraffeFilePath))
+            using (FileStream fs = File.OpenRead(localGiraffeFilePath))
             {
-                var result = _service.Classify(fs, imagesFileContentType: "image/jpeg");
+                var result = service.Classify(fs, imagesFileContentType: "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -145,7 +145,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void ClassifyURL_Success_RC()
         {
-            var result = _service.Classify(url: _imageUrl);
+            var result = service.Classify(url: imageUrl);
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Images);
@@ -157,9 +157,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void DetectFaces_Success_RC()
         {
-            using (FileStream fs = File.OpenRead(_localFaceFilePath))
+            using (FileStream fs = File.OpenRead(localFaceFilePath))
             {
-                var result = _service.DetectFaces(fs, null, "image/jpeg");
+                var result = service.DetectFaces(fs, null, "image/jpeg");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -170,9 +170,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void DetectFacesURL_Success_RC()
         {
-            using (FileStream fs = File.OpenRead(_localFaceFilePath))
+            using (FileStream fs = File.OpenRead(localFaceFilePath))
             {
-                var result = _service.DetectFaces(url: _faceUrl, imagesFile: fs, imagesFileContentType: "image/jpg");
+                var result = service.DetectFaces(url: faceUrl, imagesFile: fs, imagesFileContentType: "image/jpg");
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
                 Assert.IsTrue(result.Images.Count > 0);
@@ -188,7 +188,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             try
             {
-                listClassifiersResult = _service.ListClassifiers();
+                listClassifiersResult = service.ListClassifiers();
             }
             catch
             {
@@ -275,7 +275,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             Assert.IsNotNull(getClassifierResult);
             Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
             Assert.IsNotNull(createClassifierResult);
-            Assert.IsTrue(createClassifierResult.Name == _createdClassifierName);
+            Assert.IsTrue(createClassifierResult.Name == createdClassifierName);
         }
         #endregion
 
@@ -286,12 +286,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             try
             {
-                using (FileStream positiveExamplesStream = File.OpenRead(_localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(_localNegativeExamplesFilePath))
+                using (FileStream positiveExamplesStream = File.OpenRead(localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(localNegativeExamplesFilePath))
                 {
                     Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                    positiveExamples.Add(_giraffeClassname, positiveExamplesStream);
-                    CreateClassifier createClassifier = new CreateClassifier(_createdClassifierName, positiveExamples, negativeExamplesStream);
-                    classifier = _service.CreateClassifier(createClassifier);
+                    positiveExamples.Add(giraffeClassname, positiveExamplesStream);
+                    CreateClassifier createClassifier = new CreateClassifier(createdClassifierName, positiveExamples, negativeExamplesStream);
+                    classifier = service.CreateClassifier(createClassifier);
                 }
             }
             catch (Exception e)
@@ -316,12 +316,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             try
             {
-                using (FileStream positiveExamplesStream = File.OpenRead(_localTurtlePositiveExamplesFilePath))
+                using (FileStream positiveExamplesStream = File.OpenRead(localTurtlePositiveExamplesFilePath))
                 {
                     Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-                    positiveExamples.Add(_turtleClassname, positiveExamplesStream);
+                    positiveExamples.Add(turtleClassname, positiveExamplesStream);
                     UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-                    updateClassifierResult = _service.UpdateClassifier(updateClassifier);
+                    updateClassifierResult = service.UpdateClassifier(updateClassifier);
                 }
             }
             catch (Exception e)
@@ -347,7 +347,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
             Classifiers result = null;
             try
             {
-                result = _service.ListClassifiers(verbose: verbose);
+                result = service.ListClassifiers(verbose: verbose);
             }
             catch (Exception e)
             {
@@ -382,7 +382,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
             try
             {
-                getCoreMlModelResult = _service.GetCoreMlModel(createdClassifierId);
+                getCoreMlModelResult = service.GetCoreMlModel(createdClassifierId);
             }
             catch (Exception e)
             {
@@ -397,7 +397,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #region IsClassifierReady
         private void IsClassifierReady(string classifierId)
         {
-            var getClassifierResponse = _service.GetClassifier(classifierId);
+            var getClassifierResponse = service.GetClassifier(classifierId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getClassifierResponse.Status.ToString()));
 
@@ -429,7 +429,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
-            var result = _service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType, customData: customData);
+            var result = service.Classify(imagesFile: imagesFile, acceptLanguage: acceptLanguage, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, imagesFileContentType: imagesFileContentType, customData: customData);
 
             if (result != null)
             {
@@ -448,7 +448,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DetectFaces()");
-            var result = _service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType, customData: customData);
+            var result = service.DetectFaces(imagesFile: imagesFile, url: url, imagesFileContentType: imagesFileContentType, customData: customData);
 
             if (result != null)
             {
@@ -467,7 +467,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(createClassifier: createClassifier, customData: customData);
+            var result = service.CreateClassifier(createClassifier: createClassifier, customData: customData);
 
             if (result != null)
             {
@@ -486,7 +486,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteClassifier()");
-            var result = _service.DeleteClassifier(classifierId: classifierId, customData: customData);
+            var result = service.DeleteClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -505,7 +505,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetClassifier()");
-            var result = _service.GetClassifier(classifierId: classifierId, customData: customData);
+            var result = service.GetClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -524,7 +524,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListClassifiers()");
-            var result = _service.ListClassifiers(verbose: verbose, customData: customData);
+            var result = service.ListClassifiers(verbose: verbose, customData: customData);
 
             if (result != null)
             {
@@ -543,7 +543,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateClassifier()");
-            var result = _service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
+            var result = service.UpdateClassifier(updateClassifier: updateClassifier, customData: customData);
 
             if (result != null)
             {
@@ -562,7 +562,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteUserData()");
-            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+            var result = service.DeleteUserData(customerId: customerId, customData: customData);
 
             if (result != null)
             {

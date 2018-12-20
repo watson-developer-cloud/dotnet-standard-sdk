@@ -30,10 +30,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
     [TestClass]
     public class PersonalityInsightsServiceIntegrationTests
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
-        private PersonalityInsightsService _service;
+        private static string apikey;
+        private static string endpoint;
+        private PersonalityInsightsService service;
         private static string credentials = string.Empty;
 
         [TestInitialize]
@@ -65,13 +64,18 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("personality-insights-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
-            _service = new PersonalityInsightsService(_username.ToString(), _password.ToString(), "2016-10-20");
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+
+            service = new PersonalityInsightsService(tokenOptions, "2016-10-20");
         }
 
         [TestMethod]
@@ -92,7 +96,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
-            var result = _service.Profile(content, "text/plain", "application/json", rawScores: true, consumptionPreferences: true, csvHeaders: true);
+            var result = service.Profile(content, "text/plain", "application/json", rawScores: true, consumptionPreferences: true, csvHeaders: true);
 
             Assert.IsNotNull(result);
         }
@@ -102,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         private Profile Profile(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Profile()");
-            var result = _service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences, customData: customData);
+            var result = service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences, customData: customData);
 
             if (result != null)
             {
@@ -121,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3.IntegrationTests
         private System.IO.MemoryStream ProfileAsCsv(Content content, string contentType, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ProfileAsCsv()");
-            var result = _service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences, customData: customData);
+            var result = service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences, customData: customData);
 
             if (result != null)
             {

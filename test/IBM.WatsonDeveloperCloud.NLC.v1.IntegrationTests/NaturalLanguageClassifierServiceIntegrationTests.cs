@@ -23,22 +23,20 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
 {
     [TestClass]
     public class NaturalLanguageClassifierServiceIntegrationTests
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
-        private NaturalLanguageClassifierService _service;
+        private static string apikey;
+        private static string endpoint;
+        private NaturalLanguageClassifierService service;
         private static string credentials = string.Empty;
-        private string _classifierDataFilePath = @"NLCTestData/weather-data.csv";
-        private string _metadataDataFilePath = @"NLCTestData/metadata.json";
-        private string _textToClassify0 = "Is it raining?";
-        private string _textToClassify1 = "Will it be hot today?";
+        private string classifierDataFilePath = @"NLCTestData/weather-data.csv";
+        private string metadataDataFilePath = @"NLCTestData/metadata.json";
+        private string textToClassify0 = "Is it raining?";
+        private string textToClassify1 = "Will it be hot today?";
 
         [TestInitialize]
         public void Setup()
@@ -69,14 +67,18 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("natural-language-classifier-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
 
-            _service = new NaturalLanguageClassifierService(_username, _password);
-            _service.SetEndpoint(_endpoint);
+            service = new NaturalLanguageClassifierService(tokenOptions);
+            service.SetEndpoint(endpoint);
         }
 
         #region Classifiers
@@ -94,7 +96,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             {
                 ClassifyInput classifyInput = new ClassifyInput
                 {
-                    Text = _textToClassify1
+                    Text = textToClassify1
                 };
 
                 classifyResult = Classify(classifierId, classifyInput);
@@ -109,11 +111,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
                     {
                         new ClassifyInput()
                         {
-                            Text = _textToClassify0
+                            Text = textToClassify0
                         },
                         new ClassifyInput()
                         {
-                            Text = _textToClassify1
+                            Text = textToClassify1
                         }
                     }
                 };
@@ -122,9 +124,9 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
             }
 
             Classifier createClassifierResult = null;
-            using (FileStream classifierData = File.OpenRead(_classifierDataFilePath), metadata = File.OpenRead(_metadataDataFilePath))
+            using (FileStream classifierData = File.OpenRead(classifierDataFilePath), metadata = File.OpenRead(metadataDataFilePath))
             {
-                createClassifierResult = _service.CreateClassifier(metadata, classifierData);
+                createClassifierResult = service.CreateClassifier(metadata, classifierData);
             }
 
             var createdClassifierId = createClassifierResult.ClassifierId;
@@ -153,7 +155,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Classify()");
-            var result = _service.Classify(classifierId: classifierId, body: body, customData: customData);
+            var result = service.Classify(classifierId: classifierId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -172,7 +174,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ClassifyCollection()");
-            var result = _service.ClassifyCollection(classifierId: classifierId, body: body, customData: customData);
+            var result = service.ClassifyCollection(classifierId: classifierId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -191,7 +193,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateClassifier()");
-            var result = _service.CreateClassifier(metadata: metadata, trainingData: trainingData, customData: customData);
+            var result = service.CreateClassifier(metadata: metadata, trainingData: trainingData, customData: customData);
 
             if (result != null)
             {
@@ -210,7 +212,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteClassifier()");
-            var result = _service.DeleteClassifier(classifierId: classifierId, customData: customData);
+            var result = service.DeleteClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -229,7 +231,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetClassifier()");
-            var result = _service.GetClassifier(classifierId: classifierId, customData: customData);
+            var result = service.GetClassifier(classifierId: classifierId, customData: customData);
 
             if (result != null)
             {
@@ -248,7 +250,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.IntegrationTests
         private ClassifierList ListClassifiers(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListClassifiers()");
-            var result = _service.ListClassifiers(customData: customData);
+            var result = service.ListClassifiers(customData: customData);
 
             if (result != null)
             {

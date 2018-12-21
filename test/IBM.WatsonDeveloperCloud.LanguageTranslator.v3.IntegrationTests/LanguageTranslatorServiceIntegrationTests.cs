@@ -23,24 +23,23 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
 {
     [TestClass]
-    public class LanguageTranslatorServiceIntegrationTestsRC
+    public class LanguageTranslatorServiceIntegrationTests
     {
-        private static string _apikey;
-        private static string _endpoint;
-        private static LanguageTranslatorService _service;
+        private static string apikey;
+        private static string endpoint;
+        private static LanguageTranslatorService service;
         private static string credentials = string.Empty;
 
-        private static string _glossaryPath = "glossary.tmx";
-        private static string _baseModel = "en-fr";
-        private static string _customModelName = "dotnetExampleModel";
-        private static string _customModelID = "en-fr";
-        private static string _text = "I'm sorry, Dave. I'm afraid I can't do that.";
-        private string _versionDate = "2018-05-01";
+        private static string glossaryPath = "glossary.tmx";
+        private static string baseModel = "en-fr";
+        private static string customModelName = "dotnetExampleModel";
+        private static string customModelID = "en-fr";
+        private static string text = "I'm sorry, Dave. I'm afraid I can't do that.";
+        private string versionDate = "2018-05-01";
 
         [TestInitialize]
         public void Setup()
@@ -70,22 +69,22 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc-wdc")[0].Credentials;
-                _endpoint = credential.Url;
-                _apikey = credential.IamApikey;
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-sdk")[0].Credentials;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
             TokenOptions tokenOptions = new TokenOptions()
             {
-                IamApiKey = _apikey,
-                ServiceUrl = _endpoint
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
             };
-            _service = new LanguageTranslatorService(tokenOptions, _versionDate);
+            service = new LanguageTranslatorService(tokenOptions, versionDate);
         }
 
         [TestMethod]
-        public void GetIdentifiableLanguages_Sucess_RC()
+        public void GetIdentifiableLanguages_Sucess()
         {
             var results = ListIdentifiableLanguages();
 
@@ -94,24 +93,24 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void Identify_Sucess_RC()
+        public void Identify_Sucess()
         {
-            var results = Identify(_text);
+            var results = Identify(text);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
         }
 
         [TestMethod]
-        public void Translate_Sucess_RC()
+        public void Translate_Sucess()
         {
             var translateRequest = new TranslateRequest()
             {
                 Text = new List<string>()
                 {
-                    _text
+                    text
                 },
-                ModelId = _baseModel
+                ModelId = baseModel
             };
 
             var results = Translate(translateRequest);
@@ -121,7 +120,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ListModels_Sucess_RC()
+        public void ListModels_Sucess()
         {
             var results = ListModels();
 
@@ -130,26 +129,26 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void GetModelDetails_Success_RC()
+        public void GetModelDetails_Success()
         {
-            var results = GetModel(_baseModel);
+            var results = GetModel(baseModel);
 
             Assert.IsNotNull(results);
             Assert.IsFalse(string.IsNullOrEmpty(results.ModelId));
         }
 
         //[TestMethod]
-        public void Model_Success_RC()
+        public void Model_Success()
         {
             TranslationModel createModelResult;
 
-            using (FileStream fs = File.OpenRead(_glossaryPath))
+            using (FileStream fs = File.OpenRead(glossaryPath))
             {
-                createModelResult = CreateModel(_baseModel, _customModelName, forcedGlossary: fs);
+                createModelResult = CreateModel(baseModel, customModelName, forcedGlossary: fs);
 
                 if (createModelResult != null)
                 {
-                    _customModelID = createModelResult.ModelId;
+                    customModelID = createModelResult.ModelId;
                 }
                 else
                 {
@@ -157,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
                 }
             }
 
-            var result = DeleteModel(_customModelID);
+            var result = DeleteModel(customModelID);
 
             Assert.IsNotNull(createModelResult);
             Assert.IsNotNull(result);
@@ -169,7 +168,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private TranslationResult Translate(TranslateRequest request, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Translate()");
-            var result = _service.Translate(request: request, customData: customData);
+            var result = service.Translate(request: request, customData: customData);
 
             if (result != null)
             {
@@ -188,7 +187,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private IdentifiedLanguages Identify(string text, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Identify()");
-            var result = _service.Identify(text: text, customData: customData);
+            var result = service.Identify(text: text, customData: customData);
 
             if (result != null)
             {
@@ -207,7 +206,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private IdentifiableLanguages ListIdentifiableLanguages(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListIdentifiableLanguages()");
-            var result = _service.ListIdentifiableLanguages(customData: customData);
+            var result = service.ListIdentifiableLanguages(customData: customData);
 
             if (result != null)
             {
@@ -226,7 +225,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateModel()");
-            var result = _service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, customData: customData);
+            var result = service.CreateModel(baseModelId: baseModelId, name: name, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, customData: customData);
 
             if (result != null)
             {
@@ -245,7 +244,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private DeleteModelResult DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteModel()");
-            var result = _service.DeleteModel(modelId: modelId, customData: customData);
+            var result = service.DeleteModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -264,7 +263,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private TranslationModel GetModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetModel()");
-            var result = _service.GetModel(modelId: modelId, customData: customData);
+            var result = service.GetModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -283,7 +282,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         private TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = _service.ListModels(source: source, target: target, defaultModels: defaultModels, customData: customData);
+            var result = service.ListModels(source: source, target: target, defaultModels: defaultModels, customData: customData);
 
             if (result != null)
             {

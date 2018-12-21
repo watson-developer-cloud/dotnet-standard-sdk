@@ -51,6 +51,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         /// </summary>
         [JsonProperty("debug", NullValueHandling = NullValueHandling.Ignore)]
         public MessageOutputDebug Debug { get; set; }
+        /// <summary>
+        /// Arbitrary variables that can be read and written to by a particular skill within the Assistant.
+        /// </summary>
+        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
+        public dynamic UserDefined { get; set; }
     }
 
 }

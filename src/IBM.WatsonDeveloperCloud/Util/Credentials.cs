@@ -13,11 +13,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 *
-*/using Newtonsoft.Json;
-using System;
+*/
 
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace IBM.WatsonDeveloperCloud.Util
 {
@@ -92,16 +92,32 @@ namespace IBM.WatsonDeveloperCloud.Util
         [JsonProperty("assistant_id", NullValueHandling = NullValueHandling.Ignore)]
         public string AssistantId { get; set; }
     }
-    
+
     /// <summary>
     /// IAM token options.
     /// </summary>
     public class TokenOptions
     {
+        private string iamApiKey;
+        private string serviceUrl;
         /// <summary>
         /// The IAM Apikey for the service instance. If provided, The SDK will manage authentication through tokens.
         /// </summary>
-        public string IamApiKey { get; set; }
+        public string IamApiKey
+        {
+            get { return iamApiKey; }
+            set
+            {
+                if (!Utility.HasBadFirstOrLastCharacter(value))
+                {
+                    iamApiKey = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The credentials shouldn't start or end with curly brackets or quotes. Be sure to remove any {} and \" characters surrounding your credentials");
+                }
+            }
+        }
         /// <summary>
         /// The access token for the service instance. If provided, the SDK will not manage authentication through tokens. 
         /// </summary>
@@ -109,7 +125,21 @@ namespace IBM.WatsonDeveloperCloud.Util
         /// <summary>
         /// The service URL.
         /// </summary>
-        public string ServiceUrl { get; set; }
+        public string ServiceUrl
+        {
+            get { return serviceUrl; }
+            set
+            {
+                if (!Utility.HasBadFirstOrLastCharacter(value))
+                {
+                    serviceUrl = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The service url shouldn't start or end with curly brackets or quotes. Be sure to remove any {} and \" characters surrounding your service url");
+                }
+            }
+        }
         /// <summary>
         /// The IAM authentication URL. If omitted the value defaults to "https://iam.bluemix.net/identity/token".
         /// </summary>

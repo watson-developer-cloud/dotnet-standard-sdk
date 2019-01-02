@@ -27,6 +27,8 @@ namespace IBM.WatsonDeveloperCloud.Service
         const string PATH_AUTHORIZATION_V1_TOKEN = "/authorization/api/v1/token";
         const string ICP_PREFIX = "icp-";
         const string APIKEY_AS_USERNAME = "apikey";
+        private string username;
+        private string password;
         public IClient Client { get; set; }
 
         public string ServiceName { get; set; }
@@ -48,8 +50,36 @@ namespace IBM.WatsonDeveloperCloud.Service
                 this.Client.BaseClient.BaseAddress = new Uri(value);
             }
         }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string UserName
+        {
+            get { return username; }
+            set
+            {
+                if (!Utility.HasBadFirstOrLastCharacter(value))
+                {
+                    username = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The username shouldn't start or end with curly brackets or quotes. Be sure to remove any {} and \" characters surrounding your username.");
+                }
+            }
+        }
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                if (!Utility.HasBadFirstOrLastCharacter(value))
+                {
+                    password = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The password shouldn't start or end with curly brackets or quotes. Be sure to remove any {} and \" characters surrounding your password.");
+                }
+            }
+        }
         protected TokenManager _tokenManager = null;
         protected bool _userSetEndpoint = false;
 

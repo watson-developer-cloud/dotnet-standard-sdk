@@ -25,6 +25,7 @@ using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using IBM.WatsonDeveloperCloud.Util;
 
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
 {
@@ -100,6 +101,203 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
         }
         #endregion
 
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInUsernameBracket()
+        {
+            AssistantService service = new AssistantService("{username", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInUsernameBracket()
+        {
+            AssistantService service = new AssistantService("username}", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInUsernameDoubleQuote()
+        {
+            AssistantService service = new AssistantService("\"username", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInUsernameDoubleQuote()
+        {
+            AssistantService service = new AssistantService("username\"", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInUsernameDoubleQuote()
+        {
+            AssistantService service = new AssistantService("\"username\"", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInUsernameBracket()
+        {
+            AssistantService service = new AssistantService("{username}", "password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInPasswordBracket()
+        {
+            AssistantService service = new AssistantService("username", "{password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInPasswordBracket()
+        {
+            AssistantService service = new AssistantService("username", "password}", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInPasswordDoubleQuote()
+        {
+            AssistantService service = new AssistantService("username", "\"password", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInPasswordDoubleQuote()
+        {
+            AssistantService service = new AssistantService("username", "password\"", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInPasswordDoubleQuote()
+        {
+            AssistantService service = new AssistantService("username", "\"password\"", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInPasswordBracket()
+        {
+            AssistantService service = new AssistantService("username", "{password}", "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInApiKeyBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "{apiKey"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInApiKeyBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey}"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInApiKeyBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "{apiKey}"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInApiKeyDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "\"apiKey"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInApiKeyDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey\""
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInApiKeyDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "\"apiKey\""
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInServiceUrlBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "{serviceUrl"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInServiceUrlBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "serviceUrl}"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInServiceUrlBracket()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "{serviceUrl}"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstCharacterInServiceUrlDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "\"serviceUrl"
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadLastCharacterInServiceUrlDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "serviceUrl\""
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void InstantiateServiceWithBadFirstAndLastCharacterInServiceUrlDoubleQuote()
+        {
+            TokenOptions options = new TokenOptions()
+            {
+                IamApiKey = "apiKey",
+                ServiceUrl = "\"serviceUrl\""
+            };
+            AssistantService service = new AssistantService(options, "versionDate");
+        }
         #region Counter Examples
         #region Create Counter Example
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]

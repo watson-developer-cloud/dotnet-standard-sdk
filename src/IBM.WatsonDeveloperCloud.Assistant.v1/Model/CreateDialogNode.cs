@@ -292,6 +292,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public object Context { get; set; }
         /// <summary>
+        /// Whether to consider the dialog node during runtime evaluation.  Set to `true` to ignore the 
+        /// dialog node.
+        /// </summary>
+        [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool Disabled { get; set; }
+        /// <summary>
         /// The metadata for the dialog node.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]

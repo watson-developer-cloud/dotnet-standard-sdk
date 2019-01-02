@@ -21,7 +21,6 @@ using System;
 using System.IO;
 using IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -30,12 +29,11 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
     [TestClass]
     public class NaturalLanguageUnderstandingIntegrationTests
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
-        private NaturalLanguageUnderstandingService _service;
+        private static string apikey;
+        private static string endpoint;
+        private NaturalLanguageUnderstandingService service;
         private static string credentials = string.Empty;
-        private string _nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
+        private string nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
 
         [TestInitialize]
         public void Setup()
@@ -66,14 +64,19 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("natural-language-understanding-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
-            _service = new NaturalLanguageUnderstandingService(_username, _password, "2017-02-27");
-            _service.SetEndpoint(_endpoint);
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+
+            service = new NaturalLanguageUnderstandingService(tokenOptions, "2017-02-27");
+            service.SetEndpoint(endpoint);
         }
 
         [TestMethod]
@@ -81,7 +84,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         {
             Parameters parameters = new Parameters()
             {
-                Text = _nluText,
+                Text = nluText,
                 Features = new Features()
                 {
                     Keywords = new KeywordsOptions()
@@ -97,7 +100,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
                 }
             };
 
-            var result = _service.Analyze(parameters);
+            var result = service.Analyze(parameters);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Categories.Count > 0);
@@ -107,7 +110,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         [TestMethod]
         public void ListModels_Success()
         {
-            var result = _service.ListModels();
+            var result = service.ListModels();
 
             Assert.IsNotNull(result);
         }
@@ -123,7 +126,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Analyze()");
-            var result = _service.Analyze(parameters: parameters, customData: customData);
+            var result = service.Analyze(parameters: parameters, customData: customData);
 
             if (result != null)
             {
@@ -142,7 +145,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteModel()");
-            var result = _service.DeleteModel(modelId: modelId, customData: customData);
+            var result = service.DeleteModel(modelId: modelId, customData: customData);
 
             if (result != null)
             {
@@ -161,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntegrationTe
         private ListModelsResults ListModels(Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListModels()");
-            var result = _service.ListModels(customData: customData);
+            var result = service.ListModels(customData: customData);
 
             if (result != null)
             {

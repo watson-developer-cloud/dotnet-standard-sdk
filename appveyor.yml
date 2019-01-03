@@ -21,7 +21,7 @@ install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
 # install modules
-- pip install --user bumpversion
+- pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages

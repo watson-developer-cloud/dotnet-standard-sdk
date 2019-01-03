@@ -1,6 +1,24 @@
 {
   "branch": "master",
   "verifyConditions": [],
-  "prepare": [],
+  "prepare": [
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "bumpversion --current-version ${lastRelease.version} --new-version ${nextRelease.version} patch"
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release"
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
+      "cmd": "dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
+    }
+  ],
   "publish": ["@semantic-release/github"]
 }

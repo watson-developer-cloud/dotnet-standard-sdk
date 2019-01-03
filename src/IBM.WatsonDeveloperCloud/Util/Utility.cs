@@ -80,5 +80,15 @@ namespace IBM.WatsonDeveloperCloud.Util
             string convertedJson = json.Insert(1, "\"" + objectName + "\": {");
             return convertedJson.Insert(convertedJson.Length - 1, "}");
         }
+
+        /// <summary>
+        /// Checks if the string is wrapped or partially wrapped in bad characters.
+        /// </summary>
+        /// <param name="value">The string to check.</param>
+        /// <returns></returns>
+        public static bool HasBadFirstOrLastCharacter(string value)
+        {
+            return value.StartsWith("{") || value.StartsWith("\"") || value.EndsWith("}") || value.EndsWith("\"");
+        }
     }
 }

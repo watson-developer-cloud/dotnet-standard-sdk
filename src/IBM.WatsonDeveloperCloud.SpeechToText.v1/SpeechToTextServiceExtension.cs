@@ -76,6 +76,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
 
                 if (!string.IsNullOrEmpty(transferEncoding))
                     restRequest.WithHeader("Transfer-Encoding", transferEncoding);

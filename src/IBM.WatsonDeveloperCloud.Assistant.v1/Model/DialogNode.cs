@@ -320,6 +320,11 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
+        /// For internal use only.
+        /// </summary>
+        [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool Disabled { get; set; }
+        /// <summary>
         /// The location in the dialog context where output is stored.
         /// </summary>
         [JsonProperty("variable", NullValueHandling = NullValueHandling.Ignore)]

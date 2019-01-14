@@ -29,7 +29,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// Whether to return more than one intent. Set to `true` to return all matching intents.
         /// </summary>
@@ -39,25 +39,25 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// State information for the conversation. To maintain state, include the context from the previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get; set; }
+        public dynamic Context { get; set; }
         /// <summary>
         /// Entities to use when evaluating the message. Include entities from the previous response to continue using
         /// those entities rather than detecting entities in the new input.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeEntity> Entities { get; set; }
+        public List<dynamic> Entities { get; set; }
         /// <summary>
         /// Intents to use when evaluating the user input. Include intents from the previous response to continue using
         /// those intents rather than trying to recognize intents in the new input.
         /// </summary>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeIntent> Intents { get; set; }
+        public List<dynamic> Intents { get; set; }
         /// <summary>
         /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages
         /// from the log.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public OutputData Output { get; set; }
+        public dynamic Output { get; set; }
     }
 
 }

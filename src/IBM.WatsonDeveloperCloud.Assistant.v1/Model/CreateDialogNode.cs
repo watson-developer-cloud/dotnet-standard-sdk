@@ -285,7 +285,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public DialogNodeOutput Output { get; set; }
+        public dynamic Output { get; set; }
         /// <summary>
         /// The context for the dialog node.
         /// </summary>

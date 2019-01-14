@@ -30,17 +30,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public InputData Input { get; set; }
+        public dynamic Input { get; set; }
         /// <summary>
         /// An array of intents to be sent along with the user input.
         /// </summary>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeIntent> Intents { get; set; }
+        public List<dynamic> Intents { get; set; }
         /// <summary>
         /// An array of entities to be sent along with the user input.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeEntity> Entities { get; set; }
+        public List<dynamic> Entities { get; set; }
     }
 
 }

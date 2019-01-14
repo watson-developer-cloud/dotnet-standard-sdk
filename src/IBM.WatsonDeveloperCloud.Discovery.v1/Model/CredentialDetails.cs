@@ -90,31 +90,6 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// The type of Sharepoint repository to connect to. Only valid, and required, with a **source_type** of
-        /// `sharepoint`.
-        /// </summary>
-        /// <value>
-        /// The type of Sharepoint repository to connect to. Only valid, and required, with a **source_type** of
-        /// `sharepoint`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SourceVersionEnum
-        {
-            
-            /// <summary>
-            /// Enum ONLINE for online
-            /// </summary>
-            [EnumMember(Value = "online")]
-            ONLINE,
-            
-            /// <summary>
-            /// Enum 2016 for 2016
-            /// </summary>
-            [EnumMember(Value = "2016")]
-            2016
-        }
-
-        /// <summary>
         /// The authentication method for this credentials definition. The  **credential_type** specified must be
         /// supported by the **source_type**. The following combinations are possible:
         ///
@@ -131,7 +106,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// `sharepoint`.
         /// </summary>
         [JsonProperty("source_version", NullValueHandling = NullValueHandling.Ignore)]
-        public SourceVersionEnum? SourceVersion { get; set; }
+        public string SourceVersion { get; set; }
         /// <summary>
         /// The **client_id** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `oauth2`.

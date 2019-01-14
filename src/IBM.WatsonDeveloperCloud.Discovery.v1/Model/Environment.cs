@@ -144,8 +144,36 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// <summary>
         /// Current size of the environment.
         /// </summary>
+        [Obsolete("Integer size is deprecated. Please use StringSize.")]
+        public long? Size
+        {
+            get
+            {
+                int size;
+                int.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment.
+        /// </summary>
+        public SizeEnum? StringSize
+        {
+            get
+            {
+                SizeEnum size;
+                Enum.TryParse(_convertedSize, out size);
+                return size;
+            }
+            set { _convertedSize = value.ToString(); }
+        }
+        /// <summary>
+        /// Size of the environment
+        /// </summary>
+
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public SizeEnum? Size { get; set; }
+        public string _convertedSize { get; set; }
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>
@@ -165,12 +193,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Creation date of the environment, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Created { get; private set; }
+        public virtual DateTime? Created { get; private set; }
         /// <summary>
         /// Date of most recent environment update, in the format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Updated { get; private set; }
+        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// If `true`, the environment contains read-only collections that are maintained by IBM.
         /// </summary>

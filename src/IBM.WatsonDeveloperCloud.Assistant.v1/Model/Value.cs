@@ -70,12 +70,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The timestamp for creation of the entity value.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
+        public virtual DateTime Created { get; private set; }
         /// <summary>
         /// The timestamp for the last update to the entity value.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
+        public virtual DateTime Updated { get; private set; }
         /// <summary>
         /// An array containing any synonyms for the entity value.
         /// </summary>

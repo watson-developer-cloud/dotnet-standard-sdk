@@ -43,6 +43,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("site_collections", NullValueHandling = NullValueHandling.Ignore)]
         public List<SourceOptionsSiteColl> SiteCollections { get; set; }
+        /// <summary>
+        /// Array of Web page URLs to begin crawling the web from. Only valid and required when the **type** field of
+        /// the **source** object is set to `web_crawl`.
+        /// </summary>
+        [JsonProperty("urls", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SourceOptionsWebCrawl> Urls { get; set; }
     }
 
 }

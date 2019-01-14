@@ -15,7 +15,6 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
 using IBM.WatsonDeveloperCloud.CompareComply.v1.Model;
 

@@ -25,12 +25,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class LogExport : BaseModel
     {
         /// <summary>
-        /// A message request formatted for the Watson Assistant service.
+        /// A request sent to the workspace, including the user input and context.
         /// </summary>
         [JsonProperty("request", NullValueHandling = NullValueHandling.Ignore)]
         public MessageRequest Request { get; set; }
         /// <summary>
-        /// A response from the Watson Assistant service.
+        /// The response sent by the workspace, including the output text, detected intents and entities, and context.
         /// </summary>
         [JsonProperty("response", NullValueHandling = NullValueHandling.Ignore)]
         public MessageResponse Response { get; set; }

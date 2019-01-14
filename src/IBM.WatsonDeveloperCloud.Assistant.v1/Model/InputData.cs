@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// The user input.
+    /// An input object that includes the input text.
     /// </summary>
     public class InputData : BaseModel
     {

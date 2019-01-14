@@ -23,7 +23,7 @@ using Newtonsoft.Json.Converters;
 namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
 {
     /// <summary>
-    /// The user input.
+    /// An input object that includes the input text.
     /// </summary>
     public class MessageInput : BaseModel
     {

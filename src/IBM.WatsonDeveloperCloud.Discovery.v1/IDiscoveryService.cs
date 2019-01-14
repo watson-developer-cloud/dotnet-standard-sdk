@@ -15,10 +15,9 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.Discovery.v1.Model;
-using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
 namespace IBM.WatsonDeveloperCloud.Discovery.v1
 {
@@ -43,8 +42,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         ListCollectionsResponse ListCollections(string environmentId, string name = null, Dictionary<string, object> customData = null);
         Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null);
         Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null);
+        TokenDictStatusResponse CreateStopwordList(string environmentId, string collectionId, System.IO.FileStream stopwordFile, Dictionary<string, object> customData = null);
         TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary = null, Dictionary<string, object> customData = null);
         BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
+        BaseModel DeleteStopwordList(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
@@ -52,9 +53,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null);
         DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null);
         DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
+        QueryResponse FederatedQuery(string environmentId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
         QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
-        QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
+        QueryResponse Query(string environmentId, string collectionId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
         QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery, Dictionary<string, object> customData = null);
         QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
         QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null);
@@ -70,10 +71,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null);
         BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
         CreateEventResponse CreateEvent(CreateEventObject queryEvent, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
-        MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsEventRate(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQuery(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQueryEvent(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
+        MetricResponse GetMetricsQueryNoResults(DateTime startTime = null, DateTime endTime = null, string resultType = null, Dictionary<string, object> customData = null);
         MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null);
         LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null);
         Credentials CreateCredentials(string environmentId, Credentials credentialsParameter, Dictionary<string, object> customData = null);
@@ -81,5 +82,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         Credentials GetCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null);
         CredentialsList ListCredentials(string environmentId, Dictionary<string, object> customData = null);
         Credentials UpdateCredentials(string environmentId, string credentialId, Credentials credentialsParameter, Dictionary<string, object> customData = null);
+        Gateway CreateGateway(string environmentId, GatewayName gatewayName = null, Dictionary<string, object> customData = null);
+        GatewayDelete DeleteGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null);
+        Gateway GetGatewayDetails(string environmentId, string gatewayId, Dictionary<string, object> customData = null);
+        GatewayList GetGatewayList(string environmentId, Dictionary<string, object> customData = null);
     }
 }

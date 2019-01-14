@@ -19,11 +19,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using DateTime?;
 using IBM.WatsonDeveloperCloud.CompareComply.v1.Model;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.Util;
+using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.CompareComply.v1
@@ -43,6 +45,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         {
             if(!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
+        }
+
+        public CompareComplyService(, string versionDate) : this()
+        {
+            if(string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
         }
 
         public CompareComplyService(TokenOptions options, string versionDate) : this()
@@ -110,7 +120,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -167,7 +184,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -224,7 +248,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -297,7 +328,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(file2Content, "file_2", file2.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -345,7 +383,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -388,7 +433,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -431,7 +483,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -507,7 +566,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -659,7 +725,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(outputBucketNameContent, "output_bucket_name");
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -703,7 +776,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -739,7 +819,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -786,7 +873,14 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client;
+                if(_tokenManager == null)
+                {
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);

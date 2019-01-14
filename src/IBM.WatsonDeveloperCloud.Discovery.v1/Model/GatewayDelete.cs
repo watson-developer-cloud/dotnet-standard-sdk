@@ -17,18 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding option.
+    /// Gatway deletion confirmation.
     /// </summary>
-    public class DialogNodeOutputOptionsElementValue : BaseModel
+    public class GatewayDelete : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// The gateway ID of the deleted gateway.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string GatewayId { get; set; }
+        /// <summary>
+        /// The status of the request.
+        /// </summary>
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string Status { get; set; }
     }
 
 }

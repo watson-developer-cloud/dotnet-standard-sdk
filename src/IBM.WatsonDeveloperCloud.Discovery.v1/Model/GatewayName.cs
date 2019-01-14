@@ -17,18 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding option.
+    /// Object containing user-defined name.
     /// </summary>
-    public class DialogNodeOutputOptionsElementValue : BaseModel
+    public class GatewayName : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// User-defined name.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
     }
 
 }

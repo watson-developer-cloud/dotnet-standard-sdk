@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// WorkspaceSystemSettings.
+    /// Global settings for the workspace.
     /// </summary>
     public class WorkspaceSystemSettings : BaseModel
     {

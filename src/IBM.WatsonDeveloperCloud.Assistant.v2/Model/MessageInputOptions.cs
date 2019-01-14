@@ -31,8 +31,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         [JsonProperty("debug", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Debug { get; set; }
         /// <summary>
-        /// Whether to start a new conversation with this user input. Specify `true` to clear the state information
-        /// stored by the session.
+        /// Whether to restart dialog processing at the root of the dialog, regardless of any previously visited nodes.
+        /// **Note:** This does not affect `turn_count` or any other context variables.
         /// </summary>
         [JsonProperty("restart", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Restart { get; set; }

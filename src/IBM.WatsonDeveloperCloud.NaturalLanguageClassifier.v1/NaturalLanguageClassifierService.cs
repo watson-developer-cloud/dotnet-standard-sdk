@@ -182,7 +182,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
         /// Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).</param>
         /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The
         /// data can include up to 3,000 classes and 20,000 records. For details, see [Data
-        /// preparation](https://console.bluemix.net/docs/services/natural-language-classifier/using-your-data.html).</param>
+        /// preparation](https://cloud.ibm.com/docs/services/natural-language-classifier/using-your-data.html).</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
         public Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null)

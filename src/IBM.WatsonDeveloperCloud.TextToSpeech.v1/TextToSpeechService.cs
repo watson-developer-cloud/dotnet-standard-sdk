@@ -16,14 +16,10 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1

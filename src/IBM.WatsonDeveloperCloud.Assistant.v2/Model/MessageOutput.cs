@@ -56,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
         /// properties defined in the dialog JSON editor as part of the dialog node output.
         /// </summary>
         [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public object UserDefined { get; set; }
+        public dynamic UserDefined { get; set; }
     }
 
 }

@@ -283,7 +283,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public DialogNodeOutput Output { get; set; }
+        public dynamic Output { get; set; }
         /// <summary>
         /// The context (if defined) for the dialog node.
         /// </summary>
@@ -303,12 +303,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// The timestamp for creation of the dialog node.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Created { get; private set; }
+        public virtual DateTime? Created { get; private set; }
         /// <summary>
         /// The timestamp for the most recent update to the dialog node.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime Updated { get; private set; }
+        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// The actions for the dialog node.
         /// </summary>

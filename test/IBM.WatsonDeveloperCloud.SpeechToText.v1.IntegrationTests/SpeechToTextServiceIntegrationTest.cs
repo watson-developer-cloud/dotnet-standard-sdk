@@ -460,11 +460,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             var createJobResult = service.CreateJob(testAudio, "audio/mp3");
             var jobId = createJobResult.Id;
 
-            //var checkJobsResult = service.CheckJobs();
+            var checkJobsResult = service.CheckJobs();
             var checkJobResult = service.CheckJob(jobId);
 
             var deleteJobResult = service.DeleteJob(jobId);
-            //Assert.IsNotNull(checkJobsResult);
+            Assert.IsNotNull(checkJobsResult);
             Assert.IsNotNull(checkJobResult);
             Assert.IsNotNull(createJobResult);
             Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Id));

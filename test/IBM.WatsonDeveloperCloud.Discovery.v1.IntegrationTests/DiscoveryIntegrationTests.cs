@@ -49,6 +49,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private string createdConfigurationDescription = "configDescription - safe to delete";
         private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
         private string metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
 
         private string createdCollectionName;
         private string createdCollectionDescription = "createdCollectionDescription - safe to delete";
@@ -798,6 +799,48 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
 
             DeleteCollection(environmentId, tokenizationCollectionId);
+        }
+        #endregion
+
+        #region Stopword
+        [TestMethod]
+        public void TestStopword_Success()
+        {
+            var collectionsList = ListCollections(environmentId);
+
+            foreach (Collection collection in collectionsList.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
+                    {
+                        DeleteCollection(environmentId, collection.CollectionId);
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.JA,
+                Name = "tokenization-collection-please-delete-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
+            };
+
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
+            var stopwordCollectionId = createCollectionResult.CollectionId;
+
+            TokenDictStatusResponse createStopwordListResult;
+            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            {
+                createStopwordListResult = service.CreateStopwordList(environmentId, stopwordCollectionId, fs);
+            }
+
+            var deleteStopwordListResult = service.DeleteStopwordList(environmentId, stopwordCollectionId);
+
+            Assert.IsNotNull(createStopwordListResult);
+            Assert.IsTrue(createStopwordListResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+            Assert.IsNotNull(deleteStopwordListResult);
         }
         #endregion
 

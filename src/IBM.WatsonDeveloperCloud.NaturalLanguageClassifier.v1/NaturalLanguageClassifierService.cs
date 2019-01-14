@@ -18,13 +18,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.Model;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1

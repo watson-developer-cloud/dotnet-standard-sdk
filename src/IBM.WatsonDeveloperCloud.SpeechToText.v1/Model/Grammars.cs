@@ -15,20 +15,22 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding option.
+    /// Grammars.
     /// </summary>
-    public class DialogNodeOutputOptionsElementValue : BaseModel
+    public class Grammars : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// An array of `Grammar` objects that provides information about the grammars for the custom model. The array
+        /// is empty if the custom model has no grammars.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("grammars", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Grammar> _Grammars { get; set; }
     }
 
 }

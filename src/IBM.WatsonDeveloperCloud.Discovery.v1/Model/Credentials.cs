@@ -31,12 +31,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
         /// </summary>
         /// <value>
         /// The source that this credentials object connects to.
         /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SourceTypeEnum
@@ -58,7 +60,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum SHAREPOINT for sharepoint
             /// </summary>
             [EnumMember(Value = "sharepoint")]
-            SHAREPOINT
+            SHAREPOINT,
+            
+            /// <summary>
+            /// Enum WEB_CRAWL for web_crawl
+            /// </summary>
+            [EnumMember(Value = "web_crawl")]
+            WEB_CRAWL
         }
 
         /// <summary>
@@ -66,6 +74,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
         /// </summary>
         [JsonProperty("source_type", NullValueHandling = NullValueHandling.Ignore)]
         public SourceTypeEnum? SourceType { get; set; }

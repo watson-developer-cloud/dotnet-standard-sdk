@@ -29,23 +29,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     {
         /// <summary>
         /// The current status of the custom language model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </summary>
         /// <value>
         /// The current status of the custom language model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -90,13 +90,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 
         /// <summary>
         /// The current status of the custom language model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
@@ -135,7 +135,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("versions", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Versions { get; set; }
         /// <summary>
-        /// The GUID of the service credentials for the instance of the service that owns the custom language model.
+        /// The GUID of the credentials for the instance of the service that owns the custom language model.
         /// </summary>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
@@ -161,6 +161,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// </summary>
         [JsonProperty("progress", NullValueHandling = NullValueHandling.Ignore)]
         public long? Progress { get; set; }
+        /// <summary>
+        /// If an error occurred while adding a grammar file to the custom language model, a message that describes an
+        /// `Internal Server Error` and includes the string `Cannot compile grammar`. The status of the custom model is
+        /// not affected by the error, but the grammar cannot be used with the model.
+        /// </summary>
+        [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
+        public string Error { get; set; }
         /// <summary>
         /// If the request included unknown parameters, the following message: `Unexpected query parameter(s)
         /// ['parameters'] detected`, where `parameters` is a list that includes a quoted string for each unknown

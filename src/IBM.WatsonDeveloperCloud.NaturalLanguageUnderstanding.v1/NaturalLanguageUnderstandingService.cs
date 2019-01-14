@@ -148,7 +148,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         ///
         /// Deletes a custom model.
         /// </summary>
-        /// <param name="modelId">model_id of the model to delete.</param>
+        /// <param name="modelId">Model ID of the model to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
         public InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
@@ -194,8 +194,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         /// List models.
         ///
         /// Lists Watson Knowledge Studio [custom
-        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are deployed to your Natural
-        /// Language Understanding service.
+        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are
+        /// deployed to your Natural Language Understanding service.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>

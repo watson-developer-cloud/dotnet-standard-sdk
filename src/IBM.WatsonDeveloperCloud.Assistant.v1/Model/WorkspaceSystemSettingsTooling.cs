@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// WorkspaceSystemSettingsTooling.
+    /// Workspace settings related to the Watson Assistant tool.
     /// </summary>
     public class WorkspaceSystemSettingsTooling : BaseModel
     {

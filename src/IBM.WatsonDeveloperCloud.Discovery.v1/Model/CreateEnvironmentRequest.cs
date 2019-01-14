@@ -15,7 +15,6 @@
 *
 */
 
-using System;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -104,35 +103,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Size of the environment. In the Lite plan the default and only accepted value is `LT`, in all other plans
         /// the default is `S`.
         /// </summary>
-        [Obsolete("Integer size is deprecated. Please use StringSize.")]
-        public long? Size
-        {
-            get
-            {
-                int size;
-                int.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment.
-        /// </summary>
-        public SizeEnum? StringSize
-        {
-            get
-            {
-                SizeEnum size;
-                Enum.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment
-        /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public string _convertedSize { get; set; }
+        public SizeEnum? Size { get; set; }
         /// <summary>
         /// Name that identifies the environment.
         /// </summary>

@@ -31,12 +31,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `box` indicates the configuration is to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
         /// </summary>
         /// <value>
         /// The type of source to connect to.
         /// -  `box` indicates the configuration is to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
@@ -58,7 +60,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum SHAREPOINT for sharepoint
             /// </summary>
             [EnumMember(Value = "sharepoint")]
-            SHAREPOINT
+            SHAREPOINT,
+            
+            /// <summary>
+            /// Enum WEB_CRAWL for web_crawl
+            /// </summary>
+            [EnumMember(Value = "web_crawl")]
+            WEB_CRAWL
         }
 
         /// <summary>
@@ -66,6 +74,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// -  `box` indicates the configuration is to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
+        /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }

@@ -26,9 +26,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class LanguageModels : BaseModel
     {
         /// <summary>
-        /// An array of objects that provides information about each available custom language model. The array is empty
-        /// if the requesting service credentials own no custom language models (if no language is specified) or own no
-        /// custom language models for the specified language.
+        /// An array of `LanguageModel` objects that provides information about each available custom language model.
+        /// The array is empty if the requesting credentials own no custom language models (if no language is specified)
+        /// or own no custom language models for the specified language.
         /// </summary>
         [JsonProperty("customizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<LanguageModel> Customizations { get; set; }

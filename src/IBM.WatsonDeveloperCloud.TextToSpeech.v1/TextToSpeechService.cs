@@ -177,7 +177,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// The service returns the synthesized audio stream as an array of bytes. You can pass a maximum of 5 KB of
         /// text to the service.
         ///
-        /// **See also:** [Synthesizing text to audio](https://cloud.ibm.com/docs/services/text-to-speech/http.html#synthesize).
+        /// **See also:** [Synthesizing text to
+        /// audio](https://cloud.ibm.com/docs/services/text-to-speech/http.html#synthesize).
         ///
         /// ### Audio formats (accept types)
         ///
@@ -235,7 +236,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///   You can optionally specify the `rate` of the audio. The default sampling rate is 22,050 Hz.
         ///
         /// For more information about specifying an audio format, including additional details about some of the
-        /// formats, see [Specifying an audio format](https://cloud.ibm.com/docs/services/text-to-speech/http.html#format).
+        /// formats, see [Specifying an audio
+        /// format](https://cloud.ibm.com/docs/services/text-to-speech/http.html#format).
         ///
         /// ### Warning messages
         ///
@@ -374,7 +376,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// **Note:** This method is currently a beta release.
         ///
-        /// **See also:** [Creating a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsCreate).
+        /// **See also:** [Creating a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsCreate).
         /// </summary>
         /// <param name="createVoiceModel">A `CreateVoiceModel` object that contains information about the new custom
         /// voice model.</param>
@@ -423,7 +426,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// **Note:** This method is currently a beta release.
         ///
-        /// **See also:** [Deleting a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsDelete).
+        /// **See also:** [Deleting a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsDelete).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -472,7 +476,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         ///
         /// **Note:** This method is currently a beta release.
         ///
-        /// **See also:** [Querying a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsQuery).
+        /// **See also:** [Querying a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsQuery).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
         /// request with service credentials created for the instance of the service that owns the custom model.</param>
@@ -587,8 +592,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// **Note:** This method is currently a beta release.
         ///
         /// **See also:**
-        /// * [Updating a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsUpdate)
-        /// * [Adding words to a Japanese custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Updating a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-models.html#cuModelsUpdate)
+        /// * [Adding words to a Japanese custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
         /// * [Understanding customization](https://cloud.ibm.com/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
@@ -655,8 +662,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// **Note:** This method is currently a beta release.
         ///
         /// **See also:**
-        /// * [Adding a single word to a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuWordAdd)
-        /// * [Adding words to a Japanese custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Adding a single word to a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuWordAdd)
+        /// * [Adding words to a Japanese custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
         /// * [Understanding customization](https://cloud.ibm.com/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
@@ -726,8 +735,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// **Note:** This method is currently a beta release.
         ///
         /// **See also:**
-        /// * [Adding multiple words to a custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuWordsAdd)
-        /// * [Adding words to a Japanese custom model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
+        /// * [Adding multiple words to a custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuWordsAdd)
+        /// * [Adding words to a Japanese custom
+        /// model](https://cloud.ibm.com/docs/services/text-to-speech/custom-entries.html#cuJapaneseAdd)
         /// * [Understanding customization](https://cloud.ibm.com/docs/services/text-to-speech/custom-intro.html).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
@@ -938,7 +949,8 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// the data.
         ///
-        /// **See also:** [Information security](https://cloud.ibm.com/docs/services/text-to-speech/information-security.html).
+        /// **See also:** [Information
+        /// security](https://cloud.ibm.com/docs/services/text-to-speech/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

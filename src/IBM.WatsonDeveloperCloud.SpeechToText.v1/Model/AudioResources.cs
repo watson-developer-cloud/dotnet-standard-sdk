@@ -33,8 +33,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("total_minutes_of_audio", NullValueHandling = NullValueHandling.Ignore)]
         public double? TotalMinutesOfAudio { get; set; }
         /// <summary>
-        /// An array of objects that provides information about the audio resources of the custom acoustic model. The
-        /// array is empty if the custom model has no audio resources.
+        /// An array of `AudioResource` objects that provides information about the audio resources of the custom
+        /// acoustic model. The array is empty if the custom model has no audio resources.
         /// </summary>
         [JsonProperty("audio", NullValueHandling = NullValueHandling.Ignore)]
         public List<AudioResource> Audio { get; set; }

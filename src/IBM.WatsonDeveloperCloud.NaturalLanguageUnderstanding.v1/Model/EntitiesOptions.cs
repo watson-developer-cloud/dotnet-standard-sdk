@@ -24,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
     /// subtypes](https://cloud.ibm.com/docs/services/natural-language-understanding/entity-types.html).
     ///
     /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Swedish.
-    /// Arabic, Chinese, and Dutch custom models are also supported.
+    /// Arabic, Chinese, and Dutch are supported only through custom models.
     /// </summary>
     public class EntitiesOptions : BaseModel
     {
@@ -39,9 +39,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Mentions { get; set; }
         /// <summary>
-        /// Enter a [custom
-        /// model](https://www.bluemix.net/docs/services/natural-language-understanding/customizing.html) ID to override
-        /// the standard entity detection model.
+        /// Enter a [custom model](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html)
+        /// ID to override the standard entity detection model.
         /// </summary>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }

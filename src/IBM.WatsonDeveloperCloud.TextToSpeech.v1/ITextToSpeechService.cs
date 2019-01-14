@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.TextToSpeech.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1

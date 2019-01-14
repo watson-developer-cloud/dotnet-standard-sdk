@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
@@ -25,7 +24,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
     {
         SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null);
         SpeechModels ListModels(Dictionary<string, object> customData = null);
-        SpeechRecognitionResults Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
+        SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
         RecognitionJob CheckJob(string id, Dictionary<string, object> customData = null);
         RecognitionJobs CheckJobs(Dictionary<string, object> customData = null);
         RecognitionJob CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);

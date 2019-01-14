@@ -17,7 +17,6 @@
 
 using System.IO;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
-using System.Collections.Generic;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 {

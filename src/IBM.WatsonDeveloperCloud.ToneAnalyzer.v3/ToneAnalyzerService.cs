@@ -16,12 +16,10 @@
 */
 
 using System.Collections.Generic;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3

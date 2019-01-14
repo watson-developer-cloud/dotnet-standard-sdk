@@ -2473,7 +2473,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                 ConversationId = "conversationId",
                                 System = new SystemResponse()
                             },
-                            Entities = new List<RuntimeEntity>()
+                            Entities = new List<dynamic>()
                             {
                                 new RuntimeEntity()
                                 {
@@ -2486,7 +2486,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                     Confidence = 1.0f
                                 }
                             },
-                            Intents = new List<RuntimeIntent>()
+                            Intents = new List<dynamic>()
                             {
                                 new RuntimeIntent()
                                 {
@@ -2630,7 +2630,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                     ConversationId = "conversationId",
                     System = new SystemResponse()
                 },
-                Entities = new List<RuntimeEntity>()
+                Entities = new List<dynamic>()
                             {
                                 new RuntimeEntity()
                                 {
@@ -2643,7 +2643,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                     Confidence = 1.0f
                                 }
                             },
-                Intents = new List<RuntimeIntent>()
+                Intents = new List<dynamic>()
                             {
                                 new RuntimeIntent()
                                 {
@@ -2695,7 +2695,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                     ConversationId = "conversationId",
                     System = new SystemResponse()
                 },
-                Entities = new List<RuntimeEntity>()
+                Entities = new List<dynamic>()
                             {
                                 new RuntimeEntity()
                                 {
@@ -2708,7 +2708,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                     Confidence = 1.0f
                                 }
                             },
-                Intents = new List<RuntimeIntent>()
+                Intents = new List<dynamic>()
                             {
                                 new RuntimeIntent()
                                 {
@@ -2768,7 +2768,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                     ConversationId = "conversationId",
                     System = new SystemResponse()
                 },
-                Entities = new List<RuntimeEntity>()
+                Entities = new List<dynamic>()
                             {
                                 new RuntimeEntity()
                                 {
@@ -2781,7 +2781,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                     Confidence = 1.0f
                                 }
                             },
-                Intents = new List<RuntimeIntent>()
+                Intents = new List<dynamic>()
                             {
                                 new RuntimeIntent()
                                 {
@@ -2894,7 +2894,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                     ConversationId = "conversationId",
                     System = new SystemResponse()
                 },
-                Entities = new List<RuntimeEntity>()
+                Entities = new List<dynamic>()
                             {
                                 new RuntimeEntity()
                                 {
@@ -2907,7 +2907,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.UnitTests
                                     Confidence = 1.0f
                                 }
                             },
-                Intents = new List<RuntimeIntent>()
+                Intents = new List<dynamic>()
                             {
                                 new RuntimeIntent()
                                 {

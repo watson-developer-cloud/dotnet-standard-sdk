@@ -224,7 +224,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string acceptLanguage = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))

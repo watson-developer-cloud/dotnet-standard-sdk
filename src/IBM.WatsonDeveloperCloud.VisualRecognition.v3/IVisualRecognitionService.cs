@@ -23,7 +23,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
     public partial interface IVisualRecognitionService
     {
         ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
-        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string acceptLanguage = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
+        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
         BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null);
         Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null);
         Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null);

@@ -85,7 +85,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         Credentials UpdateCredentials(string environmentId, string credentialId, Credentials credentialsParameter, Dictionary<string, object> customData = null);
         Gateway CreateGateway(string environmentId, GatewayName gatewayName = null, Dictionary<string, object> customData = null);
         GatewayDelete DeleteGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null);
-        Gateway GetGatewayDetails(string environmentId, string gatewayId, Dictionary<string, object> customData = null);
+        Gateway GetGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null);
         GatewayList ListGateways(string environmentId, Dictionary<string, object> customData = null);
     }
 }

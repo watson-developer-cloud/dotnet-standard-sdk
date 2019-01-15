@@ -3776,7 +3776,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         /// <param name="gatewayId">The requested gateway ID.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Gateway" />Gateway</returns>
-        public Gateway GetGatewayDetails(string environmentId, string gatewayId, Dictionary<string, object> customData = null)
+        public Gateway GetGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));

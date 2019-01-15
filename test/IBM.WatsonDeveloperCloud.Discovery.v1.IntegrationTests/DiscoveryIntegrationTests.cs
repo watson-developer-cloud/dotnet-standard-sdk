@@ -856,7 +856,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             };
             var createGatewayResult = service.CreateGateway(environmentId, gatewayName);
             var gatewayId = createGatewayResult.GatewayId;
-            var getGatewayResult = service.GetGatewayDetails(environmentId, gatewayId);
+            var getGatewayResult = service.GetGateway(environmentId, gatewayId);
             var deleteGatewayResult = service.DeleteGateway(environmentId, gatewayId);
 
             Assert.IsNotNull(deleteGatewayResult);

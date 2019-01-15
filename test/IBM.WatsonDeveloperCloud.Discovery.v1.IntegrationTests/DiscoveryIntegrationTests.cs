@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string endpoint;
         private static string apikey;
         private static string credentials = string.Empty;
-        private static string version = "2018-10-08";
+        private static string version = "2019-01-15";
 
         private static string environmentId;
         private static string createdConfigurationId;
@@ -54,6 +54,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private string createdCollectionName;
         private string createdCollectionDescription = "createdCollectionDescription - safe to delete";
         private string updatedCollectionName;
+        private string dotnetGatewayName = "dotnet-sdk-integration-test-gateway";
         private CreateCollectionRequest.LanguageEnum createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
 
 
@@ -803,7 +804,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Stopword
-        [TestMethod]
+        //[TestMethod]
         public void TestStopword_Success()
         {
             var collectionsList = ListCollections(environmentId);
@@ -841,6 +842,32 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(createStopwordListResult);
             Assert.IsTrue(createStopwordListResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
             Assert.IsNotNull(deleteStopwordListResult);
+        }
+        #endregion
+
+        #region Gateway
+        [TestMethod]
+        public void TestGateway_Success()
+        {
+            var listGatewaysResult = service.ListGateways(environmentId);
+            GatewayName gatewayName = new GatewayName()
+            {
+                Name = dotnetGatewayName
+            };
+            var createGatewayResult = service.CreateGateway(environmentId, gatewayName);
+            var gatewayId = createGatewayResult.GatewayId;
+            var getGatewayResult = service.GetGatewayDetails(environmentId, gatewayId);
+            var deleteGatewayResult = service.DeleteGateway(environmentId, gatewayId);
+
+            Assert.IsNotNull(deleteGatewayResult);
+            Assert.IsTrue(deleteGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(!string.IsNullOrEmpty(deleteGatewayResult.Status));
+            Assert.IsNotNull(getGatewayResult);
+            Assert.IsTrue(getGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(getGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(createGatewayResult);
+            Assert.IsTrue(createGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(listGatewaysResult);
         }
         #endregion
 

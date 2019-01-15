@@ -48,6 +48,9 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         private string acousticResourceName = "firstOrbit";
         private string acousticResourceMimeType = "audio/mpeg";
         private string testAudioPath = @"SpeechToTextTestData/test-audio.wav";
+        private string grammarName = "dotnet-sdk-grammars";
+        private string grammarPath = @"SpeechToTextTestData/confirm.abnf";
+        private string grammarsContentType = "application/srgs";
         private SpeechToTextService service;
 
         [TestInitialize]
@@ -220,6 +223,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
             //var upgradeLanguageModelResult = UpgradeLanguageModel(customizationId);
             //  Assert.IsNotNull(upgradeLanguageModelResult);
 
+            var listGrammarsResult = service.ListGrammars(customizationId);
+            var addGrammarResult = service.AddGrammar(customizationId, grammarName, File.ReadAllText(grammarPath), grammarsContentType);
+            var getGrammarResult = service.GetGrammar(customizationId, grammarName);
+
+            CheckCustomizationStatus(customizationId);
+            autoEvent.WaitOne();
+
+            var deleteGrammarResult = service.DeleteGrammar(customizationId, grammarName);
+
             var deleteCustomWordResults = DeleteWord(customizationId, "csharp");
 
             var deleteCorpusResults = DeleteCorpus(customizationId, corpusName);
@@ -229,6 +241,11 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
 
             var deleteLanguageModelResults = DeleteLanguageModel(customizationId);
 
+            Assert.IsNotNull(deleteGrammarResult);
+            Assert.IsNotNull(getGrammarResult);
+            Assert.IsTrue(getGrammarResult.Name == grammarName);
+            Assert.IsNotNull(addGrammarResult);
+            Assert.IsNotNull(listGrammarsResult);
             Assert.IsNotNull(deleteCustomWordResults);
             Assert.IsNotNull(deleteCorpusResults);
             Assert.IsNotNull(deleteLanguageModelResults);

@@ -2139,7 +2139,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithHeader("Content-Type", contentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithBodyContent(new StringContent(grammarFile, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
+
+                var grammarsContent = new ByteArrayContent(Encoding.UTF8.GetBytes(grammarFile));
+                System.Net.Http.Headers.MediaTypeHeaderValue grammarsContentType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarsContentType);
+                grammarsContent.Headers.ContentType = grammarsContentType;
+                restRequest.WithBodyContent(grammarsContent);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;

@@ -2791,7 +2791,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             QueryNoticesResponse response = new QueryNoticesResponse()
             {
                 MatchingResults = 1,
-                Results = new List<QueryNoticesResult>()
+                Results = new List<dynamic>()
                 {
                     new QueryNoticesResult()
                     {

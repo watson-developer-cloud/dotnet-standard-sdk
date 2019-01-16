@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="SpeechToTextTestData\test-audio.wav;SpeechToTextTestData\theJabberwocky-utf8.txt">
+    <None Update="SpeechToTextTestData\test-audio.wav;SpeechToTextTestData\theJabberwocky-utf8.txt;SpeechToTextTestData\confirm.abnf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

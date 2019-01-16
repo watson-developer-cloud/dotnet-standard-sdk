@@ -2617,7 +2617,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
         /// or `request.context.metadata.deployment`. For more information, see the
-        /// [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).</param>
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
         /// request_timestamp)</param>
@@ -2687,7 +2687,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         /// request_timestamp)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
-        /// [documentation](https://console.bluemix.net/docs/services/conversation/filter-reference.html#filter-query-syntax).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).
         /// (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
         /// 100)</param>
@@ -2748,7 +2748,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/conversation/information-security.html).
+        /// security](https://cloud.ibm.com/docs/services/assistant/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>

@@ -34,7 +34,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// Gets or Sets Results
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryNoticesResult> Results { get; set; }
+        public List<dynamic> Results { get; set; }
         /// <summary>
         /// Gets or Sets Aggregations
         /// </summary>

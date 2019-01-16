@@ -31,14 +31,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         /// <value>
         /// The name of the base language model that is to be customized by the new custom acoustic model. The new
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BaseModelNameEnum
@@ -55,6 +55,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// </summary>
             [EnumMember(Value = "de-DE_BroadbandModel")]
             DE_DE_BROADBANDMODEL,
+            
+            /// <summary>
+            /// Enum DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "de-DE_NarrowbandModel")]
+            DE_DE_NARROWBANDMODEL,
             
             /// <summary>
             /// Enum EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
@@ -81,6 +87,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             EN_US_NARROWBANDMODEL,
             
             /// <summary>
+            /// Enum EN_US_SHORTFORM_NARROWBANDMODEL for en-US_ShortForm_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "en-US_ShortForm_NarrowbandModel")]
+            EN_US_SHORTFORM_NARROWBANDMODEL,
+            
+            /// <summary>
             /// Enum ES_ES_BROADBANDMODEL for es-ES_BroadbandModel
             /// </summary>
             [EnumMember(Value = "es-ES_BroadbandModel")]
@@ -97,6 +109,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// </summary>
             [EnumMember(Value = "fr-FR_BroadbandModel")]
             FR_FR_BROADBANDMODEL,
+            
+            /// <summary>
+            /// Enum FR_FR_NARROWBANDMODEL for fr-FR_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "fr-FR_NarrowbandModel")]
+            FR_FR_NARROWBANDMODEL,
             
             /// <summary>
             /// Enum JA_JP_BROADBANDMODEL for ja-JP_BroadbandModel
@@ -152,7 +170,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         /// custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
-        /// customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
+        /// customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         [JsonProperty("base_model_name", NullValueHandling = NullValueHandling.Ignore)]
         public BaseModelNameEnum? BaseModelName { get; set; }

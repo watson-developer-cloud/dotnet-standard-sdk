@@ -29,23 +29,23 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     {
         /// <summary>
         /// The current status of the custom acoustic model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </summary>
         /// <value>
         /// The current status of the custom acoustic model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -90,13 +90,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 
         /// <summary>
         /// The current status of the custom acoustic model:
-        /// * `pending` indicates that the model was created but is waiting either for training data to be added or for
-        /// the service to finish analyzing added data.
-        /// * `ready` indicates that the model contains data and is ready to be trained.
-        /// * `training` indicates that the model is currently being trained.
-        /// * `available` indicates that the model is trained and ready to use.
-        /// * `upgrading` indicates that the model is currently being upgraded.
-        /// * `failed` indicates that training of the model failed.
+        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
+        /// finish analyzing added data.
+        /// * `ready`: The model contains data and is ready to be trained.
+        /// * `training`: The model is currently being trained.
+        /// * `available`: The model is trained and ready to use.
+        /// * `upgrading`: The model is currently being upgraded.
+        /// * `failed`: Training of the model failed.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
@@ -125,7 +125,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         [JsonProperty("versions", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Versions { get; set; }
         /// <summary>
-        /// The GUID of the service credentials for the instance of the service that owns the custom acoustic model.
+        /// The GUID of the credentials for the instance of the service that owns the custom acoustic model.
         /// </summary>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }

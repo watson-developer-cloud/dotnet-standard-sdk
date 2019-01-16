@@ -32,7 +32,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
         ///
         /// To determine whether a base model supports language model customization, use the **Get a model** method and
         /// check that the attribute `custom_language_model` is set to `true`. You can also refer to [Language support
-        /// for customization](https://cloud.ibm.com/docs/services/docs/services/speech-to-text/custom.html#languageSupport).
+        /// for customization](https://cloud.ibm.com/docs/services/speech-to-text/custom.html#languageSupport).
         /// </summary>
         /// <value>
         /// The name of the base language model that is to be customized by the new custom language model. The new
@@ -51,6 +51,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// </summary>
             [EnumMember(Value = "de-DE_BroadbandModel")]
             DE_DE_BROADBANDMODEL,
+            
+            /// <summary>
+            /// Enum DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "de-DE_NarrowbandModel")]
+            DE_DE_NARROWBANDMODEL,
             
             /// <summary>
             /// Enum EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
@@ -77,6 +83,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             EN_US_NARROWBANDMODEL,
             
             /// <summary>
+            /// Enum EN_US_SHORTFORM_NARROWBANDMODEL for en-US_ShortForm_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "en-US_ShortForm_NarrowbandModel")]
+            EN_US_SHORTFORM_NARROWBANDMODEL,
+            
+            /// <summary>
             /// Enum ES_ES_BROADBANDMODEL for es-ES_BroadbandModel
             /// </summary>
             [EnumMember(Value = "es-ES_BroadbandModel")]
@@ -93,6 +105,12 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
             /// </summary>
             [EnumMember(Value = "fr-FR_BroadbandModel")]
             FR_FR_BROADBANDMODEL,
+            
+            /// <summary>
+            /// Enum FR_FR_NARROWBANDMODEL for fr-FR_NarrowbandModel
+            /// </summary>
+            [EnumMember(Value = "fr-FR_NarrowbandModel")]
+            FR_FR_NARROWBANDMODEL,
             
             /// <summary>
             /// Enum JA_JP_BROADBANDMODEL for ja-JP_BroadbandModel

@@ -26,8 +26,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     public class RecognitionJobs : BaseModel
     {
         /// <summary>
-        /// An array of objects that provides the status for each of the user's current jobs. The array is empty if the
-        /// user has no current jobs.
+        /// An array of `RecognitionJob` objects that provides the status for each of the user's current jobs. The array
+        /// is empty if the user has no current jobs.
         /// </summary>
         [JsonProperty("recognitions", NullValueHandling = NullValueHandling.Ignore)]
         public List<RecognitionJob> Recognitions { get; set; }

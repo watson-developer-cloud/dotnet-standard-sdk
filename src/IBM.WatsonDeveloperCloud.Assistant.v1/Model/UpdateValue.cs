@@ -81,7 +81,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by
         /// **type**), but not both. A pattern is a regular expression no longer than 512 characters. For more
         /// information about how to specify a pattern, see the
-        /// [documentation](https://console.bluemix.net/docs/services/conversation/entities.html#creating-entities).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/entities.html#creating-entities).
         /// </summary>
         [JsonProperty("patterns", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Patterns { get; set; }

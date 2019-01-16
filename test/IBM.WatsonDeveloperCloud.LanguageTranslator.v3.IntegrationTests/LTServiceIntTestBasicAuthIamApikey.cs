@@ -23,22 +23,21 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
 {
     [TestClass]
     public class LTServiceIntTestBasicAuthIamApikey
     {
-        private static string _username;
-        private static string _password;
-        private static string _endpoint;
-        private static LanguageTranslatorService _service;
+        private static string username;
+        private static string password;
+        private static string endpoint;
+        private static LanguageTranslatorService service;
         private static string credentials = string.Empty;
         
-        private static string _baseModel = "en-fr";
-        private static string _text = "I'm sorry, Dave. I'm afraid I can't do that.";
-        private string _versionDate = "2018-05-01";
+        private static string baseModel = "en-fr";
+        private static string text = "I'm sorry, Dave. I'm afraid I can't do that.";
+        private string versionDate = "2018-05-01";
 
         [TestInitialize]
         public void Setup()
@@ -68,21 +67,21 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
                 VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
                 var vcapServices = JObject.Parse(credentials);
 
-                Credential credential = vcapCredentials.GetCredentialByname("language-translator-v3-sdk-rc-wdc")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = "apikey";
-                _password = credential.IamApikey;
+                Credential credential = vcapCredentials.GetCredentialByname("language-translator-sdk")[0].Credentials;
+                endpoint = credential.Url;
+                username = "apikey";
+                password = credential.IamApikey;
             }
             #endregion
 
-            _service = new LanguageTranslatorService(_username, _password, _versionDate);
-            _service.SetEndpoint(_endpoint);
+            service = new LanguageTranslatorService(username, password, versionDate);
+            service.SetEndpoint(endpoint);
         }
 
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess_IamAsBasicAuth()
         {
-            var results = _service.ListIdentifiableLanguages();
+            var results = service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -91,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Identify_Sucess_IamAsBasicAuth()
         {
-            var results = _service.Identify(_text);
+            var results = service.Identify(text);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Languages.Count > 0);
@@ -104,12 +103,12 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
             {
                 Text = new List<string>()
                 {
-                    _text
+                    text
                 },
-                ModelId = _baseModel
+                ModelId = baseModel
             };
 
-            var results = _service.Translate(translateRequest);
+            var results = service.Translate(translateRequest);
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Translations.Count > 0);
@@ -118,7 +117,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void ListModels_Sucess_IamAsBasicAuth()
         {
-            var results = _service.ListModels();
+            var results = service.ListModels();
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Models.Count > 0);

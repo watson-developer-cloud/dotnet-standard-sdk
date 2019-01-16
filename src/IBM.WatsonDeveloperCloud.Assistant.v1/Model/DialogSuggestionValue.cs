@@ -27,7 +27,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class DialogSuggestionValue : BaseModel
     {
         /// <summary>
-        /// The user input.
+        /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Input { get; set; }
@@ -35,12 +35,12 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// An array of intents to be sent along with the user input.
         /// </summary>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeIntent> Intents { get; set; }
+        public List<dynamic> Intents { get; set; }
         /// <summary>
         /// An array of entities to be sent along with the user input.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeEntity> Entities { get; set; }
+        public List<dynamic> Entities { get; set; }
     }
 
 }

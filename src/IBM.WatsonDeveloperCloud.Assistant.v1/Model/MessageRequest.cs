@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// A message request formatted for the Watson Assistant service.
+    /// A request sent to the workspace, including the user input and context.
     /// </summary>
     public class MessageRequest : BaseModel
     {
         /// <summary>
-        /// The user input.
+        /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Input { get; set; }
@@ -45,13 +45,13 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
         /// those entities rather than detecting entities in the new input.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeEntity> Entities { get; set; }
+        public List<dynamic> Entities { get; set; }
         /// <summary>
         /// Intents to use when evaluating the user input. Include intents from the previous response to continue using
         /// those intents rather than trying to recognize intents in the new input.
         /// </summary>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeIntent> Intents { get; set; }
+        public List<dynamic> Intents { get; set; }
         /// <summary>
         /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages
         /// from the log.

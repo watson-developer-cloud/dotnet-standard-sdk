@@ -15,20 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.WatsonDeveloperCloud.Assistant.v2.Model
+namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding option.
+    /// Object containing gateways array.
     /// </summary>
-    public class DialogNodeOutputOptionsElementValue : BaseModel
+    public class GatewayList : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// Array of configured gateway connections.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("gateways", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Gateway> Gateways { get; set; }
     }
 
 }

@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             this.ApiKey = apikey;
             if (!_userSetEndpoint)
-                this.Endpoint = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+                this.Endpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
         }
 
         /// <summary>

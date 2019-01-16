@@ -16,12 +16,10 @@
 */
 
 using System.Collections.Generic;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Model;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
 using System;
 
 namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
@@ -105,7 +103,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](https://cloud.ibm.com/docs/services/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
+        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>

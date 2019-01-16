@@ -28,13 +28,13 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
     {
         /// <summary>
         /// The current status of the job:
-        /// * `created` if the callback URL was successfully white-listed as a result of the call.
-        /// * `already created` if the URL was already white-listed.
+        /// * `created`: The service successfully white-listed the callback URL as a result of the call.
+        /// * `already created`: The URL was already white-listed.
         /// </summary>
         /// <value>
         /// The current status of the job:
-        /// * `created` if the callback URL was successfully white-listed as a result of the call.
-        /// * `already created` if the URL was already white-listed.
+        /// * `created`: The service successfully white-listed the callback URL as a result of the call.
+        /// * `already created`: The URL was already white-listed.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -55,8 +55,8 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.Model
 
         /// <summary>
         /// The current status of the job:
-        /// * `created` if the callback URL was successfully white-listed as a result of the call.
-        /// * `already created` if the URL was already white-listed.
+        /// * `created`: The service successfully white-listed the callback URL as a result of the call.
+        /// * `already created`: The URL was already white-listed.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }

@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private static string endpoint;
         private static string apikey;
         private static string credentials = string.Empty;
-        private static string version = "2018-10-08";
+        private static string version = "2019-01-15";
 
         private static string environmentId;
         private static string createdConfigurationId;
@@ -49,10 +49,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private string createdConfigurationDescription = "configDescription - safe to delete";
         private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
         private string metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
 
         private string createdCollectionName;
         private string createdCollectionDescription = "createdCollectionDescription - safe to delete";
         private string updatedCollectionName;
+        private string dotnetGatewayName = "dotnet-sdk-integration-test-gateway";
         private CreateCollectionRequest.LanguageEnum createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
 
 
@@ -760,6 +762,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var tokenizationCollectionId = createCollectionResult.CollectionId;
 
+            IsCollectionReady(environmentId, tokenizationCollectionId);
+            autoEvent.WaitOne();
+
             TokenDict tokenizationDictionary = new TokenDict()
             {
                 TokenizationRules = new List<TokenDictRule>()
@@ -780,10 +785,17 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
+            IsEnvironmentReady(environmentId);
+            autoEvent.WaitOne();
+
             try
             {
                 var createTokenizationDictionaryResult = CreateTokenizationDictionary(environmentId, tokenizationCollectionId, tokenizationDictionary);
                 var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+
+                IsDictionaryReady(environmentId, tokenizationCollectionId);
+                autoEvent.WaitOne();
+
                 var deleteTokenizationDictionary = DeleteTokenizationDictionary(environmentId, tokenizationCollectionId);
 
                 Assert.IsNotNull(deleteTokenizationDictionary);
@@ -798,6 +810,80 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             }
 
             DeleteCollection(environmentId, tokenizationCollectionId);
+        }
+        #endregion
+
+        #region Stopword
+        //[TestMethod]
+        public void TestStopword_Success()
+        {
+            var collectionsList = ListCollections(environmentId);
+
+            foreach (Collection collection in collectionsList.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
+                    {
+                        DeleteCollection(environmentId, collection.CollectionId);
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
+
+            IsEnvironmentReady(environmentId);
+            autoEvent.WaitOne();
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.EN,
+                Name = "stopword-collection-please-delete-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
+            };
+
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
+            var stopwordCollectionId = createCollectionResult.CollectionId;
+
+            IsCollectionReady(environmentId, stopwordCollectionId);
+            autoEvent.WaitOne();
+
+            TokenDictStatusResponse createStopwordListResult;
+            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            {
+                createStopwordListResult = service.CreateStopwordList(environmentId, stopwordCollectionId, fs);
+            }
+
+            var deleteStopwordListResult = service.DeleteStopwordList(environmentId, stopwordCollectionId);
+
+            Assert.IsNotNull(createStopwordListResult);
+            Assert.IsTrue(createStopwordListResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+            Assert.IsNotNull(deleteStopwordListResult);
+        }
+        #endregion
+
+        #region Gateway
+        [TestMethod]
+        public void TestGateway_Success()
+        {
+            var listGatewaysResult = service.ListGateways(environmentId);
+            GatewayName gatewayName = new GatewayName()
+            {
+                Name = dotnetGatewayName
+            };
+            var createGatewayResult = service.CreateGateway(environmentId, gatewayName);
+            var gatewayId = createGatewayResult.GatewayId;
+            var getGatewayResult = service.GetGateway(environmentId, gatewayId);
+            var deleteGatewayResult = service.DeleteGateway(environmentId, gatewayId);
+
+            Assert.IsNotNull(deleteGatewayResult);
+            Assert.IsTrue(deleteGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(!string.IsNullOrEmpty(deleteGatewayResult.Status));
+            Assert.IsNotNull(getGatewayResult);
+            Assert.IsTrue(getGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(getGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(createGatewayResult);
+            Assert.IsTrue(createGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(listGatewaysResult);
         }
         #endregion
 
@@ -818,6 +904,72 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                     Thread.Sleep(30000);
                     Console.WriteLine("Checking environment status in 30 seconds...");
                     IsEnvironmentReady(environmentId);
+                });
+            }
+        }
+        #endregion
+
+        #region IsDictionaryReady
+        private void IsDictionaryReady(string environmentId, string tokenizationCollectionId)
+        {
+            var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+
+            if(result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsDictionaryReady(environmentId, tokenizationCollectionId);
+                });
+            }
+        }
+        #endregion
+
+        #region IsStopwordsReady
+        private void IsStopwordsReady(string environmentId, string tokenizationCollectionId)
+        {
+            var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+
+            if (result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsStopwordsReady(environmentId, tokenizationCollectionId);
+                });
+            }
+        }
+        #endregion
+
+        #region IsCollectionReady
+        private void IsCollectionReady(string environmentId, string collectionId)
+        {
+            var result = service.GetCollection(environmentId, collectionId);
+            Console.WriteLine(string.Format("\tCollection {0} status is {1}.", environmentId, result.Status));
+
+            if (result.Status == Collection.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking collection status in 30 seconds...");
+                    IsCollectionReady(environmentId, collectionId);
                 });
             }
         }

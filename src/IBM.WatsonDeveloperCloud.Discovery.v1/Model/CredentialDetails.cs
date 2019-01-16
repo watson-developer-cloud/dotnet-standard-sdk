@@ -34,7 +34,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         ///
         /// -  `\"source_type\": \"box\"` - valid `credential_type`s: `oauth2`
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
-        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml`.
+        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
+        /// or `ntml_v1` with **source_version** of `2016`
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
         /// </summary>
         /// <value>
         /// The authentication method for this credentials definition. The  **credential_type** specified must be
@@ -42,7 +44,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         ///
         /// -  `\"source_type\": \"box\"` - valid `credential_type`s: `oauth2`
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
-        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml`.
+        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
+        /// or `ntml_v1` with **source_version** of `2016`
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CredentialTypeEnum
@@ -64,7 +68,25 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum USERNAME_PASSWORD for username_password
             /// </summary>
             [EnumMember(Value = "username_password")]
-            USERNAME_PASSWORD
+            USERNAME_PASSWORD,
+            
+            /// <summary>
+            /// Enum NOAUTH for noauth
+            /// </summary>
+            [EnumMember(Value = "noauth")]
+            NOAUTH,
+            
+            /// <summary>
+            /// Enum BASIC for basic
+            /// </summary>
+            [EnumMember(Value = "basic")]
+            BASIC,
+            
+            /// <summary>
+            /// Enum NTML_V1 for ntml_v1
+            /// </summary>
+            [EnumMember(Value = "ntml_v1")]
+            NTML_V1
         }
 
         /// <summary>
@@ -73,10 +95,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         ///
         /// -  `\"source_type\": \"box\"` - valid `credential_type`s: `oauth2`
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
-        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml`.
+        /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
+        /// or `ntml_v1` with **source_version** of `2016`
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
         /// </summary>
         [JsonProperty("credential_type", NullValueHandling = NullValueHandling.Ignore)]
         public CredentialTypeEnum? CredentialType { get; set; }
+        /// <summary>
+        /// The type of Sharepoint repository to connect to. Only valid, and required, with a **source_type** of
+        /// `sharepoint`.
+        /// </summary>
+        [JsonProperty("source_version", NullValueHandling = NullValueHandling.Ignore)]
+        public string SourceVersion { get; set; }
         /// <summary>
         /// The **client_id** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `oauth2`.
@@ -91,13 +121,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         public string EnterpriseId { get; set; }
         /// <summary>
         /// The **url** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `username_password`.
+        /// **credential_type** of `username_password`, `noauth`, and `basic`.
         /// </summary>
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
         /// The **username** of the source that these credentials connect to. Only valid, and required, with a
-        /// **credential_type** of `saml` and `username_password`.
+        /// **credential_type** of `saml`, `username_password`, `basic`, or `ntml_v1`.
         /// </summary>
         [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }
@@ -143,7 +173,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         public string Passphrase { get; set; }
         /// <summary>
         /// The **password** of the source that these credentials connect to. Only valid, and required, with
-        /// **credential_type**s of `saml` and `username_password`.
+        /// **credential_type**s of `saml`, `username_password`, `basic`, or `ntml_v1`.
         ///
         /// **Note:** When used with a **source_type** of `salesforce`, the password consists of the Salesforce password
         /// and a valid Salesforce security token concatenated. This value is never returned and is only used when
@@ -151,6 +181,24 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         /// </summary>
         [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
+        /// <summary>
+        /// The ID of the **gateway** to be connected through (when connecting to intranet sites). Only valid with a
+        /// **credential_type** of `noauth`, `basic`, or `ntml_v1`. Gateways are created using the
+        /// `/v1/environments/{environment_id}/gateways` methods.
+        /// </summary>
+        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string GatewayId { get; set; }
+        /// <summary>
+        /// SharePoint OnPrem WebApplication URL. Only valid, and required, with a **source_version** of `2016`.
+        /// </summary>
+        [JsonProperty("web_application_url", NullValueHandling = NullValueHandling.Ignore)]
+        public string WebApplicationUrl { get; set; }
+        /// <summary>
+        /// The domain used to log in to your OnPrem SharePoint account. Only valid, and required, with a
+        /// **source_version** of `2016`.
+        /// </summary>
+        [JsonProperty("domain", NullValueHandling = NullValueHandling.Ignore)]
+        public string Domain { get; set; }
     }
 
 }

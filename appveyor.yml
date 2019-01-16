@@ -20,6 +20,7 @@ environment:
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
+- "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 # install modules
 - pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
@@ -54,8 +55,6 @@ build:
   verbosity: minimal
 after_build:
 - ps: >-
-    $env:Path = $env:Path + ";" + $HOME + "\AppData\Roaming\Python\Python37\Scripts"
-    $env:Path = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:Path"
     git config --global user.email "wps@us.ibm.com"
     git config --global user.name "Watson Github Bot"
 

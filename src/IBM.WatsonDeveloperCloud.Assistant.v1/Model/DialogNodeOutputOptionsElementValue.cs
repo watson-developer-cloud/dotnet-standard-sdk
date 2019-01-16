@@ -26,7 +26,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
     public class DialogNodeOutputOptionsElementValue : BaseModel
     {
         /// <summary>
-        /// The user input.
+        /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Input { get; set; }

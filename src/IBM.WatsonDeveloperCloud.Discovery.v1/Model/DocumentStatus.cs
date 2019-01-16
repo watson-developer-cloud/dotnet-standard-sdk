@@ -60,7 +60,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// Enum PROCESSING for processing
             /// </summary>
             [EnumMember(Value = "processing")]
-            PROCESSING
+            PROCESSING,
+            /// <summary>
+            /// Enum PENDING for pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            PENDING
         }
 
         /// <summary>

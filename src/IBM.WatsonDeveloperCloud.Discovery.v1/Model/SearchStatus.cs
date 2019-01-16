@@ -42,12 +42,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// </summary>
             [EnumMember(Value = "NO_DATA")]
             NO_DATA,
-            
+
             /// <summary>
-            /// Enum INSUFFICENT_DATA for INSUFFICENT_DATA
+            /// Enum INSUFFICENT_DATA for INSUFFICIENT_DATA
             /// </summary>
-            [EnumMember(Value = "INSUFFICENT_DATA")]
-            INSUFFICENT_DATA,
+            [EnumMember(Value = "INSUFFICIENT_DATA")]
+            INSUFFICIENT_DATA,
             
             /// <summary>
             /// Enum TRAINING for TRAINING

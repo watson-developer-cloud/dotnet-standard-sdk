@@ -22,15 +22,15 @@ using Newtonsoft.Json.Converters;
 namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
 {
     /// <summary>
-    /// Object describing the current status of the tokenization dictionary.
+    /// Object describing the current status of the wordlist.
     /// </summary>
     public class TokenDictStatusResponse : BaseModel
     {
         /// <summary>
-        /// Current tokenization dictionary status for the specified collection.
+        /// Current wordlist status for the specified collection.
         /// </summary>
         /// <value>
-        /// Current tokenization dictionary status for the specified collection.
+        /// Current wordlist status for the specified collection.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -56,12 +56,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Current tokenization dictionary status for the specified collection.
+        /// Current wordlist status for the specified collection.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// The type for this dictionary. Always returns `tokenization_dictionary`.
+        /// The type for this wordlist. Can be `tokenization_dictionary` or `stopwords`.
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }

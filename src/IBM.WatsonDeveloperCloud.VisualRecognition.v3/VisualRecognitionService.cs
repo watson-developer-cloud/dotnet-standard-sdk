@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public VisualRecognitionService() : base(SERVICE_NAME, URL)
         {
-            if(!string.IsNullOrEmpty(this.Endpoint))
+            if (!string.IsNullOrEmpty(this.Endpoint))
                 this.Endpoint = URL;
         }
 
@@ -49,7 +49,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -164,7 +164,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 }
 
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client;
                 }
@@ -181,11 +181,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<ClassifiedImages>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ClassifiedImages();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -198,7 +198,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was
         /// removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy`
         /// knowledge graph. For details about the enhanced Face model, see the [Release
-        /// notes](https://console.bluemix.net/docs/services/visual-recognition/release-notes.html#2april2018).
+        /// notes](https://cloud.ibm.com/docs/services/visual-recognition/release-notes.html#2april2018).
         ///
         /// Analyze and get data about faces in images. Responses can include estimated age and gender. This feature
         /// uses a built-in model, so no training is necessary. The Detect faces method does not support general
@@ -219,10 +219,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// followed, so you can use a shortened URL.
         ///
         /// You can also include images with the **images_file** parameter. (optional)</param>
+        /// <param name="acceptLanguage">The language used for the value of `gender_label` in the response. (optional,
+        /// default to en)</param>
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, Dictionary<string, object> customData = null)
+        public DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -262,22 +264,24 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
 
                 restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<DetectedFaces>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DetectedFaces();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        
+
         /// <summary>
         /// Delete a classifier.
         /// </summary>
@@ -311,11 +315,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -358,11 +362,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<Classifier>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Classifier();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -404,18 +408,18 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<Classifiers>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Classifiers();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
 
             return result;
         }
-        
+
         /// <summary>
         /// Delete labeled data.
         ///
@@ -424,7 +428,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/visual-recognition/information-security.html).
+        /// security](https://cloud.ibm.com/docs/services/visual-recognition/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -458,11 +462,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

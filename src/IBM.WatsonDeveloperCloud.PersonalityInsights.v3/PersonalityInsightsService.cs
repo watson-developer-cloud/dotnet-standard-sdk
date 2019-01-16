@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using System.Text;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.PersonalityInsights.v3.Model;
 using IBM.WatsonDeveloperCloud.Service;
@@ -95,7 +94,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         ///
         /// **See also:**
         /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
-        /// * [Providing sufficient input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// * [Providing sufficient
+        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
         ///
         /// ### Content types
         ///
@@ -123,8 +123,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type
-        /// `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
+        /// provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///
@@ -214,7 +214,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         ///
         /// **See also:**
         /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
-        /// * [Providing sufficient input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// * [Providing sufficient
+        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
         ///
         /// ### Content types
         ///
@@ -242,8 +243,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input, provide an object of type
-        /// `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
+        /// provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///

@@ -130,7 +130,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region General
         [TestMethod]
-        public void Classify_Success_RC()
+        public void Classify_Success()
         {
             using (FileStream fs = File.OpenRead(localGiraffeFilePath))
             {
@@ -143,7 +143,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void ClassifyURL_Success_RC()
+        public void ClassifyURL_Success()
         {
             var result = service.Classify(url: imageUrl);
 
@@ -155,11 +155,11 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Face
         [TestMethod]
-        public void DetectFaces_Success_RC()
+        public void DetectFaces_Success()
         {
             using (FileStream fs = File.OpenRead(localFaceFilePath))
             {
-                var result = service.DetectFaces(fs, null, "image/jpeg");
+                var result = service.DetectFaces(fs, null, "image/jpeg", "en");
 
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
@@ -168,7 +168,21 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         }
 
         [TestMethod]
-        public void DetectFacesURL_Success_RC()
+        public void DetectFacesSpanish_Success()
+        {
+            using (FileStream fs = File.OpenRead(localFaceFilePath))
+            {
+                var result = service.DetectFaces(fs, null, "image/jpeg", "es");
+
+                Assert.IsNotNull(result);
+                Assert.IsNotNull(result.Images);
+                Assert.IsTrue(result.Images[0].Faces[0].Gender.GenderLabel == "macho");
+                Assert.IsTrue(result.Images.Count > 0);
+            }
+        }
+
+        [TestMethod]
+        public void DetectFacesURL_Success()
         {
             using (FileStream fs = File.OpenRead(localFaceFilePath))
             {
@@ -182,7 +196,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
         #endregion
 
         [TestMethod]
-        public void ListClassifiers_Success_RC()
+        public void ListClassifiers_Success()
         {
             Classifiers listClassifiersResult = null;
 
@@ -200,7 +214,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests
 
         #region Custom
         //[TestMethod]
-        public void TestClassifiers_Success_RC()
+        public void TestClassifiers_Success()
         {
             Classifier createClassifierResult = null;
             try

@@ -24,8 +24,6 @@ using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Http.Extensions;
 using IBM.WatsonDeveloperCloud.Service;
 using IBM.WatsonDeveloperCloud.Util;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using Environment = IBM.WatsonDeveloperCloud.Discovery.v1.Model.Environment;
 
@@ -1130,6 +1128,71 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         }
 
         /// <summary>
+        /// Create stopword list.
+        ///
+        /// Upload a custom stopword list to use with the specified collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="stopwordFile">The content of the stopword list to ingest.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="TokenDictStatusResponse" />TokenDictStatusResponse</returns>
+        public TokenDictStatusResponse CreateStopwordList(string environmentId, string collectionId, System.IO.FileStream stopwordFile, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+            if (stopwordFile == null)
+                throw new ArgumentNullException(nameof(stopwordFile));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            TokenDictStatusResponse result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (stopwordFile != null)
+                {
+                    var stopwordFileContent = new ByteArrayContent((stopwordFile as Stream).ReadAllBytes());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    stopwordFileContent.Headers.ContentType = contentType;
+                    formData.Add(stopwordFileContent, "stopword_file", stopwordFile.Name);
+                }
+
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBodyContent(formData);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<TokenDictStatusResponse>().Result;
+                if(result == null)
+                    result = new TokenDictStatusResponse();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Create tokenization dictionary.
         ///
         /// Upload a custom tokenization dictionary to use with the specified collection.
@@ -1216,6 +1279,57 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<BaseModel>().Result;
+                if(result == null)
+                    result = new BaseModel();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a custom stopword list.
+        ///
+        /// Delete a custom stopword list from the collection. After a custom stopword list is deleted, the default list
+        /// is used for the collection.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="BaseModel" />BaseModel</returns>
+        public BaseModel DeleteStopwordList(string environmentId, string collectionId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(collectionId))
+                throw new ArgumentNullException(nameof(collectionId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            BaseModel result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
@@ -2049,6 +2163,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 };
 
                 restRequest.WithBody<QueryLarge>(queryLarge);
+
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 result = restRequest.As<QueryResponse>().Result;
@@ -3544,6 +3659,201 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 result = restRequest.As<Credentials>().Result;
                 if(result == null)
                     result = new Credentials();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Create Gateway.
+        ///
+        /// Create a gateway configuration to use with a remotely installed gateway.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="gatewayName">The name of the gateway to created. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Gateway" />Gateway</returns>
+        public Gateway CreateGateway(string environmentId, GatewayName gatewayName = null, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Gateway result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithBody<GatewayName>(gatewayName);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Gateway>().Result;
+                if(result == null)
+                    result = new Gateway();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete Gateway.
+        ///
+        /// Delete the specified gateway configuration.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="gatewayId">The requested gateway ID.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="GatewayDelete" />GatewayDelete</returns>
+        public GatewayDelete DeleteGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(gatewayId))
+                throw new ArgumentNullException(nameof(gatewayId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            GatewayDelete result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways/{gatewayId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<GatewayDelete>().Result;
+                if(result == null)
+                    result = new GatewayDelete();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List Gateway Details.
+        ///
+        /// List information about the specified gateway.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="gatewayId">The requested gateway ID.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="Gateway" />Gateway</returns>
+        public Gateway GetGateway(string environmentId, string gatewayId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+            if (string.IsNullOrEmpty(gatewayId))
+                throw new ArgumentNullException(nameof(gatewayId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            Gateway result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways/{gatewayId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<Gateway>().Result;
+                if(result == null)
+                    result = new Gateway();
+                result.CustomData = restRequest.CustomData;
+            }
+            catch(AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List Gateways.
+        ///
+        /// List the currently configured gateways.
+        /// </summary>
+        /// <param name="environmentId">The ID of the environment.</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
+        /// <returns><see cref="GatewayList" />GatewayList</returns>
+        public GatewayList ListGateways(string environmentId, Dictionary<string, object> customData = null)
+        {
+            if (string.IsNullOrEmpty(environmentId))
+                throw new ArgumentNullException(nameof(environmentId));
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            GatewayList result = null;
+
+            try
+            {
+                IClient client;
+                if(_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+                else
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (customData != null)
+                    restRequest.WithCustomData(customData);
+                result = restRequest.As<GatewayList>().Result;
+                if(result == null)
+                    result = new GatewayList();
                 result.CustomData = restRequest.CustomData;
             }
             catch(AggregateException ae)

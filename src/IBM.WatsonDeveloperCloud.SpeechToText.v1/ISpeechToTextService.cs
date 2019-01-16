@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using IBM.WatsonDeveloperCloud.SpeechToText.v1.Model;
 
 namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
@@ -25,10 +24,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
     {
         SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null);
         SpeechModels ListModels(Dictionary<string, object> customData = null);
-        SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, Dictionary<string, object> customData = null);
+        SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
         RecognitionJob CheckJob(string id, Dictionary<string, object> customData = null);
         RecognitionJobs CheckJobs(Dictionary<string, object> customData = null);
-        RecognitionJob CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, Dictionary<string, object> customData = null);
+        RecognitionJob CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
         BaseModel DeleteJob(string id, Dictionary<string, object> customData = null);
         RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null, Dictionary<string, object> customData = null);
         BaseModel UnregisterCallback(string callbackUrl, Dictionary<string, object> customData = null);
@@ -48,6 +47,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         BaseModel DeleteWord(string customizationId, string wordName, Dictionary<string, object> customData = null);
         Word GetWord(string customizationId, string wordName, Dictionary<string, object> customData = null);
         Words ListWords(string customizationId, string wordType = null, string sort = null, Dictionary<string, object> customData = null);
+        BaseModel AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null, Dictionary<string, object> customData = null);
+        BaseModel DeleteGrammar(string customizationId, string grammarName, Dictionary<string, object> customData = null);
+        Grammar GetGrammar(string customizationId, string grammarName, Dictionary<string, object> customData = null);
+        Grammars ListGrammars(string customizationId, Dictionary<string, object> customData = null);
         AcousticModel CreateAcousticModel(CreateAcousticModel createAcousticModel, Dictionary<string, object> customData = null);
         BaseModel DeleteAcousticModel(string customizationId, Dictionary<string, object> customData = null);
         AcousticModel GetAcousticModel(string customizationId, Dictionary<string, object> customData = null);

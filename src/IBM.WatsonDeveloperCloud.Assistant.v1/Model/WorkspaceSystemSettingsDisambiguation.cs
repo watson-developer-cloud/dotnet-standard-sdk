@@ -22,7 +22,9 @@ using Newtonsoft.Json.Converters;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// WorkspaceSystemSettingsDisambiguation.
+    /// Workspace settings related to the disambiguation feature.
+    ///
+    /// **Note:** This feature is available only to Premium users.
     /// </summary>
     public class WorkspaceSystemSettingsDisambiguation : BaseModel
     {

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Models available for Relations and Entities features.
+    /// Custom models that are available for entities and relations.
     /// </summary>
     public class ListModelsResults : BaseModel
     {

@@ -21,7 +21,7 @@ install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
 # install modules
-- pip install --user bumpversion
+- pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages
@@ -98,6 +98,8 @@ after_build:
           If($branchName -eq "master")
 
           {
+            npx semantic-release
+
             Write-Output "branchName  is master - building nuget packages"
             dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
@@ -112,14 +114,12 @@ after_build:
             dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
             dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
-
-            npx semantic-release
           }
           
           else
 
           {
-            Write-Output "branchName is not master - do not pack."
+            Write-Output "branchName is not master - do not pack or run semantic-release."
           }
 
       }

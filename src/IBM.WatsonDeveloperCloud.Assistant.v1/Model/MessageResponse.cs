@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.WatsonDeveloperCloud.Assistant.v1.Model
 {
     /// <summary>
-    /// A response from the Watson Assistant service.
+    /// The response sent by the workspace, including the output text, detected intents and entities, and context.
     /// </summary>
     public class MessageResponse : BaseModel
     {

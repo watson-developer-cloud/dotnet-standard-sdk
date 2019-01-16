@@ -32,32 +32,33 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
     [TestClass]
     public class DiscoveryIntegrationTests
     {
-        private DiscoveryService _service;
-        private static string _endpoint;
-        private static string _username;
-        private static string _password;
+        private DiscoveryService service;
+        private static string endpoint;
+        private static string apikey;
         private static string credentials = string.Empty;
-        private static string version = "2018-10-08";
+        private static string version = "2019-01-15";
 
-        private static string _environmentId;
-        private static string _createdConfigurationId;
-        private static string _createdDocumentId;
-        private static string _createdTrainingQueryId;
-        private static string _createdTrainingExampleId;
+        private static string environmentId;
+        private static string createdConfigurationId;
+        private static string createdDocumentId;
+        private static string createdTrainingQueryId;
+        private static string createdTrainingExampleId;
 
-        private string _createdConfigurationName;
-        private string _updatedConfigurationName;
-        private string _createdConfigurationDescription = "configDescription - safe to delete";
-        private string _filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
-        private string _metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string createdConfigurationName;
+        private string updatedConfigurationName;
+        private string createdConfigurationDescription = "configDescription - safe to delete";
+        private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
+        private string metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
 
-        private string _createdCollectionName;
-        private string _createdCollectionDescription = "createdCollectionDescription - safe to delete";
-        private string _updatedCollectionName;
-        private CreateCollectionRequest.LanguageEnum _createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
+        private string createdCollectionName;
+        private string createdCollectionDescription = "createdCollectionDescription - safe to delete";
+        private string updatedCollectionName;
+        private string dotnetGatewayName = "dotnet-sdk-integration-test-gateway";
+        private CreateCollectionRequest.LanguageEnum createdCollectionLanguage = CreateCollectionRequest.LanguageEnum.EN;
 
 
-        private string _naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
+        private string naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         [TestInitialize]
@@ -89,22 +90,27 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 var vcapServices = JObject.Parse(credentials);
 
                 Credential credential = vcapCredentials.GetCredentialByname("discovery-sdk")[0].Credentials;
-                _endpoint = credential.Url;
-                _username = credential.Username;
-                _password = credential.Password;
+                endpoint = credential.Url;
+                apikey = credential.IamApikey;
             }
             #endregion
 
-            _service = new DiscoveryService(_username, _password, version);
-            _service.SetEndpoint(_endpoint);
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = endpoint
+            };
+
+            service = new DiscoveryService(tokenOptions, version);
+            service.SetEndpoint(endpoint);
 
             var environments = ListEnvironments();
-            _environmentId = environments.Environments[1].EnvironmentId;
+            environmentId = environments.Environments[1].EnvironmentId;
 
-            _createdConfigurationName = Guid.NewGuid().ToString();
-            _updatedConfigurationName = _createdConfigurationName + "-updated";
-            _createdCollectionName = Guid.NewGuid().ToString();
-            _updatedCollectionName = _createdCollectionName + "-updated";
+            createdConfigurationName = Guid.NewGuid().ToString();
+            updatedConfigurationName = createdConfigurationName + "-updated";
+            createdCollectionName = Guid.NewGuid().ToString();
+            updatedCollectionName = createdCollectionName + "-updated";
         }
 
         [TestCleanup]
@@ -114,12 +120,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestConfigurations_Success()
         {
-            var listConfigurationsResults = ListConfigurations(_environmentId);
+            var listConfigurationsResults = ListConfigurations(environmentId);
 
             Configuration configuration = new Configuration()
             {
                 Name = Guid.NewGuid().ToString(),
-                Description = _createdConfigurationDescription,
+                Description = createdConfigurationDescription,
                 Enrichments = new List<Enrichment>()
                 {
                     new Enrichment()
@@ -138,37 +144,37 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var getConfigurationResults = GetConfiguration(_environmentId, _createdConfigurationId);
+            var getConfigurationResults = GetConfiguration(environmentId, createdConfigurationId);
 
             Configuration updateConfiguration = new Configuration()
             {
-                Name = _updatedConfigurationName
+                Name = updatedConfigurationName
             };
 
-            var updateConfigurationResults = UpdateConfiguration(_environmentId, _createdConfigurationId, updateConfiguration);
+            var updateConfigurationResults = UpdateConfiguration(environmentId, createdConfigurationId, updateConfiguration);
 
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(deleteConfigurationResults);
             Assert.IsTrue(deleteConfigurationResults.Status == DeleteConfigurationResponse.StatusEnum.DELETED);
             Assert.IsNotNull(updateConfigurationResults);
-            Assert.IsTrue(updateConfigurationResults.ConfigurationId == _createdConfigurationId);
-            Assert.IsTrue(updateConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(updateConfigurationResults.ConfigurationId == createdConfigurationId);
+            Assert.IsTrue(updateConfigurationResults.Description == createdConfigurationDescription);
             Assert.IsNotNull(getConfigurationResults);
-            Assert.IsTrue(getConfigurationResults.ConfigurationId == _createdConfigurationId);
-            Assert.IsTrue(getConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(getConfigurationResults.ConfigurationId == createdConfigurationId);
+            Assert.IsTrue(getConfigurationResults.Description == createdConfigurationDescription);
             Assert.IsTrue(createConfigurationResults.Enrichments[0].Options.Features.Concepts.Limit == 10);
             Assert.IsNotNull(createConfigurationResults);
-            Assert.IsTrue(createConfigurationResults.Description == _createdConfigurationDescription);
+            Assert.IsTrue(createConfigurationResults.Description == createdConfigurationDescription);
             Assert.IsNotNull(listConfigurationsResults);
             Assert.IsNotNull(listConfigurationsResults.Configurations);
             Assert.IsTrue(listConfigurationsResults.Configurations.Count > 0);
 
-            _createdConfigurationId = null;
-            _environmentId = null;
+            createdConfigurationId = null;
+            environmentId = null;
         }
         #endregion
 
@@ -178,38 +184,38 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var _createdCollectionId = createCollectionResult.CollectionId;
 
-            var getCollectionResult = GetCollection(_environmentId, _createdCollectionId);
+            var getCollectionResult = GetCollection(environmentId, _createdCollectionId);
 
             UpdateCollectionRequest updateCollectionRequest = new UpdateCollectionRequest()
             {
-                Name = _updatedCollectionName,
+                Name = updatedCollectionName,
             };
 
-            var updateCollectionResult = UpdateCollection(_environmentId, _createdCollectionId, updateCollectionRequest);
+            var updateCollectionResult = UpdateCollection(environmentId, _createdCollectionId, updateCollectionRequest);
 
-            var listCollectionFieldsResult = ListCollectionFields(_environmentId, _createdCollectionId);
+            var listCollectionFieldsResult = ListCollectionFields(environmentId, _createdCollectionId);
 
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteCollectionResult = DeleteCollection(environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(deleteCollectionResult);
             Assert.IsTrue(deleteCollectionResult.Status == DeleteCollectionResponse.StatusEnum.DELETED);
@@ -218,13 +224,13 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsTrue(updateCollectionResult.CollectionId == _createdCollectionId);
             Assert.IsNotNull(getCollectionResult);
             Assert.IsTrue(getCollectionResult.CollectionId == _createdCollectionId);
-            Assert.IsTrue(getCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsTrue(getCollectionResult.Description == createdCollectionDescription);
             Assert.IsNotNull(createCollectionResult);
-            Assert.IsTrue(createCollectionResult.Description == _createdCollectionDescription);
+            Assert.IsTrue(createCollectionResult.Description == createdCollectionDescription);
             Assert.IsNotNull(listCollectionsResult);
 
-            _environmentId = null;
-            _createdConfigurationId = null;
+            environmentId = null;
+            createdConfigurationId = null;
             _createdCollectionId = null;
         }
         #endregion
@@ -235,9 +241,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Console.WriteLine(string.Format("\nCalling PreviewEnvironment()..."));
 
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                var result = TestConfigurationInEnvironment(_environmentId, _createdConfigurationId, "html_input");
+                var result = TestConfigurationInEnvironment(environmentId, createdConfigurationId, "html_input");
 
                 if (result != null)
                 {
@@ -259,57 +265,57 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription,
 
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
-                _createdDocumentId = addDocumentResult.DocumentId;
+                addDocumentResult = AddDocument(environmentId, _createdCollectionId, fs, metadata);
+                createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+            var getDocumentStatusResult = GetDocumentStatus(environmentId, _createdCollectionId, createdDocumentId);
 
             DocumentAccepted updateDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, _createdCollectionId, _createdDocumentId, fs, _metadata);
+                updateDocumentResult = UpdateDocument(environmentId, _createdCollectionId, createdDocumentId, fs, metadata);
             }
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteDocumentResult = DeleteDocument(environmentId, _createdCollectionId, createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(deleteDocumentResult);
             Assert.IsTrue(deleteDocumentResult.Status == DeleteDocumentResponse.StatusEnum.DELETED);
             Assert.IsNotNull(updateDocumentResult);
-            Assert.IsTrue(updateDocumentResult.DocumentId == _createdDocumentId);
+            Assert.IsTrue(updateDocumentResult.DocumentId == createdDocumentId);
             Assert.IsNotNull(getDocumentStatusResult);
-            Assert.IsTrue(getDocumentStatusResult.DocumentId == _createdDocumentId);
+            Assert.IsTrue(getDocumentStatusResult.DocumentId == createdDocumentId);
             Assert.IsNotNull(addDocumentResult);
 
-            _createdDocumentId = null;
+            createdDocumentId = null;
             _createdCollectionId = null;
-            _createdConfigurationId = null;
-            _environmentId = null;
+            createdConfigurationId = null;
+            environmentId = null;
         }
         #endregion
 
@@ -319,47 +325,47 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription,
 
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
-                _createdDocumentId = addDocumentResult.DocumentId;
+                addDocumentResult = AddDocument(environmentId, _createdCollectionId, fs, metadata);
+                createdDocumentId = addDocumentResult.DocumentId;
             }
 
             List<string> rFields = new List<string>();
             rFields.Add("extracted_metadata.sha1");
-            var queryResult = Query(_environmentId, _createdCollectionId, null, null, _naturalLanguageQuery, returnFields:rFields);
+            var queryResult = Query(environmentId, _createdCollectionId, null, null, naturalLanguageQuery, returnFields:rFields);
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteDocumentResult = DeleteDocument(environmentId, _createdCollectionId, createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(queryResult);
 
-            _createdDocumentId = null;
+            createdDocumentId = null;
             _createdCollectionId = null;
-            _createdConfigurationId = null;
-            _environmentId = null;
+            createdConfigurationId = null;
+            environmentId = null;
         }
         #endregion
 
@@ -369,45 +375,45 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription,
 
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var noticesCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, noticesCollectionId, fs, _metadata);
-                _createdDocumentId = addDocumentResult.DocumentId;
+                addDocumentResult = AddDocument(environmentId, noticesCollectionId, fs, metadata);
+                createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var queryResult = Query(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery);
-            var queryNoticesResult = QueryNotices(_environmentId, noticesCollectionId, null, null, _naturalLanguageQuery, true);
+            var queryResult = Query(environmentId, noticesCollectionId, null, null, naturalLanguageQuery);
+            var queryNoticesResult = QueryNotices(environmentId, noticesCollectionId, null, null, naturalLanguageQuery, true);
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, noticesCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, noticesCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteDocumentResult = DeleteDocument(environmentId, noticesCollectionId, createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(environmentId, noticesCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(queryNoticesResult);
 
-            _environmentId = null;
-            _createdConfigurationId = null;
-            _createdDocumentId = null;
+            environmentId = null;
+            createdConfigurationId = null;
+            createdDocumentId = null;
         }
         #endregion
 
@@ -417,42 +423,42 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription,
 
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var trainingCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, trainingCollectionId, fs, _metadata);
-                _createdDocumentId = addDocumentResult.DocumentId;
+                addDocumentResult = AddDocument(environmentId, trainingCollectionId, fs, metadata);
+                createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var getDocumentStatusResult = GetDocumentStatus(_environmentId, trainingCollectionId, _createdDocumentId);
+            var getDocumentStatusResult = GetDocumentStatus(environmentId, trainingCollectionId, createdDocumentId);
 
             DocumentAccepted updateDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                updateDocumentResult = UpdateDocument(_environmentId, trainingCollectionId, _createdDocumentId, fs, _metadata);
+                updateDocumentResult = UpdateDocument(environmentId, trainingCollectionId, createdDocumentId, fs, metadata);
             }
 
-            var listTrainingDataResult = ListTrainingData(_environmentId, trainingCollectionId);
+            var listTrainingDataResult = ListTrainingData(environmentId, trainingCollectionId);
 
             var newTrainingQuery = new NewTrainingQuery()
             {
@@ -469,21 +475,21 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var addTrainingDataResult = AddTrainingData(_environmentId, trainingCollectionId, newTrainingQuery);
-            _createdTrainingQueryId = addTrainingDataResult.QueryId;
+            var addTrainingDataResult = AddTrainingData(environmentId, trainingCollectionId, newTrainingQuery);
+            createdTrainingQueryId = addTrainingDataResult.QueryId;
 
-            var getTrainingDataResult = GetTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
+            var getTrainingDataResult = GetTrainingData(environmentId, trainingCollectionId, createdTrainingQueryId);
 
             var trainingExample = new TrainingExample()
             {
-                DocumentId = _createdDocumentId,
+                DocumentId = createdDocumentId,
                 Relevance = 1
             };
 
-            var createTrainingExampleResult = CreateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, trainingExample);
-            _createdTrainingExampleId = createTrainingExampleResult.DocumentId;
+            var createTrainingExampleResult = CreateTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, trainingExample);
+            createdTrainingExampleId = createTrainingExampleResult.DocumentId;
 
-            var getTrainingExampleResult = GetTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
+            var getTrainingExampleResult = GetTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId);
 
             var updateTrainingExample = new TrainingExamplePatch()
             {
@@ -491,14 +497,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
-            var updateTrainingExampleResult = UpdateTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId, updateTrainingExample);
+            var updateTrainingExampleResult = UpdateTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId, updateTrainingExample);
 
-            var deleteTrainingExampleResult = DeleteTrainingExample(_environmentId, trainingCollectionId, _createdTrainingQueryId, _createdTrainingExampleId);
-            var deleteTrainingDataResult = DeleteTrainingData(_environmentId, trainingCollectionId, _createdTrainingQueryId);
-            var deleteAllTrainingDataResult = DeleteAllTrainingData(_environmentId, trainingCollectionId);
-            var deleteDocumentResult = DeleteDocument(_environmentId, trainingCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, trainingCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteTrainingExampleResult = DeleteTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId);
+            var deleteTrainingDataResult = DeleteTrainingData(environmentId, trainingCollectionId, createdTrainingQueryId);
+            var deleteAllTrainingDataResult = DeleteAllTrainingData(environmentId, trainingCollectionId);
+            var deleteDocumentResult = DeleteDocument(environmentId, trainingCollectionId, createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(environmentId, trainingCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(deleteAllTrainingDataResult);
             Assert.IsNotNull(deleteTrainingDataResult);
@@ -510,11 +516,11 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             Assert.IsNotNull(addTrainingDataResult);
             Assert.IsNotNull(listTrainingDataResult);
 
-            _createdTrainingExampleId = null;
-            _createdTrainingQueryId = null;
-            _createdConfigurationId = null;
-            _environmentId = null;
-            _createdDocumentId = null;
+            createdTrainingExampleId = null;
+            createdTrainingQueryId = null;
+            createdConfigurationId = null;
+            environmentId = null;
+            createdDocumentId = null;
         }
         #endregion
 
@@ -522,7 +528,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         //[TestMethod]
         public void TestCredentials_Success()
         {
-            var listCredentialsResult = ListCredentials(_environmentId);
+            var listCredentialsResult = ListCredentials(environmentId);
 
             Model.Credentials credentials = new Model.Credentials()
             {
@@ -539,10 +545,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var createCredentialsResult = CreateCredentials(_environmentId, credentials);
+            var createCredentialsResult = CreateCredentials(environmentId, credentials);
             string credentialId = createCredentialsResult.CredentialId;
 
-            var getCredentialResult = GetCredentials(_environmentId, credentialId);
+            var getCredentialResult = GetCredentials(environmentId, credentialId);
             string privateKey = "privatekey";
             var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
             var base64PrivateKey = System.Convert.ToBase64String(privateKeyBytes);
@@ -564,7 +570,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             //var updateCredentialResult = UpdateCredentials(_environmentId, credentialId, updatedCredentials);
 
-            var deleteCredentialsResult = DeleteCredentials(_environmentId, credentialId);
+            var deleteCredentialsResult = DeleteCredentials(environmentId, credentialId);
 
             Assert.IsNotNull(listCredentialsResult);
             Assert.IsTrue(!string.IsNullOrEmpty(listCredentialsResult.ResponseJson));
@@ -591,62 +597,62 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         {
             Configuration configuration = new Configuration()
             {
-                Name = _createdConfigurationName,
-                Description = _createdConfigurationDescription,
+                Name = createdConfigurationName,
+                Description = createdConfigurationDescription,
 
             };
 
-            var createConfigurationResults = CreateConfiguration(_environmentId, configuration);
-            _createdConfigurationId = createConfigurationResults.ConfigurationId;
+            var createConfigurationResults = CreateConfiguration(environmentId, configuration);
+            createdConfigurationId = createConfigurationResults.ConfigurationId;
 
-            var listCollectionsResult = ListCollections(_environmentId);
+            var listCollectionsResult = ListCollections(environmentId);
 
             CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
             {
-                Language = _createdCollectionLanguage,
-                Name = _createdCollectionName + "-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Language = createdCollectionLanguage,
+                Name = createdCollectionName + "-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var _createdCollectionId = createCollectionResult.CollectionId;
 
             DocumentAccepted addDocumentResult;
-            using (FileStream fs = File.OpenRead(_filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathToIngest))
             {
-                addDocumentResult = AddDocument(_environmentId, _createdCollectionId, fs, _metadata);
-                _createdDocumentId = addDocumentResult.DocumentId;
+                addDocumentResult = AddDocument(environmentId, _createdCollectionId, fs, metadata);
+                createdDocumentId = addDocumentResult.DocumentId;
             }
 
-            var getDocumentStatusResult = GetDocumentStatus(_environmentId, _createdCollectionId, _createdDocumentId);
+            var getDocumentStatusResult = GetDocumentStatus(environmentId, _createdCollectionId, createdDocumentId);
 
-            var queryResult = Query(_environmentId, _createdCollectionId, naturalLanguageQuery: "what year did watson play jeopardy");
+            var queryResult = Query(environmentId, _createdCollectionId, naturalLanguageQuery: "what year did watson play jeopardy");
 
             CreateEventObject queryEvent = new CreateEventObject()
             {
                 Type = CreateEventObject.TypeEnum.CLICK,
                 Data = new EventData()
                 {
-                    EnvironmentId = _environmentId,
+                    EnvironmentId = environmentId,
                     SessionToken = queryResult.SessionToken,
                     CollectionId = _createdCollectionId,
-                    DocumentId = _createdDocumentId
+                    DocumentId = createdDocumentId
                 }
             };
 
             var createEventResult = CreateEvent(queryEvent);
 
-            var deleteDocumentResult = DeleteDocument(_environmentId, _createdCollectionId, _createdDocumentId);
-            var deleteCollectionResult = DeleteCollection(_environmentId, _createdCollectionId);
-            var deleteConfigurationResults = DeleteConfiguration(_environmentId, _createdConfigurationId);
+            var deleteDocumentResult = DeleteDocument(environmentId, _createdCollectionId, createdDocumentId);
+            var deleteCollectionResult = DeleteCollection(environmentId, _createdCollectionId);
+            var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
 
             Assert.IsNotNull(queryResult);
             Assert.IsNotNull(createEventResult);
             Assert.IsNotNull(createEventResult.Data);
-            Assert.IsTrue(createEventResult.Data.EnvironmentId == _environmentId);
+            Assert.IsTrue(createEventResult.Data.EnvironmentId == environmentId);
             Assert.IsTrue(createEventResult.Data.SessionToken == queryResult.SessionToken);
             Assert.IsTrue(createEventResult.Data.CollectionId== _createdCollectionId);
-            Assert.IsTrue(createEventResult.Data.DocumentId == _createdDocumentId);
+            Assert.IsTrue(createEventResult.Data.DocumentId == createdDocumentId);
         }
         #endregion
 
@@ -689,10 +695,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 Language = CreateCollectionRequest.LanguageEnum.JA,
                 Name = "expansions-collection-please-delete-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var expansionCollectionId = createCollectionResult.CollectionId;
 
             Expansions body = new Expansions()
@@ -713,10 +719,10 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
-            var createExpansionsResult = CreateExpansions(_environmentId, expansionCollectionId, body);
-            var listExpansionsResult = ListExpansions(_environmentId, expansionCollectionId);
-            var deleteExpansionResult = DeleteExpansions(_environmentId, expansionCollectionId);
-            DeleteCollection(_environmentId, expansionCollectionId);
+            var createExpansionsResult = CreateExpansions(environmentId, expansionCollectionId, body);
+            var listExpansionsResult = ListExpansions(environmentId, expansionCollectionId);
+            var deleteExpansionResult = DeleteExpansions(environmentId, expansionCollectionId);
+            DeleteCollection(environmentId, expansionCollectionId);
 
             Assert.IsNotNull(deleteExpansionResult);
             Assert.IsNotNull(listExpansionsResult);
@@ -732,7 +738,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestTokenization_Success()
         {
-            var collectionsList = ListCollections(_environmentId);
+            var collectionsList = ListCollections(environmentId);
 
             foreach (Collection collection in collectionsList.Collections)
             {
@@ -740,7 +746,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 {
                     if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
                     {
-                        DeleteCollection(_environmentId, collection.CollectionId);
+                        DeleteCollection(environmentId, collection.CollectionId);
                         Console.WriteLine("deleted " + collection.CollectionId);
                     }
                 }
@@ -750,11 +756,14 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
             {
                 Language = CreateCollectionRequest.LanguageEnum.JA,
                 Name = "tokenization-collection-please-delete-" + Guid.NewGuid(),
-                Description = _createdCollectionDescription
+                Description = createdCollectionDescription
             };
 
-            var createCollectionResult = CreateCollection(_environmentId, createCollectionRequest);
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
             var tokenizationCollectionId = createCollectionResult.CollectionId;
+
+            IsCollectionReady(environmentId, tokenizationCollectionId);
+            autoEvent.WaitOne();
 
             TokenDict tokenizationDictionary = new TokenDict()
             {
@@ -776,11 +785,18 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 }
             };
 
+            IsEnvironmentReady(environmentId);
+            autoEvent.WaitOne();
+
             try
             {
-                var createTokenizationDictionaryResult = CreateTokenizationDictionary(_environmentId, tokenizationCollectionId, tokenizationDictionary);
-                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(_environmentId, tokenizationCollectionId);
-                var deleteTokenizationDictionary = DeleteTokenizationDictionary(_environmentId, tokenizationCollectionId);
+                var createTokenizationDictionaryResult = CreateTokenizationDictionary(environmentId, tokenizationCollectionId, tokenizationDictionary);
+                var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+
+                IsDictionaryReady(environmentId, tokenizationCollectionId);
+                autoEvent.WaitOne();
+
+                var deleteTokenizationDictionary = DeleteTokenizationDictionary(environmentId, tokenizationCollectionId);
 
                 Assert.IsNotNull(deleteTokenizationDictionary);
                 Assert.IsNotNull(getTokenizationDictionaryStatusResult);
@@ -793,7 +809,81 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 Console.WriteLine(e.Message);
             }
 
-            DeleteCollection(_environmentId, tokenizationCollectionId);
+            DeleteCollection(environmentId, tokenizationCollectionId);
+        }
+        #endregion
+
+        #region Stopword
+        //[TestMethod]
+        public void TestStopword_Success()
+        {
+            var collectionsList = ListCollections(environmentId);
+
+            foreach (Collection collection in collectionsList.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
+                    {
+                        DeleteCollection(environmentId, collection.CollectionId);
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
+
+            IsEnvironmentReady(environmentId);
+            autoEvent.WaitOne();
+
+            CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
+            {
+                Language = CreateCollectionRequest.LanguageEnum.EN,
+                Name = "stopword-collection-please-delete-" + Guid.NewGuid(),
+                Description = createdCollectionDescription
+            };
+
+            var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
+            var stopwordCollectionId = createCollectionResult.CollectionId;
+
+            IsCollectionReady(environmentId, stopwordCollectionId);
+            autoEvent.WaitOne();
+
+            TokenDictStatusResponse createStopwordListResult;
+            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            {
+                createStopwordListResult = service.CreateStopwordList(environmentId, stopwordCollectionId, fs);
+            }
+
+            var deleteStopwordListResult = service.DeleteStopwordList(environmentId, stopwordCollectionId);
+
+            Assert.IsNotNull(createStopwordListResult);
+            Assert.IsTrue(createStopwordListResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
+            Assert.IsNotNull(deleteStopwordListResult);
+        }
+        #endregion
+
+        #region Gateway
+        [TestMethod]
+        public void TestGateway_Success()
+        {
+            var listGatewaysResult = service.ListGateways(environmentId);
+            GatewayName gatewayName = new GatewayName()
+            {
+                Name = dotnetGatewayName
+            };
+            var createGatewayResult = service.CreateGateway(environmentId, gatewayName);
+            var gatewayId = createGatewayResult.GatewayId;
+            var getGatewayResult = service.GetGateway(environmentId, gatewayId);
+            var deleteGatewayResult = service.DeleteGateway(environmentId, gatewayId);
+
+            Assert.IsNotNull(deleteGatewayResult);
+            Assert.IsTrue(deleteGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(!string.IsNullOrEmpty(deleteGatewayResult.Status));
+            Assert.IsNotNull(getGatewayResult);
+            Assert.IsTrue(getGatewayResult.GatewayId == gatewayId);
+            Assert.IsTrue(getGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(createGatewayResult);
+            Assert.IsTrue(createGatewayResult.Name == dotnetGatewayName);
+            Assert.IsNotNull(listGatewaysResult);
         }
         #endregion
 
@@ -819,12 +909,78 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region IsDictionaryReady
+        private void IsDictionaryReady(string environmentId, string tokenizationCollectionId)
+        {
+            var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+
+            if(result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsDictionaryReady(environmentId, tokenizationCollectionId);
+                });
+            }
+        }
+        #endregion
+
+        #region IsStopwordsReady
+        private void IsStopwordsReady(string environmentId, string tokenizationCollectionId)
+        {
+            var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+
+            if (result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsStopwordsReady(environmentId, tokenizationCollectionId);
+                });
+            }
+        }
+        #endregion
+
+        #region IsCollectionReady
+        private void IsCollectionReady(string environmentId, string collectionId)
+        {
+            var result = service.GetCollection(environmentId, collectionId);
+            Console.WriteLine(string.Format("\tCollection {0} status is {1}.", environmentId, result.Status));
+
+            if (result.Status == Collection.StatusEnum.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking collection status in 30 seconds...");
+                    IsCollectionReady(environmentId, collectionId);
+                });
+            }
+        }
+        #endregion
+
         #region Generated
         #region CreateEnvironment
         private Environment CreateEnvironment(CreateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateEnvironment()");
-            var result = _service.CreateEnvironment(body: body, customData: customData);
+            var result = service.CreateEnvironment(body: body, customData: customData);
 
             if (result != null)
             {
@@ -843,7 +999,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DeleteEnvironmentResponse DeleteEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteEnvironment()");
-            var result = _service.DeleteEnvironment(environmentId: environmentId, customData: customData);
+            var result = service.DeleteEnvironment(environmentId: environmentId, customData: customData);
 
             if (result != null)
             {
@@ -862,7 +1018,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Environment GetEnvironment(string environmentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetEnvironment()");
-            var result = _service.GetEnvironment(environmentId: environmentId, customData: customData);
+            var result = service.GetEnvironment(environmentId: environmentId, customData: customData);
 
             if (result != null)
             {
@@ -881,7 +1037,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private ListEnvironmentsResponse ListEnvironments(string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListEnvironments()");
-            var result = _service.ListEnvironments(name: name, customData: customData);
+            var result = service.ListEnvironments(name: name, customData: customData);
 
             if (result != null)
             {
@@ -900,7 +1056,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private ListCollectionFieldsResponse ListFields(string environmentId, List<string> collectionIds, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListFields()");
-            var result = _service.ListFields(environmentId: environmentId, collectionIds: collectionIds, customData: customData);
+            var result = service.ListFields(environmentId: environmentId, collectionIds: collectionIds, customData: customData);
 
             if (result != null)
             {
@@ -919,7 +1075,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Environment UpdateEnvironment(string environmentId, UpdateEnvironmentRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateEnvironment()");
-            var result = _service.UpdateEnvironment(environmentId: environmentId, body: body, customData: customData);
+            var result = service.UpdateEnvironment(environmentId: environmentId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -938,7 +1094,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Configuration CreateConfiguration(string environmentId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateConfiguration()");
-            var result = _service.CreateConfiguration(environmentId: environmentId, configuration: configuration, customData: customData);
+            var result = service.CreateConfiguration(environmentId: environmentId, configuration: configuration, customData: customData);
 
             if (result != null)
             {
@@ -957,7 +1113,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DeleteConfigurationResponse DeleteConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteConfiguration()");
-            var result = _service.DeleteConfiguration(environmentId: environmentId, configurationId: configurationId, customData: customData);
+            var result = service.DeleteConfiguration(environmentId: environmentId, configurationId: configurationId, customData: customData);
 
             if (result != null)
             {
@@ -976,7 +1132,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Configuration GetConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetConfiguration()");
-            var result = _service.GetConfiguration(environmentId: environmentId, configurationId: configurationId, customData: customData);
+            var result = service.GetConfiguration(environmentId: environmentId, configurationId: configurationId, customData: customData);
 
             if (result != null)
             {
@@ -995,7 +1151,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private ListConfigurationsResponse ListConfigurations(string environmentId, string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListConfigurations()");
-            var result = _service.ListConfigurations(environmentId: environmentId, name: name, customData: customData);
+            var result = service.ListConfigurations(environmentId: environmentId, name: name, customData: customData);
 
             if (result != null)
             {
@@ -1014,7 +1170,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateConfiguration()");
-            var result = _service.UpdateConfiguration(environmentId: environmentId, configurationId: configurationId, configuration: configuration, customData: customData);
+            var result = service.UpdateConfiguration(environmentId: environmentId, configurationId: configurationId, configuration: configuration, customData: customData);
 
             if (result != null)
             {
@@ -1033,7 +1189,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to TestConfigurationInEnvironment()");
-            var result = _service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step, configurationId: configurationId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
+            var result = service.TestConfigurationInEnvironment(environmentId: environmentId, configuration: configuration, step: step, configurationId: configurationId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
 
             if (result != null)
             {
@@ -1052,7 +1208,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Collection CreateCollection(string environmentId, CreateCollectionRequest body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateCollection()");
-            var result = _service.CreateCollection(environmentId: environmentId, body: body, customData: customData);
+            var result = service.CreateCollection(environmentId: environmentId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1071,7 +1227,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCollection()");
-            var result = _service.DeleteCollection(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.DeleteCollection(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1090,7 +1246,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Collection GetCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetCollection()");
-            var result = _service.GetCollection(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.GetCollection(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1109,7 +1265,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private ListCollectionFieldsResponse ListCollectionFields(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCollectionFields()");
-            var result = _service.ListCollectionFields(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.ListCollectionFields(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1128,7 +1284,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private ListCollectionsResponse ListCollections(string environmentId, string name = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCollections()");
-            var result = _service.ListCollections(environmentId: environmentId, name: name, customData: customData);
+            var result = service.ListCollections(environmentId: environmentId, name: name, customData: customData);
 
             if (result != null)
             {
@@ -1147,7 +1303,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Collection UpdateCollection(string environmentId, string collectionId, UpdateCollectionRequest body = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateCollection()");
-            var result = _service.UpdateCollection(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
+            var result = service.UpdateCollection(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1166,7 +1322,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Expansions CreateExpansions(string environmentId, string collectionId, Expansions body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateExpansions()");
-            var result = _service.CreateExpansions(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
+            var result = service.CreateExpansions(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1185,7 +1341,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteExpansions()");
-            var result = _service.DeleteExpansions(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.DeleteExpansions(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1204,7 +1360,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListExpansions()");
-            var result = _service.ListExpansions(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.ListExpansions(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1223,7 +1379,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TokenDictStatusResponse CreateTokenizationDictionary(string environmentId, string collectionId, TokenDict tokenizationDictionary, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateTokenizationDictionary()");
-            var result = _service.CreateTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, tokenizationDictionary: tokenizationDictionary, customData: customData);
+            var result = service.CreateTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, tokenizationDictionary: tokenizationDictionary, customData: customData);
 
             if (result != null)
             {
@@ -1242,7 +1398,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteTokenizationDictionary()");
-            var result = _service.DeleteTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.DeleteTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1261,7 +1417,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetTokenizationDictionaryStatus()");
-            var result = _service.GetTokenizationDictionaryStatus(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.GetTokenizationDictionaryStatus(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1280,7 +1436,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddDocument()");
-            var result = _service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
+            var result = service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
 
             if (result != null)
             {
@@ -1299,7 +1455,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteDocument()");
-            var result = _service.DeleteDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, customData: customData);
+            var result = service.DeleteDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, customData: customData);
 
             if (result != null)
             {
@@ -1318,7 +1474,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetDocumentStatus()");
-            var result = _service.GetDocumentStatus(environmentId: environmentId, collectionId: collectionId, documentId: documentId, customData: customData);
+            var result = service.GetDocumentStatus(environmentId: environmentId, collectionId: collectionId, documentId: documentId, customData: customData);
 
             if (result != null)
             {
@@ -1337,7 +1493,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateDocument()");
-            var result = _service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
+            var result = service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, metadata: metadata, fileContentType: fileContentType, customData: customData);
 
             if (result != null)
             {
@@ -1356,7 +1512,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to FederatedQuery()");
-            var result = _service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, passages: passages, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, customData: customData);
+            var result = service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, passages: passages, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, customData: customData);
 
             if (result != null)
             {
@@ -1375,7 +1531,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to FederatedQueryNotices()");
-            var result = _service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
+            var result = service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
 
             if (result != null)
             {
@@ -1394,7 +1550,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to Query()");
-            var result = _service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, loggingOptOut: loggingOptOut, customData: customData);
+            var result = service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, loggingOptOut: loggingOptOut, customData: customData);
 
             if (result != null)
             {
@@ -1413,7 +1569,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryEntities()");
-            var result = _service.QueryEntities(environmentId: environmentId, collectionId: collectionId, entityQuery: entityQuery, customData: customData);
+            var result = service.QueryEntities(environmentId: environmentId, collectionId: collectionId, entityQuery: entityQuery, customData: customData);
 
             if (result != null)
             {
@@ -1432,7 +1588,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryNotices()");
-            var result = _service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
+            var result = service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, returnFields: returnFields, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, customData: customData);
 
             if (result != null)
             {
@@ -1451,7 +1607,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryRelations()");
-            var result = _service.QueryRelations(environmentId: environmentId, collectionId: collectionId, relationshipQuery: relationshipQuery, customData: customData);
+            var result = service.QueryRelations(environmentId: environmentId, collectionId: collectionId, relationshipQuery: relationshipQuery, customData: customData);
 
             if (result != null)
             {
@@ -1470,7 +1626,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingQuery AddTrainingData(string environmentId, string collectionId, NewTrainingQuery body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to AddTrainingData()");
-            var result = _service.AddTrainingData(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
+            var result = service.AddTrainingData(environmentId: environmentId, collectionId: collectionId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1489,7 +1645,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingExample CreateTrainingExample(string environmentId, string collectionId, string queryId, TrainingExample body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateTrainingExample()");
-            var result = _service.CreateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, body: body, customData: customData);
+            var result = service.CreateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1508,7 +1664,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteAllTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteAllTrainingData()");
-            var result = _service.DeleteAllTrainingData(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.DeleteAllTrainingData(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1527,7 +1683,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteTrainingData()");
-            var result = _service.DeleteTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
+            var result = service.DeleteTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
 
             if (result != null)
             {
@@ -1546,7 +1702,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteTrainingExample()");
-            var result = _service.DeleteTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, customData: customData);
+            var result = service.DeleteTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, customData: customData);
 
             if (result != null)
             {
@@ -1565,7 +1721,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingQuery GetTrainingData(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetTrainingData()");
-            var result = _service.GetTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
+            var result = service.GetTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
 
             if (result != null)
             {
@@ -1584,7 +1740,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingExample GetTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetTrainingExample()");
-            var result = _service.GetTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, customData: customData);
+            var result = service.GetTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, customData: customData);
 
             if (result != null)
             {
@@ -1603,7 +1759,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingDataSet ListTrainingData(string environmentId, string collectionId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListTrainingData()");
-            var result = _service.ListTrainingData(environmentId: environmentId, collectionId: collectionId, customData: customData);
+            var result = service.ListTrainingData(environmentId: environmentId, collectionId: collectionId, customData: customData);
 
             if (result != null)
             {
@@ -1622,7 +1778,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingExampleList ListTrainingExamples(string environmentId, string collectionId, string queryId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListTrainingExamples()");
-            var result = _service.ListTrainingExamples(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
+            var result = service.ListTrainingExamples(environmentId: environmentId, collectionId: collectionId, queryId: queryId, customData: customData);
 
             if (result != null)
             {
@@ -1641,7 +1797,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private TrainingExample UpdateTrainingExample(string environmentId, string collectionId, string queryId, string exampleId, TrainingExamplePatch body, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateTrainingExample()");
-            var result = _service.UpdateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, body: body, customData: customData);
+            var result = service.UpdateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, body: body, customData: customData);
 
             if (result != null)
             {
@@ -1660,7 +1816,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteUserData()");
-            var result = _service.DeleteUserData(customerId: customerId, customData: customData);
+            var result = service.DeleteUserData(customerId: customerId, customData: customData);
 
             if (result != null)
             {
@@ -1679,7 +1835,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private CreateEventResponse CreateEvent(CreateEventObject queryEvent, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateEvent()");
-            var result = _service.CreateEvent(queryEvent: queryEvent, customData: customData);
+            var result = service.CreateEvent(queryEvent: queryEvent, customData: customData);
 
             if (result != null)
             {
@@ -1698,7 +1854,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private MetricResponse GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetMetricsEventRate()");
-            var result = _service.GetMetricsEventRate(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+            var result = service.GetMetricsEventRate(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
 
             if (result != null)
             {
@@ -1717,7 +1873,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private MetricResponse GetMetricsQuery(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetMetricsQuery()");
-            var result = _service.GetMetricsQuery(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+            var result = service.GetMetricsQuery(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
 
             if (result != null)
             {
@@ -1736,7 +1892,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private MetricResponse GetMetricsQueryEvent(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetMetricsQueryEvent()");
-            var result = _service.GetMetricsQueryEvent(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+            var result = service.GetMetricsQueryEvent(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
 
             if (result != null)
             {
@@ -1755,7 +1911,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private MetricResponse GetMetricsQueryNoResults(DateTime? startTime = null, DateTime? endTime = null, string resultType = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetMetricsQueryNoResults()");
-            var result = _service.GetMetricsQueryNoResults(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
+            var result = service.GetMetricsQueryNoResults(startTime: startTime, endTime: endTime, resultType: resultType, customData: customData);
 
             if (result != null)
             {
@@ -1774,7 +1930,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetMetricsQueryTokenEvent()");
-            var result = _service.GetMetricsQueryTokenEvent(count: count, customData: customData);
+            var result = service.GetMetricsQueryTokenEvent(count: count, customData: customData);
 
             if (result != null)
             {
@@ -1793,7 +1949,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private LogQueryResponse QueryLog(string filter = null, string query = null, long? count = null, long? offset = null, List<string> sort = null, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to QueryLog()");
-            var result = _service.QueryLog(filter: filter, query: query, count: count, offset: offset, sort: sort, customData: customData);
+            var result = service.QueryLog(filter: filter, query: query, count: count, offset: offset, sort: sort, customData: customData);
 
             if (result != null)
             {
@@ -1812,7 +1968,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Credentials CreateCredentials(string environmentId, Credentials credentialsParameter, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to CreateCredentials()");
-            var result = _service.CreateCredentials(environmentId: environmentId, credentialsParameter: credentialsParameter, customData: customData);
+            var result = service.CreateCredentials(environmentId: environmentId, credentialsParameter: credentialsParameter, customData: customData);
 
             if (result != null)
             {
@@ -1831,7 +1987,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private DeleteCredentials DeleteCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to DeleteCredentials()");
-            var result = _service.DeleteCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
+            var result = service.DeleteCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
 
             if (result != null)
             {
@@ -1850,7 +2006,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Credentials GetCredentials(string environmentId, string credentialId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to GetCredentials()");
-            var result = _service.GetCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
+            var result = service.GetCredentials(environmentId: environmentId, credentialId: credentialId, customData: customData);
 
             if (result != null)
             {
@@ -1869,7 +2025,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private CredentialsList ListCredentials(string environmentId, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to ListCredentials()");
-            var result = _service.ListCredentials(environmentId: environmentId, customData: customData);
+            var result = service.ListCredentials(environmentId: environmentId, customData: customData);
 
             if (result != null)
             {
@@ -1888,7 +2044,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         private Credentials UpdateCredentials(string environmentId, string credentialId, Credentials credentialsParameter, Dictionary<string, object> customData = null)
         {
             Console.WriteLine("\nAttempting to UpdateCredentials()");
-            var result = _service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, credentialsParameter: credentialsParameter, customData: customData);
+            var result = service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, credentialsParameter: credentialsParameter, customData: customData);
 
             if (result != null)
             {

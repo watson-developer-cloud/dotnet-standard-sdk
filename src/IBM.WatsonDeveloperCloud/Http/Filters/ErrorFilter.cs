@@ -48,7 +48,7 @@ namespace IBM.WatsonDeveloperCloud.Http.Filters
                 }
 
                 ServiceResponseException exception =
-                    new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase} | x-global-transaction-id: {globalTransactionIdString} | X-DP-Watson-Tran-ID: {watsonTransactionIdString}");
+                    new ServiceResponseException(response, responseMessage, $"The API query failed with status code {responseMessage.StatusCode}: {responseMessage.ReasonPhrase} | x-global-transaction-id: {globalTransactionIdString} | X-DP-Watson-Tran-ID: {watsonTransactionIdString} | error: {responseMessage.Content.ReadAsStringAsync().Result}");
 
                 var error = responseMessage.Content.ReadAsStringAsync().Result;
 

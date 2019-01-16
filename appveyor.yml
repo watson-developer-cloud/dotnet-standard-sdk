@@ -54,6 +54,8 @@ build:
   verbosity: minimal
 after_build:
 - ps: >-
+    $env:Path = $env:Path + ";" + $HOME + "\AppData\Roaming\Python\Python37\Scripts"
+    $env:Path = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:Path"
     git config --global user.email "wps@us.ibm.com"
     git config --global user.name "Watson Github Bot"
 
@@ -94,34 +96,6 @@ after_build:
           git commit -m "Updated documentation for $branchName"
           git push -f origin gh-pages
           cd ../
-
-          If($branchName -eq "master")
-
-          {
-            npx semantic-release
-
-            Write-Output "branchName  is master - building nuget packages"
-            dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
-            dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
-          }
-          
-          else
-
-          {
-            Write-Output "branchName is not master - do not pack or run semantic-release."
-          }
-
       }
 
       else
@@ -140,57 +114,85 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
-      if(Test-Path -Path coverage)
-      {
-          rm coverage -r -force
-      }
+    if(Test-Path -Path coverage)
+    {
+        rm coverage -r -force
+    }
 
-      New-Item -path . -name coverage -itemtype directory
-      
-      ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
-      { 
-          if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
-          {
-              Write-Output \"No pull request number. Executing tests\"
-              dotnet test $folder.FullName
-              if($LastExitCode -ne 0) 
-              {
-                  $host.SetShouldExit($LastExitCode )
-              }
-              echo \"Test passed: $?\"
-              echo \"LastExitCode: $LastExitCode\"
-              $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
-              $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
-              $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
-              & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
+    New-Item -path . -name coverage -itemtype directory
+    
+    ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
+    { 
+        if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+        {
+            Write-Output \"No pull request number. Executing tests\"
+            dotnet test $folder.FullName
+            if($LastExitCode -ne 0) 
+            {
+                $host.SetShouldExit($LastExitCode )
+            }
+            echo \"Test passed: $?\"
+            echo \"LastExitCode: $LastExitCode\"
+            $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
+            $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
+            $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
+            & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
 
-              C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
+            C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
 
-              if($env:COVERALLS_REPO_TOKEN)
-              {
-                  C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
-              }
-              else
-              {
-                  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
-              }
-          }
-          else
-          {
-              Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
+            if($env:COVERALLS_REPO_TOKEN)
+            {
+                C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
+            }
+            else
+            {
+                Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
+            }
+        }
+        else
+        {
+            Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
 
-              if($folder.FullName.EndsWith("UnitTests"))
-              {
-                  dotnet test $folder.FullName
-                  if($LastExitCode -ne 0) 
-                  {
-                      $host.SetShouldExit($LastExitCode )
-                  }
-                  echo \"Test passed: $?\"
-                  echo \"LastExitCode: $LastExitCode\"
-              }
-          }
-      }                                                                 
+            if($folder.FullName.EndsWith("UnitTests"))
+            {
+                dotnet test $folder.FullName
+                if($LastExitCode -ne 0) 
+                {
+                    $host.SetShouldExit($LastExitCode )
+                }
+                echo \"Test passed: $?\"
+                echo \"LastExitCode: $LastExitCode\"
+            }
+        }
+    }
+
+    If($branchName -eq "master")
+
+    {
+        npx semantic-release
+
+        Write-Output "branchName  is master - building nuget packages"
+        dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
+    }
+    
+    else
+
+    {
+        Write-Output "branchName is not master - do not pack or run semantic-release."
+    }
+
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud
@@ -221,7 +223,7 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: jVMsvYb86JW+UMN2Gb2m1JazRkouGMzd58NHWxWVAY1BsQbehIU+YTxdsAeMo1qy
+    secure: XU1ieXtrgqEHD2XEeyGeHdzgWIl7gDAFc61O0RuQwr/MrYszeeElF6ySKlHNuMAS
   on:
     branch: master
     APPVEYOR_REPO_TAG: true

@@ -23,9 +23,6 @@ install:
 # install modules
 - pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
-- bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
-- tree C:\
-- C:\Users\appveyor\AppData\Roaming\Python\Python27\site-packages\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
 - cmd: >-
     rm -rf packages
 
@@ -115,7 +112,6 @@ before_build:
     # Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
-    bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
     # if(Test-Path -Path coverage)
     # {
     #     rm coverage -r -force
@@ -168,7 +164,7 @@ test_script:
     #     }
     # }
 
-    If($branchName -eq "master")
+    If($branchName -eq "feature-build-on-tag")
 
     {
         Write-Output "branchName is master - running semantic release"

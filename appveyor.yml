@@ -113,6 +113,7 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
+    bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
     # if(Test-Path -Path coverage)
     # {
     #     rm coverage -r -force

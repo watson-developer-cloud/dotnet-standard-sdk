@@ -168,9 +168,14 @@ test_script:
     If($branchName -eq "master")
 
     {
+        Write-Output "branchName is master - running semantic release"
         npx semantic-release
+    }
 
-        Write-Output "branchName  is master - building nuget packages"
+    ElseIf($branchName -eq $env:APPVEYOR_REPO_TAG_NAME)
+
+    {
+        Write-Output "branchName  is " + $branchName + " - building NuGet packages" 
         dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
@@ -185,12 +190,7 @@ test_script:
         dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
     }
-    
-    else
 
-    {
-        Write-Output "branchName is not master - do not pack or run semantic-release."
-    }
 
 artifacts:
 - path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'

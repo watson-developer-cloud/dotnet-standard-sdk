@@ -28,8 +28,10 @@ install:
 - python -m site --user-site
 - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-- python -c "import site; print(site.getsitepackages())"
-- "C:\\Users\\appveyor\\AppData\\Roaming\\Python\\Python27\\site-packages\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch"
+- pip list --user
+- tree C:\\Users\\appveyor\\AppData\\Roaming\\Python
+- tree C:\\Python27\\lib
+# - "C:\\Users\\appveyor\\AppData\\Roaming\\Python\\Python27\\site-packages\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch"
 - cmd: >-
     rm -rf packages
 

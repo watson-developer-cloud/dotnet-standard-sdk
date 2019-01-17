@@ -23,7 +23,7 @@ install:
 # install modules
 - pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
-- C:\\Users\\appveyor\\AppData\\Roaming\\Python\\Python27\\site-packages\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
+- C:\Users\appveyor\AppData\Roaming\Python\Python27\site-packages\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
 - cmd: >-
     rm -rf packages
 

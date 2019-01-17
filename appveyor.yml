@@ -23,7 +23,7 @@ install:
 - "where python"
 - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-- "C:\Python27\Scripts\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch"
+- "C:\\Python27\\Scripts\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch"
 # install modules
 - pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec

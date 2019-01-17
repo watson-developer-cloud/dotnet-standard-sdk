@@ -20,18 +20,10 @@ environment:
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
-- "where python"
 # install modules
 - pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
-- python -m site
-- python -m site --user-site
-- "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
-- "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-- pip list --user
-- tree C:\\Users\\appveyor\\AppData\\Roaming\\Python
-- tree C:\\Python27\\lib
-# - "C:\\Users\\appveyor\\AppData\\Roaming\\Python\\Python27\\site-packages\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch"
+- C:\\Users\\appveyor\\AppData\\Roaming\\Python\\Python27\\site-packages\\bumpversion --current-version 2.13.0 --new-version 2.14.0 patch
 - cmd: >-
     rm -rf packages
 

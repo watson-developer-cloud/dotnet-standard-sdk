@@ -23,6 +23,7 @@ environment:
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
+- "where python"
 - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 # install modules

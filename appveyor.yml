@@ -7,6 +7,9 @@ image: Visual Studio 2017
 # platform: Any CPU
 clone_folder: C:\projects\dotnet-standard-sdk
 environment:
+    - PYTHON: "C:\\Python27"
+        PYTHON_VERSION: "2.7.8"
+        PYTHON_ARCH: "32"
     COVERALLS_REPO_TOKEN:
         secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME
     WPS_GITHUB_TOKEN:
@@ -17,18 +20,6 @@ environment:
         secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n
     GITHUB_TOKEN:
         secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+
-    matrix:
-    - PYTHON: "C:\\Python35"
-        PYTHON_VERSION: 3.5
-        PYTHON_ARCH: 32
-
-    - PYTHON: "C:\\Python34"
-        PYTHON_VERSION: 3.4
-        PYTHON_ARCH: 32
-
-    - PYTHON: "C:\\Python33"
-        PYTHON_VERSION: 3.3
-        PYTHON_ARCH: 32
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version

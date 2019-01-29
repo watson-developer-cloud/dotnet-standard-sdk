@@ -126,6 +126,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     bodyContent.Headers.Add("Content-Type", contentType);
 
                 restRequest.WithBodyContent(bodyContent);
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=Recognize");
 
                 result = restRequest.As<SpeechRecognitionResults>()
                            .Result;

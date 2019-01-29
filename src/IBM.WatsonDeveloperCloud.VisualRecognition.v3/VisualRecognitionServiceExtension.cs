@@ -112,6 +112,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=CreateClassifier");
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
@@ -186,6 +187,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=UpdateClassifier");
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
@@ -231,6 +233,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
                 restRequest.WithFormatter(new MediaTypeHeaderValue("application/octet-stream"));
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=GetCoreMlModel");
                 result = restRequest.AsStream();
             }
             catch (AggregateException ae)

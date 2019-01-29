@@ -167,6 +167,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 restRequest.WithBody<ToneInput>(toneInput);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=Tone");
                 result = restRequest.As<ToneAnalysis>().Result;
                 if(result == null)
                     result = new ToneAnalysis();
@@ -239,6 +241,8 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 restRequest.WithBody<ToneChatInput>(utterances);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=ToneChat");
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if(result == null)
                     result = new UtteranceAnalyses();

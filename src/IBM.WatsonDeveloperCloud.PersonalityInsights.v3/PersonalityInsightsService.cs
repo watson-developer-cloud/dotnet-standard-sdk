@@ -192,6 +192,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 restRequest.WithBody<Content>(content);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=Profile");
                 result = restRequest.As<Profile>().Result;
                 if(result == null)
                     result = new Profile();
@@ -312,6 +314,8 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 restRequest.WithBody<Content>(content);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=ProfileAsCsv");
                 result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
             catch(AggregateException ae)

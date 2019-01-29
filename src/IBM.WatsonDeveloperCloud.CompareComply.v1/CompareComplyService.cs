@@ -119,6 +119,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ConvertToHtml");
                 result = restRequest.As<HTMLReturn>().Result;
                 if(result == null)
                     result = new HTMLReturn();
@@ -176,6 +178,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ClassifyElements");
                 result = restRequest.As<ClassifyReturn>().Result;
                 if(result == null)
                     result = new ClassifyReturn();
@@ -233,6 +237,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ExtractTables");
                 result = restRequest.As<TableReturn>().Result;
                 if(result == null)
                     result = new TableReturn();
@@ -310,6 +316,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=CompareDocuments");
                 result = restRequest.As<CompareReturn>().Result;
                 if(result == null)
                     result = new CompareReturn();
@@ -352,6 +360,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBody<FeedbackInput>(feedbackData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=AddFeedback");
                 result = restRequest.As<FeedbackReturn>().Result;
                 if(result == null)
                     result = new FeedbackReturn();
@@ -396,6 +406,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("model_id", modelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=DeleteFeedback");
                 result = restRequest.As<FeedbackDeleted>().Result;
                 if(result == null)
                     result = new FeedbackDeleted();
@@ -439,6 +451,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("model_id", modelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=GetFeedback");
                 result = restRequest.As<GetFeedback>().Result;
                 if(result == null)
                     result = new GetFeedback();
@@ -545,6 +559,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("include_total", includeTotal);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ListFeedback");
                 result = restRequest.As<FeedbackList>().Result;
                 if(result == null)
                     result = new FeedbackList();
@@ -670,6 +686,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=CreateBatch");
                 result = restRequest.As<BatchStatus>().Result;
                 if(result == null)
                     result = new BatchStatus();
@@ -709,6 +727,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=GetBatch");
                 result = restRequest.As<BatchStatus>().Result;
                 if(result == null)
                     result = new BatchStatus();
@@ -745,6 +765,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ListBatches");
                 result = restRequest.As<Batches>().Result;
                 if(result == null)
                     result = new Batches();
@@ -796,6 +818,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     restRequest.WithArgument("model_id", modelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=UpdateBatch");
                 result = restRequest.As<BatchStatus>().Result;
                 if(result == null)
                     result = new BatchStatus();

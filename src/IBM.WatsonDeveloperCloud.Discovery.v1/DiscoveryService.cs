@@ -130,6 +130,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<CreateEnvironmentRequest>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateEnvironment");
                 result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
@@ -175,6 +177,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteEnvironment");
                 result = restRequest.As<DeleteEnvironmentResponse>().Result;
                 if(result == null)
                     result = new DeleteEnvironmentResponse();
@@ -220,6 +224,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetEnvironment");
                 result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
@@ -267,6 +273,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("name", name);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListEnvironments");
                 result = restRequest.As<ListEnvironmentsResponse>().Result;
                 if(result == null)
                     result = new ListEnvironmentsResponse();
@@ -319,6 +327,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListFields");
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionFieldsResponse();
@@ -371,6 +381,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<UpdateEnvironmentRequest>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateEnvironment");
                 result = restRequest.As<Environment>().Result;
                 if(result == null)
                     result = new Environment();
@@ -442,6 +454,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<Configuration>(configuration);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateConfiguration");
                 result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
@@ -495,6 +509,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteConfiguration");
                 result = restRequest.As<DeleteConfigurationResponse>().Result;
                 if(result == null)
                     result = new DeleteConfigurationResponse();
@@ -543,6 +559,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetConfiguration");
                 result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
@@ -593,6 +611,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("name", name);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListConfigurations");
                 result = restRequest.As<ListConfigurationsResponse>().Result;
                 if(result == null)
                     result = new ListConfigurationsResponse();
@@ -667,6 +687,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<Configuration>(configuration);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateConfiguration");
                 result = restRequest.As<Configuration>().Result;
                 if(result == null)
                     result = new Configuration();
@@ -765,6 +787,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=TestConfigurationInEnvironment");
                 result = restRequest.As<TestDocument>().Result;
                 if(result == null)
                     result = new TestDocument();
@@ -813,6 +837,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<CreateCollectionRequest>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateCollection");
                 result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
@@ -861,6 +887,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteCollection");
                 result = restRequest.As<DeleteCollectionResponse>().Result;
                 if(result == null)
                     result = new DeleteCollectionResponse();
@@ -909,6 +937,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetCollection");
                 result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
@@ -959,6 +989,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCollectionFields");
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionFieldsResponse();
@@ -1009,6 +1041,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("name", name);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCollections");
                 result = restRequest.As<ListCollectionsResponse>().Result;
                 if(result == null)
                     result = new ListCollectionsResponse();
@@ -1059,6 +1093,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<UpdateCollectionRequest>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateCollection");
                 result = restRequest.As<Collection>().Result;
                 if(result == null)
                     result = new Collection();
@@ -1114,6 +1150,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<Expansions>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateExpansions");
                 result = restRequest.As<Expansions>().Result;
                 if(result == null)
                     result = new Expansions();
@@ -1179,6 +1217,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateStopwordList");
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if(result == null)
                     result = new TokenDictStatusResponse();
@@ -1232,6 +1272,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<TokenDict>(tokenizationDictionary);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateTokenizationDictionary");
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if(result == null)
                     result = new TokenDictStatusResponse();
@@ -1283,6 +1325,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteExpansions");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -1334,6 +1378,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteStopwordList");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -1384,6 +1430,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTokenizationDictionary");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -1434,6 +1482,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTokenizationDictionaryStatus");
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if(result == null)
                     result = new TokenDictStatusResponse();
@@ -1485,6 +1535,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListExpansions");
                 result = restRequest.As<Expansions>().Result;
                 if(result == null)
                     result = new Expansions();
@@ -1582,6 +1634,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=AddDocument");
                 result = restRequest.As<DocumentAccepted>().Result;
                 if(result == null)
                     result = new DocumentAccepted();
@@ -1636,6 +1690,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteDocument");
                 result = restRequest.As<DeleteDocumentResponse>().Result;
                 if(result == null)
                     result = new DeleteDocumentResponse();
@@ -1691,6 +1747,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetDocumentStatus");
                 result = restRequest.As<DocumentStatus>().Result;
                 if(result == null)
                     result = new DocumentStatus();
@@ -1773,6 +1831,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateDocument");
                 result = restRequest.As<DocumentAccepted>().Result;
                 if(result == null)
                     result = new DocumentAccepted();
@@ -1910,6 +1970,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=FederatedQuery");
                 result = restRequest.As<QueryResponse>().Result;
                 if(result == null)
                     result = new QueryResponse();
@@ -2027,6 +2089,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=FederatedQueryNotices");
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if(result == null)
                     result = new QueryNoticesResponse();
@@ -2166,6 +2230,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=Query");
                 result = restRequest.As<QueryResponse>().Result;
                 if(result == null)
                     result = new QueryResponse();
@@ -2222,6 +2288,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<QueryEntities>(entityQuery);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryEntities");
                 result = restRequest.As<QueryEntitiesResponse>().Result;
                 if(result == null)
                     result = new QueryEntitiesResponse();
@@ -2353,6 +2421,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryNotices");
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if(result == null)
                     result = new QueryNoticesResponse();
@@ -2409,6 +2479,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<QueryRelations>(relationshipQuery);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryRelations");
                 result = restRequest.As<QueryRelationsResponse>().Result;
                 if(result == null)
                     result = new QueryRelationsResponse();
@@ -2464,6 +2536,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<NewTrainingQuery>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=AddTrainingData");
                 result = restRequest.As<TrainingQuery>().Result;
                 if(result == null)
                     result = new TrainingQuery();
@@ -2521,6 +2595,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<TrainingExample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateTrainingExample");
                 result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
@@ -2571,6 +2647,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteAllTrainingData");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -2624,6 +2702,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTrainingData");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -2680,6 +2760,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTrainingExample");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -2733,6 +2815,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTrainingData");
                 result = restRequest.As<TrainingQuery>().Result;
                 if(result == null)
                     result = new TrainingQuery();
@@ -2789,6 +2873,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTrainingExample");
                 result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
@@ -2839,6 +2925,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListTrainingData");
                 result = restRequest.As<TrainingDataSet>().Result;
                 if(result == null)
                     result = new TrainingDataSet();
@@ -2892,6 +2980,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListTrainingExamples");
                 result = restRequest.As<TrainingExampleList>().Result;
                 if(result == null)
                     result = new TrainingExampleList();
@@ -2952,6 +3042,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<TrainingExamplePatch>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateTrainingExample");
                 result = restRequest.As<TrainingExample>().Result;
                 if(result == null)
                     result = new TrainingExample();
@@ -3005,6 +3097,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("customer_id", customerId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteUserData");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -3053,6 +3147,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<CreateEventObject>(queryEvent);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateEvent");
                 result = restRequest.As<CreateEventResponse>().Result;
                 if(result == null)
                     result = new CreateEventResponse();
@@ -3110,6 +3206,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsEventRate");
                 result = restRequest.As<MetricResponse>().Result;
                 if(result == null)
                     result = new MetricResponse();
@@ -3165,6 +3263,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQuery");
                 result = restRequest.As<MetricResponse>().Result;
                 if(result == null)
                     result = new MetricResponse();
@@ -3222,6 +3322,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryEvent");
                 result = restRequest.As<MetricResponse>().Result;
                 if(result == null)
                     result = new MetricResponse();
@@ -3278,6 +3380,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryNoResults");
                 result = restRequest.As<MetricResponse>().Result;
                 if(result == null)
                     result = new MetricResponse();
@@ -3327,6 +3431,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("count", count);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryTokenEvent");
                 result = restRequest.As<MetricTokenResponse>().Result;
                 if(result == null)
                     result = new MetricTokenResponse();
@@ -3395,6 +3501,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryLog");
                 result = restRequest.As<LogQueryResponse>().Result;
                 if(result == null)
                     result = new LogQueryResponse();
@@ -3448,6 +3556,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<Credentials>(credentialsParameter);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateCredentials");
                 result = restRequest.As<Credentials>().Result;
                 if(result == null)
                     result = new Credentials();
@@ -3498,6 +3608,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteCredentials");
                 result = restRequest.As<DeleteCredentials>().Result;
                 if(result == null)
                     result = new DeleteCredentials();
@@ -3551,6 +3663,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetCredentials");
                 result = restRequest.As<Credentials>().Result;
                 if(result == null)
                     result = new Credentials();
@@ -3600,6 +3714,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCredentials");
                 result = restRequest.As<CredentialsList>().Result;
                 if(result == null)
                     result = new CredentialsList();
@@ -3656,6 +3772,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<Credentials>(credentialsParameter);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateCredentials");
                 result = restRequest.As<Credentials>().Result;
                 if(result == null)
                     result = new Credentials();
@@ -3704,6 +3822,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithBody<GatewayName>(gatewayName);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateGateway");
                 result = restRequest.As<Gateway>().Result;
                 if(result == null)
                     result = new Gateway();
@@ -3754,6 +3874,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteGateway");
                 result = restRequest.As<GatewayDelete>().Result;
                 if(result == null)
                     result = new GatewayDelete();
@@ -3804,6 +3926,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetGateway");
                 result = restRequest.As<Gateway>().Result;
                 if(result == null)
                     result = new Gateway();
@@ -3851,6 +3975,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListGateways");
                 result = restRequest.As<GatewayList>().Result;
                 if(result == null)
                     result = new GatewayList();

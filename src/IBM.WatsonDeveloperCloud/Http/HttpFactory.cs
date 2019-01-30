@@ -55,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.Http
                     Constants.SDK_VERSION, 
                     os,
                     osVersion,
-                    System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription.Replace(" ", "-")
+                    System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription.Replace(" ", "")
                 ));
 
             return request;

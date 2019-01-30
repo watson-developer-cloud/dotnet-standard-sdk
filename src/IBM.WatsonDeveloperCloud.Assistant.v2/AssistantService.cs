@@ -124,6 +124,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=CreateSession");
                 result = restRequest.As<SessionResponse>().Result;
                 if(result == null)
                     result = new SessionResponse();
@@ -178,6 +180,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=DeleteSession");
                 result = restRequest.As<BaseModel>().Result;
                 if(result == null)
                     result = new BaseModel();
@@ -236,6 +240,8 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithBody<MessageRequest>(request);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=Message");
                 result = restRequest.As<MessageResponse>().Result;
                 if(result == null)
                     result = new MessageResponse();

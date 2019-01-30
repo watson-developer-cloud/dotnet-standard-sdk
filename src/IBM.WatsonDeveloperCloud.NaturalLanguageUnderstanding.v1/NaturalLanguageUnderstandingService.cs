@@ -130,6 +130,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithBody<Parameters>(parameters);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=Analyze");
                 result = restRequest.As<AnalysisResults>().Result;
                 if(result == null)
                     result = new AnalysisResults();
@@ -176,6 +178,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=DeleteModel");
                 result = restRequest.As<InlineResponse200>().Result;
                 if(result == null)
                     result = new InlineResponse200();
@@ -222,6 +226,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+        
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=ListModels");
                 result = restRequest.As<ListModelsResults>().Result;
                 if(result == null)
                     result = new ListModelsResults();

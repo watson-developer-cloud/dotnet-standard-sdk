@@ -32,11 +32,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
     {
         const string SERVICE_NAME = "speech_to_text";
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
-        public SpeechToTextService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public SpeechToTextService() : base(SERVICE_NAME) { }
 
         public SpeechToTextService(string userName, string password) : this()
         {
@@ -94,7 +90,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -106,14 +102,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetModel");
                 result = restRequest.As<SpeechModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new SpeechModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -138,7 +134,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -150,14 +146,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListModels");
                 result = restRequest.As<SpeechModels>().Result;
-                if(result == null)
+                if (result == null)
                     result = new SpeechModels();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -369,7 +365,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -426,14 +422,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=Recognize");
                 result = restRequest.As<SpeechRecognitionResults>().Result;
-                if(result == null)
+                if (result == null)
                     result = new SpeechRecognitionResults();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -469,7 +465,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -481,14 +477,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=CheckJob");
                 result = restRequest.As<RecognitionJob>().Result;
-                if(result == null)
+                if (result == null)
                     result = new RecognitionJob();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -518,7 +514,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -530,14 +526,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=CheckJobs");
                 result = restRequest.As<RecognitionJobs>().Result;
-                if(result == null)
+                if (result == null)
                     result = new RecognitionJobs();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -789,7 +785,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -854,14 +850,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=CreateJob");
                 result = restRequest.As<RecognitionJob>().Result;
-                if(result == null)
+                if (result == null)
                     result = new RecognitionJob();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -892,7 +888,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -904,14 +900,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteJob");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -970,7 +966,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -986,14 +982,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("user_secret", userSecret);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=RegisterCallback");
                 result = restRequest.As<RegisterStatus>().Result;
-                if(result == null)
+                if (result == null)
                     result = new RegisterStatus();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1023,7 +1019,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1037,14 +1033,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("callback_url", callbackUrl);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=UnregisterCallback");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1074,7 +1070,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1087,14 +1083,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 restRequest.WithBody<CreateLanguageModel>(createLanguageModel);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=CreateLanguageModel");
                 result = restRequest.As<LanguageModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new LanguageModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1126,7 +1122,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1138,14 +1134,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteLanguageModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1176,7 +1172,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1188,14 +1184,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetLanguageModel");
                 result = restRequest.As<LanguageModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new LanguageModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1226,7 +1222,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1240,14 +1236,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("language", language);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListLanguageModels");
                 result = restRequest.As<LanguageModels>().Result;
-                if(result == null)
+                if (result == null)
                     result = new LanguageModels();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1280,7 +1276,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1292,14 +1288,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ResetLanguageModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1369,7 +1365,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1385,14 +1381,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=TrainLanguageModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1433,7 +1429,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1445,14 +1441,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=UpgradeLanguageModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1548,7 +1544,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 }
 
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1563,14 +1559,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=AddCorpus");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1608,7 +1604,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1620,14 +1616,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteCorpus");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1662,7 +1658,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1674,14 +1670,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetCorpus");
                 result = restRequest.As<Corpus>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Corpus();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1713,7 +1709,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1725,14 +1721,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListCorpora");
                 result = restRequest.As<Corpora>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Corpora();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1797,7 +1793,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1810,14 +1806,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 restRequest.WithBody<CustomWord>(customWord);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=AddWord");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1892,7 +1888,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1905,14 +1901,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 restRequest.WithBody<CustomWords>(customWords);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=AddWords");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1952,7 +1948,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1964,14 +1960,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteWord");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2007,7 +2003,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2019,14 +2015,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetWord");
                 result = restRequest.As<Word>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Word();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2072,7 +2068,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2088,14 +2084,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("sort", sort);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListWords");
                 result = restRequest.As<Words>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Words();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2175,7 +2171,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2198,14 +2194,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=AddGrammar");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2243,7 +2239,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2255,14 +2251,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteGrammar");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2297,7 +2293,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2309,14 +2305,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetGrammar");
                 result = restRequest.As<Grammar>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Grammar();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2348,7 +2344,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2360,14 +2356,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListGrammars");
                 result = restRequest.As<Grammars>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Grammars();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2397,7 +2393,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2410,14 +2406,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 restRequest.WithBody<CreateAcousticModel>(createAcousticModel);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=CreateAcousticModel");
                 result = restRequest.As<AcousticModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AcousticModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2449,7 +2445,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2461,14 +2457,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteAcousticModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2499,7 +2495,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2511,14 +2507,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetAcousticModel");
                 result = restRequest.As<AcousticModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AcousticModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2549,7 +2545,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2563,14 +2559,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("language", language);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListAcousticModels");
                 result = restRequest.As<AcousticModels>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AcousticModels();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2603,7 +2599,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2615,14 +2611,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ResetAcousticModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2684,7 +2680,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2698,14 +2694,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=TrainAcousticModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2755,7 +2751,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2769,14 +2765,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=UpgradeAcousticModel");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2909,7 +2905,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2934,14 +2930,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=AddAudio");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2978,7 +2974,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2990,14 +2986,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteAudio");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -3045,7 +3041,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -3057,14 +3053,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=GetAudio");
                 result = restRequest.As<AudioListing>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AudioListing();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -3098,7 +3094,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -3110,14 +3106,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=ListAudio");
                 result = restRequest.As<AudioResources>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AudioResources();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -3150,7 +3146,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -3164,14 +3160,14 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                     restRequest.WithArgument("customer_id", customerId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=speech_to_text;service_version=v1;operation_id=DeleteUserData");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

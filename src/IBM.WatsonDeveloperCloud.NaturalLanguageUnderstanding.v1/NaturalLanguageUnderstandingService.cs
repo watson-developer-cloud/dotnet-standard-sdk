@@ -35,11 +35,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             set { _versionDate = value; }
         }
 
-        public NaturalLanguageUnderstandingService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public NaturalLanguageUnderstandingService() : base(SERVICE_NAME) { }
 
         public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : this()
         {
@@ -50,7 +46,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -60,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -116,7 +112,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -130,14 +126,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithBody<Parameters>(parameters);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=Analyze");
                 result = restRequest.As<AnalysisResults>().Result;
-                if(result == null)
+                if (result == null)
                     result = new AnalysisResults();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -165,7 +161,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -178,14 +174,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=DeleteModel");
                 result = restRequest.As<InlineResponse200>().Result;
-                if(result == null)
+                if (result == null)
                     result = new InlineResponse200();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -213,7 +209,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -226,14 +222,14 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=ListModels");
                 result = restRequest.As<ListModelsResults>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ListModelsResults();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

@@ -16,6 +16,8 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Util;
@@ -27,13 +29,18 @@ namespace IBM.WatsonDeveloperCloud.Service
         const string PATH_AUTHORIZATION_V1_TOKEN = "/authorization/api/v1/token";
         const string ICP_PREFIX = "icp-";
         const string APIKEY_AS_USERNAME = "apikey";
+        public string SERVICE_NAME;
         private string username;
         private string password;
         public IClient Client { get; set; }
 
         public string ServiceName { get; set; }
         public string ApiKey { get; set; }
-        protected string Endpoint { get
+        public string Url { get { return Endpoint; } }
+
+        protected string Endpoint
+        {
+            get
             {
                 if (this.Client.BaseClient == null ||
                     this.Client.BaseClient.BaseAddress == null)
@@ -43,7 +50,7 @@ namespace IBM.WatsonDeveloperCloud.Service
             }
             set
             {
-                if(this.Client.BaseClient == null)
+                if (this.Client.BaseClient == null)
                 {
                     this.Client.BaseClient = new HttpClient();
                 }
@@ -85,12 +92,36 @@ namespace IBM.WatsonDeveloperCloud.Service
 
         protected WatsonService(string serviceName)
         {
-            this.ServiceName = serviceName;
-            this.Client = new WatsonHttpClient(this.Endpoint, this.UserName, this.Password);
-            
-            //TODO: verificar como iremos obter de um arquivo json por injeção de dependencia
-            //this.ApiKey = CredentialUtils.GetApiKey(serviceName);
-            //this.Endpoint = CredentialUtils.GetApiUrl(serviceName);
+            this.Client = new WatsonHttpClient();
+            ServiceName = serviceName;
+            foreach (string path in Utility.GetCredentialsPaths())
+            {
+                if (Utility.LoadEnvFile(path))
+                {
+                    break;
+                }
+            }
+
+            ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
+            Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
+
+            if(string.IsNullOrEmpty(ApiKey))
+            {
+                throw new NullReferenceException(ServiceName.ToUpper() + "_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env");
+            }
+
+            if(string.IsNullOrEmpty(Endpoint))
+            {
+                throw new NullReferenceException(ServiceName.ToUpper() + "_URL did not exist. Please add url with this key in ibm-credentials.env");
+            }
+
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = ApiKey,
+                ServiceUrl = Endpoint
+            };
+
+            SetCredential(tokenOptions);
         }
 
         protected WatsonService(string serviceName, string url)
@@ -140,7 +171,7 @@ namespace IBM.WatsonDeveloperCloud.Service
                 this.Password = password;
             }
         }
-        
+
         /// <summary>
         /// Sets the tokenOptions for the service. 
         /// Also sets the endpoint if the user has not set the endpoint.
@@ -171,7 +202,7 @@ namespace IBM.WatsonDeveloperCloud.Service
                     _tokenManager = new TokenManager(options);
                 }
             }
-            else if(!string.IsNullOrEmpty(options.IamAccessToken))
+            else if (!string.IsNullOrEmpty(options.IamAccessToken))
             {
                 _tokenManager = new TokenManager(options);
             }

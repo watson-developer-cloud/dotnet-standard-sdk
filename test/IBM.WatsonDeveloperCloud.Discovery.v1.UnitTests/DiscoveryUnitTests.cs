@@ -94,8 +94,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         {
             IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
+            client.WithAuthentication(Arg.Any<string>()).Returns(client);
 
             return client;
         }

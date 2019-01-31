@@ -39,11 +39,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             set { _versionDate = value; }
         }
 
-        public LanguageTranslatorService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public LanguageTranslatorService() : base(SERVICE_NAME) { }
 
         public LanguageTranslatorService(string userName, string password, string versionDate) : this()
         {
@@ -54,7 +50,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -64,7 +60,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -111,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -125,14 +121,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithBody<TranslateRequest>(request);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=Translate");
                 result = restRequest.As<TranslationResult>().Result;
-                if(result == null)
+                if (result == null)
                     result = new TranslationResult();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -160,7 +156,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -174,14 +170,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithBodyContent(new StringContent(text, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=Identify");
                 result = restRequest.As<IdentifiedLanguages>().Result;
-                if(result == null)
+                if (result == null)
                     result = new IdentifiedLanguages();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -208,7 +204,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -221,14 +217,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=ListIdentifiableLanguages");
                 result = restRequest.As<IdentifiableLanguages>().Result;
-                if(result == null)
+                if (result == null)
                     result = new IdentifiableLanguages();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -300,7 +296,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 }
 
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -318,14 +314,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=CreateModel");
                 result = restRequest.As<TranslationModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new TranslationModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -354,7 +350,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -367,14 +363,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=DeleteModel");
                 result = restRequest.As<DeleteModelResult>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DeleteModelResult();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -405,7 +401,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -418,14 +414,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=GetModel");
                 result = restRequest.As<TranslationModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new TranslationModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -457,7 +453,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -476,14 +472,14 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                     restRequest.WithArgument("default", defaultModels);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=ListModels");
                 result = restRequest.As<TranslationModels>().Result;
-                if(result == null)
+                if (result == null)
                     result = new TranslationModels();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

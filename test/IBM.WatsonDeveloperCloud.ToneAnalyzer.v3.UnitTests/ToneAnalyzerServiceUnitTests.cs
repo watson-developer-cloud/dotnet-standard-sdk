@@ -94,8 +94,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
         {
             IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
+            client.WithAuthentication(Arg.Any<string>()).Returns(client);
 
             return client;
         }
@@ -389,11 +388,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.UnitTests
 
             IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
-
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                  .Returns(client);
+            client.WithAuthentication(Arg.Any<string>()).Returns(client);
 
             IRequest request = Substitute.For<IRequest>();
             client.PostAsync(Arg.Any<string>())

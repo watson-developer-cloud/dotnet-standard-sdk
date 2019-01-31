@@ -35,11 +35,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             set { _versionDate = value; }
         }
 
-        public AssistantService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public AssistantService() : base(SERVICE_NAME) { }
 
         public AssistantService(string userName, string password, string versionDate) : this()
         {
@@ -50,7 +46,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -60,7 +56,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -111,7 +107,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -124,14 +120,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=CreateSession");
                 result = restRequest.As<SessionResponse>().Result;
-                if(result == null)
+                if (result == null)
                     result = new SessionResponse();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -167,7 +163,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -180,14 +176,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=DeleteSession");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -226,7 +222,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -240,14 +236,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
                 restRequest.WithBody<MessageRequest>(request);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v2;operation_id=Message");
                 result = restRequest.As<MessageResponse>().Result;
-                if(result == null)
+                if (result == null)
                     result = new MessageResponse();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

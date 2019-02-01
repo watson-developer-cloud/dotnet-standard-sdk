@@ -93,34 +93,43 @@ namespace IBM.WatsonDeveloperCloud.Service
             this.Client = new WatsonHttpClient();
             ServiceName = serviceName;
 
-            foreach (string path in Utility.GetCredentialsPaths())
+            var credentialsPaths = Utility.GetCredentialsPaths();
+            if (credentialsPaths.Count > 0)
             {
-                if (Utility.LoadEnvFile(path))
+                foreach (string path in credentialsPaths)
                 {
-                    break;
+                    if (Utility.LoadEnvFile(path))
+                    {
+                        break;
+                    }
                 }
+
+                try
+                {
+                    ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
+                }
+                catch(Exception e)
+                {
+                    throw new NullReferenceException(string.Format("{0}_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env. Error: {1}", ServiceName.ToUpper(), e.Message));
+                }
+
+                try
+                {
+                    Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
+                }
+                catch(Exception e)
+                {
+                    throw new NullReferenceException(string.Format("{0}_URL did not exist. Please add url with this key in ibm-credentials.env. Error: {1}", ServiceName.ToUpper(), e.Message));
+                }
+
+                TokenOptions tokenOptions = new TokenOptions()
+                {
+                    IamApiKey = ApiKey,
+                    ServiceUrl = Endpoint
+                };
+
+                SetCredential(tokenOptions);
             }
-
-            ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
-            Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
-
-            if (string.IsNullOrEmpty(ApiKey))
-            {
-                throw new NullReferenceException(ServiceName.ToUpper() + "_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env");
-            }
-
-            if (string.IsNullOrEmpty(Endpoint))
-            {
-                throw new NullReferenceException(ServiceName.ToUpper() + "_URL did not exist. Please add url with this key in ibm-credentials.env");
-            }
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = ApiKey,
-                ServiceUrl = Endpoint
-            };
-
-            SetCredential(tokenOptions);
         }
 
         protected WatsonService(string serviceName, string url)

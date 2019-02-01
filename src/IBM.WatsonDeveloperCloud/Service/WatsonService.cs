@@ -16,8 +16,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using IBM.WatsonDeveloperCloud.Http;
 using IBM.WatsonDeveloperCloud.Util;
@@ -94,6 +92,7 @@ namespace IBM.WatsonDeveloperCloud.Service
         {
             this.Client = new WatsonHttpClient();
             ServiceName = serviceName;
+
             foreach (string path in Utility.GetCredentialsPaths())
             {
                 if (Utility.LoadEnvFile(path))
@@ -105,12 +104,12 @@ namespace IBM.WatsonDeveloperCloud.Service
             ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
             Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
 
-            if(string.IsNullOrEmpty(ApiKey))
+            if (string.IsNullOrEmpty(ApiKey))
             {
                 throw new NullReferenceException(ServiceName.ToUpper() + "_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env");
             }
 
-            if(string.IsNullOrEmpty(Endpoint))
+            if (string.IsNullOrEmpty(Endpoint))
             {
                 throw new NullReferenceException(ServiceName.ToUpper() + "_URL did not exist. Please add url with this key in ibm-credentials.env");
             }

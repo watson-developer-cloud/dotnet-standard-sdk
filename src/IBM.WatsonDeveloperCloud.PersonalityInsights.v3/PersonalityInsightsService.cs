@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
         public PersonalityInsightsService() : base(SERVICE_NAME) { }
 
-        public PersonalityInsightsService(string userName, string password, string versionDate) : this()
+        public PersonalityInsightsService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             VersionDate = versionDate;
         }
 
-        public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
+        public PersonalityInsightsService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public PersonalityInsightsService(IClient httpClient) : this()
+        public PersonalityInsightsService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

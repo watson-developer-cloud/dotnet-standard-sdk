@@ -161,67 +161,6 @@ namespace IBM.WatsonDeveloperCloud.Util
             }
 
             return filePathsToLoad;
-
-
-
-
-
-            ////  Get credentials from IBM_CREDENTIALS_FILE env variable
-            //string filePathToLoad = Environment.GetEnvironmentVariable(IBM_CREDENTIALS_FILE);
-            //if (!string.IsNullOrEmpty(filePathToLoad))
-            //{
-            //    try
-            //    {
-            //        Utility.LoadEnvFile(filePathToLoad);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(
-            //            string.Format(
-            //                "Error loading file from env variable IBM_CREDENTIALS_FILE {0}: {1}",
-            //                Environment.GetEnvironmentVariable(IBM_CREDENTIALS_FILE),
-            //                e.Message
-            //                ));
-            //    }
-            //}
-
-            ////  Get credentials from $HOME
-            //if (File.Exists(IBM_CREDENTIALS_FILE_HOME))
-            //{
-            //    try
-            //    {
-            //        Utility.LoadEnvFile(IBM_CREDENTIALS_FILE_HOME);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(
-            //            string.Format(
-            //                "Error loading file from {0}: {1}",
-            //                IBM_CREDENTIALS_FILE_HOME,
-            //                e.Message
-            //                ));
-
-            //    }
-            //}
-
-            ////  Get credentials from %HOMEDRIVE%%HOMEPATH%
-            //if (File.Exists(IBM_CREDENTIALS_FILE_HOME_PATH))
-            //{
-            //    try
-            //    {
-            //        Utility.LoadEnvFile(IBM_CREDENTIALS_FILE_HOME_PATH);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(
-            //            string.Format(
-            //                "Error loading file from {0}: {1}",
-            //                IBM_CREDENTIALS_FILE_HOME_PATH,
-            //                e.Message
-            //                ));
-
-            //    }
-            //}
         }
     }
 }

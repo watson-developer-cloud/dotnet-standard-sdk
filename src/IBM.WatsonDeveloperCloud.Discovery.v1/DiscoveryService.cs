@@ -42,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
 
         public DiscoveryService() : base(SERVICE_NAME) { }
 
-        public DiscoveryService(string userName, string password, string versionDate) : this()
+        public DiscoveryService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -57,7 +57,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             VersionDate = versionDate;
         }
 
-        public DiscoveryService(TokenOptions options, string versionDate) : this()
+        public DiscoveryService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -78,7 +78,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public DiscoveryService(IClient httpClient) : this()
+        public DiscoveryService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

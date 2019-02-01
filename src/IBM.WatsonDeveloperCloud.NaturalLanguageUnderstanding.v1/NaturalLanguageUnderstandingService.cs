@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
 
         public NaturalLanguageUnderstandingService() : base(SERVICE_NAME) { }
 
-        public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : this()
+        public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             VersionDate = versionDate;
         }
 
-        public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : this()
+        public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public NaturalLanguageUnderstandingService(IClient httpClient) : this()
+        public NaturalLanguageUnderstandingService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

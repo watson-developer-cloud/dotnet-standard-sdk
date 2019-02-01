@@ -127,7 +127,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.CompareComply.v1.IT", "test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\IBM.WatsonDeveloperCloud.CompareComply.v1.IT.csproj", "{42258A9B-CE18-4C39-BAA5-19F8C5DE041B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.WatsonDeveloperCloud.CompareComply.v1.UT", "test\IBM.WatsonDeveloperCloud.CompareComply.v1.UT\IBM.WatsonDeveloperCloud.CompareComply.v1.UT.csproj", "{DF7A03F2-66F3-4B70-8311-A3487553CA0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.CompareComply.v1.UT", "test\IBM.WatsonDeveloperCloud.CompareComply.v1.UT\IBM.WatsonDeveloperCloud.CompareComply.v1.UT.csproj", "{DF7A03F2-66F3-4B70-8311-A3487553CA0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.WatsonDeveloperCloud.Core.IntegrationTests", "test\IBM.WatsonDeveloperCloud.Core.IntegrationTests\IBM.WatsonDeveloperCloud.Core.IntegrationTests.csproj", "{03A84C2E-8285-483E-8BD2-4A367DDFF230}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -319,6 +321,10 @@ Global
 		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF7A03F2-66F3-4B70-8311-A3487553CA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A84C2E-8285-483E-8BD2-4A367DDFF230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A84C2E-8285-483E-8BD2-4A367DDFF230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A84C2E-8285-483E-8BD2-4A367DDFF230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A84C2E-8285-483E-8BD2-4A367DDFF230}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -385,6 +391,7 @@ Global
 		{0287B6FD-D28A-47C9-9686-C4658EBD2129} = {B368DCF7-FB57-4302-8467-4EB142394A29}
 		{42258A9B-CE18-4C39-BAA5-19F8C5DE041B} = {B368DCF7-FB57-4302-8467-4EB142394A29}
 		{DF7A03F2-66F3-4B70-8311-A3487553CA0C} = {B368DCF7-FB57-4302-8467-4EB142394A29}
+		{03A84C2E-8285-483E-8BD2-4A367DDFF230} = {FF4673C9-CB33-4D4F-9116-776A792A2189}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

@@ -17,6 +17,7 @@ environment:
     secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n
   GITHUB_TOKEN:
     secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+
+  IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version

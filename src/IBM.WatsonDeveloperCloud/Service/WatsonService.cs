@@ -104,22 +104,16 @@ namespace IBM.WatsonDeveloperCloud.Service
                     }
                 }
 
-                try
+                ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
+                if (string.IsNullOrEmpty(ApiKey))
                 {
-                    ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
-                }
-                catch(Exception e)
-                {
-                    throw new NullReferenceException(string.Format("{0}_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env. Error: {1}", ServiceName.ToUpper(), e.Message));
+                    throw new NullReferenceException(string.Format("{0}_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env.", ServiceName.ToUpper()));
                 }
 
-                try
+                Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
+                if (string.IsNullOrEmpty(Endpoint))
                 {
-                    Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
-                }
-                catch(Exception e)
-                {
-                    throw new NullReferenceException(string.Format("{0}_URL did not exist. Please add url with this key in ibm-credentials.env. Error: {1}", ServiceName.ToUpper(), e.Message));
+                    throw new NullReferenceException(string.Format("{0}_URL did not exist. Please add url with this key in ibm-credentials.env.", ServiceName.ToUpper()));
                 }
 
                 TokenOptions tokenOptions = new TokenOptions()

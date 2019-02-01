@@ -155,6 +155,12 @@ namespace IBM.WatsonDeveloperCloud.Util
                 filePathsToLoad.Add(windowsHomePath);
             }
 
+            string userProfilePath = Environment.ExpandEnvironmentVariables("%USERPROFILE%") + "\\ibm-credentials.env";
+            if (!string.IsNullOrEmpty(Environment.ExpandEnvironmentVariables("%USERPROFILE%")) && File.Exists(userProfilePath))
+            {
+                filePathsToLoad.Add(userProfilePath);
+            }
+
             if (File.Exists(@"ibm-credentials.env"))
             {
                 filePathsToLoad.Add(@"ibm-credentials.env");

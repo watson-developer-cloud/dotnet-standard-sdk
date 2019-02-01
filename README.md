@@ -111,7 +111,7 @@ ASSISTANT_URL=<assistant-service-url>
 ```
 The SDK will search for this file in the following order
 - Path specified by environmental variable `IBM_CREDENTIALS_FILE`
-- User's home directory
+- System home directory
 - Top level of the project directory
 
 Using a `ibm-credentials.env` file you can easily instantiate and authenticate a service.

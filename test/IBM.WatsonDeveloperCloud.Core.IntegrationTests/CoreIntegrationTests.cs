@@ -29,10 +29,10 @@ using IBM.WatsonDeveloperCloud.VisualRecognition.v3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace IBM.WatsonDeveloperCloud.Core.UnitTests
+namespace IBM.WatsonDeveloperCloud.Core.IntegrationTests
 {
     [TestClass]
-    public class CoreUnitTests
+    public class CoreIntegrationTests
     {
         [TestMethod]
         public void GetCredentialsPaths_Success()

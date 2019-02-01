@@ -104,25 +104,51 @@ namespace IBM.WatsonDeveloperCloud.Service
                     }
                 }
 
-                ApiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
-                if (string.IsNullOrEmpty(ApiKey))
+                string apiKey = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_APIKEY");
+                if (!string.IsNullOrEmpty(apiKey))
+                    ApiKey = apiKey;
+                string un = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_USERNAME");
+                if (!string.IsNullOrEmpty(un))
+                    UserName = un;
+                string pw = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_PASSWORD");
+                if (!string.IsNullOrEmpty(pw))
+                    Password = pw;
+                string ServiceUrl = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
+
+                if (string.IsNullOrEmpty(ApiKey) && (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password)))
                 {
-                    throw new NullReferenceException(string.Format("{0}_APIKEY did not exist. Please add credentials with this key in ibm-credentials.env.", ServiceName.ToUpper()));
+                    throw new NullReferenceException(string.Format("Either {0}_APIKEY or {0}_USERNAME and {0}_PASSWORD did not exist. Please add credentials with this key in ibm-credentials.env.", ServiceName.ToUpper()));
                 }
 
-                Endpoint = Environment.GetEnvironmentVariable(ServiceName.ToUpper() + "_URL");
-                if (string.IsNullOrEmpty(Endpoint))
+                if (!string.IsNullOrEmpty(ApiKey))
                 {
-                    throw new NullReferenceException(string.Format("{0}_URL did not exist. Please add url with this key in ibm-credentials.env.", ServiceName.ToUpper()));
+                    TokenOptions tokenOptions = new TokenOptions()
+                    {
+                        IamApiKey = ApiKey
+                    };
+
+                    if (!string.IsNullOrEmpty(ServiceUrl))
+                        tokenOptions.ServiceUrl = ServiceUrl;
+
+                    if (!string.IsNullOrEmpty(tokenOptions.ServiceUrl))
+                    {
+                        Endpoint = tokenOptions.ServiceUrl;
+                    }
+                    else
+                    {
+                        tokenOptions.ServiceUrl = Url;
+                    }
+
+                    SetCredential(tokenOptions);
                 }
 
-                TokenOptions tokenOptions = new TokenOptions()
+                if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password))
                 {
-                    IamApiKey = ApiKey,
-                    ServiceUrl = Endpoint
-                };
+                    if (!string.IsNullOrEmpty(ServiceUrl))
+                        Endpoint = ServiceUrl;
 
-                SetCredential(tokenOptions);
+                    SetCredential(UserName, Password);
+                }
             }
         }
 

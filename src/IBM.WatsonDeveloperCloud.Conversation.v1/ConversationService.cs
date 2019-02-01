@@ -36,14 +36,10 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         }
 
         [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
-        public ConversationService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public ConversationService() : base(SERVICE_NAME) { }
 
         [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
-        public ConversationService(string userName, string password, string versionDate) : this()
+        public ConversationService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -59,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         }
 
         [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
-        public ConversationService(TokenOptions options, string versionDate) : this()
+        public ConversationService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -81,7 +77,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1
         }
 
         [Obsolete("Conversation V1 is deprecated and will be removed in the next major release of the SDK. Use Assistant V1 or Assistant V2.")]
-        public ConversationService(IClient httpClient) : this()
+        public ConversationService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

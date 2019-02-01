@@ -83,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
         public void Constructor()
         {
             ConversationService service =
-                new ConversationService();
+                new ConversationService(new WatsonHttpClient());
 
             Assert.IsNotNull(service);
         }
@@ -95,7 +95,7 @@ namespace IBM.WatsonDeveloperCloud.Conversation.v1.UnitTests
             IClient client = Substitute.For<IClient>();
 
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
+                .Returns(client);
 
             return client;
         }

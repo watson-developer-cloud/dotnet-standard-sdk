@@ -37,13 +37,9 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             set { _versionDate = value; }
         }
 
-        public AssistantService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public AssistantService() : base(SERVICE_NAME) { }
 
-        public AssistantService(string userName, string password, string versionDate) : this()
+        public AssistantService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -52,17 +48,17 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
         }
 
-        public AssistantService(TokenOptions options, string versionDate) : this()
+        public AssistantService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -79,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public AssistantService(IClient httpClient) : this()
+        public AssistantService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -114,7 +110,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -130,14 +126,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<MessageRequest>(request);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=Message");
                 result = restRequest.As<MessageResponse>().Result;
-                if(result == null)
+                if (result == null)
                     result = new MessageResponse();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -169,7 +165,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -183,14 +179,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateWorkspace>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateWorkspace");
                 result = restRequest.As<Workspace>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Workspace();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -221,7 +217,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -234,14 +230,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteWorkspace");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -281,7 +277,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -300,14 +296,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("sort", sort);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetWorkspace");
                 result = restRequest.As<WorkspaceExport>().Result;
-                if(result == null)
+                if (result == null)
                     result = new WorkspaceExport();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -344,7 +340,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -367,14 +363,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListWorkspaces");
                 result = restRequest.As<WorkspaceCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new WorkspaceCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -418,7 +414,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -434,14 +430,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateWorkspace>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateWorkspace");
                 result = restRequest.As<Workspace>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Workspace();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -474,7 +470,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -488,14 +484,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateIntent>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateIntent");
                 result = restRequest.As<Intent>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Intent();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -529,7 +525,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -542,14 +538,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteIntent");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -589,7 +585,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -606,14 +602,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetIntent");
                 result = restRequest.As<IntentExport>().Result;
-                if(result == null)
+                if (result == null)
                     result = new IntentExport();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -657,7 +653,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -682,14 +678,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListIntents");
                 result = restRequest.As<IntentCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new IntentCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -732,7 +728,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -746,14 +742,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateIntent>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateIntent");
                 result = restRequest.As<Intent>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Intent();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -789,7 +785,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -803,14 +799,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateExample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateExample");
                 result = restRequest.As<Example>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Example();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -847,7 +843,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -860,14 +856,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteExample");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -906,7 +902,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -921,14 +917,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetExample");
                 result = restRequest.As<Example>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Example();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -971,7 +967,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -994,14 +990,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListExamples");
                 result = restRequest.As<ExampleCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ExampleCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1041,7 +1037,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1055,14 +1051,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateExample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateExample");
                 result = restRequest.As<Example>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Example();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1096,7 +1092,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1110,14 +1106,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateCounterexample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateCounterexample");
                 result = restRequest.As<Counterexample>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Counterexample();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1152,7 +1148,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1165,14 +1161,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteCounterexample");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1209,7 +1205,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1224,14 +1220,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetCounterexample");
                 result = restRequest.As<Counterexample>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Counterexample();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1272,7 +1268,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1295,14 +1291,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListCounterexamples");
                 result = restRequest.As<CounterexampleCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new CounterexampleCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1340,7 +1336,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1354,14 +1350,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateCounterexample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateCounterexample");
                 result = restRequest.As<Counterexample>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Counterexample();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1394,7 +1390,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1408,14 +1404,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateEntity>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateEntity");
                 result = restRequest.As<Entity>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Entity();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1449,7 +1445,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1462,14 +1458,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteEntity");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1509,7 +1505,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1526,14 +1522,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetEntity");
                 result = restRequest.As<EntityExport>().Result;
-                if(result == null)
+                if (result == null)
                     result = new EntityExport();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1577,7 +1573,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1602,14 +1598,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListEntities");
                 result = restRequest.As<EntityCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new EntityCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1651,7 +1647,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1665,14 +1661,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateEntity>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateEntity");
                 result = restRequest.As<Entity>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Entity();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1711,7 +1707,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1728,14 +1724,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListMentions");
                 result = restRequest.As<EntityMentionCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new EntityMentionCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1771,7 +1767,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1785,14 +1781,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateValue>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateValue");
                 result = restRequest.As<Value>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Value();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1829,7 +1825,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1842,14 +1838,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteValue");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1891,7 +1887,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1908,14 +1904,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetValue");
                 result = restRequest.As<ValueExport>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ValueExport();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -1961,7 +1957,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -1986,14 +1982,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListValues");
                 result = restRequest.As<ValueCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ValueCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2039,7 +2035,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2053,14 +2049,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateValue>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateValue");
                 result = restRequest.As<Value>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Value();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2099,7 +2095,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2113,14 +2109,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateSynonym>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateSynonym");
                 result = restRequest.As<Synonym>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Synonym();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2160,7 +2156,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2173,14 +2169,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteSynonym");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2222,7 +2218,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2237,14 +2233,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetSynonym");
                 result = restRequest.As<Synonym>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Synonym();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2290,7 +2286,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2313,14 +2309,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListSynonyms");
                 result = restRequest.As<SynonymCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new SynonymCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2363,7 +2359,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2377,14 +2373,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateSynonym>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateSynonym");
                 result = restRequest.As<Synonym>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Synonym();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2417,7 +2413,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2431,14 +2427,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<CreateDialogNode>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateDialogNode");
                 result = restRequest.As<DialogNode>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DialogNode();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2472,7 +2468,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2485,14 +2481,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteDialogNode");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2528,7 +2524,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2543,14 +2539,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetDialogNode");
                 result = restRequest.As<DialogNode>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DialogNode();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2590,7 +2586,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2613,14 +2609,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListDialogNodes");
                 result = restRequest.As<DialogNodeCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DialogNodeCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2662,7 +2658,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2676,14 +2672,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                 restRequest.WithBody<UpdateDialogNode>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateDialogNode");
                 result = restRequest.As<DialogNode>().Result;
-                if(result == null)
+                if (result == null)
                     result = new DialogNode();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2723,7 +2719,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2744,14 +2740,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListAllLogs");
                 result = restRequest.As<LogCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new LogCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2793,7 +2789,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2814,14 +2810,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListLogs");
                 result = restRequest.As<LogCollection>().Result;
-                if(result == null)
+                if (result == null)
                     result = new LogCollection();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -2854,7 +2850,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -2869,14 +2865,14 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
                     restRequest.WithArgument("customer_id", customerId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteUserData");
                 result = restRequest.As<BaseModel>().Result;
-                if(result == null)
+                if (result == null)
                     result = new BaseModel();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

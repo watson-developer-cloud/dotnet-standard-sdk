@@ -83,7 +83,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
         public void Constructor()
         {
             DiscoveryService service =
-                new DiscoveryService();
+                new DiscoveryService(new WatsonHttpClient());
 
             Assert.IsNotNull(service);
         }
@@ -95,7 +95,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.UnitTests
             IClient client = Substitute.For<IClient>();
 
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
+                .Returns(client);
 
             return client;
         }

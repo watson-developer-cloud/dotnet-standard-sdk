@@ -35,13 +35,9 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             set { _versionDate = value; }
         }
 
-        public PersonalityInsightsService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public PersonalityInsightsService() : base(SERVICE_NAME) { }
 
-        public PersonalityInsightsService(string userName, string password, string versionDate) : this()
+        public PersonalityInsightsService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -50,17 +46,17 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
         }
 
-        public PersonalityInsightsService(TokenOptions options, string versionDate) : this()
+        public PersonalityInsightsService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -77,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public PersonalityInsightsService(IClient httpClient) : this()
+        public PersonalityInsightsService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -166,7 +162,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -192,14 +188,14 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 restRequest.WithBody<Content>(content);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=Profile");
                 result = restRequest.As<Profile>().Result;
-                if(result == null)
+                if (result == null)
                     result = new Profile();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -288,7 +284,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -314,11 +310,11 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
                 restRequest.WithBody<Content>(content);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
-        
+
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=ProfileAsCsv");
                 result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

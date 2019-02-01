@@ -37,7 +37,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
 
         public ToneAnalyzerService() : base(SERVICE_NAME) { }
 
-        public ToneAnalyzerService(string userName, string password, string versionDate) : this()
+        public ToneAnalyzerService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -52,7 +52,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             VersionDate = versionDate;
         }
 
-        public ToneAnalyzerService(TokenOptions options, string versionDate) : this()
+        public ToneAnalyzerService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public ToneAnalyzerService(IClient httpClient) : this()
+        public ToneAnalyzerService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

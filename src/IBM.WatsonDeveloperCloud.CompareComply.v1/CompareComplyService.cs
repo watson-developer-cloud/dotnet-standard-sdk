@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
         public CompareComplyService() : base(SERVICE_NAME) { }
 
-        public CompareComplyService(TokenOptions options, string versionDate) : this()
+        public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -62,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public CompareComplyService(IClient httpClient) : this()
+        public CompareComplyService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

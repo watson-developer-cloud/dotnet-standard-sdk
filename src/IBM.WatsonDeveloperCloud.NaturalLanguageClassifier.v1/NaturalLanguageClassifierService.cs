@@ -31,9 +31,10 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
     {
         const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+
         public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
 
-        public NaturalLanguageClassifierService(string userName, string password) : this()
+        public NaturalLanguageClassifierService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -44,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             this.SetCredential(userName, password);
         }
 
-        public NaturalLanguageClassifierService(TokenOptions options) : this()
+        public NaturalLanguageClassifierService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -60,7 +61,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public NaturalLanguageClassifierService(IClient httpClient) : this()
+        public NaturalLanguageClassifierService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

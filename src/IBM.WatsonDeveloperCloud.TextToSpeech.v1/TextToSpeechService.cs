@@ -28,9 +28,10 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
     {
         const string SERVICE_NAME = "text_to_speech";
         const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
+
         public TextToSpeechService() : base(SERVICE_NAME) { }
 
-        public TextToSpeechService(string userName, string password) : this()
+        public TextToSpeechService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -41,7 +42,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             this.SetCredential(userName, password);
         }
 
-        public TextToSpeechService(TokenOptions options) : this()
+        public TextToSpeechService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -57,7 +58,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public TextToSpeechService(IClient httpClient) : this()
+        public TextToSpeechService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

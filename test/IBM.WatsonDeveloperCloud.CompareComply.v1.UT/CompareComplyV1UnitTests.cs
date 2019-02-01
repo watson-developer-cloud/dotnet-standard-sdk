@@ -77,7 +77,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         public void Constructor()
         {
             CompareComplyService service =
-                new CompareComplyService();
+                new CompareComplyService(new WatsonHttpClient());
 
             Assert.IsNotNull(service);
         }
@@ -87,8 +87,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.UT
         private IClient CreateClient()
         {
             IClient client = Substitute.For<IClient>();
-            client.WithAuthentication(Arg.Any<string>())
-                    .Returns(client);
+            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(client);
 
             return client;
         }

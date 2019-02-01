@@ -39,7 +39,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
 
         public AssistantService() : base(SERVICE_NAME) { }
 
-        public AssistantService(string userName, string password, string versionDate) : this()
+        public AssistantService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -54,7 +54,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             VersionDate = versionDate;
         }
 
-        public AssistantService(TokenOptions options, string versionDate) : this()
+        public AssistantService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -75,7 +75,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
             _tokenManager = new TokenManager(options);
         }
 
-        public AssistantService(IClient httpClient) : this()
+        public AssistantService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

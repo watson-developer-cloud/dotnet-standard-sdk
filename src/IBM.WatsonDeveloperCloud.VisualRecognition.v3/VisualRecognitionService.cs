@@ -41,7 +41,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
         public VisualRecognitionService() : base(SERVICE_NAME) { }
 
-        public VisualRecognitionService(TokenOptions options, string versionDate) : this()
+        public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -62,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public VisualRecognitionService(IClient httpClient) : this()
+        public VisualRecognitionService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));

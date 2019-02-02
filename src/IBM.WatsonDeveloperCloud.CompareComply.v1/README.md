@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/badge/nuget-v2.14.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.CompareComply.v1/)
+[![NuGet](https://img.shields.io/badge/nuget-v2.13.0-green.svg?style=flat)](https://www.nuget.org/packages/IBM.WatsonDeveloperCloud.CompareComply.v1/)
 
 ### Compare Comply
 IBM Watson™ [Compare and Comply]() analyzes governing documents to provide details about critical aspects of the documents.
@@ -14,7 +14,7 @@ PM > Install-Package IBM.WatsonDeveloperCloud.ComnpareComply.v1
 ```xml
 
 <ItemGroup>
-    <PackageReference Include="IBM.WatsonDeveloperCloud.CompareComply.v1" Version="2.14.0" />
+    <PackageReference Include="IBM.WatsonDeveloperCloud.CompareComply.v1" Version="2.13.0" />
 </ItemGroup>
 
 ```

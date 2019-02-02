@@ -39,13 +39,9 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             set { _versionDate = value; }
         }
 
-        public VisualRecognitionService() : base(SERVICE_NAME, URL)
-        {
-            if (!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public VisualRecognitionService() : base(SERVICE_NAME) { }
 
-        public VisualRecognitionService(TokenOptions options, string versionDate) : this()
+        public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
@@ -66,7 +62,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public VisualRecognitionService(IClient httpClient) : this()
+        public VisualRecognitionService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -180,6 +176,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=Classify");
                 result = restRequest.As<ClassifiedImages>().Result;
                 if (result == null)
                     result = new ClassifiedImages();
@@ -269,6 +267,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=DetectFaces");
                 result = restRequest.As<DetectedFaces>().Result;
                 if (result == null)
                     result = new DetectedFaces();
@@ -314,6 +314,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=DeleteClassifier");
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
@@ -361,6 +363,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=GetClassifier");
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
@@ -407,6 +411,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     restRequest.WithArgument("verbose", verbose);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=ListClassifiers");
                 result = restRequest.As<Classifiers>().Result;
                 if (result == null)
                     result = new Classifiers();
@@ -461,6 +467,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     restRequest.WithArgument("customer_id", customerId);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=watson_vision_combined;service_version=v3;operation_id=DeleteUserData");
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();

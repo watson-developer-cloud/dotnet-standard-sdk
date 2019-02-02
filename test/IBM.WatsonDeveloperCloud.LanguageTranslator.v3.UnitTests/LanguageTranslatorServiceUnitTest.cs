@@ -43,7 +43,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3.UnitTests
             IClient client = Substitute.For<IClient>();
 
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                  .Returns(client);
+                .Returns(client);
 
             return client;
         }

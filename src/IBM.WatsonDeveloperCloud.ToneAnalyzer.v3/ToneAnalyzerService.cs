@@ -35,13 +35,9 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             set { _versionDate = value; }
         }
 
-        public ToneAnalyzerService() : base(SERVICE_NAME, URL)
-        {
-            if(!string.IsNullOrEmpty(this.Endpoint))
-                this.Endpoint = URL;
-        }
+        public ToneAnalyzerService() : base(SERVICE_NAME) { }
 
-        public ToneAnalyzerService(string userName, string password, string versionDate) : this()
+        public ToneAnalyzerService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName));
@@ -50,17 +46,17 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 throw new ArgumentNullException(nameof(password));
 
             this.SetCredential(userName, password);
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
         }
 
-        public ToneAnalyzerService(TokenOptions options, string versionDate) : this()
+        public ToneAnalyzerService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
                 throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if(string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(versionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
             VersionDate = versionDate;
@@ -77,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             _tokenManager = new TokenManager(options);
         }
 
-        public ToneAnalyzerService(IClient httpClient) : this()
+        public ToneAnalyzerService(IClient httpClient) : base(SERVICE_NAME, URL)
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
@@ -143,7 +139,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -167,12 +163,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 restRequest.WithBody<ToneInput>(toneInput);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=Tone");
                 result = restRequest.As<ToneAnalysis>().Result;
-                if(result == null)
+                if (result == null)
                     result = new ToneAnalysis();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
@@ -221,7 +219,7 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
             try
             {
                 IClient client;
-                if(_tokenManager == null)
+                if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
@@ -239,12 +237,14 @@ namespace IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
                 restRequest.WithBody<ToneChatInput>(utterances);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
+
+                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=ToneChat");
                 result = restRequest.As<UtteranceAnalyses>().Result;
-                if(result == null)
+                if (result == null)
                     result = new UtteranceAnalyses();
                 result.CustomData = restRequest.CustomData;
             }
-            catch(AggregateException ae)
+            catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }

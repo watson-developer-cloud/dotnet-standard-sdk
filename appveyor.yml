@@ -17,7 +17,7 @@ environment:
         secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n #pragma: whitelist secret
     GITHUB_TOKEN:
         secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+ #pragma: whitelist secret
-  IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env #pragma: whitelist secret
+    IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
@@ -179,8 +179,8 @@ test_script:
         Write-Output "branchName  is " + $branchName + " - building NuGet packages" 
         dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v2\IBM.WatsonDeveloperCloud.Assistant.v2.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.Conversation.v1\IBM.WatsonDeveloperCloud.Conversation.v1.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
         dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
@@ -198,10 +198,10 @@ artifacts:
   name: IBM.WatsonDeveloperCloud
 - path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.Assistant.v1
+- path: '\src\IBM.WatsonDeveloperCloud.Assistant.v2\bin\$(configuration)\*.nupkg'
+  name: IBM.WatsonDeveloperCloud.Assistant.v2
 - path: '\src\IBM.WatsonDeveloperCloud.CompareComply.v1\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.CompareComply.v1
-- path: '\src\IBM.WatsonDeveloperCloud.Conversation.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Conversation.v1
 - path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
   name: IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 - path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
@@ -223,7 +223,7 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: XU1ieXtrgqEHD2XEeyGeHdzgWIl7gDAFc61O0RuQwr/MrYszeeElF6ySKlHNuMAS
+    secure: q7ya4MDWM5JDI2JYw1DxSKTgX+jwbvdlRKPjVg1Cijxb33r1K5qSAabnsUHcWTLf
   on:
     branch: master
     APPVEYOR_REPO_TAG: true

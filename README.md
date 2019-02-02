@@ -101,6 +101,25 @@ void Example()
 }
 ```
 
+### ibm-credentials.env
+You can create an ibm-credentials.env file for authentication. This has the basic format
+```
+VISUAL_RECOGNITION_APIKEY=<visual-recognition-apikey>
+VISUAL_RECOGNITION_URL=<visual-recognition-service-url>
+ASSISTANT_APIKEY=<assistant-apikey>
+ASSISTANT_URL=<assistant-service-url>
+```
+The SDK will search for this file in the following order
+- Path specified by environmental variable `IBM_CREDENTIALS_FILE`
+- System home directory
+- Top level of the project directory
+
+Using a `ibm-credentials.env` file you can easily instantiate and authenticate a service.
+```
+AssistantService assistantService = new AssistantService();
+var listWorkspacesResult = assistantService.ListWorkspaces();
+``` 
+
 ## Custom Request Headers
 You can send custom request headers by adding them to the `customData` object.
 ```cs

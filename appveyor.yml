@@ -17,11 +17,13 @@ environment:
         secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n #pragma: whitelist secret
     GITHUB_TOKEN:
         secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+ #pragma: whitelist secret
+  IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env #pragma: whitelist secret
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
+- "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 # install modules
-- pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
+- pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
 - cmd: >-
     rm -rf packages
@@ -164,7 +166,7 @@ test_script:
         }
     }
 
-    If($branchName -eq "feature-build-on-tag")
+    If($branchName -eq "master")
 
     {
         Write-Output "branchName is master - running semantic release"

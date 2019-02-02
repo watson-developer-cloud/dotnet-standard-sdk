@@ -82,7 +82,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
         public void Constructor()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService();
+                new NaturalLanguageUnderstandingService(new WatsonHttpClient());
 
             Assert.IsNotNull(service);
         }
@@ -94,7 +94,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.UnitTests
             IClient client = Substitute.For<IClient>();
 
             client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                    .Returns(client);
+                .Returns(client);
 
             return client;
         }

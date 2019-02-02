@@ -21,10 +21,11 @@ environment:
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
-- "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 # install modules
-- pip install --user git+git://github.com/smsearcy/bumpversion.git@issue-135
+- pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 - npm install @semantic-release/exec
+- npm install @semantic-release/git
+- npm install @semantic-release/changelog
 - cmd: >-
     rm -rf packages
 
@@ -126,7 +127,7 @@ test_script:
         if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
         {
             Write-Output \"No pull request number. Executing tests\"
-            dotnet test $folder.FullName
+            # dotnet test $folder.FullName
             if($LastExitCode -ne 0) 
             {
                 $host.SetShouldExit($LastExitCode )

@@ -48,6 +48,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
         BaseModel DeleteExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         BaseModel DeleteStopwordList(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         BaseModel DeleteTokenizationDictionary(string environmentId, string collectionId, Dictionary<string, object> customData = null);
+        TokenDictStatusResponse GetStopwordListStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);

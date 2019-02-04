@@ -241,3 +241,5 @@ _Pvt_Extensions
 **/.swagger-codegen-ignore
 **/.swagger-codegen
 src/tests/
+package-lock.json
+npm-debug.log

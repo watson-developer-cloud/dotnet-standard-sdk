@@ -31,9 +31,8 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
     {
         const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
-
         public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
-
+        
         public NaturalLanguageClassifierService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -44,7 +43,7 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             this.SetCredential(userName, password);
         }
-
+        
         public NaturalLanguageClassifierService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -89,15 +88,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
 
                 restRequest.WithBody<ClassifyInput>(body);
@@ -140,15 +140,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
 
                 restRequest.WithBody<ClassifyCollectionInput>(body);
@@ -214,15 +215,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
                     formData.Add(trainingDataContent, "training_data", trainingData.Name);
                 }
 
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
 
                 restRequest.WithBodyContent(formData);
@@ -257,15 +259,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
@@ -301,15 +304,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
@@ -342,15 +346,16 @@ namespace IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
                 if (customData != null)

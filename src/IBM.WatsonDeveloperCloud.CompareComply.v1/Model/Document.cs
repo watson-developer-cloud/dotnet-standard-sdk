@@ -40,7 +40,8 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         [JsonProperty("hash", NullValueHandling = NullValueHandling.Ignore)]
         public string Hash { get; set; }
         /// <summary>
-        /// The label applied to the input document with the calling method's `file1_label` or `file2_label` value.
+        /// The label applied to the input document with the calling method's `file_1_label` or `file_2_label` value.
+        /// This field is specified only in the output of the **Comparing two documents** method.
         /// </summary>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }

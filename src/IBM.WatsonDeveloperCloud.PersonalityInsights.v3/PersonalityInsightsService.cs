@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
         }
 
         public PersonalityInsightsService() : base(SERVICE_NAME) { }
-
+        
         public PersonalityInsightsService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -51,7 +51,7 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             VersionDate = versionDate;
         }
-
+        
         public PersonalityInsightsService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -161,15 +161,16 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -283,15 +284,16 @@ namespace IBM.WatsonDeveloperCloud.PersonalityInsights.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);

@@ -28,10 +28,12 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
     public class DocumentAccepted : BaseModel
     {
         /// <summary>
-        /// Status of the document in the ingestion process.
+        /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
+        /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
         /// </summary>
         /// <value>
-        /// Status of the document in the ingestion process.
+        /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
+        /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -42,6 +44,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
             /// </summary>
             [EnumMember(Value = "processing")]
             PROCESSING,
+            
             /// <summary>
             /// Enum PENDING for pending
             /// </summary>
@@ -50,7 +53,8 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Status of the document in the ingestion process.
+        /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
+        /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }

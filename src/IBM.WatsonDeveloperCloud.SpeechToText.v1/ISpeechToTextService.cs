@@ -57,7 +57,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         AcousticModels ListAcousticModels(string language = null, Dictionary<string, object> customData = null);
         BaseModel ResetAcousticModel(string customizationId, Dictionary<string, object> customData = null);
         BaseModel TrainAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null);
-        BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null, Dictionary<string, object> customData = null);
+        BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null, bool? force = null);
         BaseModel AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null, Dictionary<string, object> customData = null);
         BaseModel DeleteAudio(string customizationId, string audioName, Dictionary<string, object> customData = null);
         AudioListing GetAudio(string customizationId, string audioName, Dictionary<string, object> customData = null);

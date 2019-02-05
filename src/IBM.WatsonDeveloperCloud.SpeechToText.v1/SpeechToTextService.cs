@@ -2780,15 +2780,15 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
         /// the customization ID (GUID) of that custom language model. The custom language model must be upgraded before
         /// the custom acoustic model can be upgraded. The credentials specified with the request must own both custom
         /// models. (optional)</param>
+        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <param name="force">If `true`, forces the upgrade of a custom acoustic model for which no input data has
         /// been modified since it was last trained. Use this parameter only to force the upgrade of a custom acoustic
         /// model that is trained with a custom language model, and only if you receive a 400 response code and the
         /// message `No input data modified since last training`. See [Upgrading a custom acoustic
         /// model](https://cloud.ibm.com/docs/services/speech-to-text/custom-upgrade.html#upgradeAcoustic). (optional,
         /// default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null, Dictionary<string, object> customData = null)
+        public BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null, bool? force = null)
         {
             if (string.IsNullOrEmpty(customizationId))
                 throw new ArgumentNullException(nameof(customizationId));
@@ -2811,7 +2811,7 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (force != null)
-                    restRequest.WithArgument("force", force);
+                    restRequest.WithArgument("force", (bool)force ? "true" : "false");
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 

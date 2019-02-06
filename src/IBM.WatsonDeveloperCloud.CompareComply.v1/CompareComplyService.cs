@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         }
 
         public CompareComplyService() : base(SERVICE_NAME) { }
-
+        
         public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -73,7 +73,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// Convert file to HTML.
         ///
-        /// Uploads an input file. The response includes an HTML version of the document.
+        /// Convert an uploaded file to HTML.
         /// </summary>
         /// <param name="file">The file to convert.</param>
         /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
@@ -106,7 +106,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -132,7 +137,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// Classify the elements of a document.
         ///
-        /// Uploads a file. The response includes an analysis of the document's structural and semantic elements.
+        /// Analyze an uploaded file's structural and semantic elements.
         /// </summary>
         /// <param name="file">The file to classify.</param>
         /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
@@ -165,7 +170,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -191,7 +201,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// Extract a document's tables.
         ///
-        /// Uploads a file. The response includes an analysis of the document's tables.
+        /// Extract and analyze an uploaded file's tables.
         /// </summary>
         /// <param name="file">The file on which to run table extraction.</param>
         /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
@@ -224,7 +234,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(fileContent, "file", file.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -250,8 +265,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// Compare two documents.
         ///
-        /// Uploads two input files. The response includes JSON comparing the two documents. Uploaded files must be in
-        /// the same file format.
+        /// Compare two uploaded input files. Uploaded files must be in the same file format.
         /// </summary>
         /// <param name="file1">The first file to compare.</param>
         /// <param name="file2">The second file to compare.</param>
@@ -299,7 +313,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(file2Content, "file_2", file2.Name);
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -349,7 +368,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -374,8 +398,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// Deletes a specified feedback entry.
         /// </summary>
-        /// <param name="feedbackId">An string that specifies the feedback entry to be deleted from the
-        /// document.</param>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
         /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
         /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
         /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
@@ -394,7 +417,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -420,7 +448,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         /// <summary>
         /// List a specified feedback entry.
         /// </summary>
-        /// <param name="feedbackId">An string that specifies the feedback entry to be included in the output.</param>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
         /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
         /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
         /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
@@ -439,7 +467,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -517,7 +550,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -574,9 +612,9 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         ///
         /// Run Compare and Comply methods over a collection of input documents.
         /// **Important:** Batch processing requires the use of the [IBM Cloud Object Storage
-        /// service](https://console.bluemix.net/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage).
+        /// service](https://cloud.ibm.com/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage).
         /// The use of IBM Cloud Object Storage with Compare and Comply is discussed at [Using batch
-        /// processing](https://console.bluemix.net/docs/services/compare-comply/batching.html#before-you-batch).
+        /// processing](https://cloud.ibm.com/docs/services/compare-comply/batching.html#before-you-batch).
         /// </summary>
         /// <param name="function">The Compare and Comply method to run across the submitted input documents.</param>
         /// <param name="inputCredentialsFile">A JSON file containing the input Cloud Object Storage credentials. At a
@@ -671,7 +709,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
                     formData.Add(outputBucketNameContent, "output_bucket_name");
                 }
 
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -698,9 +741,9 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         }
 
         /// <summary>
-        /// Gets information about a specific batch-processing request.
+        /// Get information about a specific batch-processing request.
         ///
-        /// Gets information about a batch-processing request with a specified ID.
+        /// Get information about a batch-processing request with a specified ID.
         /// </summary>
         /// <param name="batchId">The ID of the batch-processing request whose information you want to retrieve.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -717,7 +760,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -739,9 +787,9 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         }
 
         /// <summary>
-        /// Gets the list of submitted batch-processing jobs.
+        /// List submitted batch-processing jobs.
         ///
-        /// Gets the list of batch-processing jobs submitted by users.
+        /// List the batch-processing jobs submitted by users.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Batches" />Batches</returns>
@@ -755,7 +803,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -777,9 +830,9 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
         }
 
         /// <summary>
-        /// Updates a pending or active batch-processing request.
+        /// Update a pending or active batch-processing request.
         ///
-        /// Updates a pending or active batch-processing request. You can rescan the input bucket to check for new
+        /// Update a pending or active batch-processing request. You can rescan the input bucket to check for new
         /// documents or cancel a request.
         /// </summary>
         /// <param name="batchId">The ID of the batch-processing request you want to update.</param>
@@ -804,7 +857,12 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1
 
             try
             {
-                IClient client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);

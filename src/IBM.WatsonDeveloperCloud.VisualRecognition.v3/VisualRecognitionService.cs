@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         }
 
         public VisualRecognitionService() : base(SERVICE_NAME) { }
-
+        
         public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -75,33 +75,28 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// Classify images with built-in or custom classifiers.
         /// </summary>
-        /// <param name="imagesFile">An image file (.jpg, .png) or .zip file with images. Maximum image size is 10 MB.
-        /// Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in
-        /// UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII
-        /// characters.
+        /// <param name="imagesFile">An image file (.gif, .jpg, .png, .tif) or .zip file with images. Maximum image size
+        /// is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file
+        /// names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters
+        /// non-ASCII characters.
         ///
         /// You can also include an image with the **url** parameter. (optional)</param>
-        /// <param name="acceptLanguage">The language of the output class names. The full set of languages is supported
-        /// for the built-in classifier IDs: `default`, `food`, and `explicit`. The class names of custom classifiers
-        /// are not translated.
-        ///
-        /// The response might not be in the specified language when the requested language is not supported or when
-        /// there is no translation for the class name. (optional, default to en)</param>
-        /// <param name="url">The URL of an image to analyze. Must be in .jpg, or .png format. The minimum recommended
-        /// pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB.
+        /// <param name="acceptLanguage">The desired language of parts of the response. See the response for details.
+        /// (optional, default to en)</param>
+        /// <param name="url">The URL of an image (.gif, .jpg, .png, .tif) to analyze. The minimum recommended pixel
+        /// density is 32X32 pixels, but the service tends to perform better with images that are at least 224 x 224
+        /// pixels. The maximum image size is 10 MB.
         ///
         /// You can also include images with the **images_file** parameter. (optional)</param>
         /// <param name="threshold">The minimum score a class must have to be displayed in the response. Set the
-        /// threshold to `0.0` to ignore the classification score and return all values. (optional, default to
-        /// 0.5)</param>
-        /// <param name="owners">The categories of classifiers to apply. Use `IBM` to classify against the `default`
-        /// general classifier, and use `me` to classify against your custom classifiers. To analyze the image against
-        /// both classifier categories, set the value to both `IBM` and `me`.
-        ///
-        /// The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.
-        ///
-        /// The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty.
-        /// (optional)</param>
+        /// threshold to `0.0` to return all identified classes. (optional, default to 0.5)</param>
+        /// <param name="owners">The categories of classifiers to apply. The **classifier_ids** parameter overrides
+        /// **owners**, so make sure that **classifier_ids** is empty.
+        /// - Use `IBM` to classify against the `default` general classifier. You get the same result if both
+        /// **classifier_ids** and **owners** parameters are empty.
+        /// - Use `me` to classify against all your custom classifiers. However, for better performance use
+        /// **classifier_ids** to specify the specific custom classifiers to apply.
+        /// - Use both `IBM` and `me` to analyze the image against both classifier categories. (optional)</param>
         /// <param name="classifierIds">Which classifiers to apply. Overrides the **owners** parameter. You can specify
         /// both custom and built-in classifier IDs. The built-in `default` classifier is used if both
         /// **classifier_ids** and **owners** parameters are empty.
@@ -159,15 +154,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(classifierIdsContent, "classifier_ids");
                 }
 
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -203,7 +195,8 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         /// biometric facial recognition.
         ///
         /// Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum
-        /// recommended pixel density is 32X32 pixels per inch.
+        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
+        /// least 224 x 224 pixels.
         /// </summary>
         /// <param name="imagesFile">An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip
         /// file to 100 MB. You can include a maximum of 15 images in a request.
@@ -213,12 +206,13 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
         ///
         /// You can also include an image with the **url** parameter. (optional)</param>
         /// <param name="url">The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum
-        /// recommended pixel density is 32X32 pixels per inch, and the maximum image size is 10 MB. Redirects are
-        /// followed, so you can use a shortened URL.
+        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
+        /// least 224 x 224 pixels. The maximum image size is 10 MB. Redirects are followed, so you can use a shortened
+        /// URL.
         ///
         /// You can also include images with the **images_file** parameter. (optional)</param>
-        /// <param name="acceptLanguage">The language used for the value of `gender_label` in the response. (optional,
-        /// default to en)</param>
+        /// <param name="acceptLanguage">The desired language of parts of the response. See the response for details.
+        /// (optional, default to en)</param>
         /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
@@ -250,15 +244,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
                     formData.Add(urlContent, "url");
                 }
 
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -300,15 +291,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -349,15 +337,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -395,15 +380,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -451,15 +433,12 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
             try
             {
-                IClient client;
-                if (_tokenManager == null)
-                {
-                    client = this.Client;
-                }
-                else
+                IClient client = this.Client;
+                if (_tokenManager != null)
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/user_data");
 
                 restRequest.WithArgument("version", VersionDate);

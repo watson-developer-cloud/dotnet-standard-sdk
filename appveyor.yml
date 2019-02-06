@@ -167,11 +167,11 @@ test_script:
         }
     }
 
-    If($branchName -eq "master")
+    If($branchName -eq "master" -and $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
 
     {
-        Write-Output "branchName is master - running semantic release"
-        npx semantic-release
+        Write-Output "branchName is master and not a pull request - running semantic release"
+        npx semantic-release@15.11.0
     }
 
     ElseIf($branchName -eq $env:APPVEYOR_REPO_TAG_NAME)

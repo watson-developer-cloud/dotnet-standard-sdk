@@ -45,7 +45,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
         public long? Level { get; set; }
         /// <summary>
-        /// An array of `location` objects listing the locations of detected leading sentences.
+        /// An array of `location` objects that lists the locations of detected section titles.
         /// </summary>
         [JsonProperty("element_locations", NullValueHandling = NullValueHandling.Ignore)]
         public List<ElementLocations> ElementLocations { get; set; }

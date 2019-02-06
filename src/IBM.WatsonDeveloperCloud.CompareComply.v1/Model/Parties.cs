@@ -16,7 +16,9 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
 {
@@ -25,6 +27,34 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
     /// </summary>
     public class Parties : BaseModel
     {
+        /// <summary>
+        /// A string that identifies the importance of the party.
+        /// </summary>
+        /// <value>
+        /// A string that identifies the importance of the party.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ImportanceEnum
+        {
+            
+            /// <summary>
+            /// Enum PRIMARY for Primary
+            /// </summary>
+            [EnumMember(Value = "Primary")]
+            PRIMARY,
+            
+            /// <summary>
+            /// Enum UNKNOWN for Unknown
+            /// </summary>
+            [EnumMember(Value = "Unknown")]
+            UNKNOWN
+        }
+
+        /// <summary>
+        /// A string that identifies the importance of the party.
+        /// </summary>
+        [JsonProperty("importance", NullValueHandling = NullValueHandling.Ignore)]
+        public ImportanceEnum? Importance { get; set; }
         /// <summary>
         /// A string identifying the party.
         /// </summary>

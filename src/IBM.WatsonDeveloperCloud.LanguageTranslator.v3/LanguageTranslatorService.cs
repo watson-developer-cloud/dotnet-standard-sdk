@@ -40,7 +40,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
         }
 
         public LanguageTranslatorService() : base(SERVICE_NAME) { }
-
+        
         public LanguageTranslatorService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -55,7 +55,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             VersionDate = versionDate;
         }
-
+        
         public LanguageTranslatorService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -106,15 +106,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/translate");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -155,15 +156,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -203,15 +205,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/identifiable_languages");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -295,15 +298,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                     formData.Add(parallelCorpusContent, "parallel_corpus", parallelCorpus.Name);
                 }
 
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/models");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -349,15 +353,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -400,15 +405,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -452,15 +458,16 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
 
                 restRequest.WithArgument("version", VersionDate);

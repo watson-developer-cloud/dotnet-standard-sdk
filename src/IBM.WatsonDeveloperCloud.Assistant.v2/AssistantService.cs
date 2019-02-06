@@ -36,7 +36,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
         }
 
         public AssistantService() : base(SERVICE_NAME) { }
-
+        
         public AssistantService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -51,7 +51,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             VersionDate = versionDate;
         }
-
+        
         public AssistantService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -106,15 +106,16 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -162,15 +163,16 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -221,15 +223,16 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v2
 
             try
             {
-                IClient client;
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
                 if (_tokenManager == null)
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                else
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}/message");
 
                 restRequest.WithArgument("version", VersionDate);

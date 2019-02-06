@@ -1173,10 +1173,10 @@ namespace IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests
         #endregion
 
         #region UpgradeAcousticModel
-        private BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null)
+        private BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null, bool? force = null)
         {
             Console.WriteLine("\nAttempting to UpgradeAcousticModel()");
-            var result = service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId, customData: customData);
+            var result = service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId, customData: customData, force: force);
 
             if (result != null)
             {

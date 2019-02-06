@@ -814,7 +814,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region Stopword
-        //[TestMethod]
+        [TestMethod]
         public void TestStopword_Success()
         {
             var collectionsList = ListCollections(environmentId);
@@ -846,12 +846,15 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
 
             IsCollectionReady(environmentId, stopwordCollectionId);
             autoEvent.WaitOne();
-
+            
             TokenDictStatusResponse createStopwordListResult;
             using (FileStream fs = File.OpenRead(stopwordFileToIngest))
             {
                 createStopwordListResult = service.CreateStopwordList(environmentId, stopwordCollectionId, fs);
             }
+
+            IsStopwordsReady(environmentId, stopwordCollectionId);
+            autoEvent.WaitOne();
 
             var deleteStopwordListResult = service.DeleteStopwordList(environmentId, stopwordCollectionId);
 
@@ -932,9 +935,9 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
         #endregion
 
         #region IsStopwordsReady
-        private void IsStopwordsReady(string environmentId, string tokenizationCollectionId)
+        private void IsStopwordsReady(string environmentId, string collectionId)
         {
-            var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+            var result = service.GetStopwordListStatus(environmentId, collectionId);
             Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
 
             if (result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
@@ -947,7 +950,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests
                 {
                     Thread.Sleep(30000);
                     Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
-                    IsStopwordsReady(environmentId, tokenizationCollectionId);
+                    IsStopwordsReady(environmentId, collectionId);
                 });
             }
         }

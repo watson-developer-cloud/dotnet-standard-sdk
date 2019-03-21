@@ -30,7 +30,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
     {
-        const string SERVICE_NAME = "visual_recognition";
+        const string SERVICE_NAME = "watson_vision_combined";
         const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
         private string _versionDate;
         public string VersionDate

@@ -29,7 +29,6 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 * [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
 * [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
 * [Compare Comply](/src/IBM.WatsonDeveloperCloud.CompareComply.v1)
-* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1) (deprecated - Use Assistant V1 or Assistant V2)
 * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
 * [Language Translator V3](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v3)
 * [Natural Language Understanding](/src/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1)
@@ -207,7 +206,6 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 
-[conversation]:https://www.ibm.com/watson/developercloud/conversation/api/v1/
 [discovery]: https://www.ibm.com/watson/developercloud/discovery/api/v1/
 [language_translator]: https://www.ibm.com/watson/developercloud/language-translator/api/v2/
 [natural_language_understanding]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/

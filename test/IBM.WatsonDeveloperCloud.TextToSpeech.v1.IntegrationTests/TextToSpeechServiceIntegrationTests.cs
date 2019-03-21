@@ -186,7 +186,7 @@ namespace IBM.WatsonDeveloperCloud.TextToSpeech.v1.IntegrationTests
 
         #region Words
         [TestMethod]
-        private void Words_Success()
+        public void Words_Success()
         {
             var createVoiceModel = new CreateVoiceModel
             {

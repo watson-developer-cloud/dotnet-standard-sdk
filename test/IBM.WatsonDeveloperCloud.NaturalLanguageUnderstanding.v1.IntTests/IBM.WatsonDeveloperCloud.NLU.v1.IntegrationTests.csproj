@@ -6,8 +6,6 @@
     <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntTests</AssemblyName>
     <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.IntTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.4;portable-net451+win8</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

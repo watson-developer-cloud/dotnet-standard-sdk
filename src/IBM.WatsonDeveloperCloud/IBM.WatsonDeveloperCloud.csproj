@@ -11,7 +11,6 @@
     <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
     <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-    <NetStandardImplicitPackageVersion>1.6</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

@@ -286,7 +286,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
-                    formData.Add(forcedGlossaryContent, "forced_glossary", forcedGlossary.Name);
+                    formData.Add(forcedGlossaryContent, "forced_glossary");
                 }
 
                 if (parallelCorpus != null)
@@ -295,7 +295,7 @@ namespace IBM.WatsonDeveloperCloud.LanguageTranslator.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(parallelCorpusContent, "parallel_corpus", parallelCorpus.Name);
+                    formData.Add(parallelCorpusContent, "parallel_corpus");
                 }
 
                 IClient client = this.Client;

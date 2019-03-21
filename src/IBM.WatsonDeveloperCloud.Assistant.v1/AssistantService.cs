@@ -28,7 +28,7 @@ namespace IBM.WatsonDeveloperCloud.Assistant.v1
 {
     public partial class AssistantService : WatsonService, IAssistantService
     {
-        const string SERVICE_NAME = "assistant";
+        const string SERVICE_NAME = "conversation";
         const string URL = "https://gateway.watsonplatform.net/assistant/api";
         private string _versionDate;
         public string VersionDate

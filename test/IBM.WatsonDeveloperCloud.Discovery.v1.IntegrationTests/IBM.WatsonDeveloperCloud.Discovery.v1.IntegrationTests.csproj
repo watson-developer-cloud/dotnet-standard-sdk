@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>2.16.0</VersionPrefix>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests</AssemblyName>
     <PackageId>IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>

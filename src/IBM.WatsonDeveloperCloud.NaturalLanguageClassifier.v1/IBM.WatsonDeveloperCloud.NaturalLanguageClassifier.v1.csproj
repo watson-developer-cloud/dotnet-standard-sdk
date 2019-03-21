@@ -5,7 +5,7 @@
         <AssemblyTitle>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1</AssemblyTitle>
         <VersionPrefix>2.16.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
-        <TargetFramework>netstandard1.3</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1</AssemblyName>
         <PackageId>IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1</PackageId>
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>

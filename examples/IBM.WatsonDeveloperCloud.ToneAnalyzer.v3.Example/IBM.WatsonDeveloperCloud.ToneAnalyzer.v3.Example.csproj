@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>2.16.0</VersionPrefix>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.Example</PackageId>

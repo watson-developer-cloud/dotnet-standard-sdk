@@ -5,7 +5,7 @@
         <AssemblyTitle>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyTitle>
         <VersionPrefix>2.16.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
-        <TargetFramework>netstandard1.3</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</AssemblyName>
         <PackageId>IBM.WatsonDeveloperCloud.ToneAnalyzer.v3</PackageId>
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>

@@ -18,6 +18,7 @@ New-Item -path . -name coverage -itemtype directory
 Copy-Item .\test\IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
 Copy-Item .\test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechToTextTestData -recurse
 Copy-Item .\test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
+Copy-Item .\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData .\CompareComplyTestData -recurse
 
 $openCover = '.\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'
 
@@ -34,4 +35,5 @@ $reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe
 Remove-Item .\VisualRecognitionTestData -recurse
 Remove-Item .\SpeechToTextTestData -recurse
 Remove-Item .\DiscoveryTestData -recurse
+Remove-Item .\CompareComplyTestData -recurse
 Remove-Item .\packages -recurse

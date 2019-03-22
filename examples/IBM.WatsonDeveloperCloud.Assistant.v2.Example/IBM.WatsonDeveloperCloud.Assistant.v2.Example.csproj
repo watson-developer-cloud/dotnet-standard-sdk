@@ -2,9 +2,9 @@
   <PropertyGroup>
     <VersionPrefix>2.16.0</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>IBM.WatsonDeveloperCloud.Conversation.v1.Example</AssemblyName>
+    <AssemblyName>IBM.WatsonDeveloperCloud.Assistant.v2.Example</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>IBM.WatsonDeveloperCloud.Conversation.v1.Example</PackageId>
+    <PackageId>IBM.WatsonDeveloperCloud.Assistant.v2.Example</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

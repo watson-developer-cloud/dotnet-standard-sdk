@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Description>IBM.Watson.TextToSpeech.v1 wraps the Watson Text To Speech service (http://www.ibm.com/watson/developercloud/text-to-speech.html)</Description>
+        <AssemblyTitle>IBM.Watson.TextToSpeech.v1</AssemblyTitle>
+        <VersionPrefix>2.16.0</VersionPrefix>
+        <Authors>IBM Watson</Authors>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>IBM.Watson.TextToSpeech.v1</AssemblyName>
+        <PackageId>IBM.Watson.TextToSpeech.v1</PackageId>
+        <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
+        <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
+        <Version>2.16.0</Version>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    </ItemGroup>
+
+</Project>

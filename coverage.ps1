@@ -23,9 +23,9 @@ $openCover = '.\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
 {
-    $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
+    $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp1.0'
     $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
-    & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
+    & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp1.0' '-output:coverage\\coverage.xml'
 }
 
 $reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe'

@@ -765,7 +765,7 @@ namespace IBM.WatsonDeveloperCloud.Discovery.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", file.Name);
+                    formData.Add(fileContent, "file");
                 }
 
                 if (metadata != null)

@@ -138,7 +138,7 @@ namespace IBM.WatsonDeveloperCloud.VisualRecognition.v3
 
                 if (threshold != null)
                 {
-                    var thresholdContent = new StringContent(threshold.ToString(), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var thresholdContent = new StringContent(threshold.Value.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     formData.Add(thresholdContent, "threshold");
                 }
 

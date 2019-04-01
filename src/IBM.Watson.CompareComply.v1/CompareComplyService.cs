@@ -30,7 +30,7 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        const string SERVICE_NAME = "compare_comply";
+        new const string SERVICE_NAME = "compare_comply";
         const string URL = "https://gateway.watsonplatform.net/compare-comply/api";
         private string _versionDate;
         public string VersionDate

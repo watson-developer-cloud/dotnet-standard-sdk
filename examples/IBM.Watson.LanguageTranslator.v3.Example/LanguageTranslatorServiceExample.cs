@@ -15,11 +15,13 @@
 *
 */
 
-using IBM.Watson.LanguageTranslator.v3.Model;
+using IBM.Watson.LanguageTranslator.v3;
+using IBM.Cloud.SDK.Core.Util;
 using System;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using IBM.Watson.LanguageTranslator.v3.Model;
 
 namespace IBM.Watson.LanguageTranslator.v3.Example
 {
@@ -55,7 +57,7 @@ namespace IBM.Watson.LanguageTranslator.v3.Example
             Console.WriteLine("Calling ListModels()...");
 
             var result = _languageTranslator.ListModels();
-
+            
             if (result != null)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));

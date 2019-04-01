@@ -18,18 +18,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
 using IBM.Watson.NaturalLanguageClassifier.v1.Model;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
-    public partial class NaturalLanguageClassifierService : WatsonService, INaturalLanguageClassifierService
+    public partial class NaturalLanguageClassifierService : IBMService, INaturalLanguageClassifierService
     {
-        const string SERVICE_NAME = "natural_language_classifier";
+        new const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
         public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
         
@@ -108,7 +109,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<Classification>().Result;
                 if (result == null)
                     result = new Classification();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -160,7 +161,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<ClassificationCollection>().Result;
                 if (result == null)
                     result = new ClassificationCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -235,7 +236,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -278,7 +279,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -323,7 +324,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -365,7 +366,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 result = restRequest.As<ClassifierList>().Result;
                 if (result == null)
                     result = new ClassifierList();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

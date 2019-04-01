@@ -16,7 +16,7 @@
 */
 
 using IBM.Watson.LanguageTranslator.v3.Model;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -45,7 +45,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
             #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

@@ -15,9 +15,9 @@
 *
 */
 
-using IBM.Watson.Http;
-using IBM.Watson.Http.Exceptions;
-using IBM.Watson.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
+using IBM.Cloud.SDK.Core.Service;
 using IBM.Watson.SpeechToText.v1.Model;
 using System;
 using System.IO;
@@ -26,7 +26,7 @@ using System.Net.Http;
 
 namespace IBM.Watson.SpeechToText.v1
 {
-    public partial class SpeechToTextService : WatsonService, ISpeechToTextService
+    public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
 
         /// <summary>

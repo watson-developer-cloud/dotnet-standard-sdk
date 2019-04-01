@@ -19,18 +19,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3.Model;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
 
 namespace IBM.Watson.VisualRecognition.v3
 {
-    public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
+    public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string SERVICE_NAME = "visual_recognition";
+        new const string SERVICE_NAME = "visual_recognition";
         const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
         private string _versionDate;
         public string VersionDate
@@ -173,7 +174,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<ClassifiedImages>().Result;
                 if (result == null)
                     result = new ClassifiedImages();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -263,7 +264,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<DetectedFaces>().Result;
                 if (result == null)
                     result = new DetectedFaces();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -307,7 +308,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -353,7 +354,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -398,7 +399,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifiers>().Result;
                 if (result == null)
                     result = new Classifiers();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -451,7 +452,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

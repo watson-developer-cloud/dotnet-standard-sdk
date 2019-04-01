@@ -16,17 +16,17 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.Http;
-using IBM.Watson.Service;
 using IBM.Watson.ToneAnalyzer.v3.Model;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
 
 namespace IBM.Watson.ToneAnalyzer.v3
 {
-    public partial class ToneAnalyzerService : WatsonService, IToneAnalyzerService
+    public partial class ToneAnalyzerService : IBMService, IToneAnalyzerService
     {
-        const string SERVICE_NAME = "tone_analyzer";
+        new const string SERVICE_NAME = "tone_analyzer";
         const string URL = "https://gateway.watsonplatform.net/tone-analyzer/api";
         private string _versionDate;
         public string VersionDate
@@ -169,7 +169,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 result = restRequest.As<ToneAnalysis>().Result;
                 if (result == null)
                     result = new ToneAnalysis();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -244,7 +244,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if (result == null)
                     result = new UtteranceAnalyses();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

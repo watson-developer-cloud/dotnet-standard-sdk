@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj" />
   </ItemGroup>
 

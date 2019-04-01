@@ -69,8 +69,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognitio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLanguageClassifier.v1", "src\IBM.Watson.NaturalLanguageClassifier.v1\IBM.Watson.NaturalLanguageClassifier.v1.csproj", "{C86BD0C5-7FB4-402C-82AC-9E7676D82A6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Core.IntegrationTests", "test\Core.IntegrationTests\IBM.Watson.Core.IntegrationTests.csproj", "{B5F6FBBD-377D-4A38-B1C3-8DF393030CB5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.IntegrationTests", "test\Assistant.v1.IntegrationTests\IBM.Watson.Assistant.v1.IntegrationTests.csproj", "{C6B739D4-B772-4EB3-89DF-FB733DC928E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.UnitTests", "test\Assistant.v1.UnitTests\IBM.Watson.Assistant.v1.UnitTests.csproj", "{C894F184-9D45-4213-ADC1-18990ADD1268}"
@@ -201,10 +199,6 @@ Global
 		{C86BD0C5-7FB4-402C-82AC-9E7676D82A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C86BD0C5-7FB4-402C-82AC-9E7676D82A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C86BD0C5-7FB4-402C-82AC-9E7676D82A6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5F6FBBD-377D-4A38-B1C3-8DF393030CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5F6FBBD-377D-4A38-B1C3-8DF393030CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5F6FBBD-377D-4A38-B1C3-8DF393030CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5F6FBBD-377D-4A38-B1C3-8DF393030CB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6B739D4-B772-4EB3-89DF-FB733DC928E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6B739D4-B772-4EB3-89DF-FB733DC928E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B739D4-B772-4EB3-89DF-FB733DC928E5}.Release|Any CPU.ActiveCfg = Release|Any CPU

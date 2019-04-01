@@ -16,15 +16,15 @@
 */
 
 using System;
-using IBM.Watson.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using IBM.Watson.Http.Exceptions;
 using System.Net.Http;
 using System.Net;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 {
@@ -82,7 +82,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         public void Constructor()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService(new WatsonHttpClient());
+                new NaturalLanguageUnderstandingService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

@@ -15,6 +15,8 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
+
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>

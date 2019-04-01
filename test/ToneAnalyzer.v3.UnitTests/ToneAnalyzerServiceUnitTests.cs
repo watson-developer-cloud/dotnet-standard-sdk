@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Watson.Http;
-using IBM.Watson.Http.Exceptions;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -85,7 +85,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         public void Constructor()
         {
             ToneAnalyzerService service =
-                new ToneAnalyzerService(new WatsonHttpClient());
+                new ToneAnalyzerService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

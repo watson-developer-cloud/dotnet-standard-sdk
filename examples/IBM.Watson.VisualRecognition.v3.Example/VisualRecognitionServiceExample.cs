@@ -15,7 +15,8 @@
 *
 */
 
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3;
 using IBM.Watson.VisualRecognition.v3.Model;
 using Newtonsoft.Json;

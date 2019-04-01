@@ -18,14 +18,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Exceptions;
 using System.Net.Http;
-using IBM.Watson.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Net;
 using System.Collections.Generic;
 using System.IO;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
+using IBM.Watson.Discovery.v1.Model;
 
 namespace IBM.Watson.Discovery.v1.UnitTests
 {
@@ -83,7 +83,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Constructor()
         {
             DiscoveryService service =
-                new DiscoveryService(new WatsonHttpClient());
+                new DiscoveryService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

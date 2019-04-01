@@ -22,12 +22,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using IBM.Watson.Http;
-using IBM.Watson.LanguageTranslator.v3.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using IBM.Watson.Http.Exceptions;
 using System.Net;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.LanguageTranslator.v3;
+using IBM.Watson.LanguageTranslator.v3.Model;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 
 namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 {

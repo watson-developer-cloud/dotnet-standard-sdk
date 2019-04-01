@@ -17,7 +17,7 @@
 
 using System;
 using Newtonsoft.Json.Linq;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -36,7 +36,7 @@ namespace IBM.Watson.SpeechToText.v1.Example
 
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

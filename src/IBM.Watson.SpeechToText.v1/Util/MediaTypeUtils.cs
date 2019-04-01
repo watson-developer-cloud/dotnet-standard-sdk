@@ -15,8 +15,8 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
 using System.IO;
-using IBM.Watson.Http;
 
 namespace IBM.Watson.SpeechToText.v1.Util
 {

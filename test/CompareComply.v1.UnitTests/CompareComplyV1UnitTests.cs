@@ -16,9 +16,7 @@
 */
 
 using IBM.Watson.CompareComply.v1.Model;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Exceptions;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
@@ -26,6 +24,8 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 
 namespace IBM.Watson.CompareComply.v1.UT
 {
@@ -77,7 +77,7 @@ namespace IBM.Watson.CompareComply.v1.UT
         public void Constructor()
         {
             CompareComplyService service =
-                new CompareComplyService(new WatsonHttpClient());
+                new CompareComplyService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

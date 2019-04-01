@@ -16,6 +16,7 @@
 */
 
 using Newtonsoft.Json;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Assistant.v1.Model
 {

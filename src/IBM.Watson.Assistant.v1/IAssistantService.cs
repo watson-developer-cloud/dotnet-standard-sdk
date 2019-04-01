@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.Assistant.v1.Model;
 
 namespace IBM.Watson.Assistant.v1

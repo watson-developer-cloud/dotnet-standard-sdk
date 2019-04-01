@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.Discovery.v1.Model;
 using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 

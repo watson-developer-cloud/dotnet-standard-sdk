@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 using IBM.Cloud.SDK.Core;
+using System.Globalization;
 
 namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
 {
@@ -140,6 +141,28 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 Assert.IsNotNull(result);
                 Assert.IsNotNull(result.Images);
                 Assert.IsTrue(result.Images.Count > 0);
+            }
+        }
+
+        [TestMethod]
+        public void Classify_With_Threshold_Success()
+        {
+            using (FileStream fs = File.OpenRead(localGiraffeFilePath))
+            {
+                var previousCulture = CultureInfo.CurrentCulture;
+
+                CultureInfo.CurrentCulture = new CultureInfo("pt-BR");
+                float value;
+                bool b = float.TryParse("0,1", NumberStyles.Any, new CultureInfo("pt-BR"), out value);
+
+                Console.WriteLine(value);
+                var result = service.Classify(fs, imagesFileContentType: "image/jpeg", threshold: value);
+
+                Assert.IsNotNull(result);
+                Assert.IsNotNull(result.Images);
+                Assert.IsTrue(result.Images.Count > 0);
+
+                CultureInfo.CurrentCulture = previousCulture;
             }
         }
 

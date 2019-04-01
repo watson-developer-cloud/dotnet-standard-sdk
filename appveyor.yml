@@ -53,7 +53,7 @@ before_build:
     dotnet restore
 
 build:
-  project: IBM.WatsonDeveloperCloud.sln
+  project: IBM.Watson.sln
   verbosity: minimal
 after_build:
 - ps: >-
@@ -106,13 +106,13 @@ after_build:
       }
     }
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
     
-    Copy-Item C:\projects\dotnet-standard-sdk\test\IBM.WatsonDeveloperCloud.CompareComply.v1.IT\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
     if(Test-Path -Path coverage)
@@ -136,7 +136,7 @@ test_script:
             echo \"LastExitCode: $LastExitCode\"
             $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
             $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
-            $filter = '-filter:+[IBM.WatsonDeveloperCloud*]*-[*Tests*]*-[*Example*]*'
+            $filter = '-filter:+[*.IntegrationTests]*+[*.UnitTests]*-[*Tests*]*-[*Example*]*'
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 
             C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
@@ -178,49 +178,46 @@ test_script:
 
     {
         Write-Output "branchName  is " + $branchName + " - building NuGet packages" 
-        dotnet pack .\src\IBM.WatsonDeveloperCloud\IBM.WatsonDeveloperCloud.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v1\IBM.WatsonDeveloperCloud.Assistant.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.Assistant.v2\IBM.WatsonDeveloperCloud.Assistant.v2.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.CompareComply.v1\IBM.WatsonDeveloperCloud.CompareComply.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.Discovery.v1\IBM.WatsonDeveloperCloud.Discovery.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\IBM.WatsonDeveloperCloud.LanguageTranslator.v3.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\IBM.WatsonDeveloperCloud.PersonalityInsights.v3.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\IBM.WatsonDeveloperCloud.SpeechToText.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\IBM.WatsonDeveloperCloud.TextToSpeech.v1.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3.csproj --configuration Release
-        dotnet pack .\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\IBM.WatsonDeveloperCloud.VisualRecognition.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.NaturalLanguageClassifier.v1\IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.NaturalLanguageUnderstanding.v1\IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.PersonalityInsights.v3\IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.SpeechToText.v1\IBM.Watson.SpeechToText.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.TextToSpeech.v1\IBM.Watson.TextToSpeech.v1.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj --configuration Release
     }
 
 
 artifacts:
-- path: '\src\IBM.WatsonDeveloperCloud\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud
-- path: '\src\IBM.WatsonDeveloperCloud.Assistant.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Assistant.v1
-- path: '\src\IBM.WatsonDeveloperCloud.Assistant.v2\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Assistant.v2
-- path: '\src\IBM.WatsonDeveloperCloud.CompareComply.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.CompareComply.v1
-- path: '\src\IBM.WatsonDeveloperCloud.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.LanguageTranslator.v3
-- path: '\src\IBM.WatsonDeveloperCloud.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.PersonalityInsights.v3
-- path: '\src\IBM.WatsonDeveloperCloud.SpeechToText.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.SpeechToText.v1
-- path: '\src\IBM.WatsonDeveloperCloud.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.TextToSpeech.v1
-- path: '\src\IBM.WatsonDeveloperCloud.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.ToneAnalyzer.v3
-- path: '\src\IBM.WatsonDeveloperCloud.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.VisualRecognition.v3
-- path: '\src\IBM.WatsonDeveloperCloud.Discovery.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.Discovery.v1
-- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1
-- path: '\src\IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
-  name: IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1
+- path: '\src\IBM.Watson.Assistant.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.Assistant.v1
+- path: '\src\IBM.Watson.Assistant.v2\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.Assistant.v2
+- path: '\src\IBM.Watson.CompareComply.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.CompareComply.v1
+- path: '\src\IBM.Watson.Discovery.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.Discovery.v1
+- path: '\src\IBM.Watson.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.LanguageTranslator.v3
+- path: '\src\IBM.Watson.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.PersonalityInsights.v3
+- path: '\src\IBM.Watson.SpeechToText.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.SpeechToText.v1
+- path: '\src\IBM.Watson.TextToSpeech.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.TextToSpeech.v1
+- path: '\src\IBM.Watson.ToneAnalyzer.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.ToneAnalyzer.v3
+- path: '\src\IBM.Watson.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.VisualRecognition.v3
+- path: '\src\IBM.Watson.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.NaturalLanguageUnderstanding.v1
+- path: '\src\IBM.Watson.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.NaturalLanguageClassifier.v1
 deploy:
 - provider: NuGet
   api_key:

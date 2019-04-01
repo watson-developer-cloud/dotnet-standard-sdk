@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;

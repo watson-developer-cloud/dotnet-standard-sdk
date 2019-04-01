@@ -22,7 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
@@ -41,7 +41,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
             #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

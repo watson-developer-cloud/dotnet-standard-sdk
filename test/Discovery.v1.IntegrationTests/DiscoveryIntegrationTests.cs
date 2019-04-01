@@ -24,8 +24,9 @@ using IBM.Watson.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Environment = IBM.Watson.Discovery.v1.Model.Environment;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json.Linq;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Discovery.v1.IntegrationTests
 {
@@ -67,7 +68,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

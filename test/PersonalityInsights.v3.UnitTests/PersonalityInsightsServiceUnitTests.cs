@@ -16,15 +16,15 @@
 */
 
 using System;
-using IBM.Watson.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using IBM.Watson.PersonalityInsights.v3.Model;
 using System.Collections.Generic;
-using IBM.Watson.Http.Exceptions;
 using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 
 namespace IBM.Watson.PersonalityInsights.v3.UnitTests
 {
@@ -83,7 +83,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         public void Constructor()
         {
             PersonalityInsightsService service =
-                new PersonalityInsightsService(new WatsonHttpClient());
+                new PersonalityInsightsService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

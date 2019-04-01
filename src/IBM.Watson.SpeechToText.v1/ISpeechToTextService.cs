@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using IBM.Watson.SpeechToText.v1.Model;
 

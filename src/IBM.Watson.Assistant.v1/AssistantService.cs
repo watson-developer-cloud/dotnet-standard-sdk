@@ -17,18 +17,19 @@
 
 using System.Collections.Generic;
 using System.Text;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.Assistant.v1.Model;
-using IBM.Cloud.SDK.Http;
-using IBM.Cloud.SDK.Service;
-using IBM.Cloud.SDK.Util;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 using System;
 
 namespace IBM.Watson.Assistant.v1
 {
-    public partial class AssistantService : WatsonService, IAssistantService
+    public partial class AssistantService : IBMService, IAssistantService
     {
-        const string SERVICE_NAME = "assistant";
+        new const string SERVICE_NAME = "assistant";
         const string URL = "https://gateway.watsonplatform.net/assistant/api";
         private string _versionDate;
         public string VersionDate
@@ -130,9 +131,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=Message");
                 result = restRequest.As<MessageResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MessageResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -186,7 +188,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Workspace>().Result;
                 if (result == null)
                     result = new Workspace();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -238,7 +240,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -305,7 +307,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<WorkspaceExport>().Result;
                 if (result == null)
                     result = new WorkspaceExport();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -373,7 +375,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<WorkspaceCollection>().Result;
                 if (result == null)
                     result = new WorkspaceCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -441,7 +443,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Workspace>().Result;
                 if (result == null)
                     result = new Workspace();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -496,7 +498,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Intent>().Result;
                 if (result == null)
                     result = new Intent();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -551,7 +553,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -616,7 +618,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<IntentExport>().Result;
                 if (result == null)
                     result = new IntentExport();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -693,7 +695,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<IntentCollection>().Result;
                 if (result == null)
                     result = new IntentCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -758,7 +760,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Intent>().Result;
                 if (result == null)
                     result = new Intent();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -816,7 +818,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Example>().Result;
                 if (result == null)
                     result = new Example();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -874,7 +876,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -936,7 +938,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Example>().Result;
                 if (result == null)
                     result = new Example();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1010,7 +1012,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<ExampleCollection>().Result;
                 if (result == null)
                     result = new ExampleCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1072,7 +1074,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Example>().Result;
                 if (result == null)
                     result = new Example();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1128,7 +1130,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
                     result = new Counterexample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1184,7 +1186,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1244,7 +1246,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
                     result = new Counterexample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1316,7 +1318,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<CounterexampleCollection>().Result;
                 if (result == null)
                     result = new CounterexampleCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1376,7 +1378,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
                     result = new Counterexample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1431,7 +1433,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Entity>().Result;
                 if (result == null)
                     result = new Entity();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1486,7 +1488,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1551,7 +1553,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<EntityExport>().Result;
                 if (result == null)
                     result = new EntityExport();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1628,7 +1630,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<EntityCollection>().Result;
                 if (result == null)
                     result = new EntityCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1692,7 +1694,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Entity>().Result;
                 if (result == null)
                     result = new Entity();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1756,7 +1758,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<EntityMentionCollection>().Result;
                 if (result == null)
                     result = new EntityMentionCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1814,7 +1816,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Value>().Result;
                 if (result == null)
                     result = new Value();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1872,7 +1874,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1939,7 +1941,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<ValueExport>().Result;
                 if (result == null)
                     result = new ValueExport();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2018,7 +2020,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<ValueCollection>().Result;
                 if (result == null)
                     result = new ValueCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2086,7 +2088,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Value>().Result;
                 if (result == null)
                     result = new Value();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2147,7 +2149,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
                     result = new Synonym();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2208,7 +2210,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2273,7 +2275,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
                     result = new Synonym();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2350,7 +2352,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<SynonymCollection>().Result;
                 if (result == null)
                     result = new SynonymCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2415,7 +2417,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
                     result = new Synonym();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2470,7 +2472,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
                     result = new DialogNode();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2525,7 +2527,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2584,7 +2586,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
                     result = new DialogNode();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2655,7 +2657,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<DialogNodeCollection>().Result;
                 if (result == null)
                     result = new DialogNodeCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2719,7 +2721,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
                     result = new DialogNode();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2788,7 +2790,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<LogCollection>().Result;
                 if (result == null)
                     result = new LogCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2859,7 +2861,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<LogCollection>().Result;
                 if (result == null)
                     result = new LogCollection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2915,7 +2917,7 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

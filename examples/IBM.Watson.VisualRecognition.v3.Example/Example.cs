@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -35,7 +35,7 @@ namespace IBM.Watson.VisRec.v3.Example
             #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

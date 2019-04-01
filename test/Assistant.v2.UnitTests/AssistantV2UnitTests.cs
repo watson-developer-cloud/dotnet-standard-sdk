@@ -15,9 +15,10 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.Assistant.v2.Model;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
@@ -82,7 +83,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void Constructor()
         {
             AssistantService service =
-                new AssistantService(new WatsonHttpClient());
+                new AssistantService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

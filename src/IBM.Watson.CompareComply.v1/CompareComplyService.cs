@@ -20,15 +20,15 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Watson.CompareComply.v1.Model;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
 
 namespace IBM.Watson.CompareComply.v1
 {
-    public partial class CompareComplyService : WatsonService, ICompareComplyService
+    public partial class CompareComplyService : IBMService, ICompareComplyService
     {
         const string SERVICE_NAME = "compare_comply";
         const string URL = "https://gateway.watsonplatform.net/compare-comply/api";
@@ -125,7 +125,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<HTMLReturn>().Result;
                 if (result == null)
                     result = new HTMLReturn();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -189,7 +189,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<ClassifyReturn>().Result;
                 if (result == null)
                     result = new ClassifyReturn();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -253,7 +253,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<TableReturn>().Result;
                 if (result == null)
                     result = new TableReturn();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -336,7 +336,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<CompareReturn>().Result;
                 if (result == null)
                     result = new CompareReturn();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -385,7 +385,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<FeedbackReturn>().Result;
                 if (result == null)
                     result = new FeedbackReturn();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -435,7 +435,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<FeedbackDeleted>().Result;
                 if (result == null)
                     result = new FeedbackDeleted();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -485,7 +485,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<GetFeedback>().Result;
                 if (result == null)
                     result = new GetFeedback();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -598,7 +598,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<FeedbackList>().Result;
                 if (result == null)
                     result = new FeedbackList();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -730,7 +730,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
                     result = new BatchStatus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -776,7 +776,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
                     result = new BatchStatus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -819,7 +819,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<Batches>().Result;
                 if (result == null)
                     result = new Batches();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -877,7 +877,7 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
                     result = new BatchStatus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

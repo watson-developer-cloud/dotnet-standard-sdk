@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
 using System;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;

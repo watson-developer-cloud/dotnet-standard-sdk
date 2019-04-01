@@ -19,18 +19,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
 using IBM.Watson.LanguageTranslator.v3.Model;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
 
 namespace IBM.Watson.LanguageTranslator.v3
 {
-    public partial class LanguageTranslatorService : WatsonService, ILanguageTranslatorService
+    public partial class LanguageTranslatorService : IBMService, ILanguageTranslatorService
     {
-        const string SERVICE_NAME = "language_translator";
+        new const string SERVICE_NAME = "language_translator";
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
         private string _versionDate;
         public string VersionDate
@@ -127,7 +127,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<TranslationResult>().Result;
                 if (result == null)
                     result = new TranslationResult();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -177,7 +177,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<IdentifiedLanguages>().Result;
                 if (result == null)
                     result = new IdentifiedLanguages();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -225,7 +225,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<IdentifiableLanguages>().Result;
                 if (result == null)
                     result = new IdentifiableLanguages();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -323,7 +323,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)
                     result = new TranslationModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -373,7 +373,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<DeleteModelResult>().Result;
                 if (result == null)
                     result = new DeleteModelResult();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -425,7 +425,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)
                     result = new TranslationModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -484,7 +484,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 result = restRequest.As<TranslationModels>().Result;
                 if (result == null)
                     result = new TranslationModels();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

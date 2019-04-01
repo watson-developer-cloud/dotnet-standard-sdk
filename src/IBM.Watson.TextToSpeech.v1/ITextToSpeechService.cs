@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.TextToSpeech.v1.Model;
 
 namespace IBM.Watson.TextToSpeech.v1

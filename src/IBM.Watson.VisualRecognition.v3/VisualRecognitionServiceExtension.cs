@@ -15,10 +15,11 @@
 *
 */
 
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ using System.Threading.Tasks;
 
 namespace IBM.Watson.VisualRecognition.v3
 {
-    public partial class VisualRecognitionService : WatsonService, IVisualRecognitionService
+    public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         /// <summary>
         /// Sets the apikey of the service. 
@@ -116,7 +117,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -191,7 +192,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new Classifier();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

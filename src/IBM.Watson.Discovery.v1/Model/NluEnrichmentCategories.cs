@@ -15,6 +15,8 @@
 *
 */
 
+using IBM.Cloud.SDK.Core;
+
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>

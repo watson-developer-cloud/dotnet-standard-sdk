@@ -25,7 +25,8 @@ using IBM.Watson.Assistant.v1.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Assistant.v1.IntegrationTests
 {
@@ -63,7 +64,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             #region Get Credentials
             if (string.IsNullOrEmpty(credentials))
             {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
                 string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
                 if (File.Exists(credentialsFilepath))
                 {

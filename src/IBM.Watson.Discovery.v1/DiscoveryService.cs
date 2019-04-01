@@ -20,18 +20,19 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Watson.Discovery.v1.Model;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
 using Environment = IBM.Watson.Discovery.v1.Model.Environment;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Discovery.v1
 {
-    public partial class DiscoveryService : WatsonService, IDiscoveryService
+    public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        const string SERVICE_NAME = "discovery";
+        new const string SERVICE_NAME = "discovery";
         const string URL = "https://gateway.watsonplatform.net/discovery/api";
         private string _versionDate;
         public string VersionDate
@@ -132,7 +133,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
                     result = new Environment();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -180,7 +181,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DeleteEnvironmentResponse>().Result;
                 if (result == null)
                     result = new DeleteEnvironmentResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -228,7 +229,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
                     result = new Environment();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -278,7 +279,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<ListEnvironmentsResponse>().Result;
                 if (result == null)
                     result = new ListEnvironmentsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -333,7 +334,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if (result == null)
                     result = new ListCollectionFieldsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -388,7 +389,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
                     result = new Environment();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -462,7 +463,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
                     result = new Configuration();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -518,7 +519,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DeleteConfigurationResponse>().Result;
                 if (result == null)
                     result = new DeleteConfigurationResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -569,7 +570,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
                     result = new Configuration();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -622,7 +623,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<ListConfigurationsResponse>().Result;
                 if (result == null)
                     result = new ListConfigurationsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -699,7 +700,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
                     result = new Configuration();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -800,7 +801,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TestDocument>().Result;
                 if (result == null)
                     result = new TestDocument();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -851,7 +852,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
                     result = new Collection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -902,7 +903,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DeleteCollectionResponse>().Result;
                 if (result == null)
                     result = new DeleteCollectionResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -953,7 +954,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
                     result = new Collection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1006,7 +1007,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if (result == null)
                     result = new ListCollectionFieldsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1059,7 +1060,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<ListCollectionsResponse>().Result;
                 if (result == null)
                     result = new ListCollectionsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1112,7 +1113,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
                     result = new Collection();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1170,7 +1171,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Expansions>().Result;
                 if (result == null)
                     result = new Expansions();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1238,7 +1239,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1294,7 +1295,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1348,7 +1349,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1402,7 +1403,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1455,7 +1456,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1508,7 +1509,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1561,7 +1562,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1615,7 +1616,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Expansions>().Result;
                 if (result == null)
                     result = new Expansions();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1715,7 +1716,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DocumentAccepted>().Result;
                 if (result == null)
                     result = new DocumentAccepted();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1772,7 +1773,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DeleteDocumentResponse>().Result;
                 if (result == null)
                     result = new DeleteDocumentResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1830,7 +1831,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DocumentStatus>().Result;
                 if (result == null)
                     result = new DocumentStatus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1915,7 +1916,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DocumentAccepted>().Result;
                 if (result == null)
                     result = new DocumentAccepted();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2055,7 +2056,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryResponse>().Result;
                 if (result == null)
                     result = new QueryResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2175,7 +2176,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if (result == null)
                     result = new QueryNoticesResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2317,7 +2318,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryResponse>().Result;
                 if (result == null)
                     result = new QueryResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2376,7 +2377,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryEntitiesResponse>().Result;
                 if (result == null)
                     result = new QueryEntitiesResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2510,7 +2511,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if (result == null)
                     result = new QueryNoticesResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2569,7 +2570,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<QueryRelationsResponse>().Result;
                 if (result == null)
                     result = new QueryRelationsResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2627,7 +2628,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingQuery>().Result;
                 if (result == null)
                     result = new TrainingQuery();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2687,7 +2688,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                     result = new TrainingExample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2740,7 +2741,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2796,7 +2797,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2855,7 +2856,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2911,7 +2912,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingQuery>().Result;
                 if (result == null)
                     result = new TrainingQuery();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2970,7 +2971,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                     result = new TrainingExample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3023,7 +3024,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingDataSet>().Result;
                 if (result == null)
                     result = new TrainingDataSet();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3079,7 +3080,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingExampleList>().Result;
                 if (result == null)
                     result = new TrainingExampleList();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3142,7 +3143,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                     result = new TrainingExample();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3198,7 +3199,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3249,7 +3250,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<CreateEventResponse>().Result;
                 if (result == null)
                     result = new CreateEventResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3309,7 +3310,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                     result = new MetricResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3367,7 +3368,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                     result = new MetricResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3427,7 +3428,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                     result = new MetricResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3486,7 +3487,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                     result = new MetricResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3538,7 +3539,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<MetricTokenResponse>().Result;
                 if (result == null)
                     result = new MetricTokenResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3609,7 +3610,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<LogQueryResponse>().Result;
                 if (result == null)
                     result = new LogQueryResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3665,7 +3666,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
                     result = new Credentials();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3718,7 +3719,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<DeleteCredentials>().Result;
                 if (result == null)
                     result = new DeleteCredentials();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3774,7 +3775,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
                     result = new Credentials();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3826,7 +3827,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<CredentialsList>().Result;
                 if (result == null)
                     result = new CredentialsList();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3885,7 +3886,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
                     result = new Credentials();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3936,7 +3937,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Gateway>().Result;
                 if (result == null)
                     result = new Gateway();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3989,7 +3990,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<GatewayDelete>().Result;
                 if (result == null)
                     result = new GatewayDelete();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -4042,7 +4043,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<Gateway>().Result;
                 if (result == null)
                     result = new Gateway();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -4092,7 +4093,7 @@ namespace IBM.Watson.Discovery.v1
                 result = restRequest.As<GatewayList>().Result;
                 if (result == null)
                     result = new GatewayList();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

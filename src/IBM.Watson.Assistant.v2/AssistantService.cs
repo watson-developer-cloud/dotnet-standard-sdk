@@ -17,16 +17,17 @@
 
 using System.Collections.Generic;
 using IBM.Watson.Assistant.v2.Model;
-using IBM.Watson.Http;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Assistant.v2
 {
-    public partial class AssistantService : WatsonService, IAssistantService
+    public partial class AssistantService : IBMService, IAssistantService
     {
-        const string SERVICE_NAME = "assistant";
+        new const string SERVICE_NAME = "assistant";
         const string URL = "https://gateway.watsonplatform.net/assistant/api";
         private string _versionDate;
         public string VersionDate
@@ -126,7 +127,7 @@ namespace IBM.Watson.Assistant.v2
                 result = restRequest.As<SessionResponse>().Result;
                 if (result == null)
                     result = new SessionResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -183,7 +184,7 @@ namespace IBM.Watson.Assistant.v2
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -244,7 +245,7 @@ namespace IBM.Watson.Assistant.v2
                 result = restRequest.As<MessageResponse>().Result;
                 if (result == null)
                     result = new MessageResponse();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

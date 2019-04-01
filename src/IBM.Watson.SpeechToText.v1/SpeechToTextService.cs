@@ -19,18 +19,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using IBM.Watson.Http;
-using IBM.Watson.Http.Extensions;
-using IBM.Watson.Service;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.SpeechToText.v1.Model;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Http.Extensions;
 
 namespace IBM.Watson.SpeechToText.v1
 {
-    public partial class SpeechToTextService : WatsonService, ISpeechToTextService
+    public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
-        const string SERVICE_NAME = "speech_to_text";
+        new const string SERVICE_NAME = "speech_to_text";
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
         public SpeechToTextService() : base(SERVICE_NAME) { }
         
@@ -108,7 +109,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<SpeechModel>().Result;
                 if (result == null)
                     result = new SpeechModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -153,7 +154,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<SpeechModels>().Result;
                 if (result == null)
                     result = new SpeechModels();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -430,7 +431,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<SpeechRecognitionResults>().Result;
                 if (result == null)
                     result = new SpeechRecognitionResults();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -486,7 +487,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<RecognitionJob>().Result;
                 if (result == null)
                     result = new RecognitionJob();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -536,7 +537,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<RecognitionJobs>().Result;
                 if (result == null)
                     result = new RecognitionJobs();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -861,7 +862,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<RecognitionJob>().Result;
                 if (result == null)
                     result = new RecognitionJob();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -912,7 +913,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -995,7 +996,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<RegisterStatus>().Result;
                 if (result == null)
                     result = new RegisterStatus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1047,7 +1048,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1098,7 +1099,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<LanguageModel>().Result;
                 if (result == null)
                     result = new LanguageModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1150,7 +1151,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1201,7 +1202,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<LanguageModel>().Result;
                 if (result == null)
                     result = new LanguageModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1254,7 +1255,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<LanguageModels>().Result;
                 if (result == null)
                     result = new LanguageModels();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1307,7 +1308,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1401,7 +1402,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1462,7 +1463,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1581,7 +1582,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1639,7 +1640,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1694,7 +1695,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Corpus>().Result;
                 if (result == null)
                     result = new Corpus();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1746,7 +1747,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Corpora>().Result;
                 if (result == null)
                     result = new Corpora();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1832,7 +1833,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1928,7 +1929,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -1988,7 +1989,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2044,7 +2045,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Word>().Result;
                 if (result == null)
                     result = new Word();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2114,7 +2115,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Words>().Result;
                 if (result == null)
                     result = new Words();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2225,7 +2226,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2283,7 +2284,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2338,7 +2339,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Grammar>().Result;
                 if (result == null)
                     result = new Grammar();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2390,7 +2391,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<Grammars>().Result;
                 if (result == null)
                     result = new Grammars();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2441,7 +2442,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<AcousticModel>().Result;
                 if (result == null)
                     result = new AcousticModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2493,7 +2494,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2544,7 +2545,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<AcousticModel>().Result;
                 if (result == null)
                     result = new AcousticModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2597,7 +2598,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<AcousticModels>().Result;
                 if (result == null)
                     result = new AcousticModels();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2650,7 +2651,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2738,7 +2739,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2819,7 +2820,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -2985,7 +2986,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3042,7 +3043,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3110,7 +3111,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<AudioListing>().Result;
                 if (result == null)
                     result = new AudioListing();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3164,7 +3165,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<AudioResources>().Result;
                 if (result == null)
                     result = new AudioResources();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -3219,7 +3220,7 @@ namespace IBM.Watson.SpeechToText.v1
                 result = restRequest.As<BaseModel>().Result;
                 if (result == null)
                     result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

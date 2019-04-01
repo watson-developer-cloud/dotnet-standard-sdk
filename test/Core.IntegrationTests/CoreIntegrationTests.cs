@@ -24,7 +24,7 @@ using IBM.Watson.PersonalityInsights.v3;
 using IBM.Watson.SpeechToText.v1;
 using IBM.Watson.TextToSpeech.v1;
 using IBM.Watson.ToneAnalyzer.v3;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

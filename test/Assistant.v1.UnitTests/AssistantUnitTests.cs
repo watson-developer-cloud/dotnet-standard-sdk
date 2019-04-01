@@ -18,14 +18,15 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using IBM.Watson.Http;
-using IBM.Watson.Assistant.v1.Model;
-using IBM.Watson.Http.Exceptions;
 using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.Assistant.v1.Model;
+using IBM.Cloud.SDK.Core.Http.Exceptions;
+using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.Assistant.v1.UnitTests
 {
@@ -83,7 +84,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void Constructor()
         {
             AssistantService service =
-                new AssistantService(new WatsonHttpClient());
+                new AssistantService(new IBMHttpClient());
 
             Assert.IsNotNull(service);
         }

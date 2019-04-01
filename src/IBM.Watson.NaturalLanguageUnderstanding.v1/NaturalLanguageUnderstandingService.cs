@@ -16,17 +16,17 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.Http;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
-using IBM.Watson.Service;
-using IBM.Watson.Util;
+using IBM.Cloud.SDK.Core.Util;
 using System;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Service;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
-    public partial class NaturalLanguageUnderstandingService : WatsonService, INaturalLanguageUnderstandingService
+    public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string SERVICE_NAME = "natural_language_understanding";
+        new const string SERVICE_NAME = "natural_language_understanding";
         const string URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
         private string _versionDate;
         public string VersionDate
@@ -132,7 +132,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 result = restRequest.As<AnalysisResults>().Result;
                 if (result == null)
                     result = new AnalysisResults();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -181,7 +181,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 result = restRequest.As<InlineResponse200>().Result;
                 if (result == null)
                     result = new InlineResponse200();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {
@@ -230,7 +230,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 result = restRequest.As<ListModelsResults>().Result;
                 if (result == null)
                     result = new ListModelsResults();
-                result.CustomData = restRequest.CustomData;
+                
             }
             catch (AggregateException ae)
             {

@@ -1,9 +1,4 @@
-﻿
-
-using IBM.Watson.Assistant.v2.Model;
-using Newtonsoft.Json;
-using System;
-/**
+﻿/**
 * Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +14,10 @@ using System;
 * limitations under the License.
 *
 */
+
+using IBM.Watson.Assistant.v2.Model;
+using Newtonsoft.Json;
+using System;
 namespace IBM.Watson.Assistant.v2.Example
 {
     internal class AssistantServiceExample

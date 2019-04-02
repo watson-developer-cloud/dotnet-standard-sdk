@@ -190,6 +190,7 @@ test_script:
         dotnet pack .\src\IBM.Watson.TextToSpeech.v1\IBM.Watson.TextToSpeech.v1.csproj --configuration Release
         dotnet pack .\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
         dotnet pack .\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.Common\IBM.Watson.Common.csproj --configuration Release
     }
 
 
@@ -218,6 +219,8 @@ artifacts:
   name: IBM.Watson.NaturalLanguageUnderstanding.v1
 - path: '\src\IBM.Watson.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'
   name: IBM.Watson.NaturalLanguageClassifier.v1
+- path: '\src\IBM.Watson.Common\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.Common
 deploy:
 - provider: NuGet
   api_key:

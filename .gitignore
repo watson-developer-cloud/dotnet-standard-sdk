@@ -247,3 +247,4 @@ CompareComplyTestData/
 DiscoveryTestData/
 SpeechToTextTestData/
 VisualRecognitionTestData/
+**/*.openapi-generator*

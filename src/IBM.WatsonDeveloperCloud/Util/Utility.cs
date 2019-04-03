@@ -20,8 +20,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IBM.WatsonDeveloperCloud.Util
@@ -169,37 +167,6 @@ namespace IBM.WatsonDeveloperCloud.Util
             }
 
             return filePathsToLoad;
-        }
-
-        public static string GetVersion(string input)
-        {
-            Regex pattern = new Regex("\\d+(\\.\\d+)+");
-            Match m = pattern.Match(input);
-            return m.Value;
-        }
-
-        public static string GetOs(string input)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                return "MacOS";
-            }
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return "Windows";
-            }
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return "Linux";
-            }
-
-            return input;
-        }
-
-        public static string CleanupUserAgentString(string input)
-        {
-            Regex pattern = new Regex("[;:#()~/ ]");
-            return pattern.Replace(input, "-");
         }
     }
 }

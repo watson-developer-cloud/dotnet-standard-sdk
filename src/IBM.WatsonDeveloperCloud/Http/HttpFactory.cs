@@ -15,22 +15,16 @@
 *
 */
 
-using IBM.WatsonDeveloperCloud.Util;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
 
 namespace IBM.WatsonDeveloperCloud.Http
 {
     internal static class HttpFactory
     {
-        private static string os;
-        private static string osVersion;
-        private static string frameworkDescription;
-
         public static MediaTypeFormatter GetFormatter(MediaTypeFormatterCollection formatters, MediaTypeHeaderValue contentType = null)
         {
             if (!formatters.Any())
@@ -51,25 +45,17 @@ namespace IBM.WatsonDeveloperCloud.Http
 
             // add default headers
             request.Headers.Add("accept", formatters.SelectMany(p => p.SupportedMediaTypes).Select(p => p.MediaType));
-
-            if (string.IsNullOrEmpty(os) || string.IsNullOrEmpty(osVersion))
-            {
-                string osInfo = RuntimeInformation.OSDescription;
-                os = Utility.GetOs(osInfo);
-                osVersion = Utility.GetVersion(osInfo);
-            }
-            if (string.IsNullOrEmpty(frameworkDescription))
-            {
-                frameworkDescription = RuntimeInformation.FrameworkDescription.Trim();
-            }
-
-            request.Headers.Add("User-Agent",
+            string osInfo = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+            int versionIndex = osInfo.IndexOfAny("0123456789".ToCharArray());
+            string os = osInfo.Substring(0, versionIndex).Replace(" ", "");
+            string osVersion = osInfo.Substring(versionIndex).Replace(" ", "");
+            request.Headers.Add("User-Agent", 
                 string.Format(
-                    "{0} {1} {2} {3}",
-                    Constants.SDK_VERSION,
-                    Utility.CleanupUserAgentString(os),
-                    Utility.CleanupUserAgentString(osVersion),
-                    Utility.CleanupUserAgentString(frameworkDescription)
+                    "{0} {1} {2} {3}", 
+                    Constants.SDK_VERSION, 
+                    os,
+                    osVersion,
+                    System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription.Replace(" ", "")
                 ));
 
             return request;

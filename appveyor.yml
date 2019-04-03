@@ -171,7 +171,7 @@ test_script:
 
     {
         Write-Output "branchName is master and not a pull request - running semantic release"
-        npx semantic-release@15.11.0
+        # npx semantic-release@15.11.0
     }
 
     ElseIf($branchName -eq $env:APPVEYOR_REPO_TAG_NAME)

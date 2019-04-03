@@ -3,7 +3,7 @@
   <PropertyGroup>
     <VersionPrefix>2.16.0</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>IBM.Watson.Core.IntegrationTests</AssemblyName>
+    <AssemblyName>IBM.Watson.IntegrationTests</AssemblyName>
     <PackageId>IBM.Watson.Core.IntegrationTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -44,6 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj" />
     <ProjectReference Include="..\..\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj" />
+    <ProjectReference Include="..\..\src\IBM.Watson.Common\IBM.Watson.Common.csproj" />
     <ProjectReference Include="..\..\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj" />
     <ProjectReference Include="..\..\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj" />
     <ProjectReference Include="..\..\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj" />

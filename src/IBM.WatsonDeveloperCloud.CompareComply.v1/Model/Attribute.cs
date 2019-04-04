@@ -70,7 +70,19 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.Model
             /// Enum PERSON for Person
             /// </summary>
             [EnumMember(Value = "Person")]
-            PERSON
+            PERSON,
+
+            /// <summary>
+            /// Enum PERSON for Person
+            /// </summary>
+            [EnumMember(Value = "Number")]
+            NUMBER,
+
+            /// <summary>
+            /// Enum PERSON for Person
+            /// </summary>
+            [EnumMember(Value = "Duration")]
+            DURATION
         }
 
         /// <summary>

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>The IBM.WatsonDeveloperCloud is a core project of Watson SDK in .Net. The other Watson SDK in .Net service packages depend on this package.</Description>
     <AssemblyTitle>IBM.WatsonDeveloperCloud</AssemblyTitle>
-    <VersionPrefix>2.16.0</VersionPrefix>
+    <VersionPrefix>2.17.0</VersionPrefix>
     <Authors>Watson Developer Cloud</Authors>
     <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>IBM.WatsonDeveloperCloud</AssemblyName>
@@ -15,7 +15,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>2.16.0</Version>
+    <Version>2.17.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

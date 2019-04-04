@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.WatsonDeveloperCloud.CompareComply.v1 wraps the Watson Developer Cloud Compare Comply service (http://www.ibm.com/watson/developercloud/compare-comply.html)</Description>
         <AssemblyTitle>IBM.WatsonDeveloperCloud.CompareComply.v1</AssemblyTitle>
-        <VersionPrefix>2.16.0</VersionPrefix>
+        <VersionPrefix>2.17.0</VersionPrefix>
         <Authors>Watson Developer Cloud</Authors>
         <TargetFramework>netstandard1.3</TargetFramework>
         <AssemblyName>IBM.WatsonDeveloperCloud.CompareComply.v1</AssemblyName>
@@ -12,7 +12,7 @@
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
         <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-        <Version>2.16.0</Version>
+        <Version>2.17.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

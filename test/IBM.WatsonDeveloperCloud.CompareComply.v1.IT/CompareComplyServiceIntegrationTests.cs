@@ -150,7 +150,7 @@ namespace IBM.WatsonDeveloperCloud.CompareComply.v1.IT
         #endregion
 
         #region Feedback
-        [TestMethod]
+        //[TestMethod]
         public void Feedback_Success()
         {
             DateTime before = DateTime.Now;

@@ -23,7 +23,7 @@ using Newtonsoft.Json.Converters;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Options which are specific to a particular enrichment.
+    /// An object representing the configuration options to use for the `elements` enrichment.
     /// </summary>
     public class EnrichmentOptions : BaseModel
     {
@@ -107,7 +107,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public LanguageEnum? Language { get; set; }
         /// <summary>
-        /// An object representing the enrichment features that will be applied to the specified field.
+        /// Gets or Sets Features
         /// </summary>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentFeatures Features { get; set; }

@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -33,6 +33,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
+        /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
         /// </summary>
         /// <value>
         /// The type of source to connect to.
@@ -40,6 +41,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
+        /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
@@ -67,7 +69,13 @@ namespace IBM.Watson.Discovery.v1.Model
             /// Enum WEB_CRAWL for web_crawl
             /// </summary>
             [EnumMember(Value = "web_crawl")]
-            WEB_CRAWL
+            WEB_CRAWL,
+            
+            /// <summary>
+            /// Enum CLOUD_OBJECT_STORAGE for cloud_object_storage
+            /// </summary>
+            [EnumMember(Value = "cloud_object_storage")]
+            CLOUD_OBJECT_STORAGE
         }
 
         /// <summary>
@@ -76,6 +84,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the configuration is to connect to Salesforce.
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
+        /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public TypeEnum? Type { get; set; }

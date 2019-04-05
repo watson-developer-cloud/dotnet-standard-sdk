@@ -15,9 +15,12 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -26,6 +29,52 @@ namespace IBM.Watson.Assistant.v1.Model
     /// </summary>
     public class CreateWorkspace : BaseModel
     {
+        /// <summary>
+        /// The current status of the workspace.
+        /// </summary>
+        /// <value>
+        /// The current status of the workspace.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            
+            /// <summary>
+            /// Enum NON_EXISTENT for Non Existent
+            /// </summary>
+            [EnumMember(Value = "Non Existent")]
+            NON_EXISTENT,
+            
+            /// <summary>
+            /// Enum TRAINING for Training
+            /// </summary>
+            [EnumMember(Value = "Training")]
+            TRAINING,
+            
+            /// <summary>
+            /// Enum FAILED for Failed
+            /// </summary>
+            [EnumMember(Value = "Failed")]
+            FAILED,
+            
+            /// <summary>
+            /// Enum AVAILABLE for Available
+            /// </summary>
+            [EnumMember(Value = "Available")]
+            AVAILABLE,
+            
+            /// <summary>
+            /// Enum UNAVAILABLE for Unavailable
+            /// </summary>
+            [EnumMember(Value = "Unavailable")]
+            UNAVAILABLE
+        }
+
+        /// <summary>
+        /// The current status of the workspace.
+        /// </summary>
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The name of the workspace. This string cannot contain carriage return, newline, or tab characters, and it
         /// must be no longer than 64 characters.
@@ -44,33 +93,13 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
-        /// An array of objects defining the intents for the workspace.
-        /// </summary>
-        [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateIntent> Intents { get; set; }
-        /// <summary>
-        /// An array of objects defining the entities for the workspace.
-        /// </summary>
-        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateEntity> Entities { get; set; }
-        /// <summary>
-        /// An array of objects defining the nodes in the dialog.
-        /// </summary>
-        [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateDialogNode> DialogNodes { get; set; }
-        /// <summary>
-        /// An array of objects defining input examples that have been marked as irrelevant input.
-        /// </summary>
-        [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateCounterexample> Counterexamples { get; set; }
-        /// <summary>
         /// Any metadata related to the workspace.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
-        /// Whether training data from the workspace can be used by IBM for general service improvements. `true`
-        /// indicates that workspace training data is not to be used.
+        /// Whether training data from the workspace (including artifacts such as intents and entities) can be used by
+        /// IBM for general service improvements. `true` indicates that workspace training data is not to be used.
         /// </summary>
         [JsonProperty("learning_opt_out", NullValueHandling = NullValueHandling.Ignore)]
         public bool? LearningOptOut { get; set; }
@@ -79,6 +108,41 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("system_settings", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettings SystemSettings { get; set; }
+        /// <summary>
+        /// The workspace ID of the workspace.
+        /// </summary>
+        [JsonProperty("workspace_id", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string WorkspaceId { get; private set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
+        /// <summary>
+        /// An array of objects defining the intents for the workspace.
+        /// </summary>
+        [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateIntent> Intents { get; set; }
+        /// <summary>
+        /// An array of objects describing the entities for the workspace.
+        /// </summary>
+        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateEntity> Entities { get; set; }
+        /// <summary>
+        /// An array of objects describing the dialog nodes in the workspace.
+        /// </summary>
+        [JsonProperty("dialog_nodes", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DialogNode> DialogNodes { get; set; }
+        /// <summary>
+        /// An array of objects defining input examples that have been marked as irrelevant input.
+        /// </summary>
+        [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Counterexample> Counterexamples { get; set; }
     }
 
 }

@@ -41,7 +41,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
         /// <summary>
-        /// Analysis features and options.
+        /// Specific features to analyze the document for.
         /// </summary>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public Features Features { get; set; }

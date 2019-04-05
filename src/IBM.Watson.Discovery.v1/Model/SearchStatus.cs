@@ -15,11 +15,11 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
@@ -43,12 +43,12 @@ namespace IBM.Watson.Discovery.v1.Model
             /// </summary>
             [EnumMember(Value = "NO_DATA")]
             NO_DATA,
-
+            
             /// <summary>
-            /// Enum INSUFFICENT_DATA for INSUFFICIENT_DATA
+            /// Enum INSUFFICENT_DATA for INSUFFICENT_DATA
             /// </summary>
-            [EnumMember(Value = "INSUFFICIENT_DATA")]
-            INSUFFICIENT_DATA,
+            [EnumMember(Value = "INSUFFICENT_DATA")]
+            INSUFFICENT_DATA,
             
             /// <summary>
             /// Enum TRAINING for TRAINING

@@ -18,23 +18,23 @@
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v2.Model
+namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// A request formatted for the Watson Assistant service.
+    /// Key-value pairs detected across cell boundaries.
     /// </summary>
-    public class MessageRequest : BaseModel
+    public class KeyValuePair : BaseModel
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// A key in a key-value pair.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
+        public Key Key { get; set; }
         /// <summary>
-        /// State information for the conversation.
+        /// A value in a key-value pair.
         /// </summary>
-        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContext Context { get; set; }
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public Value Value { get; set; }
     }
 
 }

@@ -26,17 +26,17 @@ namespace IBM.Watson.Discovery.v1.Model
     public class TrainingExample : BaseModel
     {
         /// <summary>
-        /// Gets or Sets DocumentId
+        /// The document ID associated with this training example.
         /// </summary>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
         /// <summary>
-        /// Gets or Sets CrossReference
+        /// The cross reference associated with this training example.
         /// </summary>
         [JsonProperty("cross_reference", NullValueHandling = NullValueHandling.Ignore)]
         public string CrossReference { get; set; }
         /// <summary>
-        /// Gets or Sets Relevance
+        /// The relevance of the training example.
         /// </summary>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
         public long? Relevance { get; set; }

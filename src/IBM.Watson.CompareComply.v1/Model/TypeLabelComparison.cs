@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Copyright 2018 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,22 @@
 *
 */
 
-using IBM.Watson.VisualRecognition.v3.Model;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using IBM.Cloud.SDK.Core;
+using Newtonsoft.Json;
 
-namespace IBM.Watson.VisualRecognition.v3
+namespace IBM.Watson.CompareComply.v1.Model
 {
-    public partial interface IVisualRecognitionService
+    /// <summary>
+    /// Identification of a specific type.
+    /// </summary>
+    public class TypeLabelComparison : BaseModel
     {
-        void SetCredential(string apikey);
-
-        Classifier CreateClassifier(CreateClassifier createClassifier, Dictionary<string, object> customData = null);
-        
-        Classifier UpdateClassifier(UpdateClassifier updateClassifier, Dictionary<string, object> customData = null);
-
-        Task<System.IO.Stream> GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
+        /// <summary>
+        /// A pair of `nature` and `party` objects. The `nature` object identifies the effect of the element on the
+        /// identified `party`, and the `party` object identifies the affected party.
+        /// </summary>
+        [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
+        public Label Label { get; set; }
     }
+
 }

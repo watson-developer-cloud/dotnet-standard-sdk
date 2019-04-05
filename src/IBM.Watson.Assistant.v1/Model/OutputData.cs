@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
@@ -30,31 +31,31 @@ namespace IBM.Watson.Assistant.v1.Model
         /// An array of up to 50 messages logged with the request.
         /// </summary>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic LogMessages { get; set; }
+        public List<dynamic> LogMessages { get; set; }
         /// <summary>
         /// An array of responses to the user.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Text { get; set; }
+        public List<string> Text { get; set; }
         /// <summary>
         /// Output intended for any channel. It is the responsibility of the client application to implement the
         /// supported response types.
         /// </summary>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Generic { get; set; }
+        public List<DialogRuntimeResponseGeneric> Generic { get; set; }
         /// <summary>
         /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
         /// This information is useful for debugging and for tracing the path taken through the node tree.
         /// </summary>
         [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic NodesVisited { get; set; }
+        public List<string> NodesVisited { get; set; }
         /// <summary>
         /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
         /// processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message
         /// request.
         /// </summary>
         [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic NodesVisitedDetails { get; set; }
+        public List<DialogNodeVisitedDetails> NodesVisitedDetails { get; set; }
     }
 
 }

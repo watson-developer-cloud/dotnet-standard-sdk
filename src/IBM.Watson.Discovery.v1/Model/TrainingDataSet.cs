@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -27,17 +27,17 @@ namespace IBM.Watson.Discovery.v1.Model
     public class TrainingDataSet : BaseModel
     {
         /// <summary>
-        /// Gets or Sets EnvironmentId
+        /// The environment id associated with this training data set.
         /// </summary>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnvironmentId { get; set; }
         /// <summary>
-        /// Gets or Sets CollectionId
+        /// The collection id associated with this training data set.
         /// </summary>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CollectionId { get; set; }
         /// <summary>
-        /// Gets or Sets Queries
+        /// Array of training queries.
         /// </summary>
         [JsonProperty("queries", NullValueHandling = NullValueHandling.Ignore)]
         public List<TrainingQuery> Queries { get; set; }

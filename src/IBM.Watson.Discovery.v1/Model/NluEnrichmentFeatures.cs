@@ -49,7 +49,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// An object that indicates the Categories enrichment will be applied to the specified field.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
-        public NluEnrichmentCategories Categories { get; set; }
+        public dynamic Categories { get; set; }
         /// <summary>
         /// An object specifiying the semantic roles enrichment and related parameters.
         /// </summary>

@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
@@ -57,7 +57,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// properties defined in the dialog JSON editor as part of the dialog node output.
         /// </summary>
         [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic UserDefined { get; set; }
+        public Dictionary<string, object> UserDefined { get; set; }
     }
 
 }

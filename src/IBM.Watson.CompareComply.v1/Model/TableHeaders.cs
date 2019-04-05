@@ -26,8 +26,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     public class TableHeaders : BaseModel
     {
         /// <summary>
-        /// String value in the format `tableHeader-x-y` where `x` and `y` are the `begin` and `end` offsets,
-        /// respectfully, of the cell value in the input document.
+        /// The unique ID of the cell in the current table.
         /// </summary>
         [JsonProperty("cell_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CellId { get; set; }

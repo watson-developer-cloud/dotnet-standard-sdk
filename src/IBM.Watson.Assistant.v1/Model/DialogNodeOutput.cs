@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
@@ -22,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// The output of the dialog node. For more information about how to specify dialog node output, see the
-    /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
+    /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#dialog-overview-responses).
     /// </summary>
     public class DialogNodeOutput : BaseModel
     {
@@ -30,12 +31,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// An array of objects describing the output defined for the dialog node.
         /// </summary>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Generic { get; set; }
+        public List<DialogNodeOutputGeneric> Generic { get; set; }
         /// <summary>
         /// Options that modify how specified output is handled.
         /// </summary>
         [JsonProperty("modifiers", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Modifiers { get; set; }
+        public DialogNodeOutputModifiers Modifiers { get; set; }
     }
 
 }

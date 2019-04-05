@@ -16,21 +16,26 @@
 */
 
 using IBM.Cloud.SDK.Core;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Request payload to classify.
+    /// Object defining a cloud object store bucket to crawl.
     /// </summary>
-    public class ClassifyCollectionInput : BaseModel
+    public class SourceOptionsBuckets : BaseModel
     {
         /// <summary>
-        /// The submitted phrases.
+        /// The name of the cloud object store bucket to crawl.
         /// </summary>
-        [JsonProperty("collection", NullValueHandling = NullValueHandling.Ignore)]
-        public List<ClassifyInput> Collection { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
+        /// <summary>
+        /// The number of documents to crawl from this cloud object store bucket. If not specified, all documents in the
+        /// bucket are crawled.
+        /// </summary>
+        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Limit { get; set; }
     }
 
 }

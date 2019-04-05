@@ -15,9 +15,10 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -38,7 +39,17 @@ namespace IBM.Watson.Assistant.v1.Model
         /// An array of contextual entity mentions.
         /// </summary>
         [JsonProperty("mentions", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Mentions> Mentions { get; set; }
+        public List<Mention> Mentions { get; set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
     }
 
 }

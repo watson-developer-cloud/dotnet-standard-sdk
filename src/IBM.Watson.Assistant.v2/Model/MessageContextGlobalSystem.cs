@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Properties that are shared by all skills used by the assistant.
+    /// Built-in system properties that apply to all skills used by the assistant.
     /// </summary>
     public class MessageContextGlobalSystem : BaseModel
     {
@@ -40,7 +40,8 @@ namespace IBM.Watson.Assistant.v2.Model
         public string UserId { get; set; }
         /// <summary>
         /// A counter that is automatically incremented with each turn of the conversation. A value of 1 indicates that
-        /// this is the the first turn of a new conversation, which can affect the behavior of some skills.
+        /// this is the the first turn of a new conversation, which can affect the behavior of some skills (for example,
+        /// triggering the start node of a dialog).
         /// </summary>
         [JsonProperty("turn_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? TurnCount { get; set; }

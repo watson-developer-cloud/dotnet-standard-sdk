@@ -15,11 +15,12 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -272,18 +273,19 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Conditions { get; set; }
         /// <summary>
-        /// The ID of the parent dialog node.
+        /// The ID of the parent dialog node. This property is omitted if the dialog node has no parent.
         /// </summary>
         [JsonProperty("parent", NullValueHandling = NullValueHandling.Ignore)]
         public string Parent { get; set; }
         /// <summary>
-        /// The ID of the previous sibling dialog node.
+        /// The ID of the previous sibling dialog node. This property is omitted if the dialog node has no previous
+        /// sibling.
         /// </summary>
         [JsonProperty("previous_sibling", NullValueHandling = NullValueHandling.Ignore)]
         public string PreviousSibling { get; set; }
         /// <summary>
         /// The output of the dialog node. For more information about how to specify dialog node output, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#dialog-overview-responses).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Output { get; set; }
@@ -291,12 +293,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The context for the dialog node.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public object Context { get; set; }
+        public Dictionary<string, object> Context { get; set; }
         /// <summary>
         /// The metadata for the dialog node.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The next step to execute following this dialog node.
         /// </summary>
@@ -325,6 +327,21 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
         public string UserLabel { get; set; }
+        /// <summary>
+        /// For internal use only.
+        /// </summary>
+        [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual bool? Disabled { get; private set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
     }
 
 }

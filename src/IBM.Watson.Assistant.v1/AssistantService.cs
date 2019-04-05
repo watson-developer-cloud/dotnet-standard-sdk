@@ -16,12 +16,11 @@
 */
 
 using System.Collections.Generic;
-using System.Text;
 using IBM.Cloud.SDK.Core;
-using IBM.Watson.Assistant.v1.Model;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.Assistant.v1.Model;
 using Newtonsoft.Json;
 using System;
 
@@ -119,7 +118,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -129,12 +128,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=Message");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "Message"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MessageResponse>().Result;
                 result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MessageResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -176,7 +178,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -184,11 +186,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateWorkspace");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Workspace>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Workspace();
-                
             }
             catch (AggregateException ae)
             {
@@ -229,18 +235,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteWorkspace");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -268,8 +279,8 @@ namespace IBM.Watson.Assistant.v1
         /// **export**=`true`. Specify `sort=stable` to sort all workspace objects by unique identifier, in ascending
         /// alphabetical order. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="WorkspaceExport" />WorkspaceExport</returns>
-        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public Workspace GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -277,7 +288,7 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            WorkspaceExport result = null;
+            Workspace result = null;
 
             try
             {
@@ -290,7 +301,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -303,11 +314,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetWorkspace");
-                result = restRequest.As<WorkspaceExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Workspace>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new WorkspaceExport();
-                
+                    result = new Workspace();
             }
             catch (AggregateException ae)
             {
@@ -324,8 +339,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
@@ -354,7 +368,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -371,11 +385,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListWorkspaces");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<WorkspaceCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new WorkspaceCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -429,7 +447,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -439,11 +457,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateWorkspace");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Workspace>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Workspace();
-                
             }
             catch (AggregateException ae)
             {
@@ -486,7 +508,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -494,11 +516,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateIntent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Intent>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Intent();
-                
             }
             catch (AggregateException ae)
             {
@@ -542,18 +568,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteIntent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -579,8 +610,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="IntentExport" />IntentExport</returns>
-        public IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Intent" />Intent</returns>
+        public Intent GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -590,7 +621,7 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            IntentExport result = null;
+            Intent result = null;
 
             try
             {
@@ -603,7 +634,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -614,11 +645,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetIntent");
-                result = restRequest.As<IntentExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Intent>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new IntentExport();
-                
+                    result = new Intent();
             }
             catch (AggregateException ae)
             {
@@ -640,8 +675,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned intents will be sorted. To reverse the sort order, prefix
@@ -672,7 +706,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -691,11 +725,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListIntents");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListIntents"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<IntentCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new IntentCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -748,7 +786,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -756,11 +794,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateIntent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Intent>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Intent();
-                
             }
             catch (AggregateException ae)
             {
@@ -781,7 +823,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="body">The content of the new user input example.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Example" />Example</returns>
-        public Example CreateExample(string workspaceId, string intent, CreateExample body, Dictionary<string, object> customData = null)
+        public Example CreateExample(string workspaceId, string intent, Example body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -806,19 +848,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateExample>(body);
+                restRequest.WithBody<Example>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Example();
-                
             }
             catch (AggregateException ae)
             {
@@ -865,18 +911,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -925,7 +976,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -934,11 +985,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Example();
-                
             }
             catch (AggregateException ae)
             {
@@ -957,8 +1012,7 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned examples will be sorted. To reverse the sort order,
@@ -991,7 +1045,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1008,11 +1062,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListExamples");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListExamples"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ExampleCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ExampleCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -1062,7 +1120,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1070,11 +1128,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Example();
-                
             }
             catch (AggregateException ae)
             {
@@ -1095,7 +1157,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="body">The content of the new counterexample.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body, Dictionary<string, object> customData = null)
+        public Counterexample CreateCounterexample(string workspaceId, Counterexample body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -1118,19 +1180,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateCounterexample>(body);
+                restRequest.WithBody<Counterexample>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateCounterexample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Counterexample();
-                
             }
             catch (AggregateException ae)
             {
@@ -1175,18 +1241,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteCounterexample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1233,7 +1304,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1242,11 +1313,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetCounterexample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Counterexample();
-                
             }
             catch (AggregateException ae)
             {
@@ -1265,8 +1340,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned counterexamples will be sorted. To reverse the sort
@@ -1297,7 +1371,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1314,11 +1388,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListCounterexamples");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<CounterexampleCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new CounterexampleCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -1366,7 +1444,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1374,11 +1452,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateCounterexample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Counterexample();
-                
             }
             catch (AggregateException ae)
             {
@@ -1421,7 +1503,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1429,11 +1511,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateEntity");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Entity>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Entity();
-                
             }
             catch (AggregateException ae)
             {
@@ -1477,18 +1563,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteEntity");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1514,8 +1605,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="EntityExport" />EntityExport</returns>
-        public EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Entity" />Entity</returns>
+        public Entity GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -1525,7 +1616,7 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            EntityExport result = null;
+            Entity result = null;
 
             try
             {
@@ -1538,7 +1629,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1549,11 +1640,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetEntity");
-                result = restRequest.As<EntityExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Entity>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new EntityExport();
-                
+                    result = new Entity();
             }
             catch (AggregateException ae)
             {
@@ -1575,8 +1670,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entities will be sorted. To reverse the sort order,
@@ -1607,7 +1701,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1626,11 +1720,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListEntities");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListEntities"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<EntityCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new EntityCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -1682,7 +1780,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1690,11 +1788,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateEntity");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Entity>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Entity();
-                
             }
             catch (AggregateException ae)
             {
@@ -1743,7 +1845,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1754,11 +1856,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListMentions");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListMentions"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<EntityMentionCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new EntityMentionCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -1768,7 +1874,7 @@ namespace IBM.Watson.Assistant.v1
             return result;
         }
         /// <summary>
-        /// Add entity value.
+        /// Create entity value.
         ///
         /// Create a new value for an entity.
         ///
@@ -1804,7 +1910,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1812,11 +1918,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateValue");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Value>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Value();
-                
             }
             catch (AggregateException ae)
             {
@@ -1863,18 +1973,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteValue");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1900,8 +2015,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="ValueExport" />ValueExport</returns>
-        public ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Value" />Value</returns>
+        public Value GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -1913,7 +2028,7 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ValueExport result = null;
+            Value result = null;
 
             try
             {
@@ -1926,7 +2041,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1937,11 +2052,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetValue");
-                result = restRequest.As<ValueExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Value>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new ValueExport();
-                
+                    result = new Value();
             }
             catch (AggregateException ae)
             {
@@ -1963,8 +2082,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity values will be sorted. To reverse the sort order,
@@ -1997,7 +2115,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2016,11 +2134,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListValues");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListValues"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ValueCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ValueCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -2076,7 +2198,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2084,11 +2206,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateValue");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Value>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Value();
-                
             }
             catch (AggregateException ae)
             {
@@ -2098,7 +2224,7 @@ namespace IBM.Watson.Assistant.v1
             return result;
         }
         /// <summary>
-        /// Add entity value synonym.
+        /// Create entity value synonym.
         ///
         /// Add a new synonym to an entity value.
         ///
@@ -2110,7 +2236,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="body">The new synonym.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body, Dictionary<string, object> customData = null)
+        public Synonym CreateSynonym(string workspaceId, string entity, string value, Synonym body, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -2137,19 +2263,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateSynonym>(body);
+                restRequest.WithBody<Synonym>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateSynonym");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Synonym();
-                
             }
             catch (AggregateException ae)
             {
@@ -2199,18 +2329,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteSynonym");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -2262,7 +2397,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2271,11 +2406,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetSynonym");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Synonym();
-                
             }
             catch (AggregateException ae)
             {
@@ -2295,8 +2434,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity value synonyms will be sorted. To reverse the sort
@@ -2331,7 +2469,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2348,11 +2486,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListSynonyms");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListSynonyms"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<SynonymCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new SynonymCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -2405,7 +2547,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2413,11 +2555,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateSynonym");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Synonym();
-                
             }
             catch (AggregateException ae)
             {
@@ -2437,7 +2583,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="properties">A CreateDialogNode object defining the content of the new dialog node.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties, Dictionary<string, object> customData = null)
+        public DialogNode CreateDialogNode(string workspaceId, DialogNode properties, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
                 throw new ArgumentNullException(nameof(workspaceId));
@@ -2460,19 +2606,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateDialogNode>(properties);
+                restRequest.WithBody<DialogNode>(properties);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateDialogNode");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DialogNode();
-                
             }
             catch (AggregateException ae)
             {
@@ -2516,18 +2666,23 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteDialogNode");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -2573,7 +2728,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2582,11 +2737,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetDialogNode");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DialogNode();
-                
             }
             catch (AggregateException ae)
             {
@@ -2604,8 +2763,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
@@ -2636,7 +2794,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2653,11 +2811,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListDialogNodes");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNodeCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DialogNodeCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -2709,7 +2871,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2717,11 +2879,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateDialogNode");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DialogNode();
-                
             }
             catch (AggregateException ae)
             {
@@ -2741,12 +2907,11 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
         /// or `request.context.metadata.deployment`. For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).</param>
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
         /// request_timestamp)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
@@ -2771,7 +2936,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2786,11 +2951,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListAllLogs");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListAllLogs"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<LogCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new LogCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -2814,10 +2983,9 @@ namespace IBM.Watson.Assistant.v1
         /// request_timestamp)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).
         /// (optional)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
@@ -2842,7 +3010,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2857,11 +3025,15 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListLogs");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListLogs"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<LogCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new LogCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -2904,7 +3076,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2913,11 +3085,16 @@ namespace IBM.Watson.Assistant.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteUserData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteUserData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {

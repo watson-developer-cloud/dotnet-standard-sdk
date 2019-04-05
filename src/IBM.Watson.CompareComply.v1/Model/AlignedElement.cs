@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -32,20 +32,22 @@ namespace IBM.Watson.CompareComply.v1.Model
         [JsonProperty("element_pair", NullValueHandling = NullValueHandling.Ignore)]
         public List<ElementPair> ElementPair { get; set; }
         /// <summary>
-        /// Specifies whether the text is identical.
+        /// Specifies whether the aligned element is identical. Elements are considered identical despite minor
+        /// differences such as leading punctuation, end-of-sentence punctuation, whitespace, the presence or absence of
+        /// definite or indefinite articles, and others.
         /// </summary>
         [JsonProperty("identical_text", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IdenticalText { get; set; }
-        /// <summary>
-        /// Indicates that the elements aligned are contractual clauses of significance.
-        /// </summary>
-        [JsonProperty("significant_elements", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SignificantElements { get; set; }
         /// <summary>
         /// One or more hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>
         [JsonProperty("provenance_ids", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ProvenanceIds { get; set; }
+        /// <summary>
+        /// Indicates that the elements aligned are contractual clauses of significance.
+        /// </summary>
+        [JsonProperty("significant_elements", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SignificantElements { get; set; }
     }
 
 }

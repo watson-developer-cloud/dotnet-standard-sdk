@@ -21,25 +21,20 @@ using Newtonsoft.Json;
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Usage information.
+    /// Tokenization options.
     /// </summary>
-    public class Usage : BaseModel
+    public class SyntaxOptionsTokens : BaseModel
     {
         /// <summary>
-        /// Number of features used in the API call.
+        /// Set this to `true` to return the lemma for each token.
         /// </summary>
-        [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Features { get; set; }
+        [JsonProperty("lemma", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Lemma { get; set; }
         /// <summary>
-        /// Number of text characters processed.
+        /// Set this to `true` to return the part of speech for each token.
         /// </summary>
-        [JsonProperty("text_characters", NullValueHandling = NullValueHandling.Ignore)]
-        public long? TextCharacters { get; set; }
-        /// <summary>
-        /// Number of 10,000-character units processed.
-        /// </summary>
-        [JsonProperty("text_units", NullValueHandling = NullValueHandling.Ignore)]
-        public long? TextUnits { get; set; }
+        [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? PartOfSpeech { get; set; }
     }
 
 }

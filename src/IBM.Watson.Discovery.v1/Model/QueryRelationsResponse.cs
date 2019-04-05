@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -27,7 +27,7 @@ namespace IBM.Watson.Discovery.v1.Model
     public class QueryRelationsResponse : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Relations
+        /// Array of relationships for the relations query.
         /// </summary>
         [JsonProperty("relations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryRelationsRelationship> Relations { get; set; }

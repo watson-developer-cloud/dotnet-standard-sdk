@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
@@ -42,7 +43,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// corresponding option.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public object Output { get; set; }
+        public Dictionary<string, object> Output { get; set; }
     }
 
 }

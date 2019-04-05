@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -33,7 +33,7 @@ namespace IBM.Watson.CompareComply.v1.Model
         [JsonProperty("document_label", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentLabel { get; set; }
         /// <summary>
-        /// The text of the element.
+        /// The contents of the element.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
@@ -44,16 +44,16 @@ namespace IBM.Watson.CompareComply.v1.Model
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public Location Location { get; set; }
         /// <summary>
-        /// Description of the action specified by the element  and whom it affects.
+        /// Description of the action specified by the element and whom it affects.
         /// </summary>
         [JsonProperty("types", NullValueHandling = NullValueHandling.Ignore)]
-        public List<TypeLabel> Types { get; set; }
+        public List<TypeLabelComparison> Types { get; set; }
         /// <summary>
         /// List of functional categories into which the element falls; in other words, the subject matter of the
         /// element.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Category> Categories { get; set; }
+        public List<CategoryComparison> Categories { get; set; }
         /// <summary>
         /// List of document attributes.
         /// </summary>

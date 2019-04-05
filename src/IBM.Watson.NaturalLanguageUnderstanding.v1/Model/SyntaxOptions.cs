@@ -16,22 +16,25 @@
 */
 
 using IBM.Cloud.SDK.Core;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.SpeechToText.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// CustomWords.
+    /// Returns tokens and sentences from the input text.
     /// </summary>
-    public class CustomWords : BaseModel
+    public class SyntaxOptions : BaseModel
     {
         /// <summary>
-        /// An array of `CustomWord` objects that provides information about each custom word that is to be added to or
-        /// updated in the custom language model.
+        /// Tokenization options.
         /// </summary>
-        [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CustomWord> Words { get; set; }
+        [JsonProperty("tokens", NullValueHandling = NullValueHandling.Ignore)]
+        public SyntaxOptionsTokens Tokens { get; set; }
+        /// <summary>
+        /// Set this to `true` to return sentence information.
+        /// </summary>
+        [JsonProperty("sentences", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Sentences { get; set; }
     }
 
 }

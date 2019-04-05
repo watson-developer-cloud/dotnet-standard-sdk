@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -33,6 +33,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
+        /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
         /// </summary>
         /// <value>
         /// The source that this credentials object connects to.
@@ -40,6 +41,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
+        /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SourceTypeEnum
@@ -67,7 +69,13 @@ namespace IBM.Watson.Discovery.v1.Model
             /// Enum WEB_CRAWL for web_crawl
             /// </summary>
             [EnumMember(Value = "web_crawl")]
-            WEB_CRAWL
+            WEB_CRAWL,
+            
+            /// <summary>
+            /// Enum CLOUD_OBJECT_STORAGE for cloud_object_storage
+            /// </summary>
+            [EnumMember(Value = "cloud_object_storage")]
+            CLOUD_OBJECT_STORAGE
         }
 
         /// <summary>
@@ -76,6 +84,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
+        /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
         /// </summary>
         [JsonProperty("source_type", NullValueHandling = NullValueHandling.Ignore)]
         public SourceTypeEnum? SourceType { get; set; }

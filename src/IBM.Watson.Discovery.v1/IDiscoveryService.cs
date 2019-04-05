@@ -15,9 +15,10 @@
 *
 */
 
-using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using IBM.Cloud.SDK.Core;
+using System;
 using IBM.Watson.Discovery.v1.Model;
 using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 
@@ -36,7 +37,7 @@ namespace IBM.Watson.Discovery.v1
         Configuration GetConfiguration(string environmentId, string configurationId, Dictionary<string, object> customData = null);
         ListConfigurationsResponse ListConfigurations(string environmentId, string name = null, Dictionary<string, object> customData = null);
         Configuration UpdateConfiguration(string environmentId, string configurationId, Configuration configuration, Dictionary<string, object> customData = null);
-        TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, string step = null, string configurationId = null, Dictionary<string, object> customData = null);
         Collection CreateCollection(string environmentId, CreateCollectionRequest body, Dictionary<string, object> customData = null);
         DeleteCollectionResponse DeleteCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         Collection GetCollection(string environmentId, string collectionId, Dictionary<string, object> customData = null);
@@ -52,13 +53,13 @@ namespace IBM.Watson.Discovery.v1
         TokenDictStatusResponse GetStopwordListStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         TokenDictStatusResponse GetTokenizationDictionaryStatus(string environmentId, string collectionId, Dictionary<string, object> customData = null);
         Expansions ListExpansions(string environmentId, string collectionId, Dictionary<string, object> customData = null);
-        DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
+        DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, Dictionary<string, object> customData = null);
         DeleteDocumentResponse DeleteDocument(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null);
         DocumentStatus GetDocumentStatus(string environmentId, string collectionId, string documentId, Dictionary<string, object> customData = null);
-        DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
+        DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, Dictionary<string, object> customData = null);
+        QueryResponse FederatedQuery(string environmentId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
         QueryNoticesResponse FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
-        QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
+        QueryResponse Query(string environmentId, string collectionId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null);
         QueryEntitiesResponse QueryEntities(string environmentId, string collectionId, QueryEntities entityQuery, Dictionary<string, object> customData = null);
         QueryNoticesResponse QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, Dictionary<string, object> customData = null);
         QueryRelationsResponse QueryRelations(string environmentId, string collectionId, QueryRelations relationshipQuery, Dictionary<string, object> customData = null);

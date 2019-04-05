@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -27,7 +27,7 @@ namespace IBM.Watson.Discovery.v1.Model
     public class MetricTokenResponse : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Aggregations
+        /// Array of metric token aggregations.
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<MetricTokenAggregation> Aggregations { get; set; }

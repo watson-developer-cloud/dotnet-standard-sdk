@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
@@ -29,27 +30,27 @@ namespace IBM.Watson.Discovery.v1.Model
         /// The unique identifier of the document.
         /// </summary>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Id { get; set; }
-        /// <summary>
-        /// *Deprecated* This field is now part of the **result_metadata** object.
-        /// </summary>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Score { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic CollectionId { get; set; }
+        public string CollectionId { get; set; }
         /// <summary>
         /// Metadata of a query result.
         /// </summary>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic ResultMetadata { get; set; }
+        public QueryResultMetadata ResultMetadata { get; set; }
+        /// <summary>
+        /// Automatically extracted result title.
+        /// </summary>
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
     }
 
 }

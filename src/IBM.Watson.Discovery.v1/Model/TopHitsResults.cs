@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -35,7 +35,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// Top results returned by the aggregation.
         /// </summary>
         [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryResult> Hits { get; set; }
+        public List<dynamic> Hits { get; set; }
     }
 
 }

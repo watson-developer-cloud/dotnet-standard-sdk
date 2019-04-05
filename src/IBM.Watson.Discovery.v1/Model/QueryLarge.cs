@@ -103,7 +103,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("passages.characters", NullValueHandling = NullValueHandling.Ignore)]
         public long? PassagesCharacters { get; set; }
         /// <summary>
-        /// When `true` and used with a Watson Discovery News collection, duplicate results (based on the contents of
+        /// When `true`, and used with a Watson Discovery News collection, duplicate results (based on the contents of
         /// the **title** field) are removed. Duplicate comparison is limited to the current query only; **offset** is
         /// not considered. This parameter is currently Beta functionality.
         /// </summary>

@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
@@ -42,7 +43,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// `[[\"hello\",0.0,1.2],[\"world\",1.2,2.5]]`. Timestamps are returned only for the best alternative.
         /// </summary>
         [JsonProperty("timestamps", NullValueHandling = NullValueHandling.Ignore)]
-        public string[][] Timestamps { get; set; }
+        public List<string> Timestamps { get; set; }
         /// <summary>
         /// A confidence score for each word of the transcript as a list of lists. Each inner list consists of two
         /// elements: the word and its confidence score in the range of 0.0 to 1.0, for example:
@@ -50,7 +51,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// only with results marked as final.
         /// </summary>
         [JsonProperty("word_confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public string[][] WordConfidence { get; set; }
+        public List<string> WordConfidence { get; set; }
     }
 
 }

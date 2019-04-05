@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -32,7 +32,9 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Enabled { get; set; }
         /// <summary>
-        /// Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6.
+        /// Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6. The
+        /// content of the header field that the segmentation splits at is used as the **title** field for that
+        /// segmented result.
         /// </summary>
         [JsonProperty("selector_tags", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> SelectorTags { get; set; }

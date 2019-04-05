@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -37,7 +37,8 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
         /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
         /// or `ntml_v1` with **source_version** of `2016`
-        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`
+        /// -  \"source_type\": \"cloud_object_storage\"` - valid `credential_type`s: `aws4_hmac`.
         /// </summary>
         /// <value>
         /// The authentication method for this credentials definition. The  **credential_type** specified must be
@@ -47,7 +48,8 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
         /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
         /// or `ntml_v1` with **source_version** of `2016`
-        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`
+        /// -  \"source_type\": \"cloud_object_storage\"` - valid `credential_type`s: `aws4_hmac`.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CredentialTypeEnum
@@ -87,7 +89,32 @@ namespace IBM.Watson.Discovery.v1.Model
             /// Enum NTML_V1 for ntml_v1
             /// </summary>
             [EnumMember(Value = "ntml_v1")]
-            NTML_V1
+            NTML_V1,
+            
+            /// <summary>
+            /// Enum AWS4_HMAC for aws4_hmac
+            /// </summary>
+            [EnumMember(Value = "aws4_hmac")]
+            AWS4_HMAC
+        }
+
+        /// <summary>
+        /// The type of Sharepoint repository to connect to. Only valid, and required, with a **source_type** of
+        /// `sharepoint`.
+        /// </summary>
+        /// <value>
+        /// The type of Sharepoint repository to connect to. Only valid, and required, with a **source_type** of
+        /// `sharepoint`.
+        /// </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SourceVersionEnum
+        {
+            
+            /// <summary>
+            /// Enum ONLINE for online
+            /// </summary>
+            [EnumMember(Value = "online")]
+            ONLINE
         }
 
         /// <summary>
@@ -98,7 +125,8 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `\"source_type\": \"salesforce\"` - valid `credential_type`s: `username_password`
         /// -  `\"source_type\": \"sharepoint\"` - valid `credential_type`s: `saml` with **source_version** of `online`,
         /// or `ntml_v1` with **source_version** of `2016`
-        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`.
+        /// -  `\"source_type\": \"web_crawl\"` - valid `credential_type`s: `noauth` or `basic`
+        /// -  \"source_type\": \"cloud_object_storage\"` - valid `credential_type`s: `aws4_hmac`.
         /// </summary>
         [JsonProperty("credential_type", NullValueHandling = NullValueHandling.Ignore)]
         public CredentialTypeEnum? CredentialType { get; set; }
@@ -107,7 +135,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// `sharepoint`.
         /// </summary>
         [JsonProperty("source_version", NullValueHandling = NullValueHandling.Ignore)]
-        public string SourceVersion { get; set; }
+        public SourceVersionEnum? SourceVersion { get; set; }
         /// <summary>
         /// The **client_id** of the source that these credentials connect to. Only valid, and required, with a
         /// **credential_type** of `oauth2`.
@@ -200,6 +228,27 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("domain", NullValueHandling = NullValueHandling.Ignore)]
         public string Domain { get; set; }
+        /// <summary>
+        /// The endpoint associated with the cloud object store that your are connecting to. Only valid, and required,
+        /// with a **credential_type** of `aws4_hmac`.
+        /// </summary>
+        [JsonProperty("endpoint", NullValueHandling = NullValueHandling.Ignore)]
+        public string Endpoint { get; set; }
+        /// <summary>
+        /// The access key ID associated with the cloud object store. Only valid, and required, with a
+        /// **credential_type** of `aws4_hmac`. For more infomation, see the [cloud object store
+        /// documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-using-hmac-credentials#using-hmac-credentials).
+        /// </summary>
+        [JsonProperty("access_key_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string AccessKeyId { get; set; }
+        /// <summary>
+        /// The secret access key associated with the cloud object store. Only valid, and required, with a
+        /// **credential_type** of `aws4_hmac`. This value is never returned and is only used when creating or modifying
+        /// **credentials**. For more infomation, see the [cloud object store
+        /// documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-using-hmac-credentials#using-hmac-credentials).
+        /// </summary>
+        [JsonProperty("secret_access_key", NullValueHandling = NullValueHandling.Ignore)]
+        public string SecretAccessKey { get; set; }
     }
 
 }

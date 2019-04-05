@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -48,10 +48,10 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// **remove** - Deletes the **source_field** field. The **destination_field** is ignored for this operation.
         ///
-        /// **remove_nulls** - Removes all nested null (blank) field values from the JSON tree. **source_field** and
-        /// **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire JSON tree.
-        /// Typically, **remove_nulls** is invoked as the last normalization operation (if it is invoked at all, it can
-        /// be time-expensive).
+        /// **remove_nulls** - Removes all nested null (blank) field values from the ingested document. **source_field**
+        /// and **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire
+        /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
+        /// invoked at all, it can be time-expensive).
         /// </summary>
         /// <value>
         /// Identifies what type of operation to perform.
@@ -74,10 +74,10 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// **remove** - Deletes the **source_field** field. The **destination_field** is ignored for this operation.
         ///
-        /// **remove_nulls** - Removes all nested null (blank) field values from the JSON tree. **source_field** and
-        /// **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire JSON tree.
-        /// Typically, **remove_nulls** is invoked as the last normalization operation (if it is invoked at all, it can
-        /// be time-expensive).
+        /// **remove_nulls** - Removes all nested null (blank) field values from the ingested document. **source_field**
+        /// and **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire
+        /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
+        /// invoked at all, it can be time-expensive).
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OperationEnum
@@ -135,10 +135,10 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// **remove** - Deletes the **source_field** field. The **destination_field** is ignored for this operation.
         ///
-        /// **remove_nulls** - Removes all nested null (blank) field values from the JSON tree. **source_field** and
-        /// **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire JSON tree.
-        /// Typically, **remove_nulls** is invoked as the last normalization operation (if it is invoked at all, it can
-        /// be time-expensive).
+        /// **remove_nulls** - Removes all nested null (blank) field values from the ingested document. **source_field**
+        /// and **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire
+        /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
+        /// invoked at all, it can be time-expensive).
         /// </summary>
         [JsonProperty("operation", NullValueHandling = NullValueHandling.Ignore)]
         public OperationEnum? Operation { get; set; }

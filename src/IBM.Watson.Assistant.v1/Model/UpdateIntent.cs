@@ -15,9 +15,10 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -35,15 +36,26 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string Intent { get; set; }
         /// <summary>
-        /// The description of the intent.
+        /// The description of the intent. This string cannot contain carriage return, newline, or tab characters, and
+        /// it must be no longer than 128 characters.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
+        /// <summary>
         /// An array of user input examples for the intent.
         /// </summary>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateExample> Examples { get; set; }
+        public List<Example> Examples { get; set; }
     }
 
 }

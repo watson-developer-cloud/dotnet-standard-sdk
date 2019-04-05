@@ -16,11 +16,13 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.ToneAnalyzer.v3.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.ToneAnalyzer.v3.Model;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.ToneAnalyzer.v3
 {
@@ -103,8 +105,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
-        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
-        /// `charset` parameter. For example, 'text/plain;charset=utf-8'. (optional)</param>
         /// <param name="sentences">Indicates whether the service is to return an analysis of each individual sentence
         /// in addition to its analysis of the full document. If `true` (the default), the service returns results for
         /// each sentence. (optional, default to true)</param>
@@ -124,9 +124,11 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <param name="acceptLanguage">The desired language of the response. For two-character arguments, regional
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/plain;charset=utf-8'. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public ToneAnalysis Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
+        public ToneAnalysis Tone(ToneInput toneInput, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, string contentType = null, Dictionary<string, object> customData = null)
         {
             if (toneInput == null)
                 throw new ArgumentNullException(nameof(toneInput));
@@ -147,16 +149,16 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(contentLanguage))
                     restRequest.WithHeader("Content-Language", contentLanguage);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
                 if (sentences != null)
                     restRequest.WithArgument("sentences", sentences);
                 if (tones != null && tones.Count > 0)
@@ -165,11 +167,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=Tone");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ToneAnalysis>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ToneAnalysis();
-                
             }
             catch (AggregateException ae)
             {
@@ -228,7 +234,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -240,11 +246,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=tone_analyzer;service_version=v3;operation_id=ToneChat");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<UtteranceAnalyses>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new UtteranceAnalyses();
-                
             }
             catch (AggregateException ae)
             {

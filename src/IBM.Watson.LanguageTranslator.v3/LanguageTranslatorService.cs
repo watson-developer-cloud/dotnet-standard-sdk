@@ -18,13 +18,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Text;
-using IBM.Watson.LanguageTranslator.v3.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.LanguageTranslator.v3.Model;
+using System;
 
 namespace IBM.Watson.LanguageTranslator.v3
 {
@@ -115,7 +114,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/translate");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -123,11 +122,15 @@ namespace IBM.Watson.LanguageTranslator.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=Translate");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Translate"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TranslationResult>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TranslationResult();
-                
             }
             catch (AggregateException ae)
             {
@@ -165,7 +168,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -173,11 +176,15 @@ namespace IBM.Watson.LanguageTranslator.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=Identify");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Identify"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<IdentifiedLanguages>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new IdentifiedLanguages();
-                
             }
             catch (AggregateException ae)
             {
@@ -214,18 +221,22 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/identifiable_languages");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=ListIdentifiableLanguages");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListIdentifiableLanguages"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<IdentifiableLanguages>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new IdentifiableLanguages();
-                
             }
             catch (AggregateException ae)
             {
@@ -254,9 +265,6 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// models, use the `List models` method. Usually all IBM provided models are customizable. In addition, all
         /// your models that have been created via parallel corpus customization, can be further customized with a
         /// forced glossary.</param>
-        /// <param name="name">An optional model name that you can use to identify the model. Valid characters are
-        /// letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
-        /// (optional)</param>
         /// <param name="forcedGlossary">A TMX file with your customizations. The customizations in the file completely
         /// overwrite the domain translaton data, including high frequency or high confidence phrase translations. You
         /// can upload only one glossary with a file size less than 10 MB per call. A forced glossary should contain
@@ -264,9 +272,12 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <param name="parallelCorpus">A TMX file with parallel sentences for source and target language. You can
         /// upload multiple parallel_corpus files in one request. All uploaded parallel_corpus files combined, your
         /// parallel corpus must contain at least 5,000 parallel sentences to train successfully. (optional)</param>
+        /// <param name="name">An optional model name that you can use to identify the model. Valid characters are
+        /// letters, numbers, dashes, underscores, spaces and apostrophes. The maximum length is 32 characters.
+        /// (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
-        public TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, Dictionary<string, object> customData = null)
+        public TranslationModel CreateModel(string baseModelId, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, string name = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(baseModelId))
                 throw new ArgumentNullException(nameof(baseModelId));
@@ -286,7 +297,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
-                    formData.Add(forcedGlossaryContent, "forced_glossary");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", forcedGlossary.Name);
                 }
 
                 if (parallelCorpus != null)
@@ -295,7 +306,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(parallelCorpusContent, "parallel_corpus");
+                    formData.Add(parallelCorpusContent, "parallel_corpus", parallelCorpus.Name);
                 }
 
                 IClient client = this.Client;
@@ -307,7 +318,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/models");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -319,11 +330,15 @@ namespace IBM.Watson.LanguageTranslator.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=CreateModel");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "CreateModel"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TranslationModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TranslationModel();
-                
             }
             catch (AggregateException ae)
             {
@@ -362,18 +377,22 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=DeleteModel");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "DeleteModel"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteModelResult>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteModelResult();
-                
             }
             catch (AggregateException ae)
             {
@@ -414,18 +433,22 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=GetModel");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "GetModel"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TranslationModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TranslationModel();
-                
             }
             catch (AggregateException ae)
             {
@@ -467,7 +490,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -480,11 +503,15 @@ namespace IBM.Watson.LanguageTranslator.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=language_translator;service_version=v3;operation_id=ListModels");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListModels"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TranslationModels>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TranslationModels();
-                
             }
             catch (AggregateException ae)
             {

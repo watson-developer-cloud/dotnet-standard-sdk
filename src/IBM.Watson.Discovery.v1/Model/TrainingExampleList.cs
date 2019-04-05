@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -27,7 +27,7 @@ namespace IBM.Watson.Discovery.v1.Model
     public class TrainingExampleList : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Examples
+        /// Array of training examples.
         /// </summary>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<TrainingExample> Examples { get; set; }

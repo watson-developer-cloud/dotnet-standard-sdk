@@ -15,24 +15,28 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// UpdateSynonym.
+    /// A mention of a contextual entity.
     /// </summary>
-    public class UpdateSynonym : BaseModel
+    public class Mention : BaseModel
     {
         /// <summary>
-        /// The text of the synonym. This string must conform to the following restrictions:
-        /// - It cannot contain carriage return, newline, or tab characters.
-        /// - It cannot consist of only whitespace characters.
-        /// - It must be no longer than 64 characters.
+        /// The name of the entity.
         /// </summary>
-        [JsonProperty("synonym", NullValueHandling = NullValueHandling.Ignore)]
-        public string Synonym { get; set; }
+        [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
+        public string Entity { get; set; }
+        /// <summary>
+        /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
+        /// text.
+        /// </summary>
+        [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
+        public List<long?> Location { get; set; }
     }
 
 }

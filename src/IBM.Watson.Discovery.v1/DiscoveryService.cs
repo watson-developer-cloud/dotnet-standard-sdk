@@ -18,15 +18,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
-using IBM.Watson.Discovery.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using Environment = IBM.Watson.Discovery.v1.Model.Environment;
-using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
-using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.Discovery.v1.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
+using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 
 namespace IBM.Watson.Discovery.v1
 {
@@ -121,7 +124,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -129,11 +132,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateEnvironment");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateEnvironment"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Environment>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Environment();
-                
             }
             catch (AggregateException ae)
             {
@@ -170,18 +177,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteEnvironment");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteEnvironment"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteEnvironmentResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteEnvironmentResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -218,18 +229,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetEnvironment");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetEnvironment"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Environment>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Environment();
-                
             }
             catch (AggregateException ae)
             {
@@ -266,7 +281,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -275,11 +290,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListEnvironments");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListEnvironments"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListEnvironmentsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListEnvironmentsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -321,7 +340,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -330,11 +349,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListFields");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListFields"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListCollectionFieldsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -377,7 +400,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -385,11 +408,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateEnvironment");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateEnvironment"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Environment>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Environment();
-                
             }
             catch (AggregateException ae)
             {
@@ -451,7 +478,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -459,11 +486,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateConfiguration");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateConfiguration"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Configuration>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Configuration();
-                
             }
             catch (AggregateException ae)
             {
@@ -508,18 +539,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteConfiguration");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteConfiguration"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteConfigurationResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteConfigurationResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -559,18 +594,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetConfiguration");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetConfiguration"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Configuration>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Configuration();
-                
             }
             catch (AggregateException ae)
             {
@@ -610,7 +649,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -619,11 +658,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListConfigurations");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListConfigurations"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListConfigurationsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListConfigurationsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -688,7 +731,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/configurations/{configurationId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -696,11 +739,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateConfiguration");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateConfiguration"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Configuration>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Configuration();
-                
             }
             catch (AggregateException ae)
             {
@@ -721,14 +768,10 @@ namespace IBM.Watson.Discovery.v1
         /// (both are present at the same time), then request is rejected. The maximum supported configuration size is 1
         /// MB. Configuration parts larger than 1 MB are rejected.
         /// See the `GET /configurations/{configuration_id}` operation for an example configuration. (optional)</param>
-        /// <param name="step">Specify to only run the input document through the given step instead of running the
-        /// input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
-        /// (optional)</param>
-        /// <param name="configurationId">The ID of the configuration to use to process the document. If the
-        /// **configuration** form part is also provided (both are present at the same time), then the request will be
-        /// rejected. (optional)</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes.
-        /// Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
+        /// to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte.
+        /// Files larger than the supported size are rejected. (optional)</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document
         /// against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1
         /// MB. Metadata parts larger than 1 MB are rejected.
@@ -736,10 +779,15 @@ namespace IBM.Watson.Discovery.v1
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
-        /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="step">Specify to only run the input document through the given step instead of running the
+        /// input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
+        /// (optional)</param>
+        /// <param name="configurationId">The ID of the configuration to use to process the document. If the
+        /// **configuration** form part is also provided (both are present at the same time), then the request will be
+        /// rejected. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TestDocument" />TestDocument</returns>
-        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, string step = null, string configurationId = null, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public TestDocument TestConfigurationInEnvironment(string environmentId, string configuration = null, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, string step = null, string configurationId = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -766,7 +814,7 @@ namespace IBM.Watson.Discovery.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file");
+                    formData.Add(fileContent, "file", file.Name);
                 }
 
                 if (metadata != null)
@@ -785,7 +833,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -797,11 +845,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=TestConfigurationInEnvironment");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "TestConfigurationInEnvironment"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TestDocument>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TestDocument();
-                
             }
             catch (AggregateException ae)
             {
@@ -840,7 +892,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -848,11 +900,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateCollection");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Collection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Collection();
-                
             }
             catch (AggregateException ae)
             {
@@ -892,18 +948,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteCollection");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteCollectionResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteCollectionResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -943,18 +1003,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetCollection");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Collection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Collection();
-                
             }
             catch (AggregateException ae)
             {
@@ -996,18 +1060,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/fields");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCollectionFields");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListCollectionFields"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListCollectionFieldsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1047,7 +1115,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1056,11 +1124,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCollections");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListCollections"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListCollectionsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListCollectionsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1101,7 +1173,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1109,11 +1181,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateCollection");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Collection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Collection();
-                
             }
             catch (AggregateException ae)
             {
@@ -1159,7 +1235,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1167,11 +1243,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateExpansions");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateExpansions"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Expansions>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Expansions();
-                
             }
             catch (AggregateException ae)
             {
@@ -1227,7 +1307,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1235,11 +1315,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateStopwordList");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateStopwordList"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1283,7 +1367,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1291,11 +1375,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateTokenizationDictionary");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateTokenizationDictionary"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1338,18 +1426,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteExpansions");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteExpansions"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1392,18 +1485,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteStopwordList");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteStopwordList"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1445,18 +1543,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTokenizationDictionary");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteTokenizationDictionary"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -1498,18 +1601,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetStopwordListStatus");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetStopwordListStatus"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1551,18 +1658,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTokenizationDictionaryStatus");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetTokenizationDictionaryStatus"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TokenDictStatusResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1605,18 +1716,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListExpansions");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListExpansions"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Expansions>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Expansions();
-                
             }
             catch (AggregateException ae)
             {
@@ -1647,12 +1762,17 @@ namespace IBM.Watson.Discovery.v1
         ///   * Fields with empty name values after normalization are filtered out before indexing.
         ///
         ///   * Fields containing the following characters after normalization are filtered out before indexing: `#` and
-        /// `,`.
+        /// `,`
+        ///
+        ///  **Note:** Documents can be added with a specific **document_id** by using the
+        /// **_/v1/environments/{environment_id}/collections/{collection_id}/documents** method.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes.
-        /// Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
+        /// to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte.
+        /// Files larger than the supported size are rejected. (optional)</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document
         /// against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1
         /// MB. Metadata parts larger than 1 MB are rejected.
@@ -1660,10 +1780,9 @@ namespace IBM.Watson.Discovery.v1
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
-        /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public DocumentAccepted AddDocument(string environmentId, string collectionId, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1704,7 +1823,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1712,11 +1831,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=AddDocument");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "AddDocument"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DocumentAccepted>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DocumentAccepted();
-                
             }
             catch (AggregateException ae)
             {
@@ -1762,18 +1885,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteDocument");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteDocument"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteDocumentResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteDocumentResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -1820,18 +1947,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetDocumentStatus");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetDocumentStatus"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DocumentStatus>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DocumentStatus();
-                
             }
             catch (AggregateException ae)
             {
@@ -1844,13 +1975,19 @@ namespace IBM.Watson.Discovery.v1
         /// <summary>
         /// Update a document.
         ///
-        /// Replace an existing document. Starts ingesting a document with optional metadata.
+        /// Replace an existing document or add a document with a specified **document_id**. Starts ingesting a document
+        /// with optional metadata.
+        ///
+        /// **Note:** When uploading a new document with this method it automatically replaces any document stored with
+        /// the same **document_id** if it exists.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="documentId">The ID of the document.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size is 50 megabytes.
-        /// Files larger than 50 megabytes is rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
+        /// to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte.
+        /// Files larger than the supported size are rejected. (optional)</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">If you're using the Data Crawler to upload your documents, you can test a document
         /// against the type of metadata that the Data Crawler might send. The maximum supported metadata file size is 1
         /// MB. Metadata parts larger than 1 MB are rejected.
@@ -1858,10 +1995,9 @@ namespace IBM.Watson.Discovery.v1
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
-        /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
-        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string metadata = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public DocumentAccepted UpdateDocument(string environmentId, string collectionId, string documentId, System.IO.FileStream file = null, string fileContentType = null, string metadata = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -1904,7 +2040,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -1912,11 +2048,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateDocument");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateDocument"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DocumentAccepted>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DocumentAccepted();
-                
             }
             catch (AggregateException ae)
             {
@@ -1930,72 +2070,16 @@ namespace IBM.Watson.Discovery.v1
         ///
         /// Complex queries might be too long for a standard method query. By using this method, you can construct
         /// longer queries. However, these queries may take longer to complete than the standard method. For details,
-        /// see the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html).
+        /// see the [Discovery service
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
-        /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that
-        /// don't mention the query content. Filter searches are better for metadata type searches and when you are
-        /// trying to get a sense of concepts in the data set. (optional)</param>
-        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
-        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
-        /// (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
-        /// the same time. (optional)</param>
-        /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
-        /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
-        /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
-        /// (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
-        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
-        /// (optional)</param>
-        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
-        /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a
-        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
-        /// sort direction if no prefix is specified. (optional)</param>
-        /// <param name="highlight">When true a highlight field is returned for each result which contains the fields
-        /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
-        /// (optional)</param>
-        /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
-        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
-        /// to false)</param>
-        /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
-        /// considered. This parameter is currently Beta functionality. (optional)</param>
-        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
-        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
-        /// documents.
-        ///
-        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
-        /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
-        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
-        /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
-        /// (optional)</param>
-        /// <param name="passages">A passages query that returns the most relevant passages from the results.
-        /// (optional)</param>
-        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
-        /// parameter not specified, then all top-level fields are included. (optional)</param>
-        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
-        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
-        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
-        /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
-        /// <param name="bias">Field which the returned results will be biased against. The specified field must be either
-        /// a **date** or **number** format. When a **date** type field is specified returned results are biased towards 
-        /// field values closer to the current date. When a **number** type field is specified, returned results are
-        /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
-        /// (optional)</param>
-
+        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse FederatedQuery(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, bool? passages = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
+        public QueryResponse FederatedQuery(string environmentId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -2016,47 +2100,25 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (loggingOptOut != null)
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
-
-                QueryLarge queryLarge = new QueryLarge()
-                {
-                    Filter = filter,
-                    Query = query,
-                    NaturalLanguageQuery = naturalLanguageQuery,
-                    Passages = passages,
-                    Aggregation = aggregation,
-                    Count = count,
-                    ReturnFields = (returnFields == null || returnFields.Count < 1) ? null : string.Join(", ", returnFields.ToArray()),
-                    Offset = offset,
-                    Sort = (sort == null || sort.Count < 1) ? null : string.Join(", ", sort.ToArray()),
-                    Highlight = highlight,
-                    PassagesFields = (passagesFields == null || passagesFields.Count < 1) ? null : string.Join(", ", passagesFields.ToArray()),
-                    PassagesCount = passagesCount,
-                    PassagesCharacters = passagesCharacters,
-                    Deduplicate = deduplicate,
-                    DeduplicateField = deduplicateField,
-                    CollectionIds = (collectionIds == null || collectionIds.Count < 1) ? null : string.Join(", ", collectionIds.ToArray()),
-                    Similar = similar,
-                    SimilarDocumentIds = (similarDocumentIds == null || similarDocumentIds.Count < 1) ? null : string.Join(", ", similarDocumentIds.ToArray()),
-                    SimilarFields = (similarFields == null || similarFields.Count < 1) ? null : string.Join(", ", similarFields.ToArray()),
-                    Bias = bias
-                };
-
-                restRequest.WithBody<QueryLarge>(queryLarge);
-
+                restRequest.WithBody<QueryLarge>(queryLong);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=FederatedQuery");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "FederatedQuery"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2071,8 +2133,8 @@ namespace IBM.Watson.Discovery.v1
         ///
         /// Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated
         /// when ingesting documents and performing relevance training. See the [Discovery service
-        /// documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query
-        /// language.
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts)
+        /// for more details on the query language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
@@ -2089,11 +2151,13 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
         /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
         /// aggregations, see the Query reference. (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
+        /// together in any one query is **10000**. (optional)</param>
         /// <param name="returnFields">A comma-separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
+        /// **count** and **offset** values together in any one query is **10000**. (optional)</param>
         /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
         /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
         /// sort direction if no prefix is specified. (optional)</param>
@@ -2137,7 +2201,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2172,11 +2236,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=FederatedQueryNotices");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "FederatedQueryNotices"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryNoticesResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryNoticesResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2191,72 +2259,17 @@ namespace IBM.Watson.Discovery.v1
         ///
         /// Complex queries might be too long for a standard method query. By using this method, you can construct
         /// longer queries. However, these queries may take longer to complete than the standard method. For details,
-        /// see the [Discovery service documentation](https://console.bluemix.net/docs/services/discovery/using.html).
+        /// see the [Discovery service
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="filter">A cacheable query that limits the documents returned to exclude any documents that
-        /// don't mention the query content. Filter searches are better for metadata type searches and when you are
-        /// trying to get a sense of concepts in the data set. (optional)</param>
-        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
-        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
-        /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
-        /// (optional)</param>
-        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
-        /// training data and natural language understanding. You cannot use **natural_language_query** and **query** at
-        /// the same time. (optional)</param>
-        /// <param name="passages">A passages query that returns the most relevant passages from the results.
-        /// (optional)</param>
-        /// <param name="aggregation">An aggregation search uses combinations of filters and query search to return an
-        /// exact answer. Aggregations are useful for building applications, because you can use them to build lists,
-        /// tables, and time series. For a full list of possible aggregrations, see the Query reference.
-        /// (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
-        /// <param name="returnFields">A comma separated list of the portion of the document hierarchy to return.
-        /// (optional)</param>
-        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10, and the offset is 8, it returns the last two results. (optional)</param>
-        /// <param name="sort">A comma separated list of fields in the document to sort on. You can optionally specify a
-        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
-        /// sort direction if no prefix is specified. (optional)</param>
-        /// <param name="highlight">When true a highlight field is returned for each result which contains the fields
-        /// that match the query with `<em></em>` tags around the matching query terms. Defaults to false.
-        /// (optional)</param>
-        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
-        /// parameter not specified, then all top-level fields are included. (optional)</param>
-        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
-        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
-        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have. The
-        /// default is `400`. The minimum is `50`. The maximum is `2000`. (optional)</param>
-        /// <param name="deduplicate">When `true` and used with a Watson Discovery News collection, duplicate results
-        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
-        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
-        /// to false)</param>
-        /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
-        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
-        /// considered. This parameter is currently Beta functionality. (optional)</param>
-        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
-        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
-        /// <param name="similarDocumentIds">A comma-separated list of document IDs that will be used to find similar
-        /// documents.
-        ///
-        /// **Note:** If the **natural_language_query** parameter is also specified, it will be used to expand the scope
-        /// of the document similarity search to include the natural language query. Other query parameters, such as
-        /// **filter** and **query** are subsequently applied and reduce the query scope. (optional)</param>
-        /// <param name="similarFields">A comma-separated list of field names that will be used as a basis for
-        /// comparison to identify similar documents. If not specified, the entire document is used for comparison.
-        /// (optional)</param>
-        /// <param name="bias">Field which the returned results will be biased against. The specified field must be either
-        /// a **date** or **number** format. When a **date** type field is specified returned results are biased towards 
-        /// field values closer to the current date. When a **number** type field is specified, returned results are
-        /// biased towards higher field values. This parameter cannot be used in the same query as the **sort** parameter.
-        /// (optional)</param>
-
+        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
         /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
         /// default to false)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public QueryResponse Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null, string bias = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
+        public QueryResponse Query(string environmentId, string collectionId, QueryLarge queryLong = null, bool? loggingOptOut = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(environmentId))
                 throw new ArgumentNullException(nameof(environmentId));
@@ -2279,46 +2292,25 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (loggingOptOut != null)
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", loggingOptOut.ToString());
-
-                QueryLarge queryLarge = new QueryLarge()
-                {
-                    Filter = filter,
-                    Query = query,
-                    NaturalLanguageQuery = naturalLanguageQuery,
-                    Passages = passages,
-                    Aggregation = aggregation,
-                    Count = count,
-                    ReturnFields = (returnFields == null || returnFields.Count < 1) ? null : string.Join(", ", returnFields.ToArray()),
-                    Offset = offset,
-                    Sort = (sort == null || sort.Count < 1) ? null : string.Join(", ", sort.ToArray()),
-                    Highlight = highlight,
-                    PassagesFields = (passagesFields == null || passagesFields.Count < 1) ? null : string.Join(", ", passagesFields.ToArray()),
-                    PassagesCount = passagesCount,
-                    PassagesCharacters = passagesCharacters,
-                    Deduplicate = deduplicate,
-                    DeduplicateField = deduplicateField,
-                    Similar = similar,
-                    SimilarDocumentIds = (similarDocumentIds == null || similarDocumentIds.Count < 1) ? null : string.Join(", ", similarDocumentIds.ToArray()),
-                    SimilarFields = (similarFields == null || similarFields.Count < 1) ? null : string.Join(", ", similarFields.ToArray()),
-                    Bias = bias
-                };
-
-                restRequest.WithBody<QueryLarge>(queryLarge);
-
+                restRequest.WithBody<QueryLarge>(queryLong);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=Query");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "Query"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2331,8 +2323,8 @@ namespace IBM.Watson.Discovery.v1
         /// <summary>
         /// Knowledge Graph entity query.
         ///
-        /// See the [Knowledge Graph
-        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
+        /// See the [Knowledge Graph documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-kg#kg)
+        /// for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2365,7 +2357,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2373,11 +2365,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryEntities");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "QueryEntities"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryEntitiesResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryEntitiesResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2392,8 +2388,8 @@ namespace IBM.Watson.Discovery.v1
         ///
         /// Queries for notices (errors or warnings) that might have been generated by the system. Notices are generated
         /// when ingesting documents and performing relevance training. See the [Discovery service
-        /// documentation](https://console.bluemix.net/docs/services/discovery/using.html) for more details on the query
-        /// language.
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts)
+        /// for more details on the query language.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2412,11 +2408,13 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
         /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
         /// aggregations, see the Query reference. (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
+        /// together in any one query is **10000**. (optional)</param>
         /// <param name="returnFields">A comma-separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
+        /// **count** and **offset** values together in any one query is **10000**. (optional)</param>
         /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
         /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
         /// sort direction if no prefix is specified. (optional)</param>
@@ -2426,9 +2424,9 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
         /// parameter not specified, then all top-level fields are included. (optional)</param>
         /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
-        /// the requested total is not found. (optional, default to 10)</param>
+        /// the requested total is not found. (optional)</param>
         /// <param name="passagesCharacters">The approximate number of characters that any one passage will have.
-        /// (optional, default to 400)</param>
+        /// (optional)</param>
         /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
         /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
         /// considered. This parameter is currently Beta functionality. (optional)</param>
@@ -2466,7 +2464,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/notices");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2507,11 +2505,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryNotices");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "QueryNotices"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryNoticesResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryNoticesResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2524,8 +2526,8 @@ namespace IBM.Watson.Discovery.v1
         /// <summary>
         /// Knowledge Graph relationship query.
         ///
-        /// See the [Knowledge Graph
-        /// documentation](https://console.bluemix.net/docs/services/discovery/building-kg.html) for more details.
+        /// See the [Knowledge Graph documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-kg#kg)
+        /// for more details.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2558,7 +2560,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2566,11 +2568,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryRelations");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "QueryRelations"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<QueryRelationsResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new QueryRelationsResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -2616,7 +2622,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2624,11 +2630,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=AddTrainingData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "AddTrainingData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingQuery>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingQuery();
-                
             }
             catch (AggregateException ae)
             {
@@ -2676,7 +2686,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -2684,11 +2694,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateTrainingExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateTrainingExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingExample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingExample();
-                
             }
             catch (AggregateException ae)
             {
@@ -2730,18 +2744,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteAllTrainingData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteAllTrainingData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -2786,18 +2805,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTrainingData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteTrainingData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -2845,18 +2869,23 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteTrainingExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteTrainingExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -2901,18 +2930,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTrainingData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetTrainingData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingQuery>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingQuery();
-                
             }
             catch (AggregateException ae)
             {
@@ -2960,18 +2993,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetTrainingExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetTrainingExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingExample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingExample();
-                
             }
             catch (AggregateException ae)
             {
@@ -3013,18 +3050,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListTrainingData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListTrainingData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingDataSet>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingDataSet();
-                
             }
             catch (AggregateException ae)
             {
@@ -3069,18 +3110,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListTrainingExamples");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListTrainingExamples"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingExampleList>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingExampleList();
-                
             }
             catch (AggregateException ae)
             {
@@ -3131,7 +3176,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3139,11 +3184,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateTrainingExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateTrainingExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TrainingExample>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TrainingExample();
-                
             }
             catch (AggregateException ae)
             {
@@ -3160,7 +3209,7 @@ namespace IBM.Watson.Discovery.v1
         ///
         /// You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://console.bluemix.net/docs/services/discovery/information-security.html).
+        /// security](https://cloud.ibm.com/docs/services/discovery?topic=discovery-information-security#information-security).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
@@ -3186,7 +3235,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3195,11 +3244,16 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteUserData");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteUserData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -3238,7 +3292,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/events");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3246,11 +3300,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateEvent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateEvent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<CreateEventResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new CreateEventResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3293,7 +3351,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/event_rate");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3306,11 +3364,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsEventRate");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetMetricsEventRate"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MetricResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MetricResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3351,7 +3413,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3364,11 +3426,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQuery");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetMetricsQuery"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MetricResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MetricResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3411,7 +3477,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_event");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3424,11 +3490,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryEvent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryEvent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MetricResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MetricResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3470,7 +3540,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/number_of_queries_with_no_search_results");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3483,11 +3553,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryNoResults");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryNoResults"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MetricResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MetricResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3504,7 +3578,8 @@ namespace IBM.Watson.Discovery.v1
         /// "click" event rate within the recording period (queries and events are stored for 30 days). A query token is
         /// an individual word or unigram within the query string.
         /// </summary>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
+        /// together in any one query is **10000**. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MetricTokenResponse" />MetricTokenResponse</returns>
         public MetricTokenResponse GetMetricsQueryTokenEvent(long? count = null, Dictionary<string, object> customData = null)
@@ -3526,7 +3601,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/metrics/top_query_tokens_with_event_rate");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3535,11 +3610,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetMetricsQueryTokenEvent");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryTokenEvent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MetricTokenResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new MetricTokenResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3562,9 +3641,11 @@ namespace IBM.Watson.Discovery.v1
         /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
         /// relevant search results. You cannot use **natural_language_query** and **query** at the same time.
         /// (optional)</param>
-        /// <param name="count">Number of results to return. (optional, default to 10)</param>
+        /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
+        /// together in any one query is **10000**. (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
-        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
+        /// **count** and **offset** values together in any one query is **10000**. (optional)</param>
         /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
         /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
         /// sort direction if no prefix is specified. (optional)</param>
@@ -3589,7 +3670,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3606,11 +3687,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=QueryLog");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "QueryLog"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<LogQueryResponse>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new LogQueryResponse();
-                
             }
             catch (AggregateException ae)
             {
@@ -3654,7 +3739,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3662,11 +3747,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateCredentials");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateCredentials"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Credentials>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Credentials();
-                
             }
             catch (AggregateException ae)
             {
@@ -3708,18 +3797,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteCredentials");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteCredentials"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DeleteCredentials>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new DeleteCredentials();
-                
             }
             catch (AggregateException ae)
             {
@@ -3764,18 +3857,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetCredentials");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetCredentials"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Credentials>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Credentials();
-                
             }
             catch (AggregateException ae)
             {
@@ -3816,18 +3913,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListCredentials");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListCredentials"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<CredentialsList>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new CredentialsList();
-                
             }
             catch (AggregateException ae)
             {
@@ -3874,7 +3975,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/environments/{environmentId}/credentials/{credentialId}");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3882,11 +3983,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=UpdateCredentials");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "UpdateCredentials"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Credentials>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Credentials();
-                
             }
             catch (AggregateException ae)
             {
@@ -3925,7 +4030,7 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -3933,11 +4038,15 @@ namespace IBM.Watson.Discovery.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=CreateGateway");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "CreateGateway"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Gateway>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Gateway();
-                
             }
             catch (AggregateException ae)
             {
@@ -3979,18 +4088,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways/{gatewayId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=DeleteGateway");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "DeleteGateway"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<GatewayDelete>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new GatewayDelete();
-                
             }
             catch (AggregateException ae)
             {
@@ -4032,18 +4145,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways/{gatewayId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=GetGateway");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "GetGateway"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Gateway>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Gateway();
-                
             }
             catch (AggregateException ae)
             {
@@ -4082,18 +4199,22 @@ namespace IBM.Watson.Discovery.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/gateways");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=discovery;service_version=v1;operation_id=ListGateways");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("discovery", "v1", "ListGateways"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<GatewayList>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new GatewayList();
-                
             }
             catch (AggregateException ae)
             {

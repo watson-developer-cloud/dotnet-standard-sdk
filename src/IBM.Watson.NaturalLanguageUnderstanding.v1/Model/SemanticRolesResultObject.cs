@@ -15,31 +15,27 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// UpdateCollectionRequest.
+    /// The extracted object from the sentence.
     /// </summary>
-    public class UpdateCollectionRequest : BaseModel
+    public class SemanticRolesResultObject : BaseModel
     {
         /// <summary>
-        /// The name of the collection.
+        /// Object text.
         /// </summary>
-        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
-        public string Name { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
         /// <summary>
-        /// A description of the collection.
+        /// An array of extracted keywords.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
-        /// <summary>
-        /// The ID of the configuration in which the collection is to be updated.
-        /// </summary>
-        [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string ConfigurationId { get; set; }
+        [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SemanticRolesKeyword> Keywords { get; set; }
     }
 
 }

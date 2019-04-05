@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using IBM.Cloud.SDK.Core;
 using IBM.Watson.TextToSpeech.v1.Model;
 
@@ -25,7 +26,7 @@ namespace IBM.Watson.TextToSpeech.v1
     {
         Voice GetVoice(string voice, string customizationId = null, Dictionary<string, object> customData = null);
         Voices ListVoices(Dictionary<string, object> customData = null);
-        System.IO.MemoryStream Synthesize(Text text, string accept = null, string voice = null, string customizationId = null, Dictionary<string, object> customData = null);
+        System.IO.MemoryStream Synthesize(Text text, string voice = null, string customizationId = null, string accept = null, Dictionary<string, object> customData = null);
         Pronunciation GetPronunciation(string text, string voice = null, string format = null, string customizationId = null, Dictionary<string, object> customData = null);
         VoiceModel CreateVoiceModel(CreateVoiceModel createVoiceModel, Dictionary<string, object> customData = null);
         BaseModel DeleteVoiceModel(string customizationId, Dictionary<string, object> customData = null);

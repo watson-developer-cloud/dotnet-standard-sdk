@@ -21,25 +21,15 @@ using Newtonsoft.Json;
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// SemanticRolesAction.
+    /// Delete model results.
     /// </summary>
-    public class SemanticRolesAction : BaseModel
+    public class DeleteModelResults : BaseModel
     {
         /// <summary>
-        /// Analyzed text that corresponds to the action.
+        /// model_id of the deleted model.
         /// </summary>
-        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
-        /// <summary>
-        /// normalized version of the action.
-        /// </summary>
-        [JsonProperty("normalized", NullValueHandling = NullValueHandling.Ignore)]
-        public string Normalized { get; set; }
-        /// <summary>
-        /// Gets or Sets Verb
-        /// </summary>
-        [JsonProperty("verb", NullValueHandling = NullValueHandling.Ignore)]
-        public SemanticRolesVerb Verb { get; set; }
+        [JsonProperty("deleted", NullValueHandling = NullValueHandling.Ignore)]
+        public string Deleted { get; set; }
     }
 
 }

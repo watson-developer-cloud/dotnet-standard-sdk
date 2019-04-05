@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -95,7 +95,13 @@ namespace IBM.Watson.Discovery.v1.Model
             /// Enum NL for nl
             /// </summary>
             [EnumMember(Value = "nl")]
-            NL
+            NL,
+            
+            /// <summary>
+            /// Enum ZH_CN for zh-CN
+            /// </summary>
+            [EnumMember(Value = "zh-CN")]
+            ZH_CN
         }
 
         /// <summary>

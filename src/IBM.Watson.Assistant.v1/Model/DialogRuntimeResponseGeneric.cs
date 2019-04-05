@@ -15,9 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -166,6 +166,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("topic", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Topic { get; private set; }
+        /// <summary>
+        /// The ID of the dialog node that the **topic** property is taken from. The **topic** property is populated
+        /// using the value of the dialog node's **user_label** property.
+        /// </summary>
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
         /// <summary>
         /// An array of objects describing the possible matching dialog nodes from which the user can choose.
         ///

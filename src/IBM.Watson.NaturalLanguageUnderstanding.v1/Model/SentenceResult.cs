@@ -15,21 +15,27 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v2.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Contains information specific to a particular skill within the Assistant.
+    /// SentenceResult.
     /// </summary>
-    public class MessageContextSkill : BaseModel
+    public class SentenceResult : BaseModel
     {
         /// <summary>
-        /// Arbitrary variables that can be read and written to by a particular skill within the Assistant.
+        /// The sentence.
         /// </summary>
-        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserDefined { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
+        /// <summary>
+        /// Character offsets indicating the beginning and end of the sentence in the analyzed text.
+        /// </summary>
+        [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
+        public List<long?> Location { get; set; }
     }
 
 }

@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -30,12 +30,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The text of the user input example.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string ExampleText { get; set; }
+        public string Text { get; set; }
         /// <summary>
         /// The name of the intent.
         /// </summary>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string IntentName { get; set; }
+        public string Intent { get; set; }
         /// <summary>
         /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
         /// text.

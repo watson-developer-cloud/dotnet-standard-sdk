@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -30,7 +30,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// An array of objects describing log events.
         /// </summary>
         [JsonProperty("logs", NullValueHandling = NullValueHandling.Ignore)]
-        public List<LogExport> Logs { get; set; }
+        public List<Log> Logs { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>

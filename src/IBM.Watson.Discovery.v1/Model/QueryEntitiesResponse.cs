@@ -15,19 +15,19 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// An array of entities resulting from the query.
+    /// An object that contains an array of entities resulting from the query.
     /// </summary>
     public class QueryEntitiesResponse : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Entities
+        /// Array of entities that results from the query.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryEntitiesResponseItem> Entities { get; set; }

@@ -15,8 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -71,48 +72,48 @@ namespace IBM.Watson.Discovery.v1.Model
         /// The unique identifier of the document.
         /// </summary>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Id { get; set; }
-        /// <summary>
-        /// *Deprecated* This field is now part of the **result_metadata** object.
-        /// </summary>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Score { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic CollectionId { get; set; }
+        public string CollectionId { get; set; }
         /// <summary>
         /// Metadata of a query result.
         /// </summary>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic ResultMetadata { get; set; }
+        public QueryResultMetadata ResultMetadata { get; set; }
+        /// <summary>
+        /// Automatically extracted result title.
+        /// </summary>
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
         /// <summary>
         /// The internal status code returned by the ingestion subsystem indicating the overall result of ingesting the
         /// source document.
         /// </summary>
         [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Code { get; set; }
+        public long? Code { get; set; }
         /// <summary>
         /// Name of the original source file (if available).
         /// </summary>
         [JsonProperty("filename", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Filename { get; set; }
+        public string Filename { get; set; }
         /// <summary>
         /// The SHA-1 hash of the original source file (formatted as a hexadecimal string).
         /// </summary>
         [JsonProperty("sha1", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Sha1 { get; set; }
+        public string Sha1 { get; set; }
         /// <summary>
         /// Array of notices for the document.
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Notices { get; set; }
+        public List<Notice> Notices { get; set; }
     }
 
 }

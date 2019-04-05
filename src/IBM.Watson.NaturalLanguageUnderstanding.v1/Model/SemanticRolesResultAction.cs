@@ -18,28 +18,28 @@
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.CompareComply.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// The feedback to be added to an element in the document.
+    /// The extracted action from the sentence.
     /// </summary>
-    public class FeedbackInput : BaseModel
+    public class SemanticRolesResultAction : BaseModel
     {
         /// <summary>
-        /// An optional string identifying the user.
+        /// Analyzed text that corresponds to the action.
         /// </summary>
-        [JsonProperty("user_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserId { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
         /// <summary>
-        /// An optional comment on or description of the feedback.
+        /// normalized version of the action.
         /// </summary>
-        [JsonProperty("comment", NullValueHandling = NullValueHandling.Ignore)]
-        public string Comment { get; set; }
+        [JsonProperty("normalized", NullValueHandling = NullValueHandling.Ignore)]
+        public string Normalized { get; set; }
         /// <summary>
-        /// Feedback data for submission.
+        /// Gets or Sets Verb
         /// </summary>
-        [JsonProperty("feedback_data", NullValueHandling = NullValueHandling.Ignore)]
-        public FeedbackDataInput FeedbackData { get; set; }
+        [JsonProperty("verb", NullValueHandling = NullValueHandling.Ignore)]
+        public SemanticRolesVerb Verb { get; set; }
     }
 
 }

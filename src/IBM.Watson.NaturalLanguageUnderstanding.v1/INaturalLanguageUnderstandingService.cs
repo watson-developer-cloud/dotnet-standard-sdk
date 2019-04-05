@@ -23,7 +23,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
     public partial interface INaturalLanguageUnderstandingService
     {
         AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null);
-        InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null);
+        DeleteModelResults DeleteModel(string modelId, Dictionary<string, object> customData = null);
         ListModelsResults ListModels(Dictionary<string, object> customData = null);
     }
 }

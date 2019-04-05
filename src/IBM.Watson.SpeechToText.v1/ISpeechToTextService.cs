@@ -15,8 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
+using System.Runtime.Serialization;
 using IBM.Watson.SpeechToText.v1.Model;
 
 namespace IBM.Watson.SpeechToText.v1
@@ -25,10 +26,10 @@ namespace IBM.Watson.SpeechToText.v1
     {
         SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null);
         SpeechModels ListModels(Dictionary<string, object> customData = null);
-        SpeechRecognitionResults RecognizeSessionless(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
+        SpeechRecognitionResults Recognize(byte[] audio, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, string contentType = null, Dictionary<string, object> customData = null);
         RecognitionJob CheckJob(string id, Dictionary<string, object> customData = null);
         RecognitionJobs CheckJobs(Dictionary<string, object> customData = null);
-        RecognitionJob CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, Dictionary<string, object> customData = null);
+        RecognitionJob CreateJob(byte[] audio, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, string contentType = null, Dictionary<string, object> customData = null);
         BaseModel DeleteJob(string id, Dictionary<string, object> customData = null);
         RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null, Dictionary<string, object> customData = null);
         BaseModel UnregisterCallback(string callbackUrl, Dictionary<string, object> customData = null);
@@ -58,8 +59,8 @@ namespace IBM.Watson.SpeechToText.v1
         AcousticModels ListAcousticModels(string language = null, Dictionary<string, object> customData = null);
         BaseModel ResetAcousticModel(string customizationId, Dictionary<string, object> customData = null);
         BaseModel TrainAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null);
-        BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null, bool? force = null);
-        BaseModel AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null, Dictionary<string, object> customData = null);
+        BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null, Dictionary<string, object> customData = null);
+        BaseModel AddAudio(string customizationId, string audioName, byte[] audioResource, string containedContentType = null, bool? allowOverwrite = null, string contentType = null, Dictionary<string, object> customData = null);
         BaseModel DeleteAudio(string customizationId, string audioName, Dictionary<string, object> customData = null);
         AudioListing GetAudio(string customizationId, string audioName, Dictionary<string, object> customData = null);
         AudioResources ListAudio(string customizationId, Dictionary<string, object> customData = null);

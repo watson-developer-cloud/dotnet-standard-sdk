@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -51,12 +51,12 @@ namespace IBM.Watson.Discovery.v1.Model
         /// An array of objects that describe each step in the preview process.
         /// </summary>
         [JsonProperty("snapshots", NullValueHandling = NullValueHandling.Ignore)]
-        public List<DocumentSnapshot> Snapshots { get; set; }
+        public virtual List<DocumentSnapshot> Snapshots { get; private set; }
         /// <summary>
         /// An array of notice messages about the preview operation.
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Notice> Notices { get; set; }
+        public virtual List<Notice> Notices { get; private set; }
     }
 
 }

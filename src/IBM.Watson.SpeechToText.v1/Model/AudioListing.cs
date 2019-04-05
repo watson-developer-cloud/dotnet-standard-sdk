@@ -15,9 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -84,11 +84,11 @@ namespace IBM.Watson.SpeechToText.v1.Model
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// **For an audio-type resource,**  the total seconds of audio in the resource. The value is always a whole
-        /// number. Omitted for an archive-type resource.
+        /// **For an audio-type resource,**  the total seconds of audio in the resource. Omitted for an archive-type
+        /// resource.
         /// </summary>
         [JsonProperty("duration", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Duration { get; set; }
+        public long? Duration { get; set; }
         /// <summary>
         /// **For an audio-type resource,** the user-specified name of the resource. Omitted for an archive-type
         /// resource.

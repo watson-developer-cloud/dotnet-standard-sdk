@@ -15,21 +15,32 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.TextToSpeech.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Text.
+    /// The extracted subject from the sentence.
     /// </summary>
-    public class Text : BaseModel
+    public class SemanticRolesResultSubject : BaseModel
     {
         /// <summary>
-        /// The text to synthesize.
+        /// Text that corresponds to the subject role.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string _Text { get; set; }
+        public string Text { get; set; }
+        /// <summary>
+        /// An array of extracted entities.
+        /// </summary>
+        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SemanticRolesEntity> Entities { get; set; }
+        /// <summary>
+        /// An array of extracted keywords.
+        /// </summary>
+        [JsonProperty("keywords", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SemanticRolesKeyword> Keywords { get; set; }
     }
 
 }

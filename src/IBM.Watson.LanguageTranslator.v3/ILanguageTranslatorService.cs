@@ -25,7 +25,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         TranslationResult Translate(TranslateRequest request, Dictionary<string, object> customData = null);
         IdentifiedLanguages Identify(string text, Dictionary<string, object> customData = null);
         IdentifiableLanguages ListIdentifiableLanguages(Dictionary<string, object> customData = null);
-        TranslationModel CreateModel(string baseModelId, string name = null, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, Dictionary<string, object> customData = null);
+        TranslationModel CreateModel(string baseModelId, System.IO.FileStream forcedGlossary = null, System.IO.FileStream parallelCorpus = null, string name = null, Dictionary<string, object> customData = null);
         DeleteModelResult DeleteModel(string modelId, Dictionary<string, object> customData = null);
         TranslationModel GetModel(string modelId, Dictionary<string, object> customData = null);
         TranslationModels ListModels(string source = null, string target = null, bool? defaultModels = null, Dictionary<string, object> customData = null);

@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.SpeechToText.v1.Model
@@ -47,7 +47,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// for any keywords.
         /// </summary>
         [JsonProperty("keywords_result", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, List<dynamic>> KeywordsResult { get; set; }
+        public Dictionary<string, List<KeywordResult>> KeywordsResult { get; set; }
         /// <summary>
         /// An array of alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is
         /// specified.

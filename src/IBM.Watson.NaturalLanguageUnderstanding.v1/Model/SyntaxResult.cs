@@ -15,23 +15,27 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Tokenization dictionary describing how words are tokenized during ingestion and at query time.
+    /// Tokens and sentences returned from syntax analysis.
     /// </summary>
-    public class TokenDict : BaseModel
+    public class SyntaxResult : BaseModel
     {
         /// <summary>
-        /// An array of tokenization rules. Each rule contains, the original `text` string, component `tokens`, any
-        /// alternate character set `readings`, and which `part_of_speech` the text is from.
+        /// Gets or Sets Tokens
         /// </summary>
-        [JsonProperty("tokenization_rules", NullValueHandling = NullValueHandling.Ignore)]
-        public List<TokenDictRule> TokenizationRules { get; set; }
+        [JsonProperty("tokens", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TokenResult> Tokens { get; set; }
+        /// <summary>
+        /// Gets or Sets Sentences
+        /// </summary>
+        [JsonProperty("sentences", NullValueHandling = NullValueHandling.Ignore)]
+        public List<SentenceResult> Sentences { get; set; }
     }
 
 }

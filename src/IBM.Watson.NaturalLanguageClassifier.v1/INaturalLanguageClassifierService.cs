@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.NaturalLanguageClassifier.v1.Model;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1

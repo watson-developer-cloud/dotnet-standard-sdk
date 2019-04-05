@@ -15,19 +15,22 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using IBM.Watson.VisualRecognition.v3.Model;
 
 namespace IBM.Watson.VisualRecognition.v3
 {
     public partial interface IVisualRecognitionService
     {
-        ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string acceptLanguage = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string imagesFileContentType = null, Dictionary<string, object> customData = null);
-        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string url = null, string imagesFileContentType = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
+        ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
+        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
+        Classifier CreateClassifier(string name, Dictionary<string, System.IO.FileStream> positiveExamples, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
         BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null);
         Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null);
         Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null);
+        Classifier UpdateClassifier(string classifierId, Dictionary<string, System.IO.FileStream> positiveExamples = null, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
+        System.IO.MemoryStream GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
         BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
     }
 }

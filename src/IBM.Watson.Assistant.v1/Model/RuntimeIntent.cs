@@ -29,12 +29,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The name of the recognized intent.
         /// </summary>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Intent { get; set; }
+        public string Intent { get; set; }
         /// <summary>
         /// A decimal percentage that represents Watson's confidence in the intent.
         /// </summary>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Confidence { get; set; }
+        public double? Confidence { get; set; }
     }
 
 }

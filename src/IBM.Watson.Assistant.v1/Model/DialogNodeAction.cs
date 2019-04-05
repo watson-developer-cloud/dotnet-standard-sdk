@@ -15,8 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -76,7 +77,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// A map of key/value pairs to be provided to the action.
         /// </summary>
         [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
-        public object Parameters { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
         /// <summary>
         /// The location in the dialog context where the result of the action is stored.
         /// </summary>

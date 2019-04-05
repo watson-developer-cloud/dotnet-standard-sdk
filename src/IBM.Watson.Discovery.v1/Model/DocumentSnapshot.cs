@@ -15,8 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -28,8 +29,11 @@ namespace IBM.Watson.Discovery.v1.Model
     public class DocumentSnapshot : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Step
+        /// The step in the document conversion process that the snapshot object represents.
         /// </summary>
+        /// <value>
+        /// The step in the document conversion process that the snapshot object represents.
+        /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StepEnum
         {
@@ -72,15 +76,15 @@ namespace IBM.Watson.Discovery.v1.Model
         }
 
         /// <summary>
-        /// Gets or Sets Step
+        /// The step in the document conversion process that the snapshot object represents.
         /// </summary>
         [JsonProperty("step", NullValueHandling = NullValueHandling.Ignore)]
         public StepEnum? Step { get; set; }
         /// <summary>
-        /// Gets or Sets Snapshot
+        /// Snapshot of the conversion.
         /// </summary>
         [JsonProperty("snapshot", NullValueHandling = NullValueHandling.Ignore)]
-        public object Snapshot { get; set; }
+        public Dictionary<string, object> Snapshot { get; set; }
     }
 
 }

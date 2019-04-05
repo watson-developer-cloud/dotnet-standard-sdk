@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -145,36 +145,8 @@ namespace IBM.Watson.Discovery.v1.Model
         /// <summary>
         /// Current size of the environment.
         /// </summary>
-        [Obsolete("Integer size is deprecated. Please use StringSize.")]
-        public long? Size
-        {
-            get
-            {
-                int size;
-                int.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment.
-        /// </summary>
-        public SizeEnum? StringSize
-        {
-            get
-            {
-                SizeEnum size;
-                Enum.TryParse(_convertedSize, out size);
-                return size;
-            }
-            set { _convertedSize = value.ToString(); }
-        }
-        /// <summary>
-        /// Size of the environment
-        /// </summary>
-
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public string _convertedSize { get; set; }
+        public SizeEnum? Size { get; set; }
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>

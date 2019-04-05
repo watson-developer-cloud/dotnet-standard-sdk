@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -32,7 +32,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of aggregation results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<AggregationResult> Results { get; set; }

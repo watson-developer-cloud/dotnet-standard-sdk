@@ -99,6 +99,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public CategoriesOptions Categories { get; set; }
+        /// <summary>
+        /// Returns tokens and sentences from the input text.
+        /// </summary>
+        [JsonProperty("syntax", NullValueHandling = NullValueHandling.Ignore)]
+        public SyntaxOptions Syntax { get; set; }
     }
 
 }

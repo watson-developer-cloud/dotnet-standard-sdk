@@ -16,11 +16,11 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
+using System;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
@@ -93,7 +93,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// - Metadata
         /// - Relations
         /// - Semantic roles
-        /// - Sentiment.
+        /// - Sentiment
+        /// - Syntax (Experimental).
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>
@@ -120,7 +121,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -128,11 +129,15 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=Analyze");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<AnalysisResults>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new AnalysisResults();
-                
             }
             catch (AggregateException ae)
             {
@@ -148,8 +153,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// </summary>
         /// <param name="modelId">Model ID of the model to delete.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
-        public InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>
+        public DeleteModelResults DeleteModel(string modelId, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(modelId))
                 throw new ArgumentNullException(nameof(modelId));
@@ -157,7 +162,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            InlineResponse200 result = null;
+            DeleteModelResults result = null;
 
             try
             {
@@ -170,18 +175,22 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=DeleteModel");
-                result = restRequest.As<InlineResponse200>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<DeleteModelResults>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new InlineResponse200();
-                
+                    result = new DeleteModelResults();
             }
             catch (AggregateException ae)
             {
@@ -219,18 +228,22 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=ListModels");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListModelsResults>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ListModelsResults();
-                
             }
             catch (AggregateException ae)
             {

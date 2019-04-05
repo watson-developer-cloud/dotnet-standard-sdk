@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -65,7 +65,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The text of the log message.
         /// </summary>
         [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Msg { get; set; }
+        public string Msg { get; set; }
     }
 
 }

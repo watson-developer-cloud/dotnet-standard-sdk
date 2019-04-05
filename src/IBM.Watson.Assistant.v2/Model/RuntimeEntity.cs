@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
@@ -51,7 +51,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Any metadata for the entity.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The recognized capture groups for the entity, as defined by the entity pattern.
         /// </summary>

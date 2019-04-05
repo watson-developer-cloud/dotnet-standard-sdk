@@ -15,12 +15,11 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
@@ -62,6 +61,7 @@ namespace IBM.Watson.Discovery.v1.Model
             /// </summary>
             [EnumMember(Value = "processing")]
             PROCESSING,
+            
             /// <summary>
             /// Enum PENDING for pending
             /// </summary>
@@ -125,16 +125,6 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string ConfigurationId { get; private set; }
         /// <summary>
-        /// The creation date of the document in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-        /// </summary>
-        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
-        /// <summary>
-        /// Date of the most recent document update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-        /// </summary>
-        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
-        /// <summary>
         /// Description of the document status.
         /// </summary>
         [JsonProperty("status_description", NullValueHandling = NullValueHandling.Ignore)]
@@ -153,7 +143,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// Array of notices produced by the document-ingestion process.
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Notice> Notices { get; set; }
+        public virtual List<Notice> Notices { get; private set; }
     }
 
 }

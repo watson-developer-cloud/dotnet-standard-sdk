@@ -18,13 +18,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using IBM.Watson.NaturalLanguageClassifier.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
-using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.NaturalLanguageClassifier.v1.Model;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
@@ -98,18 +99,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
 
                 restRequest.WithBody<ClassifyInput>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=Classify");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "Classify"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classification>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Classification();
-                
             }
             catch (AggregateException ae)
             {
@@ -150,18 +155,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
 
                 restRequest.WithBody<ClassifyCollectionInput>(body);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=ClassifyCollection");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ClassifyCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ClassificationCollection>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ClassificationCollection();
-                
             }
             catch (AggregateException ae)
             {
@@ -225,18 +234,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
 
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=CreateClassifier");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "CreateClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classifier>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Classifier();
-                
             }
             catch (AggregateException ae)
             {
@@ -269,17 +282,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=DeleteClassifier");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "DeleteClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BaseModel>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BaseModel();
-                
+                result.CustomData = restRequest.CustomData;
             }
             catch (AggregateException ae)
             {
@@ -314,17 +332,21 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=GetClassifier");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "GetClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classifier>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Classifier();
-                
             }
             catch (AggregateException ae)
             {
@@ -356,17 +378,21 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=ListClassifiers");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ListClassifiers"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ClassifierList>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ClassifierList();
-                
             }
             catch (AggregateException ae)
             {

@@ -19,12 +19,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using IBM.Watson.CompareComply.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.CompareComply.v1.Model;
+using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.CompareComply.v1
 {
@@ -71,19 +73,19 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// Convert file to HTML.
+        /// Convert document to HTML.
         ///
-        /// Convert an uploaded file to HTML.
+        /// Converts a document to HTML.
         /// </summary>
-        /// <param name="file">The file to convert.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="file">The document to convert.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
-        public HTMLReturn ConvertToHtml(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public HTMLReturn ConvertToHtml(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
@@ -111,21 +113,25 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ConvertToHtml");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ConvertToHtml"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<HTMLReturn>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new HTMLReturn();
-                
             }
             catch (AggregateException ae)
             {
@@ -137,17 +143,17 @@ namespace IBM.Watson.CompareComply.v1
         /// <summary>
         /// Classify the elements of a document.
         ///
-        /// Analyze an uploaded file's structural and semantic elements.
+        /// Analyzes the structural and semantic elements of a document.
         /// </summary>
-        /// <param name="file">The file to classify.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="file">The document to classify.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifyReturn" />ClassifyReturn</returns>
-        public ClassifyReturn ClassifyElements(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public ClassifyReturn ClassifyElements(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
@@ -175,21 +181,25 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ClassifyElements");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ClassifyElements"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ClassifyReturn>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new ClassifyReturn();
-                
             }
             catch (AggregateException ae)
             {
@@ -201,17 +211,17 @@ namespace IBM.Watson.CompareComply.v1
         /// <summary>
         /// Extract a document's tables.
         ///
-        /// Extract and analyze an uploaded file's tables.
+        /// Analyzes the tables in a document.
         /// </summary>
-        /// <param name="file">The file on which to run table extraction.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="file">The document on which to run table extraction.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TableReturn" />TableReturn</returns>
-        public TableReturn ExtractTables(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null)
+        public TableReturn ExtractTables(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
@@ -239,21 +249,25 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ExtractTables");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ExtractTables"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<TableReturn>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new TableReturn();
-                
             }
             catch (AggregateException ae)
             {
@@ -265,21 +279,21 @@ namespace IBM.Watson.CompareComply.v1
         /// <summary>
         /// Compare two documents.
         ///
-        /// Compare two uploaded input files. Uploaded files must be in the same file format.
+        /// Compares two input documents. Documents must be in the same format.
         /// </summary>
-        /// <param name="file1">The first file to compare.</param>
-        /// <param name="file2">The second file to compare.</param>
-        /// <param name="file1Label">A text label for the first file. (optional, default to file_1)</param>
-        /// <param name="file2Label">A text label for the second file. (optional, default to file_2)</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="file1">The first document to compare.</param>
+        /// <param name="file2">The second document to compare.</param>
         /// <param name="file1ContentType">The content type of file1. (optional)</param>
         /// <param name="file2ContentType">The content type of file2. (optional)</param>
+        /// <param name="file1Label">A text label for the first document. (optional, default to file_1)</param>
+        /// <param name="file2Label">A text label for the second document. (optional, default to file_2)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="CompareReturn" />CompareReturn</returns>
-        public CompareReturn CompareDocuments(System.IO.FileStream file1, System.IO.FileStream file2, string file1Label = null, string file2Label = null, string modelId = null, string file1ContentType = null, string file2ContentType = null, Dictionary<string, object> customData = null)
+        public CompareReturn CompareDocuments(System.IO.FileStream file1, System.IO.FileStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null, Dictionary<string, object> customData = null)
         {
             if (file1 == null)
                 throw new ArgumentNullException(nameof(file1));
@@ -318,7 +332,7 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -326,17 +340,21 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("file_1_label", file1Label);
                 if (!string.IsNullOrEmpty(file2Label))
                     restRequest.WithArgument("file_2_label", file2Label);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=CompareDocuments");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CompareDocuments"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<CompareReturn>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new CompareReturn();
-                
             }
             catch (AggregateException ae)
             {
@@ -373,7 +391,7 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -381,11 +399,15 @@ namespace IBM.Watson.CompareComply.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=AddFeedback");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "AddFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<FeedbackReturn>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new FeedbackReturn();
-                
             }
             catch (AggregateException ae)
             {
@@ -396,16 +418,18 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// Deletes a specified feedback entry.
+        /// Delete a specified feedback entry.
+        ///
+        /// Deletes a feedback entry with a specified `feedback_id`.
         /// </summary>
         /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
-        public FeedbackDeleted DeleteFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null)
+        public FeedbackDeleted DeleteFeedback(string feedbackId, string model = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(feedbackId))
                 throw new ArgumentNullException(nameof(feedbackId));
@@ -422,20 +446,24 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=DeleteFeedback");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<FeedbackDeleted>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new FeedbackDeleted();
-                
             }
             catch (AggregateException ae)
             {
@@ -447,15 +475,17 @@ namespace IBM.Watson.CompareComply.v1
 
         /// <summary>
         /// List a specified feedback entry.
+        ///
+        /// Lists a feedback entry with a specified `feedback_id`.
         /// </summary>
         /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="GetFeedback" />GetFeedback</returns>
-        public GetFeedback GetFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null)
+        public GetFeedback GetFeedback(string feedbackId, string model = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(feedbackId))
                 throw new ArgumentNullException(nameof(feedbackId));
@@ -472,20 +502,24 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=GetFeedback");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<GetFeedback>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new GetFeedback();
-                
             }
             catch (AggregateException ae)
             {
@@ -496,7 +530,9 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// List the feedback in documents.
+        /// List the feedback in a document.
+        ///
+        /// Lists the feedback in a document.
         /// </summary>
         /// <param name="feedbackType">An optional string that filters the output to include only feedback with the
         /// specified feedback type. The only permitted value is `element_classification`. (optional)</param>
@@ -529,7 +565,7 @@ namespace IBM.Watson.CompareComply.v1
         /// specified, the service filters the output to include only feedback that has at least one `nature`:`party`
         /// pair from the list unchanged. (optional)</param>
         /// <param name="pageLimit">An optional integer specifying the number of documents that you want the service to
-        /// return. (optional, default to 10)</param>
+        /// return. (optional)</param>
         /// <param name="cursor">An optional string that returns the set of documents after the previous set. Use this
         /// parameter with the `page_limit` parameter. (optional)</param>
         /// <param name="sort">An optional comma-separated list of fields in the document to sort on. You can optionally
@@ -555,7 +591,7 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
@@ -594,11 +630,15 @@ namespace IBM.Watson.CompareComply.v1
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ListFeedback");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<FeedbackList>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new FeedbackList();
-                
             }
             catch (AggregateException ae)
             {
@@ -631,13 +671,13 @@ namespace IBM.Watson.CompareComply.v1
         /// listed on the **Endpoint** tab of your Cloud Object Storage instance; for example, `us-geo`, `eu-geo`, or
         /// `ap-geo`.</param>
         /// <param name="outputBucketName">The name of the Cloud Object Storage output bucket.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string modelId = null, Dictionary<string, object> customData = null)
+        public BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(function))
                 throw new ArgumentNullException(nameof(function));
@@ -714,23 +754,27 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(function))
                     restRequest.WithArgument("function", function);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=CreateBatch");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CreateBatch"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BatchStatus>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BatchStatus();
-                
             }
             catch (AggregateException ae)
             {
@@ -741,11 +785,11 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// Get information about a specific batch-processing request.
+        /// Get information about a specific batch-processing job.
         ///
-        /// Get information about a batch-processing request with a specified ID.
+        /// Gets information about a batch-processing job with a specified ID.
         /// </summary>
-        /// <param name="batchId">The ID of the batch-processing request whose information you want to retrieve.</param>
+        /// <param name="batchId">The ID of the batch-processing job whose information you want to retrieve.</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public BatchStatus GetBatch(string batchId, Dictionary<string, object> customData = null)
@@ -765,18 +809,22 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=GetBatch");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BatchStatus>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BatchStatus();
-                
             }
             catch (AggregateException ae)
             {
@@ -789,7 +837,7 @@ namespace IBM.Watson.CompareComply.v1
         /// <summary>
         /// List submitted batch-processing jobs.
         ///
-        /// List the batch-processing jobs submitted by users.
+        /// Lists batch-processing jobs submitted by users.
         /// </summary>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Batches" />Batches</returns>
@@ -808,18 +856,22 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=ListBatches");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Batches>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Batches();
-                
             }
             catch (AggregateException ae)
             {
@@ -830,20 +882,20 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// Update a pending or active batch-processing request.
+        /// Update a pending or active batch-processing job.
         ///
-        /// Update a pending or active batch-processing request. You can rescan the input bucket to check for new
-        /// documents or cancel a request.
+        /// Updates a pending or active batch-processing job. You can rescan the input bucket to check for new documents
+        /// or cancel a job.
         /// </summary>
-        /// <param name="batchId">The ID of the batch-processing request you want to update.</param>
-        /// <param name="action">The action you want to perform on the specified batch-processing request.</param>
-        /// <param name="modelId">The analysis model to be used by the service. For the `/v1/element_classification` and
-        /// `/v1/comparison` methods, the default is `contracts`. For the `/v1/tables` method, the default is `tables`.
-        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
-        /// (optional)</param>
+        /// <param name="batchId">The ID of the batch-processing job you want to update.</param>
+        /// <param name="action">The action you want to perform on the specified batch-processing job.</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus UpdateBatch(string batchId, string action, string modelId = null, Dictionary<string, object> customData = null)
+        public BatchStatus UpdateBatch(string batchId, string action, string model = null, Dictionary<string, object> customData = null)
         {
             if (string.IsNullOrEmpty(batchId))
                 throw new ArgumentNullException(nameof(batchId));
@@ -862,22 +914,26 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
+                
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 if (!string.IsNullOrEmpty(action))
                     restRequest.WithArgument("action", action);
-                if (!string.IsNullOrEmpty(modelId))
-                    restRequest.WithArgument("model_id", modelId);
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=compare-comply;service_version=v1;operation_id=UpdateBatch");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "UpdateBatch"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<BatchStatus>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new BatchStatus();
-                
             }
             catch (AggregateException ae)
             {

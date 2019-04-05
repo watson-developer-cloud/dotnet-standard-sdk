@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -34,9 +34,8 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// -  `running` indicates that a crawl to fetch more documents is in progress.
         /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
+        /// -  `queued` indicates that the crawl has been paused by the system and will automatically restart when
+        /// possible.
         /// </summary>
         /// <value>
         /// The current status of the source crawl for this collection. This field returns `not_configured` if the
@@ -44,9 +43,8 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// -  `running` indicates that a crawl to fetch more documents is in progress.
         /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
+        /// -  `queued` indicates that the crawl has been paused by the system and will automatically restart when
+        /// possible.
         /// </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
@@ -65,22 +63,16 @@ namespace IBM.Watson.Discovery.v1.Model
             COMPLETE,
             
             /// <summary>
-            /// Enum COMPLETE_WITH_NOTICES for complete_with_notices
-            /// </summary>
-            [EnumMember(Value = "complete_with_notices")]
-            COMPLETE_WITH_NOTICES,
-            
-            /// <summary>
-            /// Enum STOPPED for stopped
-            /// </summary>
-            [EnumMember(Value = "stopped")]
-            STOPPED,
-            
-            /// <summary>
             /// Enum NOT_CONFIGURED for not_configured
             /// </summary>
             [EnumMember(Value = "not_configured")]
-            NOT_CONFIGURED
+            NOT_CONFIGURED,
+            
+            /// <summary>
+            /// Enum QUEUED for queued
+            /// </summary>
+            [EnumMember(Value = "queued")]
+            QUEUED
         }
 
         /// <summary>
@@ -89,9 +81,8 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// -  `running` indicates that a crawl to fetch more documents is in progress.
         /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
+        /// -  `queued` indicates that the crawl has been paused by the system and will automatically restart when
+        /// possible.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public StatusEnum? Status { get; set; }

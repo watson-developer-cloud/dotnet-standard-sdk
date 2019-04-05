@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -38,12 +38,6 @@ namespace IBM.Watson.CompareComply.v1.Model
         {
             
             /// <summary>
-            /// Enum ADDRESS for Address
-            /// </summary>
-            [EnumMember(Value = "Address")]
-            ADDRESS,
-            
-            /// <summary>
             /// Enum CURRENCY for Currency
             /// </summary>
             [EnumMember(Value = "Currency")]
@@ -56,6 +50,12 @@ namespace IBM.Watson.CompareComply.v1.Model
             DATETIME,
             
             /// <summary>
+            /// Enum DURATION for Duration
+            /// </summary>
+            [EnumMember(Value = "Duration")]
+            DURATION,
+            
+            /// <summary>
             /// Enum LOCATION for Location
             /// </summary>
             [EnumMember(Value = "Location")]
@@ -66,6 +66,12 @@ namespace IBM.Watson.CompareComply.v1.Model
             /// </summary>
             [EnumMember(Value = "Organization")]
             ORGANIZATION,
+            
+            /// <summary>
+            /// Enum PERCENTAGE for Percentage
+            /// </summary>
+            [EnumMember(Value = "Percentage")]
+            PERCENTAGE,
             
             /// <summary>
             /// Enum PERSON for Person

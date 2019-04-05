@@ -15,8 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>

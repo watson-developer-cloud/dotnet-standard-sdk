@@ -39,6 +39,9 @@ namespace IBM.Watson.Discovery.v1.Model
         public string DestinationField { get; set; }
         /// <summary>
         /// Field to be enriched.
+        ///
+        /// Arrays can be specified as the **source_field** if the **enrichment** service for this enrichment is set to
+        /// `natural_language_undstanding`.
         /// </summary>
         [JsonProperty("source_field", NullValueHandling = NullValueHandling.Ignore)]
         public string SourceField { get; set; }
@@ -56,11 +59,7 @@ namespace IBM.Watson.Discovery.v1.Model
         ///  When using `elements` the **options** object must contain Element Classification options. Additionally,
         /// when using the `elements` enrichment the configuration specified and files ingested must meet all the
         /// criteria specified in [the
-        /// documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)
-        ///
-        ///
-        ///
-        ///  Previous API versions also supported `alchemy_language`.
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-element-classification#element-classification).
         /// </summary>
         [JsonProperty("enrichment", NullValueHandling = NullValueHandling.Ignore)]
         public string EnrichmentName { get; set; }
@@ -71,7 +70,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("ignore_downstream_errors", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IgnoreDownstreamErrors { get; set; }
         /// <summary>
-        /// Options which are specific to a particular enrichment.
+        /// An object representing the configuration options to use for the `elements` enrichment.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public EnrichmentOptions Options { get; set; }

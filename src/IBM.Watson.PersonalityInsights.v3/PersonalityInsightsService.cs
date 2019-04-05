@@ -16,11 +16,11 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.PersonalityInsights.v3.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.PersonalityInsights.v3.Model;
+using System;
 
 namespace IBM.Watson.PersonalityInsights.v3
 {
@@ -121,10 +121,6 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// for more information, see [Providing sufficient
         /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
         /// provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
-        /// description.
-        ///
-        /// Default: `text/plain`. (optional)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -147,9 +143,13 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
+        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
+        /// description.
+        ///
+        /// Default: `text/plain`. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Profile" />Profile</returns>
-        public Profile Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        public Profile Profile(Content content, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, string contentType = null, Dictionary<string, object> customData = null)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
@@ -170,16 +170,16 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(contentLanguage))
                     restRequest.WithHeader("Content-Language", contentLanguage);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
                 if (rawScores != null)
                     restRequest.WithArgument("raw_scores", rawScores);
                 if (csvHeaders != null)
@@ -190,11 +190,15 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=Profile");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "Profile"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Profile>().Result;
+                result.CustomData = restRequest.CustomData;
                 if (result == null)
                     result = new Profile();
-                
             }
             catch (AggregateException ae)
             {
@@ -244,10 +248,6 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// for more information, see [Providing sufficient
         /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
         /// provide an object of type `Content`.</param>
-        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
-        /// description.
-        ///
-        /// Default: `text/plain`. (optional)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -270,9 +270,13 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// false)</param>
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
+        /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
+        /// description.
+        ///
+        /// Default: `text/plain`. (optional)</param>
         /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="System.IO.FileStream" />System.IO.FileStream</returns>
-        public System.IO.MemoryStream ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, Dictionary<string, object> customData = null)
+        public System.IO.MemoryStream ProfileAsCsv(Content content, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, string contentType = null, Dictionary<string, object> customData = null)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
@@ -293,16 +297,16 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-
+                
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(contentLanguage))
                     restRequest.WithHeader("Content-Language", contentLanguage);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
                 if (rawScores != null)
                     restRequest.WithArgument("raw_scores", rawScores);
                 if (csvHeaders != null)
@@ -313,7 +317,11 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (customData != null)
                     restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=personality_insights;service_version=v3;operation_id=ProfileAsCsv");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
             catch (AggregateException ae)

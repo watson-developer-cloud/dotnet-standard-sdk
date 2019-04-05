@@ -15,9 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -75,7 +75,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public QueryEntitiesContext Context { get; set; }
         /// <summary>
-        /// Filters to apply to the relationship query.
+        /// Gets or Sets Filter
         /// </summary>
         [JsonProperty("filter", NullValueHandling = NullValueHandling.Ignore)]
         public QueryRelationsFilter Filter { get; set; }

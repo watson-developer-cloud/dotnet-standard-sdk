@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -28,7 +28,7 @@ namespace IBM.Watson.Discovery.v1.Model
     public class LogQueryResponseResultDocuments : BaseModel
     {
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of log query response results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<LogQueryResponseResultDocumentsResult> Results { get; set; }

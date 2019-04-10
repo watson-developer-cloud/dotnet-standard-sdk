@@ -41,61 +41,30 @@ namespace IBM.Watson.Assistant.v2.IntTests
         [TestInitialize]
         public void Setup()
         {
-            #region Get Credentials
-            if (string.IsNullOrEmpty(credentials))
-            {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-                if (File.Exists(credentialsFilepath))
-                {
-                    try
-                    {
-                        credentials = File.ReadAllText(credentialsFilepath);
-                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Credentials file does not exist.");
-                }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("assistant-sdk")[0].Credentials;
-                endpoint = credential.Url;
-                apikey = credential.IamApikey;
-                assistantId = credential.AssistantId;
-            }
-            #endregion
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = endpoint
-            };
-
-            service = new AssistantService(tokenOptions, versionDate);
-            service.SetEndpoint(endpoint);
+            service = new AssistantService();
+            assistantId = Environment.GetEnvironmentVariable("ASSISTANT_ASSISTANT_ID");
+            service.VersionDate = versionDate;
         }
 
         #region Sessions
         [TestMethod]
         public void CreateDeleteSession_Success()
         {
-            var createSessionResult = service.CreateSession(assistantId);
-            sessionId = createSessionResult.SessionId;
+            var createSessionResult = service.CreateSession(
+                assistantId: assistantId
+                );
+            sessionId = createSessionResult.Result.SessionId;
 
-            var deleteSessionResult = service.DeleteSession(assistantId, sessionId);
+            var deleteSessionResult = service.DeleteSession(
+                assistantId: assistantId, 
+                sessionId: sessionId
+                );
+
             sessionId = string.Empty;
 
             Assert.IsNotNull(createSessionResult);
             Assert.IsNotNull(deleteSessionResult);
-            Assert.IsTrue(!string.IsNullOrEmpty(createSessionResult.SessionId));
+            Assert.IsTrue(!string.IsNullOrEmpty(createSessionResult.Result.SessionId));
         }
         #endregion
 
@@ -103,31 +72,38 @@ namespace IBM.Watson.Assistant.v2.IntTests
         [TestMethod]
         public void Message_Success()
         {
-            var createSessionResult = service.CreateSession(assistantId);
-            sessionId = createSessionResult.SessionId;
+            var createSessionResult = service.CreateSession(
+                assistantId: assistantId
+                );
+            sessionId = createSessionResult.Result.SessionId;
 
-            MessageRequest request = new MessageRequest()
+            MessageInput input = new MessageInput()
             {
-                Input = new MessageInput()
+                MessageType = MessageInput.MessageTypeEnumValue.TEXT,
+                Text = inputString,
+                Options = new MessageInputOptions()
                 {
-                    MessageType = MessageInput.MessageTypeEnum.TEXT,
-                    Text = inputString,
-                    Options = new MessageInputOptions()
-                    {
-                        ReturnContext = true,
-                        AlternateIntents = true
-                    }
+                    ReturnContext = true,
+                    AlternateIntents = true
                 }
             };
-            var messageResult = service.Message(assistantId, sessionId, request);
 
-            var deleteSessionResult = service.DeleteSession(assistantId, sessionId);
+            var messageResult = service.Message(
+                assistantId: assistantId, 
+                sessionId: sessionId, 
+                input: input
+                );
+
+            var deleteSessionResult = service.DeleteSession(
+                assistantId: assistantId, 
+                sessionId: sessionId
+                );
             sessionId = string.Empty;
 
             Assert.IsNotNull(createSessionResult);
             Assert.IsNotNull(messageResult);
             Assert.IsNotNull(deleteSessionResult);
-            Assert.IsTrue(!string.IsNullOrEmpty(createSessionResult.SessionId));
+            Assert.IsTrue(!string.IsNullOrEmpty(createSessionResult.Result.SessionId));
         }
         #endregion
     }

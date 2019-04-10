@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// <summary>
     /// Built-in system properties that apply to all skills used by the assistant.
     /// </summary>
-    public class MessageContextGlobalSystem : BaseModel
+    public class MessageContextGlobalSystem
     {
         /// <summary>
         /// The user time zone. The assistant uses the time zone to correctly resolve relative time references.

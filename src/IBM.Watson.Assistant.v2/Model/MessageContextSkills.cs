@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// **Note:** Currently, only a single property named `main skill` is supported. This object contains variables that
     /// apply to the dialog skill used by the assistant.
     /// </summary>
-    public class MessageContextSkills : BaseModel
+    public class MessageContextSkills
     {
     }
 

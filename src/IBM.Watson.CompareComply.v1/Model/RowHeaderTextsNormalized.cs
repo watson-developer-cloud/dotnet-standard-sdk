@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -24,7 +23,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// If you provide customization input, the normalized version of the row header texts according to the
     /// customization; otherwise, the same value as `row_header_texts`.
     /// </summary>
-    public class RowHeaderTextsNormalized : BaseModel
+    public class RowHeaderTextsNormalized
     {
         /// <summary>
         /// The normalized version of a row header text.

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
 *
 */
 
-using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.PersonalityInsights.v3.Model;
 
 namespace IBM.Watson.PersonalityInsights.v3
 {
     public partial interface IPersonalityInsightsService
     {
-        Profile Profile(Content content, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, string contentType = null, Dictionary<string, object> customData = null);
-        System.IO.MemoryStream ProfileAsCsv(Content content, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null, string contentType = null, Dictionary<string, object> customData = null);
+        DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
+        DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
     }
 }

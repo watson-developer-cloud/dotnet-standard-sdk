@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,58 +16,45 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// QueryNoticesResult.
     /// </summary>
-    public class QueryNoticesResult : BaseModel
+    public class QueryNoticesResult
     {
         /// <summary>
         /// The type of the original source file.
         /// </summary>
-        /// <value>
-        /// The type of the original source file.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FileTypeEnum
+        public class FileTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum PDF for pdf
+            /// Constant PDF for pdf
             /// </summary>
-            [EnumMember(Value = "pdf")]
-            PDF,
-            
+            public const string PDF = "pdf";
             /// <summary>
-            /// Enum HTML for html
+            /// Constant HTML for html
             /// </summary>
-            [EnumMember(Value = "html")]
-            HTML,
-            
+            public const string HTML = "html";
             /// <summary>
-            /// Enum WORD for word
+            /// Constant WORD for word
             /// </summary>
-            [EnumMember(Value = "word")]
-            WORD,
-            
+            public const string WORD = "word";
             /// <summary>
-            /// Enum JSON for json
+            /// Constant JSON for json
             /// </summary>
-            [EnumMember(Value = "json")]
-            JSON
+            public const string JSON = "json";
+            
         }
 
         /// <summary>
         /// The type of the original source file.
+        /// Constants for possible values can be found using QueryNoticesResult.FileTypeEnumValue
         /// </summary>
         [JsonProperty("file_type", NullValueHandling = NullValueHandling.Ignore)]
-        public FileTypeEnum? FileType { get; set; }
+        public string FileType { get; set; }
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>

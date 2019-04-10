@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// An array of values, each being the `text` value of a column header that is applicable to the current cell.
     /// </summary>
-    public class ColumnHeaderTexts : BaseModel
+    public class ColumnHeaderTexts
     {
         /// <summary>
         /// The `text` value of a column header.

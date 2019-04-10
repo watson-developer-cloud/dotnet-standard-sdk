@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using System;
 
@@ -25,7 +24,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// Intent.
     /// </summary>
-    public class Intent : BaseModel
+    public class Intent
     {
         /// <summary>
         /// The name of the intent. This string must conform to the following restrictions:

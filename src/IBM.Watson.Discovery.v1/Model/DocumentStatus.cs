@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,104 +16,79 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Status information about a submitted document.
     /// </summary>
-    public class DocumentStatus : BaseModel
+    public class DocumentStatus
     {
         /// <summary>
         /// Status of the document in the ingestion process.
         /// </summary>
-        /// <value>
-        /// Status of the document in the ingestion process.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum AVAILABLE for available
+            /// Constant AVAILABLE for available
             /// </summary>
-            [EnumMember(Value = "available")]
-            AVAILABLE,
-            
+            public const string AVAILABLE = "available";
             /// <summary>
-            /// Enum AVAILABLE_WITH_NOTICES for available with notices
+            /// Constant AVAILABLE_WITH_NOTICES for available with notices
             /// </summary>
-            [EnumMember(Value = "available with notices")]
-            AVAILABLE_WITH_NOTICES,
-            
+            public const string AVAILABLE_WITH_NOTICES = "available with notices";
             /// <summary>
-            /// Enum FAILED for failed
+            /// Constant FAILED for failed
             /// </summary>
-            [EnumMember(Value = "failed")]
-            FAILED,
-            
+            public const string FAILED = "failed";
             /// <summary>
-            /// Enum PROCESSING for processing
+            /// Constant PROCESSING for processing
             /// </summary>
-            [EnumMember(Value = "processing")]
-            PROCESSING,
-            
+            public const string PROCESSING = "processing";
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING
+            public const string PENDING = "pending";
+            
         }
 
         /// <summary>
         /// The type of the original source file.
         /// </summary>
-        /// <value>
-        /// The type of the original source file.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FileTypeEnum
+        public class FileTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum PDF for pdf
+            /// Constant PDF for pdf
             /// </summary>
-            [EnumMember(Value = "pdf")]
-            PDF,
-            
+            public const string PDF = "pdf";
             /// <summary>
-            /// Enum HTML for html
+            /// Constant HTML for html
             /// </summary>
-            [EnumMember(Value = "html")]
-            HTML,
-            
+            public const string HTML = "html";
             /// <summary>
-            /// Enum WORD for word
+            /// Constant WORD for word
             /// </summary>
-            [EnumMember(Value = "word")]
-            WORD,
-            
+            public const string WORD = "word";
             /// <summary>
-            /// Enum JSON for json
+            /// Constant JSON for json
             /// </summary>
-            [EnumMember(Value = "json")]
-            JSON
+            public const string JSON = "json";
+            
         }
 
         /// <summary>
         /// Status of the document in the ingestion process.
+        /// Constants for possible values can be found using DocumentStatus.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The type of the original source file.
+        /// Constants for possible values can be found using DocumentStatus.FileTypeEnumValue
         /// </summary>
         [JsonProperty("file_type", NullValueHandling = NullValueHandling.Ignore)]
-        public FileTypeEnum? FileType { get; set; }
+        public string FileType { get; set; }
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>

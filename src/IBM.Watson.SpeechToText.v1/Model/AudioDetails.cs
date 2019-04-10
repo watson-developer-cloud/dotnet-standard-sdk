@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// AudioDetails.
     /// </summary>
-    public class AudioDetails : BaseModel
+    public class AudioDetails
     {
         /// <summary>
         /// The type of the audio resource:
@@ -34,34 +31,21 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
         /// a file that does not contain audio, such as a JPEG file).
         /// </summary>
-        /// <value>
-        /// The type of the audio resource:
-        /// * `audio` for an individual audio file
-        /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
-        /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
-        /// a file that does not contain audio, such as a JPEG file).
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public class TypeEnumValue
         {
-            
             /// <summary>
-            /// Enum AUDIO for audio
+            /// Constant AUDIO for audio
             /// </summary>
-            [EnumMember(Value = "audio")]
-            AUDIO,
-            
+            public const string AUDIO = "audio";
             /// <summary>
-            /// Enum ARCHIVE for archive
+            /// Constant ARCHIVE for archive
             /// </summary>
-            [EnumMember(Value = "archive")]
-            ARCHIVE,
-            
+            public const string ARCHIVE = "archive";
             /// <summary>
-            /// Enum UNDETERMINED for undetermined
+            /// Constant UNDETERMINED for undetermined
             /// </summary>
-            [EnumMember(Value = "undetermined")]
-            UNDETERMINED
+            public const string UNDETERMINED = "undetermined";
+            
         }
 
         /// <summary>
@@ -71,28 +55,17 @@ namespace IBM.Watson.SpeechToText.v1.Model
         ///
         /// Omitted for an audio-type resource.
         /// </summary>
-        /// <value>
-        /// **For an archive-type resource,** the format of the compressed archive:
-        /// * `zip` for a **.zip** file
-        /// * `gzip` for a **.tar.gz** file
-        ///
-        /// Omitted for an audio-type resource.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CompressionEnum
+        public class CompressionEnumValue
         {
-            
             /// <summary>
-            /// Enum ZIP for zip
+            /// Constant ZIP for zip
             /// </summary>
-            [EnumMember(Value = "zip")]
-            ZIP,
-            
+            public const string ZIP = "zip";
             /// <summary>
-            /// Enum GZIP for gzip
+            /// Constant GZIP for gzip
             /// </summary>
-            [EnumMember(Value = "gzip")]
-            GZIP
+            public const string GZIP = "gzip";
+            
         }
 
         /// <summary>
@@ -101,18 +74,20 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `archive` for an archive (**.zip** or **.tar.gz**) file that contains audio files
         /// * `undetermined` for a resource that the service cannot validate (for example, if the user mistakenly passes
         /// a file that does not contain audio, such as a JPEG file).
+        /// Constants for possible values can be found using AudioDetails.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public TypeEnum? Type { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// **For an archive-type resource,** the format of the compressed archive:
         /// * `zip` for a **.zip** file
         /// * `gzip` for a **.tar.gz** file
         ///
         /// Omitted for an audio-type resource.
+        /// Constants for possible values can be found using AudioDetails.CompressionEnumValue
         /// </summary>
         [JsonProperty("compression", NullValueHandling = NullValueHandling.Ignore)]
-        public CompressionEnum? Compression { get; set; }
+        public string Compression { get; set; }
         /// <summary>
         /// **For an audio-type resource,** the codec in which the audio is encoded. Omitted for an archive-type
         /// resource.

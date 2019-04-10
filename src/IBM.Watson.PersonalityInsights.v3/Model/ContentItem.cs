@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,41 +15,30 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.PersonalityInsights.v3.Model
 {
     /// <summary>
     /// ContentItem.
     /// </summary>
-    public class ContentItem : BaseModel
+    public class ContentItem
     {
         /// <summary>
         /// The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it
         /// is analyzed; plain text is processed as submitted.
         /// </summary>
-        /// <value>
-        /// The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it
-        /// is analyzed; plain text is processed as submitted.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ContenttypeEnum
+        public class ContenttypeEnumValue
         {
-            
             /// <summary>
-            /// Enum TEXT_PLAIN for text/plain
+            /// Constant TEXT_PLAIN for text/plain
             /// </summary>
-            [EnumMember(Value = "text/plain")]
-            TEXT_PLAIN,
-            
+            public const string TEXT_PLAIN = "text/plain";
             /// <summary>
-            /// Enum TEXT_HTML for text/html
+            /// Constant TEXT_HTML for text/html
             /// </summary>
-            [EnumMember(Value = "text/html")]
-            TEXT_HTML
+            public const string TEXT_HTML = "text/html";
+            
         }
 
         /// <summary>
@@ -61,56 +50,38 @@ namespace IBM.Watson.PersonalityInsights.v3.Model
         /// items that specify a different language are ignored. You can specify any combination of languages for the
         /// input and response content.
         /// </summary>
-        /// <value>
-        /// The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default
-        /// is `en` (English). Regional variants are treated as their parent language; for example, `en-US` is
-        /// interpreted as `en`. A language specified with the **Content-Type** parameter overrides the value of this
-        /// parameter; any content items that specify a different language are ignored. Omit the **Content-Type**
-        /// parameter to base the language on the most prevalent specification among the content items; again, content
-        /// items that specify a different language are ignored. You can specify any combination of languages for the
-        /// input and response content.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LanguageEnum
+        public class LanguageEnumValue
         {
-            
             /// <summary>
-            /// Enum AR for ar
+            /// Constant AR for ar
             /// </summary>
-            [EnumMember(Value = "ar")]
-            AR,
-            
+            public const string AR = "ar";
             /// <summary>
-            /// Enum EN for en
+            /// Constant EN for en
             /// </summary>
-            [EnumMember(Value = "en")]
-            EN,
-            
+            public const string EN = "en";
             /// <summary>
-            /// Enum ES for es
+            /// Constant ES for es
             /// </summary>
-            [EnumMember(Value = "es")]
-            ES,
-            
+            public const string ES = "es";
             /// <summary>
-            /// Enum JA for ja
+            /// Constant JA for ja
             /// </summary>
-            [EnumMember(Value = "ja")]
-            JA,
-            
+            public const string JA = "ja";
             /// <summary>
-            /// Enum KO for ko
+            /// Constant KO for ko
             /// </summary>
-            [EnumMember(Value = "ko")]
-            KO
+            public const string KO = "ko";
+            
         }
 
         /// <summary>
         /// The MIME type of the content. The default is plain text. The tags are stripped from HTML content before it
         /// is analyzed; plain text is processed as submitted.
+        /// Constants for possible values can be found using ContentItem.ContenttypeEnumValue
         /// </summary>
         [JsonProperty("contenttype", NullValueHandling = NullValueHandling.Ignore)]
-        public ContenttypeEnum? Contenttype { get; set; }
+        public string Contenttype { get; set; }
         /// <summary>
         /// The language identifier (two-letter ISO 639-1 identifier) for the language of the content item. The default
         /// is `en` (English). Regional variants are treated as their parent language; for example, `en-US` is
@@ -119,9 +90,10 @@ namespace IBM.Watson.PersonalityInsights.v3.Model
         /// parameter to base the language on the most prevalent specification among the content items; again, content
         /// items that specify a different language are ignored. You can specify any combination of languages for the
         /// input and response content.
+        /// Constants for possible values can be found using ContentItem.LanguageEnumValue
         /// </summary>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
-        public LanguageEnum? Language { get; set; }
+        public string Language { get; set; }
         /// <summary>
         /// The content that is to be analyzed. The service supports up to 20 MB of content for all `ContentItem`
         /// objects combined.

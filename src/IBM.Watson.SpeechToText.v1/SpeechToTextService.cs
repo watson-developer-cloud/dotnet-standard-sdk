@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,15 +18,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
+using System.Text;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.SpeechToText.v1.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace IBM.Watson.SpeechToText.v1
@@ -82,13 +81,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="modelId">The identifier of the model in the form of its name from the output of the **Get a
         /// model** method.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechModel" />SpeechModel</returns>
-        public SpeechModel GetModel(string modelId, Dictionary<string, object> customData = null)
+        public DetailedResponse<SpeechModel> GetModel(string modelId)
         {
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException(nameof(modelId));
-            SpeechModel result = null;
+        if (string.IsNullOrEmpty(modelId))
+            throw new ArgumentNullException("`modelId` is required for `GetModel`");
+            DetailedResponse<SpeechModel> result = null;
 
             try
             {
@@ -101,11 +99,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models/{modelId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetModel"))
                 {
@@ -113,9 +110,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<SpeechModel>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new SpeechModel();
+                    result = new DetailedResponse<SpeechModel>();
             }
             catch (AggregateException ae)
             {
@@ -133,11 +129,10 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// **See also:** [Languages and models](https://cloud.ibm.com/docs/services/speech-to-text/models.html).
         /// </summary>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechModels" />SpeechModels</returns>
-        public SpeechModels ListModels(Dictionary<string, object> customData = null)
+        public DetailedResponse<SpeechModels> ListModels()
         {
-            SpeechModels result = null;
+            DetailedResponse<SpeechModels> result = null;
 
             try
             {
@@ -150,11 +145,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListModels"))
                 {
@@ -162,9 +156,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<SpeechModels>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new SpeechModels();
+                    result = new DetailedResponse<SpeechModels>();
             }
             catch (AggregateException ae)
             {
@@ -248,6 +241,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// request](https://cloud.ibm.com/docs/services/speech-to-text/http.html#HTTP-multi).
         /// </summary>
         /// <param name="audio">The audio to transcribe.</param>
+        /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
+        /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
         /// <param name="model">The identifier of the model that is to be used for the recognition request. See
         /// [Languages and models](https://cloud.ibm.com/docs/services/speech-to-text/models.html). (optional, default
         /// to en-US_BroadbandModel)</param>
@@ -367,15 +362,12 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Numeric redaction](https://cloud.ibm.com/docs/services/speech-to-text/output.html#redaction).
         /// (optional, default to false)</param>
-        /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
-        /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public SpeechRecognitionResults Recognize(byte[] audio, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, string contentType = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
         {
-            if (audio == null)
-                throw new ArgumentNullException(nameof(audio));
-            SpeechRecognitionResults result = null;
+        if (audio == null)
+            throw new ArgumentNullException("`audio` is required for `Recognize`");
+            DetailedResponse<SpeechRecognitionResults> result = null;
 
             try
             {
@@ -388,9 +380,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(contentType))
                     restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
@@ -429,9 +422,14 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("grammar_name", grammarName);
                 if (redaction != null)
                     restRequest.WithArgument("redaction", redaction);
-                restRequest.WithBody<byte[]>(audio);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
+                var httpContent = new ByteArrayContent(audio);
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "Recognize"))
                 {
@@ -439,9 +437,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<SpeechRecognitionResults>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new SpeechRecognitionResults();
+                    result = new DetailedResponse<SpeechRecognitionResults>();
             }
             catch (AggregateException ae)
             {
@@ -468,13 +465,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="id">The identifier of the asynchronous job that is to be used for the request. You must make
         /// the request with credentials for the instance of the service that owns the job.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public RecognitionJob CheckJob(string id, Dictionary<string, object> customData = null)
+        public DetailedResponse<RecognitionJob> CheckJob(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
-            RecognitionJob result = null;
+        if (string.IsNullOrEmpty(id))
+            throw new ArgumentNullException("`id` is required for `CheckJob`");
+            DetailedResponse<RecognitionJob> result = null;
 
             try
             {
@@ -487,11 +483,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CheckJob"))
                 {
@@ -499,9 +494,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<RecognitionJob>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new RecognitionJob();
+                    result = new DetailedResponse<RecognitionJob>();
             }
             catch (AggregateException ae)
             {
@@ -524,11 +518,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// **See also:** [Checking the status of the latest
         /// jobs](https://cloud.ibm.com/docs/services/speech-to-text/async.html#jobs).
         /// </summary>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJobs" />RecognitionJobs</returns>
-        public RecognitionJobs CheckJobs(Dictionary<string, object> customData = null)
+        public DetailedResponse<RecognitionJobs> CheckJobs()
         {
-            RecognitionJobs result = null;
+            DetailedResponse<RecognitionJobs> result = null;
 
             try
             {
@@ -541,11 +534,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CheckJobs"))
                 {
@@ -553,9 +545,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<RecognitionJobs>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new RecognitionJobs();
+                    result = new DetailedResponse<RecognitionJobs>();
             }
             catch (AggregateException ae)
             {
@@ -648,6 +639,8 @@ namespace IBM.Watson.SpeechToText.v1
         ///  **See also:** [Audio formats](https://cloud.ibm.com/docs/services/speech-to-text/audio-formats.html).
         /// </summary>
         /// <param name="audio">The audio to transcribe.</param>
+        /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
+        /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
         /// <param name="model">The identifier of the model that is to be used for the recognition request. See
         /// [Languages and models](https://cloud.ibm.com/docs/services/speech-to-text/models.html). (optional, default
         /// to en-US_BroadbandModel)</param>
@@ -798,15 +791,12 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Numeric redaction](https://cloud.ibm.com/docs/services/speech-to-text/output.html#redaction).
         /// (optional, default to false)</param>
-        /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
-        /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public RecognitionJob CreateJob(byte[] audio, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, string contentType = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
         {
-            if (audio == null)
-                throw new ArgumentNullException(nameof(audio));
-            RecognitionJob result = null;
+        if (audio == null)
+            throw new ArgumentNullException("`audio` is required for `CreateJob`");
+            DetailedResponse<RecognitionJob> result = null;
 
             try
             {
@@ -819,9 +809,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(contentType))
                     restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
@@ -868,9 +859,14 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("grammar_name", grammarName);
                 if (redaction != null)
                     restRequest.WithArgument("redaction", redaction);
-                restRequest.WithBody<byte[]>(audio);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
+                var httpContent = new ByteArrayContent(audio);
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateJob"))
                 {
@@ -878,9 +874,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<RecognitionJob>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new RecognitionJob();
+                    result = new DetailedResponse<RecognitionJob>();
             }
             catch (AggregateException ae)
             {
@@ -902,13 +897,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="id">The identifier of the asynchronous job that is to be used for the request. You must make
         /// the request with credentials for the instance of the service that owns the job.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteJob(string id, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteJob(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(id))
+            throw new ArgumentNullException("`id` is required for `DeleteJob`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -921,22 +915,18 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteJob"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -986,13 +976,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// that it sends via the `X-Callback-Signature` header. The service includes the header during URL verification
         /// and with every notification sent to the callback URL. It calculates the signature over the payload of the
         /// notification. If you omit the parameter, the service does not send the header. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="RegisterStatus" />RegisterStatus</returns>
-        public RegisterStatus RegisterCallback(string callbackUrl, string userSecret = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<RegisterStatus> RegisterCallback(string callbackUrl, string userSecret = null)
         {
-            if (string.IsNullOrEmpty(callbackUrl))
-                throw new ArgumentNullException(nameof(callbackUrl));
-            RegisterStatus result = null;
+        if (string.IsNullOrEmpty(callbackUrl))
+            throw new ArgumentNullException("`callbackUrl` is required for `RegisterCallback`");
+            DetailedResponse<RegisterStatus> result = null;
 
             try
             {
@@ -1005,15 +994,14 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/register_callback");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(callbackUrl))
                     restRequest.WithArgument("callback_url", callbackUrl);
                 if (!string.IsNullOrEmpty(userSecret))
                     restRequest.WithArgument("user_secret", userSecret);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "RegisterCallback"))
                 {
@@ -1021,9 +1009,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<RegisterStatus>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new RegisterStatus();
+                    result = new DetailedResponse<RegisterStatus>();
             }
             catch (AggregateException ae)
             {
@@ -1044,13 +1031,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// URL](https://cloud.ibm.com/docs/services/speech-to-text/async.html#unregister).
         /// </summary>
         /// <param name="callbackUrl">The callback URL that is to be unregistered.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel UnregisterCallback(string callbackUrl, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> UnregisterCallback(string callbackUrl)
         {
-            if (string.IsNullOrEmpty(callbackUrl))
-                throw new ArgumentNullException(nameof(callbackUrl));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(callbackUrl))
+            throw new ArgumentNullException("`callbackUrl` is required for `UnregisterCallback`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1063,24 +1049,20 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/unregister_callback");
 
                 if (!string.IsNullOrEmpty(callbackUrl))
                     restRequest.WithArgument("callback_url", callbackUrl);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "UnregisterCallback"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1101,13 +1083,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="createLanguageModel">A `CreateLanguageModel` object that provides basic information about the
         /// new custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
-        public LanguageModel CreateLanguageModel(CreateLanguageModel createLanguageModel, Dictionary<string, object> customData = null)
+        public DetailedResponse<LanguageModel> CreateLanguageModel(string name, string baseModelName, string dialect = null, string description = null)
         {
-            if (createLanguageModel == null)
-                throw new ArgumentNullException(nameof(createLanguageModel));
-            LanguageModel result = null;
+        if (string.IsNullOrEmpty(name))
+            throw new ArgumentNullException("`name` is required for `CreateLanguageModel`");
+        if (string.IsNullOrEmpty(baseModelName))
+            throw new ArgumentNullException("`baseModelName` is required for `CreateLanguageModel`");
+            DetailedResponse<LanguageModel> result = null;
 
             try
             {
@@ -1120,12 +1103,24 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
 
-                restRequest.WithBody<CreateLanguageModel>(createLanguageModel);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                    bodyObject["name"] = name;
+                if (!string.IsNullOrEmpty(baseModelName))
+                    bodyObject["base_model_name"] = baseModelName;
+                if (!string.IsNullOrEmpty(dialect))
+                    bodyObject["dialect"] = dialect;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateLanguageModel"))
                 {
@@ -1133,9 +1128,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<LanguageModel>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new LanguageModel();
+                    result = new DetailedResponse<LanguageModel>();
             }
             catch (AggregateException ae)
             {
@@ -1158,13 +1152,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteLanguageModel(string customizationId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteLanguageModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteLanguageModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1177,22 +1170,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteLanguageModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1214,13 +1204,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
-        public LanguageModel GetLanguageModel(string customizationId, Dictionary<string, object> customData = null)
+        public DetailedResponse<LanguageModel> GetLanguageModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            LanguageModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetLanguageModel`");
+            DetailedResponse<LanguageModel> result = null;
 
             try
             {
@@ -1233,11 +1222,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetLanguageModel"))
                 {
@@ -1245,9 +1233,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<LanguageModel>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new LanguageModel();
+                    result = new DetailedResponse<LanguageModel>();
             }
             catch (AggregateException ae)
             {
@@ -1271,11 +1258,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic
         /// models that are owned by the requesting credentials. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LanguageModels" />LanguageModels</returns>
-        public LanguageModels ListLanguageModels(string language = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<LanguageModels> ListLanguageModels(string language = null)
         {
-            LanguageModels result = null;
+            DetailedResponse<LanguageModels> result = null;
 
             try
             {
@@ -1288,13 +1274,12 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(language))
                     restRequest.WithArgument("language", language);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListLanguageModels"))
                 {
@@ -1302,9 +1287,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<LanguageModels>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new LanguageModels();
+                    result = new DetailedResponse<LanguageModels>();
             }
             catch (AggregateException ae)
             {
@@ -1328,13 +1312,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel ResetLanguageModel(string customizationId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> ResetLanguageModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ResetLanguageModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1347,22 +1330,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ResetLanguageModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1422,13 +1402,12 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// The value that you assign is used for all recognition requests that use the model. You can override it for
         /// any recognition request by specifying a customization weight for that request. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `TrainLanguageModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1441,26 +1420,23 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(wordTypeToAdd))
                     restRequest.WithArgument("word_type_to_add", wordTypeToAdd);
                 if (customizationWeight != null)
                     restRequest.WithArgument("customization_weight", customizationWeight);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "TrainLanguageModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1492,13 +1468,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel UpgradeLanguageModel(string customizationId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> UpgradeLanguageModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `UpgradeLanguageModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1511,22 +1486,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "UpgradeLanguageModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1598,17 +1570,16 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="allowOverwrite">If `true`, the specified corpus overwrites an existing corpus with the same
         /// name. If `false`, the request fails if a corpus with the same name already exists. The parameter has no
         /// effect if a corpus with the same name does not already exist. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddCorpus(string customizationId, string corpusName, System.IO.FileStream corpusFile, bool? allowOverwrite = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> AddCorpus(string customizationId, string corpusName, System.IO.MemoryStream corpusFile, bool? allowOverwrite = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(corpusName))
-                throw new ArgumentNullException(nameof(corpusName));
-            if (corpusFile == null)
-                throw new ArgumentNullException(nameof(corpusFile));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `AddCorpus`");
+        if (string.IsNullOrEmpty(corpusName))
+            throw new ArgumentNullException("`corpusName` is required for `AddCorpus`");
+        if (corpusFile == null)
+            throw new ArgumentNullException("`corpusFile` is required for `AddCorpus`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1620,7 +1591,7 @@ namespace IBM.Watson.SpeechToText.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/plain", out contentType);
                     corpusFileContent.Headers.ContentType = contentType;
-                    formData.Add(corpusFileContent, "corpus_file", corpusFile.Name);
+                    formData.Add(corpusFileContent, "corpus_file");
                 }
 
                 IClient client = this.Client;
@@ -1632,25 +1603,22 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddCorpus"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1677,15 +1645,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="corpusName">The name of the corpus for the custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteCorpus(string customizationId, string corpusName, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteCorpus(string customizationId, string corpusName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(corpusName))
-                throw new ArgumentNullException(nameof(corpusName));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteCorpus`");
+        if (string.IsNullOrEmpty(corpusName))
+            throw new ArgumentNullException("`corpusName` is required for `DeleteCorpus`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1698,22 +1665,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteCorpus"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1737,15 +1701,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="corpusName">The name of the corpus for the custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Corpus" />Corpus</returns>
-        public Corpus GetCorpus(string customizationId, string corpusName, Dictionary<string, object> customData = null)
+        public DetailedResponse<Corpus> GetCorpus(string customizationId, string corpusName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(corpusName))
-                throw new ArgumentNullException(nameof(corpusName));
-            Corpus result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetCorpus`");
+        if (string.IsNullOrEmpty(corpusName))
+            throw new ArgumentNullException("`corpusName` is required for `GetCorpus`");
+            DetailedResponse<Corpus> result = null;
 
             try
             {
@@ -1758,11 +1721,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetCorpus"))
                 {
@@ -1770,9 +1732,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Corpus>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Corpus();
+                    result = new DetailedResponse<Corpus>();
             }
             catch (AggregateException ae)
             {
@@ -1795,13 +1756,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Corpora" />Corpora</returns>
-        public Corpora ListCorpora(string customizationId, Dictionary<string, object> customData = null)
+        public DetailedResponse<Corpora> ListCorpora(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            Corpora result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ListCorpora`");
+            DetailedResponse<Corpora> result = null;
 
             try
             {
@@ -1814,11 +1774,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListCorpora"))
                 {
@@ -1826,9 +1785,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Corpora>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Corpora();
+                    result = new DetailedResponse<Corpora>();
             }
             catch (AggregateException ae)
             {
@@ -1880,17 +1838,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// encoding](https://cloud.ibm.com/docs/services/speech-to-text/language-resource.html#charEncoding).</param>
         /// <param name="customWord">A `CustomWord` object that provides information about the specified custom word.
         /// Specify an empty object to add a word with no sounds-like or display-as information.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddWord(string customizationId, string wordName, CustomWord customWord, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> AddWord(string customizationId, string wordName, string word = null, List<string> soundsLike = null, string displayAs = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(wordName))
-                throw new ArgumentNullException(nameof(wordName));
-            if (customWord == null)
-                throw new ArgumentNullException(nameof(customWord));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `AddWord`");
+        if (string.IsNullOrEmpty(wordName))
+            throw new ArgumentNullException("`wordName` is required for `AddWord`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1903,23 +1858,31 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
-                restRequest.WithBody<CustomWord>(customWord);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(word))
+                    bodyObject["word"] = word;
+                if (soundsLike != null && soundsLike.Count > 0)
+                    bodyObject["sounds_like"] = JToken.FromObject(soundsLike);
+                if (!string.IsNullOrEmpty(displayAs))
+                    bodyObject["display_as"] = displayAs;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddWord"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1983,15 +1946,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// custom model.</param>
         /// <param name="customWords">A `CustomWords` object that provides information about one or more custom words
         /// that are to be added to or updated in the custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddWords(string customizationId, CustomWords customWords, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> AddWords(string customizationId, List<CustomWord> words)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (customWords == null)
-                throw new ArgumentNullException(nameof(customWords));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `AddWords`");
+        if (words == null)
+            throw new ArgumentNullException("`words` is required for `AddWords`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2004,23 +1966,27 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
-                restRequest.WithBody<CustomWords>(customWords);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (words != null && words.Count > 0)
+                    bodyObject["words"] = JToken.FromObject(words);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddWords"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2049,15 +2015,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="wordName">The custom word that is to be deleted from the custom language model. URL-encode the
         /// word if it includes non-ASCII characters. For more information, see [Character
         /// encoding](https://cloud.ibm.com/docs/services/speech-to-text/language-resource.html#charEncoding).</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteWord(string customizationId, string wordName, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteWord(string customizationId, string wordName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(wordName))
-                throw new ArgumentNullException(nameof(wordName));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
+        if (string.IsNullOrEmpty(wordName))
+            throw new ArgumentNullException("`wordName` is required for `DeleteWord`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2070,22 +2035,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteWord"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2110,15 +2072,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="wordName">The custom word that is to be read from the custom language model. URL-encode the
         /// word if it includes non-ASCII characters. For more information, see [Character
         /// encoding](https://cloud.ibm.com/docs/services/speech-to-text/language-resource.html#charEncoding).</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Word" />Word</returns>
-        public Word GetWord(string customizationId, string wordName, Dictionary<string, object> customData = null)
+        public DetailedResponse<Word> GetWord(string customizationId, string wordName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(wordName))
-                throw new ArgumentNullException(nameof(wordName));
-            Word result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetWord`");
+        if (string.IsNullOrEmpty(wordName))
+            throw new ArgumentNullException("`wordName` is required for `GetWord`");
+            DetailedResponse<Word> result = null;
 
             try
             {
@@ -2131,11 +2092,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetWord"))
                 {
@@ -2143,9 +2103,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Word>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Word();
+                    result = new DetailedResponse<Word>();
             }
             catch (AggregateException ae)
             {
@@ -2182,13 +2141,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase
         /// letters. For count ordering, values with the same count are ordered alphabetically. With the `curl` command,
         /// URL encode the `+` symbol as `%2B`. (optional, default to alphabetical)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Words" />Words</returns>
-        public Words ListWords(string customizationId, string wordType = null, string sort = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Words> ListWords(string customizationId, string wordType = null, string sort = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            Words result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            DetailedResponse<Words> result = null;
 
             try
             {
@@ -2201,15 +2159,14 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(wordType))
                     restRequest.WithArgument("word_type", wordType);
                 if (!string.IsNullOrEmpty(sort))
                     restRequest.WithArgument("sort", sort);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListWords"))
                 {
@@ -2217,9 +2174,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Words>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Words();
+                    result = new DetailedResponse<Words>();
             }
             catch (AggregateException ae)
             {
@@ -2284,19 +2240,18 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="allowOverwrite">If `true`, the specified grammar overwrites an existing grammar with the same
         /// name. If `false`, the request fails if a grammar with the same name already exists. The parameter has no
         /// effect if a grammar with the same name does not already exist. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(grammarName))
-                throw new ArgumentNullException(nameof(grammarName));
-            if (string.IsNullOrEmpty(grammarFile))
-                throw new ArgumentNullException(nameof(grammarFile));
-            if (string.IsNullOrEmpty(contentType))
-                throw new ArgumentNullException(nameof(contentType));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `AddGrammar`");
+        if (string.IsNullOrEmpty(grammarName))
+            throw new ArgumentNullException("`grammarName` is required for `AddGrammar`");
+        if (string.IsNullOrEmpty(grammarFile))
+            throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
+        if (string.IsNullOrEmpty(contentType))
+            throw new ArgumentNullException("`contentType` is required for `AddGrammar`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2309,27 +2264,31 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(contentType))
                     restRequest.WithHeader("Content-Type", contentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithBodyContent(new StringContent(grammarFile, Encoding.UTF8, HttpMediaType.TEXT_PLAIN));
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddGrammar"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2356,15 +2315,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="grammarName">The name of the grammar for the custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteGrammar(string customizationId, string grammarName, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteGrammar(string customizationId, string grammarName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(grammarName))
-                throw new ArgumentNullException(nameof(grammarName));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteGrammar`");
+        if (string.IsNullOrEmpty(grammarName))
+            throw new ArgumentNullException("`grammarName` is required for `DeleteGrammar`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2377,22 +2335,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteGrammar"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2416,15 +2371,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="grammarName">The name of the grammar for the custom language model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Grammar" />Grammar</returns>
-        public Grammar GetGrammar(string customizationId, string grammarName, Dictionary<string, object> customData = null)
+        public DetailedResponse<Grammar> GetGrammar(string customizationId, string grammarName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(grammarName))
-                throw new ArgumentNullException(nameof(grammarName));
-            Grammar result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetGrammar`");
+        if (string.IsNullOrEmpty(grammarName))
+            throw new ArgumentNullException("`grammarName` is required for `GetGrammar`");
+            DetailedResponse<Grammar> result = null;
 
             try
             {
@@ -2437,11 +2391,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetGrammar"))
                 {
@@ -2449,9 +2402,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Grammar>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Grammar();
+                    result = new DetailedResponse<Grammar>();
             }
             catch (AggregateException ae)
             {
@@ -2474,13 +2426,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Grammars" />Grammars</returns>
-        public Grammars ListGrammars(string customizationId, Dictionary<string, object> customData = null)
+        public DetailedResponse<Grammars> ListGrammars(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            Grammars result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ListGrammars`");
+            DetailedResponse<Grammars> result = null;
 
             try
             {
@@ -2493,11 +2444,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListGrammars"))
                 {
@@ -2505,9 +2455,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<Grammars>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Grammars();
+                    result = new DetailedResponse<Grammars>();
             }
             catch (AggregateException ae)
             {
@@ -2528,13 +2477,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="createAcousticModel">A `CreateAcousticModel` object that provides basic information about the
         /// new custom acoustic model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
-        public AcousticModel CreateAcousticModel(CreateAcousticModel createAcousticModel, Dictionary<string, object> customData = null)
+        public DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null)
         {
-            if (createAcousticModel == null)
-                throw new ArgumentNullException(nameof(createAcousticModel));
-            AcousticModel result = null;
+        if (string.IsNullOrEmpty(name))
+            throw new ArgumentNullException("`name` is required for `CreateAcousticModel`");
+        if (string.IsNullOrEmpty(baseModelName))
+            throw new ArgumentNullException("`baseModelName` is required for `CreateAcousticModel`");
+            DetailedResponse<AcousticModel> result = null;
 
             try
             {
@@ -2547,12 +2497,22 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
-                restRequest.WithBody<CreateAcousticModel>(createAcousticModel);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                    bodyObject["name"] = name;
+                if (!string.IsNullOrEmpty(baseModelName))
+                    bodyObject["base_model_name"] = baseModelName;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateAcousticModel"))
                 {
@@ -2560,9 +2520,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<AcousticModel>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new AcousticModel();
+                    result = new DetailedResponse<AcousticModel>();
             }
             catch (AggregateException ae)
             {
@@ -2585,13 +2544,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteAcousticModel(string customizationId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteAcousticModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteAcousticModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2604,22 +2562,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteAcousticModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2641,13 +2596,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
-        public AcousticModel GetAcousticModel(string customizationId, Dictionary<string, object> customData = null)
+        public DetailedResponse<AcousticModel> GetAcousticModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            AcousticModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetAcousticModel`");
+            DetailedResponse<AcousticModel> result = null;
 
             try
             {
@@ -2660,11 +2614,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetAcousticModel"))
                 {
@@ -2672,9 +2625,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<AcousticModel>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new AcousticModel();
+                    result = new DetailedResponse<AcousticModel>();
             }
             catch (AggregateException ae)
             {
@@ -2698,11 +2650,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned (for example, `en-US`). Omit the parameter to see all custom language or custom acoustic
         /// models that are owned by the requesting credentials. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AcousticModels" />AcousticModels</returns>
-        public AcousticModels ListAcousticModels(string language = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<AcousticModels> ListAcousticModels(string language = null)
         {
-            AcousticModels result = null;
+            DetailedResponse<AcousticModels> result = null;
 
             try
             {
@@ -2715,13 +2666,12 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(language))
                     restRequest.WithArgument("language", language);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListAcousticModels"))
                 {
@@ -2729,9 +2679,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<AcousticModels>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new AcousticModels();
+                    result = new DetailedResponse<AcousticModels>();
             }
             catch (AggregateException ae)
             {
@@ -2755,13 +2704,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel ResetAcousticModel(string customizationId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> ResetAcousticModel(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ResetAcousticModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2774,22 +2722,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ResetAcousticModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2846,13 +2791,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// of the audio resources. The custom language model must be based on the same version of the same base model
         /// as the custom acoustic model. The credentials specified with the request must own both custom models.
         /// (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel TrainAcousticModel(string customizationId, string customLanguageModelId = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> TrainAcousticModel(string customizationId, string customLanguageModelId = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `TrainAcousticModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2865,24 +2809,21 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "TrainAcousticModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2930,13 +2871,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// message `No input data modified since last training`. See [Upgrading a custom acoustic
         /// model](https://cloud.ibm.com/docs/services/speech-to-text/custom-upgrade.html#upgradeAcoustic). (optional,
         /// default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `UpgradeAcousticModel`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2949,26 +2889,23 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
 
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 if (force != null)
                     restRequest.WithArgument("force", force);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "UpgradeAcousticModel"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -3081,6 +3018,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// * Do not use the name of an audio resource that has already been added to the custom model.</param>
         /// <param name="audioResource">The audio resource that is to be added to the custom acoustic model, an
         /// individual audio file or an archive file.</param>
+        /// <param name="contentType">For an audio-type resource, the format (MIME type) of the audio. For more
+        /// information, see **Content types for audio-type resources** in the method description.
+        ///
+        /// For an archive-type resource, the media type of the archive file. For more information, see **Content types
+        /// for archive-type resources** in the method description. (optional)</param>
         /// <param name="containedContentType">**For an archive-type resource,** specify the format of the audio files
         /// that are contained in the archive file if they are of type `audio/alaw`, `audio/basic`, `audio/l16`, or
         /// `audio/mulaw`. Include the `rate`, `channels`, and `endianness` parameters where necessary. In this case,
@@ -3097,22 +3039,16 @@ namespace IBM.Watson.SpeechToText.v1
         /// with the same name. If `false`, the request fails if an audio resource with the same name already exists.
         /// The parameter has no effect if an audio resource with the same name does not already exist. (optional,
         /// default to false)</param>
-        /// <param name="contentType">For an audio-type resource, the format (MIME type) of the audio. For more
-        /// information, see **Content types for audio-type resources** in the method description.
-        ///
-        /// For an archive-type resource, the media type of the archive file. For more information, see **Content types
-        /// for archive-type resources** in the method description. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel AddAudio(string customizationId, string audioName, byte[] audioResource, string containedContentType = null, bool? allowOverwrite = null, string contentType = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(audioName))
-                throw new ArgumentNullException(nameof(audioName));
-            if (audioResource == null)
-                throw new ArgumentNullException(nameof(audioResource));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `AddAudio`");
+        if (string.IsNullOrEmpty(audioName))
+            throw new ArgumentNullException("`audioName` is required for `AddAudio`");
+        if (audioResource == null)
+            throw new ArgumentNullException("`audioResource` is required for `AddAudio`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -3125,29 +3061,38 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
-                if (!string.IsNullOrEmpty(containedContentType))
-                    restRequest.WithHeader("Contained-Content-Type", containedContentType);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(contentType))
                     restRequest.WithHeader("Content-Type", contentType);
+                if (!string.IsNullOrEmpty(containedContentType))
+                    restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithBody<byte[]>(audioResource);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
+
+                if (!string.IsNullOrEmpty(containedContentType))
+                {
+                    restRequest.WithHeader("Contained-Content-Type", containedContentType);
+                }
+                var httpContent = new ByteArrayContent(audioResource);
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddAudio"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -3173,15 +3118,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="audioName">The name of the audio resource for the custom acoustic model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteAudio(string customizationId, string audioName, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteAudio(string customizationId, string audioName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(audioName))
-                throw new ArgumentNullException(nameof(audioName));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `DeleteAudio`");
+        if (string.IsNullOrEmpty(audioName))
+            throw new ArgumentNullException("`audioName` is required for `DeleteAudio`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -3194,22 +3138,19 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteAudio"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -3246,15 +3187,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
         /// <param name="audioName">The name of the audio resource for the custom acoustic model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AudioListing" />AudioListing</returns>
-        public AudioListing GetAudio(string customizationId, string audioName, Dictionary<string, object> customData = null)
+        public DetailedResponse<AudioListing> GetAudio(string customizationId, string audioName)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            if (string.IsNullOrEmpty(audioName))
-                throw new ArgumentNullException(nameof(audioName));
-            AudioListing result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `GetAudio`");
+        if (string.IsNullOrEmpty(audioName))
+            throw new ArgumentNullException("`audioName` is required for `GetAudio`");
+            DetailedResponse<AudioListing> result = null;
 
             try
             {
@@ -3267,11 +3207,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "GetAudio"))
                 {
@@ -3279,9 +3218,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<AudioListing>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new AudioListing();
+                    result = new DetailedResponse<AudioListing>();
             }
             catch (AggregateException ae)
             {
@@ -3306,13 +3244,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom acoustic model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AudioResources" />AudioResources</returns>
-        public AudioResources ListAudio(string customizationId, Dictionary<string, object> customData = null)
+        public DetailedResponse<AudioResources> ListAudio(string customizationId)
         {
-            if (string.IsNullOrEmpty(customizationId))
-                throw new ArgumentNullException(nameof(customizationId));
-            AudioResources result = null;
+        if (string.IsNullOrEmpty(customizationId))
+            throw new ArgumentNullException("`customizationId` is required for `ListAudio`");
+            DetailedResponse<AudioResources> result = null;
 
             try
             {
@@ -3325,11 +3262,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListAudio"))
                 {
@@ -3337,9 +3273,8 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 result = restRequest.As<AudioResources>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new AudioResources();
+                    result = new DetailedResponse<AudioResources>();
             }
             catch (AggregateException ae)
             {
@@ -3363,13 +3298,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// security](https://cloud.ibm.com/docs/services/speech-to-text/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteUserData(string customerId)
         {
-            if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException(nameof(customerId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(customerId))
+            throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -3382,24 +3316,20 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 if (!string.IsNullOrEmpty(customerId))
                     restRequest.WithArgument("customer_id", customerId);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteUserData"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<BaseModel>().Result;
-                result.CustomData = restRequest.CustomData;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                result.CustomData = restRequest.CustomData;
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {

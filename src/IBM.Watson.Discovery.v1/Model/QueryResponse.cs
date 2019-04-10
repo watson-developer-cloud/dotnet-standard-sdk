@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,15 +16,15 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// A response containing the documents and aggregations for the query.
     /// </summary>
-    public class QueryResponse : BaseModel
+    public class QueryResponse
     {
         /// <summary>
         /// The number of matching results for the query.
@@ -35,7 +35,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// Array of document results for the query.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<dynamic> Results { get; set; }
+        public List<JObject> Results { get; set; }
         /// <summary>
         /// Array of aggregation results for the query.
         /// </summary>

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object defining which URL to crawl and how to crawl it.
     /// </summary>
-    public class SourceOptionsWebCrawl : BaseModel
+    public class SourceOptionsWebCrawl
     {
         /// <summary>
         /// The number of concurrent URLs to fetch. `gentle` means one URL is fetched at a time with a delay between
@@ -33,33 +30,21 @@ namespace IBM.Watson.Discovery.v1.Model
         /// calls. `aggressive` means that up to ten URLs are fetched concurrently with a short delay between fetch
         /// calls.
         /// </summary>
-        /// <value>
-        /// The number of concurrent URLs to fetch. `gentle` means one URL is fetched at a time with a delay between
-        /// each call. `normal` means as many as two URLs are fectched concurrently with a short delay between fetch
-        /// calls. `aggressive` means that up to ten URLs are fetched concurrently with a short delay between fetch
-        /// calls.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CrawlSpeedEnum
+        public class CrawlSpeedEnumValue
         {
-            
             /// <summary>
-            /// Enum GENTLE for gentle
+            /// Constant GENTLE for gentle
             /// </summary>
-            [EnumMember(Value = "gentle")]
-            GENTLE,
-            
+            public const string GENTLE = "gentle";
             /// <summary>
-            /// Enum NORMAL for normal
+            /// Constant NORMAL for normal
             /// </summary>
-            [EnumMember(Value = "normal")]
-            NORMAL,
-            
+            public const string NORMAL = "normal";
             /// <summary>
-            /// Enum AGGRESSIVE for aggressive
+            /// Constant AGGRESSIVE for aggressive
             /// </summary>
-            [EnumMember(Value = "aggressive")]
-            AGGRESSIVE
+            public const string AGGRESSIVE = "aggressive";
+            
         }
 
         /// <summary>
@@ -67,9 +52,10 @@ namespace IBM.Watson.Discovery.v1.Model
         /// each call. `normal` means as many as two URLs are fectched concurrently with a short delay between fetch
         /// calls. `aggressive` means that up to ten URLs are fetched concurrently with a short delay between fetch
         /// calls.
+        /// Constants for possible values can be found using SourceOptionsWebCrawl.CrawlSpeedEnumValue
         /// </summary>
         [JsonProperty("crawl_speed", NullValueHandling = NullValueHandling.Ignore)]
-        public CrawlSpeedEnum? CrawlSpeed { get; set; }
+        public string CrawlSpeed { get; set; }
         /// <summary>
         /// The starting URL to crawl.
         /// </summary>

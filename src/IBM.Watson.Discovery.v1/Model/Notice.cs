@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,36 +23,30 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// A notice produced for the collection.
     /// </summary>
-    public class Notice : BaseModel
+    public class Notice
     {
         /// <summary>
         /// Severity level of the notice.
         /// </summary>
-        /// <value>
-        /// Severity level of the notice.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SeverityEnum
+        public class SeverityEnumValue
         {
-            
             /// <summary>
-            /// Enum WARNING for warning
+            /// Constant WARNING for warning
             /// </summary>
-            [EnumMember(Value = "warning")]
-            WARNING,
-            
+            public const string WARNING = "warning";
             /// <summary>
-            /// Enum ERROR for error
+            /// Constant ERROR for error
             /// </summary>
-            [EnumMember(Value = "error")]
-            ERROR
+            public const string ERROR = "error";
+            
         }
 
         /// <summary>
         /// Severity level of the notice.
+        /// Constants for possible values can be found using Notice.SeverityEnumValue
         /// </summary>
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
-        public SeverityEnum? Severity { get; set; }
+        public string Severity { get; set; }
         /// <summary>
         /// Identifies the notice. Many notices might have the same ID. This field exists so that user applications can
         /// programmatically identify a notice and take automatic corrective action. Typical notice IDs include:

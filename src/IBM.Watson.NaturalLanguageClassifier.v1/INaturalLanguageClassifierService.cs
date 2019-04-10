@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,19 +15,20 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using IBM.Watson.NaturalLanguageClassifier.v1.Model;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
     public partial interface INaturalLanguageClassifierService
     {
-        Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null);
-        ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null);
-        Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null);
-        BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null);
-        Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null);
-        ClassifierList ListClassifiers(Dictionary<string, object> customData = null);
+        DetailedResponse<Classification> Classify(string classifierId, string text);
+        DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection);
+        DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData);
+        DetailedResponse<object> DeleteClassifier(string classifierId);
+        DetailedResponse<Classifier> GetClassifier(string classifierId);
+        DetailedResponse<ClassifierList> ListClassifiers();
     }
 }

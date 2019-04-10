@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
@@ -28,7 +27,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// Supported languages: Arabic, English, German, Japanese, Korean, Spanish. Chinese, Dutch, French, Italian, and
     /// Portuguese custom models are also supported.
     /// </summary>
-    public class RelationsOptions : BaseModel
+    public class RelationsOptions
     {
         /// <summary>
         /// Enter a [custom model](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html)

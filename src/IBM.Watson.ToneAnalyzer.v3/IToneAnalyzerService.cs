@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,13 +16,14 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 
 namespace IBM.Watson.ToneAnalyzer.v3
 {
     public partial interface IToneAnalyzerService
     {
-        ToneAnalysis Tone(ToneInput toneInput, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, string contentType = null, Dictionary<string, object> customData = null);
-        UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
+        DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null);
+        DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null);
     }
 }

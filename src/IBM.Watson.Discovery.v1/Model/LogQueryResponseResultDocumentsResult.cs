@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Each object in the **results** array corresponds to an individual document returned by the original query.
     /// </summary>
-    public class LogQueryResponseResultDocumentsResult : BaseModel
+    public class LogQueryResponseResultDocumentsResult
     {
         /// <summary>
         /// The result rank of this document. A position of `1` indicates that it was the first returned result.

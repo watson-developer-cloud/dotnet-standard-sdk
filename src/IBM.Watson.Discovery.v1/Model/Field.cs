@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,100 +15,73 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Field.
     /// </summary>
-    public class Field : BaseModel
+    public class Field
     {
         /// <summary>
         /// The type of the field.
         /// </summary>
-        /// <value>
-        /// The type of the field.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FieldTypeEnum
+        public class FieldTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum NESTED for nested
+            /// Constant NESTED for nested
             /// </summary>
-            [EnumMember(Value = "nested")]
-            NESTED,
-            
+            public const string NESTED = "nested";
             /// <summary>
-            /// Enum STRING for string
+            /// Constant STRING for string
             /// </summary>
-            [EnumMember(Value = "string")]
-            STRING,
-            
+            public const string STRING = "string";
             /// <summary>
-            /// Enum DATE for date
+            /// Constant DATE for date
             /// </summary>
-            [EnumMember(Value = "date")]
-            DATE,
-            
+            public const string DATE = "date";
             /// <summary>
-            /// Enum LONG for long
+            /// Constant LONG for long
             /// </summary>
-            [EnumMember(Value = "long")]
-            LONG,
-            
+            public const string LONG = "long";
             /// <summary>
-            /// Enum INTEGER for integer
+            /// Constant INTEGER for integer
             /// </summary>
-            [EnumMember(Value = "integer")]
-            INTEGER,
-            
+            public const string INTEGER = "integer";
             /// <summary>
-            /// Enum SHORT for short
+            /// Constant SHORT for short
             /// </summary>
-            [EnumMember(Value = "short")]
-            SHORT,
-            
+            public const string SHORT = "short";
             /// <summary>
-            /// Enum BYTE for byte
+            /// Constant BYTE for byte
             /// </summary>
-            [EnumMember(Value = "byte")]
-            BYTE,
-            
+            public const string BYTE = "byte";
             /// <summary>
-            /// Enum DOUBLE for double
+            /// Constant DOUBLE for double
             /// </summary>
-            [EnumMember(Value = "double")]
-            DOUBLE,
-            
+            public const string DOUBLE = "double";
             /// <summary>
-            /// Enum FLOAT for float
+            /// Constant FLOAT for float
             /// </summary>
-            [EnumMember(Value = "float")]
-            FLOAT,
-            
+            public const string FLOAT = "float";
             /// <summary>
-            /// Enum BOOLEAN for boolean
+            /// Constant BOOLEAN for boolean
             /// </summary>
-            [EnumMember(Value = "boolean")]
-            BOOLEAN,
-            
+            public const string BOOLEAN = "boolean";
             /// <summary>
-            /// Enum BINARY for binary
+            /// Constant BINARY for binary
             /// </summary>
-            [EnumMember(Value = "binary")]
-            BINARY
+            public const string BINARY = "binary";
+            
         }
 
         /// <summary>
         /// The type of the field.
+        /// Constants for possible values can be found using Field.FieldTypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public FieldTypeEnum? FieldType { get; set; }
+        public string FieldType { get; set; }
         /// <summary>
         /// The name of the field.
         /// </summary>

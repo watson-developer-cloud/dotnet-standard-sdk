@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// NormalizationOperation.
     /// </summary>
-    public class NormalizationOperation : BaseModel
+    public class NormalizationOperation
     {
         /// <summary>
         /// Identifies what type of operation to perform.
@@ -53,65 +50,29 @@ namespace IBM.Watson.Discovery.v1.Model
         /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
         /// invoked at all, it can be time-expensive).
         /// </summary>
-        /// <value>
-        /// Identifies what type of operation to perform.
-        ///
-        /// **copy** - Copies the value of the **source_field** to the **destination_field** field. If the
-        /// **destination_field** already exists, then the value of the **source_field** overwrites the original value
-        /// of the **destination_field**.
-        ///
-        /// **move** - Renames (moves) the **source_field** to the **destination_field**. If the **destination_field**
-        /// already exists, then the value of the **source_field** overwrites the original value of the
-        /// **destination_field**. Rename is identical to copy, except that the **source_field** is removed after the
-        /// value has been copied to the **destination_field** (it is the same as a _copy_ followed by a _remove_).
-        ///
-        /// **merge** - Merges the value of the **source_field** with the value of the **destination_field**. The
-        /// **destination_field** is converted into an array if it is not already an array, and the value of the
-        /// **source_field** is appended to the array. This operation removes the **source_field** after the merge. If
-        /// the **source_field** does not exist in the current document, then the **destination_field** is still
-        /// converted into an array (if it is not an array already). This conversion ensures the type for
-        /// **destination_field** is consistent across all documents.
-        ///
-        /// **remove** - Deletes the **source_field** field. The **destination_field** is ignored for this operation.
-        ///
-        /// **remove_nulls** - Removes all nested null (blank) field values from the ingested document. **source_field**
-        /// and **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire
-        /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
-        /// invoked at all, it can be time-expensive).
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum OperationEnum
+        public class OperationEnumValue
         {
-            
             /// <summary>
-            /// Enum COPY for copy
+            /// Constant COPY for copy
             /// </summary>
-            [EnumMember(Value = "copy")]
-            COPY,
-            
+            public const string COPY = "copy";
             /// <summary>
-            /// Enum MOVE for move
+            /// Constant MOVE for move
             /// </summary>
-            [EnumMember(Value = "move")]
-            MOVE,
-            
+            public const string MOVE = "move";
             /// <summary>
-            /// Enum MERGE for merge
+            /// Constant MERGE for merge
             /// </summary>
-            [EnumMember(Value = "merge")]
-            MERGE,
-            
+            public const string MERGE = "merge";
             /// <summary>
-            /// Enum REMOVE for remove
+            /// Constant REMOVE for remove
             /// </summary>
-            [EnumMember(Value = "remove")]
-            REMOVE,
-            
+            public const string REMOVE = "remove";
             /// <summary>
-            /// Enum REMOVE_NULLS for remove_nulls
+            /// Constant REMOVE_NULLS for remove_nulls
             /// </summary>
-            [EnumMember(Value = "remove_nulls")]
-            REMOVE_NULLS
+            public const string REMOVE_NULLS = "remove_nulls";
+            
         }
 
         /// <summary>
@@ -139,9 +100,10 @@ namespace IBM.Watson.Discovery.v1.Model
         /// and **destination_field** are ignored by this operation because _remove_nulls_ operates on the entire
         /// ingested document. Typically, **remove_nulls** is invoked as the last normalization operation (if it is
         /// invoked at all, it can be time-expensive).
+        /// Constants for possible values can be found using NormalizationOperation.OperationEnumValue
         /// </summary>
         [JsonProperty("operation", NullValueHandling = NullValueHandling.Ignore)]
-        public OperationEnum? Operation { get; set; }
+        public string Operation { get; set; }
         /// <summary>
         /// The source field for the operation.
         /// </summary>

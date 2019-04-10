@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -25,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// An expansion definition. Each object respresents one set of expandable strings. For example, you could have
     /// expansions for the word `hot` in one object, and expansions for the word `cold` in another.
     /// </summary>
-    public class Expansion : BaseModel
+    public class Expansion
     {
         /// <summary>
         /// A list of terms that will be expanded for this expansion. If specified, only the items in this list are

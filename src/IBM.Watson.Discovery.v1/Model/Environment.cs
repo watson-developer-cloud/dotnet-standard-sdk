@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,127 +23,94 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Details about an environment.
     /// </summary>
-    public class Environment : BaseModel
+    public class Environment
     {
         /// <summary>
         /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
         /// has been made, but is still in the process of being completed.
         /// </summary>
-        /// <value>
-        /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
-        /// has been made, but is still in the process of being completed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum ACTIVE for active
+            /// Constant ACTIVE for active
             /// </summary>
-            [EnumMember(Value = "active")]
-            ACTIVE,
-            
+            public const string ACTIVE = "active";
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING,
-            
+            public const string PENDING = "pending";
             /// <summary>
-            /// Enum MAINTENANCE for maintenance
+            /// Constant MAINTENANCE for maintenance
             /// </summary>
-            [EnumMember(Value = "maintenance")]
-            MAINTENANCE,
-            
+            public const string MAINTENANCE = "maintenance";
             /// <summary>
-            /// Enum RESIZING for resizing
+            /// Constant RESIZING for resizing
             /// </summary>
-            [EnumMember(Value = "resizing")]
-            RESIZING
+            public const string RESIZING = "resizing";
+            
         }
 
         /// <summary>
         /// Current size of the environment.
         /// </summary>
-        /// <value>
-        /// Current size of the environment.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SizeEnum
+        public class SizeEnumValue
         {
-            
             /// <summary>
-            /// Enum LT for LT
+            /// Constant LT for LT
             /// </summary>
-            [EnumMember(Value = "LT")]
-            LT,
-            
+            public const string LT = "LT";
             /// <summary>
-            /// Enum XS for XS
+            /// Constant XS for XS
             /// </summary>
-            [EnumMember(Value = "XS")]
-            XS,
-            
+            public const string XS = "XS";
             /// <summary>
-            /// Enum S for S
+            /// Constant S for S
             /// </summary>
-            [EnumMember(Value = "S")]
-            S,
-            
+            public const string S = "S";
             /// <summary>
-            /// Enum MS for MS
+            /// Constant MS for MS
             /// </summary>
-            [EnumMember(Value = "MS")]
-            MS,
-            
+            public const string MS = "MS";
             /// <summary>
-            /// Enum M for M
+            /// Constant M for M
             /// </summary>
-            [EnumMember(Value = "M")]
-            M,
-            
+            public const string M = "M";
             /// <summary>
-            /// Enum ML for ML
+            /// Constant ML for ML
             /// </summary>
-            [EnumMember(Value = "ML")]
-            ML,
-            
+            public const string ML = "ML";
             /// <summary>
-            /// Enum L for L
+            /// Constant L for L
             /// </summary>
-            [EnumMember(Value = "L")]
-            L,
-            
+            public const string L = "L";
             /// <summary>
-            /// Enum XL for XL
+            /// Constant XL for XL
             /// </summary>
-            [EnumMember(Value = "XL")]
-            XL,
-            
+            public const string XL = "XL";
             /// <summary>
-            /// Enum XXL for XXL
+            /// Constant XXL for XXL
             /// </summary>
-            [EnumMember(Value = "XXL")]
-            XXL,
-            
+            public const string XXL = "XXL";
             /// <summary>
-            /// Enum XXXL for XXXL
+            /// Constant XXXL for XXXL
             /// </summary>
-            [EnumMember(Value = "XXXL")]
-            XXXL
+            public const string XXXL = "XXXL";
+            
         }
 
         /// <summary>
         /// Current status of the environment. `resizing` is displayed when a request to increase the environment size
         /// has been made, but is still in the process of being completed.
+        /// Constants for possible values can be found using Environment.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Current size of the environment.
+        /// Constants for possible values can be found using Environment.SizeEnumValue
         /// </summary>
         [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public SizeEnum? Size { get; set; }
+        public string Size { get; set; }
         /// <summary>
         /// Unique identifier for the environment.
         /// </summary>

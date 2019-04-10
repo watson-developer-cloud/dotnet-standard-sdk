@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,139 +16,99 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
     /// TokenResult.
     /// </summary>
-    public class TokenResult : BaseModel
+    public class TokenResult
     {
         /// <summary>
         /// The part of speech of the token. For descriptions of the values, see [Universal Dependencies POS
         /// tags](https://universaldependencies.org/u/pos/).
         /// </summary>
-        /// <value>
-        /// The part of speech of the token. For descriptions of the values, see [Universal Dependencies POS
-        /// tags](https://universaldependencies.org/u/pos/).
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PartOfSpeechEnum
+        public class PartOfSpeechEnumValue
         {
-            
             /// <summary>
-            /// Enum ADJ for ADJ
+            /// Constant ADJ for ADJ
             /// </summary>
-            [EnumMember(Value = "ADJ")]
-            ADJ,
-            
+            public const string ADJ = "ADJ";
             /// <summary>
-            /// Enum ADP for ADP
+            /// Constant ADP for ADP
             /// </summary>
-            [EnumMember(Value = "ADP")]
-            ADP,
-            
+            public const string ADP = "ADP";
             /// <summary>
-            /// Enum ADV for ADV
+            /// Constant ADV for ADV
             /// </summary>
-            [EnumMember(Value = "ADV")]
-            ADV,
-            
+            public const string ADV = "ADV";
             /// <summary>
-            /// Enum AUX for AUX
+            /// Constant AUX for AUX
             /// </summary>
-            [EnumMember(Value = "AUX")]
-            AUX,
-            
+            public const string AUX = "AUX";
             /// <summary>
-            /// Enum CCONJ for CCONJ
+            /// Constant CCONJ for CCONJ
             /// </summary>
-            [EnumMember(Value = "CCONJ")]
-            CCONJ,
-            
+            public const string CCONJ = "CCONJ";
             /// <summary>
-            /// Enum DET for DET
+            /// Constant DET for DET
             /// </summary>
-            [EnumMember(Value = "DET")]
-            DET,
-            
+            public const string DET = "DET";
             /// <summary>
-            /// Enum INTJ for INTJ
+            /// Constant INTJ for INTJ
             /// </summary>
-            [EnumMember(Value = "INTJ")]
-            INTJ,
-            
+            public const string INTJ = "INTJ";
             /// <summary>
-            /// Enum NOUN for NOUN
+            /// Constant NOUN for NOUN
             /// </summary>
-            [EnumMember(Value = "NOUN")]
-            NOUN,
-            
+            public const string NOUN = "NOUN";
             /// <summary>
-            /// Enum NUM for NUM
+            /// Constant NUM for NUM
             /// </summary>
-            [EnumMember(Value = "NUM")]
-            NUM,
-            
+            public const string NUM = "NUM";
             /// <summary>
-            /// Enum PART for PART
+            /// Constant PART for PART
             /// </summary>
-            [EnumMember(Value = "PART")]
-            PART,
-            
+            public const string PART = "PART";
             /// <summary>
-            /// Enum PRON for PRON
+            /// Constant PRON for PRON
             /// </summary>
-            [EnumMember(Value = "PRON")]
-            PRON,
-            
+            public const string PRON = "PRON";
             /// <summary>
-            /// Enum PROPN for PROPN
+            /// Constant PROPN for PROPN
             /// </summary>
-            [EnumMember(Value = "PROPN")]
-            PROPN,
-            
+            public const string PROPN = "PROPN";
             /// <summary>
-            /// Enum PUNCT for PUNCT
+            /// Constant PUNCT for PUNCT
             /// </summary>
-            [EnumMember(Value = "PUNCT")]
-            PUNCT,
-            
+            public const string PUNCT = "PUNCT";
             /// <summary>
-            /// Enum SCONJ for SCONJ
+            /// Constant SCONJ for SCONJ
             /// </summary>
-            [EnumMember(Value = "SCONJ")]
-            SCONJ,
-            
+            public const string SCONJ = "SCONJ";
             /// <summary>
-            /// Enum SYM for SYM
+            /// Constant SYM for SYM
             /// </summary>
-            [EnumMember(Value = "SYM")]
-            SYM,
-            
+            public const string SYM = "SYM";
             /// <summary>
-            /// Enum VERB for VERB
+            /// Constant VERB for VERB
             /// </summary>
-            [EnumMember(Value = "VERB")]
-            VERB,
-            
+            public const string VERB = "VERB";
             /// <summary>
-            /// Enum X for X
+            /// Constant X for X
             /// </summary>
-            [EnumMember(Value = "X")]
-            X
+            public const string X = "X";
+            
         }
 
         /// <summary>
         /// The part of speech of the token. For descriptions of the values, see [Universal Dependencies POS
         /// tags](https://universaldependencies.org/u/pos/).
+        /// Constants for possible values can be found using TokenResult.PartOfSpeechEnumValue
         /// </summary>
         [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
-        public PartOfSpeechEnum? PartOfSpeech { get; set; }
+        public string PartOfSpeech { get; set; }
         /// <summary>
         /// The token as it appears in the analyzed text.
         /// </summary>

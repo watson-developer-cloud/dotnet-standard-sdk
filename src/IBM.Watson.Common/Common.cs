@@ -1,11 +1,3 @@
-
-
-
-
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 /**
 * Copyright 2019 IBM Corp. All Rights Reserved.
 *
@@ -22,6 +14,12 @@ using System.Text.RegularExpressions;
 * limitations under the License.
 *
 */
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+
 namespace IBM.Watson
 {
     public partial class Common

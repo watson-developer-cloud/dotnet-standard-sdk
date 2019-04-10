@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,58 +15,45 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.PersonalityInsights.v3.Model
 {
     /// <summary>
     /// Warning.
     /// </summary>
-    public class Warning : BaseModel
+    public class Warning
     {
         /// <summary>
         /// The identifier of the warning message.
         /// </summary>
-        /// <value>
-        /// The identifier of the warning message.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum WarningIdEnum
+        public class WarningIdEnumValue
         {
-            
             /// <summary>
-            /// Enum WORD_COUNT_MESSAGE for WORD_COUNT_MESSAGE
+            /// Constant WORD_COUNT_MESSAGE for WORD_COUNT_MESSAGE
             /// </summary>
-            [EnumMember(Value = "WORD_COUNT_MESSAGE")]
-            WORD_COUNT_MESSAGE,
-            
+            public const string WORD_COUNT_MESSAGE = "WORD_COUNT_MESSAGE";
             /// <summary>
-            /// Enum JSON_AS_TEXT for JSON_AS_TEXT
+            /// Constant JSON_AS_TEXT for JSON_AS_TEXT
             /// </summary>
-            [EnumMember(Value = "JSON_AS_TEXT")]
-            JSON_AS_TEXT,
-            
+            public const string JSON_AS_TEXT = "JSON_AS_TEXT";
             /// <summary>
-            /// Enum CONTENT_TRUNCATED for CONTENT_TRUNCATED
+            /// Constant CONTENT_TRUNCATED for CONTENT_TRUNCATED
             /// </summary>
-            [EnumMember(Value = "CONTENT_TRUNCATED")]
-            CONTENT_TRUNCATED,
-            
+            public const string CONTENT_TRUNCATED = "CONTENT_TRUNCATED";
             /// <summary>
-            /// Enum PARTIAL_TEXT_USED for PARTIAL_TEXT_USED
+            /// Constant PARTIAL_TEXT_USED for PARTIAL_TEXT_USED
             /// </summary>
-            [EnumMember(Value = "PARTIAL_TEXT_USED")]
-            PARTIAL_TEXT_USED
+            public const string PARTIAL_TEXT_USED = "PARTIAL_TEXT_USED";
+            
         }
 
         /// <summary>
         /// The identifier of the warning message.
+        /// Constants for possible values can be found using Warning.WarningIdEnumValue
         /// </summary>
         [JsonProperty("warning_id", NullValueHandling = NullValueHandling.Ignore)]
-        public WarningIdEnum? WarningId { get; set; }
+        public string WarningId { get; set; }
         /// <summary>
         /// The message associated with the `warning_id`:
         /// * `WORD_COUNT_MESSAGE`: \"There were {number} words in the input. We need a minimum of 600, preferably 1,200

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
     /// MessageContext.
     /// </summary>
-    public class MessageContext : BaseModel
+    public class MessageContext
     {
         /// <summary>
         /// Information that is shared by all skills used by the Assistant.
@@ -37,7 +37,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// that apply to the dialog skill used by the assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Skills { get; set; }
+        public JObject Skills { get; set; }
     }
 
 }

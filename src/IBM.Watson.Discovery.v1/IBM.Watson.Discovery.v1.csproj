@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.Watson.Discovery.v1 wraps the Watson Discovery service (http://www.ibm.com/watson/developercloud/discovery.html)</Description>
         <AssemblyTitle>IBM.Watson.Discovery.v1</AssemblyTitle>
-        <VersionPrefix></VersionPrefix>
+        <VersionPrefix>2.16.0</VersionPrefix>
         <Authors>IBM Watson</Authors>
         <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.Watson.Discovery.v1</AssemblyName>
@@ -11,7 +11,7 @@
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-        <Version></Version>
+        <Version>2.16.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,8 +25,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IBM.Cloud.SDK.Core" Version="" />
-        <PackageReference Include="IBM.Watson.Common" Version="" />
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.3.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="2.16.0" />
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 

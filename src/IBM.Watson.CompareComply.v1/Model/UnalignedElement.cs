@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -24,7 +23,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// Element that does not align semantically between two compared documents.
     /// </summary>
-    public class UnalignedElement : BaseModel
+    public class UnalignedElement
     {
         /// <summary>
         /// The label assigned to the document by the value of the `file_1_label` or `file_2_label` parameters on the

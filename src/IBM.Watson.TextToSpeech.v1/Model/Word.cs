@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.TextToSpeech.v1.Model
 {
     /// <summary>
     /// Word.
     /// </summary>
-    public class Word : BaseModel
+    public class Word
     {
         /// <summary>
         /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
@@ -34,118 +31,77 @@ namespace IBM.Watson.TextToSpeech.v1.Model
         /// information, see [Working with Japanese
         /// entries](https://cloud.ibm.com/docs/services/text-to-speech/custom-rules.html#jaNotes).
         /// </summary>
-        /// <value>
-        /// **Japanese only.** The part of speech for the word. The service uses the value to produce the correct
-        /// intonation for the word. You can create only a single entry, with or without a single part of speech, for
-        /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
-        /// information, see [Working with Japanese
-        /// entries](https://cloud.ibm.com/docs/services/text-to-speech/custom-rules.html#jaNotes).
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PartOfSpeechEnum
+        public class PartOfSpeechEnumValue
         {
-            
             /// <summary>
-            /// Enum JOSI for Josi
+            /// Constant JOSI for Josi
             /// </summary>
-            [EnumMember(Value = "Josi")]
-            JOSI,
-            
+            public const string JOSI = "Josi";
             /// <summary>
-            /// Enum MESI for Mesi
+            /// Constant MESI for Mesi
             /// </summary>
-            [EnumMember(Value = "Mesi")]
-            MESI,
-            
+            public const string MESI = "Mesi";
             /// <summary>
-            /// Enum KIGO for Kigo
+            /// Constant KIGO for Kigo
             /// </summary>
-            [EnumMember(Value = "Kigo")]
-            KIGO,
-            
+            public const string KIGO = "Kigo";
             /// <summary>
-            /// Enum GOBI for Gobi
+            /// Constant GOBI for Gobi
             /// </summary>
-            [EnumMember(Value = "Gobi")]
-            GOBI,
-            
+            public const string GOBI = "Gobi";
             /// <summary>
-            /// Enum DOSI for Dosi
+            /// Constant DOSI for Dosi
             /// </summary>
-            [EnumMember(Value = "Dosi")]
-            DOSI,
-            
+            public const string DOSI = "Dosi";
             /// <summary>
-            /// Enum JODO for Jodo
+            /// Constant JODO for Jodo
             /// </summary>
-            [EnumMember(Value = "Jodo")]
-            JODO,
-            
+            public const string JODO = "Jodo";
             /// <summary>
-            /// Enum KOYU for Koyu
+            /// Constant KOYU for Koyu
             /// </summary>
-            [EnumMember(Value = "Koyu")]
-            KOYU,
-            
+            public const string KOYU = "Koyu";
             /// <summary>
-            /// Enum STBI for Stbi
+            /// Constant STBI for Stbi
             /// </summary>
-            [EnumMember(Value = "Stbi")]
-            STBI,
-            
+            public const string STBI = "Stbi";
             /// <summary>
-            /// Enum SUJI for Suji
+            /// Constant SUJI for Suji
             /// </summary>
-            [EnumMember(Value = "Suji")]
-            SUJI,
-            
+            public const string SUJI = "Suji";
             /// <summary>
-            /// Enum KEDO for Kedo
+            /// Constant KEDO for Kedo
             /// </summary>
-            [EnumMember(Value = "Kedo")]
-            KEDO,
-            
+            public const string KEDO = "Kedo";
             /// <summary>
-            /// Enum FUKU for Fuku
+            /// Constant FUKU for Fuku
             /// </summary>
-            [EnumMember(Value = "Fuku")]
-            FUKU,
-            
+            public const string FUKU = "Fuku";
             /// <summary>
-            /// Enum KEYO for Keyo
+            /// Constant KEYO for Keyo
             /// </summary>
-            [EnumMember(Value = "Keyo")]
-            KEYO,
-            
+            public const string KEYO = "Keyo";
             /// <summary>
-            /// Enum STTO for Stto
+            /// Constant STTO for Stto
             /// </summary>
-            [EnumMember(Value = "Stto")]
-            STTO,
-            
+            public const string STTO = "Stto";
             /// <summary>
-            /// Enum RETA for Reta
+            /// Constant RETA for Reta
             /// </summary>
-            [EnumMember(Value = "Reta")]
-            RETA,
-            
+            public const string RETA = "Reta";
             /// <summary>
-            /// Enum STZO for Stzo
+            /// Constant STZO for Stzo
             /// </summary>
-            [EnumMember(Value = "Stzo")]
-            STZO,
-            
+            public const string STZO = "Stzo";
             /// <summary>
-            /// Enum KATO for Kato
+            /// Constant KATO for Kato
             /// </summary>
-            [EnumMember(Value = "Kato")]
-            KATO,
-            
+            public const string KATO = "Kato";
             /// <summary>
-            /// Enum HOKA for Hoka
+            /// Constant HOKA for Hoka
             /// </summary>
-            [EnumMember(Value = "Hoka")]
-            HOKA
+            public const string HOKA = "Hoka";
+            
         }
 
         /// <summary>
@@ -154,9 +110,10 @@ namespace IBM.Watson.TextToSpeech.v1.Model
         /// any word; you cannot create multiple entries with different parts of speech for the same word. For more
         /// information, see [Working with Japanese
         /// entries](https://cloud.ibm.com/docs/services/text-to-speech/custom-rules.html#jaNotes).
+        /// Constants for possible values can be found using Word.PartOfSpeechEnumValue
         /// </summary>
         [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
-        public PartOfSpeechEnum? PartOfSpeech { get; set; }
+        public string PartOfSpeech { get; set; }
         /// <summary>
         /// A word from the custom voice model.
         /// </summary>

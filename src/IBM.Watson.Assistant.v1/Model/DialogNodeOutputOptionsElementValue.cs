@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -24,13 +24,13 @@ namespace IBM.Watson.Assistant.v1.Model
     /// An object defining the message input to be sent to the Watson Assistant service if the user selects the
     /// corresponding option.
     /// </summary>
-    public class DialogNodeOutputOptionsElementValue : BaseModel
+    public class DialogNodeOutputOptionsElementValue
     {
         /// <summary>
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public JObject Input { get; set; }
     }
 
 }

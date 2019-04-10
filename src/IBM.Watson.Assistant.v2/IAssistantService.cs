@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,16 +15,15 @@
 *
 */
 
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.Assistant.v2.Model;
 
 namespace IBM.Watson.Assistant.v2
 {
     public partial interface IAssistantService
     {
-        SessionResponse CreateSession(string assistantId, Dictionary<string, object> customData = null);
-        BaseModel DeleteSession(string assistantId, string sessionId, Dictionary<string, object> customData = null);
-        MessageResponse Message(string assistantId, string sessionId, MessageRequest request = null, Dictionary<string, object> customData = null);
+        DetailedResponse<SessionResponse> CreateSession(string assistantId);
+        DetailedResponse<object> DeleteSession(string assistantId, string sessionId);
+        DetailedResponse<MessageResponse> Message(string assistantId, string sessionId, MessageInput input = null, MessageContext context = null);
     }
 }

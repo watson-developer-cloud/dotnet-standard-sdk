@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,55 +16,43 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.PersonalityInsights.v3.Model
 {
     /// <summary>
     /// Trait.
     /// </summary>
-    public class Trait : BaseModel
+    public class Trait
     {
         /// <summary>
         /// The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for
         /// Needs, and `values` for Values.
         /// </summary>
-        /// <value>
-        /// The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for
-        /// Needs, and `values` for Values.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CategoryEnum
+        public class CategoryEnumValue
         {
-            
             /// <summary>
-            /// Enum PERSONALITY for personality
+            /// Constant PERSONALITY for personality
             /// </summary>
-            [EnumMember(Value = "personality")]
-            PERSONALITY,
-            
+            public const string PERSONALITY = "personality";
             /// <summary>
-            /// Enum NEEDS for needs
+            /// Constant NEEDS for needs
             /// </summary>
-            [EnumMember(Value = "needs")]
-            NEEDS,
-            
+            public const string NEEDS = "needs";
             /// <summary>
-            /// Enum VALUES for values
+            /// Constant VALUES for values
             /// </summary>
-            [EnumMember(Value = "values")]
-            VALUES
+            public const string VALUES = "values";
+            
         }
 
         /// <summary>
         /// The category of the characteristic: `personality` for Big Five personality characteristics, `needs` for
         /// Needs, and `values` for Values.
+        /// Constants for possible values can be found using Trait.CategoryEnumValue
         /// </summary>
         [JsonProperty("category", NullValueHandling = NullValueHandling.Ignore)]
-        public CategoryEnum? Category { get; set; }
+        public string Category { get; set; }
         /// <summary>
         /// The unique, non-localized identifier of the characteristic to which the results pertain. IDs have the form
         /// * `big5_{characteristic}` for Big Five personality dimensions

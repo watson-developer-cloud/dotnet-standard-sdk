@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object containing credential information.
     /// </summary>
-    public class Credentials : BaseModel
+    public class Credentials
     {
         /// <summary>
         /// The source that this credentials object connects to.
@@ -35,47 +32,29 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
         /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
         /// </summary>
-        /// <value>
-        /// The source that this credentials object connects to.
-        /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
-        /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
-        /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
-        /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
-        /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SourceTypeEnum
+        public class SourceTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum BOX for box
+            /// Constant BOX for box
             /// </summary>
-            [EnumMember(Value = "box")]
-            BOX,
-            
+            public const string BOX = "box";
             /// <summary>
-            /// Enum SALESFORCE for salesforce
+            /// Constant SALESFORCE for salesforce
             /// </summary>
-            [EnumMember(Value = "salesforce")]
-            SALESFORCE,
-            
+            public const string SALESFORCE = "salesforce";
             /// <summary>
-            /// Enum SHAREPOINT for sharepoint
+            /// Constant SHAREPOINT for sharepoint
             /// </summary>
-            [EnumMember(Value = "sharepoint")]
-            SHAREPOINT,
-            
+            public const string SHAREPOINT = "sharepoint";
             /// <summary>
-            /// Enum WEB_CRAWL for web_crawl
+            /// Constant WEB_CRAWL for web_crawl
             /// </summary>
-            [EnumMember(Value = "web_crawl")]
-            WEB_CRAWL,
-            
+            public const string WEB_CRAWL = "web_crawl";
             /// <summary>
-            /// Enum CLOUD_OBJECT_STORAGE for cloud_object_storage
+            /// Constant CLOUD_OBJECT_STORAGE for cloud_object_storage
             /// </summary>
-            [EnumMember(Value = "cloud_object_storage")]
-            CLOUD_OBJECT_STORAGE
+            public const string CLOUD_OBJECT_STORAGE = "cloud_object_storage";
+            
         }
 
         /// <summary>
@@ -85,9 +64,10 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `sharepoint` indicates the credentials are used to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the credentials are used to perform a web crawl.
         /// =  `cloud_object_storage` indicates the credentials are used to connect to an IBM Cloud Object Store.
+        /// Constants for possible values can be found using Credentials.SourceTypeEnumValue
         /// </summary>
         [JsonProperty("source_type", NullValueHandling = NullValueHandling.Ignore)]
-        public SourceTypeEnum? SourceType { get; set; }
+        public string SourceType { get; set; }
         /// <summary>
         /// Unique identifier for this set of credentials.
         /// </summary>

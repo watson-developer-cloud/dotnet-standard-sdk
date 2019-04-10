@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.PersonalityInsights.v3.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.PersonalityInsights.v3.Model
     /// <summary>
     /// ConsumptionPreferences.
     /// </summary>
-    public class ConsumptionPreferences : BaseModel
+    public class ConsumptionPreferences
     {
         /// <summary>
         /// The unique, non-localized identifier of the consumption preference to which the results pertain. IDs have

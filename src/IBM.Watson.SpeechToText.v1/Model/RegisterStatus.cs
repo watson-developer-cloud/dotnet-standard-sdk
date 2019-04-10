@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,52 +15,41 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// RegisterStatus.
     /// </summary>
-    public class RegisterStatus : BaseModel
+    public class RegisterStatus
     {
         /// <summary>
         /// The current status of the job:
         /// * `created`: The service successfully white-listed the callback URL as a result of the call.
         /// * `already created`: The URL was already white-listed.
         /// </summary>
-        /// <value>
-        /// The current status of the job:
-        /// * `created`: The service successfully white-listed the callback URL as a result of the call.
-        /// * `already created`: The URL was already white-listed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum CREATED for created
+            /// Constant CREATED for created
             /// </summary>
-            [EnumMember(Value = "created")]
-            CREATED,
-            
+            public const string CREATED = "created";
             /// <summary>
-            /// Enum ALREADY_CREATED for already created
+            /// Constant ALREADY_CREATED for already created
             /// </summary>
-            [EnumMember(Value = "already created")]
-            ALREADY_CREATED
+            public const string ALREADY_CREATED = "already created";
+            
         }
 
         /// <summary>
         /// The current status of the job:
         /// * `created`: The service successfully white-listed the callback URL as a result of the call.
         /// * `already created`: The URL was already white-listed.
+        /// Constants for possible values can be found using RegisterStatus.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The callback URL that is successfully registered.
         /// </summary>

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object containing the schedule information for the source.
     /// </summary>
-    public class SourceSchedule : BaseModel
+    public class SourceSchedule
     {
         /// <summary>
         /// The crawl schedule in the specified **time_zone**.
@@ -34,34 +31,21 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `weekly`: Runs every week on Sunday between 00:00 and 06:00.
         /// -  `monthly`: Runs the on the first Sunday of every month between 00:00 and 06:00.
         /// </summary>
-        /// <value>
-        /// The crawl schedule in the specified **time_zone**.
-        ///
-        /// -  `daily`: Runs every day between 00:00 and 06:00.
-        /// -  `weekly`: Runs every week on Sunday between 00:00 and 06:00.
-        /// -  `monthly`: Runs the on the first Sunday of every month between 00:00 and 06:00.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FrequencyEnum
+        public class FrequencyEnumValue
         {
-            
             /// <summary>
-            /// Enum DAILY for daily
+            /// Constant DAILY for daily
             /// </summary>
-            [EnumMember(Value = "daily")]
-            DAILY,
-            
+            public const string DAILY = "daily";
             /// <summary>
-            /// Enum WEEKLY for weekly
+            /// Constant WEEKLY for weekly
             /// </summary>
-            [EnumMember(Value = "weekly")]
-            WEEKLY,
-            
+            public const string WEEKLY = "weekly";
             /// <summary>
-            /// Enum MONTHLY for monthly
+            /// Constant MONTHLY for monthly
             /// </summary>
-            [EnumMember(Value = "monthly")]
-            MONTHLY
+            public const string MONTHLY = "monthly";
+            
         }
 
         /// <summary>
@@ -70,9 +54,10 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `daily`: Runs every day between 00:00 and 06:00.
         /// -  `weekly`: Runs every week on Sunday between 00:00 and 06:00.
         /// -  `monthly`: Runs the on the first Sunday of every month between 00:00 and 06:00.
+        /// Constants for possible values can be found using SourceSchedule.FrequencyEnumValue
         /// </summary>
         [JsonProperty("frequency", NullValueHandling = NullValueHandling.Ignore)]
-        public FrequencyEnum? Frequency { get; set; }
+        public string Frequency { get; set; }
         /// <summary>
         /// When `true`, the source is re-crawled based on the **frequency** field in this object. When `false` the
         /// source is not re-crawled; When `false` and connecting to Salesforce the source is crawled annually.

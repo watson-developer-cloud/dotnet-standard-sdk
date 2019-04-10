@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,16 @@
 *
 */
 
-using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Http;
+using Newtonsoft.Json.Linq;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial interface INaturalLanguageUnderstandingService
     {
-        AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null);
-        DeleteModelResults DeleteModel(string modelId, Dictionary<string, object> customData = null);
-        ListModelsResults ListModels(Dictionary<string, object> customData = null);
+        DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null);
+        DetailedResponse<DeleteModelResults> DeleteModel(string modelId);
+        DetailedResponse<ListModelsResults> ListModels();
     }
 }

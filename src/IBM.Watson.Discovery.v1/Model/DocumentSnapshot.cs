@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,70 +16,53 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// DocumentSnapshot.
     /// </summary>
-    public class DocumentSnapshot : BaseModel
+    public class DocumentSnapshot
     {
         /// <summary>
         /// The step in the document conversion process that the snapshot object represents.
         /// </summary>
-        /// <value>
-        /// The step in the document conversion process that the snapshot object represents.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StepEnum
+        public class StepEnumValue
         {
-            
             /// <summary>
-            /// Enum HTML_INPUT for html_input
+            /// Constant HTML_INPUT for html_input
             /// </summary>
-            [EnumMember(Value = "html_input")]
-            HTML_INPUT,
-            
+            public const string HTML_INPUT = "html_input";
             /// <summary>
-            /// Enum HTML_OUTPUT for html_output
+            /// Constant HTML_OUTPUT for html_output
             /// </summary>
-            [EnumMember(Value = "html_output")]
-            HTML_OUTPUT,
-            
+            public const string HTML_OUTPUT = "html_output";
             /// <summary>
-            /// Enum JSON_OUTPUT for json_output
+            /// Constant JSON_OUTPUT for json_output
             /// </summary>
-            [EnumMember(Value = "json_output")]
-            JSON_OUTPUT,
-            
+            public const string JSON_OUTPUT = "json_output";
             /// <summary>
-            /// Enum JSON_NORMALIZATIONS_OUTPUT for json_normalizations_output
+            /// Constant JSON_NORMALIZATIONS_OUTPUT for json_normalizations_output
             /// </summary>
-            [EnumMember(Value = "json_normalizations_output")]
-            JSON_NORMALIZATIONS_OUTPUT,
-            
+            public const string JSON_NORMALIZATIONS_OUTPUT = "json_normalizations_output";
             /// <summary>
-            /// Enum ENRICHMENTS_OUTPUT for enrichments_output
+            /// Constant ENRICHMENTS_OUTPUT for enrichments_output
             /// </summary>
-            [EnumMember(Value = "enrichments_output")]
-            ENRICHMENTS_OUTPUT,
-            
+            public const string ENRICHMENTS_OUTPUT = "enrichments_output";
             /// <summary>
-            /// Enum NORMALIZATIONS_OUTPUT for normalizations_output
+            /// Constant NORMALIZATIONS_OUTPUT for normalizations_output
             /// </summary>
-            [EnumMember(Value = "normalizations_output")]
-            NORMALIZATIONS_OUTPUT
+            public const string NORMALIZATIONS_OUTPUT = "normalizations_output";
+            
         }
 
         /// <summary>
         /// The step in the document conversion process that the snapshot object represents.
+        /// Constants for possible values can be found using DocumentSnapshot.StepEnumValue
         /// </summary>
         [JsonProperty("step", NullValueHandling = NullValueHandling.Ignore)]
-        public StepEnum? Step { get; set; }
+        public string Step { get; set; }
         /// <summary>
         /// Snapshot of the conversion.
         /// </summary>

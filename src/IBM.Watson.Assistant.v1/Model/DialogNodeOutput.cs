@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -25,7 +24,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// The output of the dialog node. For more information about how to specify dialog node output, see the
     /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#dialog-overview-responses).
     /// </summary>
-    public class DialogNodeOutput : BaseModel
+    public class DialogNodeOutput
     {
         /// <summary>
         /// An array of objects describing the output defined for the dialog node.

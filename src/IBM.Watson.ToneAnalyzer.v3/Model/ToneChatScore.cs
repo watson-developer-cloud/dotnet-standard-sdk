@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,79 +15,59 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.ToneAnalyzer.v3.Model
 {
     /// <summary>
     /// ToneChatScore.
     /// </summary>
-    public class ToneChatScore : BaseModel
+    public class ToneChatScore
     {
         /// <summary>
         /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
         /// whose scores meet a minimum threshold of 0.5.
         /// </summary>
-        /// <value>
-        /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
-        /// whose scores meet a minimum threshold of 0.5.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ToneIdEnum
+        public class ToneIdEnumValue
         {
-            
             /// <summary>
-            /// Enum EXCITED for excited
+            /// Constant EXCITED for excited
             /// </summary>
-            [EnumMember(Value = "excited")]
-            EXCITED,
-            
+            public const string EXCITED = "excited";
             /// <summary>
-            /// Enum FRUSTRATED for frustrated
+            /// Constant FRUSTRATED for frustrated
             /// </summary>
-            [EnumMember(Value = "frustrated")]
-            FRUSTRATED,
-            
+            public const string FRUSTRATED = "frustrated";
             /// <summary>
-            /// Enum IMPOLITE for impolite
+            /// Constant IMPOLITE for impolite
             /// </summary>
-            [EnumMember(Value = "impolite")]
-            IMPOLITE,
-            
+            public const string IMPOLITE = "impolite";
             /// <summary>
-            /// Enum POLITE for polite
+            /// Constant POLITE for polite
             /// </summary>
-            [EnumMember(Value = "polite")]
-            POLITE,
-            
+            public const string POLITE = "polite";
             /// <summary>
-            /// Enum SAD for sad
+            /// Constant SAD for sad
             /// </summary>
-            [EnumMember(Value = "sad")]
-            SAD,
-            
+            public const string SAD = "sad";
             /// <summary>
-            /// Enum SATISFIED for satisfied
+            /// Constant SATISFIED for satisfied
             /// </summary>
-            [EnumMember(Value = "satisfied")]
-            SATISFIED,
-            
+            public const string SATISFIED = "satisfied";
             /// <summary>
-            /// Enum SYMPATHETIC for sympathetic
+            /// Constant SYMPATHETIC for sympathetic
             /// </summary>
-            [EnumMember(Value = "sympathetic")]
-            SYMPATHETIC
+            public const string SYMPATHETIC = "sympathetic";
+            
         }
 
         /// <summary>
         /// The unique, non-localized identifier of the tone for the results. The service returns results only for tones
         /// whose scores meet a minimum threshold of 0.5.
+        /// Constants for possible values can be found using ToneChatScore.ToneIdEnumValue
         /// </summary>
         [JsonProperty("tone_id", NullValueHandling = NullValueHandling.Ignore)]
-        public ToneIdEnum? ToneId { get; set; }
+        public string ToneId { get; set; }
         /// <summary>
         /// The score for the tone in the range of 0.5 to 1. A score greater than 0.75 indicates a high likelihood that
         /// the tone is perceived in the utterance.

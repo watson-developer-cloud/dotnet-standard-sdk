@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,19 +15,28 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// An input object that includes the input text.
+    /// A key in a key-value pair.
     /// </summary>
-    public class InputData : BaseModel
+    public class Key
     {
         /// <summary>
-        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
-        /// must be no longer than 2048 characters.
+        /// The unique ID of the key in the table.
+        /// </summary>
+        [JsonProperty("cell_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string CellId { get; set; }
+        /// <summary>
+        /// The numeric location of the identified element in the document, represented with two integers labeled
+        /// `begin` and `end`.
+        /// </summary>
+        [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
+        public Location Location { get; set; }
+        /// <summary>
+        /// The text content of the table cell without HTML markup.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }

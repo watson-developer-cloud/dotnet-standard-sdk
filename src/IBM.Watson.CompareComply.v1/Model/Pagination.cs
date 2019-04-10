@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// Pagination details, if required by the length of the output.
     /// </summary>
-    public class Pagination : BaseModel
+    public class Pagination
     {
         /// <summary>
         /// A token identifying the current page of results.

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// An object contain retrieval type information.
     /// </summary>
-    public class RetrievalDetails : BaseModel
+    public class RetrievalDetails
     {
         /// <summary>
         /// Indentifies the document retrieval strategy used for this query. `relevancy_training` indicates that the
@@ -36,36 +33,21 @@ namespace IBM.Watson.Discovery.v1.Model
         ///  **Note**: In the event of trained collections being queried, but the trained model is not used to return
         /// results, the **document_retrieval_strategy** will be listed as `untrained`.
         /// </summary>
-        /// <value>
-        /// Indentifies the document retrieval strategy used for this query. `relevancy_training` indicates that the
-        /// results were returned using a relevancy trained model. `continuous_relevancy_training` indicates that the
-        /// results were returned using the continuous relevancy training model created by result feedback analysis.
-        /// `untrained` means the results were returned using the standard untrained model.
-        ///
-        ///  **Note**: In the event of trained collections being queried, but the trained model is not used to return
-        /// results, the **document_retrieval_strategy** will be listed as `untrained`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DocumentRetrievalStrategyEnum
+        public class DocumentRetrievalStrategyEnumValue
         {
-            
             /// <summary>
-            /// Enum UNTRAINED for untrained
+            /// Constant UNTRAINED for untrained
             /// </summary>
-            [EnumMember(Value = "untrained")]
-            UNTRAINED,
-            
+            public const string UNTRAINED = "untrained";
             /// <summary>
-            /// Enum RELEVANCY_TRAINING for relevancy_training
+            /// Constant RELEVANCY_TRAINING for relevancy_training
             /// </summary>
-            [EnumMember(Value = "relevancy_training")]
-            RELEVANCY_TRAINING,
-            
+            public const string RELEVANCY_TRAINING = "relevancy_training";
             /// <summary>
-            /// Enum CONTINUOUS_RELEVANCY_TRAINING for continuous_relevancy_training
+            /// Constant CONTINUOUS_RELEVANCY_TRAINING for continuous_relevancy_training
             /// </summary>
-            [EnumMember(Value = "continuous_relevancy_training")]
-            CONTINUOUS_RELEVANCY_TRAINING
+            public const string CONTINUOUS_RELEVANCY_TRAINING = "continuous_relevancy_training";
+            
         }
 
         /// <summary>
@@ -76,9 +58,10 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         ///  **Note**: In the event of trained collections being queried, but the trained model is not used to return
         /// results, the **document_retrieval_strategy** will be listed as `untrained`.
+        /// Constants for possible values can be found using RetrievalDetails.DocumentRetrievalStrategyEnumValue
         /// </summary>
         [JsonProperty("document_retrieval_strategy", NullValueHandling = NullValueHandling.Ignore)]
-        public DocumentRetrievalStrategyEnum? DocumentRetrievalStrategy { get; set; }
+        public string DocumentRetrievalStrategy { get; set; }
     }
 
 }

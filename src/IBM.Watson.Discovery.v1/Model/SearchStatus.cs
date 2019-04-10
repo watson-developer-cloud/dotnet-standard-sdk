@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,54 +23,42 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Information about the Continuous Relevancy Training for this environment.
     /// </summary>
-    public class SearchStatus : BaseModel
+    public class SearchStatus
     {
         /// <summary>
         /// The current status of Continuous Relevancy Training for this environment.
         /// </summary>
-        /// <value>
-        /// The current status of Continuous Relevancy Training for this environment.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum NO_DATA for NO_DATA
+            /// Constant NO_DATA for NO_DATA
             /// </summary>
-            [EnumMember(Value = "NO_DATA")]
-            NO_DATA,
-            
+            public const string NO_DATA = "NO_DATA";
             /// <summary>
-            /// Enum INSUFFICENT_DATA for INSUFFICENT_DATA
+            /// Constant INSUFFICENT_DATA for INSUFFICENT_DATA
             /// </summary>
-            [EnumMember(Value = "INSUFFICENT_DATA")]
-            INSUFFICENT_DATA,
-            
+            public const string INSUFFICENT_DATA = "INSUFFICENT_DATA";
             /// <summary>
-            /// Enum TRAINING for TRAINING
+            /// Constant TRAINING for TRAINING
             /// </summary>
-            [EnumMember(Value = "TRAINING")]
-            TRAINING,
-            
+            public const string TRAINING = "TRAINING";
             /// <summary>
-            /// Enum TRAINED for TRAINED
+            /// Constant TRAINED for TRAINED
             /// </summary>
-            [EnumMember(Value = "TRAINED")]
-            TRAINED,
-            
+            public const string TRAINED = "TRAINED";
             /// <summary>
-            /// Enum NOT_APPLICABLE for NOT_APPLICABLE
+            /// Constant NOT_APPLICABLE for NOT_APPLICABLE
             /// </summary>
-            [EnumMember(Value = "NOT_APPLICABLE")]
-            NOT_APPLICABLE
+            public const string NOT_APPLICABLE = "NOT_APPLICABLE";
+            
         }
 
         /// <summary>
         /// The current status of Continuous Relevancy Training for this environment.
+        /// Constants for possible values can be found using SearchStatus.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Current scope of the training. Always returned as `environment`.
         /// </summary>

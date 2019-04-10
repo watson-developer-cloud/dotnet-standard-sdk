@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The important keywords in the content, organized by relevance.
     /// </summary>
-    public class KeywordsResult : BaseModel
+    public class KeywordsResult
     {
         /// <summary>
         /// Number of times the keyword appears in the analyzed text.

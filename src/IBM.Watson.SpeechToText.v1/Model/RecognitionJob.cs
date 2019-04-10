@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,17 +16,14 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// RecognitionJob.
     /// </summary>
-    public class RecognitionJob : BaseModel
+    public class RecognitionJob
     {
         /// <summary>
         /// The current status of the job:
@@ -39,44 +36,25 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// Otherwise, you must retrieve the results by checking the individual job.
         /// * `failed`: The job failed.
         /// </summary>
-        /// <value>
-        /// The current status of the job:
-        /// * `waiting`: The service is preparing the job for processing. The service returns this status when the job
-        /// is initially created or when it is waiting for capacity to process the job. The job remains in this state
-        /// until the service has the capacity to begin processing it.
-        /// * `processing`: The service is actively processing the job.
-        /// * `completed`: The service has finished processing the job. If the job specified a callback URL and the
-        /// event `recognitions.completed_with_results`, the service sent the results with the callback notification.
-        /// Otherwise, you must retrieve the results by checking the individual job.
-        /// * `failed`: The job failed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum WAITING for waiting
+            /// Constant WAITING for waiting
             /// </summary>
-            [EnumMember(Value = "waiting")]
-            WAITING,
-            
+            public const string WAITING = "waiting";
             /// <summary>
-            /// Enum PROCESSING for processing
+            /// Constant PROCESSING for processing
             /// </summary>
-            [EnumMember(Value = "processing")]
-            PROCESSING,
-            
+            public const string PROCESSING = "processing";
             /// <summary>
-            /// Enum COMPLETED for completed
+            /// Constant COMPLETED for completed
             /// </summary>
-            [EnumMember(Value = "completed")]
-            COMPLETED,
-            
+            public const string COMPLETED = "completed";
             /// <summary>
-            /// Enum FAILED for failed
+            /// Constant FAILED for failed
             /// </summary>
-            [EnumMember(Value = "failed")]
-            FAILED
+            public const string FAILED = "failed";
+            
         }
 
         /// <summary>
@@ -89,9 +67,10 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// event `recognitions.completed_with_results`, the service sent the results with the callback notification.
         /// Otherwise, you must retrieve the results by checking the individual job.
         /// * `failed`: The job failed.
+        /// Constants for possible values can be found using RecognitionJob.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The ID of the asynchronous job.
         /// </summary>

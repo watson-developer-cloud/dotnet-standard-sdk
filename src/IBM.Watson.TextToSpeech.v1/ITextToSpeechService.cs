@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,29 +15,29 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using IBM.Watson.TextToSpeech.v1.Model;
 
 namespace IBM.Watson.TextToSpeech.v1
 {
     public partial interface ITextToSpeechService
     {
-        Voice GetVoice(string voice, string customizationId = null, Dictionary<string, object> customData = null);
-        Voices ListVoices(Dictionary<string, object> customData = null);
-        System.IO.MemoryStream Synthesize(Text text, string voice = null, string customizationId = null, string accept = null, Dictionary<string, object> customData = null);
-        Pronunciation GetPronunciation(string text, string voice = null, string format = null, string customizationId = null, Dictionary<string, object> customData = null);
-        VoiceModel CreateVoiceModel(CreateVoiceModel createVoiceModel, Dictionary<string, object> customData = null);
-        BaseModel DeleteVoiceModel(string customizationId, Dictionary<string, object> customData = null);
-        VoiceModel GetVoiceModel(string customizationId, Dictionary<string, object> customData = null);
-        VoiceModels ListVoiceModels(string language = null, Dictionary<string, object> customData = null);
-        BaseModel UpdateVoiceModel(string customizationId, UpdateVoiceModel updateVoiceModel, Dictionary<string, object> customData = null);
-        BaseModel AddWord(string customizationId, string word, Translation translation, Dictionary<string, object> customData = null);
-        BaseModel AddWords(string customizationId, Words customWords, Dictionary<string, object> customData = null);
-        BaseModel DeleteWord(string customizationId, string word, Dictionary<string, object> customData = null);
-        Translation GetWord(string customizationId, string word, Dictionary<string, object> customData = null);
-        Words ListWords(string customizationId, Dictionary<string, object> customData = null);
-        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
+        DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
+        DetailedResponse<Voices> ListVoices();
+        DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null);
+        DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null);
+        DetailedResponse<VoiceModel> CreateVoiceModel(string name, string language = null, string description = null);
+        DetailedResponse<object> DeleteVoiceModel(string customizationId);
+        DetailedResponse<VoiceModel> GetVoiceModel(string customizationId);
+        DetailedResponse<VoiceModels> ListVoiceModels(string language = null);
+        DetailedResponse<object> UpdateVoiceModel(string customizationId, string name = null, string description = null, List<Word> words = null);
+        DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null);
+        DetailedResponse<object> AddWords(string customizationId, List<Word> words);
+        DetailedResponse<object> DeleteWord(string customizationId, string word);
+        DetailedResponse<Translation> GetWord(string customizationId, string word);
+        DetailedResponse<Words> ListWords(string customizationId);
+        DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

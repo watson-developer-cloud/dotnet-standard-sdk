@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,40 +16,33 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// DeleteConfigurationResponse.
     /// </summary>
-    public class DeleteConfigurationResponse : BaseModel
+    public class DeleteConfigurationResponse
     {
         /// <summary>
         /// Status of the configuration. A deleted configuration has the status deleted.
         /// </summary>
-        /// <value>
-        /// Status of the configuration. A deleted configuration has the status deleted.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum DELETED for deleted
+            /// Constant DELETED for deleted
             /// </summary>
-            [EnumMember(Value = "deleted")]
-            DELETED
+            public const string DELETED = "deleted";
+            
         }
 
         /// <summary>
         /// Status of the configuration. A deleted configuration has the status deleted.
+        /// Constants for possible values can be found using DeleteConfigurationResponse.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The unique identifier for the configuration.
         /// </summary>

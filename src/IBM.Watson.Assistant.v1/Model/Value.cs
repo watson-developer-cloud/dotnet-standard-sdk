@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,10 +16,7 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -27,36 +24,30 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// Value.
     /// </summary>
-    public class Value : BaseModel
+    public class Value
     {
         /// <summary>
         /// Specifies the type of entity value.
         /// </summary>
-        /// <value>
-        /// Specifies the type of entity value.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ValueTypeEnum
+        public class ValueTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum SYNONYMS for synonyms
+            /// Constant SYNONYMS for synonyms
             /// </summary>
-            [EnumMember(Value = "synonyms")]
-            SYNONYMS,
-            
+            public const string SYNONYMS = "synonyms";
             /// <summary>
-            /// Enum PATTERNS for patterns
+            /// Constant PATTERNS for patterns
             /// </summary>
-            [EnumMember(Value = "patterns")]
-            PATTERNS
+            public const string PATTERNS = "patterns";
+            
         }
 
         /// <summary>
         /// Specifies the type of entity value.
+        /// Constants for possible values can be found using Value.ValueTypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public ValueTypeEnum? ValueType { get; set; }
+        public string ValueType { get; set; }
         /// <summary>
         /// The text of the entity value. This string must conform to the following restrictions:
         /// - It cannot contain carriage return, newline, or tab characters.

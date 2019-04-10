@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,58 +15,59 @@
 *
 */
 
+using Newtonsoft.Json.Linq;
+using IBM.Cloud.SDK.Core.Http;
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using IBM.Watson.Assistant.v1.Model;
 
 namespace IBM.Watson.Assistant.v1
 {
     public partial interface IAssistantService
     {
-        MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null);
-        Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null);
-        BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null);
-        Workspace GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null);
-        WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null, Dictionary<string, object> customData = null);
-        Intent CreateIntent(string workspaceId, CreateIntent body, Dictionary<string, object> customData = null);
-        BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null);
-        Intent GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body, Dictionary<string, object> customData = null);
-        Example CreateExample(string workspaceId, string intent, Example body, Dictionary<string, object> customData = null);
-        BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null);
-        Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body, Dictionary<string, object> customData = null);
-        Counterexample CreateCounterexample(string workspaceId, Counterexample body, Dictionary<string, object> customData = null);
-        BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null);
-        Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body, Dictionary<string, object> customData = null);
-        Entity CreateEntity(string workspaceId, CreateEntity properties, Dictionary<string, object> customData = null);
-        BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null);
-        Entity GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties, Dictionary<string, object> customData = null);
-        EntityMentionCollection ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Value CreateValue(string workspaceId, string entity, CreateValue properties, Dictionary<string, object> customData = null);
-        BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null);
-        Value GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties, Dictionary<string, object> customData = null);
-        Synonym CreateSynonym(string workspaceId, string entity, string value, Synonym body, Dictionary<string, object> customData = null);
-        BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null);
-        Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body, Dictionary<string, object> customData = null);
-        DialogNode CreateDialogNode(string workspaceId, DialogNode properties, Dictionary<string, object> customData = null);
-        BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null);
-        DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null);
-        DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties, Dictionary<string, object> customData = null);
-        LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null);
-        LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null);
-        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
+        DetailedResponse<MessageResponse> Message(string workspaceId, JObject input = null, List<JObject> intents = null, List<JObject> entities = null, bool? alternateIntents = null, JObject context = null, JObject output = null, bool? nodesVisitedDetails = null);
+        DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null);
+        DetailedResponse<object> DeleteWorkspace(string workspaceId);
+        DetailedResponse<Workspace> GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null);
+        DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null);
+        DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null);
+        DetailedResponse<object> DeleteIntent(string workspaceId, string intent);
+        DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null);
+        DetailedResponse<IntentCollection> ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Intent> UpdateIntent(string workspaceId, string intent, string newIntent = null, string newDescription = null, List<Example> newExamples = null);
+        DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null);
+        DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text);
+        DetailedResponse<Example> GetExample(string workspaceId, string intent, string text, bool? includeAudit = null);
+        DetailedResponse<ExampleCollection> ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null);
+        DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text);
+        DetailedResponse<object> DeleteCounterexample(string workspaceId, string text);
+        DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null);
+        DetailedResponse<CounterexampleCollection> ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null);
+        DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null);
+        DetailedResponse<object> DeleteEntity(string workspaceId, string entity);
+        DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null);
+        DetailedResponse<EntityCollection> ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null);
+        DetailedResponse<EntityMentionCollection> ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null);
+        DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string valueType = null, List<string> synonyms = null, List<string> patterns = null);
+        DetailedResponse<object> DeleteValue(string workspaceId, string entity, string value);
+        DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null);
+        DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newValueType = null, List<string> newSynonyms = null, List<string> newPatterns = null);
+        DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym);
+        DetailedResponse<object> DeleteSynonym(string workspaceId, string entity, string value, string synonym);
+        DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null);
+        DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym, string newSynonym = null);
+        DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, JObject output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string nodeType = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null);
+        DetailedResponse<object> DeleteDialogNode(string workspaceId, string dialogNode);
+        DetailedResponse<DialogNode> GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null);
+        DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
+        DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, JObject newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newNodeType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null);
+        DetailedResponse<LogCollection> ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null);
+        DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
+        DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

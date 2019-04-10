@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,49 +16,39 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
     /// Additional detailed information about a message response and how it was generated.
     /// </summary>
-    public class MessageOutputDebug : BaseModel
+    public class MessageOutputDebug
     {
         /// <summary>
         /// When `branch_exited` is set to `true` by the Assistant, the `branch_exited_reason` specifies whether the
         /// dialog completed by itself or got interrupted.
         /// </summary>
-        /// <value>
-        /// When `branch_exited` is set to `true` by the Assistant, the `branch_exited_reason` specifies whether the
-        /// dialog completed by itself or got interrupted.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum BranchExitedReasonEnum
+        public class BranchExitedReasonEnumValue
         {
-            
             /// <summary>
-            /// Enum COMPLETED for completed
+            /// Constant COMPLETED for completed
             /// </summary>
-            [EnumMember(Value = "completed")]
-            COMPLETED,
-            
+            public const string COMPLETED = "completed";
             /// <summary>
-            /// Enum FALLBACK for fallback
+            /// Constant FALLBACK for fallback
             /// </summary>
-            [EnumMember(Value = "fallback")]
-            FALLBACK
+            public const string FALLBACK = "fallback";
+            
         }
 
         /// <summary>
         /// When `branch_exited` is set to `true` by the Assistant, the `branch_exited_reason` specifies whether the
         /// dialog completed by itself or got interrupted.
+        /// Constants for possible values can be found using MessageOutputDebug.BranchExitedReasonEnumValue
         /// </summary>
         [JsonProperty("branch_exited_reason", NullValueHandling = NullValueHandling.Ignore)]
-        public BranchExitedReasonEnum? BranchExitedReason { get; set; }
+        public string BranchExitedReason { get; set; }
         /// <summary>
         /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
         /// processing of the input message.

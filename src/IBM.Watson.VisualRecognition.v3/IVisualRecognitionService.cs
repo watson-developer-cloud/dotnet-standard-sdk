@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,21 +16,21 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.VisualRecognition.v3.Model;
 
 namespace IBM.Watson.VisualRecognition.v3
 {
     public partial interface IVisualRecognitionService
     {
-        ClassifiedImages Classify(System.IO.FileStream imagesFile = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
-        DetectedFaces DetectFaces(System.IO.FileStream imagesFile = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null, Dictionary<string, object> customData = null);
-        Classifier CreateClassifier(string name, Dictionary<string, System.IO.FileStream> positiveExamples, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
-        BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null);
-        Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null);
-        Classifiers ListClassifiers(bool? verbose = null, Dictionary<string, object> customData = null);
-        Classifier UpdateClassifier(string classifierId, Dictionary<string, System.IO.FileStream> positiveExamples = null, System.IO.FileStream negativeExamples = null, Dictionary<string, object> customData = null);
-        System.IO.MemoryStream GetCoreMlModel(string classifierId, Dictionary<string, object> customData = null);
-        BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null);
+        DetailedResponse<ClassifiedImages> Classify(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null);
+        DetailedResponse<DetectedFaces> DetectFaces(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null);
+        DetailedResponse<Classifier> CreateClassifier(string name, Dictionary<string, System.IO.MemoryStream> positiveExamples, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null);
+        DetailedResponse<object> DeleteClassifier(string classifierId);
+        DetailedResponse<Classifier> GetClassifier(string classifierId);
+        DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null);
+        DetailedResponse<Classifier> UpdateClassifier(string classifierId, Dictionary<string, System.IO.MemoryStream> positiveExamples = null, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null);
+        DetailedResponse<System.IO.MemoryStream> GetCoreMlModel(string classifierId);
+        DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

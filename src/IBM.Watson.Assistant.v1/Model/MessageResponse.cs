@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,31 +16,31 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// The response sent by the workspace, including the output text, detected intents and entities, and context.
     /// </summary>
-    public class MessageResponse : BaseModel
+    public class MessageResponse
     {
         /// <summary>
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Input { get; set; }
+        public JObject Input { get; set; }
         /// <summary>
         /// An array of intents recognized in the user input, sorted in descending order of confidence.
         /// </summary>
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
-        public List<dynamic> Intents { get; set; }
+        public List<JObject> Intents { get; set; }
         /// <summary>
         /// An array of entities identified in the user input.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<dynamic> Entities { get; set; }
+        public List<JObject> Entities { get; set; }
         /// <summary>
         /// Whether to return more than one intent. A value of `true` indicates that all matching intents are returned.
         /// </summary>
@@ -50,13 +50,13 @@ namespace IBM.Watson.Assistant.v1.Model
         /// State information for the conversation. To maintain state, include the context from the previous response.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Context { get; set; }
+        public JObject Context { get; set; }
         /// <summary>
         /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages
         /// from the log.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public JObject Output { get; set; }
         /// <summary>
         /// An array of objects describing any actions requested by the dialog node.
         /// </summary>

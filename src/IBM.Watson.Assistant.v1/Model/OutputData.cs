@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -25,13 +25,13 @@ namespace IBM.Watson.Assistant.v1.Model
     /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages from
     /// the log.
     /// </summary>
-    public class OutputData : BaseModel
+    public class OutputData
     {
         /// <summary>
         /// An array of up to 50 messages logged with the request.
         /// </summary>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<dynamic> LogMessages { get; set; }
+        public List<JObject> LogMessages { get; set; }
         /// <summary>
         /// An array of responses to the user.
         /// </summary>

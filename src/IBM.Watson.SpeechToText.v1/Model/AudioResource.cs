@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// AudioResource.
     /// </summary>
-    public class AudioResource : BaseModel
+    public class AudioResource
     {
         /// <summary>
         /// The status of the audio resource:
@@ -36,36 +33,21 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// format or sampling rate, or because it is corrupted). For an archive file, the entire archive is invalid if
         /// any of its audio files are invalid.
         /// </summary>
-        /// <value>
-        /// The status of the audio resource:
-        /// * `ok`: The service successfully analyzed the audio data. The data can be used to train the custom model.
-        /// * `being_processed`: The service is still analyzing the audio data. The service cannot accept requests to
-        /// add new audio resources or to train the custom model until its analysis is complete.
-        /// * `invalid`: The audio data is not valid for training the custom model (possibly because it has the wrong
-        /// format or sampling rate, or because it is corrupted). For an archive file, the entire archive is invalid if
-        /// any of its audio files are invalid.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum OK for ok
+            /// Constant OK for ok
             /// </summary>
-            [EnumMember(Value = "ok")]
-            OK,
-            
+            public const string OK = "ok";
             /// <summary>
-            /// Enum BEING_PROCESSED for being_processed
+            /// Constant BEING_PROCESSED for being_processed
             /// </summary>
-            [EnumMember(Value = "being_processed")]
-            BEING_PROCESSED,
-            
+            public const string BEING_PROCESSED = "being_processed";
             /// <summary>
-            /// Enum INVALID for invalid
+            /// Constant INVALID for invalid
             /// </summary>
-            [EnumMember(Value = "invalid")]
-            INVALID
+            public const string INVALID = "invalid";
+            
         }
 
         /// <summary>
@@ -76,9 +58,10 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `invalid`: The audio data is not valid for training the custom model (possibly because it has the wrong
         /// format or sampling rate, or because it is corrupted). For an archive file, the entire archive is invalid if
         /// any of its audio files are invalid.
+        /// Constants for possible values can be found using AudioResource.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The total seconds of audio in the audio resource.
         /// </summary>

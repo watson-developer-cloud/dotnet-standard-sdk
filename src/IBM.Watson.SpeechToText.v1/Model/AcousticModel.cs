@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,17 +16,14 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// AcousticModel.
     /// </summary>
-    public class AcousticModel : BaseModel
+    public class AcousticModel
     {
         /// <summary>
         /// The current status of the custom acoustic model:
@@ -38,55 +35,33 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `upgrading`: The model is currently being upgraded.
         /// * `failed`: Training of the model failed.
         /// </summary>
-        /// <value>
-        /// The current status of the custom acoustic model:
-        /// * `pending`: The model was created but is waiting either for training data to be added or for the service to
-        /// finish analyzing added data.
-        /// * `ready`: The model contains data and is ready to be trained.
-        /// * `training`: The model is currently being trained.
-        /// * `available`: The model is trained and ready to use.
-        /// * `upgrading`: The model is currently being upgraded.
-        /// * `failed`: Training of the model failed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING,
-            
+            public const string PENDING = "pending";
             /// <summary>
-            /// Enum READY for ready
+            /// Constant READY for ready
             /// </summary>
-            [EnumMember(Value = "ready")]
-            READY,
-            
+            public const string READY = "ready";
             /// <summary>
-            /// Enum TRAINING for training
+            /// Constant TRAINING for training
             /// </summary>
-            [EnumMember(Value = "training")]
-            TRAINING,
-            
+            public const string TRAINING = "training";
             /// <summary>
-            /// Enum AVAILABLE for available
+            /// Constant AVAILABLE for available
             /// </summary>
-            [EnumMember(Value = "available")]
-            AVAILABLE,
-            
+            public const string AVAILABLE = "available";
             /// <summary>
-            /// Enum UPGRADING for upgrading
+            /// Constant UPGRADING for upgrading
             /// </summary>
-            [EnumMember(Value = "upgrading")]
-            UPGRADING,
-            
+            public const string UPGRADING = "upgrading";
             /// <summary>
-            /// Enum FAILED for failed
+            /// Constant FAILED for failed
             /// </summary>
-            [EnumMember(Value = "failed")]
-            FAILED
+            public const string FAILED = "failed";
+            
         }
 
         /// <summary>
@@ -98,9 +73,10 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `available`: The model is trained and ready to use.
         /// * `upgrading`: The model is currently being upgraded.
         /// * `failed`: Training of the model failed.
+        /// Constants for possible values can be found using AcousticModel.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The customization ID (GUID) of the custom acoustic model. The **Create a custom acoustic model** method
         /// returns only this field of the object; it does not return the other fields.

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,64 +16,49 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.PersonalityInsights.v3.Model
 {
     /// <summary>
     /// Profile.
     /// </summary>
-    public class Profile : BaseModel
+    public class Profile
     {
         /// <summary>
         /// The language model that was used to process the input.
         /// </summary>
-        /// <value>
-        /// The language model that was used to process the input.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ProcessedLanguageEnum
+        public class ProcessedLanguageEnumValue
         {
-            
             /// <summary>
-            /// Enum AR for ar
+            /// Constant AR for ar
             /// </summary>
-            [EnumMember(Value = "ar")]
-            AR,
-            
+            public const string AR = "ar";
             /// <summary>
-            /// Enum EN for en
+            /// Constant EN for en
             /// </summary>
-            [EnumMember(Value = "en")]
-            EN,
-            
+            public const string EN = "en";
             /// <summary>
-            /// Enum ES for es
+            /// Constant ES for es
             /// </summary>
-            [EnumMember(Value = "es")]
-            ES,
-            
+            public const string ES = "es";
             /// <summary>
-            /// Enum JA for ja
+            /// Constant JA for ja
             /// </summary>
-            [EnumMember(Value = "ja")]
-            JA,
-            
+            public const string JA = "ja";
             /// <summary>
-            /// Enum KO for ko
+            /// Constant KO for ko
             /// </summary>
-            [EnumMember(Value = "ko")]
-            KO
+            public const string KO = "ko";
+            
         }
 
         /// <summary>
         /// The language model that was used to process the input.
+        /// Constants for possible values can be found using Profile.ProcessedLanguageEnumValue
         /// </summary>
         [JsonProperty("processed_language", NullValueHandling = NullValueHandling.Ignore)]
-        public ProcessedLanguageEnum? ProcessedLanguage { get; set; }
+        public string ProcessedLanguage { get; set; }
         /// <summary>
         /// The number of words from the input that were used to produce the profile.
         /// </summary>

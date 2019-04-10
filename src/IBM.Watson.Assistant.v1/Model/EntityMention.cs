@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -24,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// An object describing a contextual entity mention.
     /// </summary>
-    public class EntityMention : BaseModel
+    public class EntityMention
     {
         /// <summary>
         /// The text of the user input example.

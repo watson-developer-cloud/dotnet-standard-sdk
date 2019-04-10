@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,135 +16,103 @@
 */
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// DialogNodeOutputGeneric.
     /// </summary>
-    public class DialogNodeOutputGeneric : BaseModel
+    public class DialogNodeOutputGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
         /// </summary>
-        /// <value>
-        /// The type of response returned by the dialog node. The specified response type must be supported by the
-        /// client application or channel.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ResponseTypeEnum
+        public class ResponseTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum TEXT for text
+            /// Constant TEXT for text
             /// </summary>
-            [EnumMember(Value = "text")]
-            TEXT,
-            
+            public const string TEXT = "text";
             /// <summary>
-            /// Enum PAUSE for pause
+            /// Constant PAUSE for pause
             /// </summary>
-            [EnumMember(Value = "pause")]
-            PAUSE,
-            
+            public const string PAUSE = "pause";
             /// <summary>
-            /// Enum IMAGE for image
+            /// Constant IMAGE for image
             /// </summary>
-            [EnumMember(Value = "image")]
-            IMAGE,
-            
+            public const string IMAGE = "image";
             /// <summary>
-            /// Enum OPTION for option
+            /// Constant OPTION for option
             /// </summary>
-            [EnumMember(Value = "option")]
-            OPTION,
-            
+            public const string OPTION = "option";
             /// <summary>
-            /// Enum CONNECT_TO_AGENT for connect_to_agent
+            /// Constant CONNECT_TO_AGENT for connect_to_agent
             /// </summary>
-            [EnumMember(Value = "connect_to_agent")]
-            CONNECT_TO_AGENT
+            public const string CONNECT_TO_AGENT = "connect_to_agent";
+            
         }
 
         /// <summary>
         /// How a response is selected from the list, if more than one response is specified. Valid only when
         /// **response_type**=`text`.
         /// </summary>
-        /// <value>
-        /// How a response is selected from the list, if more than one response is specified. Valid only when
-        /// **response_type**=`text`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SelectionPolicyEnum
+        public class SelectionPolicyEnumValue
         {
-            
             /// <summary>
-            /// Enum SEQUENTIAL for sequential
+            /// Constant SEQUENTIAL for sequential
             /// </summary>
-            [EnumMember(Value = "sequential")]
-            SEQUENTIAL,
-            
+            public const string SEQUENTIAL = "sequential";
             /// <summary>
-            /// Enum RANDOM for random
+            /// Constant RANDOM for random
             /// </summary>
-            [EnumMember(Value = "random")]
-            RANDOM,
-            
+            public const string RANDOM = "random";
             /// <summary>
-            /// Enum MULTILINE for multiline
+            /// Constant MULTILINE for multiline
             /// </summary>
-            [EnumMember(Value = "multiline")]
-            MULTILINE
+            public const string MULTILINE = "multiline";
+            
         }
 
         /// <summary>
         /// The preferred type of control to display, if supported by the channel. Valid only when
         /// **response_type**=`option`.
         /// </summary>
-        /// <value>
-        /// The preferred type of control to display, if supported by the channel. Valid only when
-        /// **response_type**=`option`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PreferenceEnum
+        public class PreferenceEnumValue
         {
-            
             /// <summary>
-            /// Enum DROPDOWN for dropdown
+            /// Constant DROPDOWN for dropdown
             /// </summary>
-            [EnumMember(Value = "dropdown")]
-            DROPDOWN,
-            
+            public const string DROPDOWN = "dropdown";
             /// <summary>
-            /// Enum BUTTON for button
+            /// Constant BUTTON for button
             /// </summary>
-            [EnumMember(Value = "button")]
-            BUTTON
+            public const string BUTTON = "button";
+            
         }
 
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
+        /// Constants for possible values can be found using DialogNodeOutputGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
-        public ResponseTypeEnum? ResponseType { get; set; }
+        public string ResponseType { get; set; }
         /// <summary>
         /// How a response is selected from the list, if more than one response is specified. Valid only when
         /// **response_type**=`text`.
+        /// Constants for possible values can be found using DialogNodeOutputGeneric.SelectionPolicyEnumValue
         /// </summary>
         [JsonProperty("selection_policy", NullValueHandling = NullValueHandling.Ignore)]
-        public SelectionPolicyEnum? SelectionPolicy { get; set; }
+        public string SelectionPolicy { get; set; }
         /// <summary>
         /// The preferred type of control to display, if supported by the channel. Valid only when
         /// **response_type**=`option`.
+        /// Constants for possible values can be found using DialogNodeOutputGeneric.PreferenceEnumValue
         /// </summary>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
-        public PreferenceEnum? Preference { get; set; }
+        public string Preference { get; set; }
         /// <summary>
         /// A list of one or more objects defining text responses. Required when **response_type**=`text`.
         /// </summary>

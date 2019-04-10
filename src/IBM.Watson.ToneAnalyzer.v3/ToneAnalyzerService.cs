@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,12 +16,14 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
+using System.Net.Http;
+using System.Text;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace IBM.Watson.ToneAnalyzer.v3
@@ -105,6 +107,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
+        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
+        /// `charset` parameter. For example, 'text/plain;charset=utf-8'. (optional)</param>
         /// <param name="sentences">Indicates whether the service is to return an analysis of each individual sentence
         /// in addition to its analysis of the full document. If `true` (the default), the service returns results for
         /// each sentence. (optional, default to true)</param>
@@ -124,19 +128,16 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <param name="acceptLanguage">The desired language of the response. For two-character arguments, regional
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
-        /// <param name="contentType">The type of the input. A character encoding can be specified by including a
-        /// `charset` parameter. For example, 'text/plain;charset=utf-8'. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public ToneAnalysis Tone(ToneInput toneInput, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null, string contentType = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
-            if (toneInput == null)
-                throw new ArgumentNullException(nameof(toneInput));
+        if (toneInput == null)
+            throw new ArgumentNullException("`toneInput` is required for `Tone`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ToneAnalysis result = null;
+            DetailedResponse<ToneAnalysis> result = null;
 
             try
             {
@@ -149,23 +150,39 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(contentType))
+                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(contentLanguage))
                     restRequest.WithHeader("Content-Language", contentLanguage);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (sentences != null)
                     restRequest.WithArgument("sentences", sentences);
                 if (tones != null && tones.Count > 0)
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
-                restRequest.WithBody<ToneInput>(toneInput);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
+
+                if (!string.IsNullOrEmpty(contentLanguage))
+                {
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                {
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"))
                 {
@@ -173,9 +190,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 }
 
                 result = restRequest.As<ToneAnalysis>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new ToneAnalysis();
+                    result = new DetailedResponse<ToneAnalysis>();
             }
             catch (AggregateException ae)
             {
@@ -211,17 +227,16 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <param name="acceptLanguage">The desired language of the response. For two-character arguments, regional
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="UtteranceAnalyses" />UtteranceAnalyses</returns>
-        public UtteranceAnalyses ToneChat(ToneChatInput utterances, string contentLanguage = null, string acceptLanguage = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null)
         {
-            if (utterances == null)
-                throw new ArgumentNullException(nameof(utterances));
+        if (utterances == null)
+            throw new ArgumentNullException("`utterances` is required for `ToneChat`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            UtteranceAnalyses result = null;
+            DetailedResponse<UtteranceAnalyses> result = null;
 
             try
             {
@@ -234,17 +249,33 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(contentLanguage))
                     restRequest.WithHeader("Content-Language", contentLanguage);
                 if (!string.IsNullOrEmpty(acceptLanguage))
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
-                restRequest.WithBody<ToneChatInput>(utterances);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentLanguage))
+                {
+                    restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                {
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+
+                JObject bodyObject = new JObject();
+                if (utterances != null && utterances.Count > 0)
+                    bodyObject["utterances"] = JToken.FromObject(utterances);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"))
                 {
@@ -252,9 +283,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 }
 
                 result = restRequest.As<UtteranceAnalyses>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new UtteranceAnalyses();
+                    result = new DetailedResponse<UtteranceAnalyses>();
             }
             catch (AggregateException ae)
             {

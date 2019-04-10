@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -35,7 +34,7 @@ namespace IBM.Watson.Discovery.v1.Model
     ///   * Fields returned from the News collection are prefixed with `v{N}-fullnews-t3-{YEAR}.mappings` (for example,
     /// `v5-fullnews-t3-2016.mappings.text.properties.author`).
     /// </summary>
-    public class ListCollectionFieldsResponse : BaseModel
+    public class ListCollectionFieldsResponse
     {
         /// <summary>
         /// An array containing information about each field in the collections.

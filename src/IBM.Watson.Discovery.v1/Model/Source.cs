@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object containing source parameters for the configuration.
     /// </summary>
-    public class Source : BaseModel
+    public class Source
     {
         /// <summary>
         /// The type of source to connect to.
@@ -35,47 +32,29 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
         /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
         /// </summary>
-        /// <value>
-        /// The type of source to connect to.
-        /// -  `box` indicates the configuration is to connect an instance of Enterprise Box.
-        /// -  `salesforce` indicates the configuration is to connect to Salesforce.
-        /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
-        /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
-        /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public class TypeEnumValue
         {
-            
             /// <summary>
-            /// Enum BOX for box
+            /// Constant BOX for box
             /// </summary>
-            [EnumMember(Value = "box")]
-            BOX,
-            
+            public const string BOX = "box";
             /// <summary>
-            /// Enum SALESFORCE for salesforce
+            /// Constant SALESFORCE for salesforce
             /// </summary>
-            [EnumMember(Value = "salesforce")]
-            SALESFORCE,
-            
+            public const string SALESFORCE = "salesforce";
             /// <summary>
-            /// Enum SHAREPOINT for sharepoint
+            /// Constant SHAREPOINT for sharepoint
             /// </summary>
-            [EnumMember(Value = "sharepoint")]
-            SHAREPOINT,
-            
+            public const string SHAREPOINT = "sharepoint";
             /// <summary>
-            /// Enum WEB_CRAWL for web_crawl
+            /// Constant WEB_CRAWL for web_crawl
             /// </summary>
-            [EnumMember(Value = "web_crawl")]
-            WEB_CRAWL,
-            
+            public const string WEB_CRAWL = "web_crawl";
             /// <summary>
-            /// Enum CLOUD_OBJECT_STORAGE for cloud_object_storage
+            /// Constant CLOUD_OBJECT_STORAGE for cloud_object_storage
             /// </summary>
-            [EnumMember(Value = "cloud_object_storage")]
-            CLOUD_OBJECT_STORAGE
+            public const string CLOUD_OBJECT_STORAGE = "cloud_object_storage";
+            
         }
 
         /// <summary>
@@ -85,9 +64,10 @@ namespace IBM.Watson.Discovery.v1.Model
         /// -  `sharepoint` indicates the configuration is to connect to Microsoft SharePoint Online.
         /// -  `web_crawl` indicates the configuration is to perform a web page crawl.
         /// -  `cloud_object_storage` indicates the configuration is to connect to a cloud object store.
+        /// Constants for possible values can be found using Source.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public TypeEnum? Type { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// The **credential_id** of the credentials to use to connect to the source. Credentials are defined using the
         /// **credentials** method. The **source_type** of the credentials used must match the **type** field specified

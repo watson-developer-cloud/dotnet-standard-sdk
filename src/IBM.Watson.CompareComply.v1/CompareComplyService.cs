@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.CompareComply.v1.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace IBM.Watson.CompareComply.v1
@@ -78,22 +78,24 @@ namespace IBM.Watson.CompareComply.v1
         /// Converts a document to HTML.
         /// </summary>
         /// <param name="file">The document to convert.</param>
+        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
-        public HTMLReturn ConvertToHtml(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null)
         {
-            if (file == null)
-                throw new ArgumentNullException(nameof(file));
+        if (file == null)
+            throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
+        if (string.IsNullOrEmpty(filename))
+            throw new ArgumentNullException("`filename` is required for `ConvertToHtml`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            HTMLReturn result = null;
+            DetailedResponse<HTMLReturn> result = null;
 
             try
             {
@@ -105,7 +107,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", file.Name);
+                    formData.Add(fileContent, "file", filename);
                 }
 
                 IClient client = this.Client;
@@ -113,15 +115,14 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ConvertToHtml"))
                 {
@@ -129,9 +130,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<HTMLReturn>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new HTMLReturn();
+                    result = new DetailedResponse<HTMLReturn>();
             }
             catch (AggregateException ae)
             {
@@ -151,17 +151,16 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifyReturn" />ClassifyReturn</returns>
-        public ClassifyReturn ClassifyElements(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
-            if (file == null)
-                throw new ArgumentNullException(nameof(file));
+        if (file == null)
+            throw new ArgumentNullException("`file` is required for `ClassifyElements`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ClassifyReturn result = null;
+            DetailedResponse<ClassifyReturn> result = null;
 
             try
             {
@@ -173,7 +172,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", file.Name);
+                    formData.Add(fileContent, "file");
                 }
 
                 IClient client = this.Client;
@@ -181,15 +180,14 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ClassifyElements"))
                 {
@@ -197,9 +195,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<ClassifyReturn>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new ClassifyReturn();
+                    result = new DetailedResponse<ClassifyReturn>();
             }
             catch (AggregateException ae)
             {
@@ -219,17 +216,16 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="TableReturn" />TableReturn</returns>
-        public TableReturn ExtractTables(System.IO.FileStream file, string fileContentType = null, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
-            if (file == null)
-                throw new ArgumentNullException(nameof(file));
+        if (file == null)
+            throw new ArgumentNullException("`file` is required for `ExtractTables`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            TableReturn result = null;
+            DetailedResponse<TableReturn> result = null;
 
             try
             {
@@ -241,7 +237,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", file.Name);
+                    formData.Add(fileContent, "file");
                 }
 
                 IClient client = this.Client;
@@ -249,15 +245,14 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ExtractTables"))
                 {
@@ -265,9 +260,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<TableReturn>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new TableReturn();
+                    result = new DetailedResponse<TableReturn>();
             }
             catch (AggregateException ae)
             {
@@ -291,19 +285,18 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="CompareReturn" />CompareReturn</returns>
-        public CompareReturn CompareDocuments(System.IO.FileStream file1, System.IO.FileStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null)
         {
-            if (file1 == null)
-                throw new ArgumentNullException(nameof(file1));
-            if (file2 == null)
-                throw new ArgumentNullException(nameof(file2));
+        if (file1 == null)
+            throw new ArgumentNullException("`file1` is required for `CompareDocuments`");
+        if (file2 == null)
+            throw new ArgumentNullException("`file2` is required for `CompareDocuments`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            CompareReturn result = null;
+            DetailedResponse<CompareReturn> result = null;
 
             try
             {
@@ -315,7 +308,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file1ContentType, out contentType);
                     file1Content.Headers.ContentType = contentType;
-                    formData.Add(file1Content, "file_1", file1.Name);
+                    formData.Add(file1Content, "file_1");
                 }
 
                 if (file2 != null)
@@ -324,7 +317,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file2ContentType, out contentType);
                     file2Content.Headers.ContentType = contentType;
-                    formData.Add(file2Content, "file_2", file2.Name);
+                    formData.Add(file2Content, "file_2");
                 }
 
                 IClient client = this.Client;
@@ -332,10 +325,11 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(file1Label))
                     restRequest.WithArgument("file_1_label", file1Label);
                 if (!string.IsNullOrEmpty(file2Label))
@@ -343,8 +337,6 @@ namespace IBM.Watson.CompareComply.v1
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CompareDocuments"))
                 {
@@ -352,9 +344,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<CompareReturn>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new CompareReturn();
+                    result = new DetailedResponse<CompareReturn>();
             }
             catch (AggregateException ae)
             {
@@ -372,17 +363,16 @@ namespace IBM.Watson.CompareComply.v1
         /// model.
         /// </summary>
         /// <param name="feedbackData">An object that defines the feedback to be submitted.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackReturn" />FeedbackReturn</returns>
-        public FeedbackReturn AddFeedback(FeedbackInput feedbackData, Dictionary<string, object> customData = null)
+        public DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null)
         {
-            if (feedbackData == null)
-                throw new ArgumentNullException(nameof(feedbackData));
+        if (feedbackData == null)
+            throw new ArgumentNullException("`feedbackData` is required for `AddFeedback`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            FeedbackReturn result = null;
+            DetailedResponse<FeedbackReturn> result = null;
 
             try
             {
@@ -391,13 +381,23 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<FeedbackInput>(feedbackData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (feedbackData != null)
+                    bodyObject["feedback_data"] = JToken.FromObject(feedbackData);
+                if (!string.IsNullOrEmpty(userId))
+                    bodyObject["user_id"] = userId;
+                if (!string.IsNullOrEmpty(comment))
+                    bodyObject["comment"] = comment;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "AddFeedback"))
                 {
@@ -405,9 +405,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<FeedbackReturn>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new FeedbackReturn();
+                    result = new DetailedResponse<FeedbackReturn>();
             }
             catch (AggregateException ae)
             {
@@ -427,17 +426,16 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
-        public FeedbackDeleted DeleteFeedback(string feedbackId, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
         {
-            if (string.IsNullOrEmpty(feedbackId))
-                throw new ArgumentNullException(nameof(feedbackId));
+        if (string.IsNullOrEmpty(feedbackId))
+            throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            FeedbackDeleted result = null;
+            DetailedResponse<FeedbackDeleted> result = null;
 
             try
             {
@@ -446,14 +444,13 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
                 {
@@ -461,9 +458,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<FeedbackDeleted>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new FeedbackDeleted();
+                    result = new DetailedResponse<FeedbackDeleted>();
             }
             catch (AggregateException ae)
             {
@@ -483,17 +479,16 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="GetFeedback" />GetFeedback</returns>
-        public GetFeedback GetFeedback(string feedbackId, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
         {
-            if (string.IsNullOrEmpty(feedbackId))
-                throw new ArgumentNullException(nameof(feedbackId));
+        if (string.IsNullOrEmpty(feedbackId))
+            throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            GetFeedback result = null;
+            DetailedResponse<GetFeedback> result = null;
 
             try
             {
@@ -502,14 +497,13 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
                 {
@@ -517,9 +511,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<GetFeedback>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new GetFeedback();
+                    result = new DetailedResponse<GetFeedback>();
             }
             catch (AggregateException ae)
             {
@@ -574,15 +567,14 @@ namespace IBM.Watson.CompareComply.v1
         /// `document_title`. (optional)</param>
         /// <param name="includeTotal">An optional boolean value. If specified as `true`, the `pagination` object in the
         /// output includes a value called `total` that gives the total count of feedback created. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="FeedbackList" />FeedbackList</returns>
-        public FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            FeedbackList result = null;
+            DetailedResponse<FeedbackList> result = null;
 
             try
             {
@@ -591,10 +583,11 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(feedbackType))
                     restRequest.WithArgument("feedback_type", feedbackType);
                 if (before != null)
@@ -627,8 +620,6 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("sort", sort);
                 if (includeTotal != null)
                     restRequest.WithArgument("include_total", includeTotal);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListFeedback"))
                 {
@@ -636,9 +627,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<FeedbackList>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new FeedbackList();
+                    result = new DetailedResponse<FeedbackList>();
             }
             catch (AggregateException ae)
             {
@@ -675,29 +665,28 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null)
         {
-            if (string.IsNullOrEmpty(function))
-                throw new ArgumentNullException(nameof(function));
-            if (inputCredentialsFile == null)
-                throw new ArgumentNullException(nameof(inputCredentialsFile));
-            if (string.IsNullOrEmpty(inputBucketLocation))
-                throw new ArgumentNullException(nameof(inputBucketLocation));
-            if (string.IsNullOrEmpty(inputBucketName))
-                throw new ArgumentNullException(nameof(inputBucketName));
-            if (outputCredentialsFile == null)
-                throw new ArgumentNullException(nameof(outputCredentialsFile));
-            if (string.IsNullOrEmpty(outputBucketLocation))
-                throw new ArgumentNullException(nameof(outputBucketLocation));
-            if (string.IsNullOrEmpty(outputBucketName))
-                throw new ArgumentNullException(nameof(outputBucketName));
+        if (string.IsNullOrEmpty(function))
+            throw new ArgumentNullException("`function` is required for `CreateBatch`");
+        if (inputCredentialsFile == null)
+            throw new ArgumentNullException("`inputCredentialsFile` is required for `CreateBatch`");
+        if (string.IsNullOrEmpty(inputBucketLocation))
+            throw new ArgumentNullException("`inputBucketLocation` is required for `CreateBatch`");
+        if (string.IsNullOrEmpty(inputBucketName))
+            throw new ArgumentNullException("`inputBucketName` is required for `CreateBatch`");
+        if (outputCredentialsFile == null)
+            throw new ArgumentNullException("`outputCredentialsFile` is required for `CreateBatch`");
+        if (string.IsNullOrEmpty(outputBucketLocation))
+            throw new ArgumentNullException("`outputBucketLocation` is required for `CreateBatch`");
+        if (string.IsNullOrEmpty(outputBucketName))
+            throw new ArgumentNullException("`outputBucketName` is required for `CreateBatch`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BatchStatus result = null;
+            DetailedResponse<BatchStatus> result = null;
 
             try
             {
@@ -709,7 +698,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     inputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(inputCredentialsFileContent, "input_credentials_file", inputCredentialsFile.Name);
+                    formData.Add(inputCredentialsFileContent, "input_credentials_file");
                 }
 
                 if (inputBucketLocation != null)
@@ -732,7 +721,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     outputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(outputCredentialsFileContent, "output_credentials_file", outputCredentialsFile.Name);
+                    formData.Add(outputCredentialsFileContent, "output_credentials_file");
                 }
 
                 if (outputBucketLocation != null)
@@ -754,17 +743,16 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(function))
                     restRequest.WithArgument("function", function);
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CreateBatch"))
                 {
@@ -772,9 +760,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<BatchStatus>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new BatchStatus();
+                    result = new DetailedResponse<BatchStatus>();
             }
             catch (AggregateException ae)
             {
@@ -790,17 +777,16 @@ namespace IBM.Watson.CompareComply.v1
         /// Gets information about a batch-processing job with a specified ID.
         /// </summary>
         /// <param name="batchId">The ID of the batch-processing job whose information you want to retrieve.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus GetBatch(string batchId, Dictionary<string, object> customData = null)
+        public DetailedResponse<BatchStatus> GetBatch(string batchId)
         {
-            if (string.IsNullOrEmpty(batchId))
-                throw new ArgumentNullException(nameof(batchId));
+        if (string.IsNullOrEmpty(batchId))
+            throw new ArgumentNullException("`batchId` is required for `GetBatch`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BatchStatus result = null;
+            DetailedResponse<BatchStatus> result = null;
 
             try
             {
@@ -809,12 +795,11 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"))
                 {
@@ -822,9 +807,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<BatchStatus>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new BatchStatus();
+                    result = new DetailedResponse<BatchStatus>();
             }
             catch (AggregateException ae)
             {
@@ -839,15 +823,14 @@ namespace IBM.Watson.CompareComply.v1
         ///
         /// Lists batch-processing jobs submitted by users.
         /// </summary>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Batches" />Batches</returns>
-        public Batches ListBatches(Dictionary<string, object> customData = null)
+        public DetailedResponse<Batches> ListBatches()
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Batches result = null;
+            DetailedResponse<Batches> result = null;
 
             try
             {
@@ -856,12 +839,11 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"))
                 {
@@ -869,9 +851,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<Batches>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new Batches();
+                    result = new DetailedResponse<Batches>();
             }
             catch (AggregateException ae)
             {
@@ -893,19 +874,18 @@ namespace IBM.Watson.CompareComply.v1
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public BatchStatus UpdateBatch(string batchId, string action, string model = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null)
         {
-            if (string.IsNullOrEmpty(batchId))
-                throw new ArgumentNullException(nameof(batchId));
-            if (string.IsNullOrEmpty(action))
-                throw new ArgumentNullException(nameof(action));
+        if (string.IsNullOrEmpty(batchId))
+            throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
+        if (string.IsNullOrEmpty(action))
+            throw new ArgumentNullException("`action` is required for `UpdateBatch`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BatchStatus result = null;
+            DetailedResponse<BatchStatus> result = null;
 
             try
             {
@@ -914,16 +894,15 @@ namespace IBM.Watson.CompareComply.v1
                 {
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                
+
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(action))
                     restRequest.WithArgument("action", action);
                 if (!string.IsNullOrEmpty(model))
                     restRequest.WithArgument("model", model);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "UpdateBatch"))
                 {
@@ -931,9 +910,8 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 result = restRequest.As<BatchStatus>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new BatchStatus();
+                    result = new DetailedResponse<BatchStatus>();
             }
             catch (AggregateException ae)
             {

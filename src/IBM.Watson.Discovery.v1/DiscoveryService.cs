@@ -829,7 +829,7 @@ namespace IBM.Watson.Discovery.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
@@ -1320,7 +1320,7 @@ namespace IBM.Watson.Discovery.v1
 
                 if (stopwordFile != null)
                 {
-                    var stopwordFileContent = new ByteArrayContent((stopwordFile as Stream).ReadAllBytes());
+                    var stopwordFileContent = new ByteArrayContent(stopwordFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     stopwordFileContent.Headers.ContentType = contentType;
@@ -1807,7 +1807,7 @@ namespace IBM.Watson.Discovery.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
@@ -2016,7 +2016,7 @@ namespace IBM.Watson.Discovery.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;

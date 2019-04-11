@@ -217,20 +217,20 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 if (metadata != null)
                 {
-                    var metadataContent = new ByteArrayContent((metadata as Stream).ReadAllBytes());
+                    var metadataContent = new ByteArrayContent(metadata.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     metadataContent.Headers.ContentType = contentType;
-                    formData.Add(metadataContent, "training_metadata");
+                    formData.Add(metadataContent, "training_metadata", "filename");
                 }
 
                 if (trainingData != null)
                 {
-                    var trainingDataContent = new ByteArrayContent((trainingData as Stream).ReadAllBytes());
+                    var trainingDataContent = new ByteArrayContent(trainingData.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/csv", out contentType);
                     trainingDataContent.Headers.ContentType = contentType;
-                    formData.Add(trainingDataContent, "training_data");
+                    formData.Add(trainingDataContent, "training_data", "filename");
                 }
 
                 IClient client = this.Client;

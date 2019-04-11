@@ -103,7 +103,7 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
@@ -168,11 +168,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file");
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;
@@ -233,11 +233,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file");
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;
@@ -304,20 +304,20 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file1 != null)
                 {
-                    var file1Content = new ByteArrayContent((file1 as Stream).ReadAllBytes());
+                    var file1Content = new ByteArrayContent(file1.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file1ContentType, out contentType);
                     file1Content.Headers.ContentType = contentType;
-                    formData.Add(file1Content, "file_1");
+                    formData.Add(file1Content, "file_1", "filename");
                 }
 
                 if (file2 != null)
                 {
-                    var file2Content = new ByteArrayContent((file2 as Stream).ReadAllBytes());
+                    var file2Content = new ByteArrayContent(file2.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file2ContentType, out contentType);
                     file2Content.Headers.ContentType = contentType;
-                    formData.Add(file2Content, "file_2");
+                    formData.Add(file2Content, "file_2", "filename");
                 }
 
                 IClient client = this.Client;
@@ -694,11 +694,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (inputCredentialsFile != null)
                 {
-                    var inputCredentialsFileContent = new ByteArrayContent((inputCredentialsFile as Stream).ReadAllBytes());
+                    var inputCredentialsFileContent = new ByteArrayContent(inputCredentialsFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     inputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(inputCredentialsFileContent, "input_credentials_file");
+                    formData.Add(inputCredentialsFileContent, "input_credentials_file", "filename");
                 }
 
                 if (inputBucketLocation != null)
@@ -717,11 +717,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (outputCredentialsFile != null)
                 {
-                    var outputCredentialsFileContent = new ByteArrayContent((outputCredentialsFile as Stream).ReadAllBytes());
+                    var outputCredentialsFileContent = new ByteArrayContent(outputCredentialsFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     outputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(outputCredentialsFileContent, "output_credentials_file");
+                    formData.Add(outputCredentialsFileContent, "output_credentials_file", "filename");
                 }
 
                 if (outputBucketLocation != null)

@@ -302,20 +302,20 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 if (forcedGlossary != null)
                 {
-                    var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
+                    var forcedGlossaryContent = new ByteArrayContent(forcedGlossary.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
-                    formData.Add(forcedGlossaryContent, "forced_glossary");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
                 }
 
                 if (parallelCorpus != null)
                 {
-                    var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
+                    var parallelCorpusContent = new ByteArrayContent(parallelCorpus.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(parallelCorpusContent, "parallel_corpus");
+                    formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
                 }
 
                 IClient client = this.Client;

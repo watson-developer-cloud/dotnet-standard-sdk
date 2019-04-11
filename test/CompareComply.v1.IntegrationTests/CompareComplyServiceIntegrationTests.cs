@@ -325,13 +325,6 @@ namespace IBM.Watson.CompareComply.v1.IT
 
             string feedbackId = addFeedbackResult.Result.FeedbackId;
 
-            ////  temporary fix for a bug requiring `x-watson-metadata` header
-            //Dictionary<string, object> customData = new Dictionary<string, object>();
-            //Dictionary<string, string> customHeaders = new Dictionary<string, string>();
-            //customHeaders.Add("x-watson-metadata", "customer_id=sdk-test-customer-id");
-            //customData.Add(Constants.CUSTOM_REQUEST_HEADERS, customHeaders);
-            //var getFeedbackResult = service.GetFeedback(feedbackId, customData:customData);
-
             var getFeedbackResult = service.GetFeedback(
                 feedbackId: feedbackId,
                 model: compareComplyModel

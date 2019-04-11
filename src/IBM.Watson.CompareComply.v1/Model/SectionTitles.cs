@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -26,7 +25,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// subsections are not nested; instead, they are flattened out and can be placed back in order by using the `begin`
     /// and `end` values of the element and the `level` value of the section.
     /// </summary>
-    public class SectionTitles : BaseModel
+    public class SectionTitles
     {
         /// <summary>
         /// The text of the section title, if identified.

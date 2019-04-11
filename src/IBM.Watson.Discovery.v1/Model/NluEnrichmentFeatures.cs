@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// NluEnrichmentFeatures.
     /// </summary>
-    public class NluEnrichmentFeatures : BaseModel
+    public class NluEnrichmentFeatures
     {
         /// <summary>
         /// An object specifying the Keyword enrichment and related parameters.
@@ -49,7 +49,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// An object that indicates the Categories enrichment will be applied to the specified field.
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
-        public NluEnrichmentCategories Categories { get; set; }
+        public JObject Categories { get; set; }
         /// <summary>
         /// An object specifiying the semantic roles enrichment and related parameters.
         /// </summary>

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,15 +23,15 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// A list of HTML conversion settings.
     /// </summary>
-    public class HtmlSettings : BaseModel
+    public class HtmlSettings
     {
         /// <summary>
-        /// Gets or Sets ExcludeTagsCompletely
+        /// Array of HTML tags that are excluded completely.
         /// </summary>
         [JsonProperty("exclude_tags_completely", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExcludeTagsCompletely { get; set; }
         /// <summary>
-        /// Gets or Sets ExcludeTagsKeepContent
+        /// Array of HTML tags which are excluded but still retain content.
         /// </summary>
         [JsonProperty("exclude_tags_keep_content", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExcludeTagsKeepContent { get; set; }
@@ -47,12 +46,12 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("exclude_content", NullValueHandling = NullValueHandling.Ignore)]
         public XPathPatterns ExcludeContent { get; set; }
         /// <summary>
-        /// Gets or Sets KeepTagAttributes
+        /// An array of HTML tag attributes to keep in the converted document.
         /// </summary>
         [JsonProperty("keep_tag_attributes", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> KeepTagAttributes { get; set; }
         /// <summary>
-        /// Gets or Sets ExcludeTagAttributes
+        /// Array of HTML tag attributes to exclude.
         /// </summary>
         [JsonProperty("exclude_tag_attributes", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ExcludeTagAttributes { get; set; }

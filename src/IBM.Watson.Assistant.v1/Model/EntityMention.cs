@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,18 +23,18 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// An object describing a contextual entity mention.
     /// </summary>
-    public class EntityMention : BaseModel
+    public class EntityMention
     {
         /// <summary>
         /// The text of the user input example.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string ExampleText { get; set; }
+        public string Text { get; set; }
         /// <summary>
         /// The name of the intent.
         /// </summary>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string IntentName { get; set; }
+        public string Intent { get; set; }
         /// <summary>
         /// An array of zero-based character offsets that indicate where the entity mentions begin and end in the input
         /// text.

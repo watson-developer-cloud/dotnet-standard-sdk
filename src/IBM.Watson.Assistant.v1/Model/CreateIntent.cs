@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,16 +15,16 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// CreateIntent.
     /// </summary>
-    public class CreateIntent : BaseModel
+    public class CreateIntent
     {
         /// <summary>
         /// The name of the intent. This string must conform to the following restrictions:
@@ -41,10 +41,20 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
+        /// <summary>
         /// An array of user input examples for the intent.
         /// </summary>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateExample> Examples { get; set; }
+        public List<Example> Examples { get; set; }
     }
 
 }

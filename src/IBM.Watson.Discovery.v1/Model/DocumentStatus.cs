@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,105 +15,80 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Status information about a submitted document.
     /// </summary>
-    public class DocumentStatus : BaseModel
+    public class DocumentStatus
     {
         /// <summary>
         /// Status of the document in the ingestion process.
         /// </summary>
-        /// <value>
-        /// Status of the document in the ingestion process.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
+            /// <summary>
+            /// Constant AVAILABLE for available
+            /// </summary>
+            public const string AVAILABLE = "available";
+            /// <summary>
+            /// Constant AVAILABLE_WITH_NOTICES for available with notices
+            /// </summary>
+            public const string AVAILABLE_WITH_NOTICES = "available with notices";
+            /// <summary>
+            /// Constant FAILED for failed
+            /// </summary>
+            public const string FAILED = "failed";
+            /// <summary>
+            /// Constant PROCESSING for processing
+            /// </summary>
+            public const string PROCESSING = "processing";
+            /// <summary>
+            /// Constant PENDING for pending
+            /// </summary>
+            public const string PENDING = "pending";
             
-            /// <summary>
-            /// Enum AVAILABLE for available
-            /// </summary>
-            [EnumMember(Value = "available")]
-            AVAILABLE,
-            
-            /// <summary>
-            /// Enum AVAILABLE_WITH_NOTICES for available with notices
-            /// </summary>
-            [EnumMember(Value = "available with notices")]
-            AVAILABLE_WITH_NOTICES,
-            
-            /// <summary>
-            /// Enum FAILED for failed
-            /// </summary>
-            [EnumMember(Value = "failed")]
-            FAILED,
-            
-            /// <summary>
-            /// Enum PROCESSING for processing
-            /// </summary>
-            [EnumMember(Value = "processing")]
-            PROCESSING,
-            /// <summary>
-            /// Enum PENDING for pending
-            /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING
         }
 
         /// <summary>
         /// The type of the original source file.
         /// </summary>
-        /// <value>
-        /// The type of the original source file.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FileTypeEnum
+        public class FileTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum PDF for pdf
+            /// Constant PDF for pdf
             /// </summary>
-            [EnumMember(Value = "pdf")]
-            PDF,
-            
+            public const string PDF = "pdf";
             /// <summary>
-            /// Enum HTML for html
+            /// Constant HTML for html
             /// </summary>
-            [EnumMember(Value = "html")]
-            HTML,
-            
+            public const string HTML = "html";
             /// <summary>
-            /// Enum WORD for word
+            /// Constant WORD for word
             /// </summary>
-            [EnumMember(Value = "word")]
-            WORD,
-            
+            public const string WORD = "word";
             /// <summary>
-            /// Enum JSON for json
+            /// Constant JSON for json
             /// </summary>
-            [EnumMember(Value = "json")]
-            JSON
+            public const string JSON = "json";
+            
         }
 
         /// <summary>
         /// Status of the document in the ingestion process.
+        /// Constants for possible values can be found using DocumentStatus.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The type of the original source file.
+        /// Constants for possible values can be found using DocumentStatus.FileTypeEnumValue
         /// </summary>
         [JsonProperty("file_type", NullValueHandling = NullValueHandling.Ignore)]
-        public FileTypeEnum? FileType { get; set; }
+        public string FileType { get; set; }
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
@@ -124,16 +99,6 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("configuration_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string ConfigurationId { get; private set; }
-        /// <summary>
-        /// The creation date of the document in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-        /// </summary>
-        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
-        /// <summary>
-        /// Date of the most recent document update, in the format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-        /// </summary>
-        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
         /// <summary>
         /// Description of the document status.
         /// </summary>
@@ -153,7 +118,7 @@ namespace IBM.Watson.Discovery.v1.Model
         /// Array of notices produced by the document-ingestion process.
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Notice> Notices { get; set; }
+        public virtual List<Notice> Notices { get; private set; }
     }
 
 }

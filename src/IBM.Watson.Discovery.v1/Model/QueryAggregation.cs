@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// An aggregation produced by the Discovery service to analyze the input provided.
     /// </summary>
-    public class QueryAggregation : BaseModel
+    public class QueryAggregation
     {
         /// <summary>
         /// The type of aggregation command used. For example: term, filter, max, min, etc.
@@ -32,7 +31,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of aggregation results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<AggregationResult> Results { get; set; }

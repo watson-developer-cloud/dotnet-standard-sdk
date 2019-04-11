@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,40 +15,33 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// DeleteCollectionResponse.
     /// </summary>
-    public class DeleteCollectionResponse : BaseModel
+    public class DeleteCollectionResponse
     {
         /// <summary>
         /// The status of the collection. The status of a successful deletion operation is `deleted`.
         /// </summary>
-        /// <value>
-        /// The status of the collection. The status of a successful deletion operation is `deleted`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum DELETED for deleted
+            /// Constant DELETED for deleted
             /// </summary>
-            [EnumMember(Value = "deleted")]
-            DELETED
+            public const string DELETED = "deleted";
+            
         }
 
         /// <summary>
         /// The status of the collection. The status of a successful deletion operation is `deleted`.
+        /// Constants for possible values can be found using DeleteCollectionResponse.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The unique identifier of the collection that is being deleted.
         /// </summary>

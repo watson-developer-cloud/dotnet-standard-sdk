@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Options which are specific to a particular enrichment.
+    /// An object representing the configuration options to use for the `elements` enrichment.
     /// </summary>
-    public class EnrichmentOptions : BaseModel
+    public class EnrichmentOptions
     {
         /// <summary>
         /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
@@ -33,69 +30,45 @@ namespace IBM.Watson.Discovery.v1.Model
         /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
         /// Not all features support all languages, automatic detection is recommended.
         /// </summary>
-        /// <value>
-        /// ISO 639-1 code indicating the language to use for the analysis. This code overrides the automatic language
-        /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
-        /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
-        /// Not all features support all languages, automatic detection is recommended.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LanguageEnum
+        public class LanguageEnumValue
         {
-            
             /// <summary>
-            /// Enum AR for ar
+            /// Constant AR for ar
             /// </summary>
-            [EnumMember(Value = "ar")]
-            AR,
-            
+            public const string AR = "ar";
             /// <summary>
-            /// Enum EN for en
+            /// Constant EN for en
             /// </summary>
-            [EnumMember(Value = "en")]
-            EN,
-            
+            public const string EN = "en";
             /// <summary>
-            /// Enum FR for fr
+            /// Constant FR for fr
             /// </summary>
-            [EnumMember(Value = "fr")]
-            FR,
-            
+            public const string FR = "fr";
             /// <summary>
-            /// Enum DE for de
+            /// Constant DE for de
             /// </summary>
-            [EnumMember(Value = "de")]
-            DE,
-            
+            public const string DE = "de";
             /// <summary>
-            /// Enum IT for it
+            /// Constant IT for it
             /// </summary>
-            [EnumMember(Value = "it")]
-            IT,
-            
+            public const string IT = "it";
             /// <summary>
-            /// Enum PT for pt
+            /// Constant PT for pt
             /// </summary>
-            [EnumMember(Value = "pt")]
-            PT,
-            
+            public const string PT = "pt";
             /// <summary>
-            /// Enum RU for ru
+            /// Constant RU for ru
             /// </summary>
-            [EnumMember(Value = "ru")]
-            RU,
-            
+            public const string RU = "ru";
             /// <summary>
-            /// Enum ES for es
+            /// Constant ES for es
             /// </summary>
-            [EnumMember(Value = "es")]
-            ES,
-            
+            public const string ES = "es";
             /// <summary>
-            /// Enum SV for sv
+            /// Constant SV for sv
             /// </summary>
-            [EnumMember(Value = "sv")]
-            SV
+            public const string SV = "sv";
+            
         }
 
         /// <summary>
@@ -103,11 +76,12 @@ namespace IBM.Watson.Discovery.v1.Model
         /// detection performed by the service. Valid codes are `ar` (Arabic), `en` (English), `fr` (French), `de`
         /// (German), `it` (Italian), `pt` (Portuguese), `ru` (Russian), `es` (Spanish), and `sv` (Swedish). **Note:**
         /// Not all features support all languages, automatic detection is recommended.
+        /// Constants for possible values can be found using EnrichmentOptions.LanguageEnumValue
         /// </summary>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
-        public LanguageEnum? Language { get; set; }
+        public string Language { get; set; }
         /// <summary>
-        /// An object representing the enrichment features that will be applied to the specified field.
+        /// Gets or Sets Features
         /// </summary>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentFeatures Features { get; set; }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,39 +15,39 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// A response containing the documents and aggregations for the query.
     /// </summary>
-    public class QueryResponse : BaseModel
+    public class QueryResponse
     {
         /// <summary>
-        /// Gets or Sets MatchingResults
+        /// The number of matching results for the query.
         /// </summary>
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of document results for the query.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<dynamic> Results { get; set; }
+        public List<JObject> Results { get; set; }
         /// <summary>
-        /// Gets or Sets Aggregations
+        /// Array of aggregation results for the query.
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryAggregation> Aggregations { get; set; }
         /// <summary>
-        /// Gets or Sets Passages
+        /// Array of passage results for the query.
         /// </summary>
         [JsonProperty("passages", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryPassages> Passages { get; set; }
         /// <summary>
-        /// Gets or Sets DuplicatesRemoved
+        /// The number of duplicate results removed.
         /// </summary>
         [JsonProperty("duplicates_removed", NullValueHandling = NullValueHandling.Ignore)]
         public long? DuplicatesRemoved { get; set; }

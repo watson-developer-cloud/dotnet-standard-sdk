@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
@@ -25,13 +24,19 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     ///
     /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
     /// </summary>
-    public class CategoriesOptions : BaseModel
+    public class CategoriesOptions
     {
         /// <summary>
         /// Maximum number of categories to return.
         /// </summary>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
         public long? Limit { get; set; }
+        /// <summary>
+        /// Enter a [custom model](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html)
+        /// ID to override the standard categories model.
+        /// </summary>
+        [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
+        public string Model { get; set; }
     }
 
 }

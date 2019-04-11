@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Analysis features and options.
     /// </summary>
-    public class Features : BaseModel
+    public class Features
     {
         /// <summary>
         /// Returns high-level concepts in the content. For example, a research paper about deep learning might return
@@ -99,6 +98,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public CategoriesOptions Categories { get; set; }
+        /// <summary>
+        /// Returns tokens and sentences from the input text.
+        /// </summary>
+        [JsonProperty("syntax", NullValueHandling = NullValueHandling.Ignore)]
+        public SyntaxOptions Syntax { get; set; }
     }
 
 }

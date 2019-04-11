@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -27,39 +24,32 @@ namespace IBM.Watson.Assistant.v1.Model
     ///
     /// **Note:** This feature is available only to Premium users.
     /// </summary>
-    public class WorkspaceSystemSettingsDisambiguation : BaseModel
+    public class WorkspaceSystemSettingsDisambiguation
     {
         /// <summary>
         /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
         /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
         /// </summary>
-        /// <value>
-        /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
-        /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SensitivityEnum
+        public class SensitivityEnumValue
         {
-            
             /// <summary>
-            /// Enum AUTO for auto
+            /// Constant AUTO for auto
             /// </summary>
-            [EnumMember(Value = "auto")]
-            AUTO,
-            
+            public const string AUTO = "auto";
             /// <summary>
-            /// Enum HIGH for high
+            /// Constant HIGH for high
             /// </summary>
-            [EnumMember(Value = "high")]
-            HIGH
+            public const string HIGH = "high";
+            
         }
 
         /// <summary>
         /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
         /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
+        /// Constants for possible values can be found using WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue
         /// </summary>
         [JsonProperty("sensitivity", NullValueHandling = NullValueHandling.Ignore)]
-        public SensitivityEnum? Sensitivity { get; set; }
+        public string Sensitivity { get; set; }
         /// <summary>
         /// The text of the introductory prompt that accompanies disambiguation options presented to the user.
         /// </summary>

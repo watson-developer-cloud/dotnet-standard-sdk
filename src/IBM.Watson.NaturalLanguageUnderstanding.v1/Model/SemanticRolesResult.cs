@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// The object containing the actions and the objects the actions act upon.
     /// </summary>
-    public class SemanticRolesResult : BaseModel
+    public class SemanticRolesResult
     {
         /// <summary>
         /// Sentence from the source that contains the subject, action, and object.
@@ -34,17 +33,17 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// The extracted subject from the sentence.
         /// </summary>
         [JsonProperty("subject", NullValueHandling = NullValueHandling.Ignore)]
-        public SemanticRolesSubject Subject { get; set; }
+        public SemanticRolesResultSubject Subject { get; set; }
         /// <summary>
         /// The extracted action from the sentence.
         /// </summary>
         [JsonProperty("action", NullValueHandling = NullValueHandling.Ignore)]
-        public SemanticRolesAction Action { get; set; }
+        public SemanticRolesResultAction Action { get; set; }
         /// <summary>
         /// The extracted object from the sentence.
         /// </summary>
         [JsonProperty("object", NullValueHandling = NullValueHandling.Ignore)]
-        public SemanticRolesObject _Object { get; set; }
+        public SemanticRolesResultObject _Object { get; set; }
     }
 
 }

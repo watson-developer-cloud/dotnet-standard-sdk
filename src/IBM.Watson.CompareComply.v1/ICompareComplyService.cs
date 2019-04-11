@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,25 +15,26 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using IBM.Watson.CompareComply.v1.Model;
 
 namespace IBM.Watson.CompareComply.v1
 {
     public partial interface ICompareComplyService
     {
-        HTMLReturn ConvertToHtml(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        ClassifyReturn ClassifyElements(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        TableReturn ExtractTables(System.IO.FileStream file, string modelId = null, string fileContentType = null, Dictionary<string, object> customData = null);
-        CompareReturn CompareDocuments(System.IO.FileStream file1, System.IO.FileStream file2, string file1Label = null, string file2Label = null, string modelId = null, string file1ContentType = null, string file2ContentType = null, Dictionary<string, object> customData = null);
-        FeedbackReturn AddFeedback(FeedbackInput feedbackData, Dictionary<string, object> customData = null);
-        FeedbackDeleted DeleteFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null);
-        GetFeedback GetFeedback(string feedbackId, string modelId = null, Dictionary<string, object> customData = null);
-        FeedbackList ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null, Dictionary<string, object> customData = null);
-        BatchStatus CreateBatch(string function, System.IO.FileStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.FileStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string modelId = null, Dictionary<string, object> customData = null);
-        BatchStatus GetBatch(string batchId, Dictionary<string, object> customData = null);
-        Batches ListBatches(Dictionary<string, object> customData = null);
-        BatchStatus UpdateBatch(string batchId, string action, string modelId = null, Dictionary<string, object> customData = null);
+        DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null);
+        DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null);
+        DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null);
+        DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null);
+        DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null);
+        DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null);
+        DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null);
+        DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null);
+        DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null);
+        DetailedResponse<BatchStatus> GetBatch(string batchId);
+        DetailedResponse<Batches> ListBatches();
+        DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null);
     }
 }

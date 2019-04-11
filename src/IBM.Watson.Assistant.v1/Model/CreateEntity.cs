@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,16 +15,16 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// CreateEntity.
     /// </summary>
-    public class CreateEntity : BaseModel
+    public class CreateEntity
     {
         /// <summary>
         /// The name of the entity. This string must conform to the following restrictions:
@@ -43,20 +43,30 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// Any metadata related to the value.
+        /// Any metadata related to the entity.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
-        /// <summary>
-        /// An array of objects describing the entity values.
-        /// </summary>
-        [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CreateValue> Values { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// Whether to use fuzzy matching for the entity.
         /// </summary>
         [JsonProperty("fuzzy_match", NullValueHandling = NullValueHandling.Ignore)]
         public bool? FuzzyMatch { get; set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
+        /// <summary>
+        /// An array of objects describing the entity values.
+        /// </summary>
+        [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CreateValue> Values { get; set; }
     }
 
 }

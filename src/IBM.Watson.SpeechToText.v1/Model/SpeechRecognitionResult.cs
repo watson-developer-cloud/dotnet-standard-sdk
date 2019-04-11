@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
     /// <summary>
     /// SpeechRecognitionResult.
     /// </summary>
-    public class SpeechRecognitionResult : BaseModel
+    public class SpeechRecognitionResult
     {
         /// <summary>
         /// An indication of whether the transcription results are final. If `true`, the results for this utterance are
@@ -47,7 +46,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// for any keywords.
         /// </summary>
         [JsonProperty("keywords_result", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, List<dynamic>> KeywordsResult { get; set; }
+        public Dictionary<string, List<KeywordResult>> KeywordsResult { get; set; }
         /// <summary>
         /// An array of alternative hypotheses found for words of the input audio if a `word_alternatives_threshold` is
         /// specified.

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -24,11 +23,10 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// Column-level cells, each applicable as a header to other cells in the same column as itself, of the current
     /// table.
     /// </summary>
-    public class ColumnHeaders : BaseModel
+    public class ColumnHeaders
     {
         /// <summary>
-        /// A string value in the format `columnHeader-x-y`, where `x` and `y` are the begin and end offsets of this
-        /// column header cell in the input document.
+        /// The unique ID of the cell in the current table.
         /// </summary>
         [JsonProperty("cell_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CellId { get; set; }

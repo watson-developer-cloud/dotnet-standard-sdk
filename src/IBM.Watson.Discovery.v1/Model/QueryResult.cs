@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,33 +23,33 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// QueryResult.
     /// </summary>
-    public class QueryResult : BaseModel
+    public class QueryResult
     {
         /// <summary>
         /// The unique identifier of the document.
         /// </summary>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Id { get; set; }
-        /// <summary>
-        /// *Deprecated* This field is now part of the **result_metadata** object.
-        /// </summary>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Score { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Metadata of the document.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The collection ID of the collection containing the document for this result.
         /// </summary>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic CollectionId { get; set; }
+        public string CollectionId { get; set; }
         /// <summary>
         /// Metadata of a query result.
         /// </summary>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic ResultMetadata { get; set; }
+        public QueryResultMetadata ResultMetadata { get; set; }
+        /// <summary>
+        /// Automatically extracted result title.
+        /// </summary>
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
     }
 
 }

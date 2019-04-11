@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// Request payload to classify.
     /// </summary>
-    public class ClassifyInput : BaseModel
+    public class ClassifyInput
     {
         /// <summary>
         /// The submitted phrase. The maximum length is 2048 characters.

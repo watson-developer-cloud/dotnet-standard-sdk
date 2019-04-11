@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,94 +15,69 @@
 *
 */
 
-using System.Runtime.Serialization;
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.LanguageTranslator.v3.Model
 {
     /// <summary>
     /// Response payload for models.
     /// </summary>
-    public class TranslationModel : BaseModel
+    public class TranslationModel
     {
         /// <summary>
         /// Availability of a model.
         /// </summary>
-        /// <value>
-        /// Availability of a model.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum UPLOADING for uploading
+            /// Constant UPLOADING for uploading
             /// </summary>
-            [EnumMember(Value = "uploading")]
-            UPLOADING,
-            
+            public const string UPLOADING = "uploading";
             /// <summary>
-            /// Enum UPLOADED for uploaded
+            /// Constant UPLOADED for uploaded
             /// </summary>
-            [EnumMember(Value = "uploaded")]
-            UPLOADED,
-            
+            public const string UPLOADED = "uploaded";
             /// <summary>
-            /// Enum DISPATCHING for dispatching
+            /// Constant DISPATCHING for dispatching
             /// </summary>
-            [EnumMember(Value = "dispatching")]
-            DISPATCHING,
-            
+            public const string DISPATCHING = "dispatching";
             /// <summary>
-            /// Enum QUEUED for queued
+            /// Constant QUEUED for queued
             /// </summary>
-            [EnumMember(Value = "queued")]
-            QUEUED,
-            
+            public const string QUEUED = "queued";
             /// <summary>
-            /// Enum TRAINING for training
+            /// Constant TRAINING for training
             /// </summary>
-            [EnumMember(Value = "training")]
-            TRAINING,
-            
+            public const string TRAINING = "training";
             /// <summary>
-            /// Enum TRAINED for trained
+            /// Constant TRAINED for trained
             /// </summary>
-            [EnumMember(Value = "trained")]
-            TRAINED,
-            
+            public const string TRAINED = "trained";
             /// <summary>
-            /// Enum PUBLISHING for publishing
+            /// Constant PUBLISHING for publishing
             /// </summary>
-            [EnumMember(Value = "publishing")]
-            PUBLISHING,
-            
+            public const string PUBLISHING = "publishing";
             /// <summary>
-            /// Enum AVAILABLE for available
+            /// Constant AVAILABLE for available
             /// </summary>
-            [EnumMember(Value = "available")]
-            AVAILABLE,
-            
+            public const string AVAILABLE = "available";
             /// <summary>
-            /// Enum DELETED for deleted
+            /// Constant DELETED for deleted
             /// </summary>
-            [EnumMember(Value = "deleted")]
-            DELETED,
-            
+            public const string DELETED = "deleted";
             /// <summary>
-            /// Enum ERROR for error
+            /// Constant ERROR for error
             /// </summary>
-            [EnumMember(Value = "error")]
-            ERROR
+            public const string ERROR = "error";
+            
         }
 
         /// <summary>
         /// Availability of a model.
+        /// Constants for possible values can be found using TranslationModel.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// A globally unique string that identifies the underlying model that is used for translation.
         /// </summary>

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// Class and confidence.
     /// </summary>
-    public class ClassifiedClass : BaseModel
+    public class ClassifiedClass
     {
         /// <summary>
         /// A decimal percentage that represents the confidence that Watson has in this class. Higher values represent

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.Model
     /// <summary>
     /// SentenceAnalysis.
     /// </summary>
-    public class SentenceAnalysis : BaseModel
+    public class SentenceAnalysis
     {
         /// <summary>
         /// The unique identifier of a sentence of the input content. The first sentence has ID 0, and the ID of each

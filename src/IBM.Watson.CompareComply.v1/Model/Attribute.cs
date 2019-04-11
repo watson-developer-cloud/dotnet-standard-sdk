@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,70 +15,57 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
     /// List of document attributes.
     /// </summary>
-    public class Attribute : BaseModel
+    public class Attribute
     {
         /// <summary>
         /// The type of attribute.
         /// </summary>
-        /// <value>
-        /// The type of attribute.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public class TypeEnumValue
         {
-            
             /// <summary>
-            /// Enum ADDRESS for Address
+            /// Constant CURRENCY for Currency
             /// </summary>
-            [EnumMember(Value = "Address")]
-            ADDRESS,
-            
+            public const string CURRENCY = "Currency";
             /// <summary>
-            /// Enum CURRENCY for Currency
+            /// Constant DATETIME for DateTime
             /// </summary>
-            [EnumMember(Value = "Currency")]
-            CURRENCY,
-            
+            public const string DATETIME = "DateTime";
             /// <summary>
-            /// Enum DATETIME for DateTime
+            /// Constant DURATION for Duration
             /// </summary>
-            [EnumMember(Value = "DateTime")]
-            DATETIME,
-            
+            public const string DURATION = "Duration";
             /// <summary>
-            /// Enum LOCATION for Location
+            /// Constant LOCATION for Location
             /// </summary>
-            [EnumMember(Value = "Location")]
-            LOCATION,
-            
+            public const string LOCATION = "Location";
             /// <summary>
-            /// Enum ORGANIZATION for Organization
+            /// Constant ORGANIZATION for Organization
             /// </summary>
-            [EnumMember(Value = "Organization")]
-            ORGANIZATION,
-            
+            public const string ORGANIZATION = "Organization";
             /// <summary>
-            /// Enum PERSON for Person
+            /// Constant PERCENTAGE for Percentage
             /// </summary>
-            [EnumMember(Value = "Person")]
-            PERSON
+            public const string PERCENTAGE = "Percentage";
+            /// <summary>
+            /// Constant PERSON for Person
+            /// </summary>
+            public const string PERSON = "Person";
+            
         }
 
         /// <summary>
         /// The type of attribute.
+        /// Constants for possible values can be found using Attribute.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public TypeEnum? Type { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// The text associated with the attribute.
         /// </summary>

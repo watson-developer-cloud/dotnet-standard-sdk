@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,57 +15,46 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// Log message details.
     /// </summary>
-    public class LogMessage : BaseModel
+    public class LogMessage
     {
         /// <summary>
         /// The severity of the log message.
         /// </summary>
-        /// <value>
-        /// The severity of the log message.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LevelEnum
+        public class LevelEnumValue
         {
-            
             /// <summary>
-            /// Enum INFO for info
+            /// Constant INFO for info
             /// </summary>
-            [EnumMember(Value = "info")]
-            INFO,
-            
+            public const string INFO = "info";
             /// <summary>
-            /// Enum ERROR for error
+            /// Constant ERROR for error
             /// </summary>
-            [EnumMember(Value = "error")]
-            ERROR,
-            
+            public const string ERROR = "error";
             /// <summary>
-            /// Enum WARN for warn
+            /// Constant WARN for warn
             /// </summary>
-            [EnumMember(Value = "warn")]
-            WARN
+            public const string WARN = "warn";
+            
         }
 
         /// <summary>
         /// The severity of the log message.
+        /// Constants for possible values can be found using LogMessage.LevelEnumValue
         /// </summary>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
-        public LevelEnum? Level { get; set; }
+        public string Level { get; set; }
         /// <summary>
         /// The text of the log message.
         /// </summary>
         [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Msg { get; set; }
+        public string Msg { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Object containing source crawl status information.
     /// </summary>
-    public class SourceStatus : BaseModel
+    public class SourceStatus
     {
         /// <summary>
         /// The current status of the source crawl for this collection. This field returns `not_configured` if the
@@ -34,53 +31,28 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// -  `running` indicates that a crawl to fetch more documents is in progress.
         /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
+        /// -  `queued` indicates that the crawl has been paused by the system and will automatically restart when
+        /// possible.
         /// </summary>
-        /// <value>
-        /// The current status of the source crawl for this collection. This field returns `not_configured` if the
-        /// default configuration for this source does not have a **source** object defined.
-        ///
-        /// -  `running` indicates that a crawl to fetch more documents is in progress.
-        /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum RUNNING for running
+            /// Constant RUNNING for running
             /// </summary>
-            [EnumMember(Value = "running")]
-            RUNNING,
-            
+            public const string RUNNING = "running";
             /// <summary>
-            /// Enum COMPLETE for complete
+            /// Constant COMPLETE for complete
             /// </summary>
-            [EnumMember(Value = "complete")]
-            COMPLETE,
-            
+            public const string COMPLETE = "complete";
             /// <summary>
-            /// Enum COMPLETE_WITH_NOTICES for complete_with_notices
+            /// Constant NOT_CONFIGURED for not_configured
             /// </summary>
-            [EnumMember(Value = "complete_with_notices")]
-            COMPLETE_WITH_NOTICES,
-            
+            public const string NOT_CONFIGURED = "not_configured";
             /// <summary>
-            /// Enum STOPPED for stopped
+            /// Constant QUEUED for queued
             /// </summary>
-            [EnumMember(Value = "stopped")]
-            STOPPED,
+            public const string QUEUED = "queued";
             
-            /// <summary>
-            /// Enum NOT_CONFIGURED for not_configured
-            /// </summary>
-            [EnumMember(Value = "not_configured")]
-            NOT_CONFIGURED
         }
 
         /// <summary>
@@ -89,12 +61,12 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         /// -  `running` indicates that a crawl to fetch more documents is in progress.
         /// -  `complete` indicates that the crawl has completed with no errors.
-        /// -  `complete_with_notices` indicates that some notices were generated during the crawl. Notices can be
-        /// checked by using the **notices** query method.
-        /// -  `stopped` indicates that the crawl has stopped but is not complete.
+        /// -  `queued` indicates that the crawl has been paused by the system and will automatically restart when
+        /// possible.
+        /// Constants for possible values can be found using SourceStatus.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Date in UTC format indicating when the last crawl was attempted. If `null`, no crawl was completed.
         /// </summary>

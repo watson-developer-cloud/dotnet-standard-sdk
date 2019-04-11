@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// AlignedElement.
     /// </summary>
-    public class AlignedElement : BaseModel
+    public class AlignedElement
     {
         /// <summary>
         /// Identifies two elements that semantically align between the compared documents.
@@ -32,20 +31,22 @@ namespace IBM.Watson.CompareComply.v1.Model
         [JsonProperty("element_pair", NullValueHandling = NullValueHandling.Ignore)]
         public List<ElementPair> ElementPair { get; set; }
         /// <summary>
-        /// Specifies whether the text is identical.
+        /// Specifies whether the aligned element is identical. Elements are considered identical despite minor
+        /// differences such as leading punctuation, end-of-sentence punctuation, whitespace, the presence or absence of
+        /// definite or indefinite articles, and others.
         /// </summary>
         [JsonProperty("identical_text", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IdenticalText { get; set; }
-        /// <summary>
-        /// Indicates that the elements aligned are contractual clauses of significance.
-        /// </summary>
-        [JsonProperty("significant_elements", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SignificantElements { get; set; }
         /// <summary>
         /// One or more hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>
         [JsonProperty("provenance_ids", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> ProvenanceIds { get; set; }
+        /// <summary>
+        /// Indicates that the elements aligned are contractual clauses of significance.
+        /// </summary>
+        [JsonProperty("significant_elements", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SignificantElements { get; set; }
     }
 
 }

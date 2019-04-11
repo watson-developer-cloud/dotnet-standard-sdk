@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,20 +23,20 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// TrainingDataSet.
     /// </summary>
-    public class TrainingDataSet : BaseModel
+    public class TrainingDataSet
     {
         /// <summary>
-        /// Gets or Sets EnvironmentId
+        /// The environment id associated with this training data set.
         /// </summary>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnvironmentId { get; set; }
         /// <summary>
-        /// Gets or Sets CollectionId
+        /// The collection id associated with this training data set.
         /// </summary>
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CollectionId { get; set; }
         /// <summary>
-        /// Gets or Sets Queries
+        /// Array of training queries.
         /// </summary>
         [JsonProperty("queries", NullValueHandling = NullValueHandling.Ignore)]
         public List<TrainingQuery> Queries { get; set; }

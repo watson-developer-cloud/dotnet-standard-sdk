@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,11 +15,9 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -27,315 +25,263 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// DialogNode.
     /// </summary>
-    public class DialogNode : BaseModel
+    public class DialogNode
     {
         /// <summary>
         /// How the dialog node is processed.
         /// </summary>
-        /// <value>
-        /// How the dialog node is processed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum NodeTypeEnum
+        public class NodeTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum STANDARD for standard
+            /// Constant STANDARD for standard
             /// </summary>
-            [EnumMember(Value = "standard")]
-            STANDARD,
-            
+            public const string STANDARD = "standard";
             /// <summary>
-            /// Enum EVENT_HANDLER for event_handler
+            /// Constant EVENT_HANDLER for event_handler
             /// </summary>
-            [EnumMember(Value = "event_handler")]
-            EVENT_HANDLER,
-            
+            public const string EVENT_HANDLER = "event_handler";
             /// <summary>
-            /// Enum FRAME for frame
+            /// Constant FRAME for frame
             /// </summary>
-            [EnumMember(Value = "frame")]
-            FRAME,
-            
+            public const string FRAME = "frame";
             /// <summary>
-            /// Enum SLOT for slot
+            /// Constant SLOT for slot
             /// </summary>
-            [EnumMember(Value = "slot")]
-            SLOT,
-            
+            public const string SLOT = "slot";
             /// <summary>
-            /// Enum RESPONSE_CONDITION for response_condition
+            /// Constant RESPONSE_CONDITION for response_condition
             /// </summary>
-            [EnumMember(Value = "response_condition")]
-            RESPONSE_CONDITION,
-            
+            public const string RESPONSE_CONDITION = "response_condition";
             /// <summary>
-            /// Enum FOLDER for folder
+            /// Constant FOLDER for folder
             /// </summary>
-            [EnumMember(Value = "folder")]
-            FOLDER
+            public const string FOLDER = "folder";
+            
         }
 
         /// <summary>
         /// How an `event_handler` node is processed.
         /// </summary>
-        /// <value>
-        /// How an `event_handler` node is processed.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum EventNameEnum
+        public class EventNameEnumValue
         {
-            
             /// <summary>
-            /// Enum FOCUS for focus
+            /// Constant FOCUS for focus
             /// </summary>
-            [EnumMember(Value = "focus")]
-            FOCUS,
-            
+            public const string FOCUS = "focus";
             /// <summary>
-            /// Enum INPUT for input
+            /// Constant INPUT for input
             /// </summary>
-            [EnumMember(Value = "input")]
-            INPUT,
-            
+            public const string INPUT = "input";
             /// <summary>
-            /// Enum FILLED for filled
+            /// Constant FILLED for filled
             /// </summary>
-            [EnumMember(Value = "filled")]
-            FILLED,
-            
+            public const string FILLED = "filled";
             /// <summary>
-            /// Enum VALIDATE for validate
+            /// Constant VALIDATE for validate
             /// </summary>
-            [EnumMember(Value = "validate")]
-            VALIDATE,
-            
+            public const string VALIDATE = "validate";
             /// <summary>
-            /// Enum FILLED_MULTIPLE for filled_multiple
+            /// Constant FILLED_MULTIPLE for filled_multiple
             /// </summary>
-            [EnumMember(Value = "filled_multiple")]
-            FILLED_MULTIPLE,
-            
+            public const string FILLED_MULTIPLE = "filled_multiple";
             /// <summary>
-            /// Enum GENERIC for generic
+            /// Constant GENERIC for generic
             /// </summary>
-            [EnumMember(Value = "generic")]
-            GENERIC,
-            
+            public const string GENERIC = "generic";
             /// <summary>
-            /// Enum NOMATCH for nomatch
+            /// Constant NOMATCH for nomatch
             /// </summary>
-            [EnumMember(Value = "nomatch")]
-            NOMATCH,
-            
+            public const string NOMATCH = "nomatch";
             /// <summary>
-            /// Enum NOMATCH_RESPONSES_DEPLETED for nomatch_responses_depleted
+            /// Constant NOMATCH_RESPONSES_DEPLETED for nomatch_responses_depleted
             /// </summary>
-            [EnumMember(Value = "nomatch_responses_depleted")]
-            NOMATCH_RESPONSES_DEPLETED,
-            
+            public const string NOMATCH_RESPONSES_DEPLETED = "nomatch_responses_depleted";
             /// <summary>
-            /// Enum DIGRESSION_RETURN_PROMPT for digression_return_prompt
+            /// Constant DIGRESSION_RETURN_PROMPT for digression_return_prompt
             /// </summary>
-            [EnumMember(Value = "digression_return_prompt")]
-            DIGRESSION_RETURN_PROMPT
+            public const string DIGRESSION_RETURN_PROMPT = "digression_return_prompt";
+            
         }
 
         /// <summary>
         /// Whether this top-level dialog node can be digressed into.
         /// </summary>
-        /// <value>
-        /// Whether this top-level dialog node can be digressed into.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DigressInEnum
+        public class DigressInEnumValue
         {
-            
             /// <summary>
-            /// Enum NOT_AVAILABLE for not_available
+            /// Constant NOT_AVAILABLE for not_available
             /// </summary>
-            [EnumMember(Value = "not_available")]
-            NOT_AVAILABLE,
-            
+            public const string NOT_AVAILABLE = "not_available";
             /// <summary>
-            /// Enum RETURNS for returns
+            /// Constant RETURNS for returns
             /// </summary>
-            [EnumMember(Value = "returns")]
-            RETURNS,
-            
+            public const string RETURNS = "returns";
             /// <summary>
-            /// Enum DOES_NOT_RETURN for does_not_return
+            /// Constant DOES_NOT_RETURN for does_not_return
             /// </summary>
-            [EnumMember(Value = "does_not_return")]
-            DOES_NOT_RETURN
+            public const string DOES_NOT_RETURN = "does_not_return";
+            
         }
 
         /// <summary>
         /// Whether this dialog node can be returned to after a digression.
         /// </summary>
-        /// <value>
-        /// Whether this dialog node can be returned to after a digression.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DigressOutEnum
+        public class DigressOutEnumValue
         {
-            
             /// <summary>
-            /// Enum ALLOW_RETURNING for allow_returning
+            /// Constant ALLOW_RETURNING for allow_returning
             /// </summary>
-            [EnumMember(Value = "allow_returning")]
-            ALLOW_RETURNING,
-            
+            public const string ALLOW_RETURNING = "allow_returning";
             /// <summary>
-            /// Enum ALLOW_ALL for allow_all
+            /// Constant ALLOW_ALL for allow_all
             /// </summary>
-            [EnumMember(Value = "allow_all")]
-            ALLOW_ALL,
-            
+            public const string ALLOW_ALL = "allow_all";
             /// <summary>
-            /// Enum ALLOW_ALL_NEVER_RETURN for allow_all_never_return
+            /// Constant ALLOW_ALL_NEVER_RETURN for allow_all_never_return
             /// </summary>
-            [EnumMember(Value = "allow_all_never_return")]
-            ALLOW_ALL_NEVER_RETURN
+            public const string ALLOW_ALL_NEVER_RETURN = "allow_all_never_return";
+            
         }
 
         /// <summary>
         /// Whether the user can digress to top-level nodes while filling out slots.
         /// </summary>
-        /// <value>
-        /// Whether the user can digress to top-level nodes while filling out slots.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DigressOutSlotsEnum
+        public class DigressOutSlotsEnumValue
         {
-            
             /// <summary>
-            /// Enum NOT_ALLOWED for not_allowed
+            /// Constant NOT_ALLOWED for not_allowed
             /// </summary>
-            [EnumMember(Value = "not_allowed")]
-            NOT_ALLOWED,
-            
+            public const string NOT_ALLOWED = "not_allowed";
             /// <summary>
-            /// Enum ALLOW_RETURNING for allow_returning
+            /// Constant ALLOW_RETURNING for allow_returning
             /// </summary>
-            [EnumMember(Value = "allow_returning")]
-            ALLOW_RETURNING,
-            
+            public const string ALLOW_RETURNING = "allow_returning";
             /// <summary>
-            /// Enum ALLOW_ALL for allow_all
+            /// Constant ALLOW_ALL for allow_all
             /// </summary>
-            [EnumMember(Value = "allow_all")]
-            ALLOW_ALL
+            public const string ALLOW_ALL = "allow_all";
+            
         }
 
         /// <summary>
         /// How the dialog node is processed.
+        /// Constants for possible values can be found using DialogNode.NodeTypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public NodeTypeEnum? NodeType { get; set; }
+        public string NodeType { get; set; }
         /// <summary>
         /// How an `event_handler` node is processed.
+        /// Constants for possible values can be found using DialogNode.EventNameEnumValue
         /// </summary>
         [JsonProperty("event_name", NullValueHandling = NullValueHandling.Ignore)]
-        public EventNameEnum? EventName { get; set; }
+        public string EventName { get; set; }
         /// <summary>
         /// Whether this top-level dialog node can be digressed into.
+        /// Constants for possible values can be found using DialogNode.DigressInEnumValue
         /// </summary>
         [JsonProperty("digress_in", NullValueHandling = NullValueHandling.Ignore)]
-        public DigressInEnum? DigressIn { get; set; }
+        public string DigressIn { get; set; }
         /// <summary>
         /// Whether this dialog node can be returned to after a digression.
+        /// Constants for possible values can be found using DialogNode.DigressOutEnumValue
         /// </summary>
         [JsonProperty("digress_out", NullValueHandling = NullValueHandling.Ignore)]
-        public DigressOutEnum? DigressOut { get; set; }
+        public string DigressOut { get; set; }
         /// <summary>
         /// Whether the user can digress to top-level nodes while filling out slots.
+        /// Constants for possible values can be found using DialogNode.DigressOutSlotsEnumValue
         /// </summary>
         [JsonProperty("digress_out_slots", NullValueHandling = NullValueHandling.Ignore)]
-        public DigressOutSlotsEnum? DigressOutSlots { get; set; }
+        public string DigressOutSlots { get; set; }
         /// <summary>
-        /// The dialog node ID.
+        /// The dialog node ID. This string must conform to the following restrictions:
+        /// - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.
+        /// - It must be no longer than 1024 characters.
         /// </summary>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
-        public string DialogNodeId { get; set; }
+        public string _DialogNode { get; set; }
         /// <summary>
-        /// The description of the dialog node.
+        /// The description of the dialog node. This string cannot contain carriage return, newline, or tab characters,
+        /// and it must be no longer than 128 characters.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The condition that triggers the dialog node.
+        /// The condition that will trigger the dialog node. This string cannot contain carriage return, newline, or tab
+        /// characters, and it must be no longer than 2048 characters.
         /// </summary>
         [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
         public string Conditions { get; set; }
         /// <summary>
-        /// The ID of the parent dialog node. This property is not returned if the dialog node has no parent.
+        /// The ID of the parent dialog node. This property is omitted if the dialog node has no parent.
         /// </summary>
         [JsonProperty("parent", NullValueHandling = NullValueHandling.Ignore)]
         public string Parent { get; set; }
         /// <summary>
-        /// The ID of the previous sibling dialog node. This property is not returned if the dialog node has no previous
+        /// The ID of the previous sibling dialog node. This property is omitted if the dialog node has no previous
         /// sibling.
         /// </summary>
         [JsonProperty("previous_sibling", NullValueHandling = NullValueHandling.Ignore)]
         public string PreviousSibling { get; set; }
         /// <summary>
         /// The output of the dialog node. For more information about how to specify dialog node output, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#dialog-overview-responses).
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Output { get; set; }
+        public JObject Output { get; set; }
         /// <summary>
-        /// The context (if defined) for the dialog node.
+        /// The context for the dialog node.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public object Context { get; set; }
+        public Dictionary<string, object> Context { get; set; }
         /// <summary>
-        /// Any metadata for the dialog node.
+        /// The metadata for the dialog node.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
         /// The next step to execute following this dialog node.
         /// </summary>
         [JsonProperty("next_step", NullValueHandling = NullValueHandling.Ignore)]
         public DialogNodeNextStep NextStep { get; set; }
         /// <summary>
-        /// The timestamp for creation of the dialog node.
-        /// </summary>
-        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Created { get; private set; }
-        /// <summary>
-        /// The timestamp for the most recent update to the dialog node.
-        /// </summary>
-        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual DateTime? Updated { get; private set; }
-        /// <summary>
-        /// The actions for the dialog node.
-        /// </summary>
-        [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
-        public List<DialogNodeAction> Actions { get; set; }
-        /// <summary>
-        /// The alias used to identify the dialog node.
+        /// The alias used to identify the dialog node. This string must conform to the following restrictions:
+        /// - It can contain only Unicode alphanumeric, space, underscore, hyphen, and dot characters.
+        /// - It must be no longer than 64 characters.
         /// </summary>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
-        /// <summary>
-        /// For internal use only.
-        /// </summary>
-        [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Disabled { get; set; }
         /// <summary>
         /// The location in the dialog context where output is stored.
         /// </summary>
         [JsonProperty("variable", NullValueHandling = NullValueHandling.Ignore)]
         public string Variable { get; set; }
         /// <summary>
+        /// An array of objects describing any actions to be invoked by the dialog node.
+        /// </summary>
+        [JsonProperty("actions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DialogNodeAction> Actions { get; set; }
+        /// <summary>
         /// A label that can be displayed externally to describe the purpose of the node to users. This string must be
         /// no longer than 512 characters.
         /// </summary>
         [JsonProperty("user_label", NullValueHandling = NullValueHandling.Ignore)]
         public string UserLabel { get; set; }
+        /// <summary>
+        /// For internal use only.
+        /// </summary>
+        [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual bool? Disabled { get; private set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
     }
 
 }

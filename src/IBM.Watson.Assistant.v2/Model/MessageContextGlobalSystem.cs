@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,14 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Properties that are shared by all skills used by the assistant.
+    /// Built-in system properties that apply to all skills used by the assistant.
     /// </summary>
-    public class MessageContextGlobalSystem : BaseModel
+    public class MessageContextGlobalSystem
     {
         /// <summary>
         /// The user time zone. The assistant uses the time zone to correctly resolve relative time references.
@@ -40,7 +39,8 @@ namespace IBM.Watson.Assistant.v2.Model
         public string UserId { get; set; }
         /// <summary>
         /// A counter that is automatically incremented with each turn of the conversation. A value of 1 indicates that
-        /// this is the the first turn of a new conversation, which can affect the behavior of some skills.
+        /// this is the the first turn of a new conversation, which can affect the behavior of some skills (for example,
+        /// triggering the start node of a dialog).
         /// </summary>
         [JsonProperty("turn_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? TurnCount { get; set; }

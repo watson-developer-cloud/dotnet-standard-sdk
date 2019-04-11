@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,41 +15,34 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
     /// An input object that includes the input text.
     /// </summary>
-    public class MessageInput : BaseModel
+    public class MessageInput
     {
         /// <summary>
         /// The type of user input. Currently, only text input is supported.
         /// </summary>
-        /// <value>
-        /// The type of user input. Currently, only text input is supported.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum MessageTypeEnum
+        public class MessageTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum TEXT for text
+            /// Constant TEXT for text
             /// </summary>
-            [EnumMember(Value = "text")]
-            TEXT
+            public const string TEXT = "text";
+            
         }
 
         /// <summary>
         /// The type of user input. Currently, only text input is supported.
+        /// Constants for possible values can be found using MessageInput.MessageTypeEnumValue
         /// </summary>
         [JsonProperty("message_type", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageTypeEnum? MessageType { get; set; }
+        public string MessageType { get; set; }
         /// <summary>
         /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
         /// must be no longer than 2048 characters.

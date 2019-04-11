@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
     /// Grammar.
     /// </summary>
-    public class Grammar : BaseModel
+    public class Grammar
     {
         /// <summary>
         /// The status of the grammar:
@@ -36,36 +33,21 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// * `undetermined`: The service encountered an error while processing the grammar. The `error` field describes
         /// the failure.
         /// </summary>
-        /// <value>
-        /// The status of the grammar:
-        /// * `analyzed`: The service successfully analyzed the grammar. The custom model can be trained with data from
-        /// the grammar.
-        /// * `being_processed`: The service is still analyzing the grammar. The service cannot accept requests to add
-        /// new resources or to train the custom model.
-        /// * `undetermined`: The service encountered an error while processing the grammar. The `error` field describes
-        /// the failure.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum ANALYZED for analyzed
+            /// Constant ANALYZED for analyzed
             /// </summary>
-            [EnumMember(Value = "analyzed")]
-            ANALYZED,
-            
+            public const string ANALYZED = "analyzed";
             /// <summary>
-            /// Enum BEING_PROCESSED for being_processed
+            /// Constant BEING_PROCESSED for being_processed
             /// </summary>
-            [EnumMember(Value = "being_processed")]
-            BEING_PROCESSED,
-            
+            public const string BEING_PROCESSED = "being_processed";
             /// <summary>
-            /// Enum UNDETERMINED for undetermined
+            /// Constant UNDETERMINED for undetermined
             /// </summary>
-            [EnumMember(Value = "undetermined")]
-            UNDETERMINED
+            public const string UNDETERMINED = "undetermined";
+            
         }
 
         /// <summary>
@@ -76,9 +58,10 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// new resources or to train the custom model.
         /// * `undetermined`: The service encountered an error while processing the grammar. The `error` field describes
         /// the failure.
+        /// Constants for possible values can be found using Grammar.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The name of the grammar.
         /// </summary>

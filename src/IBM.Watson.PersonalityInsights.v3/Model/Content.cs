@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.PersonalityInsights.v3.Model
     /// <summary>
     /// Content.
     /// </summary>
-    public class Content : BaseModel
+    public class Content
     {
         /// <summary>
         /// An array of `ContentItem` objects that provides the text that is to be analyzed.

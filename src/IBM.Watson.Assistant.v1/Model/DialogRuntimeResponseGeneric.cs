@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,18 +15,15 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// DialogRuntimeResponseGeneric.
     /// </summary>
-    public class DialogRuntimeResponseGeneric : BaseModel
+    public class DialogRuntimeResponseGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
@@ -35,75 +32,49 @@ namespace IBM.Watson.Assistant.v1.Model
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
         /// for Premium users.
         /// </summary>
-        /// <value>
-        /// The type of response returned by the dialog node. The specified response type must be supported by the
-        /// client application or channel.
-        ///
-        /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ResponseTypeEnum
+        public class ResponseTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum TEXT for text
+            /// Constant TEXT for text
             /// </summary>
-            [EnumMember(Value = "text")]
-            TEXT,
-            
+            public const string TEXT = "text";
             /// <summary>
-            /// Enum PAUSE for pause
+            /// Constant PAUSE for pause
             /// </summary>
-            [EnumMember(Value = "pause")]
-            PAUSE,
-            
+            public const string PAUSE = "pause";
             /// <summary>
-            /// Enum IMAGE for image
+            /// Constant IMAGE for image
             /// </summary>
-            [EnumMember(Value = "image")]
-            IMAGE,
-            
+            public const string IMAGE = "image";
             /// <summary>
-            /// Enum OPTION for option
+            /// Constant OPTION for option
             /// </summary>
-            [EnumMember(Value = "option")]
-            OPTION,
-            
+            public const string OPTION = "option";
             /// <summary>
-            /// Enum CONNECT_TO_AGENT for connect_to_agent
+            /// Constant CONNECT_TO_AGENT for connect_to_agent
             /// </summary>
-            [EnumMember(Value = "connect_to_agent")]
-            CONNECT_TO_AGENT,
-            
+            public const string CONNECT_TO_AGENT = "connect_to_agent";
             /// <summary>
-            /// Enum SUGGESTION for suggestion
+            /// Constant SUGGESTION for suggestion
             /// </summary>
-            [EnumMember(Value = "suggestion")]
-            SUGGESTION
+            public const string SUGGESTION = "suggestion";
+            
         }
 
         /// <summary>
         /// The preferred type of control to display.
         /// </summary>
-        /// <value>
-        /// The preferred type of control to display.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PreferenceEnum
+        public class PreferenceEnumValue
         {
-            
             /// <summary>
-            /// Enum DROPDOWN for dropdown
+            /// Constant DROPDOWN for dropdown
             /// </summary>
-            [EnumMember(Value = "dropdown")]
-            DROPDOWN,
-            
+            public const string DROPDOWN = "dropdown";
             /// <summary>
-            /// Enum BUTTON for button
+            /// Constant BUTTON for button
             /// </summary>
-            [EnumMember(Value = "button")]
-            BUTTON
+            public const string BUTTON = "button";
+            
         }
 
         /// <summary>
@@ -112,14 +83,16 @@ namespace IBM.Watson.Assistant.v1.Model
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
         /// for Premium users.
+        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
-        public ResponseTypeEnum? ResponseType { get; set; }
+        public string ResponseType { get; set; }
         /// <summary>
         /// The preferred type of control to display.
+        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.PreferenceEnumValue
         /// </summary>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
-        public PreferenceEnum? Preference { get; set; }
+        public string Preference { get; set; }
         /// <summary>
         /// The text of the response.
         /// </summary>
@@ -166,6 +139,12 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("topic", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Topic { get; private set; }
+        /// <summary>
+        /// The ID of the dialog node that the **topic** property is taken from. The **topic** property is populated
+        /// using the value of the dialog node's **user_label** property.
+        /// </summary>
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
         /// <summary>
         /// An array of objects describing the possible matching dialog nodes from which the user can choose.
         ///

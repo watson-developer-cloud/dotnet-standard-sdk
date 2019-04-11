@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,18 +15,18 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// The text of the user input.
+    /// An input object that includes the input text.
     /// </summary>
-    public class MessageInput : BaseModel
+    public class MessageInput
     {
         /// <summary>
-        /// The user's input.
+        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
+        /// must be no longer than 2048 characters.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }

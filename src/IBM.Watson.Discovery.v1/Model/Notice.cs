@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,39 +23,40 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// A notice produced for the collection.
     /// </summary>
-    public class Notice : BaseModel
+    public class Notice
     {
         /// <summary>
         /// Severity level of the notice.
         /// </summary>
-        /// <value>
-        /// Severity level of the notice.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SeverityEnum
+        public class SeverityEnumValue
         {
-            
             /// <summary>
-            /// Enum WARNING for warning
+            /// Constant WARNING for warning
             /// </summary>
-            [EnumMember(Value = "warning")]
-            WARNING,
-            
+            public const string WARNING = "warning";
             /// <summary>
-            /// Enum ERROR for error
+            /// Constant ERROR for error
             /// </summary>
-            [EnumMember(Value = "error")]
-            ERROR
+            public const string ERROR = "error";
+            
         }
 
         /// <summary>
         /// Severity level of the notice.
+        /// Constants for possible values can be found using Notice.SeverityEnumValue
         /// </summary>
         [JsonProperty("severity", NullValueHandling = NullValueHandling.Ignore)]
-        public SeverityEnum? Severity { get; set; }
+        public string Severity { get; set; }
         /// <summary>
         /// Identifies the notice. Many notices might have the same ID. This field exists so that user applications can
-        /// programmatically identify a notice and take automatic corrective action.
+        /// programmatically identify a notice and take automatic corrective action. Typical notice IDs include:
+        /// `index_failed`, `index_failed_too_many_requests`, `index_failed_incompatible_field`,
+        /// `index_failed_cluster_unavailable`, `ingestion_timeout`, `ingestion_error`, `bad_request`, `internal_error`,
+        /// `missing_model`, `unsupported_model`, `smart_document_understanding_failed_incompatible_field`,
+        /// `smart_document_understanding_failed_internal_error`, `smart_document_understanding_failed_internal_error`,
+        /// `smart_document_understanding_failed_warning`, `smart_document_understanding_page_error`,
+        /// `smart_document_understanding_page_warning`. **Note:** This is not a complete list, other values might be
+        /// returned.
         /// </summary>
         [JsonProperty("notice_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string NoticeId { get; private set; }
@@ -78,7 +76,9 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("query_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string QueryId { get; private set; }
         /// <summary>
-        /// Ingestion or training step in which the notice occurred.
+        /// Ingestion or training step in which the notice occurred. Typical step values include: `classify_elements`,
+        /// `smartDocumentUnderstanding`, `ingestion`, `indexing`, `convert`. **Note:** This is not a complete list,
+        /// other values might be returned.
         /// </summary>
         [JsonProperty("step", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string Step { get; private set; }

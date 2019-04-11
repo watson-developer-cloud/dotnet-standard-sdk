@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,50 +15,40 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// DocumentAccepted.
     /// </summary>
-    public class DocumentAccepted : BaseModel
+    public class DocumentAccepted
     {
         /// <summary>
         /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
         /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
         /// </summary>
-        /// <value>
-        /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
-        /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum PROCESSING for processing
+            /// Constant PROCESSING for processing
             /// </summary>
-            [EnumMember(Value = "processing")]
-            PROCESSING,
-            
+            public const string PROCESSING = "processing";
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING
+            public const string PENDING = "pending";
+            
         }
 
         /// <summary>
         /// Status of the document in the ingestion process. A status of `processing` is returned for documents that are
         /// ingested with a *version* date before `2019-01-01`. The `pending` status is returned for all others.
+        /// Constants for possible values can be found using DocumentAccepted.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The unique identifier of the ingested document.
         /// </summary>

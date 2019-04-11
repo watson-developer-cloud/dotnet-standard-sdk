@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,10 +23,10 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// The response generated from a call to a **metrics** method that evaluates tokens.
     /// </summary>
-    public class MetricTokenResponse : BaseModel
+    public class MetricTokenResponse
     {
         /// <summary>
-        /// Gets or Sets Aggregations
+        /// Array of metric token aggregations.
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
         public List<MetricTokenAggregation> Aggregations { get; set; }

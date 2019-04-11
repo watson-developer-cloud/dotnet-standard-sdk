@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -25,10 +24,10 @@ namespace IBM.Watson.Discovery.v1.Model
     /// Object containing result information that was returned by the query used to create this log entry. Only returned
     /// with logs of type `query`.
     /// </summary>
-    public class LogQueryResponseResultDocuments : BaseModel
+    public class LogQueryResponseResultDocuments
     {
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of log query response results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<LogQueryResponseResultDocumentsResult> Results { get; set; }

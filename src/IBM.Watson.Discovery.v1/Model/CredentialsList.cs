@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// CredentialsList.
     /// </summary>
-    public class CredentialsList : BaseModel
+    public class CredentialsList
     {
         /// <summary>
         /// An array of credential definitions that were created for this instance.

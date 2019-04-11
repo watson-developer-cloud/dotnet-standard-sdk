@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,20 +22,20 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// TrainingExample.
     /// </summary>
-    public class TrainingExample : BaseModel
+    public class TrainingExample
     {
         /// <summary>
-        /// Gets or Sets DocumentId
+        /// The document ID associated with this training example.
         /// </summary>
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentId { get; set; }
         /// <summary>
-        /// Gets or Sets CrossReference
+        /// The cross reference associated with this training example.
         /// </summary>
         [JsonProperty("cross_reference", NullValueHandling = NullValueHandling.Ignore)]
         public string CrossReference { get; set; }
         /// <summary>
-        /// Gets or Sets Relevance
+        /// The relevance of the training example.
         /// </summary>
         [JsonProperty("relevance", NullValueHandling = NullValueHandling.Ignore)]
         public long? Relevance { get; set; }

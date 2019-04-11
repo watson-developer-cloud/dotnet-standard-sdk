@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 using System;
 
@@ -24,20 +23,23 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// Synonym.
     /// </summary>
-    public class Synonym : BaseModel
+    public class Synonym
     {
         /// <summary>
-        /// The text of the synonym.
+        /// The text of the synonym. This string must conform to the following restrictions:
+        /// - It cannot contain carriage return, newline, or tab characters.
+        /// - It cannot consist of only whitespace characters.
+        /// - It must be no longer than 64 characters.
         /// </summary>
         [JsonProperty("synonym", NullValueHandling = NullValueHandling.Ignore)]
-        public string SynonymText { get; set; }
+        public string _Synonym { get; set; }
         /// <summary>
-        /// The timestamp for creation of the synonym.
+        /// The timestamp for creation of the object.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Created { get; private set; }
         /// <summary>
-        /// The timestamp for the most recent update to the synonym.
+        /// The timestamp for the most recent update to the object.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Updated { get; private set; }

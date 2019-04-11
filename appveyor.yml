@@ -21,12 +21,16 @@ environment:
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node $env:nodejs_version
-# install modules
-- pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
-- npm install @semantic-release/exec
-- npm install @semantic-release/git
-- npm install @semantic-release/changelog
+
 - cmd: >-
+    pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
+
+    npm install @semantic-release/exec
+
+    npm install @semantic-release/git
+
+    npm install @semantic-release/changelog
+
     rm -rf packages
 
     mkdir packages
@@ -46,151 +50,232 @@ install:
 before_build:
 - ps: >-
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+
     {
+
       git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+    
     }
 
     dotnet restore
 
 build:
   project: IBM.Watson.sln
-  verbosity: minimal
+  verbosity: normal
 after_build:
 - ps: >-
     git config --global user.email "wps@us.ibm.com"
+
     git config --global user.name "Watson Github Bot"
 
     if(!$env:APPVEYOR_REPO_TAG_NAME)
 
     {
+
         $branchName = $env:APPVEYOR_REPO_BRANCH
+
     }
 
     else
 
     {
+
         $branchName = $env:APPVEYOR_REPO_TAG_NAME
+
     }
 
     Write-Output "branchName  is " + $branchName
 
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+
     {
       
       If($branchName -eq "development" -or $branchName -eq $env:APPVEYOR_REPO_TAG_NAME -or $branchName -eq "master")
 
       {
+
           .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
 
           git clone --quiet --branch=gh-pages https://$env:WPS_GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
 
           If(Test-Path -Path gh-pages\docs\$branchName)
+
           {
+
             rm gh-pages\docs\$branchName -r -force
+
           }
+
           mkdir -p gh-pages\docs\$branchName
+
           mv .\docs\html gh-pages\docs\$branchName
+
           . .\.utility\generate_html.ps1
+
           New-TableOfContents ".\gh-pages\docs" | Out-File ".\gh-pages\index.html" -encoding utf8
+
           cd gh-pages
+
           git add -f .
+
           git commit -m "Updated documentation for $branchName"
+
           git push -f origin gh-pages
+
           cd ../
+
       }
 
       else
 
       {
+
           Write-Output "branchName is $branchName. Not generating documentation."
+
       }
+
     }
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    # Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
+    # Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
+    # Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
     
-    Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
+    # Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 test_script:
 - ps: >-
     if(Test-Path -Path coverage)
+
     {
+        
         rm coverage -r -force
+
     }
 
     New-Item -path . -name coverage -itemtype directory
     
     ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
+
     { 
+
         if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+
         {
+
             Write-Output \"No pull request number. Executing tests\"
+
             # dotnet test $folder.FullName
+
             if($LastExitCode -ne 0) 
+
             {
+
                 $host.SetShouldExit($LastExitCode )
+
             }
+
             echo \"Test passed: $?\"
+
             echo \"LastExitCode: $LastExitCode\"
+
             $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
+            
             $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
+            
             $filter = '-filter:+[*.IntegrationTests]*+[*.UnitTests]*-[*Tests*]*-[*Example*]*'
+            
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 
             C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
 
             if($env:COVERALLS_REPO_TOKEN)
+            
             {
+            
                 C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
-            }
+            
+                }
+            
             else
+
             {
+
                 Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
+
             }
         }
+
         else
+
         {
             Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
 
             if($folder.FullName.EndsWith("UnitTests"))
+
             {
+
                 dotnet test $folder.FullName
+
                 if($LastExitCode -ne 0) 
+
                 {
+
                     $host.SetShouldExit($LastExitCode )
+
                 }
+
                 echo \"Test passed: $?\"
+
                 echo \"LastExitCode: $LastExitCode\"
+
             }
+
         }
+
     }
 
     If($branchName -eq "master" -and $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
 
     {
+        
         Write-Output "branchName is master and not a pull request - running semantic release"
+
         npx semantic-release@15.11.0
+
     }
 
     ElseIf($branchName -eq $env:APPVEYOR_REPO_TAG_NAME)
 
     {
         Write-Output "branchName  is " + $branchName + " - building NuGet packages" 
+
         dotnet pack .\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.NaturalLanguageClassifier.v1\IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.NaturalLanguageUnderstanding.v1\IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.PersonalityInsights.v3\IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.SpeechToText.v1\IBM.Watson.SpeechToText.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.TextToSpeech.v1\IBM.Watson.TextToSpeech.v1.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.Common\IBM.Watson.Common.csproj --configuration Release
+        
     }
 
 

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,52 +15,41 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
     /// An effective date.
     /// </summary>
-    public class EffectiveDates : BaseModel
+    public class EffectiveDates
     {
         /// <summary>
         /// The confidence level in the identification of the effective date.
         /// </summary>
-        /// <value>
-        /// The confidence level in the identification of the effective date.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ConfidenceLevelEnum
+        public class ConfidenceLevelEnumValue
         {
-            
             /// <summary>
-            /// Enum HIGH for High
+            /// Constant HIGH for High
             /// </summary>
-            [EnumMember(Value = "High")]
-            HIGH,
-            
+            public const string HIGH = "High";
             /// <summary>
-            /// Enum MEDIUM for Medium
+            /// Constant MEDIUM for Medium
             /// </summary>
-            [EnumMember(Value = "Medium")]
-            MEDIUM,
-            
+            public const string MEDIUM = "Medium";
             /// <summary>
-            /// Enum LOW for Low
+            /// Constant LOW for Low
             /// </summary>
-            [EnumMember(Value = "Low")]
-            LOW
+            public const string LOW = "Low";
+            
         }
 
         /// <summary>
         /// The confidence level in the identification of the effective date.
+        /// Constants for possible values can be found using EffectiveDates.ConfidenceLevelEnumValue
         /// </summary>
         [JsonProperty("confidence_level", NullValueHandling = NullValueHandling.Ignore)]
-        public ConfidenceLevelEnum? ConfidenceLevel { get; set; }
+        public string ConfidenceLevel { get; set; }
         /// <summary>
         /// The effective date, listed as a string.
         /// </summary>

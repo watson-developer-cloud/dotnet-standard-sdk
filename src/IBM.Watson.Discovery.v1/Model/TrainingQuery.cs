@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,25 +23,25 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// TrainingQuery.
     /// </summary>
-    public class TrainingQuery : BaseModel
+    public class TrainingQuery
     {
         /// <summary>
-        /// Gets or Sets QueryId
+        /// The query ID associated with the training query.
         /// </summary>
         [JsonProperty("query_id", NullValueHandling = NullValueHandling.Ignore)]
         public string QueryId { get; set; }
         /// <summary>
-        /// Gets or Sets NaturalLanguageQuery
+        /// The natural text query for the training query.
         /// </summary>
         [JsonProperty("natural_language_query", NullValueHandling = NullValueHandling.Ignore)]
         public string NaturalLanguageQuery { get; set; }
         /// <summary>
-        /// Gets or Sets Filter
+        /// The filter used on the collection before the **natural_language_query** is applied.
         /// </summary>
         [JsonProperty("filter", NullValueHandling = NullValueHandling.Ignore)]
         public string Filter { get; set; }
         /// <summary>
-        /// Gets or Sets Examples
+        /// Array of training examples.
         /// </summary>
         [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
         public List<TrainingExample> Examples { get; set; }

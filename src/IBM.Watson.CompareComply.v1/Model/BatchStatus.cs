@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.CompareComply.v1.Model
@@ -26,45 +23,36 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// The batch-request status.
     /// </summary>
-    public class BatchStatus : BaseModel
+    public class BatchStatus
     {
         /// <summary>
         /// The method to be run against the documents. Possible values are `html_conversion`, `element_classification`,
         /// and `tables`.
         /// </summary>
-        /// <value>
-        /// The method to be run against the documents. Possible values are `html_conversion`, `element_classification`,
-        /// and `tables`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FunctionEnum
+        public class FunctionEnumValue
         {
-            
             /// <summary>
-            /// Enum ELEMENT_CLASSIFICATION for element_classification
+            /// Constant ELEMENT_CLASSIFICATION for element_classification
             /// </summary>
-            [EnumMember(Value = "element_classification")]
-            ELEMENT_CLASSIFICATION,
-            
+            public const string ELEMENT_CLASSIFICATION = "element_classification";
             /// <summary>
-            /// Enum HTML_CONVERSION for html_conversion
+            /// Constant HTML_CONVERSION for html_conversion
             /// </summary>
-            [EnumMember(Value = "html_conversion")]
-            HTML_CONVERSION,
-            
+            public const string HTML_CONVERSION = "html_conversion";
             /// <summary>
-            /// Enum TABLES for tables
+            /// Constant TABLES for tables
             /// </summary>
-            [EnumMember(Value = "tables")]
-            TABLES
+            public const string TABLES = "tables";
+            
         }
 
         /// <summary>
         /// The method to be run against the documents. Possible values are `html_conversion`, `element_classification`,
         /// and `tables`.
+        /// Constants for possible values can be found using BatchStatus.FunctionEnumValue
         /// </summary>
         [JsonProperty("function", NullValueHandling = NullValueHandling.Ignore)]
-        public FunctionEnum? Function { get; set; }
+        public string Function { get; set; }
         /// <summary>
         /// The geographical location of the Cloud Object Storage input bucket as listed on the **Endpoint** tab of your
         /// COS instance; for example, `us-geo`, `eu-geo`, or `ap-geo`.

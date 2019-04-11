@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,58 +15,46 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
     /// DialogNodeAction.
     /// </summary>
-    public class DialogNodeAction : BaseModel
+    public class DialogNodeAction
     {
         /// <summary>
         /// The type of action to invoke.
         /// </summary>
-        /// <value>
-        /// The type of action to invoke.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ActionTypeEnum
+        public class ActionTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum CLIENT for client
+            /// Constant CLIENT for client
             /// </summary>
-            [EnumMember(Value = "client")]
-            CLIENT,
-            
+            public const string CLIENT = "client";
             /// <summary>
-            /// Enum SERVER for server
+            /// Constant SERVER for server
             /// </summary>
-            [EnumMember(Value = "server")]
-            SERVER,
-            
+            public const string SERVER = "server";
             /// <summary>
-            /// Enum WEB_ACTION for web-action
+            /// Constant WEB_ACTION for web-action
             /// </summary>
-            [EnumMember(Value = "web-action")]
-            WEB_ACTION,
-            
+            public const string WEB_ACTION = "web-action";
             /// <summary>
-            /// Enum CLOUD_FUNCTION for cloud-function
+            /// Constant CLOUD_FUNCTION for cloud-function
             /// </summary>
-            [EnumMember(Value = "cloud-function")]
-            CLOUD_FUNCTION
+            public const string CLOUD_FUNCTION = "cloud-function";
+            
         }
 
         /// <summary>
         /// The type of action to invoke.
+        /// Constants for possible values can be found using DialogNodeAction.ActionTypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public ActionTypeEnum? ActionType { get; set; }
+        public string ActionType { get; set; }
         /// <summary>
         /// The name of the action.
         /// </summary>
@@ -76,7 +64,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// A map of key/value pairs to be provided to the action.
         /// </summary>
         [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
-        public object Parameters { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
         /// <summary>
         /// The location in the dialog context where the result of the action is stored.
         /// </summary>

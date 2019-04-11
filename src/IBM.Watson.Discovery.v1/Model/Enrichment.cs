@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Enrichment.
     /// </summary>
-    public class Enrichment : BaseModel
+    public class Enrichment
     {
         /// <summary>
         /// Describes what the enrichment step does.
@@ -39,6 +38,9 @@ namespace IBM.Watson.Discovery.v1.Model
         public string DestinationField { get; set; }
         /// <summary>
         /// Field to be enriched.
+        ///
+        /// Arrays can be specified as the **source_field** if the **enrichment** service for this enrichment is set to
+        /// `natural_language_undstanding`.
         /// </summary>
         [JsonProperty("source_field", NullValueHandling = NullValueHandling.Ignore)]
         public string SourceField { get; set; }
@@ -56,11 +58,7 @@ namespace IBM.Watson.Discovery.v1.Model
         ///  When using `elements` the **options** object must contain Element Classification options. Additionally,
         /// when using the `elements` enrichment the configuration specified and files ingested must meet all the
         /// criteria specified in [the
-        /// documentation](https://console.bluemix.net/docs/services/discovery/element-classification.html)
-        ///
-        ///
-        ///
-        ///  Previous API versions also supported `alchemy_language`.
+        /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-element-classification#element-classification).
         /// </summary>
         [JsonProperty("enrichment", NullValueHandling = NullValueHandling.Ignore)]
         public string EnrichmentName { get; set; }
@@ -71,7 +69,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("ignore_downstream_errors", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IgnoreDownstreamErrors { get; set; }
         /// <summary>
-        /// Options which are specific to a particular enrichment.
+        /// An object representing the configuration options to use for the `elements` enrichment.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public EnrichmentOptions Options { get; set; }

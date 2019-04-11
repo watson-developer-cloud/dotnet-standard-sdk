@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,49 +15,39 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object describing a specific gateway.
     /// </summary>
-    public class Gateway : BaseModel
+    public class Gateway
     {
         /// <summary>
         /// The current status of the gateway. `connected` means the gateway is connected to the remotly installed
         /// gateway. `idle` means this gateway is not currently in use.
         /// </summary>
-        /// <value>
-        /// The current status of the gateway. `connected` means the gateway is connected to the remotly installed
-        /// gateway. `idle` means this gateway is not currently in use.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum CONNECTED for connected
+            /// Constant CONNECTED for connected
             /// </summary>
-            [EnumMember(Value = "connected")]
-            CONNECTED,
-            
+            public const string CONNECTED = "connected";
             /// <summary>
-            /// Enum IDLE for idle
+            /// Constant IDLE for idle
             /// </summary>
-            [EnumMember(Value = "idle")]
-            IDLE
+            public const string IDLE = "idle";
+            
         }
 
         /// <summary>
         /// The current status of the gateway. `connected` means the gateway is connected to the remotly installed
         /// gateway. `idle` means this gateway is not currently in use.
+        /// Constants for possible values can be found using Gateway.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The gateway ID of the gateway.
         /// </summary>

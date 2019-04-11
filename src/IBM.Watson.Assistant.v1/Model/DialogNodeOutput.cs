@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,27 +15,27 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// The output of the dialog node. For more information about how to specify dialog node output, see the
-    /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#complex).
+    /// [documentation](https://cloud.ibm.com/docs/services/assistant/dialog-overview.html#dialog-overview-responses).
     /// </summary>
-    public class DialogNodeOutput : BaseModel
+    public class DialogNodeOutput
     {
         /// <summary>
         /// An array of objects describing the output defined for the dialog node.
         /// </summary>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Generic { get; set; }
+        public List<DialogNodeOutputGeneric> Generic { get; set; }
         /// <summary>
         /// Options that modify how specified output is handled.
         /// </summary>
         [JsonProperty("modifiers", NullValueHandling = NullValueHandling.Ignore)]
-        public dynamic Modifiers { get; set; }
+        public DialogNodeOutputModifiers Modifiers { get; set; }
     }
 
 }

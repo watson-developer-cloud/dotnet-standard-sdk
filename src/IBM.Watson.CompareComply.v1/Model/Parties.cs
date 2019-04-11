@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,47 +15,38 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
     /// A party and its corresponding role, including address and contact information if identified.
     /// </summary>
-    public class Parties : BaseModel
+    public class Parties
     {
         /// <summary>
         /// A string that identifies the importance of the party.
         /// </summary>
-        /// <value>
-        /// A string that identifies the importance of the party.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ImportanceEnum
+        public class ImportanceEnumValue
         {
-            
             /// <summary>
-            /// Enum PRIMARY for Primary
+            /// Constant PRIMARY for Primary
             /// </summary>
-            [EnumMember(Value = "Primary")]
-            PRIMARY,
-            
+            public const string PRIMARY = "Primary";
             /// <summary>
-            /// Enum UNKNOWN for Unknown
+            /// Constant UNKNOWN for Unknown
             /// </summary>
-            [EnumMember(Value = "Unknown")]
-            UNKNOWN
+            public const string UNKNOWN = "Unknown";
+            
         }
 
         /// <summary>
         /// A string that identifies the importance of the party.
+        /// Constants for possible values can be found using Parties.ImportanceEnumValue
         /// </summary>
         [JsonProperty("importance", NullValueHandling = NullValueHandling.Ignore)]
-        public ImportanceEnum? Importance { get; set; }
+        public string Importance { get; set; }
         /// <summary>
         /// A string identifying the party.
         /// </summary>

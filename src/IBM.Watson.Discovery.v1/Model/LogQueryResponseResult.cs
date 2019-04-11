@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -27,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// Individual result object for a **logs** query. Each object represents either a query to a Discovery collection
     /// or an event that is associated with a query.
     /// </summary>
-    public class LogQueryResponseResult : BaseModel
+    public class LogQueryResponseResult
     {
         /// <summary>
         /// The type of log entry returned.
@@ -37,29 +34,17 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         ///  **event** indicates that the log represents  a call to the **events** API.
         /// </summary>
-        /// <value>
-        /// The type of log entry returned.
-        ///
-        ///  **query** indicates that the log represents the results of a call to the single collection **query**
-        /// method.
-        ///
-        ///  **event** indicates that the log represents  a call to the **events** API.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DocumentTypeEnum
+        public class DocumentTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum QUERY for query
+            /// Constant QUERY for query
             /// </summary>
-            [EnumMember(Value = "query")]
-            QUERY,
-            
+            public const string QUERY = "query";
             /// <summary>
-            /// Enum EVENT for event
+            /// Constant EVENT for event
             /// </summary>
-            [EnumMember(Value = "event")]
-            EVENT
+            public const string EVENT = "event";
+            
         }
 
         /// <summary>
@@ -69,45 +54,29 @@ namespace IBM.Watson.Discovery.v1.Model
         ///
         ///  -  `click` the result of a call to the **events** endpoint.
         /// </summary>
-        /// <value>
-        /// The type of event that this object respresents. Possible values are
-        ///
-        ///  -  `query` the log of a query to a collection
-        ///
-        ///  -  `click` the result of a call to the **events** endpoint.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum EventTypeEnum
+        public class EventTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum CLICK for click
+            /// Constant CLICK for click
             /// </summary>
-            [EnumMember(Value = "click")]
-            CLICK,
-            
+            public const string CLICK = "click";
             /// <summary>
-            /// Enum QUERY for query
+            /// Constant QUERY for query
             /// </summary>
-            [EnumMember(Value = "query")]
-            QUERY
+            public const string QUERY = "query";
+            
         }
 
         /// <summary>
         /// The type of result that this **event** is associated with. Only returned with logs of type `event`.
         /// </summary>
-        /// <value>
-        /// The type of result that this **event** is associated with. Only returned with logs of type `event`.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ResultTypeEnum
+        public class ResultTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum DOCUMENT for document
+            /// Constant DOCUMENT for document
             /// </summary>
-            [EnumMember(Value = "document")]
-            DOCUMENT
+            public const string DOCUMENT = "document";
+            
         }
 
         /// <summary>
@@ -117,23 +86,26 @@ namespace IBM.Watson.Discovery.v1.Model
         /// method.
         ///
         ///  **event** indicates that the log represents  a call to the **events** API.
+        /// Constants for possible values can be found using LogQueryResponseResult.DocumentTypeEnumValue
         /// </summary>
         [JsonProperty("document_type", NullValueHandling = NullValueHandling.Ignore)]
-        public DocumentTypeEnum? DocumentType { get; set; }
+        public string DocumentType { get; set; }
         /// <summary>
         /// The type of event that this object respresents. Possible values are
         ///
         ///  -  `query` the log of a query to a collection
         ///
         ///  -  `click` the result of a call to the **events** endpoint.
+        /// Constants for possible values can be found using LogQueryResponseResult.EventTypeEnumValue
         /// </summary>
         [JsonProperty("event_type", NullValueHandling = NullValueHandling.Ignore)]
-        public EventTypeEnum? EventType { get; set; }
+        public string EventType { get; set; }
         /// <summary>
         /// The type of result that this **event** is associated with. Only returned with logs of type `event`.
+        /// Constants for possible values can be found using LogQueryResponseResult.ResultTypeEnumValue
         /// </summary>
         [JsonProperty("result_type", NullValueHandling = NullValueHandling.Ignore)]
-        public ResultTypeEnum? ResultType { get; set; }
+        public string ResultType { get; set; }
         /// <summary>
         /// The environment ID that is associated with this log entry.
         /// </summary>

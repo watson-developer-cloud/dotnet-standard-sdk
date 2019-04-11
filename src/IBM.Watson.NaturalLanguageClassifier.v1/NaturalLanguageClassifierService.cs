@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,13 +18,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using IBM.Watson.NaturalLanguageClassifier.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
-using IBM.Cloud.SDK.Core.Service;
+using System.Text;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
-using IBM.Cloud.SDK.Core;
+using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.NaturalLanguageClassifier.v1.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
@@ -77,15 +79,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classification" />Classification</returns>
-        public Classification Classify(string classifierId, ClassifyInput body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Classification> Classify(string classifierId, string text)
         {
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException(nameof(classifierId));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
-            Classification result = null;
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `Classify`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `Classify`");
+            DetailedResponse<Classification> result = null;
 
             try
             {
@@ -101,15 +102,24 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
 
-                restRequest.WithBody<ClassifyInput>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=Classify");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "Classify"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classification>().Result;
                 if (result == null)
-                    result = new Classification();
-                
+                    result = new DetailedResponse<Classification>();
             }
             catch (AggregateException ae)
             {
@@ -129,15 +139,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
         /// <param name="body">Phrase to classify. You can submit up to 30 text phrases in a request.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
-        public ClassificationCollection ClassifyCollection(string classifierId, ClassifyCollectionInput body, Dictionary<string, object> customData = null)
+        public DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection)
         {
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException(nameof(classifierId));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
-            ClassificationCollection result = null;
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `ClassifyCollection`");
+        if (collection == null)
+            throw new ArgumentNullException("`collection` is required for `ClassifyCollection`");
+            DetailedResponse<ClassificationCollection> result = null;
 
             try
             {
@@ -153,15 +162,24 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
 
-                restRequest.WithBody<ClassifyCollectionInput>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=ClassifyCollection");
+                JObject bodyObject = new JObject();
+                if (collection != null && collection.Count > 0)
+                    bodyObject["collection"] = JToken.FromObject(collection);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ClassifyCollection"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ClassificationCollection>().Result;
                 if (result == null)
-                    result = new ClassificationCollection();
-                
+                    result = new DetailedResponse<ClassificationCollection>();
             }
             catch (AggregateException ae)
             {
@@ -184,15 +202,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <param name="trainingData">Training data in CSV format. Each text value must have at least one class. The
         /// data can include up to 3,000 classes and 20,000 records. For details, see [Data
         /// preparation](https://cloud.ibm.com/docs/services/natural-language-classifier/using-your-data.html).</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier CreateClassifier(System.IO.FileStream metadata, System.IO.FileStream trainingData, Dictionary<string, object> customData = null)
+        public DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData)
         {
-            if (metadata == null)
-                throw new ArgumentNullException(nameof(metadata));
-            if (trainingData == null)
-                throw new ArgumentNullException(nameof(trainingData));
-            Classifier result = null;
+        if (metadata == null)
+            throw new ArgumentNullException("`metadata` is required for `CreateClassifier`");
+        if (trainingData == null)
+            throw new ArgumentNullException("`trainingData` is required for `CreateClassifier`");
+            DetailedResponse<Classifier> result = null;
 
             try
             {
@@ -204,7 +221,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     metadataContent.Headers.ContentType = contentType;
-                    formData.Add(metadataContent, "training_metadata", metadata.Name);
+                    formData.Add(metadataContent, "training_metadata");
                 }
 
                 if (trainingData != null)
@@ -213,7 +230,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/csv", out contentType);
                     trainingDataContent.Headers.ContentType = contentType;
-                    formData.Add(trainingDataContent, "training_data", trainingData.Name);
+                    formData.Add(trainingDataContent, "training_data");
                 }
 
                 IClient client = this.Client;
@@ -228,15 +245,17 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
 
+                restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=CreateClassifier");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "CreateClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
-                    result = new Classifier();
-                
+                    result = new DetailedResponse<Classifier>();
             }
             catch (AggregateException ae)
             {
@@ -250,13 +269,12 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// Delete classifier.
         /// </summary>
         /// <param name="classifierId">Classifier ID to delete.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteClassifier(string classifierId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteClassifier(string classifierId)
         {
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException(nameof(classifierId));
-            BaseModel result = null;
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -272,14 +290,16 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=DeleteClassifier");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "DeleteClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -295,13 +315,12 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// Returns status and other information about a classifier.
         /// </summary>
         /// <param name="classifierId">Classifier ID to query.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public Classifier GetClassifier(string classifierId, Dictionary<string, object> customData = null)
+        public DetailedResponse<Classifier> GetClassifier(string classifierId)
         {
-            if (string.IsNullOrEmpty(classifierId))
-                throw new ArgumentNullException(nameof(classifierId));
-            Classifier result = null;
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
+            DetailedResponse<Classifier> result = null;
 
             try
             {
@@ -317,14 +336,16 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=GetClassifier");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "GetClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
-                    result = new Classifier();
-                
+                    result = new DetailedResponse<Classifier>();
             }
             catch (AggregateException ae)
             {
@@ -339,11 +360,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         ///
         /// Returns an empty array if no classifiers are available.
         /// </summary>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ClassifierList" />ClassifierList</returns>
-        public ClassifierList ListClassifiers(Dictionary<string, object> customData = null)
+        public DetailedResponse<ClassifierList> ListClassifiers()
         {
-            ClassifierList result = null;
+            DetailedResponse<ClassifierList> result = null;
 
             try
             {
@@ -359,14 +379,16 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural_language_classifier;service_version=v1;operation_id=ListClassifiers");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ListClassifiers"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ClassifierList>().Result;
                 if (result == null)
-                    result = new ClassifierList();
-                
+                    result = new DetailedResponse<ClassifierList>();
             }
             catch (AggregateException ae)
             {

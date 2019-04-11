@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
@@ -26,54 +23,42 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
     /// <summary>
     /// A classifier for natural language phrases.
     /// </summary>
-    public class Classifier : BaseModel
+    public class Classifier
     {
         /// <summary>
         /// The state of the classifier.
         /// </summary>
-        /// <value>
-        /// The state of the classifier.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum NON_EXISTENT for Non Existent
+            /// Constant NON_EXISTENT for Non Existent
             /// </summary>
-            [EnumMember(Value = "Non Existent")]
-            NON_EXISTENT,
-            
+            public const string NON_EXISTENT = "Non Existent";
             /// <summary>
-            /// Enum TRAINING for Training
+            /// Constant TRAINING for Training
             /// </summary>
-            [EnumMember(Value = "Training")]
-            TRAINING,
-            
+            public const string TRAINING = "Training";
             /// <summary>
-            /// Enum FAILED for Failed
+            /// Constant FAILED for Failed
             /// </summary>
-            [EnumMember(Value = "Failed")]
-            FAILED,
-            
+            public const string FAILED = "Failed";
             /// <summary>
-            /// Enum AVAILABLE for Available
+            /// Constant AVAILABLE for Available
             /// </summary>
-            [EnumMember(Value = "Available")]
-            AVAILABLE,
-            
+            public const string AVAILABLE = "Available";
             /// <summary>
-            /// Enum UNAVAILABLE for Unavailable
+            /// Constant UNAVAILABLE for Unavailable
             /// </summary>
-            [EnumMember(Value = "Unavailable")]
-            UNAVAILABLE
+            public const string UNAVAILABLE = "Unavailable";
+            
         }
 
         /// <summary>
         /// The state of the classifier.
+        /// Constants for possible values can be found using Classifier.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// User-supplied name for the classifier.
         /// </summary>

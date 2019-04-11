@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,13 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
     /// Returns information from the document, including author name, title, RSS/ATOM feeds, prominent page image, and
     /// publication date. Supports URL and HTML input types only.
     /// </summary>
-    public class MetadataOptions : BaseModel
+    public class MetadataOptions
     {
     }
 

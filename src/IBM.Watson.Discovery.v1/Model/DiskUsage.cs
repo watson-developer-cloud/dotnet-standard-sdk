@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Summary of the disk usage statistics for the environment.
     /// </summary>
-    public class DiskUsage : BaseModel
+    public class DiskUsage
     {
         /// <summary>
         /// Number of bytes within the environment's disk capacity that are currently used to store data.
@@ -35,26 +34,6 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("maximum_allowed_bytes", NullValueHandling = NullValueHandling.Ignore)]
         public virtual long? MaximumAllowedBytes { get; private set; }
-        /// <summary>
-        /// **Deprecated**: Total number of bytes available in the environment's disk capacity.
-        /// </summary>
-        [JsonProperty("total_bytes", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? TotalBytes { get; private set; }
-        /// <summary>
-        /// **Deprecated**: Amount of disk capacity used, in KB or GB format.
-        /// </summary>
-        [JsonProperty("used", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Used { get; private set; }
-        /// <summary>
-        /// **Deprecated**: Total amount of the environment's disk capacity, in KB or GB format.
-        /// </summary>
-        [JsonProperty("total", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Total { get; private set; }
-        /// <summary>
-        /// **Deprecated**: Percentage of the environment's disk capacity that is being used.
-        /// </summary>
-        [JsonProperty("percent_used", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual double? PercentUsed { get; private set; }
     }
 
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,17 +15,14 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// The next step to execute following this dialog node.
     /// </summary>
-    public class DialogNodeNextStep : BaseModel
+    public class DialogNodeNextStep
     {
         /// <summary>
         /// What happens after the dialog node completes. The valid values depend on the node type:
@@ -49,102 +46,57 @@ namespace IBM.Watson.Assistant.v1.Model
         ///
         /// If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.
         /// </summary>
-        /// <value>
-        /// What happens after the dialog node completes. The valid values depend on the node type:
-        /// - The following values are valid for any node:
-        ///   - `get_user_input`
-        ///   - `skip_user_input`
-        ///   - `jump_to`
-        /// - If the node is of type `event_handler` and its parent node is of type `slot` or `frame`, additional values
-        /// are also valid:
-        ///   - if **event_name**=`filled` and the type of the parent node is `slot`:
-        ///     - `reprompt`
-        ///     - `skip_all_slots`
-        /// - if **event_name**=`nomatch` and the type of the parent node is `slot`:
-        ///     - `reprompt`
-        ///     - `skip_slot`
-        ///     - `skip_all_slots`
-        /// - if **event_name**=`generic` and the type of the parent node is `frame`:
-        ///     - `reprompt`
-        ///     - `skip_slot`
-        ///     - `skip_all_slots`
-        ///
-        /// If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum BehaviorEnum
+        public class BehaviorEnumValue
         {
-            
             /// <summary>
-            /// Enum GET_USER_INPUT for get_user_input
+            /// Constant GET_USER_INPUT for get_user_input
             /// </summary>
-            [EnumMember(Value = "get_user_input")]
-            GET_USER_INPUT,
-            
+            public const string GET_USER_INPUT = "get_user_input";
             /// <summary>
-            /// Enum SKIP_USER_INPUT for skip_user_input
+            /// Constant SKIP_USER_INPUT for skip_user_input
             /// </summary>
-            [EnumMember(Value = "skip_user_input")]
-            SKIP_USER_INPUT,
-            
+            public const string SKIP_USER_INPUT = "skip_user_input";
             /// <summary>
-            /// Enum JUMP_TO for jump_to
+            /// Constant JUMP_TO for jump_to
             /// </summary>
-            [EnumMember(Value = "jump_to")]
-            JUMP_TO,
-            
+            public const string JUMP_TO = "jump_to";
             /// <summary>
-            /// Enum REPROMPT for reprompt
+            /// Constant REPROMPT for reprompt
             /// </summary>
-            [EnumMember(Value = "reprompt")]
-            REPROMPT,
-            
+            public const string REPROMPT = "reprompt";
             /// <summary>
-            /// Enum SKIP_SLOT for skip_slot
+            /// Constant SKIP_SLOT for skip_slot
             /// </summary>
-            [EnumMember(Value = "skip_slot")]
-            SKIP_SLOT,
-            
+            public const string SKIP_SLOT = "skip_slot";
             /// <summary>
-            /// Enum SKIP_ALL_SLOTS for skip_all_slots
+            /// Constant SKIP_ALL_SLOTS for skip_all_slots
             /// </summary>
-            [EnumMember(Value = "skip_all_slots")]
-            SKIP_ALL_SLOTS
+            public const string SKIP_ALL_SLOTS = "skip_all_slots";
+            
         }
 
         /// <summary>
         /// Which part of the dialog node to process next.
         /// </summary>
-        /// <value>
-        /// Which part of the dialog node to process next.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum SelectorEnum
+        public class SelectorEnumValue
         {
-            
             /// <summary>
-            /// Enum CONDITION for condition
+            /// Constant CONDITION for condition
             /// </summary>
-            [EnumMember(Value = "condition")]
-            CONDITION,
-            
+            public const string CONDITION = "condition";
             /// <summary>
-            /// Enum CLIENT for client
+            /// Constant CLIENT for client
             /// </summary>
-            [EnumMember(Value = "client")]
-            CLIENT,
-            
+            public const string CLIENT = "client";
             /// <summary>
-            /// Enum USER_INPUT for user_input
+            /// Constant USER_INPUT for user_input
             /// </summary>
-            [EnumMember(Value = "user_input")]
-            USER_INPUT,
-            
+            public const string USER_INPUT = "user_input";
             /// <summary>
-            /// Enum BODY for body
+            /// Constant BODY for body
             /// </summary>
-            [EnumMember(Value = "body")]
-            BODY
+            public const string BODY = "body";
+            
         }
 
         /// <summary>
@@ -168,14 +120,16 @@ namespace IBM.Watson.Assistant.v1.Model
         ///     - `skip_all_slots`
         ///
         /// If you specify `jump_to`, then you must also specify a value for the `dialog_node` property.
+        /// Constants for possible values can be found using DialogNodeNextStep.BehaviorEnumValue
         /// </summary>
         [JsonProperty("behavior", NullValueHandling = NullValueHandling.Ignore)]
-        public BehaviorEnum? Behavior { get; set; }
+        public string Behavior { get; set; }
         /// <summary>
         /// Which part of the dialog node to process next.
+        /// Constants for possible values can be found using DialogNodeNextStep.SelectorEnumValue
         /// </summary>
         [JsonProperty("selector", NullValueHandling = NullValueHandling.Ignore)]
-        public SelectorEnum? Selector { get; set; }
+        public string Selector { get; set; }
         /// <summary>
         /// The ID of the dialog node to process next. This parameter is required if **behavior**=`jump_to`.
         /// </summary>

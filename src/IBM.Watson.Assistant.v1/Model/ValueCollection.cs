@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,13 +23,13 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// ValueCollection.
     /// </summary>
-    public class ValueCollection : BaseModel
+    public class ValueCollection
     {
         /// <summary>
         /// An array of entity values.
         /// </summary>
         [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
-        public List<ValueExport> Values { get; set; }
+        public List<Value> Values { get; set; }
         /// <summary>
         /// The pagination data for the returned objects.
         /// </summary>

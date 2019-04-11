@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// An aggregation analyzing log information for queries and events.
     /// </summary>
-    public class MetricTokenAggregation : BaseModel
+    public class MetricTokenAggregation
     {
         /// <summary>
         /// The event type associated with this metric result. This field, when present, will always be `click`.
@@ -32,7 +31,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("event_type", NullValueHandling = NullValueHandling.Ignore)]
         public string EventType { get; set; }
         /// <summary>
-        /// Gets or Sets Results
+        /// Array of results for the metric token aggregation.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
         public List<MetricTokenAggregationResult> Results { get; set; }

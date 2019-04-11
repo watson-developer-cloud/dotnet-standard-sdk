@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
@@ -23,7 +22,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// <summary>
     /// A response from the Watson Assistant service.
     /// </summary>
-    public class MessageResponse : BaseModel
+    public class MessageResponse
     {
         /// <summary>
         /// Assistant output to be rendered or processed by the client.
@@ -31,7 +30,11 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
         public MessageOutput Output { get; set; }
         /// <summary>
-        /// State information for the conversation.
+        /// State information for the conversation. The context is stored by the assistant on a per-session basis. You
+        /// can use this property to access context variables.
+        ///
+        /// **Note:** The context is included in message responses only if **return_context**=`true` in the message
+        /// request.
         /// </summary>
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public MessageContext Context { get; set; }

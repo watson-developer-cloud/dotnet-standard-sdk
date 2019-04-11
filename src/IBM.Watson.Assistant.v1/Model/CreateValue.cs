@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,47 +15,39 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// CreateValue.
     /// </summary>
-    public class CreateValue : BaseModel
+    public class CreateValue
     {
         /// <summary>
-        /// Specifies the type of value.
+        /// Specifies the type of entity value.
         /// </summary>
-        /// <value>
-        /// Specifies the type of value.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ValueTypeEnum
+        public class ValueTypeEnumValue
         {
-            
             /// <summary>
-            /// Enum SYNONYMS for synonyms
+            /// Constant SYNONYMS for synonyms
             /// </summary>
-            [EnumMember(Value = "synonyms")]
-            SYNONYMS,
-            
+            public const string SYNONYMS = "synonyms";
             /// <summary>
-            /// Enum PATTERNS for patterns
+            /// Constant PATTERNS for patterns
             /// </summary>
-            [EnumMember(Value = "patterns")]
-            PATTERNS
+            public const string PATTERNS = "patterns";
+            
         }
 
         /// <summary>
-        /// Specifies the type of value.
+        /// Specifies the type of entity value.
+        /// Constants for possible values can be found using CreateValue.ValueTypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public ValueTypeEnum? ValueType { get; set; }
+        public string ValueType { get; set; }
         /// <summary>
         /// The text of the entity value. This string must conform to the following restrictions:
         /// - It cannot contain carriage return, newline, or tab characters.
@@ -68,10 +60,10 @@ namespace IBM.Watson.Assistant.v1.Model
         /// Any metadata related to the entity value.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
         /// <summary>
-        /// An array containing any synonyms for the entity value. You can provide either synonyms or patterns (as
-        /// indicated by **type**), but not both. A synonym must conform to the following restrictions:
+        /// An array of synonyms for the entity value. A value can specify either synonyms or patterns (depending on the
+        /// value type), but not both. A synonym must conform to the following resrictions:
         /// - It cannot contain carriage return, newline, or tab characters.
         /// - It cannot consist of only whitespace characters.
         /// - It must be no longer than 64 characters.
@@ -79,13 +71,23 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Synonyms { get; set; }
         /// <summary>
-        /// An array of patterns for the entity value. You can provide either synonyms or patterns (as indicated by
-        /// **type**), but not both. A pattern is a regular expression no longer than 512 characters. For more
+        /// An array of patterns for the entity value. A value can specify either synonyms or patterns (depending on the
+        /// value type), but not both. A pattern is a regular expression no longer than 512 characters. For more
         /// information about how to specify a pattern, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/entities.html#creating-entities).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/entities.html#entities-create-dictionary-based).
         /// </summary>
         [JsonProperty("patterns", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Patterns { get; set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
+        /// </summary>
+        [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Created { get; private set; }
+        /// <summary>
+        /// The timestamp for the most recent update to the object.
+        /// </summary>
+        [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTime? Updated { get; private set; }
     }
 
 }

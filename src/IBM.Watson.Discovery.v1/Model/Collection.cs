@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,10 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -26,42 +23,34 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// A collection for storing documents.
     /// </summary>
-    public class Collection : BaseModel
+    public class Collection
     {
         /// <summary>
         /// The status of the collection.
         /// </summary>
-        /// <value>
-        /// The status of the collection.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum ACTIVE for active
+            /// Constant ACTIVE for active
             /// </summary>
-            [EnumMember(Value = "active")]
-            ACTIVE,
-            
+            public const string ACTIVE = "active";
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING,
-            
+            public const string PENDING = "pending";
             /// <summary>
-            /// Enum MAINTENANCE for maintenance
+            /// Constant MAINTENANCE for maintenance
             /// </summary>
-            [EnumMember(Value = "maintenance")]
-            MAINTENANCE
+            public const string MAINTENANCE = "maintenance";
+            
         }
 
         /// <summary>
         /// The status of the collection.
+        /// Constants for possible values can be found using Collection.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The unique identifier of the collection.
         /// </summary>
@@ -99,8 +88,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
-        /// The object providing information about the documents in the collection. Present only when retrieving details
-        /// of a collection.
+        /// Gets or Sets DocumentCounts
         /// </summary>
         [JsonProperty("document_counts", NullValueHandling = NullValueHandling.Ignore)]
         public DocumentCounts DocumentCounts { get; set; }
@@ -110,7 +98,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("disk_usage", NullValueHandling = NullValueHandling.Ignore)]
         public CollectionDiskUsage DiskUsage { get; set; }
         /// <summary>
-        /// Provides information about the status of relevance training for collection.
+        /// Gets or Sets TrainingStatus
         /// </summary>
         [JsonProperty("training_status", NullValueHandling = NullValueHandling.Ignore)]
         public TrainingStatus TrainingStatus { get; set; }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,16 +15,15 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Results of the analysis, organized by feature.
+    /// Analysis results for each requested feature.
     /// </summary>
-    public class AnalysisResults : BaseModel
+    public class AnalysisResults
     {
         /// <summary>
         /// Language used to analyze the text.
@@ -42,10 +41,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("retrieved_url", NullValueHandling = NullValueHandling.Ignore)]
         public string RetrievedUrl { get; set; }
         /// <summary>
-        /// Usage information.
+        /// API usage information for the request.
         /// </summary>
         [JsonProperty("usage", NullValueHandling = NullValueHandling.Ignore)]
-        public Usage Usage { get; set; }
+        public AnalysisResultsUsage Usage { get; set; }
         /// <summary>
         /// The general concepts referenced or alluded to in the analyzed text.
         /// </summary>
@@ -67,17 +66,15 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("categories", NullValueHandling = NullValueHandling.Ignore)]
         public List<CategoriesResult> Categories { get; set; }
         /// <summary>
-        /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can
-        /// be returned for detected entities, keywords, or user-specified target phrases found in the text.
+        /// The anger, disgust, fear, joy, or sadness conveyed by the content.
         /// </summary>
         [JsonProperty("emotion", NullValueHandling = NullValueHandling.Ignore)]
         public EmotionResult Emotion { get; set; }
         /// <summary>
-        /// The authors, publication date, title, prominent page image, and RSS/ATOM feeds of the webpage. Supports URL
-        /// and HTML input types.
+        /// Webpage metadata, such as the author and the title of the page.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public MetadataResult Metadata { get; set; }
+        public AnalysisResultsMetadata Metadata { get; set; }
         /// <summary>
         /// The relationships between entities in the content.
         /// </summary>
@@ -93,6 +90,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("sentiment", NullValueHandling = NullValueHandling.Ignore)]
         public SentimentResult Sentiment { get; set; }
+        /// <summary>
+        /// Tokens and sentences returned from syntax analysis.
+        /// </summary>
+        [JsonProperty("syntax", NullValueHandling = NullValueHandling.Ignore)]
+        public SyntaxResult Syntax { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -25,7 +24,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// The detected anger, disgust, fear, joy, or sadness that is conveyed by the content. Emotion information can be
     /// returned for detected entities, keywords, or user-specified target phrases found in the text.
     /// </summary>
-    public class EmotionResult : BaseModel
+    public class EmotionResult
     {
         /// <summary>
         /// Emotion results for the document as a whole.

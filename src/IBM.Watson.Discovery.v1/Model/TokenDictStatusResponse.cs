@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,52 +15,41 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
     /// Object describing the current status of the wordlist.
     /// </summary>
-    public class TokenDictStatusResponse : BaseModel
+    public class TokenDictStatusResponse
     {
         /// <summary>
         /// Current wordlist status for the specified collection.
         /// </summary>
-        /// <value>
-        /// Current wordlist status for the specified collection.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum ACTIVE for active
+            /// Constant ACTIVE for active
             /// </summary>
-            [EnumMember(Value = "active")]
-            ACTIVE,
-            
+            public const string ACTIVE = "active";
             /// <summary>
-            /// Enum PENDING for pending
+            /// Constant PENDING for pending
             /// </summary>
-            [EnumMember(Value = "pending")]
-            PENDING,
-            
+            public const string PENDING = "pending";
             /// <summary>
-            /// Enum NOT_FOUND for not found
+            /// Constant NOT_FOUND for not found
             /// </summary>
-            [EnumMember(Value = "not found")]
-            NOT_FOUND
+            public const string NOT_FOUND = "not found";
+            
         }
 
         /// <summary>
         /// Current wordlist status for the specified collection.
+        /// Constants for possible values can be found using TokenDictStatusResponse.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// The type for this wordlist. Can be `tokenization_dictionary` or `stopwords`.
         /// </summary>

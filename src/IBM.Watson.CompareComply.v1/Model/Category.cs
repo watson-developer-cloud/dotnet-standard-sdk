@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,179 +15,126 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
     /// Information defining an element's subject matter.
     /// </summary>
-    public class Category : BaseModel
+    public class Category
     {
         /// <summary>
         /// The category of the associated element.
         /// </summary>
-        /// <value>
-        /// The category of the associated element.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LabelEnum
+        public class LabelEnumValue
         {
-            
             /// <summary>
-            /// Enum AMENDMENTS for Amendments
+            /// Constant AMENDMENTS for Amendments
             /// </summary>
-            [EnumMember(Value = "Amendments")]
-            AMENDMENTS,
-            
+            public const string AMENDMENTS = "Amendments";
             /// <summary>
-            /// Enum ASSET_USE for Asset Use
+            /// Constant ASSET_USE for Asset Use
             /// </summary>
-            [EnumMember(Value = "Asset Use")]
-            ASSET_USE,
-            
+            public const string ASSET_USE = "Asset Use";
             /// <summary>
-            /// Enum ASSIGNMENTS for Assignments
+            /// Constant ASSIGNMENTS for Assignments
             /// </summary>
-            [EnumMember(Value = "Assignments")]
-            ASSIGNMENTS,
-            
+            public const string ASSIGNMENTS = "Assignments";
             /// <summary>
-            /// Enum AUDITS for Audits
+            /// Constant AUDITS for Audits
             /// </summary>
-            [EnumMember(Value = "Audits")]
-            AUDITS,
-            
+            public const string AUDITS = "Audits";
             /// <summary>
-            /// Enum BUSINESS_CONTINUITY for Business Continuity
+            /// Constant BUSINESS_CONTINUITY for Business Continuity
             /// </summary>
-            [EnumMember(Value = "Business Continuity")]
-            BUSINESS_CONTINUITY,
-            
+            public const string BUSINESS_CONTINUITY = "Business Continuity";
             /// <summary>
-            /// Enum COMMUNICATION for Communication
+            /// Constant COMMUNICATION for Communication
             /// </summary>
-            [EnumMember(Value = "Communication")]
-            COMMUNICATION,
-            
+            public const string COMMUNICATION = "Communication";
             /// <summary>
-            /// Enum CONFIDENTIALITY for Confidentiality
+            /// Constant CONFIDENTIALITY for Confidentiality
             /// </summary>
-            [EnumMember(Value = "Confidentiality")]
-            CONFIDENTIALITY,
-            
+            public const string CONFIDENTIALITY = "Confidentiality";
             /// <summary>
-            /// Enum DELIVERABLES for Deliverables
+            /// Constant DELIVERABLES for Deliverables
             /// </summary>
-            [EnumMember(Value = "Deliverables")]
-            DELIVERABLES,
-            
+            public const string DELIVERABLES = "Deliverables";
             /// <summary>
-            /// Enum DELIVERY for Delivery
+            /// Constant DELIVERY for Delivery
             /// </summary>
-            [EnumMember(Value = "Delivery")]
-            DELIVERY,
-            
+            public const string DELIVERY = "Delivery";
             /// <summary>
-            /// Enum DISPUTE_RESOLUTION for Dispute Resolution
+            /// Constant DISPUTE_RESOLUTION for Dispute Resolution
             /// </summary>
-            [EnumMember(Value = "Dispute Resolution")]
-            DISPUTE_RESOLUTION,
-            
+            public const string DISPUTE_RESOLUTION = "Dispute Resolution";
             /// <summary>
-            /// Enum FORCE_MAJEURE for Force Majeure
+            /// Constant FORCE_MAJEURE for Force Majeure
             /// </summary>
-            [EnumMember(Value = "Force Majeure")]
-            FORCE_MAJEURE,
-            
+            public const string FORCE_MAJEURE = "Force Majeure";
             /// <summary>
-            /// Enum INDEMNIFICATION for Indemnification
+            /// Constant INDEMNIFICATION for Indemnification
             /// </summary>
-            [EnumMember(Value = "Indemnification")]
-            INDEMNIFICATION,
-            
+            public const string INDEMNIFICATION = "Indemnification";
             /// <summary>
-            /// Enum INSURANCE for Insurance
+            /// Constant INSURANCE for Insurance
             /// </summary>
-            [EnumMember(Value = "Insurance")]
-            INSURANCE,
-            
+            public const string INSURANCE = "Insurance";
             /// <summary>
-            /// Enum INTELLECTUAL_PROPERTY for Intellectual Property
+            /// Constant INTELLECTUAL_PROPERTY for Intellectual Property
             /// </summary>
-            [EnumMember(Value = "Intellectual Property")]
-            INTELLECTUAL_PROPERTY,
-            
+            public const string INTELLECTUAL_PROPERTY = "Intellectual Property";
             /// <summary>
-            /// Enum LIABILITY for Liability
+            /// Constant LIABILITY for Liability
             /// </summary>
-            [EnumMember(Value = "Liability")]
-            LIABILITY,
-            
+            public const string LIABILITY = "Liability";
             /// <summary>
-            /// Enum PAYMENT_TERMS_BILLING for Payment Terms & Billing
+            /// Constant PAYMENT_TERMS_BILLING for Payment Terms & Billing
             /// </summary>
-            [EnumMember(Value = "Payment Terms & Billing")]
-            PAYMENT_TERMS_BILLING,
-            
+            public const string PAYMENT_TERMS_BILLING = "Payment Terms & Billing";
             /// <summary>
-            /// Enum PRICING_TAXES for Pricing & Taxes
+            /// Constant PRICING_TAXES for Pricing & Taxes
             /// </summary>
-            [EnumMember(Value = "Pricing & Taxes")]
-            PRICING_TAXES,
-            
+            public const string PRICING_TAXES = "Pricing & Taxes";
             /// <summary>
-            /// Enum PRIVACY for Privacy
+            /// Constant PRIVACY for Privacy
             /// </summary>
-            [EnumMember(Value = "Privacy")]
-            PRIVACY,
-            
+            public const string PRIVACY = "Privacy";
             /// <summary>
-            /// Enum RESPONSIBILITIES for Responsibilities
+            /// Constant RESPONSIBILITIES for Responsibilities
             /// </summary>
-            [EnumMember(Value = "Responsibilities")]
-            RESPONSIBILITIES,
-            
+            public const string RESPONSIBILITIES = "Responsibilities";
             /// <summary>
-            /// Enum SAFETY_AND_SECURITY for Safety and Security
+            /// Constant SAFETY_AND_SECURITY for Safety and Security
             /// </summary>
-            [EnumMember(Value = "Safety and Security")]
-            SAFETY_AND_SECURITY,
-            
+            public const string SAFETY_AND_SECURITY = "Safety and Security";
             /// <summary>
-            /// Enum SCOPE_OF_WORK for Scope of Work
+            /// Constant SCOPE_OF_WORK for Scope of Work
             /// </summary>
-            [EnumMember(Value = "Scope of Work")]
-            SCOPE_OF_WORK,
-            
+            public const string SCOPE_OF_WORK = "Scope of Work";
             /// <summary>
-            /// Enum SUBCONTRACTS for Subcontracts
+            /// Constant SUBCONTRACTS for Subcontracts
             /// </summary>
-            [EnumMember(Value = "Subcontracts")]
-            SUBCONTRACTS,
-            
+            public const string SUBCONTRACTS = "Subcontracts";
             /// <summary>
-            /// Enum TERM_TERMINATION for Term & Termination
+            /// Constant TERM_TERMINATION for Term & Termination
             /// </summary>
-            [EnumMember(Value = "Term & Termination")]
-            TERM_TERMINATION,
-            
+            public const string TERM_TERMINATION = "Term & Termination";
             /// <summary>
-            /// Enum WARRANTIES for Warranties
+            /// Constant WARRANTIES for Warranties
             /// </summary>
-            [EnumMember(Value = "Warranties")]
-            WARRANTIES
+            public const string WARRANTIES = "Warranties";
+            
         }
 
         /// <summary>
         /// The category of the associated element.
+        /// Constants for possible values can be found using Category.LabelEnumValue
         /// </summary>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
-        public LabelEnum? Label { get; set; }
+        public string Label { get; set; }
         /// <summary>
         /// One or more hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>

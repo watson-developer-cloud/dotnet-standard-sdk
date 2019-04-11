@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// <summary>
     /// DialogSuggestion.
     /// </summary>
-    public class DialogSuggestion : BaseModel
+    public class DialogSuggestion
     {
         /// <summary>
         /// The user-facing label for the disambiguation option. This label is taken from the **user_label** property of
@@ -42,7 +42,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// corresponding option.
         /// </summary>
         [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
-        public object Output { get; set; }
+        public Dictionary<string, object> Output { get; set; }
     }
 
 }

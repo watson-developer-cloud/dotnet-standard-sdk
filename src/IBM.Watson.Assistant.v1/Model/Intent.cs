@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
 
@@ -24,28 +24,37 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// Intent.
     /// </summary>
-    public class Intent : BaseModel
+    public class Intent
     {
         /// <summary>
-        /// The name of the intent.
+        /// The name of the intent. This string must conform to the following restrictions:
+        /// - It can contain only Unicode alphanumeric, underscore, hyphen, and dot characters.
+        /// - It cannot begin with the reserved prefix `sys-`.
+        /// - It must be no longer than 128 characters.
         /// </summary>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string IntentName { get; set; }
+        public string _Intent { get; set; }
         /// <summary>
-        /// The timestamp for creation of the intent.
+        /// The description of the intent. This string cannot contain carriage return, newline, or tab characters, and
+        /// it must be no longer than 128 characters.
+        /// </summary>
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
+        /// <summary>
+        /// The timestamp for creation of the object.
         /// </summary>
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Created { get; private set; }
         /// <summary>
-        /// The timestamp for the last update to the intent.
+        /// The timestamp for the most recent update to the object.
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Updated { get; private set; }
         /// <summary>
-        /// The description of the intent.
+        /// An array of user input examples for the intent.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
+        [JsonProperty("examples", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Example> Examples { get; set; }
     }
 
 }

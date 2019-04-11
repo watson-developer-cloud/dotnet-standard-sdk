@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,11 +16,15 @@
 */
 
 using System.Collections.Generic;
-using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
-using IBM.Cloud.SDK.Core.Util;
-using System;
+using System.Net.Http;
+using System.Text;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
@@ -93,21 +97,21 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// - Metadata
         /// - Relations
         /// - Semantic roles
-        /// - Sentiment.
+        /// - Sentiment
+        /// - Syntax (Experimental).
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
-        public AnalysisResults Analyze(Parameters parameters, Dictionary<string, object> customData = null)
+        public DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null)
         {
-            if (parameters == null)
-                throw new ArgumentNullException(nameof(parameters));
+        if (features == null)
+            throw new ArgumentNullException("`features` is required for `Analyze`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            AnalysisResults result = null;
+            DetailedResponse<AnalysisResults> result = null;
 
             try
             {
@@ -124,15 +128,42 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<Parameters>(parameters);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=Analyze");
+                JObject bodyObject = new JObject();
+                if (features != null)
+                    bodyObject["features"] = JToken.FromObject(features);
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                if (!string.IsNullOrEmpty(html))
+                    bodyObject["html"] = html;
+                if (!string.IsNullOrEmpty(url))
+                    bodyObject["url"] = url;
+                if (clean != null)
+                    bodyObject["clean"] = JToken.FromObject(clean);
+                if (!string.IsNullOrEmpty(xpath))
+                    bodyObject["xpath"] = xpath;
+                if (fallbackToRaw != null)
+                    bodyObject["fallback_to_raw"] = JToken.FromObject(fallbackToRaw);
+                if (returnAnalyzedText != null)
+                    bodyObject["return_analyzed_text"] = JToken.FromObject(returnAnalyzedText);
+                if (!string.IsNullOrEmpty(language))
+                    bodyObject["language"] = language;
+                if (limitTextCharacters != null)
+                    bodyObject["limit_text_characters"] = JToken.FromObject(limitTextCharacters);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<AnalysisResults>().Result;
                 if (result == null)
-                    result = new AnalysisResults();
-                
+                    result = new DetailedResponse<AnalysisResults>();
             }
             catch (AggregateException ae)
             {
@@ -147,17 +178,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// Deletes a custom model.
         /// </summary>
         /// <param name="modelId">Model ID of the model to delete.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="InlineResponse200" />InlineResponse200</returns>
-        public InlineResponse200 DeleteModel(string modelId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>
+        public DetailedResponse<DeleteModelResults> DeleteModel(string modelId)
         {
-            if (string.IsNullOrEmpty(modelId))
-                throw new ArgumentNullException(nameof(modelId));
+        if (string.IsNullOrEmpty(modelId))
+            throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            InlineResponse200 result = null;
+            DetailedResponse<DeleteModelResults> result = null;
 
             try
             {
@@ -174,14 +204,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=DeleteModel");
-                result = restRequest.As<InlineResponse200>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<DeleteModelResults>().Result;
                 if (result == null)
-                    result = new InlineResponse200();
-                
+                    result = new DetailedResponse<DeleteModelResults>();
             }
             catch (AggregateException ae)
             {
@@ -198,15 +230,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are
         /// deployed to your Natural Language Understanding service.
         /// </summary>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
-        public ListModelsResults ListModels(Dictionary<string, object> customData = null)
+        public DetailedResponse<ListModelsResults> ListModels()
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ListModelsResults result = null;
+            DetailedResponse<ListModelsResults> result = null;
 
             try
             {
@@ -223,14 +254,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=natural-language-understanding;service_version=v1;operation_id=ListModels");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ListModelsResults>().Result;
                 if (result == null)
-                    result = new ListModelsResults();
-                
+                    result = new DetailedResponse<ListModelsResults>();
             }
             catch (AggregateException ae)
             {

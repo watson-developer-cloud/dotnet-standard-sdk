@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,11 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 
 namespace IBM.Watson.VisualRecognition.v3.Model
@@ -27,48 +24,38 @@ namespace IBM.Watson.VisualRecognition.v3.Model
     /// <summary>
     /// Information about a classifier.
     /// </summary>
-    public class Classifier : BaseModel
+    public class Classifier
     {
         /// <summary>
         /// Training status of classifier.
         /// </summary>
-        /// <value>
-        /// Training status of classifier.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public class StatusEnumValue
         {
-            
             /// <summary>
-            /// Enum READY for ready
+            /// Constant READY for ready
             /// </summary>
-            [EnumMember(Value = "ready")]
-            READY,
-            
+            public const string READY = "ready";
             /// <summary>
-            /// Enum TRAINING for training
+            /// Constant TRAINING for training
             /// </summary>
-            [EnumMember(Value = "training")]
-            TRAINING,
-            
+            public const string TRAINING = "training";
             /// <summary>
-            /// Enum RETRAINING for retraining
+            /// Constant RETRAINING for retraining
             /// </summary>
-            [EnumMember(Value = "retraining")]
-            RETRAINING,
-            
+            public const string RETRAINING = "retraining";
             /// <summary>
-            /// Enum FAILED for failed
+            /// Constant FAILED for failed
             /// </summary>
-            [EnumMember(Value = "failed")]
-            FAILED
+            public const string FAILED = "failed";
+            
         }
 
         /// <summary>
         /// Training status of classifier.
+        /// Constants for possible values can be found using Classifier.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusEnum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// ID of a classifier identified in the image.
         /// </summary>

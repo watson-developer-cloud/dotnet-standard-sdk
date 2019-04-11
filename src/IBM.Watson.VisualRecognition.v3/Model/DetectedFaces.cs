@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.VisualRecognition.v3.Model
     /// <summary>
     /// Results for all faces.
     /// </summary>
-    public class DetectedFaces : BaseModel
+    public class DetectedFaces
     {
         /// <summary>
         /// Number of images processed for the API call.

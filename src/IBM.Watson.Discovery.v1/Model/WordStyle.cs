@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,15 +23,15 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// WordStyle.
     /// </summary>
-    public class WordStyle : BaseModel
+    public class WordStyle
     {
         /// <summary>
-        /// Gets or Sets Level
+        /// HTML head level that content matching this style is tagged with.
         /// </summary>
         [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
         public long? Level { get; set; }
         /// <summary>
-        /// Gets or Sets Names
+        /// Array of word style names to convert.
         /// </summary>
         [JsonProperty("names", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Names { get; set; }

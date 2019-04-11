@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,13 +16,14 @@
 */
 
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
-using IBM.Cloud.SDK.Core;
-using IBM.Watson.Assistant.v1.Model;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.Assistant.v1.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace IBM.Watson.Assistant.v1
@@ -96,17 +97,16 @@ namespace IBM.Watson.Assistant.v1
         /// entities, and context from the last response. (optional)</param>
         /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog
         /// nodes that were visited during processing of the message. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        public MessageResponse Message(string workspaceId, MessageRequest request = null, bool? nodesVisitedDetails = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<MessageResponse> Message(string workspaceId, JObject input = null, List<JObject> intents = null, List<JObject> entities = null, bool? alternateIntents = null, JObject context = null, JObject output = null, bool? nodesVisitedDetails = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `Message`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            MessageResponse result = null;
+            DetailedResponse<MessageResponse> result = null;
 
             try
             {
@@ -123,18 +123,36 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (nodesVisitedDetails != null)
                     restRequest.WithArgument("nodes_visited_details", nodesVisitedDetails);
-                restRequest.WithBody<MessageRequest>(request);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=Message");
+                JObject bodyObject = new JObject();
+                if (input != null)
+                    bodyObject["input"] = JToken.FromObject(input);
+                if (intents != null && intents.Count > 0)
+                    bodyObject["intents"] = JToken.FromObject(intents);
+                if (entities != null && entities.Count > 0)
+                    bodyObject["entities"] = JToken.FromObject(entities);
+                if (alternateIntents != null)
+                    bodyObject["alternate_intents"] = JToken.FromObject(alternateIntents);
+                if (context != null)
+                    bodyObject["context"] = JToken.FromObject(context);
+                if (output != null)
+                    bodyObject["output"] = JToken.FromObject(output);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "Message"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<MessageResponse>().Result;
-                result.CustomData = restRequest.CustomData;
                 if (result == null)
-                    result = new MessageResponse();
-                
+                    result = new DetailedResponse<MessageResponse>();
             }
             catch (AggregateException ae)
             {
@@ -155,15 +173,14 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the
         /// workspace without intents and entities and then adding them separately. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public Workspace CreateWorkspace(CreateWorkspace properties = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Workspace result = null;
+            DetailedResponse<Workspace> result = null;
 
             try
             {
@@ -180,15 +197,42 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateWorkspace>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateWorkspace");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                    bodyObject["name"] = name;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (!string.IsNullOrEmpty(language))
+                    bodyObject["language"] = language;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (learningOptOut != null)
+                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+                if (systemSettings != null)
+                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+                if (intents != null && intents.Count > 0)
+                    bodyObject["intents"] = JToken.FromObject(intents);
+                if (entities != null && entities.Count > 0)
+                    bodyObject["entities"] = JToken.FromObject(entities);
+                if (dialogNodes != null && dialogNodes.Count > 0)
+                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+                if (counterexamples != null && counterexamples.Count > 0)
+                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Workspace>().Result;
                 if (result == null)
-                    result = new Workspace();
-                
+                    result = new DetailedResponse<Workspace>();
             }
             catch (AggregateException ae)
             {
@@ -206,17 +250,16 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteWorkspace(string workspaceId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteWorkspace(string workspaceId)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteWorkspace`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -233,14 +276,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteWorkspace");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -267,17 +312,16 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="sort">Indicates how the returned workspace data will be sorted. This parameter is valid only if
         /// **export**=`true`. Specify `sort=stable` to sort all workspace objects by unique identifier, in ascending
         /// alphabetical order. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="WorkspaceExport" />WorkspaceExport</returns>
-        public WorkspaceExport GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetWorkspace`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            WorkspaceExport result = null;
+            DetailedResponse<Workspace> result = null;
 
             try
             {
@@ -294,20 +338,22 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
                 if (!string.IsNullOrEmpty(sort))
                     restRequest.WithArgument("sort", sort);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetWorkspace");
-                result = restRequest.As<WorkspaceExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Workspace>().Result;
                 if (result == null)
-                    result = new WorkspaceExport();
-                
+                    result = new DetailedResponse<Workspace>();
             }
             catch (AggregateException ae)
             {
@@ -324,8 +370,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
@@ -333,15 +378,14 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
-        public WorkspaceCollection ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            WorkspaceCollection result = null;
+            DetailedResponse<WorkspaceCollection> result = null;
 
             try
             {
@@ -358,6 +402,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
@@ -368,14 +413,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListWorkspaces");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<WorkspaceCollection>().Result;
                 if (result == null)
-                    result = new WorkspaceCollection();
-                
+                    result = new DetailedResponse<WorkspaceCollection>();
             }
             catch (AggregateException ae)
             {
@@ -406,17 +452,16 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
         /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public Workspace UpdateWorkspace(string workspaceId, UpdateWorkspace properties = null, bool? append = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Workspace result = null;
+            DetailedResponse<Workspace> result = null;
 
             try
             {
@@ -433,17 +478,44 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (append != null)
                     restRequest.WithArgument("append", append);
-                restRequest.WithBody<UpdateWorkspace>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateWorkspace");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                    bodyObject["name"] = name;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (!string.IsNullOrEmpty(language))
+                    bodyObject["language"] = language;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (learningOptOut != null)
+                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+                if (systemSettings != null)
+                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+                if (intents != null && intents.Count > 0)
+                    bodyObject["intents"] = JToken.FromObject(intents);
+                if (entities != null && entities.Count > 0)
+                    bodyObject["entities"] = JToken.FromObject(entities);
+                if (dialogNodes != null && dialogNodes.Count > 0)
+                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+                if (counterexamples != null && counterexamples.Count > 0)
+                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Workspace>().Result;
                 if (result == null)
-                    result = new Workspace();
-                
+                    result = new DetailedResponse<Workspace>();
             }
             catch (AggregateException ae)
             {
@@ -461,19 +533,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new intent.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public Intent CreateIntent(string workspaceId, CreateIntent body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `CreateIntent`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Intent result = null;
+            DetailedResponse<Intent> result = null;
 
             try
             {
@@ -490,15 +561,28 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateIntent>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateIntent");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(intent))
+                    bodyObject["intent"] = intent;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (examples != null && examples.Count > 0)
+                    bodyObject["examples"] = JToken.FromObject(examples);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Intent>().Result;
                 if (result == null)
-                    result = new Intent();
-                
+                    result = new DetailedResponse<Intent>();
             }
             catch (AggregateException ae)
             {
@@ -517,19 +601,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteIntent(string workspaceId, string intent, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteIntent(string workspaceId, string intent)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `DeleteIntent`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -546,14 +629,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteIntent");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -578,19 +663,18 @@ namespace IBM.Watson.Assistant.v1
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="IntentExport" />IntentExport</returns>
-        public IntentExport GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Intent" />Intent</returns>
+        public DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `GetIntent`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            IntentExport result = null;
+            DetailedResponse<Intent> result = null;
 
             try
             {
@@ -607,18 +691,20 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetIntent");
-                result = restRequest.As<IntentExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Intent>().Result;
                 if (result == null)
-                    result = new IntentExport();
-                
+                    result = new DetailedResponse<Intent>();
             }
             catch (AggregateException ae)
             {
@@ -640,8 +726,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned intents will be sorted. To reverse the sort order, prefix
@@ -649,17 +734,16 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="IntentCollection" />IntentCollection</returns>
-        public IntentCollection ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<IntentCollection> ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListIntents`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            IntentCollection result = null;
+            DetailedResponse<IntentCollection> result = null;
 
             try
             {
@@ -676,6 +760,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (pageLimit != null)
@@ -688,14 +773,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListIntents");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListIntents"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<IntentCollection>().Result;
                 if (result == null)
-                    result = new IntentCollection();
-                
+                    result = new DetailedResponse<IntentCollection>();
             }
             catch (AggregateException ae)
             {
@@ -721,21 +807,18 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the user input examples for an intent, the previously existing examples
         /// are discarded and replaced with the new examples specified in the update.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public Intent UpdateIntent(string workspaceId, string intent, UpdateIntent body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Intent> UpdateIntent(string workspaceId, string intent, string newIntent = null, string newDescription = null, List<Example> newExamples = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `UpdateIntent`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Intent result = null;
+            DetailedResponse<Intent> result = null;
 
             try
             {
@@ -752,15 +835,28 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateIntent>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateIntent");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newIntent))
+                    bodyObject["intent"] = newIntent;
+                if (!string.IsNullOrEmpty(newDescription))
+                    bodyObject["description"] = newDescription;
+                if (newExamples != null && newExamples.Count > 0)
+                    bodyObject["examples"] = JToken.FromObject(newExamples);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Intent>().Result;
                 if (result == null)
-                    result = new Intent();
-                
+                    result = new DetailedResponse<Intent>();
             }
             catch (AggregateException ae)
             {
@@ -779,21 +875,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
         /// <param name="body">The content of the new user input example.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Example" />Example</returns>
-        public Example CreateExample(string workspaceId, string intent, CreateExample body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `CreateExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `CreateExample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Example result = null;
+            DetailedResponse<Example> result = null;
 
             try
             {
@@ -810,15 +905,26 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateExample>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateExample");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                if (mentions != null && mentions.Count > 0)
+                    bodyObject["mentions"] = JToken.FromObject(mentions);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
                 if (result == null)
-                    result = new Example();
-                
+                    result = new DetailedResponse<Example>();
             }
             catch (AggregateException ae)
             {
@@ -838,21 +944,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
         /// <param name="text">The text of the user input example.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteExample(string workspaceId, string intent, string text, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `DeleteExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `DeleteExample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -869,14 +974,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteExample");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -898,21 +1005,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="text">The text of the user input example.</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Example" />Example</returns>
-        public Example GetExample(string workspaceId, string intent, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Example> GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `GetExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `GetExample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Example result = null;
+            DetailedResponse<Example> result = null;
 
             try
             {
@@ -929,16 +1035,18 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetExample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
                 if (result == null)
-                    result = new Example();
-                
+                    result = new DetailedResponse<Example>();
             }
             catch (AggregateException ae)
             {
@@ -957,8 +1065,7 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned examples will be sorted. To reverse the sort order,
@@ -966,19 +1073,18 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ExampleCollection" />ExampleCollection</returns>
-        public ExampleCollection ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<ExampleCollection> ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListExamples`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `ListExamples`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ExampleCollection result = null;
+            DetailedResponse<ExampleCollection> result = null;
 
             try
             {
@@ -995,6 +1101,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
@@ -1005,14 +1112,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListExamples");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListExamples"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ExampleCollection>().Result;
                 if (result == null)
-                    result = new ExampleCollection();
-                
+                    result = new DetailedResponse<ExampleCollection>();
             }
             catch (AggregateException ae)
             {
@@ -1033,23 +1141,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="intent">The intent name.</param>
         /// <param name="text">The text of the user input example.</param>
         /// <param name="body">The new text of the user input example.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Example" />Example</returns>
-        public Example UpdateExample(string workspaceId, string intent, string text, UpdateExample body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(intent))
-                throw new ArgumentNullException(nameof(intent));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `UpdateExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `UpdateExample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Example result = null;
+            DetailedResponse<Example> result = null;
 
             try
             {
@@ -1066,15 +1171,26 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateExample>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateExample");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newText))
+                    bodyObject["text"] = newText;
+                if (newMentions != null && newMentions.Count > 0)
+                    bodyObject["mentions"] = JToken.FromObject(newMentions);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Example>().Result;
                 if (result == null)
-                    result = new Example();
-                
+                    result = new DetailedResponse<Example>();
             }
             catch (AggregateException ae)
             {
@@ -1093,19 +1209,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new counterexample.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public Counterexample CreateCounterexample(string workspaceId, CreateCounterexample body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `CreateCounterexample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Counterexample result = null;
+            DetailedResponse<Counterexample> result = null;
 
             try
             {
@@ -1122,15 +1237,24 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateCounterexample>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateCounterexample");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
-                    result = new Counterexample();
-                
+                    result = new DetailedResponse<Counterexample>();
             }
             catch (AggregateException ae)
             {
@@ -1150,19 +1274,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteCounterexample(string workspaceId, string text, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteCounterexample(string workspaceId, string text)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `DeleteCounterexample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1179,14 +1302,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteCounterexample");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1208,19 +1333,18 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public Counterexample GetCounterexample(string workspaceId, string text, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `GetCounterexample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Counterexample result = null;
+            DetailedResponse<Counterexample> result = null;
 
             try
             {
@@ -1237,16 +1361,18 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetCounterexample");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
-                    result = new Counterexample();
-                
+                    result = new DetailedResponse<Counterexample>();
             }
             catch (AggregateException ae)
             {
@@ -1265,8 +1391,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned counterexamples will be sorted. To reverse the sort
@@ -1274,17 +1399,16 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="CounterexampleCollection" />CounterexampleCollection</returns>
-        public CounterexampleCollection ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<CounterexampleCollection> ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListCounterexamples`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            CounterexampleCollection result = null;
+            DetailedResponse<CounterexampleCollection> result = null;
 
             try
             {
@@ -1301,6 +1425,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
@@ -1311,14 +1436,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListCounterexamples");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<CounterexampleCollection>().Result;
                 if (result == null)
-                    result = new CounterexampleCollection();
-                
+                    result = new DetailedResponse<CounterexampleCollection>();
             }
             catch (AggregateException ae)
             {
@@ -1339,21 +1465,18 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
         /// <param name="body">The text of the counterexample.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public Counterexample UpdateCounterexample(string workspaceId, string text, UpdateCounterexample body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(text))
-                throw new ArgumentNullException(nameof(text));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `UpdateCounterexample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Counterexample result = null;
+            DetailedResponse<Counterexample> result = null;
 
             try
             {
@@ -1370,15 +1493,24 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateCounterexample>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateCounterexample");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newText))
+                    bodyObject["text"] = newText;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Counterexample>().Result;
                 if (result == null)
-                    result = new Counterexample();
-                
+                    result = new DetailedResponse<Counterexample>();
             }
             catch (AggregateException ae)
             {
@@ -1396,19 +1528,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">The content of the new entity.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public Entity CreateEntity(string workspaceId, CreateEntity properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateEntity`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Entity result = null;
+            DetailedResponse<Entity> result = null;
 
             try
             {
@@ -1425,15 +1556,32 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateEntity>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateEntity");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(entity))
+                    bodyObject["entity"] = entity;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (fuzzyMatch != null)
+                    bodyObject["fuzzy_match"] = JToken.FromObject(fuzzyMatch);
+                if (values != null && values.Count > 0)
+                    bodyObject["values"] = JToken.FromObject(values);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Entity>().Result;
                 if (result == null)
-                    result = new Entity();
-                
+                    result = new DetailedResponse<Entity>();
             }
             catch (AggregateException ae)
             {
@@ -1452,19 +1600,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteEntity(string workspaceId, string entity, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteEntity(string workspaceId, string entity)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `DeleteEntity`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1481,14 +1628,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteEntity");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1513,19 +1662,18 @@ namespace IBM.Watson.Assistant.v1
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="EntityExport" />EntityExport</returns>
-        public EntityExport GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Entity" />Entity</returns>
+        public DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetEntity`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            EntityExport result = null;
+            DetailedResponse<Entity> result = null;
 
             try
             {
@@ -1542,18 +1690,20 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetEntity");
-                result = restRequest.As<EntityExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Entity>().Result;
                 if (result == null)
-                    result = new EntityExport();
-                
+                    result = new DetailedResponse<Entity>();
             }
             catch (AggregateException ae)
             {
@@ -1575,8 +1725,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entities will be sorted. To reverse the sort order,
@@ -1584,17 +1733,16 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="EntityCollection" />EntityCollection</returns>
-        public EntityCollection ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<EntityCollection> ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListEntities`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            EntityCollection result = null;
+            DetailedResponse<EntityCollection> result = null;
 
             try
             {
@@ -1611,6 +1759,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (pageLimit != null)
@@ -1623,14 +1772,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListEntities");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListEntities"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<EntityCollection>().Result;
                 if (result == null)
-                    result = new EntityCollection();
-                
+                    result = new DetailedResponse<EntityCollection>();
             }
             catch (AggregateException ae)
             {
@@ -1655,21 +1805,18 @@ namespace IBM.Watson.Assistant.v1
         /// subelements are not retained unless they are also included in the new data.) For example, if you update the
         /// values for an entity, the previously existing values are discarded and replaced with the new values
         /// specified in the update.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public Entity UpdateEntity(string workspaceId, string entity, UpdateEntity properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `UpdateEntity`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Entity result = null;
+            DetailedResponse<Entity> result = null;
 
             try
             {
@@ -1686,15 +1833,32 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateEntity>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateEntity");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newEntity))
+                    bodyObject["entity"] = newEntity;
+                if (!string.IsNullOrEmpty(newDescription))
+                    bodyObject["description"] = newDescription;
+                if (newMetadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(newMetadata);
+                if (newFuzzyMatch != null)
+                    bodyObject["fuzzy_match"] = JToken.FromObject(newFuzzyMatch);
+                if (newValues != null && newValues.Count > 0)
+                    bodyObject["values"] = JToken.FromObject(newValues);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Entity>().Result;
                 if (result == null)
-                    result = new Entity();
-                
+                    result = new DetailedResponse<Entity>();
             }
             catch (AggregateException ae)
             {
@@ -1718,19 +1882,18 @@ namespace IBM.Watson.Assistant.v1
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="EntityMentionCollection" />EntityMentionCollection</returns>
-        public EntityMentionCollection ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<EntityMentionCollection> ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListMentions`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `ListMentions`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            EntityMentionCollection result = null;
+            DetailedResponse<EntityMentionCollection> result = null;
 
             try
             {
@@ -1747,18 +1910,20 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListMentions");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListMentions"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<EntityMentionCollection>().Result;
                 if (result == null)
-                    result = new EntityMentionCollection();
-                
+                    result = new DetailedResponse<EntityMentionCollection>();
             }
             catch (AggregateException ae)
             {
@@ -1768,7 +1933,7 @@ namespace IBM.Watson.Assistant.v1
             return result;
         }
         /// <summary>
-        /// Add entity value.
+        /// Create entity value.
         ///
         /// Create a new value for an entity.
         ///
@@ -1777,21 +1942,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="properties">The new entity value.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Value" />Value</returns>
-        public Value CreateValue(string workspaceId, string entity, CreateValue properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string valueType = null, List<string> synonyms = null, List<string> patterns = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `CreateValue`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Value result = null;
+            DetailedResponse<Value> result = null;
 
             try
             {
@@ -1808,15 +1972,32 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateValue>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateValue");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(value))
+                    bodyObject["value"] = value;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (!string.IsNullOrEmpty(valueType))
+                    bodyObject["type"] = valueType;
+                if (synonyms != null && synonyms.Count > 0)
+                    bodyObject["synonyms"] = JToken.FromObject(synonyms);
+                if (patterns != null && patterns.Count > 0)
+                    bodyObject["patterns"] = JToken.FromObject(patterns);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Value>().Result;
                 if (result == null)
-                    result = new Value();
-                
+                    result = new DetailedResponse<Value>();
             }
             catch (AggregateException ae)
             {
@@ -1836,21 +2017,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteValue(string workspaceId, string entity, string value, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteValue(string workspaceId, string entity, string value)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `DeleteValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `DeleteValue`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -1867,14 +2047,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteValue");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1899,21 +2081,20 @@ namespace IBM.Watson.Assistant.v1
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="ValueExport" />ValueExport</returns>
-        public ValueExport GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        /// <returns><see cref="Value" />Value</returns>
+        public DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `GetValue`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ValueExport result = null;
+            DetailedResponse<Value> result = null;
 
             try
             {
@@ -1930,18 +2111,20 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetValue");
-                result = restRequest.As<ValueExport>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Value>().Result;
                 if (result == null)
-                    result = new ValueExport();
-                
+                    result = new DetailedResponse<Value>();
             }
             catch (AggregateException ae)
             {
@@ -1963,8 +2146,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity values will be sorted. To reverse the sort order,
@@ -1972,19 +2154,18 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="ValueCollection" />ValueCollection</returns>
-        public ValueCollection ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListValues`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `ListValues`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            ValueCollection result = null;
+            DetailedResponse<ValueCollection> result = null;
 
             try
             {
@@ -2001,6 +2182,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (export != null)
                     restRequest.WithArgument("export", export);
                 if (pageLimit != null)
@@ -2013,14 +2195,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListValues");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListValues"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<ValueCollection>().Result;
                 if (result == null)
-                    result = new ValueCollection();
-                
+                    result = new DetailedResponse<ValueCollection>();
             }
             catch (AggregateException ae)
             {
@@ -2047,23 +2230,20 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the synonyms for an entity value, the previously existing synonyms are
         /// discarded and replaced with the new synonyms specified in the update.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Value" />Value</returns>
-        public Value UpdateValue(string workspaceId, string entity, string value, UpdateValue properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newValueType = null, List<string> newSynonyms = null, List<string> newPatterns = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `UpdateValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `UpdateValue`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Value result = null;
+            DetailedResponse<Value> result = null;
 
             try
             {
@@ -2080,15 +2260,32 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateValue>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateValue");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newValue))
+                    bodyObject["value"] = newValue;
+                if (newMetadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(newMetadata);
+                if (!string.IsNullOrEmpty(newValueType))
+                    bodyObject["type"] = newValueType;
+                if (newSynonyms != null && newSynonyms.Count > 0)
+                    bodyObject["synonyms"] = JToken.FromObject(newSynonyms);
+                if (newPatterns != null && newPatterns.Count > 0)
+                    bodyObject["patterns"] = JToken.FromObject(newPatterns);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Value>().Result;
                 if (result == null)
-                    result = new Value();
-                
+                    result = new DetailedResponse<Value>();
             }
             catch (AggregateException ae)
             {
@@ -2098,7 +2295,7 @@ namespace IBM.Watson.Assistant.v1
             return result;
         }
         /// <summary>
-        /// Add entity value synonym.
+        /// Create entity value synonym.
         ///
         /// Add a new synonym to an entity value.
         ///
@@ -2108,23 +2305,22 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="body">The new synonym.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public Synonym CreateSynonym(string workspaceId, string entity, string value, CreateSynonym body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `CreateSynonym`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Synonym result = null;
+            DetailedResponse<Synonym> result = null;
 
             try
             {
@@ -2141,15 +2337,24 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateSynonym>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateSynonym");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(synonym))
+                    bodyObject["synonym"] = synonym;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
-                    result = new Synonym();
-                
+                    result = new DetailedResponse<Synonym>();
             }
             catch (AggregateException ae)
             {
@@ -2170,23 +2375,22 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteSynonym(string workspaceId, string entity, string value, string synonym, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteSynonym(string workspaceId, string entity, string value, string synonym)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
-            if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `DeleteSynonym`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2203,14 +2407,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteSynonym");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2233,23 +2439,22 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="synonym">The text of the synonym.</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public Synonym GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
-            if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `GetSynonym`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Synonym result = null;
+            DetailedResponse<Synonym> result = null;
 
             try
             {
@@ -2266,16 +2471,18 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetSynonym");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
-                    result = new Synonym();
-                
+                    result = new DetailedResponse<Synonym>();
             }
             catch (AggregateException ae)
             {
@@ -2295,8 +2502,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity value synonyms will be sorted. To reverse the sort
@@ -2304,21 +2510,20 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="SynonymCollection" />SynonymCollection</returns>
-        public SynonymCollection ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListSynonyms`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `ListSynonyms`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `ListSynonyms`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            SynonymCollection result = null;
+            DetailedResponse<SynonymCollection> result = null;
 
             try
             {
@@ -2335,6 +2540,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
@@ -2345,14 +2551,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListSynonyms");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListSynonyms"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<SynonymCollection>().Result;
                 if (result == null)
-                    result = new SynonymCollection();
-                
+                    result = new DetailedResponse<SynonymCollection>();
             }
             catch (AggregateException ae)
             {
@@ -2374,25 +2581,22 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
         /// <param name="body">The updated entity value synonym.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public Synonym UpdateSynonym(string workspaceId, string entity, string value, string synonym, UpdateSynonym body, Dictionary<string, object> customData = null)
+        public DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym, string newSynonym = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(entity))
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentNullException(nameof(value));
-            if (string.IsNullOrEmpty(synonym))
-                throw new ArgumentNullException(nameof(synonym));
-            if (body == null)
-                throw new ArgumentNullException(nameof(body));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `UpdateSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `UpdateSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `UpdateSynonym`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            Synonym result = null;
+            DetailedResponse<Synonym> result = null;
 
             try
             {
@@ -2409,15 +2613,24 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateSynonym>(body);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateSynonym");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newSynonym))
+                    bodyObject["synonym"] = newSynonym;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<Synonym>().Result;
                 if (result == null)
-                    result = new Synonym();
-                
+                    result = new DetailedResponse<Synonym>();
             }
             catch (AggregateException ae)
             {
@@ -2435,19 +2648,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">A CreateDialogNode object defining the content of the new dialog node.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DialogNode CreateDialogNode(string workspaceId, CreateDialogNode properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, JObject output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string nodeType = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateDialogNode`");
+        if (string.IsNullOrEmpty(dialogNode))
+            throw new ArgumentNullException("`dialogNode` is required for `CreateDialogNode`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            DialogNode result = null;
+            DetailedResponse<DialogNode> result = null;
 
             try
             {
@@ -2464,15 +2676,58 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<CreateDialogNode>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=CreateDialogNode");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(dialogNode))
+                    bodyObject["dialog_node"] = dialogNode;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (!string.IsNullOrEmpty(conditions))
+                    bodyObject["conditions"] = conditions;
+                if (!string.IsNullOrEmpty(parent))
+                    bodyObject["parent"] = parent;
+                if (!string.IsNullOrEmpty(previousSibling))
+                    bodyObject["previous_sibling"] = previousSibling;
+                if (output != null)
+                    bodyObject["output"] = JToken.FromObject(output);
+                if (context != null)
+                    bodyObject["context"] = JToken.FromObject(context);
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (nextStep != null)
+                    bodyObject["next_step"] = JToken.FromObject(nextStep);
+                if (!string.IsNullOrEmpty(title))
+                    bodyObject["title"] = title;
+                if (!string.IsNullOrEmpty(nodeType))
+                    bodyObject["type"] = nodeType;
+                if (!string.IsNullOrEmpty(eventName))
+                    bodyObject["event_name"] = eventName;
+                if (!string.IsNullOrEmpty(variable))
+                    bodyObject["variable"] = variable;
+                if (actions != null && actions.Count > 0)
+                    bodyObject["actions"] = JToken.FromObject(actions);
+                if (!string.IsNullOrEmpty(digressIn))
+                    bodyObject["digress_in"] = digressIn;
+                if (!string.IsNullOrEmpty(digressOut))
+                    bodyObject["digress_out"] = digressOut;
+                if (!string.IsNullOrEmpty(digressOutSlots))
+                    bodyObject["digress_out_slots"] = digressOutSlots;
+                if (!string.IsNullOrEmpty(userLabel))
+                    bodyObject["user_label"] = userLabel;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
-                    result = new DialogNode();
-                
+                    result = new DetailedResponse<DialogNode>();
             }
             catch (AggregateException ae)
             {
@@ -2491,19 +2746,18 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteDialogNode(string workspaceId, string dialogNode, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteDialogNode(string workspaceId, string dialogNode)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteDialogNode`");
+        if (string.IsNullOrEmpty(dialogNode))
+            throw new ArgumentNullException("`dialogNode` is required for `DeleteDialogNode`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2520,14 +2774,16 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteDialogNode");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -2548,19 +2804,18 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DialogNode GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<DialogNode> GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetDialogNode`");
+        if (string.IsNullOrEmpty(dialogNode))
+            throw new ArgumentNullException("`dialogNode` is required for `GetDialogNode`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            DialogNode result = null;
+            DetailedResponse<DialogNode> result = null;
 
             try
             {
@@ -2577,16 +2832,18 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=GetDialogNode");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
-                    result = new DialogNode();
-                
+                    result = new DetailedResponse<DialogNode>();
             }
             catch (AggregateException ae)
             {
@@ -2604,8 +2861,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
         /// default to false)</param>
         /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
@@ -2613,17 +2869,16 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
-        public DialogNodeCollection ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListDialogNodes`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            DialogNodeCollection result = null;
+            DetailedResponse<DialogNodeCollection> result = null;
 
             try
             {
@@ -2640,6 +2895,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (pageLimit != null)
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (includeCount != null)
@@ -2650,14 +2906,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 if (includeAudit != null)
                     restRequest.WithArgument("include_audit", includeAudit);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListDialogNodes");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNodeCollection>().Result;
                 if (result == null)
-                    result = new DialogNodeCollection();
-                
+                    result = new DetailedResponse<DialogNodeCollection>();
             }
             catch (AggregateException ae)
             {
@@ -2682,21 +2939,18 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the actions for a dialog node, the previously existing actions are
         /// discarded and replaced with the new actions specified in the update.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DialogNode UpdateDialogNode(string workspaceId, string dialogNode, UpdateDialogNode properties, Dictionary<string, object> customData = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, JObject newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newNodeType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
-            if (string.IsNullOrEmpty(dialogNode))
-                throw new ArgumentNullException(nameof(dialogNode));
-            if (properties == null)
-                throw new ArgumentNullException(nameof(properties));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `UpdateDialogNode`");
+        if (string.IsNullOrEmpty(dialogNode))
+            throw new ArgumentNullException("`dialogNode` is required for `UpdateDialogNode`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            DialogNode result = null;
+            DetailedResponse<DialogNode> result = null;
 
             try
             {
@@ -2713,15 +2967,58 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
-                restRequest.WithBody<UpdateDialogNode>(properties);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=UpdateDialogNode");
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newDialogNode))
+                    bodyObject["dialog_node"] = newDialogNode;
+                if (!string.IsNullOrEmpty(newDescription))
+                    bodyObject["description"] = newDescription;
+                if (!string.IsNullOrEmpty(newConditions))
+                    bodyObject["conditions"] = newConditions;
+                if (!string.IsNullOrEmpty(newParent))
+                    bodyObject["parent"] = newParent;
+                if (!string.IsNullOrEmpty(newPreviousSibling))
+                    bodyObject["previous_sibling"] = newPreviousSibling;
+                if (newOutput != null)
+                    bodyObject["output"] = JToken.FromObject(newOutput);
+                if (newContext != null)
+                    bodyObject["context"] = JToken.FromObject(newContext);
+                if (newMetadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(newMetadata);
+                if (newNextStep != null)
+                    bodyObject["next_step"] = JToken.FromObject(newNextStep);
+                if (!string.IsNullOrEmpty(newTitle))
+                    bodyObject["title"] = newTitle;
+                if (!string.IsNullOrEmpty(newNodeType))
+                    bodyObject["type"] = newNodeType;
+                if (!string.IsNullOrEmpty(newEventName))
+                    bodyObject["event_name"] = newEventName;
+                if (!string.IsNullOrEmpty(newVariable))
+                    bodyObject["variable"] = newVariable;
+                if (newActions != null && newActions.Count > 0)
+                    bodyObject["actions"] = JToken.FromObject(newActions);
+                if (!string.IsNullOrEmpty(newDigressIn))
+                    bodyObject["digress_in"] = newDigressIn;
+                if (!string.IsNullOrEmpty(newDigressOut))
+                    bodyObject["digress_out"] = newDigressOut;
+                if (!string.IsNullOrEmpty(newDigressOutSlots))
+                    bodyObject["digress_out_slots"] = newDigressOutSlots;
+                if (!string.IsNullOrEmpty(newUserLabel))
+                    bodyObject["user_label"] = newUserLabel;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<DialogNode>().Result;
                 if (result == null)
-                    result = new DialogNode();
-                
+                    result = new DetailedResponse<DialogNode>();
             }
             catch (AggregateException ae)
             {
@@ -2741,24 +3038,22 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
         /// or `request.context.metadata.deployment`. For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).</param>
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
         /// request_timestamp)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
-        public LogCollection ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<LogCollection> ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
         {
-            if (string.IsNullOrEmpty(filter))
-                throw new ArgumentNullException(nameof(filter));
+        if (string.IsNullOrEmpty(filter))
+            throw new ArgumentNullException("`filter` is required for `ListAllLogs`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            LogCollection result = null;
+            DetailedResponse<LogCollection> result = null;
 
             try
             {
@@ -2775,6 +3070,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/logs");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(filter))
                     restRequest.WithArgument("filter", filter);
                 if (!string.IsNullOrEmpty(sort))
@@ -2783,14 +3079,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (!string.IsNullOrEmpty(cursor))
                     restRequest.WithArgument("cursor", cursor);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListAllLogs");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListAllLogs"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<LogCollection>().Result;
                 if (result == null)
-                    result = new LogCollection();
-                
+                    result = new DetailedResponse<LogCollection>();
             }
             catch (AggregateException ae)
             {
@@ -2814,22 +3111,20 @@ namespace IBM.Watson.Assistant.v1
         /// request_timestamp)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-query-syntax).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).
         /// (optional)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional, default to
-        /// 100)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
-        public LogCollection ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null, Dictionary<string, object> customData = null)
+        public DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
         {
-            if (string.IsNullOrEmpty(workspaceId))
-                throw new ArgumentNullException(nameof(workspaceId));
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListLogs`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            LogCollection result = null;
+            DetailedResponse<LogCollection> result = null;
 
             try
             {
@@ -2846,6 +3141,7 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(sort))
                     restRequest.WithArgument("sort", sort);
                 if (!string.IsNullOrEmpty(filter))
@@ -2854,14 +3150,15 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("page_limit", pageLimit);
                 if (!string.IsNullOrEmpty(cursor))
                     restRequest.WithArgument("cursor", cursor);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=ListLogs");
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListLogs"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
                 result = restRequest.As<LogCollection>().Result;
                 if (result == null)
-                    result = new LogCollection();
-                
+                    result = new DetailedResponse<LogCollection>();
             }
             catch (AggregateException ae)
             {
@@ -2881,17 +3178,16 @@ namespace IBM.Watson.Assistant.v1
         /// security](https://cloud.ibm.com/docs/services/assistant/information-security.html).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
-        /// <param name="customData">Custom data object to pass data including custom request headers.</param>
-        /// <returns><see cref="BaseModel" />BaseModel</returns>
-        public BaseModel DeleteUserData(string customerId, Dictionary<string, object> customData = null)
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteUserData(string customerId)
         {
-            if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException(nameof(customerId));
+        if (string.IsNullOrEmpty(customerId))
+            throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            BaseModel result = null;
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -2908,16 +3204,18 @@ namespace IBM.Watson.Assistant.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customerId))
                     restRequest.WithArgument("customer_id", customerId);
-                if (customData != null)
-                    restRequest.WithCustomData(customData);
 
-                restRequest.WithHeader("X-IBMCloud-SDK-Analytics", "service_name=conversation;service_version=v1;operation_id=DeleteUserData");
-                result = restRequest.As<BaseModel>().Result;
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteUserData"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new BaseModel();
-                
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {

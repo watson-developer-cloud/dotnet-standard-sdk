@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,19 +15,18 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// An array of entities resulting from the query.
+    /// An object that contains an array of entities resulting from the query.
     /// </summary>
-    public class QueryEntitiesResponse : BaseModel
+    public class QueryEntitiesResponse
     {
         /// <summary>
-        /// Gets or Sets Entities
+        /// Array of entities that results from the query.
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryEntitiesResponseItem> Entities { get; set; }

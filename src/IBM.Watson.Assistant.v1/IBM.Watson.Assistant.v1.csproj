@@ -25,14 +25,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.1.0" />
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.3.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="2.16.0" />
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="IBM.Cloud.SDK.Core">
-        <HintPath>..\..\..\dotnet-sdk-core\IBM.Cloud.SDK.Core\bin\Debug\netstandard2.0\IBM.Cloud.SDK.Core.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

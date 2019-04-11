@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.VisualRecognition.v3.Model
@@ -24,7 +23,7 @@ namespace IBM.Watson.VisualRecognition.v3.Model
     /// Information about what might have caused a failure, such as an image that is too large. Not returned when there
     /// is no error.
     /// </summary>
-    public class ErrorInfo : BaseModel
+    public class ErrorInfo
     {
         /// <summary>
         /// HTTP status code.

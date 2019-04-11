@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.VisualRecognition.v3.Model
     /// <summary>
     /// Results for one image.
     /// </summary>
-    public class ClassifiedImage : BaseModel
+    public class ClassifiedImage
     {
         /// <summary>
         /// Source of the image before any redirects. Not returned when the image is uploaded.

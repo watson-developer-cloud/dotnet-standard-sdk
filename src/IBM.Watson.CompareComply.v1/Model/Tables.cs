@@ -1,5 +1,5 @@
 /**
-* Copyright 2018 IBM Corp. All Rights Reserved.
+* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,7 +23,7 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// <summary>
     /// The contents of the tables extracted from a document.
     /// </summary>
-    public class Tables : BaseModel
+    public class Tables
     {
         /// <summary>
         /// The numeric location of the identified element in the document, represented with two integers labeled
@@ -59,6 +58,11 @@ namespace IBM.Watson.CompareComply.v1.Model
         /// </summary>
         [JsonProperty("column_headers", NullValueHandling = NullValueHandling.Ignore)]
         public List<ColumnHeaders> ColumnHeaders { get; set; }
+        /// <summary>
+        /// An array of key-value pairs identified in the current table.
+        /// </summary>
+        [JsonProperty("key_value_pairs", NullValueHandling = NullValueHandling.Ignore)]
+        public List<KeyValuePair> KeyValuePairs { get; set; }
         /// <summary>
         /// An array of cells that are neither table header nor column header nor row header cells, of the current table
         /// with corresponding row and column header associations.

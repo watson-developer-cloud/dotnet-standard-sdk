@@ -1587,11 +1587,11 @@ namespace IBM.Watson.SpeechToText.v1
 
                 if (corpusFile != null)
                 {
-                    var corpusFileContent = new ByteArrayContent((corpusFile as Stream).ReadAllBytes());
+                    var corpusFileContent = new ByteArrayContent(corpusFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("text/plain", out contentType);
                     corpusFileContent.Headers.ContentType = contentType;
-                    formData.Add(corpusFileContent, "corpus_file");
+                    formData.Add(corpusFileContent, "corpus_file", "filename");
                 }
 
                 IClient client = this.Client;

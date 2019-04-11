@@ -122,7 +122,7 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (imagesFile != null)
                 {
-                    var imagesFileContent = new ByteArrayContent((imagesFile as Stream).ReadAllBytes());
+                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
                     imagesFileContent.Headers.ContentType = contentType;
@@ -235,7 +235,7 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (imagesFile != null)
                 {
-                    var imagesFileContent = new ByteArrayContent((imagesFile as Stream).ReadAllBytes());
+                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
                     imagesFileContent.Headers.ContentType = contentType;
@@ -347,7 +347,7 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (negativeExamples != null)
                 {
-                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    var negativeExamplesContent = new ByteArrayContent(negativeExamples.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     negativeExamplesContent.Headers.ContentType = contentType;
@@ -583,7 +583,7 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (negativeExamples != null)
                 {
-                    var negativeExamplesContent = new ByteArrayContent((negativeExamples as Stream).ReadAllBytes());
+                    var negativeExamplesContent = new ByteArrayContent(negativeExamples.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     negativeExamplesContent.Headers.ContentType = contentType;

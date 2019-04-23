@@ -8,7 +8,7 @@ using System.Linq;
 namespace AdditionalPropertiesTest
 {
     [TestClass]
-    public class UnitTest1
+    public class AdditionalPropertiesTest
     {
         [TestMethod]
         public void TestRestrictedDynamicModel()
@@ -19,23 +19,29 @@ namespace AdditionalPropertiesTest
 
             Foo foo = new Foo();
             foo.Bar = "bar";
-
+            foo.Fum = "fum";
+            foo.Ack = false;
             x.Add("myFoo", foo);
 
             Foo foo2 = new Foo();
             foo2.Bar = "bar2";
+            foo2.Fum = "fum2";
+            foo2.Ack = true;
             x.Add("myFoo2", foo2);
 
             var json = JsonConvert.SerializeObject(x, new XConverter(typeof(X)));
 
-            Assert.IsTrue(json == "{\"prop1\":\"string\",\"prop2\":42,\"myFoo\":{\"bar\":\"bar\"},\"myFoo2\":{\"bar\":\"bar2\"}}");
-
+            Assert.IsTrue(json == "{\"prop1\":\"string\",\"prop2\":42,\"myFoo\":{\"bar\":\"bar\",\"fum\":\"fum\",\"ack\":false},\"myFoo2\":{\"bar\":\"bar2\",\"fum\":\"fum2\",\"ack\":true}}");
             var x2 = JsonConvert.DeserializeObject<X>(json, new XConverter(typeof(X)));
 
             Assert.IsTrue(x2.Prop1 == "string");
             Assert.IsTrue(x2.Prop2 == 42);
             Assert.IsTrue(x2.Get("myFoo").Bar == "bar");
+            Assert.IsTrue(x2.Get("myFoo").Fum == "fum");
+            Assert.IsTrue(x2.Get("myFoo").Ack == false);
             Assert.IsTrue(x2.Get("myFoo2").Bar == "bar2");
+            Assert.IsTrue(x2.Get("myFoo2").Fum == "fum2");
+            Assert.IsTrue(x2.Get("myFoo2").Ack == true);
         }
 
         [TestMethod]
@@ -47,31 +53,36 @@ namespace AdditionalPropertiesTest
 
             Foo foo = new Foo();
             foo.Bar = "bar";
+            foo.Fum = "fum";
+            foo.Ack = false;
 
             y.Add("myFoo", foo);
             y.Add("baz", "baz");
-            y.Add("qux", 1.00f);
+            y.Add("qux", 1.23f);
 
             var json = JsonConvert.SerializeObject(y, new YConverter(typeof(Y)));
-            Assert.IsTrue(json == "{\"prop1\":\"string\",\"prop2\":42,\"myFoo\":{\"bar\":\"bar\"},\"baz\":\"baz\",\"qux\":1.0}");
+            Assert.IsTrue(json == "{\"prop1\":\"string\",\"prop2\":42,\"myFoo\":{\"bar\":\"bar\",\"fum\":\"fum\",\"ack\":false},\"baz\":\"baz\",\"qux\":1.23}");
 
             var y2 = JsonConvert.DeserializeObject<Y>(json, new YConverter(typeof(Y)));
+
             Assert.IsTrue(y2.Prop1 == "string");
+
             Assert.IsTrue(y2.Prop2 == 42);
+
             var foo2 = y2.Get("myFoo");
-            //IDictionary<string, string> fooDict = (IDictionary<string, string>)foo2;
-            //fooDict.TryGetValue("bar", out string bar);
-            //Assert.IsTrue(bar == "bar");
-            //var item = y2.Get("myFoo");
-            //var type = item.GetType();
-            //var prop = type.GetProperty("bar");
-            //System.Reflection.PropertyInfo pi = item.GetType().GetProperty("bar");
-            //string bar = (string)(pi.GetValue(item));
-            var bar = Util.GetPropertyValue(foo2, "bar");
-            Assert.IsTrue(bar.ToString() == "bar");
+            var foo2Obj = JObject.FromObject(foo2);
+            var bar = foo2Obj["bar"].ToString();
+            var fum = foo2Obj["fum"].ToString();
+            var ack = (bool)foo2Obj["ack"];
+
+            Assert.IsTrue(bar == "bar");
+            Assert.IsTrue(fum == "fum");
+            Assert.IsTrue(ack == false);
+
             Assert.IsTrue(y2.Get("baz").ToString() == "baz");
+
             float.TryParse(y2.Get("qux").ToString(), out float qux);
-            Assert.IsTrue(qux == 1.00f);
+            Assert.IsTrue(qux == 1.23f);
         }
     }
 
@@ -87,6 +98,10 @@ namespace AdditionalPropertiesTest
     {
         [JsonProperty("bar", NullValueHandling = NullValueHandling.Ignore)]
         public string Bar { get; set; }
+        [JsonProperty("fum", NullValueHandling = NullValueHandling.Ignore)]
+        public string Fum { get; set; }
+        [JsonProperty("ack", NullValueHandling = NullValueHandling.Ignore)]
+        public bool Ack { get; set; }
     }
 
     #region XConverter
@@ -207,15 +222,15 @@ namespace AdditionalPropertiesTest
                 switch (item[prop].Type)
                 {
                     case JTokenType.String:
-                        y.AdditionalProperties.Add(prop, item[prop].ToString());
+                        y.Add(prop, item[prop].ToString());
                         break;
                     case JTokenType.Float:
                         float.TryParse(item[prop].ToString(), out float value);
-                        y.AdditionalProperties.Add(prop, value);
+                        y.Add(prop, value);
                         break;
                     default:
-                        var o = JsonConvert.DeserializeObject<object>(item[prop].ToString());
-                        y.AdditionalProperties.Add(prop, o);
+                        var o = JsonConvert.DeserializeObject<JObject>(item[prop].ToString());
+                        y.Add(prop, o);
                         break;
                 }
             }
@@ -288,26 +303,6 @@ namespace AdditionalPropertiesTest
         {
             AdditionalProperties.TryGetValue(key, out object value);
             return value;
-        }
-    }
-
-    public class Util
-    {
-        public static object GetPropertyValue(object src, string propName)
-        {
-            if (src == null) throw new ArgumentException("Value cannot be null.", "src");
-            if (propName == null) throw new ArgumentException("Value cannot be null.", "propName");
-
-            if (propName.Contains("."))//complex type nested
-            {
-                var temp = propName.Split(new char[] { '.' }, 2);
-                return GetPropertyValue(GetPropertyValue(src, temp[0]), temp[1]);
-            }
-            else
-            {
-                var prop = src.GetType().GetProperty(propName);
-                return prop != null ? prop.GetValue(src, null) : null;
-            }
         }
     }
 }

@@ -15,26 +15,23 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.ToneAnalyzer.v3.Model
+namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
-    /// An utterance for the input of the general-purpose endpoint.
+    /// The response from training of a custom language or custom acoustic model.
     /// </summary>
-    public class Utterance
+    public class TrainingResponse
     {
         /// <summary>
-        /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain
-        /// multiple sentences.
+        /// An array of `TrainingWarning` objects that lists any invalid resources contained in the custom model. For
+        /// custom language models, invalid resources are grouped and identified by type of resource. The method can
+        /// return warnings only if the `strict` parameter is set to `false`.
         /// </summary>
-        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
-        /// <summary>
-        /// A string that identifies the user who contributed the utterance specified by the `text` parameter.
-        /// </summary>
-        [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
-        public string User { get; set; }
+        [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TrainingWarning> Warnings { get; set; }
     }
 
 }

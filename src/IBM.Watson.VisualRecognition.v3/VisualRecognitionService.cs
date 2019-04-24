@@ -384,19 +384,18 @@ namespace IBM.Watson.VisualRecognition.v3
         }
 
         /// <summary>
-        /// Delete a classifier.
+        /// Retrieve a list of classifiers.
         /// </summary>
-        /// <param name="classifierId">The ID of the classifier.</param>
-        /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteClassifier(string classifierId)
+        /// <param name="verbose">Specify `true` to return details about the classifiers. Omit this parameter to return
+        /// a brief list of classifiers. (optional)</param>
+        /// <returns><see cref="Classifiers" />Classifiers</returns>
+        public DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null)
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
 
-            DetailedResponse<object> result = null;
+            DetailedResponse<Classifiers> result = null;
 
             try
             {
@@ -406,19 +405,21 @@ namespace IBM.Watson.VisualRecognition.v3
                     client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (verbose != null)
+                    restRequest.WithArgument("verbose", verbose);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "DeleteClassifier"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "ListClassifiers"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<object>().Result;
+                result = restRequest.As<Classifiers>().Result;
                 if (result == null)
-                    result = new DetailedResponse<object>();
+                    result = new DetailedResponse<Classifiers>();
             }
             catch (AggregateException ae)
             {
@@ -466,52 +467,6 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new DetailedResponse<Classifier>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Retrieve a list of classifiers.
-        /// </summary>
-        /// <param name="verbose">Specify `true` to return details about the classifiers. Omit this parameter to return
-        /// a brief list of classifiers. (optional)</param>
-        /// <returns><see cref="Classifiers" />Classifiers</returns>
-        public DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null)
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Classifiers> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (verbose != null)
-                    restRequest.WithArgument("verbose", verbose);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "ListClassifiers"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Classifiers>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Classifiers>();
             }
             catch (AggregateException ae)
             {
@@ -610,6 +565,51 @@ namespace IBM.Watson.VisualRecognition.v3
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                     result = new DetailedResponse<Classifier>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a classifier.
+        /// </summary>
+        /// <param name="classifierId">The ID of the classifier.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteClassifier(string classifierId)
+        {
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "DeleteClassifier"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {

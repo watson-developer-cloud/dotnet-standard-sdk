@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
-    /// SpeechRecognitionResult.
+    /// Component results for a speech recognition request.
     /// </summary>
     public class SpeechRecognitionResult
     {

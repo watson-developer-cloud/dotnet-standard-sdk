@@ -29,12 +29,12 @@ namespace IBM.Watson.CompareComply.v1
         DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null);
         DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null);
         DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null);
-        DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null);
-        DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null);
         DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null);
+        DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null);
+        DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null);
         DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null);
-        DetailedResponse<BatchStatus> GetBatch(string batchId);
         DetailedResponse<Batches> ListBatches();
+        DetailedResponse<BatchStatus> GetBatch(string batchId);
         DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null);
     }
 }

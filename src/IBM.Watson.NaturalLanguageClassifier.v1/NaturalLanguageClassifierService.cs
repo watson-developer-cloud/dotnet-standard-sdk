@@ -266,15 +266,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// Delete classifier.
+        /// List classifiers.
+        ///
+        /// Returns an empty array if no classifiers are available.
         /// </summary>
-        /// <param name="classifierId">Classifier ID to delete.</param>
-        /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteClassifier(string classifierId)
+        /// <returns><see cref="ClassifierList" />ClassifierList</returns>
+        public DetailedResponse<ClassifierList> ListClassifiers()
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
-            DetailedResponse<object> result = null;
+            DetailedResponse<ClassifierList> result = null;
 
             try
             {
@@ -288,18 +287,18 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "DeleteClassifier"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ListClassifiers"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<object>().Result;
+                result = restRequest.As<ClassifierList>().Result;
                 if (result == null)
-                    result = new DetailedResponse<object>();
+                    result = new DetailedResponse<ClassifierList>();
             }
             catch (AggregateException ae)
             {
@@ -356,14 +355,15 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         }
 
         /// <summary>
-        /// List classifiers.
-        ///
-        /// Returns an empty array if no classifiers are available.
+        /// Delete classifier.
         /// </summary>
-        /// <returns><see cref="ClassifierList" />ClassifierList</returns>
-        public DetailedResponse<ClassifierList> ListClassifiers()
+        /// <param name="classifierId">Classifier ID to delete.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteClassifier(string classifierId)
         {
-            DetailedResponse<ClassifierList> result = null;
+        if (string.IsNullOrEmpty(classifierId))
+            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+            DetailedResponse<object> result = null;
 
             try
             {
@@ -377,18 +377,18 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ListClassifiers"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "DeleteClassifier"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
-                result = restRequest.As<ClassifierList>().Result;
+                result = restRequest.As<object>().Result;
                 if (result == null)
-                    result = new DetailedResponse<ClassifierList>();
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {

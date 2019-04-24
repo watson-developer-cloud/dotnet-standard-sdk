@@ -417,112 +417,6 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// Delete a specified feedback entry.
-        ///
-        /// Deletes a feedback entry with a specified `feedback_id`.
-        /// </summary>
-        /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
-        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
-        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
-        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
-        /// batch-processing requests. (optional)</param>
-        /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
-        public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
-        {
-        if (string.IsNullOrEmpty(feedbackId))
-            throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<FeedbackDeleted> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(model))
-                    restRequest.WithArgument("model", model);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<FeedbackDeleted>().Result;
-                if (result == null)
-                    result = new DetailedResponse<FeedbackDeleted>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List a specified feedback entry.
-        ///
-        /// Lists a feedback entry with a specified `feedback_id`.
-        /// </summary>
-        /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
-        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
-        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
-        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
-        /// batch-processing requests. (optional)</param>
-        /// <returns><see cref="GetFeedback" />GetFeedback</returns>
-        public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
-        {
-        if (string.IsNullOrEmpty(feedbackId))
-            throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<GetFeedback> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(model))
-                    restRequest.WithArgument("model", model);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<GetFeedback>().Result;
-                if (result == null)
-                    result = new DetailedResponse<GetFeedback>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// List the feedback in a document.
         ///
         /// Lists the feedback in a document.
@@ -629,6 +523,112 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<FeedbackList>().Result;
                 if (result == null)
                     result = new DetailedResponse<FeedbackList>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List a specified feedback entry.
+        ///
+        /// Lists a feedback entry with a specified `feedback_id`.
+        /// </summary>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
+        /// <returns><see cref="GetFeedback" />GetFeedback</returns>
+        public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
+        {
+        if (string.IsNullOrEmpty(feedbackId))
+            throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<GetFeedback> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<GetFeedback>().Result;
+                if (result == null)
+                    result = new DetailedResponse<GetFeedback>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a specified feedback entry.
+        ///
+        /// Deletes a feedback entry with a specified `feedback_id`.
+        /// </summary>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
+        /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
+        public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
+        {
+        if (string.IsNullOrEmpty(feedbackId))
+            throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<FeedbackDeleted> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(model))
+                    restRequest.WithArgument("model", model);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<FeedbackDeleted>().Result;
+                if (result == null)
+                    result = new DetailedResponse<FeedbackDeleted>();
             }
             catch (AggregateException ae)
             {
@@ -772,6 +772,50 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
+        /// List submitted batch-processing jobs.
+        ///
+        /// Lists batch-processing jobs submitted by users.
+        /// </summary>
+        /// <returns><see cref="Batches" />Batches</returns>
+        public DetailedResponse<Batches> ListBatches()
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Batches> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Batches>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Batches>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Get information about a specific batch-processing job.
         ///
         /// Gets information about a batch-processing job with a specified ID.
@@ -809,50 +853,6 @@ namespace IBM.Watson.CompareComply.v1
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
                     result = new DetailedResponse<BatchStatus>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List submitted batch-processing jobs.
-        ///
-        /// Lists batch-processing jobs submitted by users.
-        /// </summary>
-        /// <returns><see cref="Batches" />Batches</returns>
-        public DetailedResponse<Batches> ListBatches()
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Batches> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Batches>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Batches>();
             }
             catch (AggregateException ae)
             {

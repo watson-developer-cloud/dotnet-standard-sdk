@@ -92,9 +92,11 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
+        /// * [Requesting a
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input)
         /// * [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient)
+        ///
         ///
         /// ### Content types
         ///
@@ -108,7 +110,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
         ///
         /// **See also:** [Specifying request and response
-        /// formats](https://cloud.ibm.com/docs/services/personality-insights/input.html#formats)
+        /// formats](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats)
         ///
         /// ### Accept types
         ///
@@ -117,13 +119,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// parameter to `true` to request optional column headers for CSV output.
         ///
         /// **See also:**
-        /// * [Understanding a JSON profile](https://cloud.ibm.com/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV profile](https://cloud.ibm.com/docs/services/personality-insights/output-csv.html).
+        /// * [Understanding a JSON
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output)
+        /// * [Understanding a CSV
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
-        /// provide an object of type `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
+        /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///
@@ -233,9 +237,11 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
+        /// * [Requesting a
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input)
         /// * [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient)
+        ///
         ///
         /// ### Content types
         ///
@@ -249,7 +255,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
         ///
         /// **See also:** [Specifying request and response
-        /// formats](https://cloud.ibm.com/docs/services/personality-insights/input.html#formats)
+        /// formats](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats)
         ///
         /// ### Accept types
         ///
@@ -258,13 +264,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// parameter to `true` to request optional column headers for CSV output.
         ///
         /// **See also:**
-        /// * [Understanding a JSON profile](https://cloud.ibm.com/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV profile](https://cloud.ibm.com/docs/services/personality-insights/output-csv.html).
+        /// * [Understanding a JSON
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output)
+        /// * [Understanding a CSV
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
-        /// provide an object of type `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
+        /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///

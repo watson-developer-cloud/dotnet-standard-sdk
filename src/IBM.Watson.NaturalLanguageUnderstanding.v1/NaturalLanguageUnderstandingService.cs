@@ -173,6 +173,56 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             return result;
         }
         /// <summary>
+        /// List models.
+        ///
+        /// Lists Watson Knowledge Studio [custom entities and relations
+        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-customizing)
+        /// that are deployed to your Natural Language Understanding service.
+        /// </summary>
+        /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
+        public DetailedResponse<ListModelsResults> ListModels()
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<ListModelsResults> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<ListModelsResults>().Result;
+                if (result == null)
+                    result = new DetailedResponse<ListModelsResults>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Delete model.
         ///
         /// Deletes a custom model.
@@ -214,56 +264,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 result = restRequest.As<DeleteModelResults>().Result;
                 if (result == null)
                     result = new DetailedResponse<DeleteModelResults>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List models.
-        ///
-        /// Lists Watson Knowledge Studio [custom
-        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding/customizing.html) that are
-        /// deployed to your Natural Language Understanding service.
-        /// </summary>
-        /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
-        public DetailedResponse<ListModelsResults> ListModels()
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<ListModelsResults> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<ListModelsResults>().Result;
-                if (result == null)
-                    result = new DetailedResponse<ListModelsResults>();
             }
             catch (AggregateException ae)
             {

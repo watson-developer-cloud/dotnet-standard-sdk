@@ -162,6 +162,74 @@ namespace IBM.Watson.Assistant.v1
             return result;
         }
         /// <summary>
+        /// List workspaces.
+        ///
+        /// List the workspaces associated with a Watson Assistant service instance.
+        ///
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
+        /// default to false)</param>
+        /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
+        public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<WorkspaceCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (pageLimit != null)
+                    restRequest.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    restRequest.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    restRequest.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    restRequest.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<WorkspaceCollection>().Result;
+                if (result == null)
+                    result = new DetailedResponse<WorkspaceCollection>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Create workspace.
         ///
         /// Create a workspace based on component objects. You must provide workspace components defining the content of
@@ -243,59 +311,6 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// Delete workspace.
-        ///
-        /// Delete a workspace from the service instance.
-        ///
-        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteWorkspace(string workspaceId)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteWorkspace`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<object> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                    result = new DetailedResponse<object>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Get information about a workspace.
         ///
         /// Get information about a workspace, optionally including all workspace content.
@@ -364,74 +379,6 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// List workspaces.
-        ///
-        /// List the workspaces associated with a Watson Assistant service instance.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
-        /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
-        /// prefix the value with a minus sign (`-`). (optional)</param>
-        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
-        public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<WorkspaceCollection> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (pageLimit != null)
-                    restRequest.WithArgument("page_limit", pageLimit);
-                if (includeCount != null)
-                    restRequest.WithArgument("include_count", includeCount);
-                if (!string.IsNullOrEmpty(sort))
-                    restRequest.WithArgument("sort", sort);
-                if (!string.IsNullOrEmpty(cursor))
-                    restRequest.WithArgument("cursor", cursor);
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<WorkspaceCollection>().Result;
-                if (result == null)
-                    result = new DetailedResponse<WorkspaceCollection>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Update workspace.
         ///
         /// Update an existing workspace with new or modified data. You must provide component objects defining the
@@ -448,7 +395,6 @@ namespace IBM.Watson.Assistant.v1
         /// **append**=`false`, elements included in the new data completely replace the corresponding existing
         /// elements, including all subelements. For example, if the new data includes **entities** and
         /// **append**=`false`, all existing entities in the workspace are discarded and replaced with the new entities.
-        ///
         ///
         /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
         /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
@@ -524,90 +470,20 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-        /// <summary>
-        /// Create intent.
-        ///
-        /// Create a new intent.
-        ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="body">The content of the new intent.</param>
-        /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
-        if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `CreateIntent`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Intent> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(intent))
-                    bodyObject["intent"] = intent;
-                if (!string.IsNullOrEmpty(description))
-                    bodyObject["description"] = description;
-                if (examples != null && examples.Count > 0)
-                    bodyObject["examples"] = JToken.FromObject(examples);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Intent>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Intent>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
 
         /// <summary>
-        /// Delete intent.
+        /// Delete workspace.
         ///
-        /// Delete an intent from a workspace.
+        /// Delete a workspace from the service instance.
         ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="intent">The intent name.</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteIntent(string workspaceId, string intent)
+        public DetailedResponse<object> DeleteWorkspace(string workspaceId)
         {
         if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteIntent`");
-        if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `DeleteIntent`");
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteWorkspace`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -626,12 +502,12 @@ namespace IBM.Watson.Assistant.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
@@ -647,73 +523,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// Get intent.
-        ///
-        /// Get information about an intent, optionally including all intent content.
-        ///
-        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="intent">The intent name.</param>
-        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
-        /// returned data includes only information about the element itself. If **export**=`true`, all content,
-        /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetIntent`");
-        if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `GetIntent`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Intent> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                    restRequest.WithArgument("export", export);
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Intent>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Intent>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List intents.
         ///
@@ -792,10 +601,150 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create intent.
+        ///
+        /// Create a new intent.
+        ///
+        /// If you want to create multiple intents with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        ///
+        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The content of the new intent.</param>
+        /// <returns><see cref="Intent" />Intent</returns>
+        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `CreateIntent`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Intent> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(intent))
+                    bodyObject["intent"] = intent;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (examples != null && examples.Count > 0)
+                    bodyObject["examples"] = JToken.FromObject(examples);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Intent>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Intent>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get intent.
+        ///
+        /// Get information about an intent, optionally including all intent content.
+        ///
+        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
+        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Intent" />Intent</returns>
+        public DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetIntent`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `GetIntent`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Intent> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (export != null)
+                    restRequest.WithArgument("export", export);
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetIntent"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Intent>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Intent>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update intent.
         ///
         /// Update an existing intent with new or modified data. You must provide component objects defining the content
         /// of the updated intent.
+        ///
+        /// If you want to update multiple intents with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
         ///
         /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -865,94 +814,23 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
-        /// Create user input example.
+        /// Delete intent.
         ///
-        /// Add a new user input example to an intent.
+        /// Delete an intent from a workspace.
         ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
-        /// <param name="body">The content of the new user input example.</param>
-        /// <returns><see cref="Example" />Example</returns>
-        public DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateExample`");
-        if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `CreateExample`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `CreateExample`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Example> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(text))
-                    bodyObject["text"] = text;
-                if (mentions != null && mentions.Count > 0)
-                    bodyObject["mentions"] = JToken.FromObject(mentions);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Example>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Example>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete user input example.
-        ///
-        /// Delete a user input example from an intent.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="intent">The intent name.</param>
-        /// <param name="text">The text of the user input example.</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text)
+        public DetailedResponse<object> DeleteIntent(string workspaceId, string intent)
         {
         if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteExample`");
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteIntent`");
         if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `DeleteExample`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `DeleteExample`");
+            throw new ArgumentNullException("`intent` is required for `DeleteIntent`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -971,12 +849,12 @@ namespace IBM.Watson.Assistant.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteExample"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
@@ -992,70 +870,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// Get user input example.
-        ///
-        /// Get information about a user input example.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="intent">The intent name.</param>
-        /// <param name="text">The text of the user input example.</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Example" />Example</returns>
-        public DetailedResponse<Example> GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetExample`");
-        if (string.IsNullOrEmpty(intent))
-            throw new ArgumentNullException("`intent` is required for `GetExample`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `GetExample`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Example> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Example>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Example>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List user input examples.
         ///
@@ -1131,9 +945,147 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create user input example.
+        ///
+        /// Add a new user input example to an intent.
+        ///
+        /// If you want to add multiple exaples with a single API call, consider using the **[Update
+        /// intent](#update-intent)** method instead.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="body">The content of the new user input example.</param>
+        /// <returns><see cref="Example" />Example</returns>
+        public DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `CreateExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `CreateExample`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Example> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                if (mentions != null && mentions.Count > 0)
+                    bodyObject["mentions"] = JToken.FromObject(mentions);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Example>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Example>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get user input example.
+        ///
+        /// Get information about a user input example.
+        ///
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="text">The text of the user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Example" />Example</returns>
+        public DetailedResponse<Example> GetExample(string workspaceId, string intent, string text, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `GetExample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `GetExample`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Example> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetExample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Example>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Example>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update user input example.
         ///
         /// Update the text of a user input example.
+        ///
+        /// If you want to update multiple examples with a single API call, consider using the **[Update
+        /// intent](#update-intent)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -1199,88 +1151,26 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
-        /// Create counterexample.
+        /// Delete user input example.
         ///
-        /// Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant
-        /// input.
+        /// Delete a user input example from an intent.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="body">The content of the new counterexample.</param>
-        /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateCounterexample`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `CreateCounterexample`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Counterexample> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(text))
-                    bodyObject["text"] = text;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Counterexample>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Counterexample>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete counterexample.
-        ///
-        /// Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant
-        /// input.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="text">The text of the user input example.</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteCounterexample(string workspaceId, string text)
+        public DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text)
         {
         if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteCounterexample`");
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteExample`");
+        if (string.IsNullOrEmpty(intent))
+            throw new ArgumentNullException("`intent` is required for `DeleteExample`");
         if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `DeleteCounterexample`");
+            throw new ArgumentNullException("`text` is required for `DeleteExample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -1299,12 +1189,12 @@ namespace IBM.Watson.Assistant.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteExample"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
@@ -1320,68 +1210,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// Get counterexample.
-        ///
-        /// Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant
-        /// input.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetCounterexample`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `GetCounterexample`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Counterexample> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Counterexample>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Counterexample>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List counterexamples.
         ///
@@ -1455,10 +1283,141 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create counterexample.
+        ///
+        /// Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        ///
+        /// If you want to add multiple counterexamples with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The content of the new counterexample.</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        public DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `CreateCounterexample`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Counterexample> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(text))
+                    bodyObject["text"] = text;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Counterexample>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Counterexample>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get counterexample.
+        ///
+        /// Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        ///
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        public DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `GetCounterexample`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Counterexample> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Counterexample>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Counterexample>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update counterexample.
         ///
         /// Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
         ///
+        /// If you want to update multiple counterexamples with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -1519,94 +1478,24 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
-        /// Create entity.
+        /// Delete counterexample.
         ///
-        /// Create a new entity, or enable a system entity.
+        /// Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant
+        /// input.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="properties">The content of the new entity.</param>
-        /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateEntity`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `CreateEntity`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Entity> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(entity))
-                    bodyObject["entity"] = entity;
-                if (!string.IsNullOrEmpty(description))
-                    bodyObject["description"] = description;
-                if (metadata != null)
-                    bodyObject["metadata"] = JToken.FromObject(metadata);
-                if (fuzzyMatch != null)
-                    bodyObject["fuzzy_match"] = JToken.FromObject(fuzzyMatch);
-                if (values != null && values.Count > 0)
-                    bodyObject["values"] = JToken.FromObject(values);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Entity>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Entity>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete entity.
-        ///
-        /// Delete an entity from a workspace, or disable a system entity.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
+        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteEntity(string workspaceId, string entity)
+        public DetailedResponse<object> DeleteCounterexample(string workspaceId, string text)
         {
         if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteEntity`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `DeleteEntity`");
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteCounterexample`");
+        if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException("`text` is required for `DeleteCounterexample`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -1625,12 +1514,12 @@ namespace IBM.Watson.Assistant.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
@@ -1646,73 +1535,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// Get entity.
-        ///
-        /// Get information about an entity, optionally including all entity content.
-        ///
-        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
-        /// returned data includes only information about the element itself. If **export**=`true`, all content,
-        /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetEntity`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `GetEntity`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Entity> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                    restRequest.WithArgument("export", export);
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Entity>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Entity>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List entities.
         ///
@@ -1791,10 +1613,154 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create entity.
+        ///
+        /// Create a new entity, or enable a system entity.
+        ///
+        /// If you want to create multiple entities with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="properties">The content of the new entity.</param>
+        /// <returns><see cref="Entity" />Entity</returns>
+        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateEntity`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Entity> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(entity))
+                    bodyObject["entity"] = entity;
+                if (!string.IsNullOrEmpty(description))
+                    bodyObject["description"] = description;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (fuzzyMatch != null)
+                    bodyObject["fuzzy_match"] = JToken.FromObject(fuzzyMatch);
+                if (values != null && values.Count > 0)
+                    bodyObject["values"] = JToken.FromObject(values);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Entity>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Entity>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get entity.
+        ///
+        /// Get information about an entity, optionally including all entity content.
+        ///
+        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
+        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Entity" />Entity</returns>
+        public DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetEntity`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Entity> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (export != null)
+                    restRequest.WithArgument("export", export);
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Entity>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Entity>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update entity.
         ///
         /// Update an existing entity with new or modified data. You must provide component objects defining the content
         /// of the updated entity.
+        ///
+        /// If you want to update multiple entities with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -1859,6 +1825,62 @@ namespace IBM.Watson.Assistant.v1
                 result = restRequest.As<Entity>().Result;
                 if (result == null)
                     result = new DetailedResponse<Entity>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete entity.
+        ///
+        /// Delete an entity from a workspace, or disable a system entity.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteEntity(string workspaceId, string entity)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteEntity`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `DeleteEntity`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                    result = new DetailedResponse<object>();
             }
             catch (AggregateException ae)
             {
@@ -1932,208 +1954,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-        /// <summary>
-        /// Create entity value.
-        ///
-        /// Create a new value for an entity.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="properties">The new entity value.</param>
-        /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string valueType = null, List<string> synonyms = null, List<string> patterns = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateValue`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `CreateValue`");
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `CreateValue`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Value> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(value))
-                    bodyObject["value"] = value;
-                if (metadata != null)
-                    bodyObject["metadata"] = JToken.FromObject(metadata);
-                if (!string.IsNullOrEmpty(valueType))
-                    bodyObject["type"] = valueType;
-                if (synonyms != null && synonyms.Count > 0)
-                    bodyObject["synonyms"] = JToken.FromObject(synonyms);
-                if (patterns != null && patterns.Count > 0)
-                    bodyObject["patterns"] = JToken.FromObject(patterns);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Value>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Value>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete entity value.
-        ///
-        /// Delete a value from an entity.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="value">The text of the entity value.</param>
-        /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteValue(string workspaceId, string entity, string value)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteValue`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `DeleteValue`");
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `DeleteValue`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<object> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                    result = new DetailedResponse<object>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get entity value.
-        ///
-        /// Get information about an entity value.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="value">The text of the entity value.</param>
-        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
-        /// returned data includes only information about the element itself. If **export**=`true`, all content,
-        /// including subelements, is included. (optional, default to false)</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetValue`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `GetValue`");
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `GetValue`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Value> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                    restRequest.WithArgument("export", export);
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Value>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Value>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List entity values.
         ///
@@ -2214,10 +2034,159 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create entity value.
+        ///
+        /// Create a new value for an entity.
+        ///
+        /// If you want to create multiple entity values with a single API call, consider using the **[Update
+        /// entity](#update-entity)** method instead.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="properties">The new entity value.</param>
+        /// <returns><see cref="Value" />Value</returns>
+        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string valueType = null, List<string> synonyms = null, List<string> patterns = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `CreateValue`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Value> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(value))
+                    bodyObject["value"] = value;
+                if (metadata != null)
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                if (!string.IsNullOrEmpty(valueType))
+                    bodyObject["type"] = valueType;
+                if (synonyms != null && synonyms.Count > 0)
+                    bodyObject["synonyms"] = JToken.FromObject(synonyms);
+                if (patterns != null && patterns.Count > 0)
+                    bodyObject["patterns"] = JToken.FromObject(patterns);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Value>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Value>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get entity value.
+        ///
+        /// Get information about an entity value.
+        ///
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="value">The text of the entity value.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Value" />Value</returns>
+        public DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetValue`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetValue`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `GetValue`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Value> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (export != null)
+                    restRequest.WithArgument("export", export);
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetValue"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Value>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Value>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update entity value.
         ///
         /// Update an existing entity value with new or modified data. You must provide component objects defining the
         /// content of the updated entity value.
+        ///
+        /// If you want to update multiple entity values with a single API call, consider using the **[Update
+        /// entity](#update-entity)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -2294,98 +2263,26 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
-        /// Create entity value synonym.
+        /// Delete entity value.
         ///
-        /// Add a new synonym to an entity value.
+        /// Delete a value from an entity.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="body">The new synonym.</param>
-        /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `CreateSynonym`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `CreateSynonym`");
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `CreateSynonym`");
-        if (string.IsNullOrEmpty(synonym))
-            throw new ArgumentNullException("`synonym` is required for `CreateSynonym`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Synonym> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(synonym))
-                    bodyObject["synonym"] = synonym;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Synonym>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Synonym>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete entity value synonym.
-        ///
-        /// Delete a synonym from an entity value.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="value">The text of the entity value.</param>
-        /// <param name="synonym">The text of the synonym.</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteSynonym(string workspaceId, string entity, string value, string synonym)
+        public DetailedResponse<object> DeleteValue(string workspaceId, string entity, string value)
         {
         if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteSynonym`");
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteValue`");
         if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `DeleteSynonym`");
+            throw new ArgumentNullException("`entity` is required for `DeleteValue`");
         if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `DeleteSynonym`");
-        if (string.IsNullOrEmpty(synonym))
-            throw new ArgumentNullException("`synonym` is required for `DeleteSynonym`");
+            throw new ArgumentNullException("`value` is required for `DeleteValue`");
 
             if (string.IsNullOrEmpty(VersionDate))
                 throw new ArgumentNullException("versionDate cannot be null.");
@@ -2404,12 +2301,12 @@ namespace IBM.Watson.Assistant.v1
                     client = this.Client.WithAuthentication(this.UserName, this.Password);
                 }
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"))
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteValue"))
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
@@ -2425,73 +2322,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// Get entity value synonym.
-        ///
-        /// Get information about a synonym of an entity value.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="entity">The name of the entity.</param>
-        /// <param name="value">The text of the entity value.</param>
-        /// <param name="synonym">The text of the synonym.</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `GetSynonym`");
-        if (string.IsNullOrEmpty(entity))
-            throw new ArgumentNullException("`entity` is required for `GetSynonym`");
-        if (string.IsNullOrEmpty(value))
-            throw new ArgumentNullException("`value` is required for `GetSynonym`");
-        if (string.IsNullOrEmpty(synonym))
-            throw new ArgumentNullException("`synonym` is required for `GetSynonym`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<Synonym> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<Synonym>().Result;
-                if (result == null)
-                    result = new DetailedResponse<Synonym>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List entity value synonyms.
         ///
@@ -2570,9 +2400,151 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
+        /// Create entity value synonym.
+        ///
+        /// Add a new synonym to an entity value.
+        ///
+        /// If you want to create multiple synonyms with a single API call, consider using the **[Update
+        /// entity](#update-entity)** or **[Update entity value](#update-entity-value)** method instead.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="value">The text of the entity value.</param>
+        /// <param name="body">The new synonym.</param>
+        /// <returns><see cref="Synonym" />Synonym</returns>
+        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `CreateSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `CreateSynonym`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Synonym> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+                restRequest.WithHeader("Accept", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(synonym))
+                    bodyObject["synonym"] = synonym;
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Synonym>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Synonym>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get entity value synonym.
+        ///
+        /// Get information about a synonym of an entity value.
+        ///
+        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="value">The text of the entity value.</param>
+        /// <param name="synonym">The text of the synonym.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Synonym" />Synonym</returns>
+        public DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `GetSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `GetSynonym`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<Synonym> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<Synonym>().Result;
+                if (result == null)
+                    result = new DetailedResponse<Synonym>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Update entity value synonym.
         ///
         /// Update an existing entity value synonym with new text.
+        ///
+        /// If you want to update multiple synonyms with a single API call, consider using the **[Update
+        /// entity](#update-entity)** or **[Update entity value](#update-entity-value)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -2639,10 +2611,146 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Delete entity value synonym.
+        ///
+        /// Delete a synonym from an entity value.
+        ///
+        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="entity">The name of the entity.</param>
+        /// <param name="value">The text of the entity value.</param>
+        /// <param name="synonym">The text of the synonym.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteSynonym(string workspaceId, string entity, string value, string synonym)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(entity))
+            throw new ArgumentNullException("`entity` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(value))
+            throw new ArgumentNullException("`value` is required for `DeleteSynonym`");
+        if (string.IsNullOrEmpty(synonym))
+            throw new ArgumentNullException("`synonym` is required for `DeleteSynonym`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                    result = new DetailedResponse<object>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List dialog nodes.
+        ///
+        /// List the dialog nodes for a workspace.
+        ///
+        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
+        /// default to false)</param>
+        /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
+        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListDialogNodes`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<DialogNodeCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (pageLimit != null)
+                    restRequest.WithArgument("page_limit", pageLimit);
+                if (includeCount != null)
+                    restRequest.WithArgument("include_count", includeCount);
+                if (!string.IsNullOrEmpty(sort))
+                    restRequest.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(cursor))
+                    restRequest.WithArgument("cursor", cursor);
+                if (includeAudit != null)
+                    restRequest.WithArgument("include_audit", includeAudit);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<DialogNodeCollection>().Result;
+                if (result == null)
+                    result = new DetailedResponse<DialogNodeCollection>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Create dialog node.
         ///
         /// Create a new dialog node.
+        ///
+        /// If you want to create multiple dialog nodes with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
         ///
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -2738,62 +2846,6 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// Delete dialog node.
-        ///
-        /// Delete a dialog node from a workspace.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
-        /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteDialogNode(string workspaceId, string dialogNode)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `DeleteDialogNode`");
-        if (string.IsNullOrEmpty(dialogNode))
-            throw new ArgumentNullException("`dialogNode` is required for `DeleteDialogNode`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<object> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                    result = new DetailedResponse<object>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Get dialog node.
         ///
         /// Get information about a dialog node.
@@ -2854,80 +2906,12 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// List dialog nodes.
-        ///
-        /// List the dialog nodes for a workspace.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
-        /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
-        /// prefix the value with a minus sign (`-`). (optional)</param>
-        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
-        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
-        /// the response. (optional, default to false)</param>
-        /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
-        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `ListDialogNodes`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<DialogNodeCollection> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (pageLimit != null)
-                    restRequest.WithArgument("page_limit", pageLimit);
-                if (includeCount != null)
-                    restRequest.WithArgument("include_count", includeCount);
-                if (!string.IsNullOrEmpty(sort))
-                    restRequest.WithArgument("sort", sort);
-                if (!string.IsNullOrEmpty(cursor))
-                    restRequest.WithArgument("cursor", cursor);
-                if (includeAudit != null)
-                    restRequest.WithArgument("include_audit", includeAudit);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<DialogNodeCollection>().Result;
-                if (result == null)
-                    result = new DetailedResponse<DialogNodeCollection>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Update dialog node.
         ///
         /// Update an existing dialog node with new or modified data.
+        ///
+        /// If you want to update multiple dialog nodes with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
         ///
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
@@ -3027,6 +3011,133 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Delete dialog node.
+        ///
+        /// Delete a dialog node from a workspace.
+        ///
+        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteDialogNode(string workspaceId, string dialogNode)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `DeleteDialogNode`");
+        if (string.IsNullOrEmpty(dialogNode))
+            throw new ArgumentNullException("`dialogNode` is required for `DeleteDialogNode`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                    result = new DetailedResponse<object>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List log events in a workspace.
+        ///
+        /// List the events from the log of a specific workspace.
+        ///
+        /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
+        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
+        /// request_timestamp)</param>
+        /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
+        /// For more information, see the
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).
+        /// (optional)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <returns><see cref="LogCollection" />LogCollection</returns>
+        public DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
+        {
+        if (string.IsNullOrEmpty(workspaceId))
+            throw new ArgumentNullException("`workspaceId` is required for `ListLogs`");
+
+            if (string.IsNullOrEmpty(VersionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            DetailedResponse<LogCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(sort))
+                    restRequest.WithArgument("sort", sort);
+                if (!string.IsNullOrEmpty(filter))
+                    restRequest.WithArgument("filter", filter);
+                if (pageLimit != null)
+                    restRequest.WithArgument("page_limit", pageLimit);
+                if (!string.IsNullOrEmpty(cursor))
+                    restRequest.WithArgument("cursor", cursor);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListLogs"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<LogCollection>().Result;
+                if (result == null)
+                    result = new DetailedResponse<LogCollection>();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// List log events in all workspaces.
         ///
@@ -3038,7 +3149,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
         /// or `request.context.metadata.deployment`. For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).</param>
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
         /// request_timestamp)</param>
@@ -3096,77 +3207,6 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
-
-        /// <summary>
-        /// List log events in a workspace.
-        ///
-        /// List the events from the log of a specific workspace.
-        ///
-        /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
-        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
-        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
-        /// request_timestamp)</param>
-        /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
-        /// For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant/filter-reference.html#filter-reference-syntax).
-        /// (optional)</param>
-        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
-        /// <returns><see cref="LogCollection" />LogCollection</returns>
-        public DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
-        {
-        if (string.IsNullOrEmpty(workspaceId))
-            throw new ArgumentNullException("`workspaceId` is required for `ListLogs`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<LogCollection> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/logs");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(sort))
-                    restRequest.WithArgument("sort", sort);
-                if (!string.IsNullOrEmpty(filter))
-                    restRequest.WithArgument("filter", filter);
-                if (pageLimit != null)
-                    restRequest.WithArgument("page_limit", pageLimit);
-                if (!string.IsNullOrEmpty(cursor))
-                    restRequest.WithArgument("cursor", cursor);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListLogs"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<LogCollection>().Result;
-                if (result == null)
-                    result = new DetailedResponse<LogCollection>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
         /// <summary>
         /// Delete labeled data.
         ///
@@ -3175,7 +3215,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/services/assistant/information-security.html).
+        /// security](https://cloud.ibm.com/docs/services/assistant?topic=assistant-information-security#information-security).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>

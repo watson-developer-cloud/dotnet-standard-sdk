@@ -142,7 +142,7 @@ namespace AdditionalPropertiesTest
             foreach (string prop in propertyNames)
             {
                 var value = JsonConvert.DeserializeObject<Foo>(item[prop].ToString());
-                x.AdditionalProperties.Add(prop, value);
+                x.Add(prop, value);
             }
 
             return x;
@@ -174,7 +174,7 @@ namespace AdditionalPropertiesTest
     }
     #endregion
 
-    public class Y : DynamicModel
+    public class Y : DynamicModel<object>
     {
         [JsonProperty("prop1", NullValueHandling = NullValueHandling.Ignore)]
         public string Prop1 { get; set; }
@@ -266,7 +266,7 @@ namespace AdditionalPropertiesTest
 
     public class DynamicModel<T>
     {
-        public Dictionary<string, T> AdditionalProperties { get; set; } = new Dictionary<string, T>();
+        public Dictionary<string, T> AdditionalProperties { get; } = new Dictionary<string, T>();
 
         public void Add(string key, T value)
         {
@@ -281,27 +281,6 @@ namespace AdditionalPropertiesTest
         public T Get(string key)
         {
             AdditionalProperties.TryGetValue(key, out T value);
-            return value;
-        }
-    }
-    
-    public class DynamicModel
-    {
-        public Dictionary<string, object> AdditionalProperties { get; set; } = new Dictionary<string, object>();
-
-        public void Add(string key, object value)
-        {
-            AdditionalProperties.Add(key, value);
-        }
-
-        public void Remove(string key)
-        {
-            AdditionalProperties.Remove(key);
-        }
-
-        public object Get(string key)
-        {
-            AdditionalProperties.TryGetValue(key, out object value);
             return value;
         }
     }

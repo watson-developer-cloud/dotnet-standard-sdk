@@ -16,8 +16,8 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -25,13 +25,13 @@ namespace IBM.Watson.Assistant.v1.Model
     /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages from
     /// the log.
     /// </summary>
-    public class OutputData
+    public class OutputData : DynamicModel
     {
         /// <summary>
         /// An array of up to 50 messages logged with the request.
         /// </summary>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<JObject> LogMessages { get; set; }
+        public List<LogMessage> LogMessages { get; set; }
         /// <summary>
         /// An array of responses to the user.
         /// </summary>

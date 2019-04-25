@@ -16,7 +16,6 @@
 */
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
@@ -30,7 +29,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// An input object that includes the input text.
         /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public JObject Input { get; set; }
+        public MessageInput Input { get; set; }
     }
 
 }

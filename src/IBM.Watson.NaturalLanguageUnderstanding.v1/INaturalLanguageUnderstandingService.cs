@@ -16,7 +16,6 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using Newtonsoft.Json.Linq;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1

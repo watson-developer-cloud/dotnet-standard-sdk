@@ -98,7 +98,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog
         /// nodes that were visited during processing of the message. (optional, default to false)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
-        public DetailedResponse<MessageResponse> Message(string workspaceId, JObject input = null, List<JObject> intents = null, List<JObject> entities = null, bool? alternateIntents = null, JObject context = null, JObject output = null, bool? nodesVisitedDetails = null)
+        public DetailedResponse<MessageResponse> Message(string workspaceId, MessageInput input = null, List<RuntimeIntent> intents = null, List<RuntimeEntity> entities = null, bool? alternateIntents = null, Context context = null, OutputData output = null, bool? nodesVisitedDetails = null)
         {
         if (string.IsNullOrEmpty(workspaceId))
             throw new ArgumentNullException("`workspaceId` is required for `Message`");
@@ -2757,7 +2757,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="properties">A CreateDialogNode object defining the content of the new dialog node.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, JObject output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string nodeType = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string nodeType = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
         {
         if (string.IsNullOrEmpty(workspaceId))
             throw new ArgumentNullException("`workspaceId` is required for `CreateDialogNode`");
@@ -2924,7 +2924,7 @@ namespace IBM.Watson.Assistant.v1
         /// data.) For example, if you update the actions for a dialog node, the previously existing actions are
         /// discarded and replaced with the new actions specified in the update.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, JObject newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newNodeType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newNodeType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
         {
         if (string.IsNullOrEmpty(workspaceId))
             throw new ArgumentNullException("`workspaceId` is required for `UpdateDialogNode`");

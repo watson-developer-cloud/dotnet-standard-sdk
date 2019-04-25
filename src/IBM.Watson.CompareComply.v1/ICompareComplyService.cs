@@ -16,7 +16,6 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using Newtonsoft.Json.Linq;
 using System;
 using IBM.Watson.CompareComply.v1.Model;
 

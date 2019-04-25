@@ -17,7 +17,6 @@
 
 using IBM.Cloud.SDK.Core.Http;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using IBM.Watson.LanguageTranslator.v3.Model;
 
 namespace IBM.Watson.LanguageTranslator.v3

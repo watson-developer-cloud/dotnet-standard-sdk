@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// QueryNoticesResult.
     /// </summary>
-    public class QueryNoticesResult
+    public class QueryNoticesResult : DynamicModel
     {
         /// <summary>
         /// The type of the original source file.

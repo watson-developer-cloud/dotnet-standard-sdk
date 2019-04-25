@@ -16,7 +16,6 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using IBM.Watson.TextToSpeech.v1.Model;
 

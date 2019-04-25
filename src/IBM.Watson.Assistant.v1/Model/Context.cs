@@ -17,14 +17,13 @@
 
 using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// State information for the conversation. To maintain state, include the context from the previous response.
     /// </summary>
-    public class Context : DynamicModel<object>
+    public class Context : DynamicModel
     {
         /// <summary>
         /// The unique identifier of the conversation.
@@ -35,7 +34,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// For internal use only.
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public JObject System { get; set; }
+        public SystemResponse System { get; set; }
         /// <summary>
         /// Metadata related to the message.
         /// </summary>

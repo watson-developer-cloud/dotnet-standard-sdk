@@ -15,12 +15,14 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Model;
+
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// For internal use only.
     /// </summary>
-    public class SystemResponse
+    public class SystemResponse : DynamicModel
     {
     }
 

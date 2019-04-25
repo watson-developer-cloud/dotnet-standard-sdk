@@ -16,7 +16,6 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System;
 using IBM.Watson.Discovery.v1.Model;

@@ -126,7 +126,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void Message_Success()
         {
-            JObject context;
+            Context context;
 
             List<string> intents = new List<string>();
             MessageInput input = new MessageInput()
@@ -136,7 +136,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results0 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input)
+                input: input
                 );
             context = results0.Result.Context;
             intents.Add(GetIntent(results0.Result));
@@ -145,7 +145,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results1 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context
                 );
             context = results1.Result.Context;
@@ -155,7 +155,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results2 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context
                 );
             context = results2.Result.Context;
@@ -165,7 +165,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results3 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context);
             context = results3.Result.Context;
             intents.Add(GetIntent(results3.Result));
@@ -198,7 +198,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         #region Get Intent
         private string GetIntent(MessageResponse messageResponse)
         {
-            return messageResponse.Intents[0]["intent"].ToString(); ;
+            return messageResponse.Intents[0].Intent;
         }
         #endregion
 

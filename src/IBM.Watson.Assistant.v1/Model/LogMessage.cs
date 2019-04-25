@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -22,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// Log message details.
     /// </summary>
-    public class LogMessage
+    public class LogMessage : DynamicModel
     {
         /// <summary>
         /// The severity of the log message.

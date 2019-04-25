@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -23,7 +24,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// State information for the conversation. To maintain state, include the context from the previous response.
     /// </summary>
-    public class Context
+    public class Context : DynamicModel<object>
     {
         /// <summary>
         /// The unique identifier of the conversation.

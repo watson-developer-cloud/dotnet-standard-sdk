@@ -24,7 +24,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
     public partial interface INaturalLanguageUnderstandingService
     {
         DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null);
-        DetailedResponse<DeleteModelResults> DeleteModel(string modelId);
         DetailedResponse<ListModelsResults> ListModels();
+        DetailedResponse<DeleteModelResults> DeleteModel(string modelId);
     }
 }

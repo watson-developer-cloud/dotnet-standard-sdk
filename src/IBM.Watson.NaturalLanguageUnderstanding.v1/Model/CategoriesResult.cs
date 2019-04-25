@@ -27,7 +27,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// <summary>
         /// The path to the category through the 5-level taxonomy hierarchy. For the complete list of categories, see
         /// the [Categories
-        /// hierarchy](https://cloud.ibm.com/docs/services/natural-language-understanding/categories.html#categories-hierarchy)
+        /// hierarchy](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-categories#categories-hierarchy)
         /// documentation.
         /// </summary>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]

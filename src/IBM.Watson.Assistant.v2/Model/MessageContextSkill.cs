@@ -15,26 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.ToneAnalyzer.v3.Model
+namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An utterance for the input of the general-purpose endpoint.
+    /// Contains information specific to a particular skill used by the Assistant.
     /// </summary>
-    public class Utterance
+    public class MessageContextSkill
     {
         /// <summary>
-        /// An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain
-        /// multiple sentences.
+        /// Arbitrary variables that can be read and written by a particular skill.
         /// </summary>
-        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
-        public string Text { get; set; }
-        /// <summary>
-        /// A string that identifies the user who contributed the utterance specified by the `text` parameter.
-        /// </summary>
-        [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
-        public string User { get; set; }
+        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, object> UserDefined { get; set; }
     }
 
 }

@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
-    /// WordAlternativeResult.
+    /// An alternative hypothesis for a word from speech recognition results.
     /// </summary>
     public class WordAlternativeResult
     {

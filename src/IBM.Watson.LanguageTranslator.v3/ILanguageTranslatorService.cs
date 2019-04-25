@@ -25,11 +25,11 @@ namespace IBM.Watson.LanguageTranslator.v3
     public partial interface ILanguageTranslatorService
     {
         DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null);
-        DetailedResponse<IdentifiedLanguages> Identify(string text);
         DetailedResponse<IdentifiableLanguages> ListIdentifiableLanguages();
+        DetailedResponse<IdentifiedLanguages> Identify(string text);
+        DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null);
         DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null);
         DetailedResponse<DeleteModelResult> DeleteModel(string modelId);
         DetailedResponse<TranslationModel> GetModel(string modelId);
-        DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null);
     }
 }

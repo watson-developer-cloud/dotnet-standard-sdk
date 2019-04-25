@@ -24,20 +24,20 @@ namespace IBM.Watson.TextToSpeech.v1
 {
     public partial interface ITextToSpeechService
     {
-        DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
         DetailedResponse<Voices> ListVoices();
+        DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
         DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null);
         DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null);
         DetailedResponse<VoiceModel> CreateVoiceModel(string name, string language = null, string description = null);
-        DetailedResponse<object> DeleteVoiceModel(string customizationId);
-        DetailedResponse<VoiceModel> GetVoiceModel(string customizationId);
         DetailedResponse<VoiceModels> ListVoiceModels(string language = null);
         DetailedResponse<object> UpdateVoiceModel(string customizationId, string name = null, string description = null, List<Word> words = null);
-        DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null);
+        DetailedResponse<VoiceModel> GetVoiceModel(string customizationId);
+        DetailedResponse<object> DeleteVoiceModel(string customizationId);
         DetailedResponse<object> AddWords(string customizationId, List<Word> words);
-        DetailedResponse<object> DeleteWord(string customizationId, string word);
-        DetailedResponse<Translation> GetWord(string customizationId, string word);
         DetailedResponse<Words> ListWords(string customizationId);
+        DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null);
+        DetailedResponse<Translation> GetWord(string customizationId, string word);
+        DetailedResponse<object> DeleteWord(string customizationId, string word);
         DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

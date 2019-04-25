@@ -22,7 +22,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// An object that indicates the Categories enrichment will be applied to the specified field.
     /// </summary>
-    public class NluEnrichmentCategories : DynamicModel
+    public class NluEnrichmentCategories : DynamicModel<object>
     {
     }
 

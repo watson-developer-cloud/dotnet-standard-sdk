@@ -22,7 +22,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// For internal use only.
     /// </summary>
-    public class SystemResponse : DynamicModel
+    public class SystemResponse : DynamicModel<object>
     {
     }
 

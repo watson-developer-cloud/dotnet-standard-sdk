@@ -24,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// QueryNoticesResult.
     /// </summary>
-    public class QueryNoticesResult : DynamicModel
+    public class QueryNoticesResult : DynamicModel<object>
     {
         /// <summary>
         /// The type of the original source file.

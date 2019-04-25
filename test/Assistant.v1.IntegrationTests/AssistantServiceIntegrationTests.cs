@@ -139,6 +139,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 input: input
                 );
             context = results0.Result.Context;
+            context.Add("name", "Watson");
             intents.Add(GetIntent(results0.Result));
 
             input.Text = assistantString0;
@@ -171,9 +172,13 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             intents.Add(GetIntent(results3.Result));
 
             Assert.IsNotNull(results0);
+            Assert.IsTrue(results0.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results1);
+            Assert.IsTrue(results1.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results2);
+            Assert.IsTrue(results2.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results3);
+            Assert.IsTrue(results3.Result.Context.Get("name").ToString() == "Watson");
             foreach (string intent in intents)
             {
                 Assert.IsTrue(IsUniqueInList(intent, intents));

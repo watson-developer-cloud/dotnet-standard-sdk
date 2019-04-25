@@ -25,7 +25,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages from
     /// the log.
     /// </summary>
-    public class OutputData : DynamicModel
+    public class OutputData : DynamicModel<object>
     {
         /// <summary>
         /// An array of up to 50 messages logged with the request.

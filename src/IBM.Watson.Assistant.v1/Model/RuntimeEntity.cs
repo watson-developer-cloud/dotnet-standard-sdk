@@ -24,7 +24,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// A term from the request that was identified as an entity.
     /// </summary>
-    public class RuntimeEntity : DynamicModel
+    public class RuntimeEntity : DynamicModel<object>
     {
         /// <summary>
         /// An entity detected in the input.

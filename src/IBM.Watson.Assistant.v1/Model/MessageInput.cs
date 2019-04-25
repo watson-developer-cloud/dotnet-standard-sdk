@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// An input object that includes the input text.
     /// </summary>
-    public class MessageInput : DynamicModel
+    public class MessageInput : DynamicModel<object>
     {
         /// <summary>
         /// The text of the user input. This string cannot contain carriage return, newline, or tab characters.

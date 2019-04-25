@@ -25,7 +25,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// **Note:** Currently, only a single property named `main skill` is supported. This object contains variables that
     /// apply to the dialog skill used by the assistant.
     /// </summary>
-    public class MessageContextSkills : DynamicModel
+    public class MessageContextSkills : DynamicModel<MessageContextSkill>
     {
     }
 

@@ -24,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// QueryResult.
     /// </summary>
-    public class QueryResult : DynamicModel
+    public class QueryResult : DynamicModel<object>
     {
         /// <summary>
         /// The unique identifier of the document.

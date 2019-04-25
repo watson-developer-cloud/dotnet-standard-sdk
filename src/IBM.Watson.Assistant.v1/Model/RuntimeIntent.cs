@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// An intent identified in the user input.
     /// </summary>
-    public class RuntimeIntent : DynamicModel
+    public class RuntimeIntent : DynamicModel<object>
     {
         /// <summary>
         /// The name of the recognized intent.

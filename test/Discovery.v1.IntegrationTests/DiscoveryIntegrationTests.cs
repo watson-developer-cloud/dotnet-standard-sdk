@@ -41,7 +41,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private static string version = "2019-01-15";
 
         private static string environmentId;
-        private static string createdConfigurationId;
+        private static string configurationId;
         private static string createdDocumentId;
         private static string queryId;
         private static string exampleId;
@@ -145,11 +145,11 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 enrichments: enrichments
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             var getConfigurationResults = service.GetConfiguration(
                 environmentId: environmentId,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             Configuration updateConfiguration = new Configuration()
@@ -159,22 +159,22 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             var updateConfigurationResults = service.UpdateConfiguration(
                 environmentId: environmentId,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 name: updatedConfigurationName
                 );
 
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             Assert.IsNotNull(deleteConfigurationResults);
             Assert.IsTrue(deleteConfigurationResults.Result.Status == DeleteConfigurationResponse.StatusEnumValue.DELETED);
             Assert.IsNotNull(updateConfigurationResults);
-            Assert.IsTrue(updateConfigurationResults.Result.ConfigurationId == createdConfigurationId);
+            Assert.IsTrue(updateConfigurationResults.Result.ConfigurationId == configurationId);
             Assert.IsTrue(updateConfigurationResults.Result.Description == createdConfigurationDescription);
             Assert.IsNotNull(getConfigurationResults);
-            Assert.IsTrue(getConfigurationResults.Result.ConfigurationId == createdConfigurationId);
+            Assert.IsTrue(getConfigurationResults.Result.ConfigurationId == configurationId);
             Assert.IsTrue(getConfigurationResults.Result.Description == createdConfigurationDescription);
             Assert.IsTrue(createConfigurationResults.Result.Enrichments[0].Options.Features.Concepts.Limit == 10);
             Assert.IsNotNull(createConfigurationResults);
@@ -183,7 +183,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsNotNull(listConfigurationsResults.Result.Configurations);
             Assert.IsTrue(listConfigurationsResults.Result.Configurations.Count > 0);
 
-            createdConfigurationId = null;
+            configurationId = null;
             environmentId = null;
         }
         #endregion
@@ -204,7 +204,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             var listCollectionsResult = service.ListCollections(
                 environmentId: environmentId
@@ -215,7 +215,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 name: collectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 language: createdCollectionLanguage
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -227,7 +227,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 collectionId: collectionId,
                 name: updatedCollectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             var listCollectionFieldsResult = service.ListCollectionFields(
@@ -241,7 +241,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             Assert.IsNotNull(deleteCollectionResult);
@@ -257,7 +257,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsNotNull(listCollectionsResult);
 
             environmentId = null;
-            createdConfigurationId = null;
+            configurationId = null;
             collectionId = null;
         }
         #endregion
@@ -272,7 +272,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             using (FileStream fs = File.OpenRead(filepathToIngest))
             {
@@ -281,14 +281,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fs.CopyTo(ms);
                     var testConfigurationInEnvironmentResult = service.TestConfigurationInEnvironment(
                         environmentId: environmentId,
-                        configurationId: createdConfigurationId,
+                        configurationId: configurationId,
                         file: ms, filename: "watson_beats_jeopardy.html",
                         fileContentType: "text/html"
                         );
 
                     var deleteConfigurationResults = service.DeleteConfiguration(
                         environmentId: environmentId,
-                        configurationId: createdConfigurationId
+                        configurationId: configurationId
                         );
 
                     Assert.IsNotNull(testConfigurationInEnvironmentResult.Result);
@@ -310,14 +310,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 language: createdCollectionLanguage
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -365,7 +365,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, createdDocumentId);
             var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
-            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, createdConfigurationId);
+            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, configurationId);
 
             Assert.IsNotNull(deleteDocumentResult);
             Assert.IsTrue(deleteDocumentResult.Result.Status == DeleteDocumentResponse.StatusEnumValue.DELETED);
@@ -377,7 +377,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             createdDocumentId = null;
             collectionId = null;
-            createdConfigurationId = null;
+            configurationId = null;
             environmentId = null;
         }
         #endregion
@@ -392,14 +392,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 language: createdCollectionLanguage
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -441,14 +441,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
 
             var deleteConfigurationResults = service.DeleteConfiguration(environmentId: environmentId,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             Assert.IsNotNull(queryResult);
 
             createdDocumentId = null;
             collectionId = null;
-            createdConfigurationId = null;
+            configurationId = null;
             environmentId = null;
         }
         #endregion
@@ -463,14 +463,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 language: createdCollectionLanguage
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -519,14 +519,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
-                configurationId: createdConfigurationId
+                configurationId: configurationId
                 );
 
             Assert.IsNotNull(queryNoticesResult.Result);
             Assert.IsNotNull(queryNoticesResult.Result.MatchingResults);
 
             environmentId = null;
-            createdConfigurationId = null;
+            configurationId = null;
             createdDocumentId = null;
         }
         #endregion
@@ -541,14 +541,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 description: createdConfigurationDescription
                 );
 
-            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
                 description: createdCollectionDescription,
-                configurationId: createdConfigurationId,
+                configurationId: configurationId,
                 language: createdCollectionLanguage
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -637,7 +637,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var deleteAllTrainingDataResult = service.DeleteAllTrainingData(environmentId, collectionId);
             var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, createdDocumentId);
             var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
-            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, createdConfigurationId);
+            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, configurationId);
 
             Assert.IsTrue(deleteAllTrainingDataResult.StatusCode == 204);
             Assert.IsTrue(deleteTrainingDataResult.StatusCode == 204);
@@ -657,7 +657,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             exampleId = null;
             queryId = null;
-            createdConfigurationId = null;
+            configurationId = null;
             environmentId = null;
             createdDocumentId = null;
         }
@@ -717,7 +717,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
 
             var deleteCredentialsResult = service.DeleteCredentials(
-                environmentId: environmentId, 
+                environmentId: environmentId,
                 credentialId: credentialId
                 );
 
@@ -740,148 +740,184 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        //#region Events
-        //[TestMethod]
-        //public void TestCreateEvent_Success()
-        //{
-        //    Configuration configuration = new Configuration()
-        //    {
-        //        Name = createdConfigurationName,
-        //        Description = createdConfigurationDescription,
+        #region Events
+        [TestMethod]
+        public void TestCreateEvent_Success()
+        {
+            Configuration configuration = new Configuration();
+            var createConfigurationResults = service.CreateConfiguration(
+                environmentId: environmentId,
+                name: createdConfigurationName,
+                description: createdConfigurationDescription
+                );
 
-        //    };
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
-        //    var createConfigurationResults = CreateConfiguration(environmentId, configuration);
-        //    createdConfigurationId = createConfigurationResults.ConfigurationId;
+            string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            var createCollectionResult = service.CreateCollection(
+                environmentId: environmentId,
+                name: collectionName,
+                description: createdCollectionDescription,
+                configurationId: configurationId,
+                language: createdCollectionLanguage
+                );
+            var collectionId = createCollectionResult.Result.CollectionId;
 
-        //    var listCollectionsResult = ListCollections(environmentId);
+            DetailedResponse<DocumentAccepted> addDocumentResult;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    addDocumentResult = service.AddDocument(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    file: ms,
+                    filename: "watson_beats_jeopardy.html",
+                    fileContentType: "text/html",
+                    metadata: metadata
+                    );
+                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                }
+            }
 
-        //    CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-        //    {
-        //        Language = createdCollectionLanguage,
-        //        Name = createdCollectionName + "-" + Guid.NewGuid(),
-        //        Description = createdCollectionDescription
-        //    };
+            var queryResult = service.Query(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                returnFields: "extracted_metadata.sha1"
+                );
 
-        //    var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
-        //    var _createdCollectionId = createCollectionResult.CollectionId;
+            var data = new EventData()
+            {
+                EnvironmentId = environmentId,
+                SessionToken = queryResult.Result.SessionToken,
+                CollectionId = collectionId,
+                DocumentId = createdDocumentId
+            };
 
-        //    DocumentAccepted addDocumentResult;
-        //    using (FileStream fs = File.OpenRead(filepathToIngest))
-        //    {
-        //        addDocumentResult = AddDocument(environmentId, _createdCollectionId, fs, metadata);
-        //        createdDocumentId = addDocumentResult.DocumentId;
-        //    }
+            var createEventResult = service.CreateEvent(
+                type: CreateEventResponse.TypeEnumValue.CLICK,
+                data: data
+                );
 
-        //    var getDocumentStatusResult = GetDocumentStatus(environmentId, _createdCollectionId, createdDocumentId);
+            var deleteDocumentResult = service.DeleteDocument(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                documentId: createdDocumentId
+                );
+            var deleteCollectionResult = service.DeleteCollection(
+                environmentId: environmentId,
+                collectionId: collectionId);
+            var deleteConfigurationResults = service.DeleteConfiguration(
+                environmentId: environmentId, configurationId: configurationId);
 
-        //    var queryResult = Query(environmentId, _createdCollectionId, naturalLanguageQuery: "what year did watson play jeopardy");
+            Assert.IsNotNull(queryResult);
+            Assert.IsNotNull(createEventResult);
+            Assert.IsNotNull(createEventResult.Result.Data);
+            Assert.IsTrue(createEventResult.Result.Data.EnvironmentId == environmentId);
+            Assert.IsTrue(createEventResult.Result.Data.SessionToken == queryResult.Result.SessionToken);
+            Assert.IsTrue(createEventResult.Result.Data.CollectionId == collectionId);
+            Assert.IsTrue(createEventResult.Result.Data.DocumentId == createdDocumentId);
+        }
+        #endregion
 
-        //    CreateEventObject queryEvent = new CreateEventObject()
-        //    {
-        //        Type = CreateEventObject.TypeEnum.CLICK,
-        //        Data = new EventData()
-        //        {
-        //            EnvironmentId = environmentId,
-        //            SessionToken = queryResult.SessionToken,
-        //            CollectionId = _createdCollectionId,
-        //            DocumentId = createdDocumentId
-        //        }
-        //    };
+        #region Metrics
+        [TestMethod]
+        public void TestMetrics_Success()
+        {
+            var getMetricsEventRateResult = service.GetMetricsEventRate();
 
-        //    var createEventResult = CreateEvent(queryEvent);
+            var getMetricsQueryResult = service.GetMetricsQuery();
 
-        //    var deleteDocumentResult = DeleteDocument(environmentId, _createdCollectionId, createdDocumentId);
-        //    var deleteCollectionResult = DeleteCollection(environmentId, _createdCollectionId);
-        //    var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
+            var getMetricsQueryEventResult = service.GetMetricsQueryEvent();
 
-        //    Assert.IsNotNull(queryResult);
-        //    Assert.IsNotNull(createEventResult);
-        //    Assert.IsNotNull(createEventResult.Data);
-        //    Assert.IsTrue(createEventResult.Data.EnvironmentId == environmentId);
-        //    Assert.IsTrue(createEventResult.Data.SessionToken == queryResult.SessionToken);
-        //    Assert.IsTrue(createEventResult.Data.CollectionId== _createdCollectionId);
-        //    Assert.IsTrue(createEventResult.Data.DocumentId == createdDocumentId);
-        //}
-        //#endregion
+            var getMetricsQueryNoResultsResult = service.GetMetricsQueryNoResults();
 
-        //#region Metrics
-        //[TestMethod]
-        //public void TestMetrics_Success()
-        //{
-        //    var getMetricsEventRateResult = GetMetricsEventRate();
+            var getMetricsQueryTokenEventResult = service.GetMetricsQueryTokenEvent();
 
-        //    var getMetricsQueryResult = GetMetricsQuery();
+            var queryLogResult = service.QueryLog();
 
-        //    var getMetricsQueryEventResult = GetMetricsQueryEvent();
+            Assert.IsNotNull(queryLogResult);
+            Assert.IsNotNull(queryLogResult.Result.Results);
+            Assert.IsNotNull(getMetricsQueryTokenEventResult);
+            Assert.IsNotNull(getMetricsQueryTokenEventResult.Result.Aggregations);
+            Assert.IsNotNull(getMetricsQueryNoResultsResult);
+            Assert.IsNotNull(getMetricsQueryNoResultsResult.Result.Aggregations);
+            Assert.IsNotNull(getMetricsQueryEventResult);
+            Assert.IsNotNull(getMetricsQueryEventResult.Result.Aggregations);
+            Assert.IsNotNull(getMetricsQueryResult);
+            Assert.IsNotNull(getMetricsQueryResult.Result.Aggregations);
+            Assert.IsNotNull(getMetricsEventRateResult);
+            Assert.IsNotNull(getMetricsEventRateResult.Result.Aggregations);
+        }
+        #endregion
 
-        //    var getMetricsQueryNoResultsResult = GetMetricsQueryNoResults();
+        #region Expansions
+        [TestMethod]
+        public void TestExpansions_Success()
+        {
+            Configuration configuration = new Configuration();
+            var createConfigurationResults = service.CreateConfiguration(
+                environmentId: environmentId,
+                name: createdConfigurationName,
+                description: createdConfigurationDescription
+                );
 
-        //    var getMetricsQueryTokenEventResult = GetMetricsQueryTokenEvent();
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
-        //    var queryLogResult = QueryLog();
+            string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            var createCollectionResult = service.CreateCollection(
+                environmentId: environmentId,
+                name: collectionName,
+                description: createdCollectionDescription,
+                configurationId: configurationId,
+                language: createdCollectionLanguage
+                );
+            var collectionId = createCollectionResult.Result.CollectionId;
 
-        //    Assert.IsNotNull(queryLogResult);
-        //    Assert.IsNotNull(queryLogResult.Results);
-        //    Assert.IsNotNull(getMetricsQueryTokenEventResult);
-        //    Assert.IsNotNull(getMetricsQueryTokenEventResult.Aggregations);
-        //    Assert.IsNotNull(getMetricsQueryNoResultsResult);
-        //    Assert.IsNotNull(getMetricsQueryNoResultsResult.Aggregations);
-        //    Assert.IsNotNull(getMetricsQueryEventResult);
-        //    Assert.IsNotNull(getMetricsQueryEventResult.Aggregations);
-        //    Assert.IsNotNull(getMetricsQueryResult);
-        //    Assert.IsNotNull(getMetricsQueryResult.Aggregations);
-        //    Assert.IsNotNull(getMetricsEventRateResult);
-        //    Assert.IsNotNull(getMetricsEventRateResult.Aggregations);
-        //}
-        //#endregion
+            var expansions = new List<Expansion>()
+            {
+                new Expansion()
+                {
+                    InputTerms = new List<string>()
+                    {
+                        "input-term"
+                    },
+                    ExpandedTerms = new List<string>()
+                    {
+                        "expanded-term"
+                    }
+                }
+            };
 
-        //#region Expansions
-        //[TestMethod]
-        //public void TestExpansions_Success()
-        //{
-        //    CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-        //    {
-        //        Language = CreateCollectionRequest.LanguageEnum.JA,
-        //        Name = "expansions-collection-please-delete-" + Guid.NewGuid(),
-        //        Description = createdCollectionDescription
-        //    };
+            var createExpansionsResult = service.CreateExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                expansions: expansions
+                );
+            var listExpansionsResult = service.ListExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteExpansionResult = service.DeleteExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteCollectionResult = service.DeleteCollection(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
 
-        //    var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
-        //    var expansionCollectionId = createCollectionResult.CollectionId;
-
-        //    Expansions body = new Expansions()
-        //    {
-        //        _Expansions = new List<Expansion>()
-        //        {
-        //            new Expansion()
-        //            {
-        //                InputTerms = new List<string>()
-        //                {
-        //                    "input-term"
-        //                },
-        //                ExpandedTerms = new List<string>()
-        //                {
-        //                    "expanded-term"
-        //                }
-        //            }
-        //        }
-        //    };
-
-        //    var createExpansionsResult = CreateExpansions(environmentId, expansionCollectionId, body);
-        //    var listExpansionsResult = ListExpansions(environmentId, expansionCollectionId);
-        //    var deleteExpansionResult = DeleteExpansions(environmentId, expansionCollectionId);
-        //    DeleteCollection(environmentId, expansionCollectionId);
-
-        //    Assert.IsNotNull(deleteExpansionResult);
-        //    Assert.IsNotNull(listExpansionsResult);
-        //    Assert.IsTrue(listExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
-        //    Assert.IsTrue(listExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
-        //    Assert.IsNotNull(createExpansionsResult);
-        //    Assert.IsTrue(createExpansionsResult._Expansions[0].ExpandedTerms[0] == "expanded-term");
-        //    Assert.IsTrue(createExpansionsResult._Expansions[0].InputTerms[0] == "input-term");
-        //}
-        //#endregion
+            Assert.IsNotNull(deleteExpansionResult);
+            Assert.IsNotNull(listExpansionsResult);
+            Assert.IsTrue(listExpansionsResult.Result._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(listExpansionsResult.Result._Expansions[0].InputTerms[0] == "input-term");
+            Assert.IsNotNull(createExpansionsResult);
+            Assert.IsTrue(createExpansionsResult.Result._Expansions[0].ExpandedTerms[0] == "expanded-term");
+            Assert.IsTrue(createExpansionsResult.Result._Expansions[0].InputTerms[0] == "input-term");
+        }
+        #endregion
 
         //#region Tokenization
         //[TestMethod]

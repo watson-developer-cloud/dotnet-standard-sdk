@@ -43,8 +43,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private static string environmentId;
         private static string createdConfigurationId;
         private static string createdDocumentId;
-        private static string createdTrainingQueryId;
-        private static string createdTrainingExampleId;
+        private static string queryId;
+        private static string exampleId;
 
         private string createdConfigurationName;
         private string updatedConfigurationName;
@@ -423,15 +423,15 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             }
 
             var queryResult = service.Query(
-                environmentId: environmentId, 
-                collectionId: collectionId, 
-                naturalLanguageQuery: naturalLanguageQuery, 
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery,
                 returnFields: "extracted_metadata.sha1"
                 );
 
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
-                collectionId: collectionId, 
+                collectionId: collectionId,
                 documentId: createdDocumentId
                 );
 
@@ -494,21 +494,21 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             }
 
             var queryResult = service.Query(
-                environmentId: environmentId, 
-                collectionId: collectionId, 
+                environmentId: environmentId,
+                collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery
                 );
 
             var queryNoticesResult = service.QueryNotices(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                naturalLanguageQuery: naturalLanguageQuery, 
+                naturalLanguageQuery: naturalLanguageQuery,
                 passages: true
                 );
 
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
-                collectionId: collectionId, 
+                collectionId: collectionId,
                 documentId: createdDocumentId
                 );
 
@@ -531,112 +531,137 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        //#region Training Data
-        //[TestMethod]
-        //public void TestTrainingData()
-        //{
-        //    Configuration configuration = new Configuration()
-        //    {
-        //        Name = createdConfigurationName,
-        //        Description = createdConfigurationDescription,
+        #region Training Data
+        [TestMethod]
+        public void TestTrainingData()
+        {
+            var createConfigurationResults = service.CreateConfiguration(
+                environmentId: environmentId,
+                name: createdConfigurationName,
+                description: createdConfigurationDescription
+                );
 
-        //    };
+            createdConfigurationId = createConfigurationResults.Result.ConfigurationId;
 
-        //    var createConfigurationResults = CreateConfiguration(environmentId, configuration);
-        //    createdConfigurationId = createConfigurationResults.ConfigurationId;
+            string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            var createCollectionResult = service.CreateCollection(
+                environmentId: environmentId,
+                name: collectionName,
+                description: createdCollectionDescription,
+                configurationId: createdConfigurationId,
+                language: createdCollectionLanguage
+                );
+            var collectionId = createCollectionResult.Result.CollectionId;
 
-        //    var listCollectionsResult = ListCollections(environmentId);
+            DetailedResponse<DocumentAccepted> addDocumentResult;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    addDocumentResult = service.AddDocument(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    file: ms,
+                    filename: "watson_beats_jeopardy.html",
+                    fileContentType: "text/html",
+                    metadata: metadata
+                    );
+                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                }
+            }
 
-        //    CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-        //    {
-        //        Language = createdCollectionLanguage,
-        //        Name = createdCollectionName + "-" + Guid.NewGuid(),
-        //        Description = createdCollectionDescription
-        //    };
+            var listTrainingDataResult = service.ListTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
 
-        //    var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
-        //    var trainingCollectionId = createCollectionResult.CollectionId;
+            var examples = new List<TrainingExample>()
+            {
+                new TrainingExample()
+                {
+                    DocumentId = "documentId",
+                    CrossReference = "crossReference",
+                    Relevance = 1
+                }
+            };
 
-        //    DocumentAccepted addDocumentResult;
-        //    using (FileStream fs = File.OpenRead(filepathToIngest))
-        //    {
-        //        addDocumentResult = AddDocument(environmentId, trainingCollectionId, fs, metadata);
-        //        createdDocumentId = addDocumentResult.DocumentId;
-        //    }
+            var addTrainingDataResult = service.AddTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery, 
+                filter: "filter", 
+                examples: examples
+                );
+            queryId = addTrainingDataResult.Result.QueryId;
 
-        //    var getDocumentStatusResult = GetDocumentStatus(environmentId, trainingCollectionId, createdDocumentId);
+            var getTrainingDataResult = service.GetTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId
+                );
 
-        //    DocumentAccepted updateDocumentResult;
-        //    using (FileStream fs = File.OpenRead(filepathToIngest))
-        //    {
-        //        updateDocumentResult = UpdateDocument(environmentId, trainingCollectionId, createdDocumentId, fs, metadata);
-        //    }
+            var trainingExample = new TrainingExample()
+            {
+                DocumentId = createdDocumentId,
+                Relevance = 1
+            };
 
-        //    var listTrainingDataResult = ListTrainingData(environmentId, trainingCollectionId);
+            var createTrainingExampleResult = service.CreateTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId, 
+                documentId: createdDocumentId, 
+                relevance: 1
+                ); 
+            exampleId = createTrainingExampleResult.Result.DocumentId;
 
-        //    var newTrainingQuery = new NewTrainingQuery()
-        //    {
-        //        NaturalLanguageQuery = "naturalLanguageQuery",
-        //        Filter = "filter",
-        //        Examples = new List<TrainingExample>()
-        //        {
-        //            new TrainingExample()
-        //            {
-        //                DocumentId = "documentId",
-        //                CrossReference = "crossReference",
-        //                Relevance = 1
-        //            }
-        //        }
-        //    };
+            var getTrainingExampleResult = service.GetTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId, 
+                exampleId: exampleId
+                );
 
-        //    var addTrainingDataResult = AddTrainingData(environmentId, trainingCollectionId, newTrainingQuery);
-        //    createdTrainingQueryId = addTrainingDataResult.QueryId;
+            var updateTrainingExampleResult = service.UpdateTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                exampleId: exampleId, 
+                crossReference: "crossReference", 
+                relevance: 1
+                );
 
-        //    var getTrainingDataResult = GetTrainingData(environmentId, trainingCollectionId, createdTrainingQueryId);
+            var deleteTrainingExampleResult = service.DeleteTrainingExample(environmentId, collectionId, queryId, exampleId);
+            var deleteTrainingDataResult = service.DeleteTrainingData(environmentId, collectionId, queryId);
+            var deleteAllTrainingDataResult = service.DeleteAllTrainingData(environmentId, collectionId);
+            var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, createdDocumentId);
+            var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
+            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, createdConfigurationId);
 
-        //    var trainingExample = new TrainingExample()
-        //    {
-        //        DocumentId = createdDocumentId,
-        //        Relevance = 1
-        //    };
+            Assert.IsTrue(deleteAllTrainingDataResult.StatusCode == 204);
+            Assert.IsTrue(deleteTrainingDataResult.StatusCode == 204);
+            Assert.IsTrue(deleteTrainingExampleResult.StatusCode == 204);
+            Assert.IsNotNull(updateTrainingExampleResult.Result);
+            Assert.IsTrue(updateTrainingExampleResult.Result.CrossReference == "crossReference");
+            Assert.IsNotNull(getTrainingExampleResult.Result);
+            Assert.IsTrue(getTrainingExampleResult.Result.DocumentId == createdDocumentId);
+            Assert.IsNotNull(createTrainingExampleResult.Result);
+            Assert.IsTrue(createTrainingExampleResult.Result.DocumentId == createdDocumentId);
+            Assert.IsNotNull(getTrainingDataResult.Result);
+            Assert.IsTrue(getTrainingDataResult.Result.QueryId == queryId);
+            Assert.IsNotNull(addTrainingDataResult.Result);
+            Assert.IsTrue(addTrainingDataResult.Result.NaturalLanguageQuery == naturalLanguageQuery);
+            Assert.IsNotNull(listTrainingDataResult.Result);
+            Assert.IsTrue(listTrainingDataResult.Result.EnvironmentId == environmentId);
 
-        //    var createTrainingExampleResult = CreateTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, trainingExample);
-        //    createdTrainingExampleId = createTrainingExampleResult.DocumentId;
-
-        //    var getTrainingExampleResult = GetTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId);
-
-        //    var updateTrainingExample = new TrainingExamplePatch()
-        //    {
-        //        CrossReference = "crossReference",
-        //        Relevance = 1
-        //    };
-
-        //    var updateTrainingExampleResult = UpdateTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId, updateTrainingExample);
-
-        //    var deleteTrainingExampleResult = DeleteTrainingExample(environmentId, trainingCollectionId, createdTrainingQueryId, createdTrainingExampleId);
-        //    var deleteTrainingDataResult = DeleteTrainingData(environmentId, trainingCollectionId, createdTrainingQueryId);
-        //    var deleteAllTrainingDataResult = DeleteAllTrainingData(environmentId, trainingCollectionId);
-        //    var deleteDocumentResult = DeleteDocument(environmentId, trainingCollectionId, createdDocumentId);
-        //    var deleteCollectionResult = DeleteCollection(environmentId, trainingCollectionId);
-        //    var deleteConfigurationResults = DeleteConfiguration(environmentId, createdConfigurationId);
-
-        //    Assert.IsNotNull(deleteAllTrainingDataResult);
-        //    Assert.IsNotNull(deleteTrainingDataResult);
-        //    Assert.IsNotNull(deleteTrainingExampleResult);
-        //    Assert.IsNotNull(updateTrainingExampleResult);
-        //    Assert.IsNotNull(getTrainingExampleResult);
-        //    Assert.IsNotNull(createTrainingExampleResult);
-        //    Assert.IsNotNull(getTrainingDataResult);
-        //    Assert.IsNotNull(addTrainingDataResult);
-        //    Assert.IsNotNull(listTrainingDataResult);
-
-        //    createdTrainingExampleId = null;
-        //    createdTrainingQueryId = null;
-        //    createdConfigurationId = null;
-        //    environmentId = null;
-        //    createdDocumentId = null;
-        //}
-        //#endregion
+            exampleId = null;
+            queryId = null;
+            createdConfigurationId = null;
+            environmentId = null;
+            createdDocumentId = null;
+        }
+        #endregion
 
         //#region Credentials
         ////[TestMethod]

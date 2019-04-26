@@ -61,6 +61,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.IntegrationTests", "test\IBM.Watson.IntegrationTests\IBM.Watson.IntegrationTests.csproj", "{76EDAFFC-A536-40F3-B744-D894A5B28F46}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.IntegrationTests", "test\Discovery.v1.IntegrationTests\IBM.Watson.Discovery.v1.IntegrationTests.csproj", "{813C103F-C215-4DAF-B30D-632DDA091F63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core", "..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj", "{434E15AB-975C-46D0-A2DD-945DAAFEEC24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +135,14 @@ Global
 		{76EDAFFC-A536-40F3-B744-D894A5B28F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76EDAFFC-A536-40F3-B744-D894A5B28F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76EDAFFC-A536-40F3-B744-D894A5B28F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{813C103F-C215-4DAF-B30D-632DDA091F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{813C103F-C215-4DAF-B30D-632DDA091F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{813C103F-C215-4DAF-B30D-632DDA091F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{813C103F-C215-4DAF-B30D-632DDA091F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{434E15AB-975C-46D0-A2DD-945DAAFEEC24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434E15AB-975C-46D0-A2DD-945DAAFEEC24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434E15AB-975C-46D0-A2DD-945DAAFEEC24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434E15AB-975C-46D0-A2DD-945DAAFEEC24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +163,7 @@ Global
 		{8A4747E7-C4D9-4BBF-A395-893CDD402684} = {882BFF31-6729-459E-BCEB-556AD4CC31FA}
 		{3B164A8B-0472-40C9-ADB7-2E89D0313382} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
 		{8204EB2C-938D-4C16-BE60-15DA66F9D70C} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
+		{813C103F-C215-4DAF-B30D-632DDA091F63} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

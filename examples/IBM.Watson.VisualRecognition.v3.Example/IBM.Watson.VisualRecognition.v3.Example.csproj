@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.3.0" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>

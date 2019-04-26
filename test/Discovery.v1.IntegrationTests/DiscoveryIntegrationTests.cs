@@ -589,8 +589,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var addTrainingDataResult = service.AddTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                naturalLanguageQuery: naturalLanguageQuery, 
-                filter: "filter", 
+                naturalLanguageQuery: naturalLanguageQuery,
+                filter: "filter",
                 examples: examples
                 );
             queryId = addTrainingDataResult.Result.QueryId;
@@ -610,16 +610,16 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var createTrainingExampleResult = service.CreateTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                queryId: queryId, 
-                documentId: createdDocumentId, 
+                queryId: queryId,
+                documentId: createdDocumentId,
                 relevance: 1
-                ); 
+                );
             exampleId = createTrainingExampleResult.Result.DocumentId;
 
             var getTrainingExampleResult = service.GetTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                queryId: queryId, 
+                queryId: queryId,
                 exampleId: exampleId
                 );
 
@@ -627,8 +627,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 queryId: queryId,
-                exampleId: exampleId, 
-                crossReference: "crossReference", 
+                exampleId: exampleId,
+                crossReference: "crossReference",
                 relevance: 1
                 );
 
@@ -663,72 +663,82 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        //#region Credentials
-        ////[TestMethod]
-        //public void TestCredentials_Success()
-        //{
-        //    var listCredentialsResult = ListCredentials(environmentId);
+        #region Credentials
+        [TestMethod]
+        public void TestCredentials_Success()
+        {
+            var listCredentialsResult = service.ListCredentials(
+                environmentId: environmentId
+                );
 
-        //    Model.Credentials credentials = new Model.Credentials()
-        //    {
-        //        SourceType = Model.Credentials.SourceTypeEnum.BOX,
-        //        CredentialDetails = new CredentialDetails()
-        //        {
-        //            CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
-        //            EnterpriseId = "myEnterpriseId",
-        //            ClientId = "myClientId",
-        //            ClientSecret = "myClientSecret",
-        //            PublicKeyId = "myPublicIdKey",
-        //            Passphrase = "myPassphrase",
-        //            PrivateKey = "myPrivateKey"
-        //        }
-        //    };
+            var credentialDetails = new CredentialDetails()
+            {
+                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
+                EnterpriseId = "myEnterpriseId",
+                ClientId = "myClientId",
+                ClientSecret = "myClientSecret",
+                PublicKeyId = "myPublicIdKey",
+                Passphrase = "myPassphrase",
+                PrivateKey = "myPrivateKey"
+            };
 
-        //    var createCredentialsResult = CreateCredentials(environmentId, credentials);
-        //    string credentialId = createCredentialsResult.CredentialId;
+            var createCredentialsResult = service.CreateCredentials(
+                environmentId: environmentId,
+                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                credentialDetails: credentialDetails
+                );
+            string credentialId = createCredentialsResult.Result.CredentialId;
 
-        //    var getCredentialResult = GetCredentials(environmentId, credentialId);
-        //    string privateKey = "privatekey";
-        //    var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
-        //    var base64PrivateKey = System.Convert.ToBase64String(privateKeyBytes);
+            var getCredentialResult = service.GetCredentials(
+                environmentId: environmentId,
+                credentialId: credentialId
+                );
 
-        //    Model.Credentials updatedCredentials = new Model.Credentials()
-        //    {
-        //        SourceType = Model.Credentials.SourceTypeEnum.BOX,
-        //        CredentialDetails = new CredentialDetails()
-        //        {
-        //            CredentialType = CredentialDetails.CredentialTypeEnum.OAUTH2,
-        //            EnterpriseId = "myEnterpriseIdUpdated",
-        //            ClientId = "myClientIdUpdated",
-        //            ClientSecret = "myClientSecretUpdated",
-        //            PublicKeyId = "myPublicIdKeyUpdated",
-        //            Passphrase = "myPassphraseUpdated",
-        //            PrivateKey = base64PrivateKey
-        //        }
-        //    };
+            string privateKey = "privatekey";
+            var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
+            var base64PrivateKey = Convert.ToBase64String(privateKeyBytes);
 
-        //    //var updateCredentialResult = UpdateCredentials(_environmentId, credentialId, updatedCredentials);
+            var updatedCredentialDetails = new CredentialDetails()
+            {
+                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
+                EnterpriseId = "myEnterpriseIdUpdated",
+                ClientId = "myClientIdUpdated",
+                ClientSecret = "myClientSecretUpdated",
+                PublicKeyId = "myPublicIdKeyUpdated",
+                Passphrase = "myPassphraseUpdated",
+                PrivateKey = base64PrivateKey
+            };
 
-        //    var deleteCredentialsResult = DeleteCredentials(environmentId, credentialId);
+            var updateCredentialResult = service.UpdateCredentials(
+                environmentId: environmentId,
+                credentialId: credentialId,
+                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                credentialDetails: updatedCredentialDetails
+                );
 
-        //    Assert.IsNotNull(listCredentialsResult);
-        //    Assert.IsTrue(!string.IsNullOrEmpty(listCredentialsResult.ResponseJson));
-        //    Assert.IsNotNull(createCredentialsResult);
-        //    Assert.IsTrue(!string.IsNullOrEmpty(createCredentialsResult.CredentialId));
-        //    Assert.IsTrue(createCredentialsResult.SourceType == Credentials.SourceTypeEnum.BOX);
-        //    Assert.IsTrue(createCredentialsResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
-        //    Assert.IsTrue(createCredentialsResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
-        //    Assert.IsNotNull(getCredentialResult);
-        //    Assert.IsTrue(getCredentialResult.SourceType == Credentials.SourceTypeEnum.BOX);
-        //    Assert.IsTrue(getCredentialResult.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnum.OAUTH2);
-        //    Assert.IsTrue(getCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseId");
-        //    //Assert.IsNotNull(updateCredentialResult);
-        //    //Assert.IsTrue(updateCredentialResult.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
-        //    Assert.IsNotNull(deleteCredentialsResult);
-        //    Assert.IsTrue(deleteCredentialsResult.CredentialId == credentialId);
-        //    Assert.IsTrue(deleteCredentialsResult.Status == Model.DeleteCredentials.StatusEnum.DELETED);
-        //}
-        //#endregion
+            var deleteCredentialsResult = service.DeleteCredentials(
+                environmentId: environmentId, 
+                credentialId: credentialId
+                );
+
+            Assert.IsNotNull(listCredentialsResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(listCredentialsResult.Response));
+            Assert.IsNotNull(createCredentialsResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(createCredentialsResult.Result.CredentialId));
+            Assert.IsTrue(createCredentialsResult.Result.SourceType == Credentials.SourceTypeEnumValue.BOX);
+            Assert.IsTrue(createCredentialsResult.Result.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnumValue.OAUTH2);
+            Assert.IsTrue(createCredentialsResult.Result.CredentialDetails.EnterpriseId == "myEnterpriseId");
+            Assert.IsNotNull(getCredentialResult);
+            Assert.IsTrue(getCredentialResult.Result.SourceType == Credentials.SourceTypeEnumValue.BOX);
+            Assert.IsTrue(getCredentialResult.Result.CredentialDetails.CredentialType == CredentialDetails.CredentialTypeEnumValue.OAUTH2);
+            Assert.IsTrue(getCredentialResult.Result.CredentialDetails.EnterpriseId == "myEnterpriseId");
+            Assert.IsNotNull(updateCredentialResult);
+            Assert.IsTrue(updateCredentialResult.Result.CredentialDetails.EnterpriseId == "myEnterpriseIdUpdated");
+            Assert.IsNotNull(deleteCredentialsResult);
+            Assert.IsTrue(deleteCredentialsResult.Result.CredentialId == credentialId);
+            Assert.IsTrue(deleteCredentialsResult.Result.Status == Model.DeleteCredentials.StatusEnumValue.DELETED);
+        }
+        #endregion
 
         //#region Events
         //[TestMethod]

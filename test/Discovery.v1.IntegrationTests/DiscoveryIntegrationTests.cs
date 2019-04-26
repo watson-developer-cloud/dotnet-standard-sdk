@@ -42,7 +42,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
         private static string environmentId;
         private static string configurationId;
-        private static string createdDocumentId;
+        private static string documentId;
         private static string queryId;
         private static string exampleId;
 
@@ -336,14 +336,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
-                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                    documentId = addDocumentResult.Result.DocumentId;
                 }
             }
 
             var getDocumentStatusResult = service.GetDocumentStatus(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                documentId: createdDocumentId
+                documentId: documentId
                 );
 
             DetailedResponse<DocumentAccepted> updateDocumentResult;
@@ -355,7 +355,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     updateDocumentResult = service.UpdateDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
-                    documentId: createdDocumentId,
+                    documentId: documentId,
                     file: ms,
                     filename: "watson_beats_jeopardy.html",
                     fileContentType: "text/html",
@@ -363,19 +363,19 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
-            var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, createdDocumentId);
+            var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, documentId);
             var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
             var deleteConfigurationResults = service.DeleteConfiguration(environmentId, configurationId);
 
             Assert.IsNotNull(deleteDocumentResult);
             Assert.IsTrue(deleteDocumentResult.Result.Status == DeleteDocumentResponse.StatusEnumValue.DELETED);
             Assert.IsNotNull(updateDocumentResult);
-            Assert.IsTrue(updateDocumentResult.Result.DocumentId == createdDocumentId);
+            Assert.IsTrue(updateDocumentResult.Result.DocumentId == documentId);
             Assert.IsNotNull(getDocumentStatusResult);
-            Assert.IsTrue(getDocumentStatusResult.Result.DocumentId == createdDocumentId);
+            Assert.IsTrue(getDocumentStatusResult.Result.DocumentId == documentId);
             Assert.IsNotNull(addDocumentResult);
 
-            createdDocumentId = null;
+            documentId = null;
             collectionId = null;
             configurationId = null;
             environmentId = null;
@@ -418,7 +418,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
-                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                    documentId = addDocumentResult.Result.DocumentId;
                 }
             }
 
@@ -432,7 +432,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                documentId: createdDocumentId
+                documentId: documentId
                 );
 
             var deleteCollectionResult = service.DeleteCollection(
@@ -446,7 +446,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             Assert.IsNotNull(queryResult);
 
-            createdDocumentId = null;
+            documentId = null;
             collectionId = null;
             configurationId = null;
             environmentId = null;
@@ -489,7 +489,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
-                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                    documentId = addDocumentResult.Result.DocumentId;
                 }
             }
 
@@ -509,7 +509,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                documentId: createdDocumentId
+                documentId: documentId
                 );
 
             var deleteCollectionResult = service.DeleteCollection(
@@ -527,7 +527,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             environmentId = null;
             configurationId = null;
-            createdDocumentId = null;
+            documentId = null;
         }
         #endregion
 
@@ -567,7 +567,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
-                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                    documentId = addDocumentResult.Result.DocumentId;
                 }
             }
 
@@ -603,7 +603,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             var trainingExample = new TrainingExample()
             {
-                DocumentId = createdDocumentId,
+                DocumentId = documentId,
                 Relevance = 1
             };
 
@@ -611,7 +611,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 queryId: queryId,
-                documentId: createdDocumentId,
+                documentId: documentId,
                 relevance: 1
                 );
             exampleId = createTrainingExampleResult.Result.DocumentId;
@@ -632,12 +632,34 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 relevance: 1
                 );
 
-            var deleteTrainingExampleResult = service.DeleteTrainingExample(environmentId, collectionId, queryId, exampleId);
-            var deleteTrainingDataResult = service.DeleteTrainingData(environmentId, collectionId, queryId);
-            var deleteAllTrainingDataResult = service.DeleteAllTrainingData(environmentId, collectionId);
-            var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, createdDocumentId);
-            var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
-            var deleteConfigurationResults = service.DeleteConfiguration(environmentId, configurationId);
+            var deleteTrainingExampleResult = service.DeleteTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                exampleId: exampleId
+                );
+            var deleteTrainingDataResult = service.DeleteTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId
+                );
+            var deleteAllTrainingDataResult = service.DeleteAllTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteDocumentResult = service.DeleteDocument(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                documentId: documentId
+                );
+            var deleteCollectionResult = service.DeleteCollection(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteConfigurationResults = service.DeleteConfiguration(
+                environmentId: environmentId,
+                configurationId: configurationId
+                );
 
             Assert.IsTrue(deleteAllTrainingDataResult.StatusCode == 204);
             Assert.IsTrue(deleteTrainingDataResult.StatusCode == 204);
@@ -645,9 +667,9 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsNotNull(updateTrainingExampleResult.Result);
             Assert.IsTrue(updateTrainingExampleResult.Result.CrossReference == "crossReference");
             Assert.IsNotNull(getTrainingExampleResult.Result);
-            Assert.IsTrue(getTrainingExampleResult.Result.DocumentId == createdDocumentId);
+            Assert.IsTrue(getTrainingExampleResult.Result.DocumentId == documentId);
             Assert.IsNotNull(createTrainingExampleResult.Result);
-            Assert.IsTrue(createTrainingExampleResult.Result.DocumentId == createdDocumentId);
+            Assert.IsTrue(createTrainingExampleResult.Result.DocumentId == documentId);
             Assert.IsNotNull(getTrainingDataResult.Result);
             Assert.IsTrue(getTrainingDataResult.Result.QueryId == queryId);
             Assert.IsNotNull(addTrainingDataResult.Result);
@@ -659,7 +681,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             queryId = null;
             configurationId = null;
             environmentId = null;
-            createdDocumentId = null;
+            documentId = null;
         }
         #endregion
 
@@ -777,7 +799,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
-                    createdDocumentId = addDocumentResult.Result.DocumentId;
+                    documentId = addDocumentResult.Result.DocumentId;
                 }
             }
 
@@ -793,7 +815,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 EnvironmentId = environmentId,
                 SessionToken = queryResult.Result.SessionToken,
                 CollectionId = collectionId,
-                DocumentId = createdDocumentId
+                DocumentId = documentId
             };
 
             var createEventResult = service.CreateEvent(
@@ -804,13 +826,16 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
-                documentId: createdDocumentId
+                documentId: documentId
                 );
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
-                collectionId: collectionId);
+                collectionId: collectionId
+                );
             var deleteConfigurationResults = service.DeleteConfiguration(
-                environmentId: environmentId, configurationId: configurationId);
+                environmentId: environmentId,
+                configurationId: configurationId
+                );
 
             Assert.IsNotNull(queryResult);
             Assert.IsNotNull(createEventResult);
@@ -818,7 +843,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsTrue(createEventResult.Result.Data.EnvironmentId == environmentId);
             Assert.IsTrue(createEventResult.Result.Data.SessionToken == queryResult.Result.SessionToken);
             Assert.IsTrue(createEventResult.Result.Data.CollectionId == collectionId);
-            Assert.IsTrue(createEventResult.Result.Data.DocumentId == createdDocumentId);
+            Assert.IsTrue(createEventResult.Result.Data.DocumentId == documentId);
         }
         #endregion
 
@@ -908,6 +933,10 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            var deleteConfigurationResults = service.DeleteConfiguration(
+                environmentId: environmentId,
+                configurationId: configurationId
+                );
 
             Assert.IsNotNull(deleteExpansionResult);
             Assert.IsNotNull(listExpansionsResult);
@@ -919,248 +948,324 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        //#region Tokenization
-        //[TestMethod]
-        //public void TestTokenization_Success()
-        //{
-        //    var collectionsList = ListCollections(environmentId);
+        #region Tokenization
+        [TestMethod]
+        public void TestTokenization_Success()
+        {
+            Configuration configuration = new Configuration();
+            var createConfigurationResults = service.CreateConfiguration(
+                environmentId: environmentId,
+                name: createdConfigurationName,
+                description: createdConfigurationDescription
+                );
 
-        //    foreach (Collection collection in collectionsList.Collections)
-        //    {
-        //        if (!string.IsNullOrEmpty(collection.Description))
-        //        {
-        //            if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
-        //            {
-        //                DeleteCollection(environmentId, collection.CollectionId);
-        //                Console.WriteLine("deleted " + collection.CollectionId);
-        //            }
-        //        }
-        //    }
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
-        //    CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-        //    {
-        //        Language = CreateCollectionRequest.LanguageEnum.JA,
-        //        Name = "tokenization-collection-please-delete-" + Guid.NewGuid(),
-        //        Description = createdCollectionDescription
-        //    };
+            string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            var createCollectionResult = service.CreateCollection(
+                environmentId: environmentId,
+                name: collectionName,
+                description: createdCollectionDescription,
+                configurationId: configurationId,
+                language: createdCollectionLanguage
+                );
+            var collectionId = createCollectionResult.Result.CollectionId;
 
-        //    var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
-        //    var tokenizationCollectionId = createCollectionResult.CollectionId;
+            IsCollectionReady(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            autoEvent.WaitOne();
 
-        //    IsCollectionReady(environmentId, tokenizationCollectionId);
-        //    autoEvent.WaitOne();
+            var tokenizationRules = new List<TokenDictRule>()
+            {
+                new TokenDictRule()
+                {
+                    Text = "すしネコ",
+                    Tokens = new List<string>()
+                    {
+                        "すし", "ネコ"
+                    },
+                    Readings = new List<string>()
+                    {
+                        "寿司", "ネコ"
+                    },
+                    PartOfSpeech = "カスタム名詞"
+                }
+            };
 
-        //    TokenDict tokenizationDictionary = new TokenDict()
-        //    {
-        //        TokenizationRules = new List<TokenDictRule>()
-        //        {
-        //            new TokenDictRule()
-        //            {
-        //                Text = "すしネコ",
-        //                Tokens = new List<string>()
-        //                {
-        //                    "すし", "ネコ"
-        //                },
-        //                Readings = new List<string>()
-        //                {
-        //                    "寿司", "ネコ"
-        //                },
-        //                PartOfSpeech = "カスタム名詞"
-        //            }
-        //        }
-        //    };
+            IsEnvironmentReady(
+                environmentId: environmentId
+                );
+            autoEvent.WaitOne();
 
-        //    IsEnvironmentReady(environmentId);
-        //    autoEvent.WaitOne();
+            try
+            {
+                var createTokenizationDictionaryResult = service.CreateTokenizationDictionary(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    tokenizationRules: tokenizationRules
+                    );
+                var getTokenizationDictionaryStatusResult = service.GetTokenizationDictionaryStatus(
+                    environmentId: environmentId,
+                    collectionId: collectionId
+                    );
 
-        //    try
-        //    {
-        //        var createTokenizationDictionaryResult = CreateTokenizationDictionary(environmentId, tokenizationCollectionId, tokenizationDictionary);
-        //        var getTokenizationDictionaryStatusResult = GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
+                IsDictionaryReady(
+                    environmentId: environmentId,
+                    tokenizationCollectionId: collectionId
+                    );
+                autoEvent.WaitOne();
 
-        //        IsDictionaryReady(environmentId, tokenizationCollectionId);
-        //        autoEvent.WaitOne();
+                var deleteTokenizationDictionary = service.DeleteTokenizationDictionary(
+                    environmentId: environmentId,
+                    collectionId: collectionId
+                    );
 
-        //        var deleteTokenizationDictionary = DeleteTokenizationDictionary(environmentId, tokenizationCollectionId);
+                Assert.IsNotNull(deleteTokenizationDictionary);
+                Assert.IsNotNull(getTokenizationDictionaryStatusResult);
+                Assert.IsTrue(getTokenizationDictionaryStatusResult.Result.Status == TokenDictStatusResponse.StatusEnumValue.PENDING);
+                Assert.IsNotNull(createTokenizationDictionaryResult);
+                Assert.IsTrue(createTokenizationDictionaryResult.Result.Status == TokenDictStatusResponse.StatusEnumValue.PENDING);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
-        //        Assert.IsNotNull(deleteTokenizationDictionary);
-        //        Assert.IsNotNull(getTokenizationDictionaryStatusResult);
-        //        Assert.IsTrue(getTokenizationDictionaryStatusResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
-        //        Assert.IsNotNull(createTokenizationDictionaryResult);
-        //        Assert.IsTrue(createTokenizationDictionaryResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //    }
+            var deleteCollectionResult = service.DeleteCollection(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteConfigurationResults = service.DeleteConfiguration(
+                environmentId: environmentId,
+                configurationId: configurationId
+                );
+        }
+        #endregion
 
-        //    DeleteCollection(environmentId, tokenizationCollectionId);
-        //}
-        //#endregion
+        #region Stopword
+        [TestMethod]
+        public void TestStopword_Success()
+        {
+            var collectionsList = service.ListCollections(
+                environmentId: environmentId
+                );
 
-        //#region Stopword
-        //[TestMethod]
-        //public void TestStopword_Success()
-        //{
-        //    var collectionsList = ListCollections(environmentId);
+            foreach (Collection collection in collectionsList.Result.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Description))
+                {
+                    if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
+                    {
+                        service.DeleteCollection(
+                            environmentId: environmentId,
+                            collectionId: collection.CollectionId
+                            );
+                        Console.WriteLine("deleted " + collection.CollectionId);
+                    }
+                }
+            }
 
-        //    foreach (Collection collection in collectionsList.Collections)
-        //    {
-        //        if (!string.IsNullOrEmpty(collection.Description))
-        //        {
-        //            if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
-        //            {
-        //                DeleteCollection(environmentId, collection.CollectionId);
-        //                Console.WriteLine("deleted " + collection.CollectionId);
-        //            }
-        //        }
-        //    }
+            IsEnvironmentReady(
+                environmentId: environmentId
+                );
+            autoEvent.WaitOne();
 
-        //    IsEnvironmentReady(environmentId);
-        //    autoEvent.WaitOne();
+            Configuration configuration = new Configuration();
+            var createConfigurationResults = service.CreateConfiguration(
+                environmentId: environmentId,
+                name: createdConfigurationName,
+                description: createdConfigurationDescription
+                );
 
-        //    CreateCollectionRequest createCollectionRequest = new CreateCollectionRequest()
-        //    {
-        //        Language = CreateCollectionRequest.LanguageEnum.EN,
-        //        Name = "stopword-collection-please-delete-" + Guid.NewGuid(),
-        //        Description = createdCollectionDescription
-        //    };
+            configurationId = createConfigurationResults.Result.ConfigurationId;
 
-        //    var createCollectionResult = CreateCollection(environmentId, createCollectionRequest);
-        //    var stopwordCollectionId = createCollectionResult.CollectionId;
+            string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            var createCollectionResult = service.CreateCollection(
+                environmentId: environmentId,
+                name: collectionName,
+                description: createdCollectionDescription,
+                configurationId: configurationId,
+                language: createdCollectionLanguage
+                );
+            var collectionId = createCollectionResult.Result.CollectionId;
 
-        //    IsCollectionReady(environmentId, stopwordCollectionId);
-        //    autoEvent.WaitOne();
+            IsCollectionReady(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            autoEvent.WaitOne();
 
-        //    TokenDictStatusResponse createStopwordListResult;
-        //    using (FileStream fs = File.OpenRead(stopwordFileToIngest))
-        //    {
-        //        createStopwordListResult = service.CreateStopwordList(environmentId, stopwordCollectionId, fs);
-        //    }
+            DetailedResponse<TokenDictStatusResponse> createStopwordListResult;
+            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    createStopwordListResult = service.CreateStopwordList(
+                        environmentId: environmentId,
+                        collectionId: collectionId, stopwordFile: ms,
+                        stopwordFilename: Path.GetFileName(stopwordFileToIngest)
+                        );
+                }
+            }
 
-        //    IsStopwordsReady(environmentId, stopwordCollectionId);
-        //    autoEvent.WaitOne();
+            IsStopwordsReady(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            autoEvent.WaitOne();
 
-        //    var deleteStopwordListResult = service.DeleteStopwordList(environmentId, stopwordCollectionId);
+            var deleteStopwordListResult = service.DeleteStopwordList(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteCollectionResult = service.DeleteCollection(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            var deleteConfigurationResults = service.DeleteConfiguration(
+                environmentId: environmentId,
+                configurationId: configurationId
+                );
 
-        //    Assert.IsNotNull(createStopwordListResult);
-        //    Assert.IsTrue(createStopwordListResult.Status == TokenDictStatusResponse.StatusEnum.PENDING);
-        //    Assert.IsNotNull(deleteStopwordListResult);
-        //}
-        //#endregion
+            Assert.IsNotNull(createStopwordListResult);
+            Assert.IsTrue(createStopwordListResult.Result.Status == TokenDictStatusResponse.StatusEnumValue.PENDING);
+            Assert.IsNotNull(deleteStopwordListResult);
+        }
+        #endregion
 
-        //#region Gateway
-        //[TestMethod]
-        //public void TestGateway_Success()
-        //{
-        //    var listGatewaysResult = service.ListGateways(environmentId);
-        //    GatewayName gatewayName = new GatewayName()
-        //    {
-        //        Name = dotnetGatewayName
-        //    };
-        //    var createGatewayResult = service.CreateGateway(environmentId, gatewayName);
-        //    var gatewayId = createGatewayResult.GatewayId;
-        //    var getGatewayResult = service.GetGateway(environmentId, gatewayId);
-        //    var deleteGatewayResult = service.DeleteGateway(environmentId, gatewayId);
+        #region Gateway
+        [TestMethod]
+        public void TestGateway_Success()
+        {
+            var listGatewaysResult = service.ListGateways(
+                environmentId: environmentId
+                );
+            var createGatewayResult = service.CreateGateway(
+                environmentId: environmentId,
+                name: dotnetGatewayName
+                );
+            var gatewayId = createGatewayResult.Result.GatewayId;
+            var getGatewayResult = service.GetGateway(
+                environmentId: environmentId,
+                gatewayId: gatewayId
+                );
+            var deleteGatewayResult = service.DeleteGateway(
+                environmentId: environmentId,
+                gatewayId: gatewayId
+                );
 
-        //    Assert.IsNotNull(deleteGatewayResult);
-        //    Assert.IsTrue(deleteGatewayResult.GatewayId == gatewayId);
-        //    Assert.IsTrue(!string.IsNullOrEmpty(deleteGatewayResult.Status));
-        //    Assert.IsNotNull(getGatewayResult);
-        //    Assert.IsTrue(getGatewayResult.GatewayId == gatewayId);
-        //    Assert.IsTrue(getGatewayResult.Name == dotnetGatewayName);
-        //    Assert.IsNotNull(createGatewayResult);
-        //    Assert.IsTrue(createGatewayResult.Name == dotnetGatewayName);
-        //    Assert.IsNotNull(listGatewaysResult);
-        //}
-        //#endregion
+            Assert.IsNotNull(deleteGatewayResult);
+            Assert.IsTrue(deleteGatewayResult.Result.GatewayId == gatewayId);
+            Assert.IsTrue(!string.IsNullOrEmpty(deleteGatewayResult.Result.Status));
+            Assert.IsNotNull(getGatewayResult);
+            Assert.IsTrue(getGatewayResult.Result.GatewayId == gatewayId);
+            Assert.IsTrue(getGatewayResult.Result.Name == dotnetGatewayName);
+            Assert.IsNotNull(createGatewayResult);
+            Assert.IsTrue(createGatewayResult.Result.Name == dotnetGatewayName);
+            Assert.IsNotNull(listGatewaysResult);
+        }
+        #endregion
 
-        //#region IsEnvironmentReady
-        //private void IsEnvironmentReady(string environmentId)
-        //{
-        //    var result = GetEnvironment(environmentId);
-        //    Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Status));
+        #region IsEnvironmentReady
+        private void IsEnvironmentReady(string environmentId)
+        {
+            var result = service.GetEnvironment(
+                environmentId: environmentId
+                );
+            Console.WriteLine(string.Format("\tEnvironment {0} status is {1}.", environmentId, result.Result.Status));
 
-        //    if (result.Status == Environment.StatusEnum.ACTIVE)
-        //    {
-        //        autoEvent.Set();
-        //    }
-        //    else
-        //    {
-        //        Task.Factory.StartNew(() =>
-        //        {
-        //            Thread.Sleep(30000);
-        //            Console.WriteLine("Checking environment status in 30 seconds...");
-        //            IsEnvironmentReady(environmentId);
-        //        });
-        //    }
-        //}
-        //#endregion
+            if (result.Result.Status == Environment.StatusEnumValue.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking environment status in 30 seconds...");
+                    IsEnvironmentReady(environmentId);
+                });
+            }
+        }
+        #endregion
 
-        //#region IsDictionaryReady
-        //private void IsDictionaryReady(string environmentId, string tokenizationCollectionId)
-        //{
-        //    var result = service.GetTokenizationDictionaryStatus(environmentId, tokenizationCollectionId);
-        //    Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+        #region IsDictionaryReady
+        private void IsDictionaryReady(string environmentId, string tokenizationCollectionId)
+        {
+            var result = service.GetTokenizationDictionaryStatus(
+                environmentId: environmentId,
+                collectionId: tokenizationCollectionId
+                );
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Result.Status));
 
-        //    if(result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
-        //    {
-        //        autoEvent.Set();
-        //    }
-        //    else
-        //    {
-        //        Task.Factory.StartNew(() =>
-        //        {
-        //            Thread.Sleep(30000);
-        //            Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
-        //            IsDictionaryReady(environmentId, tokenizationCollectionId);
-        //        });
-        //    }
-        //}
-        //#endregion
+            if (result.Result.Status == TokenDictStatusResponse.StatusEnumValue.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsDictionaryReady(environmentId, tokenizationCollectionId);
+                });
+            }
+        }
+        #endregion
 
-        //#region IsStopwordsReady
-        //private void IsStopwordsReady(string environmentId, string collectionId)
-        //{
-        //    var result = service.GetStopwordListStatus(environmentId, collectionId);
-        //    Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Status));
+        #region IsStopwordsReady
+        private void IsStopwordsReady(string environmentId, string collectionId)
+        {
+            var result = service.GetStopwordListStatus(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            Console.WriteLine(string.Format("\tTokenization dictionary {0} status is {1}.", environmentId, result.Result.Status));
 
-        //    if (result.Status == TokenDictStatusResponse.StatusEnum.ACTIVE)
-        //    {
-        //        autoEvent.Set();
-        //    }
-        //    else
-        //    {
-        //        Task.Factory.StartNew(() =>
-        //        {
-        //            Thread.Sleep(30000);
-        //            Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
-        //            IsStopwordsReady(environmentId, collectionId);
-        //        });
-        //    }
-        //}
-        //#endregion
+            if (result.Result.Status == TokenDictStatusResponse.StatusEnumValue.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking tokenization dictionary status in 30 seconds...");
+                    IsStopwordsReady(environmentId, collectionId);
+                });
+            }
+        }
+        #endregion
 
-        //#region IsCollectionReady
-        //private void IsCollectionReady(string environmentId, string collectionId)
-        //{
-        //    var result = service.GetCollection(environmentId, collectionId);
-        //    Console.WriteLine(string.Format("\tCollection {0} status is {1}.", environmentId, result.Status));
+        #region IsCollectionReady
+        private void IsCollectionReady(string environmentId, string collectionId)
+        {
+            var result = service.GetCollection(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+            Console.WriteLine(string.Format("\tCollection {0} status is {1}.", environmentId, result.Result.Status));
 
-        //    if (result.Status == Collection.StatusEnum.ACTIVE)
-        //    {
-        //        autoEvent.Set();
-        //    }
-        //    else
-        //    {
-        //        Task.Factory.StartNew(() =>
-        //        {
-        //            Thread.Sleep(30000);
-        //            Console.WriteLine("Checking collection status in 30 seconds...");
-        //            IsCollectionReady(environmentId, collectionId);
-        //        });
-        //    }
-        //}
-        //#endregion
+            if (result.Result.Status == Collection.StatusEnumValue.ACTIVE)
+            {
+                autoEvent.Set();
+            }
+            else
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(30000);
+                    Console.WriteLine("Checking collection status in 30 seconds...");
+                    IsCollectionReady(environmentId, collectionId);
+                });
+            }
+        }
+        #endregion
     }
 }

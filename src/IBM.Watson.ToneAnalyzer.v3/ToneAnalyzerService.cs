@@ -181,7 +181,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"))

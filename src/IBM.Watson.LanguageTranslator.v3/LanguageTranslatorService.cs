@@ -234,9 +234,7 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "text/plain");
-                restRequest.WithHeader("Accept", "application/json");
-                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Identify"))

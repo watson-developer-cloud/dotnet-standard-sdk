@@ -23,7 +23,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using IBM.Cloud.SDK.Core;
 
 namespace IBM.Watson.CompareComply.v1.IT
 {

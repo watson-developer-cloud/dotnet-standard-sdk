@@ -209,7 +209,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "Profile"))
@@ -354,7 +354,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"))

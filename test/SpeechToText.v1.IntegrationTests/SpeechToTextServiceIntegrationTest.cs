@@ -345,226 +345,266 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         }
         #endregion
 
-        //#region German Model
-        //[TestMethod]
-        //public void TestGermanLanguageModel_Success()
-        //{
-        //    CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
-        //    {
-        //        Name = customModelName,
-        //        BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.DE_DE_BROADBANDMODEL,
-        //        Description = customModelDescription
-        //    };
+        #region German Model
+        [TestMethod]
+        public void TestGermanLanguageModel_Success()
+        {
+            var createLanguageModelResult = service.CreateLanguageModel(
+                name: customModelName,
+                baseModelName: "de-DE_BroadbandModel",
+                dialect: "de-DE",
+                description: customModelDescription
+                );
+            string customizationId = createLanguageModelResult.Result.CustomizationId;
 
-        //    var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
-        //    string customizationId = createLanguageModelResult.CustomizationId;
+            var getLanguageModelResult = service.GetLanguageModel(
+                customizationId: customizationId
+                );
 
-        //    var getLanguageModelResult = GetLanguageModel(customizationId);
+            var deleteLanguageModelResult = service.DeleteLanguageModel(
+                customizationId: customizationId
+                );
 
-        //    var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.Result.BaseModelName == "de-DE_BroadbandModel");
+        }
+        #endregion
 
-        //    Assert.IsNotNull(createLanguageModelResult);
-        //    Assert.IsNotNull(getLanguageModelResult);
-        //    Assert.IsNotNull(deleteLanguageModelResult);
-        //    Assert.IsTrue(getLanguageModelResult.BaseModelName == "de-DE_BroadbandModel");
-        //}
-        //#endregion
+        #region Brazilian Broadband Model
+        [TestMethod]
+        public void TestBrazilianBroadbandLanguageModel_Success()
+        {
+            var createLanguageModelResult = service.CreateLanguageModel(
+                name: customModelName,
+                baseModelName: "pt-BR_BroadbandModel",
+                dialect: "pt-BR",
+                description: customModelDescription
+                );
+            string customizationId = createLanguageModelResult.Result.CustomizationId;
 
-        //#region Brazilian Broadband Model
-        //[TestMethod]
-        //public void TestBrazilianBroadbandLanguageModel_Success()
-        //{
-        //    CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
-        //    {
-        //        Name = customModelName,
-        //        BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.PT_BR_BROADBANDMODEL,
-        //        Description = customModelDescription
-        //    };
+            var getLanguageModelResult = service.GetLanguageModel(
+                customizationId: customizationId
+                );
 
-        //    var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
-        //    string customizationId = createLanguageModelResult.CustomizationId;
+            var deleteLanguageModelResult = service.DeleteLanguageModel(
+                customizationId: customizationId
+                );
 
-        //    var getLanguageModelResult = GetLanguageModel(customizationId);
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.Result.BaseModelName == "pt-BR_BroadbandModel");
+        }
+        #endregion
 
-        //    var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+        #region Brazilian Narrowband Model
+        [TestMethod]
+        public void TestBrazilianNarrowbandLanguageModel_Success()
+        {
+            var createLanguageModelResult = service.CreateLanguageModel(
+                name: customModelName,
+                baseModelName: "pt-BR_NarrowbandModel",
+                dialect: "pt-BR",
+                description: customModelDescription
+                );
+            string customizationId = createLanguageModelResult.Result.CustomizationId;
 
-        //    Assert.IsNotNull(createLanguageModelResult);
-        //    Assert.IsNotNull(getLanguageModelResult);
-        //    Assert.IsNotNull(deleteLanguageModelResult);
-        //    Assert.IsTrue(getLanguageModelResult.BaseModelName == "pt-BR_BroadbandModel");
-        //}
-        //#endregion
+            var getLanguageModelResult = service.GetLanguageModel(
+                customizationId: customizationId
+                );
 
-        //#region Brazilian Narrowband Model
-        //[TestMethod]
-        //public void TestBrazilianNarrowbandLanguageModel_Success()
-        //{
-        //    CreateLanguageModel createLanguageModel = new Model.CreateLanguageModel
-        //    {
-        //        Name = customModelName,
-        //        BaseModelName = Model.CreateLanguageModel.BaseModelNameEnum.PT_BR_NARROWBANDMODEL,
-        //        Description = customModelDescription
-        //    };
+            var deleteLanguageModelResult = service.DeleteLanguageModel(
+                customizationId: customizationId
+                );
 
-        //    var createLanguageModelResult = CreateLanguageModel(createLanguageModel);
-        //    string customizationId = createLanguageModelResult.CustomizationId;
+            Assert.IsNotNull(createLanguageModelResult);
+            Assert.IsNotNull(getLanguageModelResult);
+            Assert.IsNotNull(deleteLanguageModelResult);
+            Assert.IsTrue(getLanguageModelResult.Result.BaseModelName == "pt-BR_NarrowbandModel");
+        }
+        #endregion
 
-        //    var getLanguageModelResult = GetLanguageModel(customizationId);
+        #region German Acoustic Customization
+        [TestMethod]
+        public void TestGermanAcousticCustomization()
+        {
+            byte[] acousticResourceData = null;
 
-        //    var deleteLanguageModelResult = DeleteLanguageModel(customizationId);
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
 
-        //    Assert.IsNotNull(createLanguageModelResult);
-        //    Assert.IsNotNull(getLanguageModelResult);
-        //    Assert.IsNotNull(deleteLanguageModelResult);
-        //    Assert.IsTrue(getLanguageModelResult.BaseModelName == "pt-BR_NarrowbandModel");
-        //}
-        //#endregion
+            Task.WaitAll();
 
-        //#region German Acoustic Customization
-        //[TestMethod]
-        //public void TestGermanAcousticCustomization()
-        //{
-        //    byte[] acousticResourceData = null;
+            var listAcousticModelsResult = service.ListAcousticModels();
 
-        //    try
-        //    {
-        //        acousticResourceData = DownloadAcousticResource(acousticResourceUrl).Result;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-        //    }
+            var createAcousticModelResult = service.CreateAcousticModel(name: acousticModelName, baseModelName: "de-DE_BroadbandModel", description: acousticModelDescription);
+            var acousticCustomizationId = createAcousticModelResult.Result.CustomizationId;
+            var getAcousticModelResult = service.GetAcousticModel(
+                customizationId: acousticCustomizationId
+                );
+            var deleteAcousticModelResult = service.DeleteAcousticModel(
+                customizationId: acousticCustomizationId
+                );
 
-        //    Task.WaitAll();
+            Assert.IsNotNull(createAcousticModelResult);
+            Assert.IsNotNull(getAcousticModelResult);
+            Assert.IsNotNull(deleteAcousticModelResult);
+            Assert.IsTrue(getAcousticModelResult.Result.BaseModelName == "de-DE_BroadbandModel");
+        }
+        #endregion
 
-        //    var listAcousticModelsResult = ListAcousticModels();
+        #region Acoustic Customizations
+        [TestMethod]
+        public void TestAcousticCustomizations()
+        {
+            byte[] acousticResourceData = null;
 
-        //    var acousticModel = new CreateAcousticModel
-        //    {
-        //        Name = acousticModelName,
-        //        BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.DE_DE_BROADBANDMODEL,
-        //        Description = acousticModelDescription
-        //    };
+            try
+            {
+                acousticResourceData = DownloadAcousticResource(acousticResourceUrl).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+            }
 
-        //    var createAcousticModelResult = CreateAcousticModel(acousticModel);
-        //    var acousticCustomizationId = createAcousticModelResult.CustomizationId;
-        //    var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
-        //    var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
+            Task.WaitAll();
 
-        //    Assert.IsNotNull(createAcousticModelResult);
-        //    Assert.IsNotNull(getAcousticModelResult);
-        //    Assert.IsNotNull(deleteAcousticModelResult);
-        //    Assert.IsTrue(getAcousticModelResult.BaseModelName == "de-DE_BroadbandModel");
-        //}
-        //#endregion
+            var listAcousticModelsResult = service.ListAcousticModels();
 
-        //#region Acoustic Customizations
-        //[TestMethod]
-        //public void TestAcousticCustomizations()
-        //{
-        //    byte[] acousticResourceData = null;
+            var createAcousticModelResult = service.CreateAcousticModel(
+                name: acousticModelName,
+                baseModelName: EN_US,
+                description: acousticModelDescription
+                );
+            var acousticCustomizationId = createAcousticModelResult.Result.CustomizationId;
 
-        //    try
-        //    {
-        //        acousticResourceData = DownloadAcousticResource(acousticResourceUrl).Result;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
-        //    }
+            var getAcousticModelResult = service.GetAcousticModel(
+                customizationId: acousticCustomizationId
+                );
 
-        //    Task.WaitAll();
+            var listAudioResult = service.ListAudio(
+                customizationId: acousticCustomizationId
+                );
 
-        //    var listAcousticModelsResult = ListAcousticModels();
+            DetailedResponse<object> addAudioResult = null;
 
-        //    var acousticModel = new CreateAcousticModel
-        //    {
-        //        Name = acousticModelName,
-        //        BaseModelName = Model.CreateAcousticModel.BaseModelNameEnum.EN_US_BROADBANDMODEL,
-        //        Description = acousticModelDescription
-        //    };
+            addAudioResult = service.AddAudio(
+                customizationId: acousticCustomizationId,
+                audioName: acousticResourceName,
+                audioResource: acousticResourceData,
+                contentType: acousticResourceMimeType,
+                allowOverwrite: true
+                );
 
-        //    var createAcousticModelResult = CreateAcousticModel(acousticModel);
-        //    var acousticCustomizationId = createAcousticModelResult.CustomizationId;
+            var getAudioResult = service.GetAudio(
+                customizationId: acousticCustomizationId,
+                audioName: acousticResourceName
+                );
 
-        //    var getAcousticModelResult = GetAcousticModel(acousticCustomizationId);
+            CheckAudioStatus(
+                customizationId: acousticCustomizationId,
+                audioName: acousticResourceName
+                );
+            autoEvent.WaitOne();
 
+            CheckAcousticCustomizationStatus(
+                customizationId: acousticCustomizationId
+                );
+            autoEvent.WaitOne();
 
-        //    var listAudioResult = ListAudio(acousticCustomizationId);
+            var trainAcousticModelResult = service.TrainAcousticModel(
+                customizationId: acousticCustomizationId
+                );
 
-        //    object addAudioResult = null;
+            CheckAcousticCustomizationStatus(
+                customizationId: acousticCustomizationId
+                );
+            autoEvent.WaitOne();
 
-        //    addAudioResult = AddAudio(acousticCustomizationId, acousticResourceName, acousticResourceData, acousticResourceMimeType, allowOverwrite: true);
+            //var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
 
-        //    var getAudioResult = GetAudio(acousticCustomizationId, acousticResourceName);
+            //CheckAcousticCustomizationStatus(acousticCustomizationId);
+            //autoEvent.WaitOne();
 
-        //    CheckAudioStatus(acousticCustomizationId, acousticResourceName);
-        //    autoEvent.WaitOne();
+            var deleteAudioResult = service.DeleteAudio(
+                customizationId: acousticCustomizationId,
+                audioName: acousticResourceName
+                );
 
-        //    CheckAcousticCustomizationStatus(acousticCustomizationId);
-        //    autoEvent.WaitOne();
+            var resetAcousticModelResult = service.ResetAcousticModel(
+                customizationId: acousticCustomizationId
+                );
 
-        //    var trainAcousticModelResult = TrainAcousticModel(acousticCustomizationId);
+            var deleteAcousticModelResult = service.DeleteAcousticModel(
+                customizationId: acousticCustomizationId
+                );
 
-        //    CheckAcousticCustomizationStatus(acousticCustomizationId);
-        //    autoEvent.WaitOne();
+            Assert.IsNotNull(deleteAudioResult);
+            Assert.IsNotNull(deleteAcousticModelResult);
 
-        //    //var upgradeAcousticModel = UpgradeAcousticModel(acousticCustomizationId);
+            Assert.IsNotNull(getAudioResult);
+            Assert.IsTrue(getAudioResult.Result.Name == acousticResourceName);
+            Assert.IsNotNull(addAudioResult);
+            Assert.IsNotNull(listAudioResult);
+            Assert.IsNotNull(listAudioResult.Result.Audio);
+            Assert.IsNotNull(getAcousticModelResult);
+            Assert.IsTrue(getAcousticModelResult.Result.Name == acousticModelName);
+            Assert.IsTrue(getAcousticModelResult.Result.Description == acousticModelDescription);
+            Assert.IsNotNull(createAcousticModelResult);
+            Assert.IsNotNull(listAcousticModelsResult);
+        }
+        #endregion
 
-        //    //CheckAcousticCustomizationStatus(acousticCustomizationId);
-        //    //autoEvent.WaitOne();
+        #region Recognize
+        [TestMethod]
+        public void TestRecognize_Success()
+        {
+            var testAudio = File.ReadAllBytes(testAudioPath);
+            var recognizeResult = service.Recognize(
+                audio: testAudio,
+                contentType: "audio/wav"
+                );
+            Assert.IsNotNull(recognizeResult.Result);
+            Assert.IsNotNull(recognizeResult.Result.Results);
+            Assert.IsTrue(recognizeResult.Result.Results.Count > 0);
+        }
+        #endregion
 
-        //    var deleteAudioResult = DeleteAudio(acousticCustomizationId, acousticResourceName);
+        #region Jobs
+        [TestMethod]
+        public void TestJobs_Success()
+        {
+            var testAudio = File.ReadAllBytes(testAudioPath);
+            var createJobResult = service.CreateJob(
+                audio: testAudio,
+                contentType: "audio/mp3"
+                );
+            var jobId = createJobResult.Result.Id;
 
-        //    var resetAcousticModelResult = ResetAcousticModel(acousticCustomizationId);
+            var checkJobsResult = service.CheckJobs();
+            var checkJobResult = service.CheckJob(
+                id: jobId
+                );
 
-        //    var deleteAcousticModelResult = DeleteAcousticModel(acousticCustomizationId);
-
-        //    Assert.IsNotNull(deleteAudioResult);
-        //    Assert.IsNotNull(deleteAcousticModelResult);
-
-        //    Assert.IsNotNull(getAudioResult);
-        //    Assert.IsTrue(getAudioResult.Name == acousticResourceName);
-        //    Assert.IsNotNull(addAudioResult);
-        //    Assert.IsNotNull(listAudioResult);
-        //    Assert.IsNotNull(listAudioResult.Audio);
-        //    Assert.IsNotNull(getAcousticModelResult);
-        //    Assert.IsTrue(getAcousticModelResult.Name == acousticModelName);
-        //    Assert.IsTrue(getAcousticModelResult.Description == acousticModelDescription);
-        //    Assert.IsNotNull(createAcousticModelResult);
-        //    Assert.IsNotNull(listAcousticModelsResult);
-        //}
-        //#endregion
-
-        //#region Recognize
-        //[TestMethod]
-        //public void TestRecognize_Success()
-        //{
-        //    var testAudio = File.ReadAllBytes(testAudioPath);
-        //    var recognizeResult = service.RecognizeSessionless(testAudio, "audio/wav");
-        //    Assert.IsNotNull(recognizeResult);
-        //}
-        //#endregion
-
-        //#region Jobs
-        //[TestMethod]
-        //public void TestJobs_Success()
-        //{
-        //    var testAudio = File.ReadAllBytes(testAudioPath);
-        //    var createJobResult = service.CreateJob(testAudio, "audio/mp3");
-        //    var jobId = createJobResult.Id;
-
-        //    var checkJobsResult = service.CheckJobs();
-        //    var checkJobResult = service.CheckJob(jobId);
-
-        //    var deleteJobResult = service.DeleteJob(jobId);
-        //    Assert.IsNotNull(checkJobsResult);
-        //    Assert.IsNotNull(checkJobResult);
-        //    Assert.IsNotNull(createJobResult);
-        //    Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Id));
-        //    Assert.IsNotNull(deleteJobResult);
-        //}
-        //#endregion
+            var deleteJobResult = service.DeleteJob(
+                id: jobId
+                );
+            Assert.IsNotNull(checkJobsResult);
+            Assert.IsNotNull(checkJobResult);
+            Assert.IsNotNull(createJobResult);
+            Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Result.Id));
+            Assert.IsNotNull(deleteJobResult);
+        }
+        #endregion
 
         private void CheckCustomizationStatus(string customizationId)
         {
@@ -608,9 +648,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             }
         }
 
-        private void CheckAcousticCustomizationStatus(string classifierId)
+        private void CheckAcousticCustomizationStatus(string customizationId)
         {
-            var getAcousticModelResult = service.GetAcousticModel(classifierId);
+            var getAcousticModelResult = service.GetAcousticModel(customizationId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Result.Status));
 
@@ -621,14 +661,14 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 Task.Factory.StartNew(() =>
                 {
                     System.Threading.Thread.Sleep(5000);
-                    CheckAcousticCustomizationStatus(classifierId);
+                    CheckAcousticCustomizationStatus(customizationId);
                 });
             }
         }
 
-        private void CheckAudioStatus(string classifierId, string audioname)
+        private void CheckAudioStatus(string customizationId, string audioName)
         {
-            var getAudioResult = service.GetAudio(classifierId, audioname);
+            var getAudioResult = service.GetAudio(customizationId, audioName);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Result.Status));
 
@@ -645,7 +685,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 Task.Factory.StartNew(() =>
                 {
                     System.Threading.Thread.Sleep(5000);
-                    CheckAcousticCustomizationStatus(classifierId);
+                    CheckAcousticCustomizationStatus(customizationId);
                 });
             }
         }

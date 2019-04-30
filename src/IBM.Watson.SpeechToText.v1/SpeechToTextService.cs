@@ -484,6 +484,9 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithHeader("Content-Type", contentType);
                 }
                 var httpContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
+                httpContent.Headers.ContentType = audioContentType;
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "Recognize"))
@@ -1019,6 +1022,9 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithHeader("Content-Type", contentType);
                 }
                 var httpContent = new ByteArrayContent(audio);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
+                httpContent.Headers.ContentType = audioContentType;
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateJob"))
@@ -3496,6 +3502,9 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 }
                 var httpContent = new ByteArrayContent(audioResource);
+                System.Net.Http.Headers.MediaTypeHeaderValue audioResourceContentType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceContentType);
+                httpContent.Headers.ContentType = audioResourceContentType;
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddAudio"))

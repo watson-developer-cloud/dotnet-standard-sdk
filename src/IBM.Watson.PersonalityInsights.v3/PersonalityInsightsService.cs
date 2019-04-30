@@ -157,11 +157,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="Profile" />Profile</returns>
         public DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
-        if (content == null)
-            throw new ArgumentNullException("`content` is required for `Profile`");
+            if (content == null)
+            {
+                throw new ArgumentNullException("`content` is required for `Profile`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<Profile> result = null;
 
@@ -181,19 +185,18 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
-                if (!string.IsNullOrEmpty(contentLanguage))
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (rawScores != null)
+                {
                     restRequest.WithArgument("raw_scores", rawScores);
+                }
                 if (csvHeaders != null)
+                {
                     restRequest.WithArgument("csv_headers", csvHeaders);
+                }
                 if (consumptionPreferences != null)
+                {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -219,7 +222,9 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 result = restRequest.As<Profile>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Profile>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -302,11 +307,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="System.IO.MemoryStream" />System.IO.MemoryStream</returns>
         public DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
-        if (content == null)
-            throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
+            if (content == null)
+            {
+                throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<System.IO.MemoryStream> result = null;
 
@@ -326,19 +335,18 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "text/csv");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
-                if (!string.IsNullOrEmpty(contentLanguage))
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (rawScores != null)
+                {
                     restRequest.WithArgument("raw_scores", rawScores);
+                }
                 if (csvHeaders != null)
+                {
                     restRequest.WithArgument("csv_headers", csvHeaders);
+                }
                 if (consumptionPreferences != null)
+                {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                restRequest.WithHeader("Accept", "text/csv");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {

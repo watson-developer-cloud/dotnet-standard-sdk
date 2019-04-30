@@ -108,7 +108,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<SpeechModels>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<SpeechModels>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -132,8 +134,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="SpeechModel" />SpeechModel</returns>
         public DetailedResponse<SpeechModel> GetModel(string modelId)
         {
-        if (string.IsNullOrEmpty(modelId))
-            throw new ArgumentNullException("`modelId` is required for `GetModel`");
+            if (string.IsNullOrEmpty(modelId))
+            {
+                throw new ArgumentNullException("`modelId` is required for `GetModel`");
+            }
             DetailedResponse<SpeechModel> result = null;
 
             try
@@ -159,7 +163,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<SpeechModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<SpeechModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -379,8 +385,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
         public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
         {
-        if (audio == null)
-            throw new ArgumentNullException("`audio` is required for `Recognize`");
+            if (audio == null)
+            {
+                throw new ArgumentNullException("`audio` is required for `Recognize`");
+            }
             DetailedResponse<SpeechRecognitionResults> result = null;
 
             try
@@ -398,45 +406,78 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 if (!string.IsNullOrEmpty(languageCustomizationId))
+                {
                     restRequest.WithArgument("language_customization_id", languageCustomizationId);
+                }
                 if (!string.IsNullOrEmpty(acousticCustomizationId))
+                {
                     restRequest.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                }
                 if (!string.IsNullOrEmpty(baseModelVersion))
+                {
                     restRequest.WithArgument("base_model_version", baseModelVersion);
+                }
                 if (customizationWeight != null)
+                {
                     restRequest.WithArgument("customization_weight", customizationWeight);
+                }
                 if (inactivityTimeout != null)
+                {
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
+                }
                 if (keywords != null && keywords.Count > 0)
+                {
                     restRequest.WithArgument("keywords", string.Join(",", keywords.ToArray()));
+                }
                 if (keywordsThreshold != null)
+                {
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
+                }
                 if (maxAlternatives != null)
+                {
                     restRequest.WithArgument("max_alternatives", maxAlternatives);
+                }
                 if (wordAlternativesThreshold != null)
+                {
                     restRequest.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
+                }
                 if (wordConfidence != null)
+                {
                     restRequest.WithArgument("word_confidence", wordConfidence);
+                }
                 if (timestamps != null)
+                {
                     restRequest.WithArgument("timestamps", timestamps);
+                }
                 if (profanityFilter != null)
+                {
                     restRequest.WithArgument("profanity_filter", profanityFilter);
+                }
                 if (smartFormatting != null)
+                {
                     restRequest.WithArgument("smart_formatting", smartFormatting);
+                }
                 if (speakerLabels != null)
+                {
                     restRequest.WithArgument("speaker_labels", speakerLabels);
+                }
                 if (!string.IsNullOrEmpty(customizationId))
+                {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
                 if (!string.IsNullOrEmpty(grammarName))
+                {
                     restRequest.WithArgument("grammar_name", grammarName);
+                }
                 if (redaction != null)
+                {
                     restRequest.WithArgument("redaction", redaction);
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -452,7 +493,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<SpeechRecognitionResults>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<SpeechRecognitionResults>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -504,8 +547,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="RegisterStatus" />RegisterStatus</returns>
         public DetailedResponse<RegisterStatus> RegisterCallback(string callbackUrl, string userSecret = null)
         {
-        if (string.IsNullOrEmpty(callbackUrl))
-            throw new ArgumentNullException("`callbackUrl` is required for `RegisterCallback`");
+            if (string.IsNullOrEmpty(callbackUrl))
+            {
+                throw new ArgumentNullException("`callbackUrl` is required for `RegisterCallback`");
+            }
             DetailedResponse<RegisterStatus> result = null;
 
             try
@@ -524,9 +569,13 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(callbackUrl))
+                {
                     restRequest.WithArgument("callback_url", callbackUrl);
+                }
                 if (!string.IsNullOrEmpty(userSecret))
+                {
                     restRequest.WithArgument("user_secret", userSecret);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "RegisterCallback"))
                 {
@@ -535,7 +584,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<RegisterStatus>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<RegisterStatus>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -559,8 +610,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> UnregisterCallback(string callbackUrl)
         {
-        if (string.IsNullOrEmpty(callbackUrl))
-            throw new ArgumentNullException("`callbackUrl` is required for `UnregisterCallback`");
+            if (string.IsNullOrEmpty(callbackUrl))
+            {
+                throw new ArgumentNullException("`callbackUrl` is required for `UnregisterCallback`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -578,7 +631,9 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/unregister_callback");
 
                 if (!string.IsNullOrEmpty(callbackUrl))
+                {
                     restRequest.WithArgument("callback_url", callbackUrl);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "UnregisterCallback"))
                 {
@@ -587,7 +642,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -847,8 +904,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
         public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
         {
-        if (audio == null)
-            throw new ArgumentNullException("`audio` is required for `CreateJob`");
+            if (audio == null)
+            {
+                throw new ArgumentNullException("`audio` is required for `CreateJob`");
+            }
             DetailedResponse<RecognitionJob> result = null;
 
             try
@@ -866,53 +925,94 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 if (!string.IsNullOrEmpty(callbackUrl))
+                {
                     restRequest.WithArgument("callback_url", callbackUrl);
+                }
                 if (!string.IsNullOrEmpty(events))
+                {
                     restRequest.WithArgument("events", events);
+                }
                 if (!string.IsNullOrEmpty(userToken))
+                {
                     restRequest.WithArgument("user_token", userToken);
+                }
                 if (resultsTtl != null)
+                {
                     restRequest.WithArgument("results_ttl", resultsTtl);
+                }
                 if (!string.IsNullOrEmpty(languageCustomizationId))
+                {
                     restRequest.WithArgument("language_customization_id", languageCustomizationId);
+                }
                 if (!string.IsNullOrEmpty(acousticCustomizationId))
+                {
                     restRequest.WithArgument("acoustic_customization_id", acousticCustomizationId);
+                }
                 if (!string.IsNullOrEmpty(baseModelVersion))
+                {
                     restRequest.WithArgument("base_model_version", baseModelVersion);
+                }
                 if (customizationWeight != null)
+                {
                     restRequest.WithArgument("customization_weight", customizationWeight);
+                }
                 if (inactivityTimeout != null)
+                {
                     restRequest.WithArgument("inactivity_timeout", inactivityTimeout);
+                }
                 if (keywords != null && keywords.Count > 0)
+                {
                     restRequest.WithArgument("keywords", string.Join(",", keywords.ToArray()));
+                }
                 if (keywordsThreshold != null)
+                {
                     restRequest.WithArgument("keywords_threshold", keywordsThreshold);
+                }
                 if (maxAlternatives != null)
+                {
                     restRequest.WithArgument("max_alternatives", maxAlternatives);
+                }
                 if (wordAlternativesThreshold != null)
+                {
                     restRequest.WithArgument("word_alternatives_threshold", wordAlternativesThreshold);
+                }
                 if (wordConfidence != null)
+                {
                     restRequest.WithArgument("word_confidence", wordConfidence);
+                }
                 if (timestamps != null)
+                {
                     restRequest.WithArgument("timestamps", timestamps);
+                }
                 if (profanityFilter != null)
+                {
                     restRequest.WithArgument("profanity_filter", profanityFilter);
+                }
                 if (smartFormatting != null)
+                {
                     restRequest.WithArgument("smart_formatting", smartFormatting);
+                }
                 if (speakerLabels != null)
+                {
                     restRequest.WithArgument("speaker_labels", speakerLabels);
+                }
                 if (!string.IsNullOrEmpty(customizationId))
+                {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
                 if (!string.IsNullOrEmpty(grammarName))
+                {
                     restRequest.WithArgument("grammar_name", grammarName);
+                }
                 if (redaction != null)
+                {
                     restRequest.WithArgument("redaction", redaction);
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -928,7 +1028,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<RecognitionJob>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<RecognitionJob>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -979,7 +1081,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<RecognitionJobs>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<RecognitionJobs>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1010,8 +1114,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
         public DetailedResponse<RecognitionJob> CheckJob(string id)
         {
-        if (string.IsNullOrEmpty(id))
-            throw new ArgumentNullException("`id` is required for `CheckJob`");
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("`id` is required for `CheckJob`");
+            }
             DetailedResponse<RecognitionJob> result = null;
 
             try
@@ -1037,7 +1143,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<RecognitionJob>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<RecognitionJob>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1063,8 +1171,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteJob(string id)
         {
-        if (string.IsNullOrEmpty(id))
-            throw new ArgumentNullException("`id` is required for `DeleteJob`");
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("`id` is required for `DeleteJob`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1089,7 +1199,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1113,10 +1225,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
         public DetailedResponse<LanguageModel> CreateLanguageModel(string name, string baseModelName, string dialect = null, string description = null)
         {
-        if (string.IsNullOrEmpty(name))
-            throw new ArgumentNullException("`name` is required for `CreateLanguageModel`");
-        if (string.IsNullOrEmpty(baseModelName))
-            throw new ArgumentNullException("`baseModelName` is required for `CreateLanguageModel`");
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `CreateLanguageModel`");
+            }
+            if (string.IsNullOrEmpty(baseModelName))
+            {
+                throw new ArgumentNullException("`baseModelName` is required for `CreateLanguageModel`");
+            }
             DetailedResponse<LanguageModel> result = null;
 
             try
@@ -1135,18 +1251,25 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(name))
+                {
                     bodyObject["name"] = name;
+                }
                 if (!string.IsNullOrEmpty(baseModelName))
+                {
                     bodyObject["base_model_name"] = baseModelName;
+                }
                 if (!string.IsNullOrEmpty(dialect))
+                {
                     bodyObject["dialect"] = dialect;
+                }
                 if (!string.IsNullOrEmpty(description))
+                {
                     bodyObject["description"] = description;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateLanguageModel"))
@@ -1156,7 +1279,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<LanguageModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<LanguageModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1201,7 +1326,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(language))
+                {
                     restRequest.WithArgument("language", language);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListLanguageModels"))
                 {
@@ -1210,7 +1337,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<LanguageModels>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<LanguageModels>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1235,8 +1364,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
         public DetailedResponse<LanguageModel> GetLanguageModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetLanguageModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetLanguageModel`");
+            }
             DetailedResponse<LanguageModel> result = null;
 
             try
@@ -1262,7 +1393,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<LanguageModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<LanguageModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1288,8 +1421,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteLanguageModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteLanguageModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteLanguageModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1315,7 +1450,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1388,8 +1525,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
         public DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null, bool? strict = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `TrainLanguageModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `TrainLanguageModel`");
+            }
             DetailedResponse<TrainingResponse> result = null;
 
             try
@@ -1408,11 +1547,17 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(wordTypeToAdd))
+                {
                     restRequest.WithArgument("word_type_to_add", wordTypeToAdd);
+                }
                 if (customizationWeight != null)
+                {
                     restRequest.WithArgument("customization_weight", customizationWeight);
+                }
                 if (strict != null)
+                {
                     restRequest.WithArgument("strict", strict);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "TrainLanguageModel"))
                 {
@@ -1421,7 +1566,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<TrainingResponse>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TrainingResponse>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1448,8 +1595,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> ResetLanguageModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ResetLanguageModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ResetLanguageModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1475,7 +1624,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1510,8 +1661,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> UpgradeLanguageModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `UpgradeLanguageModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `UpgradeLanguageModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1537,7 +1690,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1562,8 +1717,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Corpora" />Corpora</returns>
         public DetailedResponse<Corpora> ListCorpora(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ListCorpora`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ListCorpora`");
+            }
             DetailedResponse<Corpora> result = null;
 
             try
@@ -1589,7 +1746,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Corpora>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Corpora>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1666,12 +1825,18 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddCorpus(string customizationId, string corpusName, System.IO.MemoryStream corpusFile, bool? allowOverwrite = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddCorpus`");
-        if (string.IsNullOrEmpty(corpusName))
-            throw new ArgumentNullException("`corpusName` is required for `AddCorpus`");
-        if (corpusFile == null)
-            throw new ArgumentNullException("`corpusFile` is required for `AddCorpus`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddCorpus`");
+            }
+            if (string.IsNullOrEmpty(corpusName))
+            {
+                throw new ArgumentNullException("`corpusName` is required for `AddCorpus`");
+            }
+            if (corpusFile == null)
+            {
+                throw new ArgumentNullException("`corpusFile` is required for `AddCorpus`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1701,7 +1866,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (allowOverwrite != null)
+                {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddCorpus"))
@@ -1711,7 +1878,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1738,10 +1907,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Corpus" />Corpus</returns>
         public DetailedResponse<Corpus> GetCorpus(string customizationId, string corpusName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetCorpus`");
-        if (string.IsNullOrEmpty(corpusName))
-            throw new ArgumentNullException("`corpusName` is required for `GetCorpus`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetCorpus`");
+            }
+            if (string.IsNullOrEmpty(corpusName))
+            {
+                throw new ArgumentNullException("`corpusName` is required for `GetCorpus`");
+            }
             DetailedResponse<Corpus> result = null;
 
             try
@@ -1767,7 +1940,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Corpus>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Corpus>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1797,10 +1972,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteCorpus(string customizationId, string corpusName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteCorpus`");
-        if (string.IsNullOrEmpty(corpusName))
-            throw new ArgumentNullException("`corpusName` is required for `DeleteCorpus`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteCorpus`");
+            }
+            if (string.IsNullOrEmpty(corpusName))
+            {
+                throw new ArgumentNullException("`corpusName` is required for `DeleteCorpus`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1826,7 +2005,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1865,8 +2046,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Words" />Words</returns>
         public DetailedResponse<Words> ListWords(string customizationId, string wordType = null, string sort = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            }
             DetailedResponse<Words> result = null;
 
             try
@@ -1885,9 +2068,13 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(wordType))
+                {
                     restRequest.WithArgument("word_type", wordType);
+                }
                 if (!string.IsNullOrEmpty(sort))
+                {
                     restRequest.WithArgument("sort", sort);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListWords"))
                 {
@@ -1896,7 +2083,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Words>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Words>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1963,10 +2152,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWords(string customizationId, List<CustomWord> words)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddWords`");
-        if (words == null)
-            throw new ArgumentNullException("`words` is required for `AddWords`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddWords`");
+            }
+            if (words == null)
+            {
+                throw new ArgumentNullException("`words` is required for `AddWords`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1985,12 +2178,13 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (words != null && words.Count > 0)
+                {
                     bodyObject["words"] = JToken.FromObject(words);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddWords"))
@@ -2000,7 +2194,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2056,10 +2252,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWord(string customizationId, string wordName, string word = null, List<string> soundsLike = null, string displayAs = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddWord`");
-        if (string.IsNullOrEmpty(wordName))
-            throw new ArgumentNullException("`wordName` is required for `AddWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddWord`");
+            }
+            if (string.IsNullOrEmpty(wordName))
+            {
+                throw new ArgumentNullException("`wordName` is required for `AddWord`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2078,16 +2278,21 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(word))
+                {
                     bodyObject["word"] = word;
+                }
                 if (soundsLike != null && soundsLike.Count > 0)
+                {
                     bodyObject["sounds_like"] = JToken.FromObject(soundsLike);
+                }
                 if (!string.IsNullOrEmpty(displayAs))
+                {
                     bodyObject["display_as"] = displayAs;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddWord"))
@@ -2097,7 +2302,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2125,10 +2332,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Word" />Word</returns>
         public DetailedResponse<Word> GetWord(string customizationId, string wordName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetWord`");
-        if (string.IsNullOrEmpty(wordName))
-            throw new ArgumentNullException("`wordName` is required for `GetWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetWord`");
+            }
+            if (string.IsNullOrEmpty(wordName))
+            {
+                throw new ArgumentNullException("`wordName` is required for `GetWord`");
+            }
             DetailedResponse<Word> result = null;
 
             try
@@ -2154,7 +2365,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Word>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Word>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2186,10 +2399,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteWord(string customizationId, string wordName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
-        if (string.IsNullOrEmpty(wordName))
-            throw new ArgumentNullException("`wordName` is required for `DeleteWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
+            }
+            if (string.IsNullOrEmpty(wordName))
+            {
+                throw new ArgumentNullException("`wordName` is required for `DeleteWord`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2215,7 +2432,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2240,8 +2459,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Grammars" />Grammars</returns>
         public DetailedResponse<Grammars> ListGrammars(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ListGrammars`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ListGrammars`");
+            }
             DetailedResponse<Grammars> result = null;
 
             try
@@ -2267,7 +2488,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Grammars>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Grammars>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2340,14 +2563,22 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddGrammar`");
-        if (string.IsNullOrEmpty(grammarName))
-            throw new ArgumentNullException("`grammarName` is required for `AddGrammar`");
-        if (string.IsNullOrEmpty(grammarFile))
-            throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
-        if (string.IsNullOrEmpty(contentType))
-            throw new ArgumentNullException("`contentType` is required for `AddGrammar`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddGrammar`");
+            }
+            if (string.IsNullOrEmpty(grammarName))
+            {
+                throw new ArgumentNullException("`grammarName` is required for `AddGrammar`");
+            }
+            if (string.IsNullOrEmpty(grammarFile))
+            {
+                throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
+            }
+            if (string.IsNullOrEmpty(contentType))
+            {
+                throw new ArgumentNullException("`contentType` is required for `AddGrammar`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2365,17 +2596,16 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
                 if (allowOverwrite != null)
+                {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
                     restRequest.WithHeader("Content-Type", contentType);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddGrammar"))
@@ -2385,7 +2615,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2412,10 +2644,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="Grammar" />Grammar</returns>
         public DetailedResponse<Grammar> GetGrammar(string customizationId, string grammarName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetGrammar`");
-        if (string.IsNullOrEmpty(grammarName))
-            throw new ArgumentNullException("`grammarName` is required for `GetGrammar`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetGrammar`");
+            }
+            if (string.IsNullOrEmpty(grammarName))
+            {
+                throw new ArgumentNullException("`grammarName` is required for `GetGrammar`");
+            }
             DetailedResponse<Grammar> result = null;
 
             try
@@ -2441,7 +2677,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<Grammar>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Grammar>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2471,10 +2709,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteGrammar(string customizationId, string grammarName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteGrammar`");
-        if (string.IsNullOrEmpty(grammarName))
-            throw new ArgumentNullException("`grammarName` is required for `DeleteGrammar`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteGrammar`");
+            }
+            if (string.IsNullOrEmpty(grammarName))
+            {
+                throw new ArgumentNullException("`grammarName` is required for `DeleteGrammar`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2500,7 +2742,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2524,10 +2768,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
         public DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null)
         {
-        if (string.IsNullOrEmpty(name))
-            throw new ArgumentNullException("`name` is required for `CreateAcousticModel`");
-        if (string.IsNullOrEmpty(baseModelName))
-            throw new ArgumentNullException("`baseModelName` is required for `CreateAcousticModel`");
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `CreateAcousticModel`");
+            }
+            if (string.IsNullOrEmpty(baseModelName))
+            {
+                throw new ArgumentNullException("`baseModelName` is required for `CreateAcousticModel`");
+            }
             DetailedResponse<AcousticModel> result = null;
 
             try
@@ -2546,16 +2794,21 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(name))
+                {
                     bodyObject["name"] = name;
+                }
                 if (!string.IsNullOrEmpty(baseModelName))
+                {
                     bodyObject["base_model_name"] = baseModelName;
+                }
                 if (!string.IsNullOrEmpty(description))
+                {
                     bodyObject["description"] = description;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "CreateAcousticModel"))
@@ -2565,7 +2818,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<AcousticModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AcousticModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2610,7 +2865,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(language))
+                {
                     restRequest.WithArgument("language", language);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "ListAcousticModels"))
                 {
@@ -2619,7 +2876,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<AcousticModels>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AcousticModels>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2644,8 +2903,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
         public DetailedResponse<AcousticModel> GetAcousticModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetAcousticModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetAcousticModel`");
+            }
             DetailedResponse<AcousticModel> result = null;
 
             try
@@ -2671,7 +2932,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<AcousticModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AcousticModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2697,8 +2960,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteAcousticModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteAcousticModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteAcousticModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2724,7 +2989,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2795,8 +3062,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
         public DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null, bool? strict = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `TrainAcousticModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `TrainAcousticModel`");
+            }
             DetailedResponse<TrainingResponse> result = null;
 
             try
@@ -2815,9 +3084,13 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customLanguageModelId))
+                {
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
+                }
                 if (strict != null)
+                {
                     restRequest.WithArgument("strict", strict);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "TrainAcousticModel"))
                 {
@@ -2826,7 +3099,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<TrainingResponse>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TrainingResponse>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2853,8 +3128,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> ResetAcousticModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ResetAcousticModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ResetAcousticModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2880,7 +3157,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2931,8 +3210,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `UpgradeAcousticModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `UpgradeAcousticModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -2951,9 +3232,13 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customLanguageModelId))
+                {
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
+                }
                 if (force != null)
+                {
                     restRequest.WithArgument("force", force);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "UpgradeAcousticModel"))
                 {
@@ -2962,7 +3247,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -2989,8 +3276,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="AudioResources" />AudioResources</returns>
         public DetailedResponse<AudioResources> ListAudio(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ListAudio`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ListAudio`");
+            }
             DetailedResponse<AudioResources> result = null;
 
             try
@@ -3016,7 +3305,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<AudioResources>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AudioResources>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -3158,12 +3449,18 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddAudio`");
-        if (string.IsNullOrEmpty(audioName))
-            throw new ArgumentNullException("`audioName` is required for `AddAudio`");
-        if (audioResource == null)
-            throw new ArgumentNullException("`audioResource` is required for `AddAudio`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddAudio`");
+            }
+            if (string.IsNullOrEmpty(audioName))
+            {
+                throw new ArgumentNullException("`audioName` is required for `AddAudio`");
+            }
+            if (audioResource == null)
+            {
+                throw new ArgumentNullException("`audioResource` is required for `AddAudio`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -3181,13 +3478,10 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
-                if (!string.IsNullOrEmpty(containedContentType))
-                    restRequest.WithHeader("Contained-Content-Type", containedContentType);
                 if (allowOverwrite != null)
+                {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -3208,7 +3502,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -3248,10 +3544,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="AudioListing" />AudioListing</returns>
         public DetailedResponse<AudioListing> GetAudio(string customizationId, string audioName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetAudio`");
-        if (string.IsNullOrEmpty(audioName))
-            throw new ArgumentNullException("`audioName` is required for `GetAudio`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetAudio`");
+            }
+            if (string.IsNullOrEmpty(audioName))
+            {
+                throw new ArgumentNullException("`audioName` is required for `GetAudio`");
+            }
             DetailedResponse<AudioListing> result = null;
 
             try
@@ -3277,7 +3577,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<AudioListing>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AudioListing>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -3306,10 +3608,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteAudio(string customizationId, string audioName)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteAudio`");
-        if (string.IsNullOrEmpty(audioName))
-            throw new ArgumentNullException("`audioName` is required for `DeleteAudio`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteAudio`");
+            }
+            if (string.IsNullOrEmpty(audioName))
+            {
+                throw new ArgumentNullException("`audioName` is required for `DeleteAudio`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -3335,7 +3641,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -3362,8 +3670,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
-        if (string.IsNullOrEmpty(customerId))
-            throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            if (string.IsNullOrEmpty(customerId))
+            {
+                throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -3381,7 +3691,9 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 if (!string.IsNullOrEmpty(customerId))
+                {
                     restRequest.WithArgument("customer_id", customerId);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "DeleteUserData"))
                 {
@@ -3390,7 +3702,9 @@ namespace IBM.Watson.SpeechToText.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {

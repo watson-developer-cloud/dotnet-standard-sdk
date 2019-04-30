@@ -1045,7 +1045,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         #endregion
 
         #region Stopword
-        [TestMethod]
+        //[TestMethod]
         public void TestStopword_Success()
         {
             var collectionsList = service.ListCollections(

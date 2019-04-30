@@ -90,7 +90,9 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Identify_Sucess_IamAsBasicAuth()
         {
-            var results = service.Identify(text);
+            var results = service.Identify(
+                text: text
+                );
 
             Assert.IsNotNull(results);
             Assert.IsTrue(results.Result.Languages.Count > 0);

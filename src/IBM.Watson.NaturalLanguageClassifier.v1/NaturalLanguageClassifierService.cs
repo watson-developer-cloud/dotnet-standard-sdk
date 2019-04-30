@@ -82,10 +82,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <returns><see cref="Classification" />Classification</returns>
         public DetailedResponse<Classification> Classify(string classifierId, string text)
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `Classify`");
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `Classify`");
+            if (string.IsNullOrEmpty(classifierId))
+            {
+                throw new ArgumentNullException("`classifierId` is required for `Classify`");
+            }
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException("`text` is required for `Classify`");
+            }
             DetailedResponse<Classification> result = null;
 
             try
@@ -104,12 +108,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(text))
+                {
                     bodyObject["text"] = text;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "Classify"))
@@ -119,7 +124,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<Classification>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Classification>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -142,10 +149,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
         public DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection)
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `ClassifyCollection`");
-        if (collection == null)
-            throw new ArgumentNullException("`collection` is required for `ClassifyCollection`");
+            if (string.IsNullOrEmpty(classifierId))
+            {
+                throw new ArgumentNullException("`classifierId` is required for `ClassifyCollection`");
+            }
+            if (collection == null)
+            {
+                throw new ArgumentNullException("`collection` is required for `ClassifyCollection`");
+            }
             DetailedResponse<ClassificationCollection> result = null;
 
             try
@@ -164,12 +175,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (collection != null && collection.Count > 0)
+                {
                     bodyObject["collection"] = JToken.FromObject(collection);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural_language_classifier", "v1", "ClassifyCollection"))
@@ -179,7 +191,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<ClassificationCollection>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ClassificationCollection>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -205,10 +219,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <returns><see cref="Classifier" />Classifier</returns>
         public DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData)
         {
-        if (metadata == null)
-            throw new ArgumentNullException("`metadata` is required for `CreateClassifier`");
-        if (trainingData == null)
-            throw new ArgumentNullException("`trainingData` is required for `CreateClassifier`");
+            if (metadata == null)
+            {
+                throw new ArgumentNullException("`metadata` is required for `CreateClassifier`");
+            }
+            if (trainingData == null)
+            {
+                throw new ArgumentNullException("`trainingData` is required for `CreateClassifier`");
+            }
             DetailedResponse<Classifier> result = null;
 
             try
@@ -255,7 +273,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Classifier>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -298,7 +318,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<ClassifierList>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ClassifierList>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -317,8 +339,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <returns><see cref="Classifier" />Classifier</returns>
         public DetailedResponse<Classifier> GetClassifier(string classifierId)
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
+            if (string.IsNullOrEmpty(classifierId))
+            {
+                throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
+            }
             DetailedResponse<Classifier> result = null;
 
             try
@@ -344,7 +368,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Classifier>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -361,8 +387,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteClassifier(string classifierId)
         {
-        if (string.IsNullOrEmpty(classifierId))
-            throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+            if (string.IsNullOrEmpty(classifierId))
+            {
+                throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -388,7 +416,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {

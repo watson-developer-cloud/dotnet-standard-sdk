@@ -131,11 +131,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
         public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
-        if (toneInput == null)
-            throw new ArgumentNullException("`toneInput` is required for `Tone`");
+            if (toneInput == null)
+            {
+                throw new ArgumentNullException("`toneInput` is required for `Tone`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<ToneAnalysis> result = null;
 
@@ -155,17 +159,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentType))
-                    restRequest.WithHeader("Content-Type", contentType);
-                if (!string.IsNullOrEmpty(contentLanguage))
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 if (sentences != null)
+                {
                     restRequest.WithArgument("sentences", sentences);
+                }
                 if (tones != null && tones.Count > 0)
+                {
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
-                restRequest.WithHeader("Accept", "application/json");
+                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -191,7 +192,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 result = restRequest.As<ToneAnalysis>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ToneAnalysis>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -230,11 +233,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="UtteranceAnalyses" />UtteranceAnalyses</returns>
         public DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null)
         {
-        if (utterances == null)
-            throw new ArgumentNullException("`utterances` is required for `ToneChat`");
+            if (utterances == null)
+            {
+                throw new ArgumentNullException("`utterances` is required for `ToneChat`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<UtteranceAnalyses> result = null;
 
@@ -254,12 +261,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(contentLanguage))
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentLanguage))
                 {
@@ -273,8 +275,10 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 JObject bodyObject = new JObject();
                 if (utterances != null && utterances.Count > 0)
+                {
                     bodyObject["utterances"] = JToken.FromObject(utterances);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"))
@@ -284,7 +288,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<UtteranceAnalyses>();
+                }
             }
             catch (AggregateException ae)
             {

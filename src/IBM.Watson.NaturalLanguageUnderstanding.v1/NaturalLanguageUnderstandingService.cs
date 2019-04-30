@@ -105,11 +105,15 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
         public DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null)
         {
-        if (features == null)
-            throw new ArgumentNullException("`features` is required for `Analyze`");
+            if (features == null)
+            {
+                throw new ArgumentNullException("`features` is required for `Analyze`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<AnalysisResults> result = null;
 
@@ -130,30 +134,49 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (features != null)
+                {
                     bodyObject["features"] = JToken.FromObject(features);
+                }
                 if (!string.IsNullOrEmpty(text))
+                {
                     bodyObject["text"] = text;
+                }
                 if (!string.IsNullOrEmpty(html))
+                {
                     bodyObject["html"] = html;
+                }
                 if (!string.IsNullOrEmpty(url))
+                {
                     bodyObject["url"] = url;
+                }
                 if (clean != null)
+                {
                     bodyObject["clean"] = JToken.FromObject(clean);
+                }
                 if (!string.IsNullOrEmpty(xpath))
+                {
                     bodyObject["xpath"] = xpath;
+                }
                 if (fallbackToRaw != null)
+                {
                     bodyObject["fallback_to_raw"] = JToken.FromObject(fallbackToRaw);
+                }
                 if (returnAnalyzedText != null)
+                {
                     bodyObject["return_analyzed_text"] = JToken.FromObject(returnAnalyzedText);
+                }
                 if (!string.IsNullOrEmpty(language))
+                {
                     bodyObject["language"] = language;
+                }
                 if (limitTextCharacters != null)
+                {
                     bodyObject["limit_text_characters"] = JToken.FromObject(limitTextCharacters);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"))
@@ -163,7 +186,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 result = restRequest.As<AnalysisResults>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<AnalysisResults>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -184,7 +209,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         {
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<ListModelsResults> result = null;
 
@@ -212,7 +239,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 result = restRequest.As<ListModelsResults>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ListModelsResults>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -231,11 +260,15 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>
         public DetailedResponse<DeleteModelResults> DeleteModel(string modelId)
         {
-        if (string.IsNullOrEmpty(modelId))
-            throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
+            if (string.IsNullOrEmpty(modelId))
+            {
+                throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<DeleteModelResults> result = null;
 
@@ -263,7 +296,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 result = restRequest.As<DeleteModelResults>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<DeleteModelResults>();
+                }
             }
             catch (AggregateException ae)
             {

@@ -107,7 +107,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<Voices>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Voices>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -135,8 +137,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="Voice" />Voice</returns>
         public DetailedResponse<Voice> GetVoice(string voice, string customizationId = null)
         {
-        if (string.IsNullOrEmpty(voice))
-            throw new ArgumentNullException("`voice` is required for `GetVoice`");
+            if (string.IsNullOrEmpty(voice))
+            {
+                throw new ArgumentNullException("`voice` is required for `GetVoice`");
+            }
             DetailedResponse<Voice> result = null;
 
             try
@@ -155,7 +159,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(customizationId))
+                {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetVoice"))
                 {
@@ -164,7 +170,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<Voice>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Voice>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -270,8 +278,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null)
         {
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `Synthesize`");
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException("`text` is required for `Synthesize`");
+            }
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -288,14 +298,15 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
 
-                if (!string.IsNullOrEmpty(accept))
-                    restRequest.WithHeader("Accept", accept);
                 if (!string.IsNullOrEmpty(voice))
+                {
                     restRequest.WithArgument("voice", voice);
+                }
                 if (!string.IsNullOrEmpty(customizationId))
+                {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "audio/basic");
 
                 if (!string.IsNullOrEmpty(accept))
                 {
@@ -304,8 +315,10 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(text))
+                {
                     bodyObject["text"] = text;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize"))
@@ -350,8 +363,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="Pronunciation" />Pronunciation</returns>
         public DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null)
         {
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `GetPronunciation`");
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException("`text` is required for `GetPronunciation`");
+            }
             DetailedResponse<Pronunciation> result = null;
 
             try
@@ -370,13 +385,21 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(text))
+                {
                     restRequest.WithArgument("text", text);
+                }
                 if (!string.IsNullOrEmpty(voice))
+                {
                     restRequest.WithArgument("voice", voice);
+                }
                 if (!string.IsNullOrEmpty(format))
+                {
                     restRequest.WithArgument("format", format);
+                }
                 if (!string.IsNullOrEmpty(customizationId))
+                {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetPronunciation"))
                 {
@@ -385,7 +408,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<Pronunciation>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Pronunciation>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -411,8 +436,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="VoiceModel" />VoiceModel</returns>
         public DetailedResponse<VoiceModel> CreateVoiceModel(string name, string language = null, string description = null)
         {
-        if (string.IsNullOrEmpty(name))
-            throw new ArgumentNullException("`name` is required for `CreateVoiceModel`");
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `CreateVoiceModel`");
+            }
             DetailedResponse<VoiceModel> result = null;
 
             try
@@ -431,16 +458,21 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(name))
+                {
                     bodyObject["name"] = name;
+                }
                 if (!string.IsNullOrEmpty(language))
+                {
                     bodyObject["language"] = language;
+                }
                 if (!string.IsNullOrEmpty(description))
+                {
                     bodyObject["description"] = description;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "CreateVoiceModel"))
@@ -450,7 +482,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<VoiceModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -497,7 +531,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(language))
+                {
                     restRequest.WithArgument("language", language);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "ListVoiceModels"))
                 {
@@ -506,7 +542,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<VoiceModels>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<VoiceModels>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -553,8 +591,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> UpdateVoiceModel(string customizationId, string name = null, string description = null, List<Word> words = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `UpdateVoiceModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `UpdateVoiceModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -573,16 +613,21 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(name))
+                {
                     bodyObject["name"] = name;
+                }
                 if (!string.IsNullOrEmpty(description))
+                {
                     bodyObject["description"] = description;
+                }
                 if (words != null && words.Count > 0)
+                {
                     bodyObject["words"] = JToken.FromObject(words);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "UpdateVoiceModel"))
@@ -592,7 +637,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -619,8 +666,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="VoiceModel" />VoiceModel</returns>
         public DetailedResponse<VoiceModel> GetVoiceModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetVoiceModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetVoiceModel`");
+            }
             DetailedResponse<VoiceModel> result = null;
 
             try
@@ -646,7 +695,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<VoiceModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -672,8 +723,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteVoiceModel(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteVoiceModel`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteVoiceModel`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -698,7 +751,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -742,10 +797,14 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWords(string customizationId, List<Word> words)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddWords`");
-        if (words == null)
-            throw new ArgumentNullException("`words` is required for `AddWords`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddWords`");
+            }
+            if (words == null)
+            {
+                throw new ArgumentNullException("`words` is required for `AddWords`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -764,12 +823,13 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (words != null && words.Count > 0)
+                {
                     bodyObject["words"] = JToken.FromObject(words);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "AddWords"))
@@ -779,7 +839,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -806,8 +868,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="Words" />Words</returns>
         public DetailedResponse<Words> ListWords(string customizationId)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            }
             DetailedResponse<Words> result = null;
 
             try
@@ -833,7 +897,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<Words>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Words>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -879,12 +945,18 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `AddWord`");
-        if (string.IsNullOrEmpty(word))
-            throw new ArgumentNullException("`word` is required for `AddWord`");
-        if (string.IsNullOrEmpty(translation))
-            throw new ArgumentNullException("`translation` is required for `AddWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `AddWord`");
+            }
+            if (string.IsNullOrEmpty(word))
+            {
+                throw new ArgumentNullException("`word` is required for `AddWord`");
+            }
+            if (string.IsNullOrEmpty(translation))
+            {
+                throw new ArgumentNullException("`translation` is required for `AddWord`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -905,10 +977,14 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(translation))
+                {
                     bodyObject["translation"] = translation;
+                }
                 if (!string.IsNullOrEmpty(partOfSpeech))
+                {
                     bodyObject["part_of_speech"] = partOfSpeech;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "AddWord"))
@@ -918,7 +994,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -946,10 +1024,14 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="Translation" />Translation</returns>
         public DetailedResponse<Translation> GetWord(string customizationId, string word)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `GetWord`");
-        if (string.IsNullOrEmpty(word))
-            throw new ArgumentNullException("`word` is required for `GetWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `GetWord`");
+            }
+            if (string.IsNullOrEmpty(word))
+            {
+                throw new ArgumentNullException("`word` is required for `GetWord`");
+            }
             DetailedResponse<Translation> result = null;
 
             try
@@ -975,7 +1057,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<Translation>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Translation>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1002,10 +1086,14 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteWord(string customizationId, string word)
         {
-        if (string.IsNullOrEmpty(customizationId))
-            throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
-        if (string.IsNullOrEmpty(word))
-            throw new ArgumentNullException("`word` is required for `DeleteWord`");
+            if (string.IsNullOrEmpty(customizationId))
+            {
+                throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
+            }
+            if (string.IsNullOrEmpty(word))
+            {
+                throw new ArgumentNullException("`word` is required for `DeleteWord`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1030,7 +1118,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -1057,8 +1147,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
-        if (string.IsNullOrEmpty(customerId))
-            throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            if (string.IsNullOrEmpty(customerId))
+            {
+                throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            }
             DetailedResponse<object> result = null;
 
             try
@@ -1076,7 +1168,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 
                 if (!string.IsNullOrEmpty(customerId))
+                {
                     restRequest.WithArgument("customer_id", customerId);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "DeleteUserData"))
                 {
@@ -1085,7 +1179,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {

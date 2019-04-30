@@ -2605,7 +2605,10 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithHeader("Content-Type", contentType);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile), Encoding.UTF8);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile));
+                System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
+                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarFileContentType);
+                httpContent.Headers.ContentType = grammarFileContentType;
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("speech_to_text", "v1", "AddGrammar"))

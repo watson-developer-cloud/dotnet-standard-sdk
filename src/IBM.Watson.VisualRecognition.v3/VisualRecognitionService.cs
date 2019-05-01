@@ -359,7 +359,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     foreach (KeyValuePair<string, System.IO.MemoryStream> entry in positiveExamples)
                     {
                         var partName = string.Format("{0}_positive_examples", entry.Key);
-                        var partContent = new ByteArrayContent((entry.Value as Stream).ReadAllBytes());
+                        var partContent = new ByteArrayContent(entry.Value.ToArray());
                         System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                         System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                         partContent.Headers.ContentType = contentType;
@@ -568,7 +568,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     foreach (KeyValuePair<string, System.IO.MemoryStream> entry in positiveExamples)
                     {
                         var partName = string.Format("{0}_positive_examples", entry.Key);
-                        var partContent = new ByteArrayContent((entry.Value as Stream).ReadAllBytes());
+                        var partContent = new ByteArrayContent(entry.Value.ToArray());
                         System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                         System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                         partContent.Headers.ContentType = contentType;

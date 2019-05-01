@@ -27,6 +27,7 @@ using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 using IBM.Cloud.SDK.Core;
 using System.Globalization;
+using IBM.Cloud.SDK.Core.Http;
 
 namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
 {
@@ -259,7 +260,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 {
                     fs.CopyTo(ms);
                     var result = service.DetectFaces(
-                        url: faceUrl, 
+                        url: faceUrl,
                         imagesFile: ms,
                         imagesFilename: Path.GetFileName(localFaceFilePath),
                         imagesFileContentType: "image/jpg"
@@ -273,218 +274,130 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         }
         #endregion
 
+        [TestMethod]
+        public void ListClassifiers_Success()
+        {
+            DetailedResponse<Classifiers> listClassifiersResult = null;
+
+            try
+            {
+                listClassifiersResult = service.ListClassifiers();
+            }
+            catch
+            {
+                Assert.Fail("Failed to list classifier - out of retries!");
+            }
+
+            Assert.IsNotNull(listClassifiersResult.Result);
+            Assert.IsNotNull(listClassifiersResult.Result._Classifiers);
+            Assert.IsTrue(listClassifiersResult.Result._Classifiers.Count > 0);
+        }
+
+        #region Custom
         //[TestMethod]
-        //public void ListClassifiers_Success()
-        //{
-        //    Classifiers listClassifiersResult = null;
+        public void TestClassifiers_Success()
+        {
+            DetailedResponse<Classifier> createClassifierResult = null;
+            string createdClassifierId;
+            using (FileStream positiveExamplesFileStream = File.OpenRead(localGiraffePositiveExamplesFilePath), negativeExamplesFileStream = File.OpenRead(localNegativeExamplesFilePath))
+            {
+                using (MemoryStream positiveExamplesMemoryStream = new MemoryStream(), negativeExamplesMemoryStream = new MemoryStream())
+                {
+                    positiveExamplesFileStream.CopyTo(positiveExamplesMemoryStream);
+                    negativeExamplesFileStream.CopyTo(negativeExamplesMemoryStream);
+                    Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
+                    positiveExamples.Add(giraffeClassname, positiveExamplesMemoryStream);
+                    createClassifierResult = service.CreateClassifier(
+                        name: createdClassifierName,
+                        positiveExamples: positiveExamples,
+                        negativeExamples: negativeExamplesMemoryStream,
+                        negativeExamplesFilename: Path.GetFileName(localNegativeExamplesFilePath)
+                        );
+                    createdClassifierId = createClassifierResult.Result.ClassifierId;
+                }
+            }
 
-        //    try
-        //    {
-        //        listClassifiersResult = service.ListClassifiers();
-        //    }
-        //    catch
-        //    {
-        //        Assert.Fail("Failed to list classifier - out of retries!");
-        //    }
+            var getClassifierResult = service.GetClassifier(
+                    classifierId: createdClassifierId
+                    );
 
-        //    Assert.IsNotNull(listClassifiersResult);
-        //}
+            try
+            {
+                IsClassifierReady(
+                    classifierId: createdClassifierId
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
 
-        //#region Custom
-        ////[TestMethod]
-        //public void TestClassifiers_Success()
-        //{
-        //    Classifier createClassifierResult = null;
-        //    try
-        //    {
-        //        createClassifierResult = CreateClassifier();
-        //    }
-        //    catch
-        //    {
-        //        Assert.Fail("Failed to train classifier - out of retries!");
-        //    }
+            DetailedResponse<Classifier> updateClassifierResult = null;
+            using (FileStream positiveExamplesStream = File.OpenRead(localTurtlePositiveExamplesFilePath))
+            {
+                using (MemoryStream positiveExamplesMemoryStream = new MemoryStream())
+                {
+                    Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
+                    positiveExamples.Add(turtleClassname, positiveExamplesMemoryStream);
+                    updateClassifierResult = service.UpdateClassifier(
+                        classifierId: createdClassifierId,
+                        positiveExamples: positiveExamples 
+                        );
+                }
+            }
 
-        //    string createdClassifierId = createClassifierResult.ClassifierId;
+            try
+            {
+                IsClassifierReady(
+                    classifierId: createdClassifierId
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
 
-        //    var getClassifierResult = GetClassifier(createdClassifierId);
+            DetailedResponse<MemoryStream> getCoreMlModelResult = null;
+            try
+            {
+                getCoreMlModelResult = service.GetCoreMlModel(
+                    classifierId: createdClassifierId
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
 
-        //    try
-        //    {
-        //        IsClassifierReady(createdClassifierId);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to get classifier...{0}", e.Message);
-        //    }
-        //    autoEvent.WaitOne();
+            try
+            {
+                IsClassifierReady(
+                    classifierId: createdClassifierId
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get classifier...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
 
-        //    Classifier updateClassifierResult = null;
-        //    try
-        //    {
-        //        updateClassifierResult = UpdateClassifier(createdClassifierId);
-        //    }
-        //    catch
-        //    {
-        //        Assert.Fail("Failed to retrain classifier - out of retries!");
-        //    }
+            var deleteClassifierResult = service.DeleteClassifier(
+                classifierId: createdClassifierId
+                );
 
-        //    try
-        //    {
-        //        IsClassifierReady(createdClassifierId);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to get classifier...{0}", e.Message);
-        //    }
-        //    autoEvent.WaitOne();
-
-        //    Task<Stream> getCoreMlModelResult = null;
-        //    try
-        //    {
-        //        getCoreMlModelResult = GetCoreMlModel(createdClassifierId);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to get classifier...{0}", e.Message);
-        //    }
-
-        //    try
-        //    {
-        //        IsClassifierReady(createdClassifierId);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to get classifier...{0}", e.Message);
-        //    }
-        //    autoEvent.WaitOne();
-
-        //    var deleteClassifierResult = DeleteClassifier(createdClassifierId);
-
-        //    Assert.IsNotNull(deleteClassifierResult);
-        //    Assert.IsNotNull(getCoreMlModelResult);
-        //    Assert.IsNotNull(updateClassifierResult);
-        //    Assert.IsTrue(updateClassifierResult.ClassifierId == createdClassifierId);
-        //    Assert.IsNotNull(getClassifierResult);
-        //    Assert.IsTrue(getClassifierResult.ClassifierId == createdClassifierId);
-        //    Assert.IsNotNull(createClassifierResult);
-        //    Assert.IsTrue(createClassifierResult.Name == createdClassifierName);
-        //}
-        //#endregion
-
-        //#region Create and Update Classifier with retries.
-        //private Classifier CreateClassifier()
-        //{
-        //    Classifier classifier = null;
-
-        //    try
-        //    {
-        //        using (FileStream positiveExamplesStream = File.OpenRead(localGiraffePositiveExamplesFilePath), negativeExamplesStream = File.OpenRead(localNegativeExamplesFilePath))
-        //        {
-        //            Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-        //            positiveExamples.Add(giraffeClassname, positiveExamplesStream);
-        //            CreateClassifier createClassifier = new CreateClassifier(createdClassifierName, positiveExamples, negativeExamplesStream);
-        //            classifier = service.CreateClassifier(createClassifier);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        if (_trainRetries > 0)
-        //        {
-        //            _trainRetries--;
-        //            CreateClassifier();
-        //        }
-        //        else
-        //        {
-        //            throw e;
-        //        }
-        //    }
-
-        //    return classifier;
-        //}
-
-        //private Classifier UpdateClassifier(string createdClassifierId)
-        //{
-        //    Classifier updateClassifierResult = null;
-
-        //    try
-        //    {
-        //        using (FileStream positiveExamplesStream = File.OpenRead(localTurtlePositiveExamplesFilePath))
-        //        {
-        //            Dictionary<string, Stream> positiveExamples = new Dictionary<string, Stream>();
-        //            positiveExamples.Add(turtleClassname, positiveExamplesStream);
-        //            UpdateClassifier updateClassifier = new UpdateClassifier(createdClassifierId, positiveExamples);
-        //            updateClassifierResult = service.UpdateClassifier(updateClassifier);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        if (_retrainRetries > 0)
-        //        {
-        //            _retrainRetries--;
-        //            UpdateClassifier(createdClassifierId);
-        //        }
-        //        else
-        //        {
-        //            throw e;
-        //        }
-        //    }
-
-        //    return updateClassifierResult;
-        //}
-
-        //private Classifiers ListClassifiers(bool? verbose = null)
-        //{
-        //    Console.WriteLine("\nAttempting to ListClassifiers()");
-
-        //    Classifiers result = null;
-        //    try
-        //    {
-        //        result = service.ListClassifiers(verbose: verbose);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        if (_listClassifiersRetries > 0)
-        //        {
-        //            _listClassifiersRetries--;
-        //            ListClassifiers(verbose);
-        //        }
-        //        else
-        //        {
-        //            throw e;
-        //        }
-        //    }
-
-        //    if (result != null)
-        //    {
-        //        Console.WriteLine("ListClassifiers() succeeded:\n{0}", JsonConvert.SerializeObject(result, Formatting.Indented));
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Failed to ListClassifiers()");
-        //    }
-
-        //    return result;
-        //}
-        //#endregion
-
-        //#region Get Core ML Model
-        //private Task<Stream> GetCoreMlModel(string createdClassifierId)
-        //{
-        //    Task<Stream> getCoreMlModelResult = null;
-
-        //    try
-        //    {
-        //        getCoreMlModelResult = service.GetCoreMlModel(createdClassifierId);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-        //    }
-
-        //    return getCoreMlModelResult;
-        //}
-        //#endregion
-
+            Assert.IsNotNull(deleteClassifierResult.Result);
+            Assert.IsNotNull(getCoreMlModelResult.Result);
+            Assert.IsNotNull(updateClassifierResult.Result);
+            Assert.IsTrue(updateClassifierResult.Result.ClassifierId == createdClassifierId);
+            Assert.IsNotNull(getClassifierResult.Result);
+            Assert.IsTrue(getClassifierResult.Result.ClassifierId == createdClassifierId);
+            Assert.IsNotNull(createClassifierResult.Result);
+            Assert.IsTrue(createClassifierResult.Result.Name == createdClassifierName);
+        }
+        #endregion
+       
         #region Utility
         #region IsClassifierReady
         private void IsClassifierReady(string classifierId)

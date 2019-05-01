@@ -79,6 +79,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.SpeechToText.v1.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.IntegrationTests", "test\TextToSpeech.v1.IntegrationTests\IBM.Watson.TextToSpeech.v1.IntegrationTests.csproj", "{AF02393E-9799-4C01-B699-8BDEBEBD5B86}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.IntegrationTests", "test\ToneAnalyzer.v3.IntegrationTests\IBM.Watson.ToneAnalyzer.v3.IntegrationTests.csproj", "{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +187,10 @@ Global
 		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -213,6 +219,7 @@ Global
 		{582D051B-DDF9-4679-84EE-4ACCAAEA0FD1} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{056AC681-3542-4579-828F-6D5C718701D5} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 		{AF02393E-9799-4C01-B699-8BDEBEBD5B86} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
+		{3B5AABB4-E54C-4C2A-8647-2A4872CD79EF} = {C7873F44-7188-49BE-84C5-532BE4E07147}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

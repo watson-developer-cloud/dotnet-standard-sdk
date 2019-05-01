@@ -159,14 +159,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (sentences != null)
-                {
-                    restRequest.WithArgument("sentences", sentences);
-                }
-                if (tones != null && tones.Count > 0)
-                {
-                    restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
-                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -181,6 +173,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (sentences != null)
+                {
+                    restRequest.WithArgument("sentences", sentences);
+                }
+                if (tones != null && tones.Count > 0)
+                {
+                    restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
@@ -261,7 +261,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
 
                 if (!string.IsNullOrEmpty(contentLanguage))
                 {
@@ -272,6 +271,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
+                restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (utterances != null && utterances.Count > 0)

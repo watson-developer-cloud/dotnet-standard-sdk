@@ -185,18 +185,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (rawScores != null)
-                {
-                    restRequest.WithArgument("raw_scores", rawScores);
-                }
-                if (csvHeaders != null)
-                {
-                    restRequest.WithArgument("csv_headers", csvHeaders);
-                }
-                if (consumptionPreferences != null)
-                {
-                    restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -211,6 +199,18 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (rawScores != null)
+                {
+                    restRequest.WithArgument("raw_scores", rawScores);
+                }
+                if (csvHeaders != null)
+                {
+                    restRequest.WithArgument("csv_headers", csvHeaders);
+                }
+                if (consumptionPreferences != null)
+                {
+                    restRequest.WithArgument("consumption_preferences", consumptionPreferences);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
@@ -335,18 +335,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "text/csv");
-                if (rawScores != null)
-                {
-                    restRequest.WithArgument("raw_scores", rawScores);
-                }
-                if (csvHeaders != null)
-                {
-                    restRequest.WithArgument("csv_headers", csvHeaders);
-                }
-                if (consumptionPreferences != null)
-                {
-                    restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -361,6 +349,18 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (rawScores != null)
+                {
+                    restRequest.WithArgument("raw_scores", rawScores);
+                }
+                if (csvHeaders != null)
+                {
+                    restRequest.WithArgument("csv_headers", csvHeaders);
+                }
+                if (consumptionPreferences != null)
+                {
+                    restRequest.WithArgument("consumption_preferences", consumptionPreferences);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);

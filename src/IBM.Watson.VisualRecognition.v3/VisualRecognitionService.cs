@@ -169,6 +169,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                {
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "Classify"))
@@ -263,6 +268,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(acceptLanguage))
+                {
+                    restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("watson_vision_combined", "v3", "DetectFaces"))

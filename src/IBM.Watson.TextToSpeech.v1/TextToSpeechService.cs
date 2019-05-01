@@ -298,6 +298,11 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
 
+
+                if (!string.IsNullOrEmpty(accept))
+                {
+                    restRequest.WithHeader("Accept", accept);
+                }
                 if (!string.IsNullOrEmpty(voice))
                 {
                     restRequest.WithArgument("voice", voice);
@@ -307,11 +312,6 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customization_id", customizationId);
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
-
-                if (!string.IsNullOrEmpty(accept))
-                {
-                    restRequest.WithHeader("Accept", accept);
-                }
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(text))

@@ -2412,12 +2412,12 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
 
                 if (loggingOptOut != null)
                 {
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)loggingOptOut ? "true" : "false");
                 }
+                restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(filter))
@@ -2744,12 +2744,12 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
 
                 if (loggingOptOut != null)
                 {
                     restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)loggingOptOut ? "true" : "false");
                 }
+                restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (!string.IsNullOrEmpty(filter))

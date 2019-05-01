@@ -406,6 +406,11 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
                 restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -477,11 +482,6 @@ namespace IBM.Watson.SpeechToText.v1
                 if (redaction != null)
                 {
                     restRequest.WithArgument("redaction", redaction);
-                }
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    restRequest.WithHeader("Content-Type", contentType);
                 }
                 var httpContent = new ByteArrayContent(audio);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
@@ -928,6 +928,11 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
                 restRequest.WithHeader("Accept", "application/json");
+
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    restRequest.WithHeader("Content-Type", contentType);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -1015,11 +1020,6 @@ namespace IBM.Watson.SpeechToText.v1
                 if (redaction != null)
                 {
                     restRequest.WithArgument("redaction", redaction);
-                }
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    restRequest.WithHeader("Content-Type", contentType);
                 }
                 var httpContent = new ByteArrayContent(audio);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
@@ -2602,14 +2602,14 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (allowOverwrite != null)
-                {
-                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
                     restRequest.WithHeader("Content-Type", contentType);
+                }
+                if (allowOverwrite != null)
+                {
+                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile));
                 System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
@@ -3487,10 +3487,6 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
                 restRequest.WithHeader("Accept", "application/json");
-                if (allowOverwrite != null)
-                {
-                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
-                }
 
                 if (!string.IsNullOrEmpty(contentType))
                 {
@@ -3500,6 +3496,10 @@ namespace IBM.Watson.SpeechToText.v1
                 if (!string.IsNullOrEmpty(containedContentType))
                 {
                     restRequest.WithHeader("Contained-Content-Type", containedContentType);
+                }
+                if (allowOverwrite != null)
+                {
+                    restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
                 var httpContent = new ByteArrayContent(audioResource);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioResourceContentType;
